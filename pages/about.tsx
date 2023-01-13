@@ -1,0 +1,26 @@
+import Layout from 'components/layout/Landing'
+import { marked } from 'marked'
+
+const text = marked.parse(`
+# Tentang Million Candles
+
+Million Candles adalah perusahaan lilin asal Yogyakarta yang menyediakan berbagai jenis lilin dengan desain yang unik dan berkualitas tinggi. Kami menggunakan bahan-bahan berkualitas tinggi dan teknik pembuatan yang baik untuk menciptakan lilin yang indah dan harum.
+
+Kami menawarkan berbagai pilihan lilin, mulai dari lilin tealight hingga lilin besar yang dapat digunakan untuk acara spesial seperti pernikahan atau pesta ulang tahun. Selain itu, kami juga menyediakan lilin parfum yang dapat digunakan untuk menciptakan suasana yang menenangkan di rumah Anda.
+
+Kami memiliki berbagai pilihan warna dan desain yang dapat disesuaikan dengan selera Anda. Kami juga dapat membuat lilin dengan desain yang sesuai dengan keinginan Anda.
+
+Kami sangat menghargai kualitas dan keselamatan pelanggan, sehingga kami selalu berusaha untuk menggunakan bahan-bahan yang aman dan tidak merusak lingkungan.
+
+Jika Anda ingin menambah suasana romantis di rumah Anda atau mencari hadiah yang unik untuk acara spesial, jangan ragu untuk mengunjungi website kami dan melihat pilihan lilin yang kami tawarkan. Kami akan senang untuk membantu Anda menemukan lilin yang tepat untuk kebutuhan Anda.
+`)
+
+export default function About() {
+    return (
+        <Layout>
+            <article className="mx-auto my-32 prose prose-xl" dangerouslySetInnerHTML={{__html: text}}> 
+                
+            </article>
+        </Layout>
+    )
+}
