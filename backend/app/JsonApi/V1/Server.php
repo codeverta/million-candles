@@ -2,6 +2,8 @@
 
 namespace App\JsonApi\V1;
 
+use App\JsonApi\V1\ProductCategories\ProductCategorySchema;
+use App\JsonApi\V1\Products\ProductSchema;
 use LaravelJsonApi\Core\Server\Server as BaseServer;
 
 class Server extends BaseServer
@@ -32,7 +34,8 @@ class Server extends BaseServer
     protected function allSchemas(): array
     {
         return [
-            // @TODO
+            ProductSchema::class,
+            ProductCategorySchema::class,
         ];
     }
 }
