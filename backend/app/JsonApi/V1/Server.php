@@ -5,6 +5,7 @@ namespace App\JsonApi\V1;
 use App\JsonApi\V1\ProductCategories\ProductCategorySchema;
 use App\JsonApi\V1\Products\ProductSchema;
 use LaravelJsonApi\Core\Server\Server as BaseServer;
+use Illuminate\Support\Facades\Auth;
 
 class Server extends BaseServer
 {
@@ -23,7 +24,7 @@ class Server extends BaseServer
      */
     public function serving(): void
     {
-        // no-op
+        Auth::shouldUse('sanctum');
     }
 
     /**
