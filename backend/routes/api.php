@@ -21,5 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
-    $server->resource('products', JsonApiController::class)->readOnly();
+
+    $server->resource('product-categories', JsonApiController::class)
+    ->relationships(function ($relations) {
+        $relations->hasMany('products')->readOnly();
+    });
+    $server->resource('products', JsonApiController::class)->readOnly()       ->relationships(function ($relations) {
+           $relations->hasOne('product-categories')->readOnly();
+       });;
 });

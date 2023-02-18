@@ -91,4 +91,7 @@ class ProductPolicy
     {
         //
     }
+    public function viewProductCategories(?User $user) {
+        return true;
+    }
 }
