@@ -65,7 +65,7 @@ class ProductPolicy
      */
     public function delete(User $user, Product $product)
     {
-        //
+        return $user->can('products:delete') || $user->can('products:*');
     }
 
     /**
