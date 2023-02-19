@@ -16,8 +16,14 @@ class ProductRequest extends ResourceRequest
      */
     public function rules(): array
     {
+        $product = $this->model();
+        $uniquePost = Rule::unique('products', 'name');
+
+        if ($product) {
+            $uniquePost->ignoreModel($product);
+        }
         return [
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', $uniquePost],
             'description' => ['required', 'string'],
             'product-categories' => JsonApiRule::toOne('product-categories'),
             'price' => ['required', JsonApiRule::number()],

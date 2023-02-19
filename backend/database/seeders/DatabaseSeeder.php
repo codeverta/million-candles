@@ -16,16 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        ProductCategory::factory(10)->create();
-        Product::factory(100)->create([
-            'product_categories_id' => random_int(1, 10)
-        ]);
-        // \App\Models\User::factory(10)->create();
         $this->call([
             UserSeeder::class,
+            ProductSeeder::class,
             ProvinceSeeder::class,
-            DistrictSeeder::class,
             RegencySeeder::class,
+            DistrictSeeder::class,
             VillageSeeder::class,
         ]);
     }
