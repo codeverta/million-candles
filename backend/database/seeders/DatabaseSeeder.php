@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,8 +26,8 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Test User',
-            'email' => 'zenitsu@gmail.com',
-            'password' => 'zenitsu'
+            'email' => 'naruto@gmail.com',
+            'password' => Hash::make('naruto123')
         ]);
     }
 }

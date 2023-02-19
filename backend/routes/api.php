@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use LaravelJsonApi\Laravel\Facades\JsonApiRoute;
 use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,19 +16,19 @@ use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 |
 */
 
-Route::post('/tokens/create', function (Request $request) {
-    $token = $request->user()->createToken($request->token_name);
-
-    return ['token' => $token->plainTextToken];
-});
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
+Route::prefix('/v1')->group(function () {
+    Route::post('/auth/login', [AuthController::class, 'login']);
+    Route::post('/auth/forgot', [AuthController::class, 'forgot']);
+    Route::post('/auth/reset', [AuthController::class, 'reset']);
+});
 
+JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
     $server->resource('product-categories', JsonApiController::class)
+    ->only('index', 'show', 'store')
     ->relationships(function ($relations) {
         $relations->hasMany('products')->readOnly();
     });
