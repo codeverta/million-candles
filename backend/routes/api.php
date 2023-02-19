@@ -36,5 +36,11 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
     ->only('index', 'show', 'store')
     ->relationships(function ($relations) {
            $relations->hasOne('product-categories')->readOnly();
-       });;
+       });
+
+    $server->resource('provinces', JsonApiController::class)
+    ->readOnly()
+    ->relationships(function ($relations) {
+        $relations->hasMany('regencies')->readOnly();
+    });
 });

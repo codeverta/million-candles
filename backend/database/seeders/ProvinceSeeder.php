@@ -20,6 +20,7 @@ class ProvinceSeeder extends Seeder
             return str_getcsv($row, ';');
         }, file($csv));
 
+        array_shift($rows);
         foreach ($rows as $row) {
             DB::table('provinces')->insert([
                 'id' => (int) $row[0],
