@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('is_shipping')->default(false);
             $table->boolean('is_shipped')->default(false);
             $table->boolean('is_received')->default(false);
+            $table->bigInteger('price_amount')->default(0);
             $table->unsignedBigInteger('origin_user_id');
             $table->unsignedBigInteger('destination_user_id');
 

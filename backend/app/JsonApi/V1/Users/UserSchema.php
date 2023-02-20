@@ -1,20 +1,18 @@
 <?php
 
-namespace App\JsonApi\V1\Orders;
+namespace App\JsonApi\V1\Users;
 
-use App\Models\Order;
+use App\Models\User;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
-use LaravelJsonApi\Eloquent\Fields\Boolean;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
+use LaravelJsonApi\Eloquent\Fields\Relations\HasMany;
 use LaravelJsonApi\Eloquent\Fields\Str;
-use LaravelJsonApi\Eloquent\Fields\Relations\BelongsTo;
-use LaravelJsonApi\Eloquent\Fields\Relations\HasOne;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Schema;
 
-class OrderSchema extends Schema
+class UserSchema extends Schema
 {
 
     /**
@@ -22,7 +20,7 @@ class OrderSchema extends Schema
      *
      * @var string
      */
-    public static string $model = Order::class;
+    public static string $model = User::class;
 
     /**
      * Get the resource fields.
@@ -33,12 +31,8 @@ class OrderSchema extends Schema
     {
         return [
             ID::make(),
-            Str::make('airwaybill'),
-            Boolean::make('is_validate'),
-            Boolean::make('is_shipping'),
-            Boolean::make('is_shipped'),
-            BelongsTo::make('origin-users', 'originUser')->type('users'),
-            BelongsTo::make('destination-users', 'destinationUser')->type('users'),
+            Str::make('email'),
+            HasMany::make('orders'),
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
         ];

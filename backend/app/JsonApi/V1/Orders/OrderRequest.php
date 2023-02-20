@@ -17,7 +17,9 @@ class OrderRequest extends ResourceRequest
     public function rules(): array
     {
         return [
-            // @TODO
+            'airwaybill' => ['string', 'required'],
+            'origin-users' => JsonApiRule::toOne(),
+            'destination-users' => JsonApiRule::toOne()
         ];
     }
 

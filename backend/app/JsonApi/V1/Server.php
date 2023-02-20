@@ -3,10 +3,12 @@
 namespace App\JsonApi\V1;
 
 use App\JsonApi\V1\Districts\DistrictSchema;
+use App\JsonApi\V1\Orders\OrderSchema;
 use App\JsonApi\V1\ProductCategories\ProductCategorySchema;
 use App\JsonApi\V1\Products\ProductSchema;
 use App\JsonApi\V1\Provinces\ProvinceSchema;
 use App\JsonApi\V1\Regencies\RegencySchema;
+use App\JsonApi\V1\Users\UserSchema;
 use App\JsonApi\V1\Villages\VillageSchema;
 use LaravelJsonApi\Core\Server\Server as BaseServer;
 use Illuminate\Support\Facades\Auth;
@@ -45,6 +47,8 @@ class Server extends BaseServer
             RegencySchema::class,
             DistrictSchema::class,
             VillageSchema::class,
+            OrderSchema::class,
+            UserSchema::class,
         ];
     }
 }

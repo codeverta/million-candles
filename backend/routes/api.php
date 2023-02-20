@@ -43,4 +43,6 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
     ->relationships(function ($relations) {
         $relations->hasMany('regencies')->readOnly();
     });
+
+    $server->resource('orders', JsonApiController::class);
 });
