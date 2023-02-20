@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('airwaybills');
+            $table->string('airwaybill');
             $table->boolean('is_validate')->default(false);
             $table->boolean('is_shipping')->default(false);
             $table->boolean('is_shipped')->default(false);
@@ -23,7 +23,6 @@ return new class extends Migration
             $table->unsignedBigInteger('origin_user_id');
             $table->unsignedBigInteger('destination_user_id');
 
-            $table->foreignId('villages_id')->constrained();
             $table->foreign('origin_user_id')->references('id')->on('users');
             $table->foreign('destination_user_id')->references('id')->on('users');
             $table->timestamps();

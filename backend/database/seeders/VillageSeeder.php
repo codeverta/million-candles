@@ -15,20 +15,22 @@ class VillageSeeder extends Seeder
      */
     public function run()
     {
-        ini_set('memory_limit', '512M');
         $csv = database_path('seeders/data/villages.csv'); // path to your CSV file
         $rows = array_map(function ($row) {
             return str_getcsv($row, ';');
         }, file($csv));
 
         array_shift($rows);
-        foreach ($rows as $row) {
-            DB::table('villages')->insert([
-                'id' => (int) $row[0],
-                'districts_id' => (int) $row[1],
-                'name' => $row[2],
-                // add more columns as needed
-            ]);
+
+        $result = array_map(function ($item) {
+            [$id, $districts_id, $name] = $item;
+            return ["id" => $id, "districts_id" => $districts_id, "name" => $name];
+        }, $rows);
+        $chunkSize = 2000;
+        $totalChunks = ceil(count($result) / $chunkSize);
+        for ($i = 0; $i < $totalChunks; $i++) {
+            $chunk = array_slice($result, $i * $chunkSize, $chunkSize, true);
+            DB::table('villages')->insert($chunk);
         }
     }
 }
