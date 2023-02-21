@@ -45,5 +45,5 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
     });
 
     $server->resource('orders', JsonApiController::class);
-    // $server->resource('order-details', JsonApiController::class);
+    $server->resource('order-details', JsonApiController::class);
 });
