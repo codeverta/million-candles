@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\OrderScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,6 +16,7 @@ class Order extends Model
 
     protected static function booted(): void
     {
+        static::addGlobalScope(new OrderScope);
         static::creating(function (Order $order) {
             // dd($order);
         });

@@ -26,7 +26,7 @@ class OrderPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(?User $user)
+    public function viewAny(User $user)
     {
         return true;
     }
@@ -51,7 +51,7 @@ class OrderPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->can('orders:create') || $user->can('orders:*');
     }
 
     /**
@@ -63,7 +63,7 @@ class OrderPolicy
      */
     public function update(User $user, Order $order)
     {
-        return true;
+        return $user->can('orders:update') || $user->can('orders:*');
     }
 
     /**

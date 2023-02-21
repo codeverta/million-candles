@@ -27,12 +27,25 @@ class UserSeeder extends Seeder
         Permission::create(['name' => 'products:update']);
         Permission::create(['name' => 'products:delete']);
 
-        // create roles and assign existing permissions
-        $role1 = Role::create(['name' => 'merchant']);
-        $role1->givePermissionTo('products:*');
+        Permission::create(['name' => 'orders:*']);
+        Permission::create(['name' => 'orders:create']);
+        Permission::create(['name' => 'orders:read']);
+        Permission::create(['name' => 'orders:update']);
+        Permission::create(['name' => 'orders:delete']);
 
-        $role2 = Role::create(['name' => 'buyer']);
-        $role2->givePermissionTo('products:read');
+        Permission::create(['name' => 'users:*']);
+        Permission::create(['name' => 'users:create']);
+        Permission::create(['name' => 'users:read']);
+        Permission::create(['name' => 'users:update']);
+        Permission::create(['name' => 'users:delete']);
+
+        // create roles and assign existing permissions
+        $userMerchant = Role::create(['name' => 'merchant']);
+        $userMerchant->givePermissionTo('products:*');
+        $userMerchant->givePermissionTo('orders:*');
+
+        $userBiasa = Role::create(['name' => 'buyer']);
+        $userBiasa->givePermissionTo('products:read');
 
 
         $merchant = User::factory()->create([
@@ -47,7 +60,11 @@ class UserSeeder extends Seeder
             'password' => Hash::make('zenitsu123')
         ]);
 
-        $merchant->assignRole($role1);
-        $buyer->assignRole($role2);
+        $merchant->assignRole($userMerchant);
+        $buyer->assignRole($userBiasa);
+        $buyer = User::factory(20)->create();
+        foreach ($buyer as $user) {
+            $user->assignRole($userBiasa);
+        }
     }
 }

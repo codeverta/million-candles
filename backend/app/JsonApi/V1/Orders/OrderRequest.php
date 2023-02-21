@@ -18,8 +18,8 @@ class OrderRequest extends ResourceRequest
     {
         return [
             'airwaybill' => ['string', 'required'],
-            'origin-users' => JsonApiRule::toOne(),
-            'destination-users' => JsonApiRule::toOne()
+            'origin-users' => [ 'required', JsonApiRule::toOne() ],
+            'destination-users' => [ 'required', JsonApiRule::toOne() ]
         ];
     }
 
