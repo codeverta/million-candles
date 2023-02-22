@@ -24,9 +24,9 @@ class StoreDocumentRequest extends FormRequest
     public function rules()
     {
         return [
-            'documentable_id' => 'required|unique:posts|max:255',
+            'documentable_id' => 'required|max:255',
             'documentable_type' => 'required',
-            'filename' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ];
     }
 }

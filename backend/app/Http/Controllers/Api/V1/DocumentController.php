@@ -23,11 +23,12 @@ class DocumentController extends Controller
 
     public function upload(StoreDocumentRequest $request)
     {
+        $image_path = $request->file('image')->store('image', 'public');
 
         $document = Document::create([
             'documentable_id' => $request->documentable_id,
             'documentable_type' => $request->documentable_type,
-            'filename' => $request->filename,
+            'filename' => $image_path,
         ]);
 
         return response()->json($document);
