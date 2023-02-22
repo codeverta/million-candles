@@ -3,6 +3,7 @@
 namespace App\JsonApi\V1;
 
 use App\JsonApi\V1\Districts\DistrictSchema;
+use App\JsonApi\V1\Documents\DocumentSchema;
 use App\JsonApi\V1\OrderDetails\OrderDetailSchema;
 use App\JsonApi\V1\Orders\OrderSchema;
 use App\JsonApi\V1\ProductCategories\ProductCategorySchema;
@@ -51,6 +52,7 @@ class Server extends BaseServer
             OrderSchema::class,
             OrderDetailSchema::class,
             UserSchema::class,
+            DocumentSchema::class
         ];
     }
 }
