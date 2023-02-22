@@ -45,6 +45,10 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
         $relations->hasMany('regencies')->readOnly();
     });
 
+    $server->resource('users', JsonApiController::class)
+    ->relationships(function ($relations) {
+        $relations->hasOne('documents')->readOnly();
+    });
     $server->resource('orders', JsonApiController::class);
     $server->resource('order-details', JsonApiController::class);
     $server->resource('documents', '\\' . DocumentController::class)->actions('-actions', function ($actions) {

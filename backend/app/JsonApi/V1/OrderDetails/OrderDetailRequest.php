@@ -17,7 +17,10 @@ class OrderDetailRequest extends ResourceRequest
     public function rules(): array
     {
         return [
-            
+            'qty' => ['required'],
+            'price' => ['required'],
+            'products' => [JsonApiRule::toOne('products')],
+            'orders' => [JsonApiRule::toOne('orders')],
         ];
     }
 

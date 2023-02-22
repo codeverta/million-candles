@@ -18,4 +18,10 @@ class UserPolicy
     {
         //
     }
+
+    public function viewAny(User $user)
+    {
+        // todo ganti ini
+        return true || $user->can('users:*');
+    }
 }

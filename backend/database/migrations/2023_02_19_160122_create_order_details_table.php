@@ -19,13 +19,8 @@ return new class extends Migration
             $table->integer('qty');
             $table->integer('price');
             $table->foreignId('products_id');
+            $table->foreignId('orders_id');
             $table->timestamps();
-        });
-
-        Schema::create('order_detail_order', function (Blueprint $table) {
-            $table->foreignId('order_details_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('orders_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->primary(['order_details_id', 'orders_id']);
         });
     }
 
@@ -37,6 +32,5 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('order_details');
-        Schema::dropIfExists('product_detail_order');
     }
 };
