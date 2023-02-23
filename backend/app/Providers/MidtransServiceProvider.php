@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class MidtransProvider extends ServiceProvider
+class MidtransServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -23,6 +23,6 @@ class MidtransProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
     }
 }

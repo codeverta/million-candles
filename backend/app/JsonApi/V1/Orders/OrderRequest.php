@@ -17,9 +17,12 @@ class OrderRequest extends ResourceRequest
     public function rules(): array
     {
         return [
-            'airwaybill' => ['string', 'required'],
-            'origin-users' => [ 'required', JsonApiRule::toOne() ],
-            'destination-users' => [ 'required', JsonApiRule::toOne() ]
+            'airwaybill' => ['string', 'required', Rule::unique('orders', 'airwaybill')],
+            'origin-users' => [ JsonApiRule::toOne() ],
+            'destination-users' => [ JsonApiRule::toOne() ],
+            'is_validate' => ['boolean'],
+            'is_shipping' => ['boolean'],
+            'is_shipped' => ['boolean'],
         ];
     }
 

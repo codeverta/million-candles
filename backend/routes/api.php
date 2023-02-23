@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\DocumentController;
+use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -49,7 +50,7 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
     ->relationships(function ($relations) {
         $relations->hasOne('documents')->readOnly();
     });
-    $server->resource('orders', JsonApiController::class);
+    $server->resource('orders', OrderController::class);
     $server->resource('order-details', JsonApiController::class);
     $server->resource('documents', '\\' . DocumentController::class)->actions('-actions', function ($actions) {
         $actions->post('upload');

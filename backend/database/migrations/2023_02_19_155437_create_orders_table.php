@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('airwaybill');
+            $table->string('snap_token')->nullable();
             $table->boolean('is_validate')->default(false);
             $table->boolean('is_shipping')->default(false);
             $table->boolean('is_shipped')->default(false);
