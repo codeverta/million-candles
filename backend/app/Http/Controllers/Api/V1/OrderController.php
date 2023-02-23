@@ -38,93 +38,55 @@ class OrderController extends Controller
 
     public function creating(OrderRequest $request, OrderQuery $query): void
     {
-        // Required
-        $transaction_details = array(
-            'order_id' => rand(),
-            'gross_amount' => 94000, // no decimal allowed for creditcard
-        );
 
-        // Optional
-        $item1_details = array(
-            'id' => 'a1',
-            'price' => 18000,
-            'quantity' => 3,
-            'name' => "Apple"
-        );
-
-        // Optional
-        $item2_details = array(
-            'id' => 'a2',
-            'price' => 20000,
-            'quantity' => 2,
-            'name' => "Orange"
-        );
-
-        // Optional
-        $item_details = array($item1_details, $item2_details);
-
-        // Optional
-        $billing_address = array(
-            'first_name'    => "Andri",
-            'last_name'     => "Litani",
-            'address'       => "Mangga 20",
-            'city'          => "Jakarta",
-            'postal_code'   => "16602",
-            'phone'         => "081122334455",
-            'country_code'  => 'IDN'
-        );
-
-        // Optional
-        $shipping_address = array(
-            'first_name'    => "Obet",
-            'last_name'     => "Supriadi",
-            'address'       => "Manggis 90",
-            'city'          => "Jakarta",
-            'postal_code'   => "16601",
-            'phone'         => "08113366345",
-            'country_code'  => 'IDN'
-        );
-
-        // Optional
-        $customer_details = array(
-            'first_name'    => "Andri",
-            'last_name'     => "Litani",
-            'email'         => "andri@litani.com",
-            'phone'         => "081122334455",
-            'billing_address'  => $billing_address,
-            'shipping_address' => $shipping_address
-        );
-
-        // Optional, remove this to display all available payment methods
-        $enable_payments = array('credit_card', 'cimb_clicks', 'mandiri_clickpay', 'echannel');
-
-        // Fill transaction details
-        $transaction = array(
-            // 'enabled_payments' => $enable_payments,
-            'transaction_details' => $transaction_details,
-            'customer_details' => $customer_details,
-            'item_details' => $item_details,
-        );
-
-        $snap_token = '';
-        try {
-            $snap_token = Snap::getSnapToken($transaction);
-            // dd($snap_token);
-            Order::creating(function (Order $model) use($snap_token) {
-                $model->snap_token = $snap_token;
-            });
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-        }
     }
 
     public function updating(Order $order, OrderRequest $request, OrderQuery $query): void
     {
         // do something only on updating...
         if($request->data['attributes']['is_validate']) {
-            // dd($order->orderDetails()->get());
-            echo $order->orderDetails()->get();
+            // compute amount
+            $order = $order->with(['originUser', 'destinationUser', 'orderDetails.products'])->first();
+            $total_price = $order->orderDetails()->sum('price');
+            $orderDetails = $order->orderDetails;
+            $snap_token = '';
+
+            // Required
+            $transaction_details = array(
+                'order_id' => $order->id,
+                'gross_amount' => $total_price, // no decimal allowed for creditcard
+            );
+            $item_details = [];
+
+            foreach ($orderDetails as $key => $orderDetail) {
+                $item_details[] = array(
+                    'id' => $orderDetail->id,
+                    'price' => $orderDetail->price,
+                    'quantity' => $orderDetail->qty,
+                    'name' => $orderDetail->products->name
+                );
+            }
+
+            // Fill transaction details
+            $transaction = array(
+                'transaction_details' => $transaction_details,
+                'item_details' => $item_details,
+            );
+
+            try {
+                $snap_token = Snap::getSnapToken($transaction);
+                Order::creating(function (Order $model) use ($snap_token, $total_price) {
+                    $model->snap_token = $snap_token;
+                    $model->total_price = $total_price;
+                });
+            } catch (\Exception $e) {
+                dd($e->getMessage());
+            }
+            Order::creating(function ($model) use ($total_price, $snap_token)
+            {
+                $model->price_amount = (int) $total_price;
+                $model->snap_token = $snap_token;
+            });
         }
-        // dd("there");
     }
 }
