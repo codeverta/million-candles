@@ -16,8 +16,15 @@ class OrderRequest extends ResourceRequest
      */
     public function rules(): array
     {
+        $order = $this->model();
+        $uniqueSlug = Rule::unique('orders', 'airwaybill');
+
+        if ($order) {
+            $uniqueSlug->ignoreModel($order);
+        }
+
         return [
-            'airwaybill' => ['string', 'required', Rule::unique('orders', 'airwaybill')],
+            'airwaybill' => ['string', 'required', $uniqueSlug],
             'origin-users' => [ JsonApiRule::toOne() ],
             'destination-users' => [ JsonApiRule::toOne() ],
             'is_validate' => ['boolean'],

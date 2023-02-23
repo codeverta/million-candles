@@ -117,4 +117,14 @@ class OrderController extends Controller
             dd($e->getMessage());
         }
     }
+
+    public function updating(Order $order, OrderRequest $request, OrderQuery $query): void
+    {
+        // do something only on updating...
+        if($request->data['attributes']['is_validate']) {
+            // dd($order->orderDetails()->get());
+            echo $order->orderDetails()->get();
+        }
+        // dd("there");
+    }
 }
