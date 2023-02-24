@@ -1,13 +1,12 @@
 import styles from '../styles/Home.module.css'
 import Image from 'next/image'
-import contohImage from '../public/assets/lilin.png'
+import contohImage from 'public/assets/lilin.png'
 import Stars from './Stars'
 import Link from 'next/link'
 import { Modal } from './'
 import { useEffect, useState } from 'react'
-import supabase from '../utils/db'
 
-
+console.log(contohImage)
 export default function Content() {
   const [ isModalOpen, setIsModalOpen ] = useState<Boolean>(false);
   const [ isLoading, setIsLoading ] = useState<Boolean>(false)
@@ -17,22 +16,7 @@ export default function Content() {
         fetchProducts()
     },[])
 
-    const fetchProducts = async () => {
-        setIsLoading(true)
-        const { data }  = await supabase
-            .from('products')
-            .select(`
-                name,
-                uuid,
-                price,
-                documents (
-                    url
-                )
-            `)
-            .eq('documents.type', 'image')
-        setIsLoading(false)
-        setProducts(data)
-    }
+    const fetchProducts = async () => {}
 
     const handleModal = (product: any): void => {
         setIsModalOpen(true)
