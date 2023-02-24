@@ -25,7 +25,7 @@ const api = {
     })
   },
 
-  get(url: string, params: any, config: any) {
+  get(url: string, params?: any, config?: any) {
     return axios.get(url, { params, responseType: config?.responseType })
   },
 

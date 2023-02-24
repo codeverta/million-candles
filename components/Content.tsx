@@ -5,28 +5,32 @@ import Stars from './Stars'
 import Link from 'next/link'
 import { Modal } from './'
 import { useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import api from 'utils/api'
 
-console.log(contohImage)
+const productParams = {
+    'page[size]': 10
+}
+
 export default function Content() {
-  const [ isModalOpen, setIsModalOpen ] = useState<Boolean>(false);
-  const [ isLoading, setIsLoading ] = useState<Boolean>(false)
-  const [ products, setProducts ] = useState<any>([])
-  const [ selectedProduct, setSelectedProduct ] = useState({}) 
-    useEffect(() => {
-        fetchProducts()
-    },[])
+    const [ state, setState ] = useState<any>({
+        isModalOpen: false,
+        isLoading: false,
+        selectedProduct: {},
+    });
+    const query = useQuery({ queryKey: ["products"], queryFn: () => {
+        return api.get('products', { params: productParams})
+    } });
 
-    const fetchProducts = async () => {
-        
-    }
+    console.log({query})
 
     const handleModal = (product: any): void => {
-        setIsModalOpen(true)
-        setSelectedProduct(product)
+        setState({...state, isModalOpen: !state.isModalOpen, selectedProduct: product})
     }
+
     return (
         <>
-        { isModalOpen && (
+        { state.isModalOpen && (
             <Modal>
                <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     {/* <!-- Modal header --> */}
@@ -59,9 +63,9 @@ export default function Content() {
         <main>
             <h2 className="mb-4 py-20 text-center text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Produk Kami</h2>
             <article className="flex justify-center">
-                { !isLoading ? (
+                {/* { !state.isLoading ? (
                     <>
-                        { products?.map((product: any) => {
+                        { query.data.data?.map((product: any) => {
                             const [ document ] = product.documents
                             return (
                             <div key={product.uuid} className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -82,7 +86,7 @@ export default function Content() {
                             )}
                         )}
                     </>
-                ) : null}
+                ) : null} */}
             </article>
       </main>
         </>

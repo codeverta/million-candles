@@ -1,11 +1,11 @@
 
 // import { useRef, useEffect } from 'react'
 import dynamic from 'next/dynamic';
-const DynamicMap = dynamic(() => import('/components/Map'), {
+const DynamicMap = dynamic(() => import('components/Map'), {
   ssr: false
 });
 
-export default function Address(props) {
+export default function Address(props: any) {
 	return (
 		<main>
 			<DynamicMap {...props} />

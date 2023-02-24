@@ -2,14 +2,15 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Script from 'next/script';
 import {
-  useQuery,
-  useMutation,
-  useQueryClient,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import api from 'utils/api';
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
+api.init(process.env.NEXT_PUBLIC_BASE_API as string);
+
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -21,6 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
       ></Script>
       <QueryClientProvider client={queryClient}>
         <Component {...pageProps} />
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </>
   );
