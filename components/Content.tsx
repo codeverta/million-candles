@@ -16,7 +16,9 @@ export default function Content() {
         fetchProducts()
     },[])
 
-    const fetchProducts = async () => {}
+    const fetchProducts = async () => {
+        
+    }
 
     const handleModal = (product: any): void => {
         setIsModalOpen(true)
