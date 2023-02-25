@@ -1,4 +1,5 @@
 import { Content, Hero } from 'components'
+import Footer from 'components/Footer'
 import Layout from 'components/layout/Landing'
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <Layout>
         <Hero/>
         <Content/>
+        <Footer/>
     </Layout>
   )
 }

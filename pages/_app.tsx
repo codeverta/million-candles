@@ -7,12 +7,15 @@ import {
 } from "@tanstack/react-query";
 import api from 'utils/api';
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { getRelationship, getRelationships } from 'utils';
 
 const queryClient = new QueryClient();
 api.init(process.env.NEXT_PUBLIC_BASE_API as string);
 
 
 export default function App({ Component, pageProps }: AppProps) {
+  const appProps = { getRelationship, getRelationships };
+  
   return (
     <>
       <Script
@@ -21,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
         data-client-key="SB-Mid-client-kRWWsc4NnDa_F5Us"
       ></Script>
       <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
+        <Component {...pageProps} {...appProps} />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </>

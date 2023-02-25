@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Product;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Relation::morphMap([
+            'products' => Product::class,
+            'users' => User::class
+        ]);
     }
 }
