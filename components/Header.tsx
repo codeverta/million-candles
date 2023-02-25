@@ -1,38 +1,37 @@
-import { useState } from "react"
-import Link from 'next/link'
+import { useState } from "react";
+import Link from "next/link";
 import Login from "./molecules/Login";
 import { Modal } from "@mui/material";
 
 interface Route {
-    label: String,
-    url: String
+  label: String;
+  url: String;
 }
 
-
 export default function Header() {
-    const [menus] = useState<Route[]>([
-        {
-            label: 'Home',
-            url: '/'
-        },
-        {
-            label: 'Produk',
-            url: '/product'
-        },
-        {
-            label: 'Alamat',
-            url: '/address'
-        },
-        {
-            label: 'Tentang',
-            url: '/about'
-        }
-    ])
-    const [open, setOpen] = useState(false);
+  const [menus] = useState<Route[]>([
+    {
+      label: "Home",
+      url: "/",
+    },
+    {
+      label: "Produk",
+      url: "/product",
+    },
+    {
+      label: "Alamat",
+      url: "/address",
+    },
+    {
+      label: "Tentang",
+      url: "/about",
+    },
+  ]);
+  const [open, setOpen] = useState(false);
 
-    const handleOpenLogin = () => {
-        setOpen(!open)
-    }
+  const handleOpenLogin = () => {
+    setOpen(!open);
+  };
   return (
     <header>
       {open && (
@@ -42,9 +41,10 @@ export default function Header() {
           aria-labelledby="modal-login"
           aria-describedby="parent-modal-description"
           className="grid h-screen place-items-center"
-          keepMounted
         >
-          <Login />
+          <div>
+            <Login />
+          </div>
         </Modal>
       )}
 
