@@ -1,10 +1,4 @@
-import styles from '../styles/Home.module.css'
-import Image from 'next/image'
-import contohImage from 'public/assets/lilin.png'
-import Stars from './Stars'
-import Link from 'next/link'
-// import { Modal } from './'
-import { Modal } from '@mui/material'
+import { Modal, Rating } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useQuery, UseQueryResult } from '@tanstack/react-query'
 import api from 'utils/api'
@@ -20,10 +14,11 @@ export default function Content() {
         isModalOpen: false,
         isLoading: false,
         selectedProduct: {},
+        rating: []
     });
     const query: UseQueryResult<any> = useQuery({ queryKey: ["products"], queryFn: () => {
         return api.get('products', { ...productParams})
-    } });
+    }, staleTime: 1000 * 60 * 10});
 
 
     const handleModal = (product: any): void => {
@@ -47,6 +42,7 @@ export default function Content() {
                   Terms of Service
                 </h3>
                 <button
+                  onClick={handleModal}
                   type="button"
                   className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                   data-modal-hide="defaultModal"
@@ -57,7 +53,6 @@ export default function Content() {
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
-                    onClick={handleModal}
                   >
                     <path
                       fillRule="evenodd"
@@ -113,7 +108,7 @@ export default function Content() {
               <div>Loading...</div>
             ) : (
               <>
-                {query.data.data.data.map((product: any) => {
+                {query.data.data.data.map((product: any, index: number) => {
                   const documents = getRelationships(
                     query.data.data,
                     product,
@@ -144,7 +139,13 @@ export default function Content() {
                             {product.attributes.name}
                           </h5>
                         </a>
-                        <Stars />
+                        <Rating
+                          name="simple-controlled"
+                          value={state.rating[index] ?? Math.floor(Math.random() * 5) + 1}
+                          onChange={(event, newValue) => {
+                            // setStat(newValue);
+                          }}
+                        />
                         <div className="flex items-center justify-between">
                           <span className="text-3xl font-bold text-gray-900 dark:text-white">
                             Rp {product.attributes.price}
