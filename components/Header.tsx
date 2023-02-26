@@ -2,6 +2,9 @@ import { useState } from "react";
 import Link from "next/link";
 import Login from "./molecules/Login";
 import { Modal } from "@mui/material";
+import Drawer from "./flowbite/Drawer";
+import { CSSTransition } from "react-transition-group";
+import { useRef } from "react";
 
 interface Route {
   label: String;
@@ -27,16 +30,23 @@ export default function Header() {
       url: "/about",
     },
   ]);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState({
+    drawer: false,
+    login: false,
+  });
+  const nodeRef = useRef(null);
 
   const handleOpenLogin = () => {
-    setOpen(!open);
+    setOpen({ ...open, login: !open.login });
+  };
+  const handleDrawer = () => {
+    setOpen({ ...open, drawer: !open.drawer });
   };
   return (
     <header>
-      {open && (
+      {open.login && (
         <Modal
-          open={open}
+          open={open.login}
           onClose={handleOpenLogin}
           aria-labelledby="modal-login"
           aria-describedby="parent-modal-description"
@@ -47,6 +57,8 @@ export default function Header() {
           </div>
         </Modal>
       )}
+
+      {open.drawer && <Drawer handleDrawer={handleDrawer} />}
 
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
@@ -76,6 +88,7 @@ export default function Header() {
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
+              onClick={handleDrawer}
               className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               aria-controls="mobile-menu-2"
               aria-expanded="false"

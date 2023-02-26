@@ -34,7 +34,7 @@ export default function Login() {
         toast("Login berhasil");
         router.push("/admin");
       },
-      onError(data) {
+      onError(data: any) {
         data.response.data.errors.forEach(
           (error: { detail: string; status: string }) => {
             toast.error(error.detail);
