@@ -3,12 +3,10 @@ import AdminLayout from "components/layout/AdminLayout";
 import React from "react";
 import Table from "components/mui/Table";
 
-function Home() {
-  return (
-    <AdminLayout>
-      <Table />
-    </AdminLayout>
-  );
+export default function Home() {
+  return <Table />;
 }
 
-export default Home;
+Home.getLayout = function getLayout(page: any) {
+  return <AdminLayout>{page}</AdminLayout>;
+};

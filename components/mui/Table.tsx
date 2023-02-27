@@ -20,6 +20,9 @@ import Switch from "@mui/material/Switch";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
+import EditIcon from "@mui/icons-material/Edit";
+import { useQuery } from "@tanstack/react-query";
+import api from "utils/api";
 
 interface Data {
   calories: number;
@@ -232,6 +235,13 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           Penjualan
         </Typography>
       )}
+      {numSelected == 1 && (
+        <Tooltip title="Edit">
+          <IconButton>
+            <EditIcon />
+          </IconButton>
+        </Tooltip>
+      )}
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton>
@@ -249,13 +259,24 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   );
 }
 
-export default function EnhancedTable() {
+const ordersParams = {
+  "page[size]": 5,
+};
+
+export default function OrderTable() {
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<keyof Data>("calories");
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(15);
+  const query = useQuery({
+    queryKey: ["orders"],
+    queryFn: () => {
+      return api.get("orders", { ...ordersParams });
+    },
+    staleTime: 1000 * 60 * 10,
+  });
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,

@@ -9,6 +9,7 @@ use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
 use LaravelJsonApi\Eloquent\Fields\Str;
 use LaravelJsonApi\Eloquent\Fields\Relations\BelongsTo;
+use LaravelJsonApi\Eloquent\Fields\Relations\HasMany;
 use LaravelJsonApi\Eloquent\Fields\Relations\HasOne;
 use LaravelJsonApi\Eloquent\Filters\Where;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
@@ -26,6 +27,12 @@ class OrderSchema extends Schema
     public static string $model = Order::class;
 
     /**
+     * The maximum include path depth.
+     *
+     * @var int
+     */
+    protected int $maxDepth = 3;
+    /**
      * Get the resource fields.
      *
      * @return array
@@ -39,6 +46,7 @@ class OrderSchema extends Schema
             Boolean::make('is_validate'),
             Boolean::make('is_shipping'),
             Boolean::make('is_shipped'),
+            HasMany::make('order-details'),
             BelongsTo::make('origin-users', 'originUser')->type('users'),
             BelongsTo::make('destination-users', 'destinationUser')->type('users'),
             DateTime::make('createdAt')->sortable()->readOnly(),
