@@ -30,9 +30,14 @@ export default function Login() {
     };
 
     loginMutation.mutate(payload, {
-      onSuccess() {
+      onSuccess(data) {
         toast("Login berhasil");
-        router.push("/admin");
+        localStorage.setItem("token", data.data.token);
+        if (data.data.roles.includes("merchant")) {
+          router.push("admin");
+        } else {
+          router.push("store");
+        }
       },
       onError(data: any) {
         data.response.data.errors.forEach(

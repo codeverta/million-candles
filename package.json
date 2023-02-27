@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@headlessui/react": "^1.7.12",
     "@mui/base": "^5.0.0-alpha.118",
     "@mui/icons-material": "^5.11.9",
     "@mui/material": "^5.11.10",

@@ -13,12 +13,14 @@ import MailIcon from "@mui/icons-material/Mail";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
-export default function TemporaryDrawer() {
+interface PropsI {
+  handleDrawer: any;
+  open: boolean;
+}
+
+export default function AppDrawer(props: PropsI) {
   const [state, setState] = React.useState({
-    top: false,
     left: false,
-    bottom: false,
-    right: false,
   });
 
   const toggleDrawer =
@@ -39,8 +41,6 @@ export default function TemporaryDrawer() {
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
         {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
@@ -72,18 +72,11 @@ export default function TemporaryDrawer() {
 
   return (
     <div>
-      {(["left", "right", "top", "bottom"] as const).map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
+      <React.Fragment key={"left"}>
+        <Drawer anchor={"left"} open={props.open} onClose={props.handleDrawer}>
+          {list("left")}
+        </Drawer>
+      </React.Fragment>
     </div>
   );
 }
