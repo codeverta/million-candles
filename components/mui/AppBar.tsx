@@ -96,6 +96,9 @@ export default function ButtonAppBar() {
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
+                classes={{
+                  input: "!shadow-none !focus:outline-0 !ring-0",
+                }}
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
               />
