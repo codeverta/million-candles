@@ -8,8 +8,10 @@ import Paper from "@mui/material/Paper";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useRouter } from "next/router";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import { useGetFetchQuery } from "utils/hooks";
 
-const redirectTo = [
+const adminList = [
   {
     to: "/admin",
     icon: <HomeIcon />,
@@ -17,7 +19,7 @@ const redirectTo = [
   },
   {
     to: "/admin/notifications",
-    icon: <FavoriteIcon />,
+    icon: <NotificationsNoneIcon />,
     label: "Notifikasi",
   },
   {
@@ -27,9 +29,31 @@ const redirectTo = [
   },
 ];
 
+const buyerList = [
+  {
+    to: "/store",
+    icon: <HomeIcon />,
+    label: "Penjualan",
+  },
+  {
+    to: "/store/notifications",
+    icon: <NotificationsNoneIcon />,
+    label: "Notifikasi",
+  },
+  {
+    to: "/store/profile",
+    icon: <AccountCircleIcon />,
+    label: "Profile",
+  },
+];
+
 export default function BottomNav() {
   const router = useRouter();
   const [value, setValue] = React.useState(undefined);
+  const getSelf: any = useGetFetchQuery(["self"]);
+  const routeList = React.useMemo(() => {
+    return getSelf.data.roles.includes("merchant") ? adminList : buyerList;
+  }, []);
 
   return (
     <Box sx={{ pb: 7 }}>
@@ -45,7 +69,7 @@ export default function BottomNav() {
             router.push(newValue.to);
           }}
         >
-          {redirectTo.map((it) => (
+          {routeList.map((it) => (
             <BottomNavigationAction
               value={it}
               key={it.to}
