@@ -1,8 +1,9 @@
 import AdminLayout from "components/layout/AdminLayout";
 import React from "react";
+import ProfileSection from "components/organism/ProfileSection";
 
 function Profile() {
-  return <div></div>;
+  return <ProfileSection />;
 }
 
 Profile.getLayout = function getLayout(page: React.ReactNode) {

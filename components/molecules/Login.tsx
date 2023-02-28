@@ -35,8 +35,10 @@ export default function Login() {
         localStorage.setItem("token", data.data.token);
         if (data.data.roles.includes("merchant")) {
           router.push("admin");
-        } else {
+        } else if (data.data.roles.includes("buyer")) {
           router.push("store");
+        } else {
+          console.error("role tidak ditemukan");
         }
       },
       onError(data: any) {

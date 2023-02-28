@@ -27,6 +27,7 @@ Route::prefix('/v1')->group(function () {
     Route::post('/auth/login', [AuthController::class, 'login']);
     Route::post('/auth/forgot', [AuthController::class, 'forgot']);
     Route::post('/auth/reset', [AuthController::class, 'reset']);
+    Route::post('/auth/self', [AuthController::class, 'me'])->middleware('auth:sanctum');
 });
 
 JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {

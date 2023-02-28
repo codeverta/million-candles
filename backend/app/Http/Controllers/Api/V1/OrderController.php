@@ -44,7 +44,7 @@ class OrderController extends Controller
     public function updating(Order $order, OrderRequest $request, OrderQuery $query): void
     {
         // do something only on updating...
-        if($request->data['attributes']['is_validate']) {
+        if($request->data['attributes']['is_validate_buyer']) {
             // compute amount
             $order = $order->with(['originUser', 'destinationUser', 'orderDetails.products'])->first();
             $total_price = $order->orderDetails()->sum('price');

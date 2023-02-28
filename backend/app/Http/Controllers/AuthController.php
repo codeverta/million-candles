@@ -59,6 +59,16 @@ class AuthController extends Controller
         ]);
     }
 
+    public function me(Request $request)
+    {
+        $user = $request->user();
+        return response()->json([
+            'me' => $user,
+            'roles' => $user->getRoleNames(),
+            'permissions' => $user->getPermissionNames()
+        ]);
+    }
+
     public function forgot(Request $request)
     {
         $validator = Validator::make($request->all(), [

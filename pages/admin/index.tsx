@@ -1,10 +1,10 @@
 // import BottomNav from 'components/mui/BottomNav';
 import AdminLayout from "components/layout/AdminLayout";
 import React from "react";
-import Table from "components/mui/Table";
+import OrderTable from "components/molecules/OrderTable";
 
 export default function Home() {
-  return <Table />;
+  return <OrderTable />;
 }
 
 Home.getLayout = function getLayout(page: any) {

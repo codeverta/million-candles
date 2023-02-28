@@ -24,7 +24,7 @@ class OrderRequest extends ResourceRequest
         }
 
         return [
-            'airwaybill' => ['string', 'required', $uniqueSlug],
+            'airwaybill' => ['string', $uniqueSlug],
             'origin-users' => [ JsonApiRule::toOne() ],
             'destination-users' => [ JsonApiRule::toOne() ],
             'is_validate' => ['boolean'],

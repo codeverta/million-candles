@@ -43,7 +43,9 @@ class OrderSchema extends Schema
             ID::make(),
             Str::make('airwaybill'),
             Str::make('snap_token'),
-            Boolean::make('is_validate'),
+            Boolean::make(
+            'is_validate_buyer'),
+            Boolean::make('is_validate_seller'),
             Boolean::make('is_shipping'),
             Boolean::make('is_shipped'),
             HasMany::make('order-details'),

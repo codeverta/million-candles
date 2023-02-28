@@ -17,9 +17,12 @@ class OrderResource extends JsonApiResource
     public function attributes($request): iterable
     {
         return [
+            'code' => $this->code,
             'snap_token' => $this->snap_token,
             'airwaybill' => $this->airwaybill,
-            'is_validate' => (bool) $this->is_validate,
+            'price_amount' => $this->price_amount,
+            'is_validate_seller' => (bool) $this->is_validate_seller,
+            'is_validate_buyer' => (bool) $this->is_validate_buyer,
             'is_shipping' => (bool) $this->is_shipping,
             'is_shipped' => (bool) $this->is_shipped,
             'createdAt' => $this->created_at,
