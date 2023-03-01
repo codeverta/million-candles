@@ -9,44 +9,61 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import { Rating } from "@mui/material";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import ProductDialog from "components/molecules/ProductDialog";
 
 export default function ProductCard(props: any) {
   const [state, setState] = React.useState({
     rating: [],
   });
+  const [open, setOpen] = React.useState({
+    dialog: false,
+  });
+
+  const handleDialog = () => {
+    setOpen({ ...open, dialog: !open.dialog });
+  };
 
   return (
-    <Card sx={{ maxWidth: 200 }}>
-      <CardMedia
-        component="img"
-        height="194"
-        image="/static/images/cards/paella.jpg"
-        onError={(e: any) => (e.target.src = "/assets/image-1@2x.jpg")}
-      />
-      <CardContent>
-        <p className="text-sm">{props.product.attributes.name}</p>
-        <p className="text-md font-bold">
-          Rp. {props.product.attributes.price}
-        </p>
-        <Rating
-          name="simple-controlled"
-          value={state.rating[0] ?? Math.floor(Math.random() * 5) + 1}
-          onChange={(event, newValue) => {
-            // setStat(newValue);
-          }}
+    <>
+      {open.dialog && (
+        <ProductDialog
+          product={props.product}
+          open={open.dialog}
+          handleClose={handleDialog}
         />
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <IconButton title="Terverifikasi Oleh Million Candles">
-          <VerifiedIcon color="primary" />
-        </IconButton>
-      </CardActions>
-    </Card>
+      )}
+      <Card onClick={handleDialog} sx={{ maxWidth: 200 }}>
+        <CardMedia
+          component="img"
+          height="194"
+          image="/static/images/cards/paella.jpg"
+          onError={(e: any) => (e.target.src = "/assets/image-1@2x.jpg")}
+        />
+        <CardContent
+          classes={{
+            root: "!px-3 py-1",
+          }}
+        >
+          <div className="text-sm flex items-center max-w-full">
+            <p className="truncate">{props.product.attributes.name}</p>
+            <IconButton size="small" title="Terverifikasi Oleh Million Candles">
+              <VerifiedIcon fontSize="small" color="primary" />
+            </IconButton>
+          </div>
+          <p className="text-md font-bold">
+            Rp. {props.product.attributes.price}
+          </p>
+        </CardContent>
+        <CardActions disableSpacing>
+          <Rating
+            name="simple-controlled"
+            value={state.rating[0] ?? Math.floor(Math.random() * 5) + 1}
+            onChange={(event, newValue) => {
+              // setStat(newValue);
+            }}
+          />
+        </CardActions>
+      </Card>
+    </>
   );
 }

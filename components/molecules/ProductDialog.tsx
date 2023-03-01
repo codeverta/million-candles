@@ -12,6 +12,8 @@ import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
+import { getRelationships } from "utils";
+import { useGetFetchQuery } from "utils/hooks";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -25,9 +27,18 @@ const Transition = React.forwardRef(function Transition(
 interface PropsI {
   open: boolean;
   handleClose: any;
+  product: any;
 }
 
-export default function FullScreenDialog(props: PropsI) {
+export default function ProductDialog(props: PropsI) {
+  const queryClient: any = useGetFetchQuery(["products"]);
+  const getDocuments = getRelationships(
+    queryClient?.data,
+    props.product,
+    "documents"
+  );
+
+  console.log({ getDocuments });
   return (
     <div>
       <Dialog
@@ -47,13 +58,24 @@ export default function FullScreenDialog(props: PropsI) {
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Sound
+              Detail Produk
             </Typography>
-            <Button autoFocus color="inherit" onClick={props.handleClose}>
-              save
+            <Button autoFocus color="inherit">
+              Beli
             </Button>
           </Toolbar>
         </AppBar>
+        {getDocuments.length > 0 ? (
+          <>
+            {getDocuments.map((document: any) => (
+              <img
+                key={document.id}
+                src={`${process.env.NEXT_PUBLIC_BASE}/storage/${document.attributes.filename}`}
+                onError={(e: any) => (e.target.src = "/assets/image-1@2x.jpg")}
+              />
+            ))}
+          </>
+        ) : null}
         <List>
           <ListItem button>
             <ListItemText primary="Phone ringtone" secondary="Titania" />

@@ -8,8 +8,9 @@ import Paper from "@mui/material/Paper";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useRouter } from "next/router";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useGetFetchQuery } from "utils/hooks";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const adminList = [
   {
@@ -19,7 +20,7 @@ const adminList = [
   },
   {
     to: "/admin/notifications",
-    icon: <NotificationsNoneIcon />,
+    icon: <NotificationsIcon />,
     label: "Notifikasi",
   },
   {
@@ -37,8 +38,13 @@ const buyerList = [
   },
   {
     to: "/store/notifications",
-    icon: <NotificationsNoneIcon />,
+    icon: <NotificationsIcon />,
     label: "Notifikasi",
+  },
+  {
+    to: "/store/cart",
+    icon: <ShoppingCartIcon />,
+    label: "Keranjang",
   },
   {
     to: "/store/profile",
@@ -56,29 +62,28 @@ export default function BottomNav() {
   }, []);
 
   return (
-    <Box sx={{ pb: 7 }}>
-      <Paper
-        sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-        elevation={3}
+    <Paper
+      sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+      className=""
+      elevation={3}
+    >
+      <BottomNavigation
+        showLabels
+        value={value}
+        onChange={(_, newValue) => {
+          setValue(newValue);
+          router.push(newValue.to);
+        }}
       >
-        <BottomNavigation
-          showLabels
-          value={value}
-          onChange={(_, newValue) => {
-            setValue(newValue);
-            router.push(newValue.to);
-          }}
-        >
-          {routeList.map((it) => (
-            <BottomNavigationAction
-              value={it}
-              key={it.to}
-              label={it.label}
-              icon={it.icon}
-            />
-          ))}
-        </BottomNavigation>
-      </Paper>
-    </Box>
+        {routeList.map((it) => (
+          <BottomNavigationAction
+            value={it}
+            key={it.to}
+            label={it.label}
+            icon={it.icon}
+          />
+        ))}
+      </BottomNavigation>
+    </Paper>
   );
 }

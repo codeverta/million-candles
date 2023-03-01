@@ -47,7 +47,6 @@ function Home() {
 
   const handleClick = () => {};
 
-  console.log({ getProducts });
   return (
     <div className="py-4">
       <Swiper
@@ -76,7 +75,10 @@ function Home() {
         >
           {getProducts.data.data.data.map((product: any) => {
             return (
-              <SwiperSlide className="!w-fit mx-1/2 p-1" key={product.id}>
+              <SwiperSlide
+                className="!w-fit mx-1/2 max-w-xs p-1"
+                key={product.id}
+              >
                 <ProductCard product={product} />
               </SwiperSlide>
             );

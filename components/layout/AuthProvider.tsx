@@ -18,6 +18,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     queryFn: () => {
       const token = localStorage.getItem("token");
       if (!token) {
+        router.push("/");
         throw new Error("Unauthenticated");
       }
       return api.get("auth/self");
