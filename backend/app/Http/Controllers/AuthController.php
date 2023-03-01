@@ -27,6 +27,7 @@ class AuthController extends Controller
     use Actions\UpdateRelationship;
     use Actions\AttachRelationship;
     use Actions\DetachRelationship;
+
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -42,7 +43,7 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->input('data.attributes.email'))->first();
         // dd($user->getRoleNames());
-        dd($user);
+        // dd($user);
 
         if (!$user || !Hash::check($request->input('data.attributes.password'), $user->password)) {
             throw JsonApiException::error([
@@ -50,8 +51,22 @@ class AuthController extends Controller
                 'detail' => 'The provided credentials are incorrect.',
             ]);
         }
-        // return DataResponse::make($user)->withServer('v1');
-        return response()->json($user->createToken('login'));
+        return response()->json([
+            'token' => $user->createToken('login')->plainTextToken,
+            'me' => $user,
+            'roles' => $user->getRoleNames(),
+            'permissions' => $user->getPermissionNames()
+        ]);
+    }
+
+    public function me(Request $request)
+    {
+        $user = $request->user();
+        return response()->json([
+            'me' => $user,
+            'roles' => $user->getRoleNames(),
+            'permissions' => $user->getPermissionNames()
+        ]);
     }
 
     public function forgot(Request $request)

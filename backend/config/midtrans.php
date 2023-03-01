@@ -1,0 +1,11 @@
+<?php
+
+return [
+    'MIDTRANS_MERCHAT_ID' => env('MIDTRANS_MERCHAT_ID'),
+    'MIDTRANS_CLIENT_KEY' => env('MIDTRANS_CLIENT_KEY'),
+    'MIDTRANS_SERVER_KEY' => env('MIDTRANS_SERVER_KEY'),
+
+    'MIDTRANS_IS_PRODUCTION' => false,
+    'MIDTRANS_IS_SANITIZED' => false,
+    'MIDTRANS_IS_3DS' => false,
+];

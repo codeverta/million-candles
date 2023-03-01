@@ -21,13 +21,16 @@ class DistrictSeeder extends Seeder
         }, file($csv));
 
         array_shift($rows);
-        foreach ($rows as $row) {
-            DB::table('districts')->insert([
-                'id' => (int) $row[0],
-                'regencies_id' => (int) $row[1],
-                'name' => $row[2],
-                // add more columns as needed
-            ]);
+
+        $result = array_map(function ($item) {
+            [$id, $districts_id, $name] = $item;
+            return ["id" => $id, "regencies_id" => $districts_id, "name" => $name];
+        }, $rows);
+        $chunkSize = 1000;
+        $totalChunks = ceil(count($result) / $chunkSize);
+        for ($i = 0; $i < $totalChunks; $i++) {
+            $chunk = array_slice($result, $i * $chunkSize, $chunkSize, true);
+            DB::table('districts')->insert($chunk);
         }
     }
 }
