@@ -11,9 +11,10 @@ import { Chip, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import api from "utils/api";
 import LoadingBackdrop from "components/mui/LoadingBackdrop";
+import ProductCard from "components/molecules/ProductCard";
 
 const productCategoriesParam = {
-  "page[size]": 5,
+  "page[size]": 4,
 };
 
 const productsParam = {
@@ -67,6 +68,20 @@ function Home() {
       </Swiper>
       <article className="p-4">
         <h1 className="text-2xl font-bold text-gray-900">Produk Terlaris</h1>
+        <Swiper
+          slidesPerView="auto"
+          pagination={{
+            clickable: true,
+          }}
+        >
+          {getProducts.data.data.data.map((product: any) => {
+            return (
+              <SwiperSlide className="!w-fit mx-1/2 p-1" key={product.id}>
+                <ProductCard product={product} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
       </article>
     </div>
   );

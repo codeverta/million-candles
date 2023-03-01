@@ -48,7 +48,7 @@ export default function ProfileSection() {
             </ListItemButton>
           </ListItem>
           <ListItem onClick={handleLogout} disablePadding>
-            <ListItemButton component="a" href="#simple-list">
+            <ListItemButton component="button">
               <ListItemIcon>
                 <LogoutIcon />
               </ListItemIcon>
