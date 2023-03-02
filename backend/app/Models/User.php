@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->morphMany(Document::class, 'documentable');
     }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }

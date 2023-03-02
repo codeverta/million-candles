@@ -11,6 +11,9 @@ use LaravelJsonApi\Eloquent\Fields\Number;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Schema;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
+
 
 class CartSchema extends Schema
 {
@@ -60,4 +63,23 @@ class CartSchema extends Schema
         return PagePagination::make();
     }
 
+    /**
+     * Build an index query for this resource.
+     *
+     * @param Request|null $request
+     * @param Builder $query
+     * @return Builder
+     */
+
+    public function indexQuery(?Request $request, Builder $query): Builder
+    {
+        $user = $request->user();
+        // if ($user = optional($request)->user()) {
+        //     return $query->where(function (Builder $q) use ($user) {
+        //         return $q->whereNotNull('published_at')->orWhere('author_id', $user->getKey());
+        //     });
+        // }
+
+        return $query->where('users_id', $user->id);
+    }
 }
