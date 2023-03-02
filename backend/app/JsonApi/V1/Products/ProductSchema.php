@@ -23,7 +23,6 @@ class ProductSchema extends Schema
      * @var string
      */
     public static string $model = Product::class;
-
     /**
      * Get the resource fields.
      *

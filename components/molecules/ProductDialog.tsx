@@ -15,6 +15,8 @@ import { TransitionProps } from "@mui/material/transitions";
 import { getRelationships } from "utils";
 import { useGetFetchQuery } from "utils/hooks";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useMutation } from "@tanstack/react-query";
+import api from "utils/api";
 import {
   BottomNavigation,
   BottomNavigationAction,
@@ -26,6 +28,8 @@ import AddIcon from "@mui/icons-material/Add";
 import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
+import { useRouter } from "next/router";
+import { toast } from "sonner";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -43,12 +47,38 @@ interface PropsI {
 }
 
 export default function ProductDialog(props: PropsI) {
+  const router = useRouter();
+  const createCart = useMutation((payload: any) => {
+    return api.post(`carts`, payload);
+  });
   const queryClient: any = useGetFetchQuery(["products"]);
   const getDocuments = getRelationships(
     queryClient?.data,
     props.product,
     "documents"
   );
+
+  const handleCreateCart = async () => {
+    const payload = {
+      data: {
+        type: "carts",
+        attributes: {
+          quantity: 1,
+        },
+        relationships: {
+          products: {
+            data: {
+              type: "products",
+              id: props.product.id,
+            },
+          },
+        },
+      },
+    };
+
+    await createCart.mutate(payload);
+    toast.success("Produk Berhasil Ditambahkan ke Keranjang");
+  };
 
   console.log({ getDocuments });
   return (
@@ -141,12 +171,13 @@ export default function ProductDialog(props: PropsI) {
             />
           </ListItem>
         </List>
-        <List className="fixed px-4 bg-white border-2 flex w-screen justify-end bottom-0">
-          <Button size="large" variant="outlined" className="mr-4">
+        <List className="fixed px-4 bg-white border-2 flex w-screen justify-center bottom-0">
+          <Button size="medium" variant="outlined" className="mr-4">
             Beli Langsung
           </Button>
           <Button
-            size="large"
+            onClick={handleCreateCart}
+            size="medium"
             variant="contained"
             className="bg-blue-500"
             color="primary"
