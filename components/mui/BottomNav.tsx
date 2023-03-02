@@ -64,7 +64,7 @@ export default function BottomNav() {
   return (
     <Paper
       sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-      className=""
+      className="z-10"
       elevation={3}
     >
       <BottomNavigation
