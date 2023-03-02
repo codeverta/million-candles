@@ -53,6 +53,7 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
     });
     $server->resource('orders', OrderController::class);
     $server->resource('order-details', JsonApiController::class);
+    $server->resource('carts', JsonApiController::class);
     $server->resource('documents', '\\' . DocumentController::class)->actions('-actions', function ($actions) {
         $actions->post('upload');
     });
