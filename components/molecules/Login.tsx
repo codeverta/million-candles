@@ -31,7 +31,7 @@ export default function Login() {
 
     loginMutation.mutate(payload, {
       onSuccess(data) {
-        toast("Login berhasil");
+        toast.success("Login berhasil");
         localStorage.setItem("token", data.data.token);
         if (data.data.roles.includes("merchant")) {
           router.push("admin");
