@@ -12,6 +12,7 @@ import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import MuiMenu from "./MuiMenu";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -60,13 +61,25 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function ButtonAppBar() {
+  const [state, setState] = useState({
+    anchorEl: null,
+  });
   const [open, setOpen] = useState({
     drawer: false,
+    menu: false,
   });
 
   const handleDrawer = () => {
     setOpen({ ...open, drawer: !open.drawer });
   };
+
+  const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setOpen({ ...open, menu: !open.menu });
+    if (event) {
+      setState({ ...state, anchorEl: event.currentTarget as any });
+    }
+  };
+
   return (
     <>
       <AppDrawer open={open.drawer} handleDrawer={handleDrawer} />
@@ -110,6 +123,7 @@ export default function ButtonAppBar() {
                 aria-label="show more"
                 aria-haspopup="true"
                 color="inherit"
+                onClick={handleMenu}
               >
                 <MoreIcon />
               </IconButton>
@@ -117,6 +131,11 @@ export default function ButtonAppBar() {
           </Toolbar>
         </AppBar>
       </Box>
+      <MuiMenu
+        handleClose={handleMenu}
+        anchorEl={state.anchorEl}
+        open={open.menu}
+      />
     </>
   );
 }

@@ -47,7 +47,6 @@ function Home() {
 
   const handleClick = () => {};
 
-  console.log({ getProducts });
   return (
     <div className="py-4">
       <Swiper
@@ -67,16 +66,41 @@ function Home() {
         ))}
       </Swiper>
       <article className="p-4">
-        <h1 className="text-2xl font-bold text-gray-900">Produk Terlaris</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Rekomendasi Produk</h1>
         <Swiper
           slidesPerView="auto"
+          className="my-4"
           pagination={{
             clickable: true,
           }}
         >
           {getProducts.data.data.data.map((product: any) => {
             return (
-              <SwiperSlide className="!w-fit mx-1/2 p-1" key={product.id}>
+              <SwiperSlide
+                className="!w-fit mx-1/2 max-w-xs p-1"
+                key={product.id}
+              >
+                <ProductCard product={product} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </article>
+      <article className="p-4">
+        <h1 className="text-3xl font-bold text-gray-900">Produk Terlaris</h1>
+        <Swiper
+          slidesPerView="auto"
+          className="my-4"
+          pagination={{
+            clickable: true,
+          }}
+        >
+          {getProducts.data.data.data.map((product: any) => {
+            return (
+              <SwiperSlide
+                className="!w-fit mx-1/2 max-w-xs p-1"
+                key={product.id}
+              >
                 <ProductCard product={product} />
               </SwiperSlide>
             );
