@@ -56,6 +56,14 @@ function Cart() {
     total: 0,
   });
 
+  useEffect(() => {
+    if (getCarts.status == "success" && !getCarts.isLoading) {
+      computeTotalPrice();
+    }
+  }, [carts]);
+
+  if (cartsGate || !carts) return <LoadingBackdrop />;
+
   const computeTotalPrice = () => {
     const total = carts.data.reduce((total: number, cart: any) => {
       const product = getRelationship(carts, cart, "products");
@@ -66,14 +74,6 @@ function Cart() {
     }, 0);
     setState({ ...state, total });
   };
-
-  useEffect(() => {
-    if (carts) {
-      computeTotalPrice();
-    }
-  }, []);
-
-  if (cartsGate || !carts) return <LoadingBackdrop />;
 
   const handleCounter = ({ type, cart, index }: any) => {
     const _carts = JSON.parse(JSON.stringify(carts));
@@ -86,7 +86,6 @@ function Cart() {
       _carts.data[index].attributes.quantity--;
     }
     setCarts(_carts);
-    computeTotalPrice();
     updateCart.mutate({
       data: {
         id: cart.id,
