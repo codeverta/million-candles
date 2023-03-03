@@ -58,8 +58,8 @@ export default function BottomNav() {
   const [value, setValue] = React.useState(undefined);
   const getSelf: any = useGetFetchQuery(["self"]);
   const routeList = React.useMemo(() => {
-    return getSelf.data.roles.includes("merchant") ? adminList : buyerList;
-  }, []);
+    return getSelf?.data.roles.includes("merchant") ? adminList : buyerList;
+  }, [getSelf]);
 
   return (
     <Paper

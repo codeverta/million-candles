@@ -40,8 +40,10 @@ function Cart() {
   });
   const getCarts = useQuery({
     queryKey: ["carts"],
-    queryFn: () => {
-      return api.get("carts", cartsParam);
+    queryFn: async () => {
+      const res = await api.get("carts", cartsParam);
+      setCarts(res.data);
+      return res;
     },
   });
 
@@ -54,21 +56,22 @@ function Cart() {
     total: 0,
   });
 
+  const computeTotalPrice = () => {
+    const total = carts.data.reduce((total: number, cart: any) => {
+      const product = getRelationship(carts, cart, "products");
+      return (
+        total +
+        parseInt(cart.attributes.quantity as any | 0) * product.attributes.price
+      );
+    }, 0);
+    setState({ ...state, total });
+  };
+
   useEffect(() => {
-    if (!carts) {
-      setCarts(cartsGate ? null : getCarts.data.data);
-    } else {
-      const total = carts.data.reduce((total: number, cart: any) => {
-        const product = getRelationship(carts, cart, "products");
-        return (
-          total +
-          parseInt(cart.attributes.quantity as any | 0) *
-            product.attributes.price
-        );
-      }, 0);
-      setState({ ...state, total });
+    if (carts) {
+      computeTotalPrice();
     }
-  }, [getCarts, state]);
+  }, []);
 
   if (cartsGate || !carts) return <LoadingBackdrop />;
 
@@ -83,6 +86,7 @@ function Cart() {
       _carts.data[index].attributes.quantity--;
     }
     setCarts(_carts);
+    computeTotalPrice();
     updateCart.mutate({
       data: {
         id: cart.id,
@@ -134,7 +138,7 @@ function Cart() {
                     }
                     secondary={
                       <>
-                        <ButtonGroup>
+                        <ButtonGroup component={"span"}>
                           <Button
                             onClick={() =>
                               handleCounter({ type: "decrement", index, cart })

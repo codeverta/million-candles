@@ -8,7 +8,7 @@ function StoreLayout({
   withoutHeader,
 }: {
   children: React.ReactNode;
-  withoutHeader: boolean;
+  withoutHeader?: boolean;
 }) {
   return (
     <main className="max-w-lg m-auto">
