@@ -9,10 +9,13 @@ import {
   ListItemText,
   Button,
   IconButton,
+  ButtonGroup,
+  Checkbox,
 } from "@mui/material";
 import LoadingBackdrop from "components/mui/LoadingBackdrop";
 import { getRelationship, getRelationships } from "utils";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import { toCurrency } from "utils";
 
 const cartsParam = {
   include: "products.documents",
@@ -45,12 +48,27 @@ function Cart() {
   const cartsGate = getCarts.isLoading || getCarts.isError;
 
   const [carts, setCarts] = useState<any>(null);
+  const [state, setState] = useState<any>({
+    checked: [],
+    ordered: [],
+    total: 0,
+  });
 
   useEffect(() => {
     if (!carts) {
       setCarts(cartsGate ? null : getCarts.data.data);
+    } else {
+      const total = carts.data.reduce((total: number, cart: any) => {
+        const product = getRelationship(carts, cart, "products");
+        return (
+          total +
+          parseInt(cart.attributes.quantity as any | 0) *
+            product.attributes.price
+        );
+      }, 0);
+      setState({ ...state, total });
     }
-  }, [getCarts]);
+  }, [getCarts, state]);
 
   if (cartsGate || !carts) return <LoadingBackdrop />;
 
@@ -90,6 +108,12 @@ function Cart() {
             return (
               <List key={cart.id}>
                 <ListItem disablePadding>
+                  <Checkbox
+                    color="primary"
+                    inputProps={{
+                      "aria-labelledby": product.attributes.name,
+                    }}
+                  />
                   <ListItemText
                     className="justify-between text-xs flex items-center"
                     primary={
@@ -104,33 +128,29 @@ function Cart() {
                         <span className="truncate text-xs">
                           {product.attributes.name}
                           <br />
-                          {product.attributes.price}
+                          {toCurrency(product.attributes.price)}
                         </span>
                       </span>
                     }
                     secondary={
                       <>
-                        <IconButton
-                          onClick={() =>
-                            handleCounter({ type: "decrement", index, cart })
-                          }
-                          aria-label="reduce"
-                          size="medium"
-                        >
-                          -
-                        </IconButton>
-                        <span className="inline-block p-4">
-                          {cart.attributes.quantity}
-                        </span>
-                        <IconButton
-                          onClick={() =>
-                            handleCounter({ type: "increment", index, cart })
-                          }
-                          aria-label="increment"
-                          size="medium"
-                        >
-                          +
-                        </IconButton>
+                        <ButtonGroup>
+                          <Button
+                            onClick={() =>
+                              handleCounter({ type: "decrement", index, cart })
+                            }
+                          >
+                            -
+                          </Button>
+                          <Button>{cart.attributes.quantity}</Button>
+                          <Button
+                            onClick={() =>
+                              handleCounter({ type: "increment", index, cart })
+                            }
+                          >
+                            +
+                          </Button>
+                        </ButtonGroup>
                       </>
                     }
                   />
@@ -138,7 +158,10 @@ function Cart() {
               </List>
             );
           })}
-          <div className="w-full flex justify-end">
+          <div className="w-full flex items-center justify-between">
+            <h1 className="font-bold text-xl">
+              Total {toCurrency(state.total)}
+            </h1>
             <Button
               startIcon={<ShoppingBasketIcon />}
               className="bg-blue-500"
