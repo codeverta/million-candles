@@ -2,6 +2,7 @@
 
 namespace App\JsonApi\V1\Users;
 
+use App\JsonApi\Filters\UserFilter;
 use App\Models\User;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
@@ -49,6 +50,7 @@ class UserSchema extends Schema
     {
         return [
             WhereIdIn::make($this),
+            UserFilter::make('roles')
         ];
     }
 

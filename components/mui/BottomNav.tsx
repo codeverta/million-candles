@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useGetFetchQuery } from "utils/hooks";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ReceiptIcon from "@mui/icons-material/Receipt";
 
 const adminList = [
   {
@@ -34,12 +35,12 @@ const buyerList = [
   {
     to: "/store",
     icon: <HomeIcon />,
-    label: "Penjualan",
+    label: "Home",
   },
   {
-    to: "/store/notifications",
-    icon: <NotificationsIcon />,
-    label: "Notifikasi",
+    to: "/store/transactions",
+    icon: <ReceiptIcon />,
+    label: "Transaksi",
   },
   {
     to: "/store/cart",

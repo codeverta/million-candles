@@ -7,6 +7,7 @@ use LaravelJsonApi\Eloquent\Contracts\Paginator;
 use LaravelJsonApi\Eloquent\Fields\Boolean;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
+use LaravelJsonApi\Eloquent\Fields\Number;
 use LaravelJsonApi\Eloquent\Fields\Str;
 use LaravelJsonApi\Eloquent\Fields\Relations\BelongsTo;
 use LaravelJsonApi\Eloquent\Fields\Relations\HasMany;
@@ -45,6 +46,7 @@ class OrderSchema extends Schema
             Str::make('snap_token'),
             Boolean::make(
             'is_validate_buyer'),
+            Number::make('price_amount'),
             Boolean::make('is_validate_seller'),
             Boolean::make('is_shipping'),
             Boolean::make('is_shipped'),

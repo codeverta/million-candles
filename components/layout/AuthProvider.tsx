@@ -4,12 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import api from "utils/api";
 import { useRouter } from "next/router";
 
-const publicRoutes = [
-  "/",
-  "/address",
-  "/product",
-  // '/about',
-];
+const publicRoutes = ["/", "/address", "/product", "/about"];
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -26,6 +21,8 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     onError: (err) => {
       console.log({ err });
     },
+    onSuccess: (res) => {},
+    enabled: !publicRoutes.includes(router.pathname),
   });
 
   if (

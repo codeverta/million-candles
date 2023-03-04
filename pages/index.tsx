@@ -1,13 +1,19 @@
-import { Content, Hero } from 'components'
-import Footer from 'components/Footer'
-import Layout from 'components/layout/Landing'
+import { Content, Hero } from "components";
+import Footer from "components/Footer";
+import Layout from "components/layout/Landing";
 
-export default function Home() {
+function Home() {
   return (
-    <Layout>
-        <Hero/>
-        <Content/>
-        <Footer/>
-    </Layout>
-  )
+    <>
+      <Hero />
+      <Content />
+      <Footer />
+    </>
+  );
 }
+
+Home.getLayout = function (page: React.ReactNode) {
+  return <Layout>{page}</Layout>;
+};
+
+export default Home;
