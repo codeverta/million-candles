@@ -52,15 +52,19 @@ interface PropsI {
 
 export default function ProductDialog(props: PropsI) {
   const router = useRouter();
+  const [getDocuments, setDocuments] = React.useState([]);
   const createCart = useMutation((payload: any) => {
     return api.post(`carts`, payload);
   });
   const queryClient: any = useGetFetchQuery(["products"]);
-  const getDocuments = getRelationships(
-    queryClient?.data,
-    props.product,
-    "documents"
-  );
+
+  React.useEffect(() => {
+    if (queryClient.data) {
+      setDocuments(
+        getRelationships(queryClient.data, props.product, "documents")
+      );
+    }
+  }, []);
 
   const handleCreateCart = async () => {
     const payload = {
@@ -84,7 +88,6 @@ export default function ProductDialog(props: PropsI) {
     toast.success("Produk Berhasil Ditambahkan ke Keranjang");
   };
 
-  console.log({ getDocuments });
   return (
     <div>
       <Dialog
