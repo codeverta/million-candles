@@ -19,7 +19,7 @@ export default function Header() {
     },
     {
       label: "Produk",
-      url: "/product",
+      url: "/products",
     },
     {
       label: "Alamat",
