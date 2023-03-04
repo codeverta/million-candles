@@ -38,7 +38,7 @@ const buyerList = [
     label: "Home",
   },
   {
-    to: "/store/transactions",
+    to: "/store/orders",
     icon: <ReceiptIcon />,
     label: "Transaksi",
   },

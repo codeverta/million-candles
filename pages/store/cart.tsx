@@ -19,6 +19,7 @@ import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { toCurrency } from "utils";
 import { useGetFetchQuery } from "utils/hooks";
 import { toast } from "sonner";
+import { useRouter } from "next/router";
 
 const cartsParam = {
   include: "products.documents",
@@ -38,6 +39,7 @@ const EmptyCart = () => (
 );
 
 function Cart() {
+  const router = useRouter();
   const getSelf: any = useGetFetchQuery(["self"]);
   const createOrder = useMutation((payload: any) => {
     return api.post(`orders`, payload);
@@ -142,11 +144,13 @@ function Cart() {
       },
     };
     createOrder.mutate(payload, {
-      onSuccess: () => {
+      onSuccess: async (res: any) => {
         const batchRequest = carts.data.map((it: any) => {
           return api.delete(`carts/${it.id}`);
         });
-        Promise.all(batchRequest);
+        await Promise.all(batchRequest);
+        toast.success("Barang berhasil dibeli");
+        router.push(`/store/order/${res.data.data.id}`);
       },
       onError: (err: any) => {
         err.response.data.errors.forEach((it: any) => {
@@ -241,6 +245,7 @@ function Cart() {
               onClick={handleCreateOrder}
               startIcon={<ShoppingBasketIcon />}
               className="bg-blue-500"
+              size="large"
               variant="contained"
             >
               Beli
