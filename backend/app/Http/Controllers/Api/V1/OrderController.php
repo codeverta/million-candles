@@ -46,18 +46,23 @@ class OrderController extends Controller
         // do something only on updating...
         if($request->data['attributes']['is_validate_buyer']) {
             // compute amount
-            $order = $order->with(['originUser', 'destinationUser', 'orderDetails.products'])->first();
-            $total_price = $order->orderDetails()->sum('price');
-            $orderDetails = $order->orderDetails;
+            $total_price = (int) $order->price_amount;
+            $orderDetails = $order->orderDetails()->get();
             $snap_token = '';
 
+            if($total_price <= 0) {
+                dd("Harga Tidak boleh kurang dari atau sama dengan 0");
+            }
+            
             // Required
             $transaction_details = array(
                 'order_id' => $order->id,
                 'gross_amount' => $total_price, // no decimal allowed for creditcard
             );
-            $item_details = [];
 
+            // dd($transaction_details);
+
+            $item_details = [];
             foreach ($orderDetails as $key => $orderDetail) {
                 $item_details[] = array(
                     'id' => $orderDetail->id,
@@ -73,11 +78,12 @@ class OrderController extends Controller
                 'item_details' => $item_details,
             );
 
+
             try {
                 $snap_token = Snap::getSnapToken($transaction);
-                Order::creating(function (Order $model) use ($snap_token, $total_price) {
+
+                Order::updating(function (Order $model) use ($snap_token, $total_price) {
                     $model->snap_token = $snap_token;
-                    $model->total_price = $total_price;
                 });
             } catch (\Exception $e) {
                 dd($e->getMessage());

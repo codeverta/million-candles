@@ -16,15 +16,16 @@ class OrderRequest extends ResourceRequest
      */
     public function rules(): array
     {
-        $order = $this->model();
-        $uniqueSlug = Rule::unique('orders', 'airwaybill');
+        // $order = $this->model();
+        // $uniqueSlug = Rule::unique('orders', 'airwaybill');
 
-        if ($order) {
-            $uniqueSlug->ignoreModel($order);
-        }
+        // if ($order) {
+        //     $uniqueSlug->ignoreModel($order);
+        // }
+
 
         return [
-            'airwaybill' => ['string', $uniqueSlug],
+            // 'airwaybill' => ['string', $uniqueSlug],
             'origin-users' => [ JsonApiRule::toOne() ],
             'destination-users' => [ JsonApiRule::toOne() ],
             'price_amount' => ['required'],

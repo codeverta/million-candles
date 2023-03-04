@@ -34,7 +34,7 @@ function OrderDetail() {
     isConfirmationOpen: false,
   });
   const updateOrder = useMutation((payload: any) => {
-    return api.patch(`orders/${payload.id}`, payload);
+    return api.patch(`orders/${payload.data.id}`, payload);
   });
   const getOrder = useQuery({
     queryKey: ["order"],
@@ -74,7 +74,7 @@ function OrderDetail() {
           );
         },
         onError: () => {
-          toast.error("Maaf terjadi gangguan, harap hubungi toko");
+          toast.error("Maaf terjadi gangguan sistem, harap hubungi penjual");
         },
       }
     );
@@ -100,7 +100,7 @@ function OrderDetail() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleConfirmation}>Kembali</Button>
-          <Button onClick={handleConfirmation} autoFocus>
+          <Button onClick={handleVerify} autoFocus>
             Verifikasi
           </Button>
         </DialogActions>

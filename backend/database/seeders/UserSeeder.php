@@ -62,11 +62,11 @@ class UserSeeder extends Seeder
         $merchant->assignRole($userMerchant);
         $merchant->givePermissionTo(Permission::all());
         $buyer->assignRole($userBiasa);
-        $buyer->givePermissionTo(['orders:create', 'orders:read', 'products:read']);
+        $buyer->givePermissionTo(['orders:create', 'orders:read', 'orders:update', 'products:read']);
         $buyer = User::factory(20)->create();
         foreach ($buyer as $user) {
             $user->assignRole($userBiasa);
-            $user->givePermissionTo(['orders:create', 'orders:read', 'products:read']);
+            $user->givePermissionTo(['orders:create', 'orders:read', 'orders:update', 'products:read']);
         }
     }
 }

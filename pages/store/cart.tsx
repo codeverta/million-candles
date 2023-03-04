@@ -145,12 +145,40 @@ function Cart() {
     };
     createOrder.mutate(payload, {
       onSuccess: async (res: any) => {
-        const batchRequest = carts.data.map((it: any) => {
+        const batchDeleteCart = carts.data.map((it: any) => {
           return api.delete(`carts/${it.id}`);
         });
-        await Promise.all(batchRequest);
+        const batchCreateOrderDetails = carts.data.map((cart: any) => {
+          const product = getRelationship(carts, cart, "products");
+          return api.post(`order-details`, {
+            data: {
+              type: "order-details",
+              attributes: {
+                qty: cart.attributes.quantity,
+                price: product.attributes.price,
+                total_price:
+                  cart.attributes.quantity * product.attributes.price,
+              },
+              relationships: {
+                products: {
+                  data: {
+                    type: "products",
+                    id: cart.relationships.products.data.id,
+                  },
+                },
+                orders: {
+                  data: {
+                    type: "orders",
+                    id: res.data.data.id,
+                  },
+                },
+              },
+            },
+          });
+        });
+        await Promise.all([...batchDeleteCart, ...batchCreateOrderDetails]);
         toast.success("Barang berhasil dibeli");
-        router.push(`/store/order/${res.data.data.id}`);
+        router.push(`/store/orders/${res.data.data.id}`);
       },
       onError: (err: any) => {
         err.response.data.errors.forEach((it: any) => {
