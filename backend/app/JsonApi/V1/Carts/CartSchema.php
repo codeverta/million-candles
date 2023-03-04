@@ -24,7 +24,12 @@ class CartSchema extends Schema
      * @var string
      */
     public static string $model = Cart::class;
-
+    /**
+     * The maximum include path depth.
+     *
+     * @var int
+     */
+    protected int $maxDepth = 3;
     /**
      * Get the resource fields.
      *

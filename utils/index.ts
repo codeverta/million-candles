@@ -38,7 +38,9 @@ export const getRelationships = (
 ): any => {
   return resource.relationships[relation].data.map(
     (it: { id: string; type: string }) => {
-      return root.included.find((include: any) => include.id === it.id);
+      return root.included.find(
+        (include: any) => include.id === it.id && include.type === it.type
+      );
     }
   );
 };

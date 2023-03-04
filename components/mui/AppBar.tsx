@@ -102,7 +102,7 @@ export default function ButtonAppBar() {
               component="div"
               sx={{ flexGrow: 1 }}
             >
-              News
+              Million Candles
             </Typography>
             <Search>
               <SearchIconWrapper>

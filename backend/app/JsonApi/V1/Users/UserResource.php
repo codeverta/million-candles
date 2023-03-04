@@ -16,7 +16,9 @@ class UserResource extends JsonApiResource
      */
     public function attributes($request): iterable
     {
+        $roles = $this->getRoleNames();
         return [
+            'roles' => implode('', $roles->toArray()),
             'email' => $this->email,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,

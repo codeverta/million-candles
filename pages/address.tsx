@@ -1,14 +1,20 @@
-
 // import { useRef, useEffect } from 'react'
-import dynamic from 'next/dynamic';
-const DynamicMap = dynamic(() => import('components/Map'), {
-  ssr: false
+import dynamic from "next/dynamic";
+import Layout from "components/layout/Landing";
+const DynamicMap = dynamic(() => import("components/Map"), {
+  ssr: false,
 });
 
-export default function Address(props: any) {
-	return (
-		<main>
-			<DynamicMap {...props} />
-		</main>
-	)
+function Address(props: any) {
+  return (
+    <main>
+      <DynamicMap {...props} />
+    </main>
+  );
 }
+
+Address.getLayout = function (page: React.ReactNode) {
+  return <Layout>{page}</Layout>;
+};
+
+export default Address;

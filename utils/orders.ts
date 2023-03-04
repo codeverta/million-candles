@@ -1,5 +1,4 @@
 export function getOrderStatus(order: any): any {
-  console.log({ order });
   const isValidateBuyer = order.attributes.is_validate_buyer;
   const isValidateSeller = order.attributes.is_validate_seller;
   const isShipping = order.attributes.is_shipping;

@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
             src="https://app.sandbox.midtrans.com/snap/snap.js"
             data-client-key="SB-Mid-client-kRWWsc4NnDa_F5Us"
           />
-          <Toaster />
+          <Toaster richColors />
           {getLayout(<Component {...pageProps} {...appProps} />)}
           <ReactQueryDevtools initialIsOpen={false} />
         </AuthProvider>

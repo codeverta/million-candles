@@ -266,7 +266,7 @@ const ordersParams = {
   "page[size]": 5,
 };
 
-export default function OrderTable() {
+export default function TransactionsTable() {
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<keyof Data>("calories");
   const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -356,7 +356,7 @@ export default function OrderTable() {
           <EnhancedTableToolbar numSelected={selected.length} />
           <TableContainer>
             <Table
-              className=""
+              className="w-screen"
               aria-labelledby="tableTitle"
               size={dense ? "small" : "medium"}
             >

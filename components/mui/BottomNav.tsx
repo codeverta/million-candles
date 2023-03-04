@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useGetFetchQuery } from "utils/hooks";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ReceiptIcon from "@mui/icons-material/Receipt";
 
 const adminList = [
   {
@@ -34,12 +35,12 @@ const buyerList = [
   {
     to: "/store",
     icon: <HomeIcon />,
-    label: "Penjualan",
+    label: "Home",
   },
   {
-    to: "/store/notifications",
-    icon: <NotificationsIcon />,
-    label: "Notifikasi",
+    to: "/store/transactions",
+    icon: <ReceiptIcon />,
+    label: "Transaksi",
   },
   {
     to: "/store/cart",
@@ -58,13 +59,13 @@ export default function BottomNav() {
   const [value, setValue] = React.useState(undefined);
   const getSelf: any = useGetFetchQuery(["self"]);
   const routeList = React.useMemo(() => {
-    return getSelf.data.roles.includes("merchant") ? adminList : buyerList;
-  }, []);
+    return getSelf?.data.roles.includes("merchant") ? adminList : buyerList;
+  }, [getSelf]);
 
   return (
     <Paper
       sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-      className=""
+      className="z-10"
       elevation={3}
     >
       <BottomNavigation

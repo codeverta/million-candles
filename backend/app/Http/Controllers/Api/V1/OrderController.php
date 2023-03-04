@@ -38,7 +38,7 @@ class OrderController extends Controller
 
     public function creating(OrderRequest $request, OrderQuery $query): void
     {
-
+        
     }
 
     public function updating(Order $order, OrderRequest $request, OrderQuery $query): void

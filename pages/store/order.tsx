@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import StoreLayout from "components/layout/StoreLayout";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import api from "utils/api";
 import {
   List,
@@ -11,26 +11,24 @@ import {
   IconButton,
   ButtonGroup,
   Checkbox,
-  Typography,
 } from "@mui/material";
 import LoadingBackdrop from "components/mui/LoadingBackdrop";
 import { getRelationship, getRelationships } from "utils";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { toCurrency } from "utils";
-import { useGetFetchQuery } from "utils/hooks";
-import { toast } from "sonner";
+import { useRouter } from "next/router";
 
 const cartsParam = {
   include: "products.documents",
 };
 
 const EmptyCart = () => (
-  <article className="fixed top-0 left-0 w-screen min-h-screen flex items-center ">
+  <article className="absolute top-0 min-h-screen w-screen flex items-center ">
     <div className="text-center m-auto">
-      <h1 className="mt-4 text-lg tracking-tight font-bold text-gray-900">
+      <h1 className="mt-4 text-xl tracking-tight font-bold text-gray-900 md:text-4xl">
         Wah, keranjang belanjamu kosong
       </h1>
-      <p className="mb-4 text-sm font-light text-gray-500 dark:text-gray-400">
+      <p className="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
         Yuk, isi dengan barang-barang impianmu!
       </p>
     </div>
@@ -38,10 +36,7 @@ const EmptyCart = () => (
 );
 
 function Cart() {
-  const getSelf: any = useGetFetchQuery(["self"]);
-  const createOrder = useMutation((payload: any) => {
-    return api.post(`orders`, payload);
-  });
+  const router = useRouter();
   const updateCart = useMutation((payload: any) => {
     return api.patch(`carts/${payload.data.id}`, payload);
   });
@@ -50,15 +45,8 @@ function Cart() {
     queryFn: async () => {
       const res = await api.get("carts", cartsParam);
       setCarts(res.data);
+      computeTotalPrice();
       return res;
-    },
-  });
-  const getUsers = useQuery({
-    queryKey: ["users", "merchant"],
-    queryFn: async () => {
-      return api.get("users", {
-        "filter[roles]": "merchant",
-      });
     },
   });
 
@@ -72,9 +60,9 @@ function Cart() {
   });
 
   useEffect(() => {
-    if (getCarts.status == "success" && !getCarts.isLoading && carts?.data) {
-      computeTotalPrice();
-    }
+    // if (getCarts.status == "success" && !cartsGate) {
+    //   ;
+    // }
   }, [carts]);
 
   if (cartsGate || !carts) return <LoadingBackdrop />;
@@ -113,64 +101,16 @@ function Cart() {
   };
 
   const handleCreateOrder = () => {
-    if (getUsers.isLoading || getUsers.isError) {
-      throw new Error("Terjadi kesalahan");
-    }
-    const user = getUsers.data.data.data[0];
-    const currUser = getSelf.data;
-
-    const payload = {
-      data: {
-        type: "orders",
-        attributes: {
-          price_amount: state.total,
-        },
-        relationships: {
-          "origin-users": {
-            data: {
-              type: "users",
-              id: user.id,
-            },
-          },
-          "destination-users": {
-            data: {
-              type: "users",
-              id: currUser.me.id + "",
-            },
-          },
-        },
-      },
-    };
-    createOrder.mutate(payload, {
-      onSuccess: () => {
-        const batchRequest = carts.data.map((it: any) => {
-          return api.delete(`carts/${it.id}`);
-        });
-        Promise.all(batchRequest);
-      },
-      onError: (err: any) => {
-        err.response.data.errors.forEach((it: any) => {
-          toast.error(it.detail);
-        });
-      },
-      onSettled: () => {
-        getCarts.refetch();
-      },
-    });
+    console.log({ carts });
   };
 
   return (
     <>
       {carts.data.length > 0 ? (
         <>
-          <Typography
-            sx={{ flex: "1 1 100%" }}
-            variant="h6"
-            id="tableTitle"
-            component="div"
-          >
-            Penjualan
-          </Typography>
+          {/* <h1 className="text-3xl mx-1 mt-5 font-bold text-gray-900">
+            Keranjangmu
+          </h1> */}
           {carts.data.map((cart: any, index: number) => {
             const product = getRelationship(carts, cart, "products");
             const documents = getRelationships(carts, product, "documents");
@@ -229,19 +169,14 @@ function Cart() {
             );
           })}
           <div className="w-full flex items-center justify-between">
-            <Typography
-              sx={{ flex: "1 1 100%" }}
-              variant="h6"
-              id="tableTitle"
-              component="div"
-            >
+            <h1 className="font-bold text-xl">
               Total {toCurrency(state.total)}
-            </Typography>
+            </h1>
             <Button
-              onClick={handleCreateOrder}
               startIcon={<ShoppingBasketIcon />}
               className="bg-blue-500"
               variant="contained"
+              onClick={handleCreateOrder}
             >
               Beli
             </Button>

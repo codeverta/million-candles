@@ -27,6 +27,7 @@ class OrderRequest extends ResourceRequest
             'airwaybill' => ['string', $uniqueSlug],
             'origin-users' => [ JsonApiRule::toOne() ],
             'destination-users' => [ JsonApiRule::toOne() ],
+            'price_amount' => ['required'],
             'is_validate' => ['boolean'],
             'is_shipping' => ['boolean'],
             'is_shipped' => ['boolean'],
