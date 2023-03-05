@@ -23,8 +23,10 @@ class OrderRequest extends ResourceRequest
             $uniqueSlug->ignoreModel($order);
         }
 
+
         return [
-            'airwaybill' => ['string', $uniqueSlug],
+            'airwaybill' => ['string', 'nullable', $uniqueSlug],
+            'payments_type' => ['string', 'nullable'],
             'origin-users' => [ JsonApiRule::toOne() ],
             'destination-users' => [ JsonApiRule::toOne() ],
             'price_amount' => ['required'],

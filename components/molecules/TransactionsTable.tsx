@@ -26,6 +26,7 @@ import api from "utils/api";
 import { Backdrop, Chip } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { getOrderStatus } from "utils/orders";
+import { useRouter } from "next/router";
 
 interface Data {
   calories: number;
@@ -267,6 +268,7 @@ const ordersParams = {
 };
 
 export default function TransactionsTable() {
+  const router = useRouter();
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<keyof Data>("calories");
   const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -349,6 +351,10 @@ export default function TransactionsTable() {
     );
   }
 
+  const onClickRow = ({ order }: { order: any; e?: any }) => {
+    router.push(`orders/${order.id}`);
+  };
+
   return (
     <div>
       <Box sx={{ width: "100%" }}>
@@ -356,7 +362,7 @@ export default function TransactionsTable() {
           <EnhancedTableToolbar numSelected={selected.length} />
           <TableContainer>
             <Table
-              className="w-screen"
+              className=""
               aria-labelledby="tableTitle"
               size={dense ? "small" : "medium"}
             >
@@ -386,12 +392,15 @@ export default function TransactionsTable() {
                       tabIndex={-1}
                       key={row.id}
                       selected={isItemSelected}
+                      onClick={(e) => onClickRow({ e, order: row })}
+                      className="cursor-pointer"
                     >
                       <TableCell
                         padding="checkbox"
-                        onClick={(event) =>
-                          handleClick(event, row.attributes.code)
-                        }
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          handleClick(event, row.attributes.code);
+                        }}
                       >
                         <Checkbox
                           color="primary"

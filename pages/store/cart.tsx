@@ -19,6 +19,7 @@ import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { toCurrency } from "utils";
 import { useGetFetchQuery } from "utils/hooks";
 import { toast } from "sonner";
+import { useRouter } from "next/router";
 
 const cartsParam = {
   include: "products.documents",
@@ -38,6 +39,7 @@ const EmptyCart = () => (
 );
 
 function Cart() {
+  const router = useRouter();
   const getSelf: any = useGetFetchQuery(["self"]);
   const createOrder = useMutation((payload: any) => {
     return api.post(`orders`, payload);
@@ -113,7 +115,7 @@ function Cart() {
   };
 
   const handleCreateOrder = () => {
-    if (getUsers.isLoading || getUsers.isError) {
+    if (getUsers.isLoading || getUsers.isError || !getSelf.data) {
       throw new Error("Terjadi kesalahan");
     }
     const user = getUsers.data.data.data[0];
@@ -142,11 +144,41 @@ function Cart() {
       },
     };
     createOrder.mutate(payload, {
-      onSuccess: () => {
-        const batchRequest = carts.data.map((it: any) => {
+      onSuccess: async (res: any) => {
+        const batchDeleteCart = carts.data.map((it: any) => {
           return api.delete(`carts/${it.id}`);
         });
-        Promise.all(batchRequest);
+        const batchCreateOrderDetails = carts.data.map((cart: any) => {
+          const product = getRelationship(carts, cart, "products");
+          return api.post(`order-details`, {
+            data: {
+              type: "order-details",
+              attributes: {
+                qty: cart.attributes.quantity,
+                price: product.attributes.price,
+                total_price:
+                  cart.attributes.quantity * product.attributes.price,
+              },
+              relationships: {
+                products: {
+                  data: {
+                    type: "products",
+                    id: cart.relationships.products.data.id,
+                  },
+                },
+                orders: {
+                  data: {
+                    type: "orders",
+                    id: res.data.data.id,
+                  },
+                },
+              },
+            },
+          });
+        });
+        await Promise.all([...batchDeleteCart, ...batchCreateOrderDetails]);
+        toast.success("Barang berhasil dibeli");
+        router.push(`/store/orders/${res.data.data.id}`);
       },
       onError: (err: any) => {
         err.response.data.errors.forEach((it: any) => {
@@ -174,7 +206,7 @@ function Cart() {
           {carts.data.map((cart: any, index: number) => {
             const product = getRelationship(carts, cart, "products");
             const documents = getRelationships(carts, product, "documents");
-            const url = `${process.env.NEXT_PUBLIC_BASE}/storage/${documents?.[0].attributes.filename}`;
+            const url = `${process.env.NEXT_PUBLIC_BASE}/storage/${documents?.[0]?.attributes.filename}`;
             return (
               <List key={cart.id}>
                 <ListItem disablePadding>
@@ -241,6 +273,7 @@ function Cart() {
               onClick={handleCreateOrder}
               startIcon={<ShoppingBasketIcon />}
               className="bg-blue-500"
+              size="large"
               variant="contained"
             >
               Beli

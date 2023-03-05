@@ -26,6 +26,10 @@ class Order extends Model
             $order->code = "INV-" . $order->id;
             $order->save();
         });
+        static::updating(function(Order $order)
+        {
+            dd($order);
+        });
     }
 
     public function originUser(): BelongsTo

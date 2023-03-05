@@ -21,6 +21,10 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   ButtonBase,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
@@ -48,15 +52,19 @@ interface PropsI {
 
 export default function ProductDialog(props: PropsI) {
   const router = useRouter();
+  const [getDocuments, setDocuments] = React.useState([]);
   const createCart = useMutation((payload: any) => {
     return api.post(`carts`, payload);
   });
   const queryClient: any = useGetFetchQuery(["products"]);
-  const getDocuments = getRelationships(
-    queryClient?.data,
-    props.product,
-    "documents"
-  );
+
+  React.useEffect(() => {
+    if (queryClient.data) {
+      setDocuments(
+        getRelationships(queryClient.data, props.product, "documents")
+      );
+    }
+  }, []);
 
   const handleCreateCart = async () => {
     const payload = {
@@ -80,7 +88,6 @@ export default function ProductDialog(props: PropsI) {
     toast.success("Produk Berhasil Ditambahkan ke Keranjang");
   };
 
-  console.log({ getDocuments });
   return (
     <div>
       <Dialog
@@ -128,49 +135,40 @@ export default function ProductDialog(props: PropsI) {
           </>
         ) : null}
 
-        <article className="mx-2">
-          <div className="text-lg text-gray-900 md:text-xl ">
-            <h3 className="font-semibold ">{props.product.attributes.name}</h3>
-            <div className="font-bold text-2xl mb-4 flex justify-between">
-              <p>
-                {new Intl.NumberFormat("id-ID", {
-                  style: "currency",
-                  currency: "IDR",
-                }).format(props.product.attributes.price)}
-              </p>
-            </div>
-          </div>
-
-          <dl>
-            <dt className="mb-2 font-semibold leading-none text-gray-900 ">
-              Details
-            </dt>
-            <dd className="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">
-              Standard glass ,3.8GHz 8-core 10th-generation Intel Core i7
-              processor, Turbo Boost up to 5.0GHz, 16GB 2666MHz DDR4 memory,
-              Radeon Pro 5500 XT with 8GB of GDDR6 memory, 256GB SSD storage,
-              Gigabit Ethernet, Magic Mouse 2, Magic Keyboard - US.
-            </dd>
-            <dt className="mb-2 font-semibold leading-none text-gray-900 ">
-              Category
-            </dt>
-            <dd className="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">
-              Electronics/PC
-            </dd>
-          </dl>
+        <article className="mx-2 pb-16">
+          <Table>
+            <TableBody>
+              <TableRow>
+                <TableCell>Nama</TableCell>
+                <TableCell>{props.product.attributes.name}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Harga</TableCell>
+                <TableCell>
+                  {new Intl.NumberFormat("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                  }).format(props.product.attributes.price)}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="center" style={{ verticalAlign: "top" }}>
+                  <p>Deskripsi</p>
+                </TableCell>
+                <TableCell>
+                  Standard glass ,3.8GHz 8-core 10th-generation Intel Core i7
+                  processor, Turbo Boost up to 5.0GHz, 16GB 2666MHz DDR4 memory,
+                  Radeon Pro 5500 XT with 8GB of GDDR6 memory, 256GB SSD
+                  storage, Gigabit Ethernet, Magic Mouse 2, Magic Keyboard - US.
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Kategori</TableCell>
+                <TableCell>Lilin</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </article>
-        <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText
-              primary="Default notification ringtone"
-              secondary="Tethys"
-            />
-          </ListItem>
-        </List>
         <List className="fixed px-4 bg-white border-2 flex w-screen justify-center bottom-0">
           <Button size="medium" variant="outlined" className="mr-4">
             Beli Langsung

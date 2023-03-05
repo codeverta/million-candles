@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\JsonApi\V1\Orders\OrderQuery;
 use App\JsonApi\V1\Orders\OrderRequest;
 use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions;
 use Midtrans\Config;
 use Midtrans\Snap;
@@ -44,20 +45,26 @@ class OrderController extends Controller
     public function updating(Order $order, OrderRequest $request, OrderQuery $query): void
     {
         // do something only on updating...
-        if($request->data['attributes']['is_validate_buyer']) {
+        if(isset($request->data['attributes']['is_validate_buyer'])) {
             // compute amount
-            $order = $order->with(['originUser', 'destinationUser', 'orderDetails.products'])->first();
-            $total_price = $order->orderDetails()->sum('price');
-            $orderDetails = $order->orderDetails;
+            $user = Auth::user();
+            $total_price = (int) $order->price_amount;
+            $orderDetails = $order->orderDetails()->get();
             $snap_token = '';
+
+            if($total_price <= 0) {
+                dd("Harga Tidak boleh kurang dari atau sama dengan 0");
+            }
 
             // Required
             $transaction_details = array(
                 'order_id' => $order->id,
                 'gross_amount' => $total_price, // no decimal allowed for creditcard
             );
-            $item_details = [];
 
+            // dd($transaction_details);
+
+            $item_details = [];
             foreach ($orderDetails as $key => $orderDetail) {
                 $item_details[] = array(
                     'id' => $orderDetail->id,
@@ -67,17 +74,25 @@ class OrderController extends Controller
                 );
             }
 
+            $customer_details = array(
+                'first_name'    => $user->name,
+                'email'         => $user->email
+            );
+
             // Fill transaction details
             $transaction = array(
                 'transaction_details' => $transaction_details,
                 'item_details' => $item_details,
+                'customer_details' => $customer_details,
             );
+
 
             try {
                 $snap_token = Snap::getSnapToken($transaction);
-                Order::creating(function (Order $model) use ($snap_token, $total_price) {
+
+                Order::updating(function (Order $model) use ($snap_token, $total_price) {
                     $model->snap_token = $snap_token;
-                    $model->total_price = $total_price;
+                    $model->is_validate_buyer = true;
                 });
             } catch (\Exception $e) {
                 dd($e->getMessage());

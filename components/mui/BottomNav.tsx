@@ -12,6 +12,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useGetFetchQuery } from "utils/hooks";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ReceiptIcon from "@mui/icons-material/Receipt";
+import { useEffect } from "react";
 
 const adminList = [
   {
@@ -38,7 +39,7 @@ const buyerList = [
     label: "Home",
   },
   {
-    to: "/store/transactions",
+    to: "/store/orders",
     icon: <ReceiptIcon />,
     label: "Transaksi",
   },
@@ -57,17 +58,17 @@ const buyerList = [
 export default function BottomNav() {
   const router = useRouter();
   const [value, setValue] = React.useState(undefined);
+  const [routeList, setRouteList] = React.useState(buyerList);
   const getSelf: any = useGetFetchQuery(["self"]);
-  const routeList = React.useMemo(() => {
-    return getSelf?.data.roles.includes("merchant") ? adminList : buyerList;
+
+  useEffect(() => {
+    setRouteList(
+      getSelf?.data.roles.includes("merchant") ? adminList : buyerList
+    );
   }, [getSelf]);
 
   return (
-    <Paper
-      sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-      className="z-10"
-      elevation={3}
-    >
+    <Paper className="fixed bottom-0 max-w-lg w-full" elevation={3}>
       <BottomNavigation
         showLabels
         value={value}

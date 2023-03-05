@@ -27,7 +27,9 @@ export const getRelationship = (
   relation: string
 ): any => {
   return root.included.find(
-    (include: any) => include.id === resource.relationships[relation].data.id
+    (include: any) =>
+      include.id === resource.relationships[relation].data.id &&
+      include.type === relation
   );
 };
 

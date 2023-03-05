@@ -1,5 +1,5 @@
-import Layout from 'components/layout/Landing'
-import { marked } from 'marked'
+import Layout from "components/layout/Landing";
+import { marked } from "marked";
 
 const text = marked.parse(`
 # Tentang Million Candles
@@ -13,14 +13,19 @@ Kami memiliki berbagai pilihan warna dan desain yang dapat disesuaikan dengan se
 Kami sangat menghargai kualitas dan keselamatan pelanggan, sehingga kami selalu berusaha untuk menggunakan bahan-bahan yang aman dan tidak merusak lingkungan.
 
 Jika Anda ingin menambah suasana romantis di rumah Anda atau mencari hadiah yang unik untuk acara spesial, jangan ragu untuk mengunjungi website kami dan melihat pilihan lilin yang kami tawarkan. Kami akan senang untuk membantu Anda menemukan lilin yang tepat untuk kebutuhan Anda.
-`)
+`);
 
-export default function About() {
-    return (
-        <Layout>
-            <article className="mx-auto my-32 prose prose-xl" dangerouslySetInnerHTML={{__html: text}}> 
-                
-            </article>
-        </Layout>
-    )
+function About() {
+  return (
+    <article
+      className="mx-auto my-32 prose prose-xl"
+      dangerouslySetInnerHTML={{ __html: text }}
+    ></article>
+  );
 }
+
+About.getLayout = function (page: React.ReactNode) {
+  return <Layout>{page}</Layout>;
+};
+
+export default About;
