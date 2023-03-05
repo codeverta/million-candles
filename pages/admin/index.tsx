@@ -1,4 +1,3 @@
-// import BottomNav from 'components/mui/BottomNav';
 import AdminLayout from "components/layout/AdminLayout";
 import React from "react";
 import OrderTable from "components/molecules/OrderTable";

@@ -2,14 +2,24 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-export default function SearchInput() {
+interface PropsI {
+  label?: string;
+  options: {
+    label: string;
+    value: string;
+  };
+}
+export default function SearchInput({ label = "Input" }: PropsI) {
   return (
     <Autocomplete
       disablePortal
       id="combo-box-demo"
       options={top100Films}
+      classes={{
+        inputFocused: "!ring-0",
+      }}
       sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Movie" />}
+      renderInput={(params) => <TextField {...params} label={label} />}
     />
   );
 }

@@ -26,6 +26,7 @@ import api from "utils/api";
 import { Backdrop, Chip } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { getOrderStatus } from "utils/orders";
+import { useRouter } from "next/router";
 
 interface Data {
   calories: number;
@@ -267,6 +268,7 @@ const ordersParams = {
 };
 
 export default function OrderTable() {
+  const router = useRouter();
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<keyof Data>("calories");
   const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -332,6 +334,10 @@ export default function OrderTable() {
     setPage(0);
   };
 
+  const handleRowClick = ({ order }: any) => {
+    router.push(`/admin/orders/${order.id}`);
+  };
+
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -386,12 +392,14 @@ export default function OrderTable() {
                       tabIndex={-1}
                       key={row.id}
                       selected={isItemSelected}
+                      onClick={() => handleRowClick({ order: row })}
                     >
                       <TableCell
                         padding="checkbox"
-                        onClick={(event) =>
-                          handleClick(event, row.attributes.code)
-                        }
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          handleClick(event, row.attributes.code);
+                        }}
                       >
                         <Checkbox
                           color="primary"

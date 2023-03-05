@@ -46,14 +46,14 @@ const paymentsType = [
 function OrderDetail() {
   const router = useRouter();
   const [state, setState] = useState({
-    paymentMethod: "",
+    payment_type: "",
     isConfirmationOpen: false,
   });
   const updateOrder = useMutation((payload: any) => {
     return api.patch(`orders/${payload.data.id}`, payload);
   });
   const getOrder = useQuery({
-    queryKey: ["order", router.query.id],
+    queryKey: ["order"],
     queryFn: () => {
       return api.get(`orders/${router.query.id}`, {
         include: "order-details.products",
@@ -62,9 +62,10 @@ function OrderDetail() {
     onSuccess: (res) => {
       setState({
         ...state,
-        paymentMethod: res.data.data.attributes.payments_type,
+        payment_type: res.data.data.attributes.payments_type,
       });
     },
+    refetchOnWindowFocus: false,
   });
 
   if (getOrder.isLoading || getOrder.isError) {
@@ -78,11 +79,14 @@ function OrderDetail() {
     );
   }
 
-  const handleChangePaymentMethod = (event: any) => {
-    setState({ ...state, paymentMethod: event.target.value });
+  const handleChangePaymentType = (event: any) => {
+    setState({ ...state, payment_type: event.target.value });
   };
 
   const handleVerify = () => {
+    if (!state.payment_type) {
+      return;
+    }
     updateOrder.mutate(
       {
         data: {
@@ -90,15 +94,20 @@ function OrderDetail() {
           id: getOrder.data.data.data.id,
           attributes: {
             is_validate_buyer: true,
-            payments_type: state.paymentMethod,
+            payments_type: state.payment_type,
           },
         },
       },
       {
         onSuccess: (res) => {
+          getOrder.refetch();
+          handleConfirmation();
           toast.success(
             "Terima kasih, pesanan anda sedang diproses oleh sistem, harap tunggu konfirmasi dari penjual"
           );
+          if (state.payment_type !== "midtrans") {
+            return;
+          }
           // @ts-ignore
           snap.pay(res.data.data.attributes.snap_token, {
             onSuccess: function (result: any) {
@@ -133,15 +142,11 @@ function OrderDetail() {
     setState({ ...state, isConfirmationOpen: !state.isConfirmationOpen });
   };
 
-  console.log({ getOrder });
-
   const orderDetails = getRelationships(
     getOrder.data.data,
     getOrder.data.data.data,
     "order-details"
   );
-
-  console.log({ orderDetails });
 
   return (
     <>
@@ -214,7 +219,7 @@ function OrderDetail() {
             <TableRow>
               <TableCell style={{ verticalAlign: "top" }}>
                 Pilih Metode Pembayaran
-                {!state.paymentMethod && (
+                {!state.payment_type && (
                   <FormHelperText className="text-red-400">
                     Wajib diisi
                   </FormHelperText>
@@ -225,8 +230,8 @@ function OrderDetail() {
                   <RadioGroup
                     aria-labelledby="demo-controlled-radio-buttons-group"
                     name="controlled-radio-buttons-group"
-                    value={state.paymentMethod}
-                    onChange={handleChangePaymentMethod}
+                    value={state.payment_type}
+                    onChange={handleChangePaymentType}
                   >
                     {paymentsType.map(
                       (type: { label: string; value: string }) => {
@@ -237,7 +242,9 @@ function OrderDetail() {
                             control={<Radio size="small" />}
                             label={type.label}
                             disabled={
-                              !!getOrder.data.data.data.attributes.payments_type
+                              !!state.payment_type &&
+                              getOrder.data.data.data.attributes
+                                .is_validate_buyer
                             }
                           />
                         );
@@ -254,7 +261,7 @@ function OrderDetail() {
           onClick={handleConfirmation}
           className="bg-blue-500 w-full"
           disabled={
-            !state.paymentMethod ||
+            !state.payment_type ||
             !!getOrder.data.data.data.attributes.payments_type
           }
         >

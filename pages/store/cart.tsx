@@ -115,7 +115,7 @@ function Cart() {
   };
 
   const handleCreateOrder = () => {
-    if (getUsers.isLoading || getUsers.isError) {
+    if (getUsers.isLoading || getUsers.isError || !getSelf.data) {
       throw new Error("Terjadi kesalahan");
     }
     const user = getUsers.data.data.data[0];
