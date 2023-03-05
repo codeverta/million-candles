@@ -55,7 +55,7 @@ class OrderController extends Controller
             if($total_price <= 0) {
                 dd("Harga Tidak boleh kurang dari atau sama dengan 0");
             }
-            
+
             // Required
             $transaction_details = array(
                 'order_id' => $order->id,
@@ -92,6 +92,7 @@ class OrderController extends Controller
 
                 Order::updating(function (Order $model) use ($snap_token, $total_price) {
                     $model->snap_token = $snap_token;
+                    $model->is_validate_buyer = true;
                 });
             } catch (\Exception $e) {
                 dd($e->getMessage());

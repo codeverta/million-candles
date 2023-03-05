@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import StoreLayout from "components/layout/StoreLayout";
-import { toCurrency } from "utils";
+import { getRelationships, getRelationship, toCurrency } from "utils";
 import {
   Table,
   TableBody,
@@ -20,12 +20,28 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  FormHelperText,
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import api from "utils/api";
 import { getOrderStatus } from "utils/orders";
 import { toast } from "sonner";
+
+const paymentsType = [
+  {
+    label: "Cash",
+    value: "cash",
+  },
+  {
+    label: "Transfer",
+    value: "transfer",
+  },
+  {
+    label: "Midtrans",
+    value: "midtrans",
+  },
+];
 
 function OrderDetail() {
   const router = useRouter();
@@ -37,9 +53,17 @@ function OrderDetail() {
     return api.patch(`orders/${payload.data.id}`, payload);
   });
   const getOrder = useQuery({
-    queryKey: ["order"],
+    queryKey: ["order", router.query.id],
     queryFn: () => {
-      return api.get(`orders/${router.query.id}`);
+      return api.get(`orders/${router.query.id}`, {
+        include: "order-details.products",
+      });
+    },
+    onSuccess: (res) => {
+      setState({
+        ...state,
+        paymentMethod: res.data.data.attributes.payments_type,
+      });
     },
   });
 
@@ -66,26 +90,30 @@ function OrderDetail() {
           id: getOrder.data.data.data.id,
           attributes: {
             is_validate_buyer: true,
+            payments_type: state.paymentMethod,
           },
         },
       },
       {
         onSuccess: (res) => {
+          toast.success(
+            "Terima kasih, pesanan anda sedang diproses oleh sistem, harap tunggu konfirmasi dari penjual"
+          );
           // @ts-ignore
           snap.pay(res.data.data.attributes.snap_token, {
             onSuccess: function (result: any) {
               /* You may add your own implementation here */
-              alert("payment success!");
+              toast.success("Pembayaran Berhasil!");
               console.log(result);
             },
             onPending: function (result: any) {
               /* You may add your own implementation here */
-              alert("menunggu pembayaran...");
+              toast.success("Menunggu Pembayaran...");
               console.log(result);
             },
             onError: function (result: any) {
               /* You may add your own implementation here */
-              alert("payment failed!");
+              toast.error("Pembayaran Gagal!");
               console.log(result);
             },
             onClose: function () {
@@ -93,9 +121,6 @@ function OrderDetail() {
               alert("you closed the popup without finishing the payment");
             },
           });
-          toast.success(
-            "Terima kasih, pesanan anda sedang diproses oleh sistem, harap tunggu konfirmasi dari penjual"
-          );
         },
         onError: () => {
           toast.error("Maaf terjadi gangguan sistem, harap hubungi penjual");
@@ -107,6 +132,17 @@ function OrderDetail() {
   const handleConfirmation = () => {
     setState({ ...state, isConfirmationOpen: !state.isConfirmationOpen });
   };
+
+  console.log({ getOrder });
+
+  const orderDetails = getRelationships(
+    getOrder.data.data,
+    getOrder.data.data.data,
+    "order-details"
+  );
+
+  console.log({ orderDetails });
+
   return (
     <>
       <Dialog
@@ -146,6 +182,30 @@ function OrderDetail() {
               </TableCell>
             </TableRow>
             <TableRow>
+              <TableCell style={{ verticalAlign: "top" }}>
+                Detail Produk
+              </TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+
+            {orderDetails.map((orderDetail: any) => {
+              console.log({ orderDetail });
+              const products = getRelationship(
+                getOrder.data.data,
+                orderDetail,
+                "products"
+              );
+              return (
+                <TableRow key={orderDetail.id}>
+                  <TableCell>{products.attributes.name}</TableCell>
+                  <TableCell>
+                    {toCurrency(orderDetail.attributes.price)} x{" "}
+                    {orderDetail.attributes.qty}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+            <TableRow>
               <TableCell>Total Pembayaran</TableCell>
               <TableCell>
                 {toCurrency(getOrder.data.data.data.attributes.price_amount)}
@@ -154,6 +214,11 @@ function OrderDetail() {
             <TableRow>
               <TableCell style={{ verticalAlign: "top" }}>
                 Pilih Metode Pembayaran
+                {!state.paymentMethod && (
+                  <FormHelperText className="text-red-400">
+                    Wajib diisi
+                  </FormHelperText>
+                )}
               </TableCell>
               <TableCell>
                 <FormControl>
@@ -163,21 +228,21 @@ function OrderDetail() {
                     value={state.paymentMethod}
                     onChange={handleChangePaymentMethod}
                   >
-                    <FormControlLabel
-                      value="transfer"
-                      control={<Radio size="small" />}
-                      label="Transfer"
-                    />
-                    <FormControlLabel
-                      value="whatsapp"
-                      control={<Radio size="small" />}
-                      label="Whatsapp"
-                    />
-                    <FormControlLabel
-                      value="midtrans"
-                      control={<Radio size="small" />}
-                      label="Midtrans"
-                    />
+                    {paymentsType.map(
+                      (type: { label: string; value: string }) => {
+                        return (
+                          <FormControlLabel
+                            key={type.value}
+                            value={type.value}
+                            control={<Radio size="small" />}
+                            label={type.label}
+                            disabled={
+                              !!getOrder.data.data.data.attributes.payments_type
+                            }
+                          />
+                        );
+                      }
+                    )}
                   </RadioGroup>
                 </FormControl>
               </TableCell>
@@ -188,6 +253,10 @@ function OrderDetail() {
           variant="contained"
           onClick={handleConfirmation}
           className="bg-blue-500 w-full"
+          disabled={
+            !state.paymentMethod ||
+            !!getOrder.data.data.data.attributes.payments_type
+          }
         >
           Verifikasi Pembayaran
         </Button>

@@ -44,6 +44,7 @@ class OrderSchema extends Schema
             ID::make(),
             Str::make('airwaybill'),
             Str::make('snap_token'),
+            Str::make('payments_type'),
             Boolean::make(
             'is_validate_buyer'),
             Number::make('price_amount'),

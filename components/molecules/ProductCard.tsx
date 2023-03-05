@@ -10,6 +10,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import { Rating } from "@mui/material";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import ProductDialog from "components/molecules/ProductDialog";
+import { toCurrency } from "utils";
 
 export default function ProductCard(props: any) {
   const [state, setState] = React.useState({
@@ -51,7 +52,7 @@ export default function ProductCard(props: any) {
             </IconButton>
           </div>
           <p className="text-md font-bold">
-            Rp. {props.product.attributes.price}
+            {toCurrency(props.product.attributes.price)}
           </p>
         </CardContent>
         <CardActions disableSpacing>
