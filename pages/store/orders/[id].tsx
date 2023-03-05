@@ -30,7 +30,7 @@ import { toast } from "sonner";
 function OrderDetail() {
   const router = useRouter();
   const [state, setState] = useState({
-    paymentMethod: undefined,
+    paymentMethod: "",
     isConfirmationOpen: false,
   });
   const updateOrder = useMutation((payload: any) => {
@@ -54,7 +54,9 @@ function OrderDetail() {
     );
   }
 
-  const handleChangePaymentMethod = (event: any) => {};
+  const handleChangePaymentMethod = (event: any) => {
+    setState({ ...state, paymentMethod: event.target.value });
+  };
 
   const handleVerify = () => {
     updateOrder.mutate(
@@ -68,7 +70,29 @@ function OrderDetail() {
         },
       },
       {
-        onSuccess: () => {
+        onSuccess: (res) => {
+          // @ts-ignore
+          snap.pay(res.data.data.attributes.snap_token, {
+            onSuccess: function (result: any) {
+              /* You may add your own implementation here */
+              alert("payment success!");
+              console.log(result);
+            },
+            onPending: function (result: any) {
+              /* You may add your own implementation here */
+              alert("menunggu pembayaran...");
+              console.log(result);
+            },
+            onError: function (result: any) {
+              /* You may add your own implementation here */
+              alert("payment failed!");
+              console.log(result);
+            },
+            onClose: function () {
+              /* You may add your own implementation here */
+              alert("you closed the popup without finishing the payment");
+            },
+          });
           toast.success(
             "Terima kasih, pesanan anda sedang diproses oleh sistem, harap tunggu konfirmasi dari penjual"
           );

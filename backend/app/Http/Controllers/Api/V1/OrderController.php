@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\JsonApi\V1\Orders\OrderQuery;
 use App\JsonApi\V1\Orders\OrderRequest;
 use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions;
 use Midtrans\Config;
 use Midtrans\Snap;
@@ -46,6 +47,7 @@ class OrderController extends Controller
         // do something only on updating...
         if($request->data['attributes']['is_validate_buyer']) {
             // compute amount
+            $user = Auth::user();
             $total_price = (int) $order->price_amount;
             $orderDetails = $order->orderDetails()->get();
             $snap_token = '';
@@ -72,10 +74,16 @@ class OrderController extends Controller
                 );
             }
 
+            $customer_details = array(
+                'first_name'    => $user->name,
+                'email'         => $user->email
+            );
+
             // Fill transaction details
             $transaction = array(
                 'transaction_details' => $transaction_details,
                 'item_details' => $item_details,
+                'customer_details' => $customer_details,
             );
 
 
