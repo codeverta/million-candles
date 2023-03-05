@@ -48,9 +48,9 @@ class UserSeeder extends Seeder
 
 
         $merchant = User::factory()->create([
-            'name' => 'Uzumaki Naruto',
-            'email' => 'naruto@gmail.com',
-            'password' => Hash::make('naruto123')
+            'name' => 'Tanjiro',
+            'email' => 'tanjiro@gmail.com',
+            'password' => Hash::make('tanjiro123')
         ]);
 
         $buyer = User::factory()->create([

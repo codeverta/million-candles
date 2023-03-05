@@ -45,7 +45,7 @@ class OrderController extends Controller
     public function updating(Order $order, OrderRequest $request, OrderQuery $query): void
     {
         // do something only on updating...
-        if($request->data['attributes']['is_validate_buyer']) {
+        if(isset($request->data['attributes']['is_validate_buyer'])) {
             // compute amount
             $user = Auth::user();
             $total_price = (int) $order->price_amount;

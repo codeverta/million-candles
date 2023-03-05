@@ -16,17 +16,17 @@ class OrderRequest extends ResourceRequest
      */
     public function rules(): array
     {
-        // $order = $this->model();
-        // $uniqueSlug = Rule::unique('orders', 'airwaybill');
+        $order = $this->model();
+        $uniqueSlug = Rule::unique('orders', 'airwaybill');
 
-        // if ($order) {
-        //     $uniqueSlug->ignoreModel($order);
-        // }
+        if ($order) {
+            $uniqueSlug->ignoreModel($order);
+        }
 
 
         return [
-            // 'airwaybill' => ['string'],
-            // 'payments_type' => ['string'],
+            'airwaybill' => ['string', 'nullable', $uniqueSlug],
+            'payments_type' => ['string', 'nullable'],
             'origin-users' => [ JsonApiRule::toOne() ],
             'destination-users' => [ JsonApiRule::toOne() ],
             'price_amount' => ['required'],
