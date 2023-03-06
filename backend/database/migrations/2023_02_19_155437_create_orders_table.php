@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('code')->nullable();
             $table->string('airwaybill')->nullable();
             $table->string('snap_token')->nullable();
+            $table->string('buyer_name')->nullable();
             $table->enum('payments_type', ['cash', 'transfer', 'midtrans'])->nullable();
             $table->boolean('is_validate_buyer')->default(false);
             $table->boolean('is_validate_seller')->default(false);

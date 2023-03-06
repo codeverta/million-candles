@@ -45,11 +45,47 @@ function CreateOrder() {
       return api.get("products", productParams);
     },
   });
+  const getUsers = useQuery({
+    queryKey: ["users"],
+    queryFn: () => {
+      return api.get("users");
+    },
+  });
   const productsGate = getProducts.isLoading || getProducts.isError;
+  const usersGate = getUsers.isLoading || getUsers.isError;
+  const users = useMemo(
+    () => (!usersGate ? getUsers.data.data : null),
+    [getUsers]
+  );
   const products = useMemo(
     () => (!productsGate ? getProducts.data.data : null),
     [getProducts]
   );
+  const totalPrice = useMemo(() => {
+    return !productsGate
+      ? state.selectedProducts.reduce(
+          (total: any, current: any) =>
+            total + current.attributes.orderQty * current.attributes.price,
+          0
+        )
+      : null;
+  }, [state]);
+
+  const usersOptions = useMemo(() => {
+    if (usersGate) {
+      return [
+        {
+          label: "",
+          value: "",
+        },
+      ];
+    }
+    return users.data.map((it: any) => ({
+      label: `${it.attributes.email}`,
+      value: it.id,
+    }));
+  }, [getUsers]);
+
   const productOptions = useMemo(() => {
     if (productsGate) {
       return [
@@ -65,15 +101,12 @@ function CreateOrder() {
     }));
   }, [getProducts]);
 
-  const handleProductsInput = (it: any) => {
-    console.log({ it });
-  };
-
   const onAppendProduct = (_: any, value: { label: string; value: string }) => {
     if (!value) {
       return;
     }
     const newProduct = products.data.find((it: any) => it.id == value.value);
+    newProduct.attributes.orderQty = 1;
     setState({
       ...state,
       selectedProducts: [...state.selectedProducts, newProduct],
@@ -87,6 +120,18 @@ function CreateOrder() {
         (selected: any) => selected.id != it.id
       ),
     });
+  };
+
+  const handleProductQty = (e: any, index: number) => {
+    const selectedProducts = state.selectedProducts;
+    const selectedProduct = state.selectedProducts[index];
+    selectedProduct.attributes.orderQty = e.target.value;
+    selectedProducts[index] = selectedProduct;
+    setState({ ...state, selectedProducts });
+  };
+
+  const handleSubmit = () => {
+    console.log("here");
   };
 
   if (productsGate) {
@@ -111,10 +156,25 @@ function CreateOrder() {
               />
             </TableCell>
           </TableRow>
-          {state.isBuyer && (
+          {state.isBuyer ? (
             <TableRow>
               <TableCell colSpan={3}>
-                <SearchInput label="Pilih Pembeli" className="w-full" />
+                <SearchInput
+                  options={usersOptions}
+                  label="Pilih Pembeli"
+                  className="w-full"
+                />
+              </TableCell>
+            </TableRow>
+          ) : (
+            <TableRow>
+              <TableCell colSpan={3}>
+                <TextField
+                  className="w-full"
+                  id="outlined-basic"
+                  label="Nama Pembeli"
+                  variant="outlined"
+                />
               </TableCell>
             </TableRow>
           )}
@@ -123,7 +183,9 @@ function CreateOrder() {
               <SearchInput
                 onChange={onAppendProduct}
                 options={productOptions}
-                className="w-full"
+                classes={{
+                  root: "w-full",
+                }}
                 label="Cari Produk"
               />
             </TableCell>
@@ -136,7 +198,7 @@ function CreateOrder() {
                     <TableCell colSpan={2}>
                       <IconButton
                         onClick={() => handleDeleteRow(it)}
-                        className="absolute -top-4 -left-2"
+                        className="absolute -top-5 -left-1"
                       >
                         <CancelIcon className="text-red-500" />
                       </IconButton>
@@ -145,6 +207,8 @@ function CreateOrder() {
                     </TableCell>
                     <TableCell colSpan={1}>
                       <InputBase
+                        value={it.attributes.orderQty}
+                        onChange={(e) => handleProductQty(e, index)}
                         classes={{
                           input:
                             "rounded-sm border border-gray-400 ring-1 focus:ring-2 focus:ring-blue-500 !ring-gray-400",
@@ -159,11 +223,16 @@ function CreateOrder() {
           )}
           <TableRow>
             <TableCell colSpan={2}>Total Penjualan</TableCell>
-            <TableCell>{toCurrency(100000)}</TableCell>
+            <TableCell>{toCurrency(totalPrice)}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
-      <Button className="bg-blue-500 w-full" variant="contained">
+      <Button
+        onSubmit={handleSubmit}
+        disabled={!state.selectedProducts.length}
+        className="bg-blue-500 w-full"
+        variant="contained"
+      >
         Tambah Penjualan
       </Button>
     </div>

@@ -20,7 +20,9 @@ class OrderResource extends JsonApiResource
             'code' => $this->code,
             'snap_token' => $this->snap_token,
             'airwaybill' => $this->airwaybill,
-            'payments_type' => $this->payments_type,
+            'payments_type' => $this->
+            payments_type,
+            'buyer_name' => $this->buyer_name,
             'price_amount' => $this->price_amount,
             'is_validate_seller' => (bool) $this->is_validate_seller,
             'is_validate_buyer' => (bool) $this->is_validate_buyer,

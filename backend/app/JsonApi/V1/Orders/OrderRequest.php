@@ -27,6 +27,7 @@ class OrderRequest extends ResourceRequest
         return [
             'airwaybill' => ['string', 'nullable', $uniqueSlug],
             'payments_type' => ['string', 'nullable'],
+            'buyer_name' => ['string', 'nullable'],
             'origin-users' => [ JsonApiRule::toOne() ],
             'destination-users' => [ JsonApiRule::toOne() ],
             'price_amount' => ['required'],
