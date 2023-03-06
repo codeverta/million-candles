@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('code')->nullable();
             $table->string('airwaybill')->nullable();
             $table->string('snap_token')->nullable();
+            $table->string('buyer_name')->nullable();
             $table->enum('payments_type', ['cash', 'transfer', 'midtrans'])->nullable();
             $table->boolean('is_validate_buyer')->default(false);
             $table->boolean('is_validate_seller')->default(false);
@@ -27,7 +28,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->bigInteger('price_amount')->default(0);
             $table->unsignedBigInteger('origin_user_id');
-            $table->unsignedBigInteger('destination_user_id');
+            $table->unsignedBigInteger('destination_user_id')->nullable();
 
             $table->foreign('origin_user_id')->references('id')->on('users');
             $table->foreign('destination_user_id')->references('id')->on('users');
