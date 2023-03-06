@@ -28,7 +28,7 @@ class Order extends Model
         });
         static::updating(function(Order $order)
         {
-            dd($order);
+            // dd($order);
         });
     }
 

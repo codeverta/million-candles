@@ -1,7 +1,12 @@
 import {
   Button,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
   IconButton,
   InputBase,
+  Radio,
+  RadioGroup,
   Switch,
   Table,
   TableBody,
@@ -21,23 +26,54 @@ import {
 } from "components/mui/AppBar";
 import SearchIcon from "@mui/icons-material/Search";
 import { toCurrency } from "utils";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import api from "utils/api";
 import LoadingBackdrop from "components/mui/LoadingBackdrop";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CancelIcon from "@mui/icons-material/Cancel";
+import { toast } from "sonner";
+import { useGetFetchQuery } from "utils/hooks";
+import { useRouter } from "next/router";
 
 const productParams = {
   "fields[products]": "name,price",
 };
 
+const paymentsType = [
+  {
+    label: "Cash",
+    value: "cash",
+  },
+  {
+    label: "Transfer",
+    value: "transfer",
+  },
+  {
+    label: "Midtrans",
+    value: "midtrans",
+  },
+];
 function CreateOrder() {
+  const router = useRouter();
   const [state, setState] = useState<{
+    buyerName: string;
+    destinationUser: any;
     isBuyer: boolean;
+    paymentType: string;
     selectedProducts: any;
   }>({
+    buyerName: "",
+    destinationUser: {},
+    paymentType: "",
     isBuyer: false,
     selectedProducts: [],
+  });
+  const getSelf: any = useGetFetchQuery(["self"]);
+  const createOrder = useMutation({
+    mutationKey: ["order", "create"],
+    mutationFn: (payload: any) => {
+      return api.post("orders", payload);
+    },
   });
   const getProducts = useQuery({
     queryKey: ["products"],
@@ -122,6 +158,18 @@ function CreateOrder() {
     });
   };
 
+  const handleChangePaymentType = (event: any) => {
+    setState({ ...state, paymentType: event.target.value });
+  };
+
+  const handleChangeBuyer: any = (e: any, newValue: any) => {
+    if (newValue) {
+      setState({ ...state, buyerName: newValue });
+    } else {
+      setState({ ...state, destinationUser: e.target.value });
+    }
+  };
+
   const handleProductQty = (e: any, index: number) => {
     const selectedProducts = state.selectedProducts;
     const selectedProduct = state.selectedProducts[index];
@@ -131,7 +179,43 @@ function CreateOrder() {
   };
 
   const handleSubmit = () => {
-    console.log("here");
+    const payload = {
+      data: {
+        type: "orders",
+        attributes: {
+          price_amount: totalPrice,
+          is_validate_seller: true,
+          payments_type: state.paymentType,
+          buyer_name: state.isBuyer ? undefined : state.buyerName,
+        },
+        relationships: {
+          "origin-users": {
+            data: {
+              type: "users",
+              id: getSelf.data.me.id + "",
+            },
+          },
+          "destination-users": state.isBuyer
+            ? {
+                data: {
+                  type: "users",
+                  id: state.destinationUser.value + "",
+                },
+              }
+            : undefined,
+        },
+      },
+    };
+
+    createOrder.mutate(payload, {
+      onSuccess: () => {
+        toast.success("Order berhasil dibuat");
+        router.push("/admin");
+      },
+      onError: () => {
+        toast.error("Terjadi error pada sistem");
+      },
+    });
   };
 
   if (productsGate) {
@@ -161,6 +245,7 @@ function CreateOrder() {
               <TableCell colSpan={3}>
                 <SearchInput
                   options={usersOptions}
+                  onChange={handleChangeBuyer}
                   label="Pilih Pembeli"
                   className="w-full"
                 />
@@ -171,6 +256,7 @@ function CreateOrder() {
               <TableCell colSpan={3}>
                 <TextField
                   className="w-full"
+                  onChange={handleChangeBuyer}
                   id="outlined-basic"
                   label="Nama Pembeli"
                   variant="outlined"
@@ -222,13 +308,46 @@ function CreateOrder() {
             </>
           )}
           <TableRow>
+            <TableCell colSpan={2} style={{ verticalAlign: "top" }}>
+              Pilih Metode Pembayaran
+              {!state.paymentType && (
+                <FormHelperText className="text-red-400">
+                  Wajib diisi
+                </FormHelperText>
+              )}
+            </TableCell>
+            <TableCell>
+              <FormControl>
+                <RadioGroup
+                  aria-labelledby="demo-controlled-radio-buttons-group"
+                  name="controlled-radio-buttons-group"
+                  value={state.paymentType}
+                  onChange={handleChangePaymentType}
+                >
+                  {paymentsType.map(
+                    (type: { label: string; value: string }) => {
+                      return (
+                        <FormControlLabel
+                          key={type.value}
+                          value={type.value}
+                          control={<Radio size="small" />}
+                          label={type.label}
+                        />
+                      );
+                    }
+                  )}
+                </RadioGroup>
+              </FormControl>
+            </TableCell>
+          </TableRow>
+          <TableRow>
             <TableCell colSpan={2}>Total Penjualan</TableCell>
             <TableCell>{toCurrency(totalPrice)}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
       <Button
-        onSubmit={handleSubmit}
+        onClick={handleSubmit}
         disabled={!state.selectedProducts.length}
         className="bg-blue-500 w-full"
         variant="contained"
