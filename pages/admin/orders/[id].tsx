@@ -1,24 +1,58 @@
-import { Table, TableBody, TableCell, TableRow } from "@mui/material";
+import { Button, Table, TableBody, TableCell, TableRow } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
 import AdminLayout from "components/layout/AdminLayout";
-import React from "react";
+import LoadingBackdrop from "components/mui/LoadingBackdrop";
+import { useRouter } from "next/router";
+import React, { useMemo } from "react";
+import api from "utils/api";
+import dayjs from "dayjs";
 
 function OrderDetail() {
-  return <div>OrderDetail</div>;
-}
+  const router = useRouter();
+  const getOrder = useQuery({
+    queryKey: ["order"],
+    queryFn: () => {
+      return api.get(`orders/${router.query.id}`, {
+        include: "order-details.products",
+      });
+    },
+    refetchOnWindowFocus: false,
+  });
+  const ordersGate = getOrder.isLoading || getOrder.isError;
+  const orders = useMemo(
+    () => (!ordersGate ? getOrder.data.data : null),
+    [getOrder]
+  );
 
-OrderDetail.getLayout = function (page: React.ReactNode) {
+  if (ordersGate) {
+    return <LoadingBackdrop />;
+  }
+
   return (
-    <AdminLayout>
+    <div>
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell>No Invoice</TableCell>
-            <TableCell>INV 001</TableCell>
+            <TableCell>NO INVOICE</TableCell>
+            <TableCell>{orders.data.attributes.code}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Dibuat Pada</TableCell>
+            <TableCell>
+              {dayjs(orders.data.attributes.createdAt).format("LLLL")}
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>
-    </AdminLayout>
+      <Button variant="text" size="large" className="w-full">
+        Kirim
+      </Button>
+    </div>
   );
+}
+
+OrderDetail.getLayout = function (page: React.ReactNode) {
+  return <AdminLayout>{page}</AdminLayout>;
 };
 
 export default OrderDetail;

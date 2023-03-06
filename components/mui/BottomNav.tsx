@@ -26,6 +26,11 @@ const adminList = [
     label: "Notifikasi",
   },
   {
+    to: "/admin/orders",
+    icon: <ShoppingCartIcon />,
+    label: "Pembelian",
+  },
+  {
     to: "/admin/profile",
     icon: <AccountCircleIcon />,
     label: "Profile",

@@ -101,7 +101,7 @@ function CreateOrder() {
     return !productsGate
       ? state.selectedProducts.reduce(
           (total: any, current: any) =>
-            total + current.attributes.orderQty * current.attributes.price,
+            total + current.attributes.quantity * current.attributes.price,
           0
         )
       : null;
@@ -142,7 +142,7 @@ function CreateOrder() {
       return;
     }
     const newProduct = products.data.find((it: any) => it.id == value.value);
-    newProduct.attributes.orderQty = 1;
+    newProduct.attributes.quantity = 1;
     setState({
       ...state,
       selectedProducts: [...state.selectedProducts, newProduct],
@@ -164,21 +164,22 @@ function CreateOrder() {
 
   const handleChangeBuyer: any = (e: any, newValue: any) => {
     if (newValue) {
-      setState({ ...state, buyerName: newValue });
+      setState({ ...state, destinationUser: newValue });
     } else {
-      setState({ ...state, destinationUser: e.target.value });
+      setState({ ...state, buyerName: e.target.value });
     }
   };
 
   const handleProductQty = (e: any, index: number) => {
     const selectedProducts = state.selectedProducts;
     const selectedProduct = state.selectedProducts[index];
-    selectedProduct.attributes.orderQty = e.target.value;
+    selectedProduct.attributes.quantity = e.target.value;
     selectedProducts[index] = selectedProduct;
     setState({ ...state, selectedProducts });
   };
 
   const handleSubmit = () => {
+    console.log();
     const payload = {
       data: {
         type: "orders",
@@ -208,9 +209,41 @@ function CreateOrder() {
     };
 
     createOrder.mutate(payload, {
-      onSuccess: () => {
+      onSuccess: (res) => {
         toast.success("Order berhasil dibuat");
         router.push("/admin");
+        // todo bikin post ke order details
+        const batchCreateOrderDetails = state.selectedProducts.map(
+          (product: any) => {
+            return api.post(`order-details`, {
+              data: {
+                type: "order-details",
+                attributes: {
+                  qty: product.attributes.quantity,
+                  price: product.attributes.price,
+                  total_price:
+                    product.attributes.quantity * product.attributes.price,
+                },
+                relationships: {
+                  products: {
+                    data: {
+                      type: "products",
+                      id: product.id,
+                    },
+                  },
+                  orders: {
+                    data: {
+                      type: "orders",
+                      id: res.data.data.id,
+                    },
+                  },
+                },
+              },
+            });
+          }
+        );
+
+        Promise.all(batchCreateOrderDetails);
       },
       onError: () => {
         toast.error("Terjadi error pada sistem");
@@ -293,7 +326,7 @@ function CreateOrder() {
                     </TableCell>
                     <TableCell colSpan={1}>
                       <InputBase
-                        value={it.attributes.orderQty}
+                        value={it.attributes.quantity}
                         onChange={(e) => handleProductQty(e, index)}
                         classes={{
                           input:
@@ -349,7 +382,7 @@ function CreateOrder() {
       <Button
         onClick={handleSubmit}
         disabled={!state.selectedProducts.length}
-        className="bg-blue-500 w-full"
+        className="bg-blue-500 w-full mb-20"
         variant="contained"
       >
         Tambah Penjualan
