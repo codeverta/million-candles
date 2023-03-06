@@ -219,7 +219,7 @@ function CreateOrder() {
               data: {
                 type: "order-details",
                 attributes: {
-                  qty: product.attributes.quantity,
+                  qty: parseInt(product.attributes.quantity),
                   price: product.attributes.price,
                   total_price:
                     product.attributes.quantity * product.attributes.price,

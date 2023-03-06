@@ -244,7 +244,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
 }
 
 const ordersParams = {
-  "page[size]": 5,
+  "page[size]": 15,
 };
 
 export default function OrderTable() {

@@ -43,9 +43,8 @@ class OrderResource extends JsonApiResource
     {
         return [
             $this->relation('order-details'),
-            $this->relation(
-            'origin-user'),
-            $this->relation('destination-user'),
+            $this->relation('destination-users', 'destinationUser'),
+            $this->relation('origin-users', 'originUser'),
         ];
     }
 

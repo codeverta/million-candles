@@ -73,7 +73,7 @@ export default function BottomNav() {
   }, [getSelf]);
 
   return (
-    <Paper className="fixed bottom-0 max-w-lg w-full" elevation={3}>
+    <Paper className="fixed bottom-0 z-10 max-w-lg w-full" elevation={3}>
       <BottomNavigation
         showLabels
         value={value}
