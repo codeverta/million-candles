@@ -58,8 +58,12 @@ function OrderDetail() {
             <TableCell>Pembeli</TableCell>
             <TableCell>
               {orders.data.attributes.buyer_name ??
-                getRelationship(orders, orders.data, "destination-user")
-                  .attributes.name}
+                getRelationship(
+                  orders,
+                  orders.data,
+                  "destination-users",
+                  "users"
+                ).attributes.email}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -77,7 +81,7 @@ function OrderDetail() {
               "products"
             );
             return (
-              <TableRow key={orderDetail.id}>
+              <TableRow className="bg-gray-50" key={orderDetail.id}>
                 <TableCell>
                   <p className="pl-4">- {products.attributes.name}</p>
                 </TableCell>
