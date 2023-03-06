@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->bigInteger('price_amount')->default(0);
             $table->unsignedBigInteger('origin_user_id');
-            $table->unsignedBigInteger('destination_user_id');
+            $table->unsignedBigInteger('destination_user_id')->nullable();
 
             $table->foreign('origin_user_id')->references('id')->on('users');
             $table->foreign('destination_user_id')->references('id')->on('users');
