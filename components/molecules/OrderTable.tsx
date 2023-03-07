@@ -27,6 +27,7 @@ import { Backdrop, Chip } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { getOrderStatus } from "utils/orders";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 interface Data {
   calories: number;
@@ -52,22 +53,6 @@ function createData(
   };
 }
 
-const rows = [
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Donut", 452, 25.0, 51, 4.9),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-  createData("Honeycomb", 408, 3.2, 87, 6.5),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Jelly Bean", 375, 0.0, 94, 0.0),
-  createData("KitKat", 518, 26.0, 65, 7.0),
-  createData("Lollipop", 392, 0.2, 98, 0.0),
-  createData("Marshmallow", 318, 0, 81, 2.0),
-  createData("Nougat", 360, 19.0, 9, 37.0),
-  createData("Oreo", 437, 18.0, 63, 4.0),
-];
-
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -92,10 +77,6 @@ function getComparator<Key extends keyof any>(
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
 function stableSort<T>(
   array: readonly T[],
   comparator: (a: T, b: T) => number
@@ -264,7 +245,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
 }
 
 const ordersParams = {
-  "page[size]": 5,
+  "page[size]": 15,
 };
 
 export default function OrderTable() {
@@ -281,9 +262,7 @@ export default function OrderTable() {
     queryFn: () => {
       return api.get("orders", { ...ordersParams });
     },
-    staleTime: 1000 * 60 * 10,
   });
-  console.log({ query });
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -296,8 +275,6 @@ export default function OrderTable() {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.name);
-      setSelected(newSelected);
       return;
     }
     setSelected([]);
@@ -340,10 +317,6 @@ export default function OrderTable() {
 
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
   if (query.isError || query.isLoading) {
     return (
       <Backdrop
@@ -355,6 +328,25 @@ export default function OrderTable() {
     );
   }
 
+  if (query.data.data.data.length == 0) {
+    return (
+      <>
+        <div className="h-10"></div>
+        <img
+          className="max-w-xs m-auto"
+          alt="Data tidak ditemukan"
+          src="/assets/404-computer.svg"
+        />
+        <h1 className="mb-4 text-2xl text-center tracking-tight font-semibold text-primary-600 dark:text-primary-500">
+          Data Tidak Ditemukan
+        </h1>
+        <p className="max-w-sm m-auto text-center mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
+          Maaf kami tidak bisa mendapatkan data yang anda cari, kemungkinan data
+          masih kosong.{" "}
+        </p>
+      </>
+    );
+  }
   return (
     <div>
       <Box sx={{ width: "100%" }}>
@@ -372,14 +364,9 @@ export default function OrderTable() {
                 orderBy={orderBy}
                 onSelectAllClick={handleSelectAllClick}
                 onRequestSort={handleRequestSort}
-                rowCount={rows.length}
+                rowCount={query.data.data.data.length}
               />
               <TableBody>
-                {query.data.data.data.length == 0 && (
-                  <TableRow>
-                    <TableCell colSpan={3}>Data Tidak Ditemukan</TableCell>
-                  </TableRow>
-                )}
                 {query.data.data.data.map((row: any, index: number) => {
                   const isItemSelected = isSelected(row.attributes.code);
                   const labelId = `{row.id}`;
@@ -426,24 +413,15 @@ export default function OrderTable() {
                     </TableRow>
                   );
                 })}
-                {emptyRows > 0 && (
-                  <TableRow
-                    style={{
-                      height: (dense ? 33 : 53) * emptyRows,
-                    }}
-                  >
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
               </TableBody>
             </Table>
           </TableContainer>
           <TablePagination
             rowsPerPageOptions={[5, 15, 25]}
             component="div"
-            count={rows.length}
+            count={query.data.data.meta.page.total ?? -1}
             rowsPerPage={rowsPerPage}
-            page={page}
+            page={query.data.data.meta.page.currentPage - 1}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
           />

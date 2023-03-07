@@ -24,12 +24,13 @@ export const toCurrency = (number: number): String => {
 export const getRelationship = (
   root: RootI,
   resource: ResourceI,
-  relation: string
+  relation: string,
+  relationType?: string
 ): any => {
   return root.included.find(
     (include: any) =>
       include.id === resource.relationships[relation].data.id &&
-      include.type === relation
+      include.type === (relationType ? relationType : relation)
   );
 };
 

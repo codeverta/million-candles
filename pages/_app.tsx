@@ -8,8 +8,13 @@ import { getRelationship, getRelationships } from "utils";
 import { Toaster } from "sonner";
 import { ReactNode } from "react";
 import AuthProvider from "components/layout/AuthProvider";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+import indoFormat from "dayjs/locale/id";
+import dayjs from "dayjs";
 
 const queryClient = new QueryClient();
+dayjs.locale(indoFormat);
+dayjs.extend(localizedFormat);
 api.init(process.env.NEXT_PUBLIC_BASE_API as string);
 
 export default function App({ Component, pageProps }: AppLayoutProps) {

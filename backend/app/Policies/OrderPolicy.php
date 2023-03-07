@@ -101,4 +101,9 @@ class OrderPolicy
     {
         //
     }
+
+    public function viewDestinationUsers(User $user)
+    {
+        return $user->can('orders:*');
+    }
 }

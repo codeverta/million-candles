@@ -51,7 +51,12 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
     ->relationships(function ($relations) {
         $relations->hasOne('documents')->readOnly();
     });
-    $server->resource('orders', OrderController::class);
+    $server->resource('orders', OrderController::class)
+    ->relationships(function ($relations)
+    {
+        $relations->hasOne('destination-users')->readOnly();
+        $relations->hasOne('origin-users')->readOnly();
+    });
     $server->resource('order-details', JsonApiController::class);
     $server->resource('carts', JsonApiController::class);
     $server->resource('documents', '\\' . DocumentController::class)->actions('-actions', function ($actions) {

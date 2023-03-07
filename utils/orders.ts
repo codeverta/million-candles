@@ -4,6 +4,8 @@ export function getOrderStatus(order: any): any {
   const isShipping = order.attributes.is_shipping;
   const isShipped = order.attributes.is_shipped;
 
+  console.log({ order });
+
   if (isShipping) {
     return {
       text: "Dalam Pengiriman",

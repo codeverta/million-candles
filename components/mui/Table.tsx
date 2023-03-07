@@ -275,7 +275,6 @@ export default function OrderTable() {
     queryFn: () => {
       return api.get("orders", { ...ordersParams });
     },
-    staleTime: 1000 * 60 * 10,
   });
 
   const handleRequestSort = (
