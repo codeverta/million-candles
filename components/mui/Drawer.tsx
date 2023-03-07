@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
@@ -14,6 +15,9 @@ import HomeIcon from "@mui/icons-material/Home";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ReceiptIcon from "@mui/icons-material/Receipt";
+import { useGetFetchQuery } from "utils/hooks";
+import { useRouter } from "next/router";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -69,10 +73,18 @@ const buyerList = [
 ];
 
 export default function AppDrawer(props: PropsI) {
+  const router = useRouter();
   const [state, setState] = React.useState({
     left: false,
   });
+  const [routeList, setRouteList] = React.useState(buyerList);
+  const getSelf: any = useGetFetchQuery(["self"]);
 
+  useEffect(() => {
+    setRouteList(
+      getSelf?.data.roles.includes("merchant") ? adminList : buyerList
+    );
+  }, [getSelf]);
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
     (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -93,13 +105,11 @@ export default function AppDrawer(props: PropsI) {
       role="presentation"
     >
       <List>
-        {["Produk", "Pengguna"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+        {routeList.map((route, index) => (
+          <ListItem key={route.to} disablePadding>
+            <ListItemButton onClick={() => router.push(route.to)}>
+              <ListItemIcon>{route.icon}</ListItemIcon>
+              <ListItemText primary={route.label} />
             </ListItemButton>
           </ListItem>
         ))}
