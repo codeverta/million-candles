@@ -1,4 +1,11 @@
-import { Button, Table, TableBody, TableCell, TableRow } from "@mui/material";
+import {
+  Button,
+  Chip,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import AdminLayout from "components/layout/AdminLayout";
 import LoadingBackdrop from "components/mui/LoadingBackdrop";
@@ -8,6 +15,7 @@ import api from "utils/api";
 import dayjs from "dayjs";
 import { getRelationship, getRelationships, toCurrency } from "utils";
 import { toast } from "sonner";
+import { getOrderStatus } from "utils/orders";
 
 function OrderDetail() {
   const router = useRouter();
@@ -57,11 +65,55 @@ function OrderDetail() {
       });
   };
 
+  const handleVerifyOrder = () => {
+    api
+      .patch(`orders/${router.query.id}`, {
+        data: {
+          id: router.query.id,
+          type: "orders",
+          attributes: {
+            is_validate_seller: true,
+          },
+        },
+      })
+      .then(() => {
+        getOrder.refetch();
+        toast.success("Penjualan Berhasil Terverifikasi");
+      })
+      .catch((e) => {
+        toast.error(JSON.stringify(e));
+      });
+  };
+
+  const handleCompleteOrder = () => {
+    api
+      .patch(`orders/${router.query.id}`, {
+        data: {
+          id: router.query.id,
+          type: "orders",
+          attributes: {
+            is_received: true,
+            is_shipped: true,
+          },
+        },
+      })
+      .then(() => {
+        getOrder.refetch();
+        toast.success("Berhasil Menyelesaikan Penjualan");
+      })
+      .catch((e) => {
+        toast.error(JSON.stringify(e));
+      });
+  };
+
   if (ordersGate) {
     return <LoadingBackdrop />;
   }
 
   const is_shipping = orders.data.attributes.is_shipping;
+  const is_received = orders.data.attributes.is_received;
+  const is_validate_seller = orders.data.attributes.is_validate_seller;
+  const is_validate_buyer = orders.data.attributes.is_validate_buyer;
 
   return (
     <div>
@@ -87,6 +139,15 @@ function OrderDetail() {
                   "destination-users",
                   "users"
                 ).attributes.email}
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Status Penjualan</TableCell>
+            <TableCell>
+              <Chip
+                label={getOrderStatus(orders.data).text}
+                color={getOrderStatus(orders.data).color}
+              />
             </TableCell>
           </TableRow>
           <TableRow>
@@ -123,15 +184,43 @@ function OrderDetail() {
           </TableRow>
         </TableBody>
       </Table>
-      <Button
-        onClick={!is_shipping ? handleSendOrder : undefined}
-        variant="contained"
-        size="large"
-        disabled={is_shipping}
-        className={`w-full ${!is_shipping ? "bg-blue-500" : "bg-blue-900"}`}
-      >
-        {!is_shipping ? "Kirim" : "Terkirim"}
-      </Button>
+
+      {is_validate_buyer && !is_validate_seller && (
+        <Button
+          onClick={!is_shipping ? handleVerifyOrder : undefined}
+          variant="contained"
+          size="large"
+          disabled={is_shipping}
+          className={`w-full ${!is_shipping ? "bg-blue-500" : "bg-blue-900"}`}
+        >
+          Verifikasi Penjualan
+        </Button>
+      )}
+
+      {is_validate_seller && (
+        <Button
+          onClick={!is_shipping ? handleSendOrder : undefined}
+          variant="contained"
+          size="large"
+          disabled={is_shipping}
+          className={`w-full ${!is_shipping ? "bg-blue-500" : "bg-blue-900"}`}
+        >
+          {!is_shipping ? "Kirim" : "Terkirim"}
+        </Button>
+      )}
+
+      {is_shipping && (
+        <Button
+          onClick={handleCompleteOrder}
+          variant="contained"
+          color="success"
+          size="large"
+          disabled={is_received}
+          className={`w-full bg-yellow-500 my-1 hover:bg-yellow-600`}
+        >
+          Selesaikan Penjualan
+        </Button>
+      )}
     </div>
   );
 }

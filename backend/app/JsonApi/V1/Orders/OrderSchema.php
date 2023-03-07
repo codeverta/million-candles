@@ -52,6 +52,7 @@ class OrderSchema extends Schema
             Boolean::make('is_validate_seller'),
             Boolean::make('is_shipping'),
             Boolean::make('is_shipped'),
+            Boolean::make('is_received'),
             HasMany::make('order-details'),
             BelongsTo::make('origin-users', 'originUser')->type('users'),
             BelongsTo::make('destination-users', 'destinationUser')->type('users'),

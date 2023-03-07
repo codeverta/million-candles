@@ -3,13 +3,12 @@ export function getOrderStatus(order: any): any {
   const isValidateSeller = order.attributes.is_validate_seller;
   const isShipping = order.attributes.is_shipping;
   const isShipped = order.attributes.is_shipped;
+  const isReceived = order.attributes.is_received;
 
-  console.log({ order });
-
-  if (isShipping) {
+  if (isReceived) {
     return {
-      text: "Dalam Pengiriman",
-      color: "info",
+      text: "Selesai",
+      color: "success",
     };
   }
 
@@ -17,6 +16,13 @@ export function getOrderStatus(order: any): any {
     return {
       text: "Sampai Tujuan",
       color: "success",
+    };
+  }
+
+  if (isShipping) {
+    return {
+      text: "Dalam Pengiriman",
+      color: "info",
     };
   }
 
