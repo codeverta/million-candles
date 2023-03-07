@@ -195,14 +195,18 @@ function Cart() {
     <>
       {carts.data.length > 0 ? (
         <>
-          <Typography
-            sx={{ flex: "1 1 100%" }}
-            variant="h6"
-            id="tableTitle"
-            component="div"
-          >
-            Penjualan
-          </Typography>
+          <List>
+            <ListItem>
+              <Typography
+                sx={{ flex: "1 1 100%" }}
+                variant="h6"
+                id="tableTitle"
+                component="div"
+              >
+                Penjualan
+              </Typography>
+            </ListItem>
+          </List>
           {carts.data.map((cart: any, index: number) => {
             const product = getRelationship(carts, cart, "products");
             const documents = getRelationships(carts, product, "documents");
@@ -236,7 +240,7 @@ function Cart() {
                     }
                     secondary={
                       <>
-                        <ButtonGroup component={"span"}>
+                        <ButtonGroup className="mr-4" component={"span"}>
                           <Button
                             onClick={() =>
                               handleCounter({ type: "decrement", index, cart })
@@ -260,25 +264,29 @@ function Cart() {
               </List>
             );
           })}
-          <div className="w-full flex items-center justify-between">
-            <Typography
-              sx={{ flex: "1 1 100%" }}
-              variant="h6"
-              id="tableTitle"
-              component="div"
-            >
-              Total {toCurrency(state.total)}
-            </Typography>
-            <Button
-              onClick={handleCreateOrder}
-              startIcon={<ShoppingBasketIcon />}
-              className="bg-blue-500"
-              size="large"
-              variant="contained"
-            >
-              Beli
-            </Button>
-          </div>
+          <List>
+            <ListItem>
+              <div className="w-full flex items-center justify-between">
+                <Typography
+                  sx={{ flex: "1 1 100%" }}
+                  variant="subtitle1"
+                  id="tableTitle"
+                  component="div"
+                >
+                  Total {toCurrency(state.total)}
+                </Typography>
+                <Button
+                  onClick={handleCreateOrder}
+                  startIcon={<ShoppingBasketIcon />}
+                  className="bg-blue-500 w-full"
+                  size="large"
+                  variant="contained"
+                >
+                  Beli
+                </Button>
+              </div>
+            </ListItem>
+          </List>
         </>
       ) : (
         <EmptyCart />

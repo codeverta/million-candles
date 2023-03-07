@@ -169,15 +169,15 @@ export default function ProductDialog(props: PropsI) {
             </TableBody>
           </Table>
         </article>
-        <List className="fixed px-4 bg-white border-2 flex w-screen justify-center bottom-0">
-          <Button size="medium" variant="outlined" className="mr-4">
+        <List className="fixed px-4 bg-white border-2 flex-col sm:flex-row flex w-screen justify-center bottom-0">
+          <Button size="medium" variant="outlined" className="w-full m-1">
             Beli Langsung
           </Button>
           <Button
             onClick={handleCreateCart}
             size="medium"
             variant="contained"
-            className="bg-blue-500"
+            className="bg-blue-500 w-full m-1"
             color="primary"
           >
             <AddIcon /> Keranjang

@@ -116,7 +116,7 @@ function OrderDetail() {
   const is_validate_buyer = orders.data.attributes.is_validate_buyer;
 
   return (
-    <div>
+    <div className="pb-20">
       <Table>
         <TableBody>
           <TableRow>
