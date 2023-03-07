@@ -17,7 +17,10 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import { useGetFetchQuery } from "utils/hooks";
+import GroupIcon from "@mui/icons-material/Group";
+import InventoryIcon from "@mui/icons-material/Inventory";
 import { useRouter } from "next/router";
+import CategoryIcon from "@mui/icons-material/Category";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -31,6 +34,16 @@ const adminList = [
     to: "/admin",
     icon: <HomeIcon />,
     label: "Penjualan",
+  },
+  {
+    to: "/admin/products",
+    icon: <InventoryIcon />,
+    label: "Produk",
+  },
+  {
+    to: "/admin/users",
+    icon: <GroupIcon />,
+    label: "Pengguna",
   },
   {
     to: "/admin/notifications",

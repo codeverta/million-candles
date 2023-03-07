@@ -12,6 +12,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useRouter } from "next/router";
 import { Avatar, Chip } from "@mui/material";
 import { useGetFetchQuery } from "utils/hooks";
+import LockIcon from "@mui/icons-material/Lock";
+import PasswordIcon from "@mui/icons-material/Password";
 
 function stringToColor(string: string) {
   let hash = 0;
@@ -70,7 +72,14 @@ export default function ProfileSection() {
                 </h1>
               </div>
               <div className="justify-stretch capitalize mt-6 flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
-                <Chip color="primary" label={getSelf.data.roles[0]} />
+                {/* <Chip color="primary" label={getSelf.data.roles[0]} /> */}
+                <button
+                  type="button"
+                  className="inline-flex items-center justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                >
+                  <PasswordIcon className="w-4" />
+                  Edit Password
+                </button>
               </div>
             </div>
           </div>
