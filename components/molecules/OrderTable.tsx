@@ -27,6 +27,7 @@ import { Backdrop, Chip } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { getOrderStatus } from "utils/orders";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 interface Data {
   calories: number;
@@ -327,6 +328,25 @@ export default function OrderTable() {
     );
   }
 
+  if (query.data.data.data.length == 0) {
+    return (
+      <>
+        <div className="h-10"></div>
+        <img
+          className="max-w-xs m-auto"
+          alt="Data tidak ditemukan"
+          src="/assets/404-computer.svg"
+        />
+        <h1 className="mb-4 text-2xl text-center tracking-tight font-semibold text-primary-600 dark:text-primary-500">
+          Data Tidak Ditemukan
+        </h1>
+        <p className="max-w-sm m-auto text-center mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
+          Maaf kami tidak bisa mendapatkan data yang anda cari, kemungkinan data
+          masih kosong.{" "}
+        </p>
+      </>
+    );
+  }
   return (
     <div>
       <Box sx={{ width: "100%" }}>
@@ -347,11 +367,6 @@ export default function OrderTable() {
                 rowCount={query.data.data.data.length}
               />
               <TableBody>
-                {query.data.data.data.length == 0 && (
-                  <TableRow>
-                    <TableCell colSpan={3}>Data Tidak Ditemukan</TableCell>
-                  </TableRow>
-                )}
                 {query.data.data.data.map((row: any, index: number) => {
                   const isItemSelected = isSelected(row.attributes.code);
                   const labelId = `{row.id}`;

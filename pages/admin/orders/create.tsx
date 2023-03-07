@@ -209,9 +209,8 @@ function CreateOrder() {
     };
 
     createOrder.mutate(payload, {
-      onSuccess: (res) => {
+      onSuccess: async (res) => {
         toast.success("Order berhasil dibuat");
-        router.push("/admin");
         // todo bikin post ke order details
         const batchCreateOrderDetails = state.selectedProducts.map(
           (product: any) => {
@@ -243,7 +242,8 @@ function CreateOrder() {
           }
         );
 
-        Promise.all(batchCreateOrderDetails);
+        await Promise.all(batchCreateOrderDetails);
+        router.push("/admin");
       },
       onError: () => {
         toast.error("Terjadi error pada sistem");

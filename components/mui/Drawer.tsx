@@ -10,6 +10,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import HomeIcon from "@mui/icons-material/Home";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -17,6 +21,52 @@ interface PropsI {
   handleDrawer: any;
   open: boolean;
 }
+
+const adminList = [
+  {
+    to: "/admin",
+    icon: <HomeIcon />,
+    label: "Penjualan",
+  },
+  {
+    to: "/admin/notifications",
+    icon: <NotificationsIcon />,
+    label: "Notifikasi",
+  },
+  {
+    to: "/admin/orders",
+    icon: <ShoppingCartIcon />,
+    label: "Pembelian",
+  },
+  {
+    to: "/admin/profile",
+    icon: <AccountCircleIcon />,
+    label: "Profile",
+  },
+];
+
+const buyerList = [
+  {
+    to: "/store",
+    icon: <HomeIcon />,
+    label: "Home",
+  },
+  {
+    to: "/store/orders",
+    icon: <ReceiptIcon />,
+    label: "Transaksi",
+  },
+  {
+    to: "/store/cart",
+    icon: <ShoppingCartIcon />,
+    label: "Keranjang",
+  },
+  {
+    to: "/store/profile",
+    icon: <AccountCircleIcon />,
+    label: "Profile",
+  },
+];
 
 export default function AppDrawer(props: PropsI) {
   const [state, setState] = React.useState({
@@ -43,7 +93,7 @@ export default function AppDrawer(props: PropsI) {
       role="presentation"
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {["Produk", "Pengguna"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -55,18 +105,6 @@ export default function AppDrawer(props: PropsI) {
         ))}
       </List>
       <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
     </Box>
   );
 

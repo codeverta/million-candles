@@ -7,6 +7,7 @@ import React, { useMemo } from "react";
 import api from "utils/api";
 import dayjs from "dayjs";
 import { getRelationship, getRelationships, toCurrency } from "utils";
+import { toast } from "sonner";
 
 function OrderDetail() {
   const router = useRouter();
@@ -36,16 +37,38 @@ function OrderDetail() {
     [getOrder]
   );
 
+  const handleSendOrder = () => {
+    api
+      .patch(`orders/${router.query.id}`, {
+        data: {
+          id: router.query.id,
+          type: "orders",
+          attributes: {
+            is_shipping: true,
+          },
+        },
+      })
+      .then(() => {
+        getOrder.refetch();
+        toast.success("Penjualan Berhasil dikirim");
+      })
+      .catch((e) => {
+        toast.error(JSON.stringify(e));
+      });
+  };
+
   if (ordersGate) {
     return <LoadingBackdrop />;
   }
+
+  const is_shipping = orders.data.attributes.is_shipping;
 
   return (
     <div>
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell>NO INVOICE</TableCell>
+            <TableCell>No. Invoice</TableCell>
             <TableCell>{orders.data.attributes.code}</TableCell>
           </TableRow>
           <TableRow>
@@ -100,8 +123,14 @@ function OrderDetail() {
           </TableRow>
         </TableBody>
       </Table>
-      <Button variant="contained" size="large" className="w-full bg-blue-500">
-        Kirim
+      <Button
+        onClick={!is_shipping ? handleSendOrder : undefined}
+        variant="contained"
+        size="large"
+        disabled={is_shipping}
+        className={`w-full ${!is_shipping ? "bg-blue-500" : "bg-blue-900"}`}
+      >
+        {!is_shipping ? "Kirim" : "Terkirim"}
       </Button>
     </div>
   );
