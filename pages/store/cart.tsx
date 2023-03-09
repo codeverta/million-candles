@@ -20,6 +20,7 @@ import { toCurrency } from "utils";
 import { useGetFetchQuery } from "utils/hooks";
 import { toast } from "sonner";
 import { useRouter } from "next/router";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const cartsParam = {
   include: "products.documents",
@@ -191,6 +192,16 @@ function Cart() {
     });
   };
 
+  const handleDeleteCart = async (cart: any) => {
+    try {
+      await api.delete(`carts/${cart.id}`);
+      getCarts.refetch();
+      toast.success("Produk Berhasil Dihapus dari Keranjang");
+    } catch (error) {
+      toast.error(JSON.stringify(error));
+    }
+  };
+
   return (
     <>
       {carts.data.length > 0 ? (
@@ -214,12 +225,9 @@ function Cart() {
             return (
               <List key={cart.id}>
                 <ListItem disablePadding>
-                  <Checkbox
-                    color="primary"
-                    inputProps={{
-                      "aria-labelledby": product.attributes.name,
-                    }}
-                  />
+                  <IconButton onClick={() => handleDeleteCart(cart)}>
+                    <DeleteIcon className="hover:text-red-600" />
+                  </IconButton>
                   <ListItemText
                     className="justify-between text-xs flex items-center"
                     primary={

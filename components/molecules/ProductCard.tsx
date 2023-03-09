@@ -10,12 +10,16 @@ import ShareIcon from "@mui/icons-material/Share";
 import { Rating } from "@mui/material";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import ProductDialog from "components/molecules/ProductDialog";
-import { toCurrency } from "utils";
+import { getRelationships, toCurrency } from "utils";
+import { useGetFetchQuery } from "utils/hooks";
+import LoadingBackdrop from "components/mui/LoadingBackdrop";
 
 export default function ProductCard(props: any) {
+  const getProducts: any = useGetFetchQuery(["products"]);
   const [state, setState] = React.useState({
     rating: [],
   });
+  const root = React.useMemo(() => getProducts?.data, [getProducts]);
   const [open, setOpen] = React.useState({
     dialog: false,
   });
@@ -24,6 +28,11 @@ export default function ProductCard(props: any) {
     setOpen({ ...open, dialog: !open.dialog });
   };
 
+  if (!getProducts.data) {
+    return <LoadingBackdrop />;
+  }
+
+  const documents = getRelationships(root, props.product, "documents");
   return (
     <>
       {open.dialog && (
@@ -36,8 +45,14 @@ export default function ProductCard(props: any) {
       <Card onClick={handleDialog} sx={{ maxWidth: 200 }}>
         <CardMedia
           component="img"
-          height="194"
-          image="/static/images/cards/paella.jpg"
+          classes={{
+            img: "!object-fit !h-[154px]",
+          }}
+          image={
+            documents.length > 0
+              ? `${process.env.NEXT_PUBLIC_BASE}/storage/${documents[0].attributes.filename}`
+              : "/blah.png"
+          }
           onError={(e: any) => (e.target.src = "/assets/image-1@2x.jpg")}
         />
         <CardContent
