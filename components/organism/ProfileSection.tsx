@@ -95,34 +95,9 @@ export default function ProfileSection() {
       </div>
 
       <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
-        <nav aria-label="main mailbox folders">
-          <List>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <InboxIcon />
-                </ListItemIcon>
-                <ListItemText primary="Inbox" />
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <DraftsIcon />
-                </ListItemIcon>
-                <ListItemText primary="Drafts" />
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </nav>
         <Divider />
         <nav aria-label="secondary mailbox folders">
           <List>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemText primary="Trash" />
-              </ListItemButton>
-            </ListItem>
             <ListItem onClick={handleLogout} disablePadding>
               <ListItemButton component="button">
                 <ListItemIcon>

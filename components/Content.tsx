@@ -2,7 +2,7 @@ import { Modal, Rating } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import api from "utils/api";
-import { getRelationships } from "utils";
+import { getRelationships, toCurrency } from "utils";
 
 const productParams = {
   "page[size]": 6,
@@ -40,7 +40,7 @@ export default function Content() {
           onClose={handleModal}
           aria-labelledby="parent-modal-title"
           aria-describedby="parent-modal-description"
-          className="grid h-screen place-items-center"
+          className="grid h-screen w-3/5 m-auto place-items-center"
         >
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             {/* <!-- Modal header --> */}
@@ -157,7 +157,7 @@ export default function Content() {
                       />
                       <div className="flex items-center justify-between">
                         <span className="text-3xl font-bold text-gray-900 dark:text-white">
-                          Rp {product.attributes.price}
+                          {toCurrency(product.attributes.price)}
                         </span>
                         <a
                           href="#"

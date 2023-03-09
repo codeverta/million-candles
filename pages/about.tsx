@@ -17,10 +17,12 @@ Jika Anda ingin menambah suasana romantis di rumah Anda atau mencari hadiah yang
 
 function About() {
   return (
-    <article
-      className="mx-auto my-32 prose prose-xl"
-      dangerouslySetInnerHTML={{ __html: text }}
-    ></article>
+    <div className="w-screen bg-gray-900 text-gray-600 dark:text-white">
+      <article
+        className="  prose-headings:text-white prose-p:text-gray-400 py-32 prose prose-xl m-auto"
+        dangerouslySetInnerHTML={{ __html: text }}
+      ></article>
+    </div>
   );
 }
 
