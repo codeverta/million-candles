@@ -20,6 +20,7 @@ import { toCurrency } from "utils";
 import { useGetFetchQuery } from "utils/hooks";
 import { toast } from "sonner";
 import { useRouter } from "next/router";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const cartsParam = {
   include: "products.documents",
@@ -191,18 +192,32 @@ function Cart() {
     });
   };
 
+  const handleDeleteCart = async (cart: any) => {
+    try {
+      await api.delete(`carts/${cart.id}`);
+      getCarts.refetch();
+      toast.success("Produk Berhasil Dihapus dari Keranjang");
+    } catch (error) {
+      toast.error(JSON.stringify(error));
+    }
+  };
+
   return (
     <>
       {carts.data.length > 0 ? (
         <>
-          <Typography
-            sx={{ flex: "1 1 100%" }}
-            variant="h6"
-            id="tableTitle"
-            component="div"
-          >
-            Penjualan
-          </Typography>
+          <List>
+            <ListItem>
+              <Typography
+                sx={{ flex: "1 1 100%" }}
+                variant="h6"
+                id="tableTitle"
+                component="div"
+              >
+                Penjualan
+              </Typography>
+            </ListItem>
+          </List>
           {carts.data.map((cart: any, index: number) => {
             const product = getRelationship(carts, cart, "products");
             const documents = getRelationships(carts, product, "documents");
@@ -210,12 +225,9 @@ function Cart() {
             return (
               <List key={cart.id}>
                 <ListItem disablePadding>
-                  <Checkbox
-                    color="primary"
-                    inputProps={{
-                      "aria-labelledby": product.attributes.name,
-                    }}
-                  />
+                  <IconButton onClick={() => handleDeleteCart(cart)}>
+                    <DeleteIcon className="hover:text-red-600" />
+                  </IconButton>
                   <ListItemText
                     className="justify-between text-xs flex items-center"
                     primary={
@@ -236,7 +248,7 @@ function Cart() {
                     }
                     secondary={
                       <>
-                        <ButtonGroup component={"span"}>
+                        <ButtonGroup className="mr-4" component={"span"}>
                           <Button
                             onClick={() =>
                               handleCounter({ type: "decrement", index, cart })
@@ -260,25 +272,29 @@ function Cart() {
               </List>
             );
           })}
-          <div className="w-full flex items-center justify-between">
-            <Typography
-              sx={{ flex: "1 1 100%" }}
-              variant="h6"
-              id="tableTitle"
-              component="div"
-            >
-              Total {toCurrency(state.total)}
-            </Typography>
-            <Button
-              onClick={handleCreateOrder}
-              startIcon={<ShoppingBasketIcon />}
-              className="bg-blue-500"
-              size="large"
-              variant="contained"
-            >
-              Beli
-            </Button>
-          </div>
+          <List>
+            <ListItem>
+              <div className="w-full flex items-center justify-between">
+                <Typography
+                  sx={{ flex: "1 1 100%" }}
+                  variant="subtitle1"
+                  id="tableTitle"
+                  component="div"
+                >
+                  Total {toCurrency(state.total)}
+                </Typography>
+                <Button
+                  onClick={handleCreateOrder}
+                  startIcon={<ShoppingBasketIcon />}
+                  className="bg-blue-500 w-full"
+                  size="large"
+                  variant="contained"
+                >
+                  Beli
+                </Button>
+              </div>
+            </ListItem>
+          </List>
         </>
       ) : (
         <EmptyCart />

@@ -16,6 +16,8 @@ import { getRelationships } from "utils";
 import { useGetFetchQuery } from "utils/hooks";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useMutation } from "@tanstack/react-query";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 import api from "utils/api";
 import {
   BottomNavigation,
@@ -25,6 +27,7 @@ import {
   TableBody,
   TableCell,
   TableRow,
+  Checkbox,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
@@ -87,6 +90,7 @@ export default function ProductDialog(props: PropsI) {
     await createCart.mutate(payload);
     toast.success("Produk Berhasil Ditambahkan ke Keranjang");
   };
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   return (
     <div>
@@ -140,7 +144,13 @@ export default function ProductDialog(props: PropsI) {
             <TableBody>
               <TableRow>
                 <TableCell>Nama</TableCell>
-                <TableCell>{props.product.attributes.name}</TableCell>
+                <TableCell>
+                  {props.product.attributes.name}{" "}
+                  <Checkbox
+                    icon={<BookmarkBorderIcon />}
+                    checkedIcon={<BookmarkIcon />}
+                  />
+                </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Harga</TableCell>
@@ -169,15 +179,15 @@ export default function ProductDialog(props: PropsI) {
             </TableBody>
           </Table>
         </article>
-        <List className="fixed px-4 bg-white border-2 flex w-screen justify-center bottom-0">
-          <Button size="medium" variant="outlined" className="mr-4">
+        <List className="fixed px-4 bg-white border-2 flex-col sm:flex-row flex w-screen justify-center bottom-0">
+          <Button size="medium" variant="outlined" className="w-full m-1">
             Beli Langsung
           </Button>
           <Button
             onClick={handleCreateCart}
             size="medium"
             variant="contained"
-            className="bg-blue-500"
+            className="bg-blue-500 w-full m-1"
             color="primary"
           >
             <AddIcon /> Keranjang

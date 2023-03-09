@@ -36,6 +36,7 @@ class OrderRequest extends ResourceRequest
             'is_shipped' => ['boolean'],
             'is_validate_buyer' => ['boolean'],
             'is_validate_seller' => ['boolean'],
+            'is_received' => ['boolean'],
         ];
     }
 

@@ -28,6 +28,7 @@ class OrderResource extends JsonApiResource
             'is_validate_buyer' => (bool) $this->is_validate_buyer,
             'is_shipping' => (bool) $this->is_shipping,
             'is_shipped' => (bool) $this->is_shipped,
+            'is_received' => (bool) $this->is_received,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
         ];

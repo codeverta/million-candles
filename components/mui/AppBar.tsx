@@ -13,6 +13,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import MuiMenu from "./MuiMenu";
+import { useRouter } from "next/router";
 
 export const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -23,7 +24,7 @@ export const Search = styled("div")(({ theme }) => ({
   },
   marginLeft: 0,
   width: "100%",
-  [theme.breakpoints.up("sm")]: {
+  [theme.breakpoints.up("md")]: {
     marginLeft: theme.spacing(1),
     width: "auto",
   },
@@ -61,6 +62,7 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function ButtonAppBar() {
+  const router = useRouter();
   const [state, setState] = useState({
     anchorEl: null,
   });
@@ -85,22 +87,23 @@ export default function ButtonAppBar() {
       <AppDrawer open={open.drawer} handleDrawer={handleDrawer} />
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-              onClick={handleDrawer}
-            >
-              <MenuIcon />
-            </IconButton>
+          <Toolbar className="flex justify-between">
+            {router.pathname.includes("admin") && (
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+                onClick={handleDrawer}
+              >
+                <MenuIcon />
+              </IconButton>
+            )}
             <Typography
-              className="hidden md:block"
+              className="hidden lg:block"
               variant="h6"
               component="div"
-              sx={{ flexGrow: 1 }}
             >
               Million Candles
             </Typography>
@@ -109,15 +112,12 @@ export default function ButtonAppBar() {
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
-                classes={{
-                  input: "!shadow-none !focus:outline-0 !ring-0",
-                }}
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
               />
             </Search>
 
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <Box sx={{ display: "flex" }}>
               <IconButton
                 size="large"
                 aria-label="show more"

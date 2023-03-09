@@ -201,8 +201,10 @@ function OrderDetail() {
                 "products"
               );
               return (
-                <TableRow key={orderDetail.id}>
-                  <TableCell>{products.attributes.name}</TableCell>
+                <TableRow className="bg-gray-50" key={orderDetail.id}>
+                  <TableCell>
+                    <p className="pl-4">- {products.attributes.name}</p>
+                  </TableCell>
                   <TableCell>
                     {toCurrency(orderDetail.attributes.price)} x{" "}
                     {orderDetail.attributes.qty}
@@ -242,9 +244,11 @@ function OrderDetail() {
                             control={<Radio size="small" />}
                             label={type.label}
                             disabled={
-                              !!state.payment_type &&
+                              (!!state.payment_type &&
+                                getOrder.data.data.data.attributes
+                                  .is_validate_buyer) ||
                               getOrder.data.data.data.attributes
-                                .is_validate_buyer
+                                .is_validate_seller
                             }
                           />
                         );

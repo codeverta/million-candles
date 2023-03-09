@@ -14,7 +14,7 @@ import LoadingBackdrop from "components/mui/LoadingBackdrop";
 import ProductCard from "components/molecules/ProductCard";
 
 const productCategoriesParam = {
-  "page[size]": 4,
+  "page[size]": 9,
 };
 
 const productsParam = {
@@ -51,6 +51,7 @@ function Home() {
     <div className="py-4">
       <Swiper
         slidesPerView="auto"
+        className="!px-2"
         pagination={{
           clickable: true,
         }}
@@ -65,8 +66,8 @@ function Home() {
           </SwiperSlide>
         ))}
       </Swiper>
-      <article className="p-4">
-        <h1 className="text-3xl font-bold text-gray-900">Rekomendasi Produk</h1>
+      <article className="p-3">
+        <Typography variant="h6">Rekomendasi Produk</Typography>
         <Swiper
           slidesPerView="auto"
           className="my-4"
@@ -86,8 +87,8 @@ function Home() {
           })}
         </Swiper>
       </article>
-      <article className="p-4">
-        <h1 className="text-3xl font-bold text-gray-900">Produk Terlaris</h1>
+      <article className="p-3">
+        <Typography variant="h6">Produk Terlaris</Typography>
         <Swiper
           slidesPerView="auto"
           className="my-4"
