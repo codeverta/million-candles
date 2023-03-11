@@ -5,12 +5,13 @@ import {
   TableBody,
   TableCell,
   TableRow,
+  TextField,
 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import AdminLayout from "components/layout/AdminLayout";
 import LoadingBackdrop from "components/mui/LoadingBackdrop";
 import { useRouter } from "next/router";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import api from "utils/api";
 import dayjs from "dayjs";
 import { getRelationship, getRelationships, toCurrency } from "utils";
@@ -19,6 +20,9 @@ import { getOrderStatus } from "utils/orders";
 
 function OrderDetail() {
   const router = useRouter();
+  const [state, setState] = useState({
+    airwaybill: "",
+  });
   const getOrder = useQuery({
     queryKey: ["order"],
     queryFn: () => {
@@ -56,6 +60,7 @@ function OrderDetail() {
           type: "orders",
           attributes: {
             is_shipping: true,
+            airwaybill: state.airwaybill,
           },
         },
       })
@@ -119,7 +124,7 @@ function OrderDetail() {
   const is_validate_buyer = orders.data.attributes.is_validate_buyer;
 
   return (
-    <div className="pb-20">
+    <div>
       <Table>
         <TableBody>
           <TableRow>
@@ -185,6 +190,19 @@ function OrderDetail() {
               {toCurrency(getOrder.data.data.data.attributes.price_amount)}
             </TableCell>
           </TableRow>
+          <TableRow>
+            <TableCell colSpan={2}>
+              <TextField
+                className="w-full"
+                onChange={(e: any) =>
+                  setState({ ...state, airwaybill: e.target.value })
+                }
+                disabled={!!getOrder.data.data.data.attributes.airwaybill}
+                value={orders.data.attributes.airwaybill}
+                label="No Resi"
+              />
+            </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
 
@@ -205,7 +223,7 @@ function OrderDetail() {
           onClick={!is_shipping ? handleSendOrder : undefined}
           variant="contained"
           size="large"
-          disabled={is_shipping}
+          disabled={is_shipping || !!!state.airwaybill}
           className={`w-full ${!is_shipping ? "bg-blue-500" : "bg-blue-900"}`}
         >
           {!is_shipping ? "Kirim" : "Terkirim"}

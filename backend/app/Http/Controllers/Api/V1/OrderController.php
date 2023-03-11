@@ -39,7 +39,11 @@ class OrderController extends Controller
 
     public function creating(OrderRequest $request, OrderQuery $query): void
     {
-        
+        $user = Auth::user();
+        Order::creating(function (Order $order) use ($user)
+        {
+            $order->order_type =  $user->getRoleNames()->first() == "merchant" ? "sell" : "buy";
+        });
     }
 
     public function updating(Order $order, OrderRequest $request, OrderQuery $query): void

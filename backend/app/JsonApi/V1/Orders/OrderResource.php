@@ -18,6 +18,7 @@ class OrderResource extends JsonApiResource
     {
         return [
             'code' => $this->code,
+            'order_type' => $this->order_type,
             'snap_token' => $this->snap_token,
             'airwaybill' => $this->airwaybill,
             'payments_type' => $this->

@@ -24,7 +24,7 @@ class Order extends Model
             // dd($order);
         });
         static::created(function (Order $order) {
-            $order->code = "INV-" . Str::random(4) . $order->id;
+            $order->code = "INV" . Str::upper(Str::random(6)) . $order->id;
             $order->save();
         });
         static::updating(function(Order $order)

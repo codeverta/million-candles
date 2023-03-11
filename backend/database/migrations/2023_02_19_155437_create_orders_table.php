@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('code')->nullable();
+            $table->enum("order_type", ["buy", "sell"]);
             $table->string('airwaybill')->nullable();
             $table->string('snap_token')->nullable();
             $table->string('buyer_name')->nullable();
