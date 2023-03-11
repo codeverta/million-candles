@@ -26,6 +26,9 @@ function OrderDetail() {
         include: "order-details.products,destination-users",
       });
     },
+    onError: (err: any) => {
+      return err;
+    },
     refetchOnWindowFocus: false,
   });
   const ordersGate = getOrder.isLoading || getOrder.isError;

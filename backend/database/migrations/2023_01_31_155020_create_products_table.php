@@ -17,10 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('name', 255);
             $table->text('description');
-            $table->float('price');
-            $table->integer('stock');
+            $table->float('price')->default(0);
+            $table->integer('stock')->default(0);
+            $table->integer('weight')->default(0);
             $table->foreignId('product_categories_id')->constrained();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

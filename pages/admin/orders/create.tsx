@@ -19,12 +19,6 @@ import {
 import StoreLayout from "components/layout/StoreLayout";
 import React, { useMemo, useState } from "react";
 import SearchInput from "components/mui/SearchInput";
-import {
-  Search,
-  SearchIconWrapper,
-  StyledInputBase,
-} from "components/mui/AppBar";
-import SearchIcon from "@mui/icons-material/Search";
 import { toCurrency } from "utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import api from "utils/api";
@@ -37,6 +31,11 @@ import { useRouter } from "next/router";
 
 const productParams = {
   "fields[products]": "name,price",
+  "page[size]": 5,
+};
+
+const userParams = {
+  "page[size]": 5,
 };
 
 const paymentsType = [
@@ -84,7 +83,7 @@ function CreateOrder() {
   const getUsers = useQuery({
     queryKey: ["users"],
     queryFn: () => {
-      return api.get("users");
+      return api.get("users", userParams);
     },
   });
   const productsGate = getProducts.isLoading || getProducts.isError;
@@ -179,7 +178,6 @@ function CreateOrder() {
   };
 
   const handleSubmit = () => {
-    console.log();
     const payload = {
       data: {
         type: "orders",
@@ -246,9 +244,19 @@ function CreateOrder() {
         router.push("/admin");
       },
       onError: () => {
-        toast.error("Terjadi error pada sistem");
+        toast.error("Terjadi error pada sistem, silakan hubungi pemilik toko");
       },
     });
+  };
+
+  const isSubmitAllowed = (): boolean => {
+    const hasProduct = state.selectedProducts.length > 0;
+    const hasBuyer = state.buyerName || state.destinationUser.value;
+    const hasPayment = state.paymentType;
+    if (hasBuyer && hasProduct && hasPayment) {
+      return true;
+    }
+    return false;
   };
 
   if (productsGate) {
@@ -293,6 +301,7 @@ function CreateOrder() {
                   id="outlined-basic"
                   label="Nama Pembeli"
                   variant="outlined"
+                  required
                 />
               </TableCell>
             </TableRow>
@@ -306,6 +315,7 @@ function CreateOrder() {
                   root: "w-full",
                 }}
                 label="Cari Produk"
+                required
               />
             </TableCell>
           </TableRow>
@@ -381,7 +391,7 @@ function CreateOrder() {
       </Table>
       <Button
         onClick={handleSubmit}
-        disabled={!state.selectedProducts.length}
+        disabled={!isSubmitAllowed()}
         className="bg-blue-500 w-full mb-20"
         variant="contained"
       >

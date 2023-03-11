@@ -16,13 +16,12 @@ import { getOrderStatus } from "utils/orders";
 import { useRouter } from "next/router";
 import EnhancedTableToolbar from "components/mui/EnhancedTableToolbar";
 import EnhancedTableHead from "components/mui/EnhancedTableHead";
+import { getRelationship } from "utils";
 
 interface Data {
-  calories: number;
-  carbs: number;
-  fat: number;
-  name: string;
-  protein: number;
+  "no-resi": string;
+  code: string;
+  destination: string;
 }
 
 type Order = "asc" | "desc";
@@ -36,11 +35,17 @@ interface HeadCell {
 
 const headCells: HeadCell[] = [
   {
-    id: "name",
+    id: "no-resi",
     numeric: false,
     disablePadding: true,
-    label: "No Resi",
+    label: "No Inv",
   },
+  // {
+  //   id: "destination",
+  //   numeric: false,
+  //   disablePadding: true,
+  //   label: "Pembeli",
+  // },
   {
     id: "status",
     numeric: true,
@@ -51,12 +56,13 @@ const headCells: HeadCell[] = [
 
 const ordersParams = {
   "page[size]": 15,
+  include: "destination-users",
 };
 
 export default function OrderTable() {
   const router = useRouter();
   const [order, setOrder] = React.useState<Order>("asc");
-  const [orderBy, setOrderBy] = React.useState<keyof Data>("calories");
+  const [orderBy, setOrderBy] = React.useState<any>("calories");
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -159,7 +165,6 @@ export default function OrderTable() {
           <EnhancedTableToolbar numSelected={selected.length} />
           <TableContainer>
             <Table
-              className=""
               aria-labelledby="tableTitle"
               size={dense ? "small" : "medium"}
             >
@@ -210,6 +215,15 @@ export default function OrderTable() {
                       >
                         {row.attributes.code}
                       </TableCell>
+                      {/* <TableCell
+                        component="th"
+                        id={labelId}
+                        scope="row"
+                        padding="none"
+                        className="whitespace-nowrap"
+                      >
+                        {row.attributes.buyer_name ? row.attributes.buyer_name : getRelationship(query.data.data, row, 'destination-users', 'users').attributes.email}
+                      </TableCell> */}
                       <TableCell align="right">
                         <Chip
                           label={getOrderStatus(row).text}
