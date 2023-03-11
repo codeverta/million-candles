@@ -6,13 +6,15 @@ import {
   Checkbox,
   Box,
 } from "@mui/material";
+import { TableCellClasses } from "@mui/material";
 import { visuallyHidden } from "@mui/utils";
 
-interface HeadCell {
+export interface HeadCell {
   disablePadding: boolean;
   id: string;
   label: string;
   numeric: boolean;
+  classes?: Partial<TableCellClasses>;
 }
 
 interface EnhancedTableProps {
@@ -49,6 +51,7 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
             align={headCell.numeric ? "right" : "left"}
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
+            classes={headCell.classes ? headCell.classes : undefined}
           >
             <TableSortLabel
               active={orderBy === headCell.id}

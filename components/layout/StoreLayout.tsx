@@ -11,7 +11,7 @@ function StoreLayout({
   withoutHeader?: boolean;
 }) {
   return (
-    <main className="max-w-lg m-auto">
+    <main className="max-w-lg m-auto pb-16">
       {!withoutHeader && <ButtonAppBar />}
       {children}
       <BottomNav />

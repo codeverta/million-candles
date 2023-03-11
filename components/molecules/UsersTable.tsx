@@ -8,68 +8,70 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import api from "utils/api";
-import { Backdrop } from "@mui/material";
+import { Backdrop, Chip } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
+import { getOrderStatus } from "utils/orders";
 import { useRouter } from "next/router";
 import EnhancedTableToolbar from "components/mui/EnhancedTableToolbar";
 import EnhancedTableHead from "components/mui/EnhancedTableHead";
-import { HeadCell } from "components/mui/EnhancedTableHead";
-import { toCurrency } from "utils";
+
+interface Data {
+  calories: number;
+  carbs: number;
+  fat: number;
+  name: string;
+  protein: number;
+}
 
 type Order = "asc" | "desc";
+
+interface HeadCell {
+  disablePadding: boolean;
+  id: keyof Data | "status";
+  label: string;
+  numeric: boolean;
+}
 
 const headCells: HeadCell[] = [
   {
     id: "name",
     numeric: false,
     disablePadding: true,
-    label: "Nama Produk",
-    classes: {
-      root: "w-auto truncate",
-    },
+    label: "No Resi",
   },
   {
-    id: "harga",
+    id: "status",
     numeric: true,
     disablePadding: false,
-    label: "Harga",
-    classes: {
-      root: "pr-0 text-right",
-    },
+    label: "Status",
   },
 ];
 
-const productsParams = {
-  "page[size]": 10,
-  "page[number]": 1,
-  include: "product-categories",
+const ordersParams = {
+  "page[size]": 15,
 };
 
-export default function ProductsTable() {
+export default function OrderTable() {
   const router = useRouter();
-  const [query, setQuery] = React.useState({
-    products: productsParams,
-  });
   const [order, setOrder] = React.useState<Order>("asc");
-  const [orderBy, setOrderBy] = React.useState<any>("calories");
+  const [orderBy, setOrderBy] = React.useState<keyof Data>("calories");
   const [selected, setSelected] = React.useState<readonly string[]>([]);
-  const getProducts = useQuery({
-    queryKey: [
-      "products",
-      query.products["page[number]"],
-      query.products["page[size]"],
-    ],
+  const [page, setPage] = React.useState(0);
+  const [dense, setDense] = React.useState(false);
+  const [rowsPerPage, setRowsPerPage] = React.useState(15);
+  const queryClient = useQueryClient();
+  const query = useQuery({
+    queryKey: ["orders"],
     queryFn: () => {
-      return api.get("products", query.products);
+      return api.get("orders", { ...ordersParams });
     },
-    keepPreviousData: true,
   });
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
-    property: any
+    property: keyof Data
   ) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -83,20 +85,16 @@ export default function ProductsTable() {
     setSelected([]);
   };
 
-  const handleClick = (event: React.MouseEvent<unknown>, id: string) => {
-    const selectedIndex = selected.indexOf(id);
+  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
+    const selectedIndex = selected.indexOf(name);
     let newSelected: readonly string[] = [];
 
-    // kalo row blm di select, select
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-      // kalo yg diselect item pertama
+      newSelected = newSelected.concat(selected, name);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
-      // kalo yg diselect item terakhir
     } else if (selectedIndex === selected.length - 1) {
       newSelected = newSelected.concat(selected.slice(0, -1));
-      // kalo yg diselect item diantara item pertama & terakhir
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
@@ -107,37 +105,24 @@ export default function ProductsTable() {
     setSelected(newSelected);
   };
 
-  const handleClickEdit = () => {
-    router.push(`products/${selected[0]}`);
-  };
-
   const handleChangePage = (event: unknown, newPage: number) => {
-    console.log({ newPage });
-    setQuery({
-      ...query,
-      products: { ...query.products, "page[number]": newPage + 1 },
-    });
+    setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setQuery({
-      ...query,
-      products: {
-        ...query.products,
-        "page[size]": parseInt(event.target.value),
-      },
-    });
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
   };
 
   const handleRowClick = ({ order }: any) => {
-    router.push(`/admin/products/${order.id}`);
+    router.push(`/admin/orders/${order.id}`);
   };
 
-  const isSelected = (id: string) => selected.indexOf(id) !== -1;
+  const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
-  if (getProducts.isError || getProducts.isLoading) {
+  if (query.isError || query.isLoading) {
     return (
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -148,7 +133,7 @@ export default function ProductsTable() {
     );
   }
 
-  if (getProducts.data.data.data.length == 0) {
+  if (query.data.data.data.length == 0) {
     return (
       <>
         <div className="h-10"></div>
@@ -171,24 +156,25 @@ export default function ProductsTable() {
     <div>
       <Box sx={{ width: "100%" }}>
         <Paper sx={{ width: "100%", mb: 2 }}>
-          <EnhancedTableToolbar
-            handleClickEdit={handleClickEdit}
-            numSelected={selected.length}
-          />
+          <EnhancedTableToolbar numSelected={selected.length} />
           <TableContainer>
-            <Table className="" aria-labelledby="tableTitle">
+            <Table
+              className=""
+              aria-labelledby="tableTitle"
+              size={dense ? "small" : "medium"}
+            >
               <EnhancedTableHead
                 numSelected={selected.length}
                 order={order}
-                orderBy={"name"}
+                orderBy={orderBy}
                 onSelectAllClick={handleSelectAllClick}
                 onRequestSort={handleRequestSort}
-                rowCount={getProducts.data.data.data.length}
+                rowCount={query.data.data.data.length}
                 headCells={headCells}
               />
               <TableBody>
-                {getProducts.data.data.data.map((row: any, index: number) => {
-                  const isItemSelected = isSelected(row.id);
+                {query.data.data.data.map((row: any, index: number) => {
+                  const isItemSelected = isSelected(row.attributes.code);
                   const labelId = `{row.id}`;
 
                   return (
@@ -205,34 +191,30 @@ export default function ProductsTable() {
                         padding="checkbox"
                         onClick={(event) => {
                           event.stopPropagation();
-                          handleClick(event, row.id);
+                          handleClick(event, row.attributes.code);
                         }}
                       >
                         <Checkbox
-                          checked={isItemSelected}
                           color="primary"
+                          checked={isItemSelected}
                           inputProps={{
                             "aria-labelledby": labelId,
                           }}
                         />
-                      </TableCell>
-                      <TableCell className="px-0">
-                        {row.attributes.name}
                       </TableCell>
                       <TableCell
                         component="th"
                         id={labelId}
                         scope="row"
                         padding="none"
-                        className="text-right"
                       >
-                        {toCurrency(row.attributes.price)}
+                        {row.attributes.code}
                       </TableCell>
                       <TableCell align="right">
-                        {/* <Chip
+                        <Chip
                           label={getOrderStatus(row).text}
                           color={getOrderStatus(row).color}
-                        /> */}
+                        />
                       </TableCell>
                     </TableRow>
                   );
@@ -241,11 +223,11 @@ export default function ProductsTable() {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[10, 15, 25]}
+            rowsPerPageOptions={[5, 15, 25]}
             component="div"
-            count={getProducts.data.data.meta.page.total ?? -1}
-            rowsPerPage={query.products["page[size]"]}
-            page={getProducts.data.data.meta.page.currentPage - 1}
+            count={query.data.data.meta.page.total ?? -1}
+            rowsPerPage={rowsPerPage}
+            page={query.data.data.meta.page.currentPage - 1}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
           />

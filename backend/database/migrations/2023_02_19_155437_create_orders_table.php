@@ -33,6 +33,7 @@ return new class extends Migration
             $table->foreign('origin_user_id')->references('id')->on('users');
             $table->foreign('destination_user_id')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

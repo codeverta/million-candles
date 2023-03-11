@@ -35,7 +35,8 @@ class ProductResource extends JsonApiResource
     public function relationships($request): iterable
     {
         return [
-            $this->relation('documents')
+            $this->relation('documents'),
+            $this->relation('product-categories'),
         ];
     }
 
