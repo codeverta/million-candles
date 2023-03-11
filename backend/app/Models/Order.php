@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Str;
 
 class Order extends Model
 {
@@ -23,7 +24,7 @@ class Order extends Model
             // dd($order);
         });
         static::created(function (Order $order) {
-            $order->code = "INV-" . $order->id;
+            $order->code = "INV-" . Str::random(4) . $order->id;
             $order->save();
         });
         static::updating(function(Order $order)
