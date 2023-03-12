@@ -14,10 +14,13 @@ use LaravelJsonApi\Eloquent\Fields\Str;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Schema;
+use LaravelJsonApi\Eloquent\Fields\SoftDelete;
+
 
 class UserSchema extends Schema
 {
 
+    use SoftDelete;
     /**
      * The model the schema corresponds to.
      *
