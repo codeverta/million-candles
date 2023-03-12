@@ -23,6 +23,7 @@ class ProductResource extends JsonApiResource
             'stock' => $this->stock,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
+            'deletedAt' => $this->deleted_at,
         ];
     }
 
