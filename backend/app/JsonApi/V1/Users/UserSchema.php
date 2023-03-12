@@ -5,6 +5,7 @@ namespace App\JsonApi\V1\Users;
 use App\JsonApi\Filters\UserFilter;
 use App\Models\User;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
+use LaravelJsonApi\Eloquent\Fields\Boolean;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
 use LaravelJsonApi\Eloquent\Fields\Relations\HasMany;
@@ -34,6 +35,7 @@ class UserSchema extends Schema
         return [
             ID::make(),
             Str::make('email'),
+            Boolean::make('is_active'),
             HasMany::make('orders'),
             MorphTo::make('documents'),
             DateTime::make('createdAt')->sortable()->readOnly(),

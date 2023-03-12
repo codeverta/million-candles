@@ -20,7 +20,7 @@ export interface HeadCell {
 interface EnhancedTableProps {
   numSelected: number;
   onRequestSort: (event: React.MouseEvent<unknown>, property: any) => void;
-  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSelectAllClick: (event: React.ChangeEvent<any>) => void;
   order: any;
   orderBy: string;
   rowCount: number;
@@ -34,12 +34,11 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        <TableCell padding="checkbox" onClick={onSelectAllClick}>
           <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
             inputProps={{
               "aria-label": "select all desserts",
             }}

@@ -1,13 +1,9 @@
 import AdminLayout from "components/layout/AdminLayout";
-import UserTable from "components/molecules/UserTable";
+import UsersTable from "components/molecules/UsersTable";
 import React from "react";
 
 function Users() {
-  return (
-    <div>
-      <UserTable />
-    </div>
-  );
+  return <UsersTable />;
 }
 
 Users.getLayout = function getLayout(page: React.ReactNode) {

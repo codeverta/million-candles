@@ -24,4 +24,9 @@ class UserPolicy
         // todo ganti ini
         return true || $user->can('users:*');
     }
+
+    public function update(User $user)
+    {
+        return true;
+    }
 }

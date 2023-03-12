@@ -8,70 +8,69 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { isError, useQuery } from "@tanstack/react-query";
 import api from "utils/api";
-import { Backdrop, Chip } from "@mui/material";
+import { Backdrop, Switch } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
-import { getOrderStatus } from "utils/orders";
 import { useRouter } from "next/router";
 import EnhancedTableToolbar from "components/mui/EnhancedTableToolbar";
 import EnhancedTableHead from "components/mui/EnhancedTableHead";
-
-interface Data {
-  calories: number;
-  carbs: number;
-  fat: number;
-  name: string;
-  protein: number;
-}
+import { HeadCell } from "components/mui/EnhancedTableHead";
+import { toCurrency } from "utils";
+import EmptyData from "./EmptyData";
+import AlertDialog from "./AlertDialog";
+import DangerousIcon from "@mui/icons-material/Dangerous";
+import dayjs from "dayjs";
 
 type Order = "asc" | "desc";
 
-interface HeadCell {
-  disablePadding: boolean;
-  id: keyof Data | "status";
-  label: string;
-  numeric: boolean;
-}
-
 const headCells: HeadCell[] = [
   {
-    id: "name",
+    id: "email",
     numeric: false,
     disablePadding: true,
-    label: "No Resi",
-  },
-  {
-    id: "status",
-    numeric: true,
-    disablePadding: false,
-    label: "Status",
+    label: "Email",
+    classes: {
+      root: "w-auto truncate",
+    },
   },
 ];
 
-const ordersParams = {
-  "page[size]": 15,
+const userParams = {
+  "page[size]": 10,
+  "page[number]": 1,
 };
 
-export default function OrderTable() {
+export default function UsersTable() {
   const router = useRouter();
+  const [query, setQuery] = React.useState({
+    users: userParams,
+  });
+  const [state, setState] = React.useState({
+    isAlertOpen: false,
+  });
   const [order, setOrder] = React.useState<Order>("asc");
-  const [orderBy, setOrderBy] = React.useState<keyof Data>("calories");
+  const [orderBy, setOrderBy] = React.useState<any>("calories");
   const [selected, setSelected] = React.useState<readonly string[]>([]);
-  const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(15);
-  const queryClient = useQueryClient();
-  const query = useQuery({
-    queryKey: ["orders"],
+  const [listActive, setListActive] = React.useState<string[]>([]);
+  const getUsers = useQuery({
+    queryKey: ["users", query.users["page[number]"], query.users["page[size]"]],
     queryFn: () => {
-      return api.get("orders", { ...ordersParams });
+      return api.get("users", query.users);
     },
+    onSuccess: (res) => {
+      setListActive(
+        res.data.data
+          .filter((it: any) => it.attributes.is_active)
+          .map((it: any) => it.id)
+      );
+    },
+    keepPreviousData: true,
   });
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
-    property: keyof Data
+    property: any
   ) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -79,22 +78,32 @@ export default function OrderTable() {
   };
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
+    if (getUsers.isLoading || getUsers.isError) {
       return;
     }
-    setSelected([]);
+    if (selected.length == getUsers.data.data.data.length) {
+      setSelected([]);
+    } else if (selected.length > 0) {
+      setSelected(getUsers.data.data.data.map((it: any) => it.id));
+    } else {
+      setSelected(getUsers.data.data.data.map((it: any) => it.id));
+    }
   };
 
-  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (event: React.MouseEvent<unknown>, id: string) => {
+    const selectedIndex = selected.indexOf(id);
     let newSelected: readonly string[] = [];
 
+    // kalo row blm di select, select
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, id);
+      // kalo yg diselect item pertama
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
+      // kalo yg diselect item terakhir
     } else if (selectedIndex === selected.length - 1) {
       newSelected = newSelected.concat(selected.slice(0, -1));
+      // kalo yg diselect item diantara item pertama & terakhir
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
@@ -105,24 +114,74 @@ export default function OrderTable() {
     setSelected(newSelected);
   };
 
+  const handleEdit = () => {
+    router.push(`users/${selected[0]}`);
+  };
+
+  const handleAlertAction = async ({
+    action,
+  }: {
+    action: "agree" | "cancel";
+  }) => {
+    if (action == "agree") {
+      const batchDelete = selected.map((it: string) => {
+        const payload = {
+          data: {
+            type: "users",
+            id: it,
+            attributes: {
+              deletedAt: dayjs().toISOString(),
+            },
+          },
+        };
+        return api.patch(`users/${it}`, payload);
+      });
+      await Promise.all(batchDelete);
+      getUsers.refetch();
+      setSelected([]);
+    }
+    setState({ ...state, isAlertOpen: false });
+  };
+
+  const handleDeleteDialog = () => {
+    setState({ ...state, isAlertOpen: !state.isAlertOpen });
+  };
+
   const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
+    setQuery({
+      ...query,
+      users: { ...query.users, "page[number]": newPage + 1 },
+    });
   };
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+    setQuery({
+      ...query,
+      users: {
+        ...query.users,
+        "page[size]": parseInt(event.target.value),
+      },
+    });
   };
 
   const handleRowClick = ({ order }: any) => {
-    router.push(`/admin/orders/${order.id}`);
+    router.push(`/admin/users/${order.id}`);
   };
 
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
+  const isSelected = (id: string) => selected.indexOf(id) !== -1;
+  const isUserActive = (id: string) => listActive.includes(id);
 
-  if (query.isError || query.isLoading) {
+  const handleSwitch = (user: any) => {
+    if (!listActive.includes(user.id)) {
+      setListActive([...listActive, user.id]);
+    } else {
+      setListActive(listActive.filter((it) => it !== user.id));
+    }
+  };
+
+  if (getUsers.isError || getUsers.isLoading) {
     return (
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -133,50 +192,47 @@ export default function OrderTable() {
     );
   }
 
-  if (query.data.data.data.length == 0) {
-    return (
-      <>
-        <div className="h-10"></div>
-        <img
-          className="max-w-xs m-auto"
-          alt="Data tidak ditemukan"
-          src="/assets/404-computer.svg"
-        />
-        <h1 className="mb-4 text-2xl text-center tracking-tight font-semibold text-primary-600 dark:text-primary-500">
-          Data Tidak Ditemukan
-        </h1>
-        <p className="max-w-sm m-auto text-center mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
-          Maaf kami tidak bisa mendapatkan data yang anda cari, kemungkinan data
-          masih kosong.{" "}
-        </p>
-      </>
-    );
+  if (getUsers.data.data.data.length == 0) {
+    return <EmptyData />;
   }
   return (
     <div>
+      <AlertDialog
+        title={
+          <span className="flex items-center gap-2">
+            <DangerousIcon color="warning" />
+            Peringatan
+          </span>
+        }
+        open={state.isAlertOpen}
+        handleClose={handleDeleteDialog}
+        handleAction={handleAlertAction}
+      >
+        <span>User yang telah dihapus tidak dapat dikembalikan</span>
+      </AlertDialog>
       <Box sx={{ width: "100%" }}>
         <Paper sx={{ width: "100%", mb: 2 }}>
-          <EnhancedTableToolbar numSelected={selected.length} />
+          <EnhancedTableToolbar
+            handleEdit={handleEdit}
+            handleDelete={handleDeleteDialog}
+            numSelected={selected.length}
+          />
           <TableContainer>
-            <Table
-              className=""
-              aria-labelledby="tableTitle"
-              size={dense ? "small" : "medium"}
-            >
+            <Table className="" aria-labelledby="tableTitle">
               <EnhancedTableHead
                 numSelected={selected.length}
                 order={order}
-                orderBy={orderBy}
+                orderBy={"name"}
                 onSelectAllClick={handleSelectAllClick}
                 onRequestSort={handleRequestSort}
-                rowCount={query.data.data.data.length}
+                rowCount={getUsers.data.data.data.length}
                 headCells={headCells}
               />
               <TableBody>
-                {query.data.data.data.map((row: any, index: number) => {
-                  const isItemSelected = isSelected(row.attributes.code);
+                {getUsers.data.data.data.map((row: any, index: number) => {
+                  const isItemSelected = isSelected(row.id);
                   const labelId = `{row.id}`;
-
+                  const isActive = isUserActive(row.id);
                   return (
                     <TableRow
                       hover
@@ -191,30 +247,25 @@ export default function OrderTable() {
                         padding="checkbox"
                         onClick={(event) => {
                           event.stopPropagation();
-                          handleClick(event, row.attributes.code);
+                          handleClick(event, row.id);
                         }}
                       >
                         <Checkbox
-                          color="primary"
                           checked={isItemSelected}
+                          color="primary"
                           inputProps={{
                             "aria-labelledby": labelId,
                           }}
                         />
                       </TableCell>
+                      <TableCell>{row.attributes.email}</TableCell>
                       <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleSwitch(row);
+                        }}
                       >
-                        {row.attributes.code}
-                      </TableCell>
-                      <TableCell align="right">
-                        <Chip
-                          label={getOrderStatus(row).text}
-                          color={getOrderStatus(row).color}
-                        />
+                        <Switch checked={isActive} />
                       </TableCell>
                     </TableRow>
                   );
@@ -223,11 +274,11 @@ export default function OrderTable() {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[5, 15, 25]}
+            rowsPerPageOptions={[10, 15, 25]}
             component="div"
-            count={query.data.data.meta.page.total ?? -1}
-            rowsPerPage={rowsPerPage}
-            page={query.data.data.meta.page.currentPage - 1}
+            count={getUsers.data.data.meta.page.total ?? -1}
+            rowsPerPage={query.users["page[size]"]}
+            page={getUsers.data.data.meta.page.currentPage - 1}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
