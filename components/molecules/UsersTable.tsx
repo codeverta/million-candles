@@ -8,7 +8,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
-import { isError, useQuery } from "@tanstack/react-query";
+import { isError, useMutation, useQuery } from "@tanstack/react-query";
 import api from "utils/api";
 import { Backdrop, Switch } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -66,6 +66,13 @@ export default function UsersTable() {
       );
     },
     keepPreviousData: true,
+    refetchOnWindowFocus: false,
+  });
+  const updateUsers = useMutation({
+    mutationKey: ["users", "update"],
+    mutationFn: (payload: any) => {
+      return api.patch(`users/${payload.data.id}`, payload);
+    },
   });
 
   const handleRequestSort = (
@@ -173,7 +180,17 @@ export default function UsersTable() {
   const isSelected = (id: string) => selected.indexOf(id) !== -1;
   const isUserActive = (id: string) => listActive.includes(id);
 
-  const handleSwitch = (user: any) => {
+  const handleSwitch = async (user: any) => {
+    const payload = {
+      data: {
+        type: "users",
+        id: user.id,
+        attributes: {
+          is_active: !user.attributes.is_active,
+        },
+      },
+    };
+    await updateUsers.mutate(payload);
     if (!listActive.includes(user.id)) {
       setListActive([...listActive, user.id]);
     } else {

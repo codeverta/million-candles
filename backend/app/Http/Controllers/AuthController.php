@@ -42,8 +42,6 @@ class AuthController extends Controller
         }
 
         $user = User::where('email', $request->input('data.attributes.email'))->first();
-        // dd($user->getRoleNames());
-        // dd($user);
 
         if (!$user || !Hash::check($request->input('data.attributes.password'), $user->password)) {
             throw JsonApiException::error([

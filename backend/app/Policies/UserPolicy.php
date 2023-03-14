@@ -29,4 +29,9 @@ class UserPolicy
     {
         return true;
     }
+
+    public function create(User $user)
+    {
+        return $user->can('users:create') || $user->can('users:*');
+    }
 }

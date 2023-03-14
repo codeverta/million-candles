@@ -23,6 +23,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     },
     onSuccess: (res) => {},
     enabled: !publicRoutes.includes(router.pathname),
+    refetchOnWindowFocus: false,
   });
 
   if (

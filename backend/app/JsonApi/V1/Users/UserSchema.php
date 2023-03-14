@@ -14,13 +14,14 @@ use LaravelJsonApi\Eloquent\Fields\Str;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Schema;
+use LaravelJsonApi\Eloquent\SoftDeletes;
 use LaravelJsonApi\Eloquent\Fields\SoftDelete;
 
 
 class UserSchema extends Schema
 {
 
-    use SoftDelete;
+    use SoftDeletes;
     /**
      * The model the schema corresponds to.
      *
@@ -38,11 +39,15 @@ class UserSchema extends Schema
         return [
             ID::make(),
             Str::make('email'),
+            Str::make('name'),
+            Str::make('password')->hidden(),
+            Str::make('password_confirmation')->hidden(),
             Boolean::make('is_active'),
             HasMany::make('orders'),
             MorphTo::make('documents'),
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
+            SoftDelete::make('deletedAt'),
         ];
     }
 
