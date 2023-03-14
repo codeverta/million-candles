@@ -24,4 +24,14 @@ class UserPolicy
         // todo ganti ini
         return true || $user->can('users:*');
     }
+
+    public function update(User $user)
+    {
+        return true;
+    }
+
+    public function create(User $user)
+    {
+        return $user->can('users:create') || $user->can('users:*');
+    }
 }

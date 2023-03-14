@@ -8,7 +8,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
-import { useQuery } from "@tanstack/react-query";
+import { isError, useQuery } from "@tanstack/react-query";
 import api from "utils/api";
 import { Backdrop } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -17,6 +17,10 @@ import EnhancedTableToolbar from "components/mui/EnhancedTableToolbar";
 import EnhancedTableHead from "components/mui/EnhancedTableHead";
 import { HeadCell } from "components/mui/EnhancedTableHead";
 import { toCurrency } from "utils";
+import EmptyData from "./EmptyData";
+import AlertDialog from "./AlertDialog";
+import DangerousIcon from "@mui/icons-material/Dangerous";
+import dayjs from "dayjs";
 
 type Order = "asc" | "desc";
 
@@ -52,6 +56,9 @@ export default function ProductsTable() {
   const [query, setQuery] = React.useState({
     products: productsParams,
   });
+  const [state, setState] = React.useState({
+    isAlertOpen: false,
+  });
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<any>("calories");
   const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -77,10 +84,16 @@ export default function ProductsTable() {
   };
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
+    if (getProducts.isLoading || getProducts.isError) {
       return;
     }
-    setSelected([]);
+    if (selected.length == getProducts.data.data.data.length) {
+      setSelected([]);
+    } else if (selected.length > 0) {
+      setSelected(getProducts.data.data.data.map((it: any) => it.id));
+    } else {
+      setSelected(getProducts.data.data.data.map((it: any) => it.id));
+    }
   };
 
   const handleClick = (event: React.MouseEvent<unknown>, id: string) => {
@@ -107,12 +120,40 @@ export default function ProductsTable() {
     setSelected(newSelected);
   };
 
-  const handleClickEdit = () => {
+  const handleEdit = () => {
     router.push(`products/${selected[0]}`);
   };
 
+  const handleAlertAction = async ({
+    action,
+  }: {
+    action: "agree" | "cancel";
+  }) => {
+    if (action == "agree") {
+      const batchDelete = selected.map((it: string) => {
+        const payload = {
+          data: {
+            type: "products",
+            id: it,
+            attributes: {
+              deletedAt: dayjs().toISOString(),
+            },
+          },
+        };
+        return api.patch(`products/${it}`, payload);
+      });
+      await Promise.all(batchDelete);
+      getProducts.refetch();
+      setSelected([]);
+    }
+    setState({ ...state, isAlertOpen: false });
+  };
+
+  const handleDeleteDialog = () => {
+    setState({ ...state, isAlertOpen: !state.isAlertOpen });
+  };
+
   const handleChangePage = (event: unknown, newPage: number) => {
-    console.log({ newPage });
     setQuery({
       ...query,
       products: { ...query.products, "page[number]": newPage + 1 },
@@ -149,30 +190,28 @@ export default function ProductsTable() {
   }
 
   if (getProducts.data.data.data.length == 0) {
-    return (
-      <>
-        <div className="h-10"></div>
-        <img
-          className="max-w-xs m-auto"
-          alt="Data tidak ditemukan"
-          src="/assets/404-computer.svg"
-        />
-        <h1 className="mb-4 text-2xl text-center tracking-tight font-semibold text-primary-600 dark:text-primary-500">
-          Data Tidak Ditemukan
-        </h1>
-        <p className="max-w-sm m-auto text-center mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
-          Maaf kami tidak bisa mendapatkan data yang anda cari, kemungkinan data
-          masih kosong.{" "}
-        </p>
-      </>
-    );
+    return <EmptyData />;
   }
   return (
     <div>
+      <AlertDialog
+        title={
+          <span className="flex items-center gap-2">
+            <DangerousIcon color="warning" />
+            Peringatan
+          </span>
+        }
+        open={state.isAlertOpen}
+        handleClose={handleDeleteDialog}
+        handleAction={handleAlertAction}
+      >
+        <span>Produk yang telah dihapus tidak dapat dikembalikan</span>
+      </AlertDialog>
       <Box sx={{ width: "100%" }}>
         <Paper sx={{ width: "100%", mb: 2 }}>
           <EnhancedTableToolbar
-            handleClickEdit={handleClickEdit}
+            handleEdit={handleEdit}
+            handleDelete={handleDeleteDialog}
             numSelected={selected.length}
           />
           <TableContainer>

@@ -139,7 +139,7 @@ export default function ProductDialog(props: PropsI) {
           </>
         ) : null}
 
-        <article className="mx-2 pb-16">
+        <article className="mx-2">
           <Table>
             <TableBody>
               <TableRow>

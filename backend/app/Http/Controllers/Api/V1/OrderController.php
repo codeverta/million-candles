@@ -39,13 +39,17 @@ class OrderController extends Controller
 
     public function creating(OrderRequest $request, OrderQuery $query): void
     {
-        
+        $user = Auth::user();
+        Order::creating(function (Order $order) use ($user)
+        {
+            $order->order_type =  $user->getRoleNames()->first() == "merchant" ? "sell" : "buy";
+        });
     }
 
     public function updating(Order $order, OrderRequest $request, OrderQuery $query): void
     {
         // do something only on updating...
-        if(isset($request->data['attributes']['is_validate_buyer'])) {
+        if(isset($request->data['attributes']['is_validate_buyer']) && $request->data['attributes']['payments_type'] == "midtrans") {
             // compute amount
             $user = Auth::user();
             $total_price = (int) $order->price_amount;

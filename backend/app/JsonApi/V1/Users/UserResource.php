@@ -19,9 +19,11 @@ class UserResource extends JsonApiResource
         $roles = $this->getRoleNames();
         return [
             'roles' => implode('', $roles->toArray()),
+            'is_active' => (bool) $this->is_active,
             'email' => $this->email,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
+            'deletedAt' => $this->deleted_at,
         ];
     }
 

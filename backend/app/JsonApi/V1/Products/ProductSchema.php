@@ -9,14 +9,16 @@ use LaravelJsonApi\Eloquent\Fields\ID;
 use LaravelJsonApi\Eloquent\Fields\Relations\BelongsTo;
 use LaravelJsonApi\Eloquent\Fields\Str;
 use LaravelJsonApi\Eloquent\Fields\Number;
-use LaravelJsonApi\Eloquent\Fields\Relations\MorphTo;
+use LaravelJsonApi\Eloquent\SoftDeletes;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
+use LaravelJsonApi\Eloquent\Fields\SoftDelete;
 use LaravelJsonApi\Eloquent\Schema;
 
 class ProductSchema extends Schema
 {
 
+    use SoftDeletes;
     /**
      * The model the schema corresponds to.
      *
@@ -40,6 +42,7 @@ class ProductSchema extends Schema
             BelongsTo::make('documents'),
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
+            SoftDelete::make('deletedAt'),
         ];
     }
 

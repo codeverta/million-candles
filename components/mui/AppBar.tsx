@@ -82,6 +82,14 @@ export default function ButtonAppBar() {
     }
   };
 
+  const handleChangeSearch = (
+    event: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const paths = ["products", "orders", "users"];
+    const curr = paths.find((it) => router.pathname.includes(it));
+    console.log({ curr });
+  };
+
   return (
     <>
       <AppDrawer open={open.drawer} handleDrawer={handleDrawer} />
@@ -112,6 +120,7 @@ export default function ButtonAppBar() {
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
+                onChange={handleChangeSearch}
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
               />

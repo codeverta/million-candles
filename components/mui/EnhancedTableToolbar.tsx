@@ -6,7 +6,8 @@ import { alpha } from "@mui/material/styles";
 
 interface EnhancedTableToolbarProps {
   numSelected: number;
-  handleClickEdit?: () => void;
+  handleEdit?: () => void;
+  handleDelete?: () => void;
 }
 
 export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
@@ -46,7 +47,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
         </Typography>
       )}
       {numSelected == 1 && (
-        <Tooltip title="Edit" onClick={props.handleClickEdit}>
+        <Tooltip title="Edit" onClick={props.handleEdit}>
           <IconButton>
             <EditIcon />
           </IconButton>
@@ -54,7 +55,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
       )}
       {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton>
+          <IconButton onClick={props.handleDelete}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>

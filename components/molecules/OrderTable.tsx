@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import EnhancedTableToolbar from "components/mui/EnhancedTableToolbar";
 import EnhancedTableHead from "components/mui/EnhancedTableHead";
 import { getRelationship } from "utils";
+import EmptyData from "./EmptyData";
 
 interface Data {
   "no-resi": string;
@@ -140,23 +141,7 @@ export default function OrderTable() {
   }
 
   if (query.data.data.data.length == 0) {
-    return (
-      <>
-        <div className="h-10"></div>
-        <img
-          className="max-w-xs m-auto"
-          alt="Data tidak ditemukan"
-          src="/assets/404-computer.svg"
-        />
-        <h1 className="mb-4 text-2xl text-center tracking-tight font-semibold text-primary-600 dark:text-primary-500">
-          Data Tidak Ditemukan
-        </h1>
-        <p className="max-w-sm m-auto text-center mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
-          Maaf kami tidak bisa mendapatkan data yang anda cari, kemungkinan data
-          masih kosong.{" "}
-        </p>
-      </>
-    );
+    return <EmptyData />;
   }
   return (
     <div>

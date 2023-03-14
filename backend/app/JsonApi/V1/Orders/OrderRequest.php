@@ -37,6 +37,7 @@ class OrderRequest extends ResourceRequest
             'is_validate_buyer' => ['boolean'],
             'is_validate_seller' => ['boolean'],
             'is_received' => ['boolean'],
+            'deletedAt' => ['nullable', JsonApiRule::dateTime()],
         ];
     }
 

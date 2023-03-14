@@ -115,11 +115,10 @@ export default function Content() {
           ) : (
             <>
               {query.data.data.data.map((product: any, index: number) => {
-                const documents = getRelationships(
-                  query.data.data,
-                  product,
-                  "documents"
-                );
+                const documents =
+                  product.relationships.documents.data.length > 0
+                    ? getRelationships(query.data.data, product, "documents")
+                    : [];
                 return (
                   <div
                     key={product.id}

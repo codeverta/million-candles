@@ -5,6 +5,7 @@ namespace App\JsonApi\V1\Users;
 use App\JsonApi\Filters\UserFilter;
 use App\Models\User;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
+use LaravelJsonApi\Eloquent\Fields\Boolean;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
 use LaravelJsonApi\Eloquent\Fields\Relations\HasMany;
@@ -13,10 +14,14 @@ use LaravelJsonApi\Eloquent\Fields\Str;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Schema;
+use LaravelJsonApi\Eloquent\SoftDeletes;
+use LaravelJsonApi\Eloquent\Fields\SoftDelete;
+
 
 class UserSchema extends Schema
 {
 
+    use SoftDeletes;
     /**
      * The model the schema corresponds to.
      *
@@ -34,10 +39,15 @@ class UserSchema extends Schema
         return [
             ID::make(),
             Str::make('email'),
+            Str::make('name'),
+            Str::make('password')->hidden(),
+            Str::make('password_confirmation')->hidden(),
+            Boolean::make('is_active'),
             HasMany::make('orders'),
             MorphTo::make('documents'),
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
+            SoftDelete::make('deletedAt'),
         ];
     }
 
