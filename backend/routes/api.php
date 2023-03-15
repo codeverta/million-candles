@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\V1\DocumentController;
+use App\Http\Controllers\Api\V1\NotificationController;
 use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\ProductController;
+use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use LaravelJsonApi\Laravel\Facades\JsonApiRoute;
@@ -28,6 +30,7 @@ Route::prefix('/v1')->group(function () {
     Route::post('/auth/forgot', [AuthController::class, 'forgot']);
     Route::post('/auth/reset', [AuthController::class, 'reset']);
     Route::get('/auth/self', [AuthController::class, 'me'])->middleware('auth:sanctum');
+    Route::get('/notifications', [NotificationController::class, 'index'])->middleware('auth:sanctum');
 });
 
 JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
@@ -47,7 +50,7 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
         $relations->hasMany('regencies')->readOnly();
     });
 
-    $server->resource('users', JsonApiController::class)
+    $server->resource('users', UserController::class)
     ->relationships(function ($relations) {
         $relations->hasOne('documents')->readOnly();
     });
