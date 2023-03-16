@@ -82,9 +82,7 @@ export default function ButtonAppBar() {
     }
   };
 
-  const handleChangeSearch = (
-    event: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChangeSearch = (event: any) => {
     const paths = ["products", "orders", "users"];
     const curr = paths.find((it) => router.pathname.includes(it));
     console.log({ curr });

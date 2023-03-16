@@ -57,7 +57,8 @@ class OrdersNotification extends Notification
     {
         return [
             'code' => $this->order->code,
-            'buyer' => $this->order->destinationUser()->first()->email ?? $this->order->buyer_name,
+            'destination_user' => $this->order->destinationUser()->first(),
+            'buyer_name' => $this->order->buyer_name,
         ];
     }
 }

@@ -26,6 +26,10 @@ export default function Header() {
       url: "/address",
     },
     {
+      label: "Blog",
+      url: "/posts",
+    },
+    {
       label: "Tentang",
       url: "/about",
     },
