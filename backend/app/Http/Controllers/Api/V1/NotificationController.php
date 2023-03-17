@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\JsonApi\V1\Users\UserRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions;
-use Spatie\Permission\Models\Role;
 
-class UserController extends Controller
+class NotificationController extends Controller
 {
 
     use Actions\FetchMany;
@@ -22,14 +22,8 @@ class UserController extends Controller
     use Actions\AttachRelationship;
     use Actions\DetachRelationship;
 
-    // public function creating(UserRequest $userRequest)
-    // {
-    //     dd(Role::sear()->pluck('name'));
-    // }
-
-    public function created(User $user)
+    public function index(Request $request)
     {
-        $user->assignRole('buyer');
-        $user->givePermissionTo(['orders:create', 'orders:update', 'orders:read', 'products:read']);
+        return Auth::user()->unreadNotifications;
     }
 }

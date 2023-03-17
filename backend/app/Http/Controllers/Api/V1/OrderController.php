@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Events\OrderCreated;
 use App\Http\Controllers\Controller;
 use App\JsonApi\V1\Orders\OrderQuery;
 use App\JsonApi\V1\Orders\OrderRequest;
@@ -44,6 +45,11 @@ class OrderController extends Controller
         {
             $order->order_type =  $user->getRoleNames()->first() == "merchant" ? "sell" : "buy";
         });
+    }
+
+    public function created(Order $order): void
+    {
+        OrderCreated::dispatch($order);
     }
 
     public function updating(Order $order, OrderRequest $request, OrderQuery $query): void

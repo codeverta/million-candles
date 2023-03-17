@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import api from "utils/api";
 import { useRouter } from "next/router";
 
-const publicRoutes = ["/", "/address", "/product", "/about"];
+const publicRoutes = ["/", "/address", "/product", "/about", "/posts"];
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -22,13 +22,13 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
       console.log({ err });
     },
     onSuccess: (res) => {},
-    enabled: !publicRoutes.includes(router.pathname),
+    enabled: !publicRoutes.find((it: string) => router.pathname.includes(it)),
     refetchOnWindowFocus: false,
   });
 
   if (
     (getSelf.isLoading || getSelf.isError) &&
-    !publicRoutes.includes(router.pathname)
+    !publicRoutes.find((it: string) => router.pathname.includes(it))
   ) {
     return (
       <Backdrop

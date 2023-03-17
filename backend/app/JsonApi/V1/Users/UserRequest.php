@@ -18,8 +18,8 @@ class UserRequest extends ResourceRequest
     public function rules(): array
     {
         return [
-            'name' => ['string', 'nullable'],
-            'email' => ['string', 'nullable', 'email'],
+            'name' => ['string', 'nullable', Rule::unique('users', 'name')],
+            'email' => ['string', 'nullable', 'email', Rule::unique('users', 'email')],
             'password' => ['string', 'confirmed', Password::min(8)],
             'is_active' => ['boolean', 'nullable'],
             'deletedAt' => ['nullable', JsonApiRule::dateTime()],
