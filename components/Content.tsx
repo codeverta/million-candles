@@ -110,7 +110,7 @@ export default function Content() {
           Produk Kami
         </h2>
         <article className="grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-4/5 m-auto py-10">
-          {query.isLoading || query.error ? (
+          {query.isLoading || query.isError ? (
             <div>Loading...</div>
           ) : (
             <>
