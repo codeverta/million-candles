@@ -6,13 +6,10 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import InboxIcon from "@mui/icons-material/Inbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useRouter } from "next/router";
 import { Avatar, Chip } from "@mui/material";
 import { useGetFetchQuery } from "utils/hooks";
-import LockIcon from "@mui/icons-material/Lock";
 import PasswordIcon from "@mui/icons-material/Password";
 
 function stringToColor(string: string) {
@@ -43,7 +40,9 @@ export default function ProfileSection() {
     router.push("/");
   };
 
-  console.log({ getSelf });
+  if (!getSelf) {
+    return <p>Error encountered</p>;
+  }
 
   return (
     <>
