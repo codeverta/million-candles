@@ -21,9 +21,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     onError: (err) => {
       console.log({ err });
     },
-    onSuccess: (res) => {},
     enabled: !publicRoutes.find((it: string) => router.pathname.includes(it)),
-    refetchOnWindowFocus: true,
   });
 
   console.log({ getSelf, router });
