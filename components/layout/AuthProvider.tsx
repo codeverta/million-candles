@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Backdrop, CircularProgress } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import api from "utils/api";
 import { useRouter } from "next/router";
 
-const publicRoutes = ["/", "/address", "/product", "/about", "/posts"];
+const privateRoutes = ["/admin", "/store"];
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const isEnabled = useMemo(() => {
+    return privateRoutes.find(
+      (route: string) => router.pathname.indexOf(route) === 0
+    );
+  }, [router]);
   const getSelf = useQuery({
     queryKey: ["self"],
     queryFn: () => {
@@ -18,18 +23,15 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
       }
       return api.get("auth/self");
     },
-    onError: (err) => {
+    onError: (err: any) => {
       console.log({ err });
     },
-    enabled: !publicRoutes.find((it: string) => router.pathname.includes(it)),
+    enabled: !!isEnabled,
   });
 
-  console.log({ getSelf, router });
+  console.log({ isEnabled, router }, isEnabled);
 
-  if (
-    (getSelf.isLoading || getSelf.isError) &&
-    !publicRoutes.find((it: string) => router.pathname.includes(it))
-  ) {
+  if ((getSelf.isLoading || getSelf.isError) && isEnabled) {
     return (
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
