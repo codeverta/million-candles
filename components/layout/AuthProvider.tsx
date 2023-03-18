@@ -26,7 +26,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     refetchOnWindowFocus: true,
   });
 
-  console.log({ getSelf });
+  console.log({ getSelf, router });
 
   if (
     (getSelf.isLoading || getSelf.isError) &&
