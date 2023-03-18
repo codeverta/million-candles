@@ -23,8 +23,10 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     },
     onSuccess: (res) => {},
     enabled: !publicRoutes.find((it: string) => router.pathname.includes(it)),
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: true,
   });
+
+  console.log({ getSelf, router });
 
   if (
     (getSelf.isLoading || getSelf.isError) &&
