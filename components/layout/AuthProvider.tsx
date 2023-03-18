@@ -18,6 +18,10 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
       }
       return api.get("auth/self");
     },
+    onError: (err) => {
+      console.log({ err });
+    },
+    enabled: !publicRoutes.find((it: string) => router.pathname.includes(it)),
   });
 
   console.log({ getSelf, router });
