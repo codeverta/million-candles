@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Password;
 use LaravelJsonApi\Core\Exceptions\JsonApiException;
 use LaravelJsonApi\Core\Responses\DataResponse;
 use LaravelJsonApi\Core\Responses\MetaResponse;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -46,7 +47,7 @@ class AuthController extends Controller
         if (!$user || !Hash::check($request->input('data.attributes.password'), $user->password)) {
             throw JsonApiException::error([
                 'status' => 400,
-                'detail' => 'The provided credentials are incorrect.',
+                'detail' => 'Email atau password salah.',
             ]);
         }
         return response()->json([
