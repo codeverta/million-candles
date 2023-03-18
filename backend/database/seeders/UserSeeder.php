@@ -50,13 +50,13 @@ class UserSeeder extends Seeder
         $merchant = User::factory()->create([
             'name' => 'Tanjiro',
             'email' => 'tanjiro@gmail.com',
-            'password' => Hash::make('tanjiro123')
+            'password' => 'tanjiro123'
         ]);
 
         $buyer = User::factory()->create([
             'name' => 'Zenitsu',
             'email' => 'zenitsu@gmail.com',
-            'password' => Hash::make('zenitsu123')
+            'password' => 'zenitsu123'
         ]);
 
         $merchant->assignRole($userMerchant);
