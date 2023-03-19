@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://souvenirlilin.com', 'http://localhost:3000'],
+    'allowed_origins' => ['https://souvenirlilin.com', 'http://localhost:3000', 'https://million-candles.vercel.app/'],
 
     'allowed_origins_patterns' => [],
 
