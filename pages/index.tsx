@@ -26,21 +26,21 @@ const posts = [
 
 const features = [
   {
-    name: "Push to deploy.",
+    name: "Kualitas Produk.",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
+      "Kami hanya menggunakan bahan-bahan berkualitas tinggi untuk membuat lilin hias kami, dan setiap produk kami diuji untuk memastikan keamanan dan ketahanannya. Kami juga memiliki tim seniman yang berbakat yang menghiasi setiap lilin dengan desain yang indah dan unik, membuatnya menjadi souvenir yang spesial.",
     icon: RoundaboutLeft,
   },
   {
-    name: "SSL certificates.",
+    name: "Ukuran dan warna.",
     description:
-      "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
+      "Lilin hias kami hadir dalam berbagai ukuran, mulai dari yang kecil dan portabel hingga yang besar dan indah. Kami juga memiliki berbagai warna yang berbeda, termasuk putih, biru, hijau, merah, dan banyak lagi, sehingga Anda dapat memilih yang sesuai dengan tema acara Anda.",
     icon: CloudDone,
   },
   {
-    name: "Database backups.",
+    name: "Aroma yang Menenangkan.",
     description:
-      "Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.",
+      "Lilin hias kami juga memberikan aroma yang menenangkan, membawa kedamaian dan ketenangan ke dalam ruangan. Kami menggunakan minyak wangi berkualitas tinggi untuk memberikan aroma yang tahan lama dan menyenangkan..",
     icon: CheckRounded,
   },
 ];
@@ -53,18 +53,21 @@ function Home() {
         <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
           <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-              We didn't reinvent the wheel
+              Buat Kenangan Indah dengan Lilin Kami
             </h2>
             <p className="mb-4">
-              We are strategists, designers and developers. Innovators and
-              problem solvers. Small enough to be simple and quick, but big
-              enough to deliver the scope you want at the pace you need. Small
-              enough to be simple and quick, but big enough to deliver the scope
-              you want at the pace you need.
+              Dengan Lilin Hias Souvenir kami, Anda dapat membawa pulang
+              kenangan indah dari acara atau perjalanan Anda. Setiap lilin kami
+              dibuat dengan bahan berkualitas tinggi dan dihiasi dengan indah
+              oleh para seniman kami. Lilin kami hadir dalam berbagai ukuran dan
+              warna yang berbeda, dan tahan lama untuk memberikan aroma yang
+              menenangkan selama berjam-jam.
             </p>
             <p>
-              We are strategists, designers and developers. Innovators and
-              problem solvers. Small enough to be simple and quick.
+              Kami menawarkan lilin hias yang indah untuk souvenir yang sempurna
+              untuk acara apa pun. Dari pernikahan hingga acara perusahaan atau
+              perjalanan, lilin hias souvenir kami adalah pilihan yang sempurna
+              untuk membuat kenangan yang tak terlupakan.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4 mt-8">
@@ -86,16 +89,11 @@ function Home() {
             <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
               <div className="lg:pr-8 lg:pt-4">
                 <div className="lg:max-w-lg">
-                  <h2 className="text-base font-semibold leading-7 text-indigo-600">
-                    Deploy faster
+                  <h2 className="mt-2 text-3xl font-bold tracking-tight dark:text-white text-gray-900 sm:text-4xl">
+                    Produk Kami
                   </h2>
-                  <p className="mt-2 text-3xl font-bold tracking-tight dark:text-white text-gray-900 sm:text-4xl">
-                    A better workflow
-                  </p>
                   <p className="mt-6 text-lg leading-8 dark:text-gray-400 text-gray-600">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Maiores impedit perferendis suscipit eaque, iste dolor
-                    cupiditate blanditiis ratione.
+                    Beberapa keunggulan produk lilin kami.
                   </p>
                   <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
                     {features.map((feature) => (
@@ -184,21 +182,22 @@ function Home() {
           </div>
         </div>
         {/* Testimonial */}
-        {/* <section className="relative isolate overflow-hidden  py-24 px-6 sm:py-32 lg:px-8">
+        <section className="relative isolate overflow-hidden  py-24 px-6 sm:py-32 lg:px-8">
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20" />
           <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg]  shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
           <div className="mx-auto max-w-2xl lg:max-w-4xl">
-            <img
+            {/* <img
               className="mx-auto h-12"
               src="https://tailwindui.com/img/logos/workcation-logo-indigo-600.svg"
               alt=""
-            />
+            /> */}
             <figure className="mt-10">
               <blockquote className="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
                 <p>
-                  “Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-                  expedita voluptas culpa sapiente alias molestiae. Numquam
-                  corrupti in laborum sed rerum et corporis.”
+                  “Terima kasih @souvenirlilin untuk produk yang indah! Lilin
+                  yang saya beli untuk pernikahan saya benar-benar menambahkan
+                  sentuhan yang sempurna ke acara tersebut, dan tamu-tamu saya
+                  sangat menyukainya”
                 </p>
               </blockquote>
               <figcaption className="mt-10">
@@ -207,10 +206,8 @@ function Home() {
                   src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                   alt=""
                 />
-                <div className="mt-4 flex items-center justify-center space-x-3 text-base">
-                  <div className="font-semibold text-gray-900">
-                    Judith Black
-                  </div>
+                {/* <div className="mt-4 flex items-center justify-center space-x-3 text-base">
+                  <div className="font-semibold text-gray-900">Anna</div>
                   <svg
                     viewBox="0 0 2 2"
                     width={3}
@@ -221,11 +218,11 @@ function Home() {
                     <circle cx={1} cy={1} r={1} />
                   </svg>
                   <div className="text-gray-600">CEO of Workcation</div>
-                </div>
+                </div> */}
               </figcaption>
             </figure>
           </div>
-        </section> */}
+        </section>
       </section>
       <Footer />
     </div>
