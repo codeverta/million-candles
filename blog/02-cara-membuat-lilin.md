@@ -2,6 +2,7 @@
 title: "Membuat Lilin Sendiri di Rumah: Panduan Praktis untuk Pemula"
 date: "2021-04-22"
 desc: "droidcam, linux, kamera hp menggunakan droidcam, instalasi"
+tags: "lilin aromaterapi, blog, souvenir, hiasan, romantis"
 ---
 
 Lilin adalah produk yang sering digunakan sebagai hiasan atau sebagai sumber cahaya pada berbagai acara dan momen spesial. Apakah Anda tahu bahwa Anda bisa membuat lilin sendiri di rumah dengan bahan-bahan sederhana? Dalam artikel ini, kami akan memberikan panduan praktis tentang cara membuat lilin sendiri di rumah untuk pemula.

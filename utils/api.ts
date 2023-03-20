@@ -22,7 +22,9 @@ const api = {
       if (error.response.status === 401) {
         window.location.href = "/";
       }
-      toast.error(JSON.stringify(error.response));
+      error.response.data.errors.forEach((it: any) => {
+        toast.error(error.detail);
+      });
       return Promise.reject(error);
     });
   },

@@ -2,6 +2,7 @@
 title: "Soy Candle vs. Wax Candle: Mana yang Lebih Baik untuk Lingkungan?"
 date: "2021-04-22"
 desc: "Lilin aromaterapi"
+tags: "lilin aromaterapi, blog, souvenir, hiasan, romantis"
 ---
 
 Lilin telah digunakan sejak zaman kuno untuk keperluan pencahayaan dan memberikan wangi di rumah. Seiring dengan perkembangan zaman, kini lilin bukan hanya digunakan untuk keperluan fungsional, tetapi juga sebagai dekorasi dan karya seni. Ada banyak jenis lilin yang tersedia di pasaran, namun dua jenis yang paling umum adalah soy candle dan wax candle. Meskipun keduanya berfungsi sama, yaitu memberikan cahaya dan aroma di ruangan, tetapi ada beberapa perbedaan antara keduanya.

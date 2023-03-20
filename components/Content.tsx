@@ -106,7 +106,7 @@ export default function Content() {
         </Modal>
       )}
       <main className="bg-white dark:bg-gray-900">
-        <h2 className="mb-4 py-20 text-center text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+        <h2 className="text-center mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
           Produk Kami
         </h2>
         <article className="grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-4/5 m-auto py-10">
@@ -168,12 +168,12 @@ export default function Content() {
                         <span className="text-3xl font-bold text-gray-900 dark:text-white">
                           {toCurrency(product.attributes.price)}
                         </span>
-                        <a
+                        {/* <a
                           href="#"
                           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
                           Add to cart
-                        </a>
+                        </a> */}
                       </div>
                     </div>
                   </div>

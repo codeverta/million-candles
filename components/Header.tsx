@@ -5,6 +5,7 @@ import { Modal } from "@mui/material";
 import Drawer from "./flowbite/Drawer";
 import { CSSTransition } from "react-transition-group";
 import { useRef } from "react";
+import Banner from "./flowbite/Banner";
 
 interface Route {
   label: String;
@@ -66,16 +67,16 @@ export default function Header() {
 
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
         <div className="flex flex-wrap justify-around sm:justify-between items-center mx-auto max-w-screen-xl">
-          <a href="#" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <img
-              src="https://flowbite.com/docs/images/logo.svg"
+              src="/favicon.ico"
               className="mr-3 h-6 sm:h-9"
               alt="Flowbite Logo"
             />
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               Million Candles
             </span>
-          </a>
+          </Link>
           <div className="flex items-center lg:order-2">
             <button
               onClick={handleOpenLogin}
@@ -137,6 +138,7 @@ export default function Header() {
           </div>
         </div>
       </nav>
+      <Banner />
     </header>
   );
 }
