@@ -30,9 +30,12 @@ export default function Hero() {
           Produsen Lilin Yogyakarta <br /> Berskala UMKM
         </h1>
         <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-          Kami adalah toko online yang menyediakan berbagai macam jenis lilin
+          Kami adalah UMKM yang menyediakan berbagai macam jenis lilin
           berkualitas tinggi, mulai dari lilin souvenir, lilin warna, lilin hias
-          dan masih banyak lagi.
+          dan masih banyak lagi. Kami menawarkan lilin hias yang indah untuk
+          souvenir yang cocok untuk acara apa pun. Dari pernikahan hingga acara
+          perusahaan atau perjalanan, lilin hias souvenir kami adalah pilihan
+          yang tepat untuk membuat kenangan yang tak terlupakan.
         </p>
         <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
           <a
