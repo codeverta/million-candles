@@ -46,7 +46,7 @@ const features = [
 ];
 function Home() {
   return (
-    <div className="dark:bg-gray-900 bg-white">
+    <div className="dark:bg-gray-900 bg-white text-gray-900 dark:text-white">
       <Hero />
       <Content />
       <section className="">
@@ -127,7 +127,7 @@ function Home() {
         <div className=" py-24 sm:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:mx-0">
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
                 From the blog
               </h2>
               <p className="mt-2 text-lg leading-8 text-gray-600">
@@ -184,7 +184,7 @@ function Home() {
           </div>
         </div>
         {/* Testimonial */}
-        <section className="relative isolate overflow-hidden  py-24 px-6 sm:py-32 lg:px-8">
+        {/* <section className="relative isolate overflow-hidden  py-24 px-6 sm:py-32 lg:px-8">
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20" />
           <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg]  shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
           <div className="mx-auto max-w-2xl lg:max-w-4xl">
@@ -225,7 +225,7 @@ function Home() {
               </figcaption>
             </figure>
           </div>
-        </section>
+        </section> */}
       </section>
       <Footer />
     </div>

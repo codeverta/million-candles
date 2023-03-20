@@ -1,7 +1,12 @@
 import CloseIcon from "@mui/icons-material/Close";
 import { IconButton } from "@mui/material";
+import { useState } from "react";
 
 export default function Banner() {
+  const [state, setState] = useState(true);
+  if (!state) {
+    return <div></div>;
+  }
   return (
     <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 py-2.5 px-6 sm:px-3.5 sm:before:flex-1">
       <svg
@@ -38,7 +43,7 @@ export default function Banner() {
       </svg>
       <div className="flex flex-wrap items-center gap-y-2 gap-x-4">
         <p className="text-sm leading-6 text-gray-900">
-          <strong className="font-semibold">GeneriCon 2023</strong>
+          <strong className="font-semibold">Pengumuman</strong>
           <svg
             viewBox="0 0 2 2"
             className="mx-2 inline h-0.5 w-0.5 fill-current"
@@ -46,20 +51,21 @@ export default function Banner() {
           >
             <circle cx={1} cy={1} r={1} />
           </svg>
-          Join us in Denver from June 7 – 9 to see what’s coming next.
+          Kami dengan senang hati ingin mengumumkan bahwa toko kami telah resmi
+          dibuka di Shopee!
         </p>
         <a
           href="#"
-          className="flex-none rounded-full bg-gray-900 py-1 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+          className="flex-none rounded-full bg-orange-700 py-1 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-700"
         >
-          Register now <span aria-hidden="true">&rarr;</span>
+          Link Shopee <span aria-hidden="true">&rarr;</span>
         </a>
       </div>
       <div className="flex flex-1 justify-end">
-        <IconButton className="-m-3 p-3 focus-visible:outline-offset-[-4px]">
+        {/* <IconButton onClick={() => setState(false)} className="-m-3 p-3 focus-visible:outline-offset-[-4px]">
           <span className="sr-only">Dismiss</span>
           <CloseIcon className="h-5 w-5 text-gray-900" aria-hidden="true" />
-        </IconButton>
+        </IconButton> */}
       </div>
     </div>
   );
