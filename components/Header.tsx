@@ -5,6 +5,7 @@ import { Modal } from "@mui/material";
 import Drawer from "./flowbite/Drawer";
 import { CSSTransition } from "react-transition-group";
 import { useRef } from "react";
+import Banner from "./flowbite/Banner";
 
 interface Route {
   label: String;
@@ -137,6 +138,7 @@ export default function Header() {
           </div>
         </div>
       </nav>
+      <Banner />
     </header>
   );
 }
