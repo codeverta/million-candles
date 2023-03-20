@@ -312,7 +312,7 @@ function CreateOrder() {
                 onChange={onAppendProduct}
                 options={productOptions}
                 classes={{
-                  root: "w-full",
+                  root: "!w-full",
                 }}
                 label="Cari Produk"
                 required
