@@ -46,10 +46,10 @@ const features = [
 ];
 function Home() {
   return (
-    <>
+    <div className="dark:bg-gray-900 bg-white">
       <Hero />
       <Content />
-      <section className="bg-white dark:bg-gray-900">
+      <section className="">
         <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
           <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
@@ -81,7 +81,7 @@ function Home() {
           </div>
         </div>
         {/* feature */}
-        <div className="overflow-hidden bg-white py-24 sm:py-32">
+        <div className="overflow-hidden  py-24 sm:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
               <div className="lg:pr-8 lg:pt-4">
@@ -89,10 +89,10 @@ function Home() {
                   <h2 className="text-base font-semibold leading-7 text-indigo-600">
                     Deploy faster
                   </h2>
-                  <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                  <p className="mt-2 text-3xl font-bold tracking-tight dark:text-white text-gray-900 sm:text-4xl">
                     A better workflow
                   </p>
-                  <p className="mt-6 text-lg leading-8 text-gray-600">
+                  <p className="mt-6 text-lg leading-8 dark:text-gray-400 text-gray-600">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                     Maiores impedit perferendis suscipit eaque, iste dolor
                     cupiditate blanditiis ratione.
@@ -100,7 +100,7 @@ function Home() {
                   <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
                     {features.map((feature) => (
                       <div key={feature.name} className="relative pl-9">
-                        <dt className="inline font-semibold text-gray-900">
+                        <dt className="inline font-semibold text-gray-400">
                           <feature.icon
                             className="absolute top-1 left-1 h-5 w-5 text-indigo-600"
                             aria-hidden="true"
@@ -124,7 +124,7 @@ function Home() {
           </div>
         </div>
         {/* Blog */}
-        <div className="bg-white py-24 sm:py-32">
+        <div className=" py-24 sm:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:mx-0">
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -134,7 +134,7 @@ function Home() {
                 Learn how to grow your business with our expert advice.
               </p>
             </div>
-            <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+            <div className="mx-auto dark:text-white mt-10 grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
               {posts.map((post) => (
                 <article
                   key={post.id}
@@ -146,7 +146,7 @@ function Home() {
                     </time>
                     <a
                       href={post.category.href}
-                      className="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600 hover:bg-gray-100"
+                      className="relative z-10 rounded-full dark:bg-white bg-gray-50 py-1.5 px-3 font-medium text-gray-600 hover:bg-gray-100"
                     >
                       {post.category.title}
                     </a>
@@ -184,9 +184,9 @@ function Home() {
           </div>
         </div>
         {/* Testimonial */}
-        <section className="relative isolate overflow-hidden bg-white py-24 px-6 sm:py-32 lg:px-8">
+        <section className="relative isolate overflow-hidden  py-24 px-6 sm:py-32 lg:px-8">
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20" />
-          <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
+          <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg]  shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
           <div className="mx-auto max-w-2xl lg:max-w-4xl">
             <img
               className="mx-auto h-12"
@@ -228,7 +228,7 @@ function Home() {
         </section>
       </section>
       <Footer />
-    </>
+    </div>
   );
 }
 
