@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
   const siteUrl = "https://souvenirlilin.com";
   const twitterHandle = "@souvenirlilin";
   const keywords =
-    "ud million candles, souvenir lilin, lilin warna, lilin hias, lilin berkualitas";
+    "souvenir cantik, souvenir jogja, ud million candles, souvenir lilin, lilin warna, lilin hias, lilin berkualitas, umkm";
 
   return (
     <>
@@ -54,7 +54,7 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
         twitter={{
           handle: twitterHandle,
           site: siteUrl,
-          cardType: "summary_large_image",
+          cardType: "Jual Souvenir Lilin",
         }}
         additionalMetaTags={[
           {
