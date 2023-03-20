@@ -1,4 +1,4 @@
-export const GA_TRACKING_ID = "G-TW6KL8LX75";
+export const GA_TRACKING_ID = "G-E6ECLRMNCT";
 
 export const pageView = (url: string) => {
   // @ts-ignore
