@@ -19,8 +19,8 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://127.0.0.1:3000/', 'https://www.souvenirlilin.com', 'https://souvenirlilin.com', 'http://localhost:3000', 'https://million-candles.vercel.app/'],
-   
+    'allowed_origins' => ['http://127.0.0.1:3000/', 'http://127.0.0.1', 'https://souvenirlilin.com', 'http://localhost:3000', 'https://million-candles.vercel.app/'],
+    
     'allowed_origins_patterns' => [],
 
     'allowed_headers' => ['*'],
