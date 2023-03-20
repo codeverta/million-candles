@@ -19,8 +19,18 @@ export default function Home({ allPostsData }: any) {
 
       <section className="">
         <h2 className={`text-center font-bold text-lg mt-2 mb-8`}>
-          Personal Blog and Study Notes
+          Menerangi Kehidupan dengan Lilin: Kumpulan Cerita dan Tips Mengenai
+          Lilin
         </h2>
+        <p>
+          Kumpulan blog yang membahas tentang berbagai aspek lilin, mulai dari
+          sejarah dan berbagai jenis lilin, hingga cara membuat lilin sendiri
+          dan bagaimana memilih lilin yang tepat untuk berbagai keperluan. Anda
+          juga akan menemukan cerita inspiratif tentang bagaimana lilin dapat
+          menjadi simbol harapan dan kehangatan dalam kehidupan sehari-hari.
+          Mari kita eksplorasi keajaiban lilin bersama-sama dan pelajari cara
+          menggunakannya untuk menerangi kehidupan kita.
+        </p>
         <ul>
           {allPostsData.map(({ id, date, title, desc }: PostMeta) => (
             <li key={id} className="mb-4">

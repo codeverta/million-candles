@@ -119,24 +119,33 @@ export default function Content() {
                   product.relationships.documents.data.length > 0
                     ? getRelationships(query.data.data, product, "documents")
                     : [];
+                const isDocumentExist = !!documents[0]?.attributes.filename;
                 return (
                   <div
                     key={product.id}
                     className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
                   >
                     <button onClick={() => handleModal(product)}>
-                      <img
-                        className="rounded-t-xl"
-                        src={
-                          process.env.NEXT_PUBLIC_BASE +
-                          "/storage/" +
-                          documents[0]?.attributes.filename
-                        }
-                        alt="product image"
-                        onError={(e: any) =>
-                          (e.target.src = "/assets/image-1@2x.jpg")
-                        }
-                      />
+                      {isDocumentExist ? (
+                        <img
+                          className="rounded-t-xl"
+                          src={
+                            process.env.NEXT_PUBLIC_BASE +
+                            "/storage/" +
+                            documents[0]?.attributes.filename
+                          }
+                          alt="product image"
+                          onError={(e: any) =>
+                            (e.target.src = "/assets/image-1@2x.jpg")
+                          }
+                        />
+                      ) : (
+                        <img
+                          className="rounded-t-xl"
+                          src="/assets/image-1@2x.jpg"
+                          alt="product image"
+                        />
+                      )}
                     </button>
                     <div className="px-5 pb-5">
                       <a href="#">
@@ -145,6 +154,7 @@ export default function Content() {
                         </h5>
                       </a>
                       <Rating
+                        id={`product-${product.attributes.name}`}
                         name="simple-controlled"
                         value={
                           state.rating[index] ??
