@@ -340,7 +340,7 @@ function CreateOrder() {
                         onChange={(e) => handleProductQty(e, index)}
                         classes={{
                           input:
-                            "rounded-sm border border-gray-400 ring-1 focus:ring-2 focus:ring-blue-500 !ring-gray-400",
+                            "!rounded-sm border !border-gray-400 !ring-1 !focus:ring-2 !focus:ring-blue-500 !ring-gray-400",
                         }}
                         placeholder="Jumlah"
                       />
