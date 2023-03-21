@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 [type="text"] {
-  padding: 16.5px 14px !important;
+  padding: 16.5px 14px;
 }
 
 [type="text"]:focus {

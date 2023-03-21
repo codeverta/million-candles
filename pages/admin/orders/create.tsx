@@ -31,7 +31,7 @@ import { useRouter } from "next/router";
 
 const productParams = {
   "fields[products]": "name,price",
-  "page[size]": 5,
+  // "page[size]": 5,
 };
 
 const userParams = {
