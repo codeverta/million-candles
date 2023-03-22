@@ -126,10 +126,17 @@ function Home() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:mx-0">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                From the blog
+                Cerita Kami
               </h2>
-              <p className="mt-2 text-lg leading-8 text-gray-600">
-                Learn how to grow your business with our expert advice.
+              <p className="mt-2 text-lg leading-8 dark:text-gray-400 text-gray-600">
+                Kumpulan blog yang membahas tentang berbagai aspek lilin, mulai
+                dari sejarah dan berbagai jenis lilin, hingga cara membuat lilin
+                sendiri dan bagaimana memilih lilin yang tepat untuk berbagai
+                keperluan. Anda juga akan menemukan cerita inspiratif tentang
+                bagaimana lilin dapat menjadi simbol harapan dan kehangatan
+                dalam kehidupan sehari-hari. Mari kita eksplorasi keajaiban
+                lilin bersama-sama dan pelajari cara menggunakannya untuk
+                menerangi kehidupan kita.
               </p>
             </div>
             <div className="mx-auto dark:text-white mt-10 grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
@@ -150,13 +157,13 @@ function Home() {
                     </a>
                   </div>
                   <div className="group relative">
-                    <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                    <h3 className="mt-3 text-lg font-semibold leading-6 dark:text-gray-200 dark:hover:text-white text-gray-900 dark:group-hover:text-gray-50 group-hover:text-gray-600">
                       <a href={post.href}>
                         <span className="absolute inset-0" />
                         {post.title}
                       </a>
                     </h3>
-                    <p className="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">
+                    <p className="mt-5 text-sm leading-6 dark:text-gray-300 text-gray-600 line-clamp-3">
                       {post.description}
                     </p>
                   </div>
@@ -167,13 +174,15 @@ function Home() {
                       className="h-10 w-10 rounded-full bg-gray-50"
                     />
                     <div className="text-sm leading-6">
-                      <p className="font-semibold text-gray-900">
+                      <p className="font-semibold dark:text-gray-50 text-gray-900">
                         <a href={post.author.href}>
                           <span className="absolute inset-0" />
                           {post.author.name}
                         </a>
                       </p>
-                      <p className="text-gray-600">{post.author.role}</p>
+                      <p className="dark:text-gray-50 text-gray-600">
+                        {post.author.role}
+                      </p>
                     </div>
                   </div>
                 </article>
@@ -183,8 +192,6 @@ function Home() {
         </div>
         {/* Testimonial */}
         <section className="relative isolate overflow-hidden  py-24 px-6 sm:py-32 lg:px-8">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20" />
-          <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg]  shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
           <div className="mx-auto max-w-2xl lg:max-w-4xl">
             {/* <img
               className="mx-auto h-12"
@@ -192,7 +199,7 @@ function Home() {
               alt=""
             /> */}
             <figure className="mt-10">
-              <blockquote className="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
+              <blockquote className="text-center text-xl font-semibold leading-8 dark:text-gray-300 text-gray-900 sm:text-2xl sm:leading-9">
                 <p>
                   “Terima kasih @souvenirlilin untuk produk yang indah! Lilin
                   yang saya beli untuk pernikahan saya benar-benar menambahkan
@@ -201,13 +208,7 @@ function Home() {
                 </p>
               </blockquote>
               <figcaption className="mt-10">
-                <img
-                  className="mx-auto h-10 w-10 rounded-full"
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                />
-                {/* <div className="mt-4 flex items-center justify-center space-x-3 text-base">
-                  <div className="font-semibold text-gray-900">Anna</div>
+                <div className="mt-4 flex items-center justify-center space-x-3 text-base">
                   <svg
                     viewBox="0 0 2 2"
                     width={3}
@@ -217,8 +218,10 @@ function Home() {
                   >
                     <circle cx={1} cy={1} r={1} />
                   </svg>
-                  <div className="text-gray-600">CEO of Workcation</div>
-                </div> */}
+                  <div className="dark:text-gray-50 text-gray-600">
+                    - Anonim
+                  </div>
+                </div>
               </figcaption>
             </figure>
           </div>
@@ -234,3 +237,12 @@ Home.getLayout = function (page: React.ReactNode) {
 };
 
 export default Home;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      products: [],
+      posts: [],
+    },
+  };
+}

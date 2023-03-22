@@ -194,7 +194,6 @@ function OrderDetail() {
             </TableRow>
 
             {orderDetails.map((orderDetail: any) => {
-              console.log({ orderDetail });
               const products = getRelationship(
                 getOrder.data.data,
                 orderDetail,

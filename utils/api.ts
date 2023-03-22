@@ -22,9 +22,13 @@ const api = {
       if (error.response.status === 401) {
         window.location.href = "/";
       }
-      error.response.data.errors.forEach((it: any) => {
-        toast.error(error.detail);
-      });
+      try {
+        error.response.data.errors.forEach((it: any) => {
+          toast.error(error.detail);
+        });
+      } catch (err: any) {
+        console.log({ err });
+      }
       return Promise.reject(error);
     });
   },
