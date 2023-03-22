@@ -10,3 +10,11 @@
   border: 0;
   box-shadow: none;
 }
+
+.filepond--wrapper {
+  width: 100%;
+}
+
+.filepond--credits {
+  display: none;
+}

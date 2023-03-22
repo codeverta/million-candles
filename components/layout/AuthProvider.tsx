@@ -29,8 +29,6 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     enabled: !!isEnabled,
   });
 
-  console.log({ isEnabled, router }, isEnabled);
-
   if ((getSelf.isLoading || getSelf.isError) && isEnabled) {
     return (
       <Backdrop

@@ -41,35 +41,33 @@ export default function SpeedDialTooltipOpen() {
   };
 
   return (
-    <div>
-      <Box>
-        <Backdrop open={open} />
-        <SpeedDial
-          ariaLabel="SpeedDial tooltip example"
-          sx={{ position: "fixed", bottom: "10%", right: 16 }}
-          icon={<SpeedDialIcon />}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          open={open}
-          classes={{
-            fab: "bg-blue-500",
-          }}
-        >
-          {actions.map((action) => (
-            <SpeedDialAction
-              classes={{
-                staticTooltipLabel: "text-xs w-max",
-              }}
-              key={action.name}
-              icon={action.icon}
-              tooltipTitle={action.name}
-              tooltipOpen
-              onClick={() => handleRedirect(action.to)}
-              className="bg-white text-xs"
-            />
-          ))}
-        </SpeedDial>
-      </Box>
-    </div>
+    <>
+      <Backdrop open={open} />
+      <SpeedDial
+        ariaLabel="SpeedDial tooltip example"
+        sx={{ position: "absolute", bottom: "10%", right: 16 }}
+        icon={<SpeedDialIcon />}
+        onClose={handleClose}
+        onOpen={handleOpen}
+        open={open}
+        classes={{
+          fab: "bg-blue-500",
+        }}
+      >
+        {actions.map((action) => (
+          <SpeedDialAction
+            classes={{
+              staticTooltipLabel: "text-xs w-max",
+            }}
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+            tooltipOpen
+            onClick={() => handleRedirect(action.to)}
+            className="bg-white text-xs"
+          />
+        ))}
+      </SpeedDial>
+    </>
   );
 }
