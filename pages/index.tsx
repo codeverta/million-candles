@@ -2,6 +2,9 @@ import { Content, Hero } from "components";
 import Footer from "components/Footer";
 import Layout from "components/layout/Landing";
 import { CheckRounded, CloudDone, RoundaboutLeft } from "@mui/icons-material";
+import { getSortedPostsData } from "lib/posts";
+import api from "utils/api";
+import { GetStaticProps } from "next";
 
 const posts = [
   {
@@ -44,7 +47,10 @@ const features = [
     icon: CheckRounded,
   },
 ];
-function Home() {
+function Home(props: any) {
+  const { products } = props;
+  console.log({ products });
+
   return (
     <div className="dark:bg-gray-900 bg-white text-gray-900 dark:text-white">
       <Hero />
@@ -140,7 +146,7 @@ function Home() {
               </p>
             </div>
             <div className="mx-auto dark:text-white mt-10 grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-              {posts.map((post) => (
+              {posts.map((post: any) => (
                 <article
                   key={post.id}
                   className="flex max-w-xl flex-col items-start justify-between"
@@ -238,11 +244,21 @@ Home.getLayout = function (page: React.ReactNode) {
 
 export default Home;
 
-export async function getStaticProps() {
+export async function getStaticProps(): GetStaticProps {
+  const res = await fetch(`http://127.0.0.1:8000/api/v1/products`, {
+    headers: {
+      Accept: "application/vnd.api+json",
+      "Content-Type": "application/vnd.api+json",
+    },
+  });
+  const products = await res.json();
+  console.log({ products });
+  const posts = getSortedPostsData();
+
   return {
     props: {
-      products: [],
-      posts: [],
+      products,
+      posts: posts.slice(0, 3),
     },
   };
 }

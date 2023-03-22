@@ -288,7 +288,7 @@ function CreateOrder() {
                   options={usersOptions}
                   onChange={handleChangeBuyer}
                   label="Pilih Pembeli"
-                  className="w-full"
+                  className="!w-full"
                 />
               </TableCell>
             </TableRow>
@@ -338,6 +338,9 @@ function CreateOrder() {
                       <InputBase
                         value={it.attributes.quantity}
                         onChange={(e) => handleProductQty(e, index)}
+                        style={{
+                          padding: "16.5px 14px",
+                        }}
                         classes={{
                           input:
                             "!rounded-sm border !border-gray-400 !ring-1 !focus:ring-2 !focus:ring-blue-500 !ring-gray-400",

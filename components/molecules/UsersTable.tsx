@@ -225,7 +225,7 @@ export default function UsersTable() {
         handleClose={handleDeleteDialog}
         handleAction={handleAlertAction}
       >
-        <span>User yang telah dihapus tidak dapat dikembalikan</span>
+        <span>Pengguna yang telah dihapus tidak dapat dikembalikan</span>
       </AlertDialog>
       <Box sx={{ width: "100%" }}>
         <Paper sx={{ width: "100%", mb: 2 }}>
