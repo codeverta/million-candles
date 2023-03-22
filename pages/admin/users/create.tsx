@@ -1,4 +1,4 @@
-import { List, ListItem, TextField } from "@mui/material";
+import { Button, ButtonBase, List, ListItem, TextField } from "@mui/material";
 import AdminLayout from "components/layout/AdminLayout";
 import React, { useState } from "react";
 
@@ -43,6 +43,16 @@ function CreateUser() {
             placeholder="Masukkan Konfirmasi Password"
             helperText="Wajib diisi"
           />
+        </ListItem>
+        <ListItem>
+          <Button
+            variant="contained"
+            color="primary"
+            className="w-full bg-blue-500"
+            title="Tambah Pengguna"
+          >
+            Tambah Pengguna
+          </Button>
         </ListItem>
       </List>
     </div>
