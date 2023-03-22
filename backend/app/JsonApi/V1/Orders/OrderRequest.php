@@ -30,7 +30,7 @@ class OrderRequest extends ResourceRequest
             'buyer_name' => ['string', 'nullable'],
             'origin-users' => [ JsonApiRule::toOne() ],
             'destination-users' => [ JsonApiRule::toOne() ],
-            'price_amount' => ['nullable'],
+            'price_amount' => ['nullable', 'numeric', 'min:2', 'max:10'],
             'is_validate' => ['boolean'],
             'is_shipping' => ['boolean'],
             'is_shipped' => ['boolean'],

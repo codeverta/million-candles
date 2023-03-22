@@ -24,7 +24,7 @@ class OrderResource extends JsonApiResource
             'payments_type' => $this->
             payments_type,
             'buyer_name' => $this->buyer_name,
-            'price_amount' => $this->price_amount,
+            'price_amount' => (int) $this->price_amount,
             'is_validate_seller' => (bool) $this->is_validate_seller,
             'is_validate_buyer' => (bool) $this->is_validate_buyer,
             'is_shipping' => (bool) $this->is_shipping,
