@@ -31,6 +31,9 @@ Route::prefix('/v1')->group(function () {
     Route::post('/auth/reset', [AuthController::class, 'reset']);
     Route::get('/auth/self', [AuthController::class, 'me'])->middleware('auth:sanctum');
     Route::get('/notifications', [NotificationController::class, 'index'])->middleware('auth:sanctum');
+    Route::prefix('/-actions', function() {
+
+    });
 });
 
 JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
@@ -62,6 +65,9 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
     });
     $server->resource('order-details', JsonApiController::class);
     $server->resource('carts', JsonApiController::class);
+    $server->resource(
+    'product-variants', JsonApiController::class);
+    $server->resource('product-variant-options', JsonApiController::class);
     $server->resource('documents', '\\' . DocumentController::class)->actions('-actions', function ($actions) {
         $actions->post('upload');
     });

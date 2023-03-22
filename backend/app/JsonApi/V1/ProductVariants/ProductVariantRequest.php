@@ -17,7 +17,8 @@ class ProductVariantRequest extends ResourceRequest
     public function rules(): array
     {
         return [
-            // @TODO
+            'name' => ['required'],
+            'product_id' => [JsonApiRule::toOne()],
         ];
     }
 
