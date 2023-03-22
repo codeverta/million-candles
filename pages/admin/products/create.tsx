@@ -21,7 +21,7 @@ function CreateProduct() {
     ],
   });
 
-  const changeDropdown = (val) => {
+  const changeDropdown = (val: any) => {
     console.log({ val });
   };
   return (

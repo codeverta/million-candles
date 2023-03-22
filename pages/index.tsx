@@ -4,7 +4,6 @@ import Layout from "components/layout/Landing";
 import { CheckRounded, CloudDone, RoundaboutLeft } from "@mui/icons-material";
 import { getSortedPostsData } from "lib/posts";
 import api from "utils/api";
-import { GetStaticProps } from "next";
 
 const posts = [
   {
@@ -244,7 +243,7 @@ Home.getLayout = function (page: React.ReactNode) {
 
 export default Home;
 
-export async function getStaticProps(): GetStaticProps {
+export async function getStaticProps() {
   const res = await fetch(`http://127.0.0.1:8000/api/v1/products`, {
     headers: {
       Accept: "application/vnd.api+json",
