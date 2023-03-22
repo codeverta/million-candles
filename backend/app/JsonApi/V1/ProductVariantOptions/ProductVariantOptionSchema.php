@@ -1,39 +1,26 @@
 <?php
 
-namespace App\JsonApi\V1\Products;
+namespace App\JsonApi\V1\ProductVariantOptions;
 
-use App\Models\Product;
+use App\Models\ProductVariantOption;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
 use LaravelJsonApi\Eloquent\Fields\DateTime;
 use LaravelJsonApi\Eloquent\Fields\ID;
-use LaravelJsonApi\Eloquent\Fields\Relations\BelongsTo;
 use LaravelJsonApi\Eloquent\Fields\Str;
-use LaravelJsonApi\Eloquent\Fields\Number;
-use LaravelJsonApi\Eloquent\Fields\Relations\HasMany;
-use LaravelJsonApi\Eloquent\SoftDeletes;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
-use LaravelJsonApi\Eloquent\Fields\SoftDelete;
 use LaravelJsonApi\Eloquent\Schema;
 
-class ProductSchema extends Schema
+class ProductVariantOptionSchema extends Schema
 {
 
-    use SoftDeletes;
     /**
      * The model the schema corresponds to.
      *
      * @var string
      */
-    public static string $model = Product::class;
+    public static string $model = ProductVariantOption::class;
 
-    /**
-     * The maximum include path depth.
-     *
-     * @var int
-     */
-    protected int $maxDepth = 3;
-    
     /**
      * Get the resource fields.
      *
@@ -44,15 +31,6 @@ class ProductSchema extends Schema
         return [
             ID::make(),
             Str::make('name'),
-            Str::make('description'),
-            Number::make('stock'),
-            Number::make('price'),
-            BelongsTo::make('product-categories'),
-            BelongsTo::make('documents'),
-            HasMany::make('product-variants'),
-            DateTime::make('createdAt')->sortable()->readOnly(),
-            DateTime::make('updatedAt')->sortable()->readOnly(),
-            SoftDelete::make('deletedAt'),
         ];
     }
 

@@ -105,7 +105,7 @@ export default function Content() {
           </div>
         </Modal>
       )}
-      <main className="bg-white dark:bg-gray-900">
+      <main className="bg-white min-h-screen dark:bg-gray-900">
         <h2 className="text-center mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
           Produk Kami
         </h2>

@@ -9,6 +9,8 @@ use App\JsonApi\V1\OrderDetails\OrderDetailSchema;
 use App\JsonApi\V1\Orders\OrderSchema;
 use App\JsonApi\V1\ProductCategories\ProductCategorySchema;
 use App\JsonApi\V1\Products\ProductSchema;
+use App\JsonApi\V1\ProductVariantOptions\ProductVariantOptionSchema;
+use App\JsonApi\V1\ProductVariants\ProductVariantSchema;
 use App\JsonApi\V1\Provinces\ProvinceSchema;
 use App\JsonApi\V1\Regencies\RegencySchema;
 use App\JsonApi\V1\Users\UserSchema;
@@ -58,7 +60,9 @@ class Server extends BaseServer
             OrderDetailSchema::class,
             UserSchema::class,
             DocumentSchema::class,
-            CartSchema::class
+            CartSchema::class,
+            ProductVariantSchema::class,
+            ProductVariantOptionSchema::class
         ];
     }
 }

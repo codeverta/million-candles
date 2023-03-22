@@ -35,4 +35,9 @@ class Product extends Model
     {
         return $this->morphMany(Document::class, 'documentable', 'documentable_type');
     }
+
+    public function productVariants()
+    {
+        return $this->hasMany(ProductVariant::class);
+    }
 }

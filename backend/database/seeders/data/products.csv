@@ -1,0 +1,13 @@
+﻿code;name;price;size;quantity;weight
+MK;Million Kecil;6000;15x1π;10;16
+MT;Million Tanggung;11000;17x1,5π;8;53
+BS;Big Small Candle;15000;11x6π;1;256
+TL;Tall Large Candle;24000;30x5π;1;943
+KL20;Crystal Medium Candle;10000;20x2π;2;189
+KL10;Crystal Small Candle;5000;9.5x2.5;2;47
+GLS;Glass Candle;7000;6x5π;1;119
+STL;Super Tall Candle;24000;40x5π;1;130
+MMC;Memories Sharp Candle;30000;8.5x3.5π;6;59
+CD48;Spiral Candle;32000;5x3,5π;8;76
+CD71;Memories Pointy Candle;30000;8.5x3.5π;6;59
+CRYA;Aromatherapy Candle;11000;6x5π;1;200
