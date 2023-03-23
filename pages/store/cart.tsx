@@ -155,7 +155,7 @@ function Cart() {
             data: {
               type: "order-details",
               attributes: {
-                qty: cart.attributes.quantity,
+                qty: parseInt(cart.attributes.quantity),
                 price: product.attributes.price,
                 total_price:
                   cart.attributes.quantity * product.attributes.price,
