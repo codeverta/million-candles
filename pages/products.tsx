@@ -4,15 +4,13 @@ import { Content } from "../components";
 
 function Product({ products }: any) {
   return (
-    <div className="pt-24 dark:bg-gray-900">
-      <Content products={products} />
-    </div>
+    <Layout>
+      <div className="pt-24 dark:bg-gray-900">
+        <Content products={products} />
+      </div>
+    </Layout>
   );
 }
-
-Product.getLayout = function (page: React.ReactNode) {
-  return <Layout>{page}</Layout>;
-};
 
 export default Product;
 
