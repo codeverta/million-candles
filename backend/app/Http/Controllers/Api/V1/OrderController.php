@@ -7,10 +7,12 @@ use App\Http\Controllers\Controller;
 use App\JsonApi\V1\Orders\OrderQuery;
 use App\JsonApi\V1\Orders\OrderRequest;
 use App\Models\Order;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions;
 use Midtrans\Config;
 use Midtrans\Snap;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -113,5 +115,21 @@ class OrderController extends Controller
                 $model->snap_token = $snap_token;
             });
         }
+    }
+
+    public function totalSales(Request $request)
+    {
+        $validatedData = $request->validate([
+            'start_date' => 'required',
+            'end_date' => 'required'
+        ]);
+
+        $startDate = $validatedData['start_date'];
+        $endDate = $validatedData['end_date'];
+        $total = DB::table('orders')
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->sum('price_amount');
+
+        return response()->json((int) $total);
     }
 }
