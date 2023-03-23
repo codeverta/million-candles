@@ -16,7 +16,7 @@ Product.getLayout = function (page: React.ReactNode) {
 
 export default Product;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const products = await api.get("products", {
     include: "documents",
   });

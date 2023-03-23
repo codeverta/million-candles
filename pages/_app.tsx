@@ -25,14 +25,18 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
   // seo
   const pageTitle =
     "UD Million Candles - Souvenir Lilin, Lilin Warna, Lilin Hias dan Lain-lain";
-  const pageDescription =
-    "UD Million Candles menyediakan lilin untuk souvenir, lilin warna, lilin hias dan lain-lain. Temukan koleksi lilin berkualitas dengan harga terjangkau di UD Million Candles.";
+  const pageDescription = `Kami adalah UMKM yang menyediakan berbagai macam jenis lilin
+          berkualitas tinggi, mulai dari lilin souvenir, lilin warna, lilin hias
+          dan masih banyak lagi. Kami menawarkan lilin hias yang indah untuk
+          souvenir yang cocok untuk acara apa pun. Dari pernikahan hingga acara
+          perusahaan atau perjalanan, lilin hias souvenir kami adalah pilihan
+          yang tepat untuk membuat kenangan yang tak terlupakan.`;
   const ogImageUrl = "https://souvenirlilin.com/og-image.png";
   const siteName = "UD Million Candles";
   const siteUrl = "https://souvenirlilin.com";
   const twitterHandle = "@souvenirlilin";
   const keywords =
-    "souvenir cantik, souvenir jogja, ud million candles, souvenir lilin, lilin warna, lilin hias, lilin berkualitas, umkm";
+    "lilin aromaterapi, lilin batang, souvenir cantik, souvenir jogja, ud million candles, souvenir lilin, lilin warna, lilin hias, lilin berkualitas, umkm";
 
   return (
     <>
