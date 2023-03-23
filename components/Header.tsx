@@ -73,8 +73,8 @@ export default function Header() {
         <div className="flex flex-wrap justify-around sm:justify-between items-center mx-auto max-w-screen-xl">
           <Link href="/" className="flex items-center">
             <img
-              src="/favicon-xl.png"
-              className="mr-3 h-6 sm:h-9"
+              src="/logolilin.png"
+              className="mr-3 rounded-full h-6 sm:h-9"
               alt="Flowbite Logo"
             />
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">

@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Header from "../Header";
 import React from "react";
+import Footer from "components/Footer";
 
 interface Props {
   children: React.ReactNode;
@@ -18,7 +19,8 @@ export default function Landing({ children }: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      {children}
+      <div className="dark:bg-gray-900">{children}</div>
+      <Footer />
     </>
   );
 }
