@@ -3,6 +3,7 @@ import AdminLayout from "components/layout/AdminLayout";
 import React, { useState } from "react";
 import { FilePond, registerPlugin } from "react-filepond";
 import "filepond/dist/filepond.min.css";
+import api from "utils/api";
 
 function CreateProduct() {
   const [state, setState] = useState({
@@ -24,6 +25,31 @@ function CreateProduct() {
   const changeDropdown = (val: any) => {
     console.log({ val });
   };
+
+  const onSubmitProduct = async () => {
+    const payload = {
+      data: {
+        type: "products",
+        attributes: {
+          description:
+            "In our second blog post, you will learn how to create resources using the JSON:API specification.",
+          name: "How to Create JSON:API Resources",
+          price: 20000,
+        },
+        relationships: {
+          "product-categories": {
+            data: {
+              type: "product-categories",
+              id: "2",
+            },
+          },
+        },
+      },
+    };
+
+    await api.post("products", payload);
+  };
+
   return (
     <>
       <List>
@@ -57,6 +83,16 @@ function CreateProduct() {
             label="Ukuran"
             placeholder="Ukuran"
             helperText="Wajib diisi"
+          />
+        </ListItem>
+        <ListItem>
+          <TextField
+            className="w-full"
+            label="Deskripsi"
+            placeholder="Deskripsi"
+            rows={4}
+            multiline
+            minRows={2}
           />
         </ListItem>
         <ListItem>

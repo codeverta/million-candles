@@ -271,7 +271,7 @@ function CreateOrder() {
             <TableCell className="whitespace-nowrap" colSpan={2}>
               <p>Pembeli sudah terdaftar?</p>
             </TableCell>
-            <TableCell colSpan={1} className="flex justify-end">
+            <TableCell colSpan={1} className="!flex !justify-end">
               <Switch
                 color="primary"
                 checked={state.isBuyer}

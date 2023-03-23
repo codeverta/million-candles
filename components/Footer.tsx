@@ -8,7 +8,12 @@ export default function Footer() {
           href="#"
           className="flex mx-4 justify-center items-center text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          <img width={60} height={60} className="mx-2" src="/favicon-xl.png" />
+          <img
+            width={60}
+            height={60}
+            className="mx-2 rounded-full"
+            src="/logolilin.png"
+          />
           Million Candles
         </a>
         <ul className="flex flex-wrap mt-4 justify-center items-center mb-6 text-gray-900 dark:text-white">

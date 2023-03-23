@@ -24,9 +24,18 @@ export default function Post({ postData }: any) {
           openGraph={SEO.openGraph}
         />
       </Head>
-      <p className="text-center font-semibold text-xl">{postData.title}</p>
-      <p className="text-center text-xs mb-16">{postData.date}</p>
-      <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+      <div className="max-w-3xl mx-auto pt-8">
+        <p className=" dark:text-white font-semibold text-6xl">
+          {postData.title}
+        </p>
+        <p className="dark:text-gray-300 mb-16">{postData.date}</p>
+      </div>
+      <article className="max-w-3xl mx-auto pb-32">
+        <div
+          className="prose dark:prose-invert"
+          dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
+        />
+      </article>
     </Layout>
   );
 }

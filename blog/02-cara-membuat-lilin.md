@@ -1,7 +1,7 @@
 ---
 title: "Membuat Lilin Sendiri di Rumah: Panduan Praktis untuk Pemula"
 date: "2021-04-22"
-desc: "droidcam, linux, kamera hp menggunakan droidcam, instalasi"
+desc: "Cara membuat lilin di rumah dengan mudah"
 tags: "lilin aromaterapi, blog, souvenir, hiasan, romantis"
 ---
 

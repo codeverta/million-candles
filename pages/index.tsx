@@ -214,7 +214,6 @@ function Home(props: any) {
             </div>
           </section>
         </section>
-        <Footer />
       </div>
     </Layout>
   );

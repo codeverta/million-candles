@@ -17,8 +17,8 @@ export default function Home({ allPostsData }: any) {
         <title>Home</title>
       </Head>
 
-      <section className="dark:bg-gray-900 min-h-screen">
-        <h2 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white text-center">
+      <section className="dark:bg-gray-900 max-w-3xl mx-auto min-h-screen">
+        <h2 className="mb-4 pt-6 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white text-left">
           Menerangi Kehidupan dengan Lilin: Kumpulan Cerita dan Tips Mengenai
           Lilin
         </h2>
@@ -33,9 +33,9 @@ export default function Home({ allPostsData }: any) {
         </p>
         <ul>
           {allPostsData.map(({ id, date, title, desc }: PostMeta) => (
-            <li key={id} className="mb-4">
+            <li key={id} className="my-12">
               <Link href={`/posts/${id}`}>
-                <p className="dark:text-gray-300 cursor-pointer text-3xl font-bold tracking-tight sm:text-4xl">
+                <p className="dark:text-gray-50 cursor-pointer text-3xl font-bold tracking-tight sm:text-4xl">
                   {title}
                 </p>
               </Link>
