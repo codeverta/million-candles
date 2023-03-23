@@ -137,7 +137,7 @@ export default function Content(props: any) {
                       {product.attributes.name}
                     </h5>
                   </a>
-                  <p className="flex items-center gap-1">
+                  <p className="flex items-center gap-1 dark:text-gray-200 text-gray-700">
                     <Rating
                       id={`product-${product.attributes.name}`}
                       name="simple-controlled"
@@ -150,7 +150,7 @@ export default function Content(props: any) {
                     <span>5.0</span>| <span>Terjual 1 rb+</span>
                   </p>
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                    <span className="text-2xl font-bold text-gray-900 dark:text-gray-200">
                       {toCurrency(product.attributes.price)}
                     </span>
                     <a
