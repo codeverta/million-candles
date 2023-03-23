@@ -17,12 +17,12 @@ export default function Home({ allPostsData }: any) {
         <title>Home</title>
       </Head>
 
-      <section className="">
-        <h2 className={`text-center font-bold text-lg mt-2 mb-8`}>
+      <section className="dark:bg-gray-900 min-h-screen">
+        <h2 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white text-center">
           Menerangi Kehidupan dengan Lilin: Kumpulan Cerita dan Tips Mengenai
           Lilin
         </h2>
-        <p>
+        <p className="dark:text-gray-200">
           Kumpulan blog yang membahas tentang berbagai aspek lilin, mulai dari
           sejarah dan berbagai jenis lilin, hingga cara membuat lilin sendiri
           dan bagaimana memilih lilin yang tepat untuk berbagai keperluan. Anda
@@ -35,10 +35,12 @@ export default function Home({ allPostsData }: any) {
           {allPostsData.map(({ id, date, title, desc }: PostMeta) => (
             <li key={id} className="mb-4">
               <Link href={`/posts/${id}`}>
-                <p className="text-xl cursor-pointer">{title}</p>
+                <p className="dark:text-gray-300 cursor-pointer text-3xl font-bold tracking-tight sm:text-4xl">
+                  {title}
+                </p>
               </Link>
-              <p>{desc}</p>
-              <p className="text-xs">{date}</p>
+              <p className="dark:text-gray-400">{desc}</p>
+              <p className="text-xs dark:text-gray-100">{date}</p>
             </li>
           ))}
         </ul>

@@ -14,6 +14,8 @@ use LaravelJsonApi\Core\Exceptions\JsonApiException;
 use LaravelJsonApi\Core\Responses\DataResponse;
 use LaravelJsonApi\Core\Responses\MetaResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailableUser;
 
 class AuthController extends Controller
 {
@@ -66,6 +68,14 @@ class AuthController extends Controller
             'roles' => $user->getRoleNames(),
             'permissions' => $user->getPermissionNames()
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        $name = "Rabih";
+        
+        Mail::to('rabihutomo11@gmail.com')->send(new MailableUser($name));
+
     }
 
     public function forgot(Request $request)

@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { Avatar, Chip } from "@mui/material";
 import { useGetFetchQuery } from "utils/hooks";
 import PasswordIcon from "@mui/icons-material/Password";
+import PasswordDialog from "components/molecules/PasswordDialog";
 
 function stringToColor(string: string) {
   let hash = 0;
@@ -34,6 +35,9 @@ function stringToColor(string: string) {
 
 export default function ProfileSection() {
   const router = useRouter();
+  const [state, setState] = React.useState({
+    isPasswordDialogOpen: false,
+  });
   const getSelf: any = useGetFetchQuery(["self"]);
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -44,8 +48,16 @@ export default function ProfileSection() {
     return <p>Error encountered</p>;
   }
 
+  const handlePasswordDialog = () => {
+    setState({ ...state, isPasswordDialogOpen: !state.isPasswordDialogOpen });
+  };
+
   return (
     <>
+      <PasswordDialog
+        handlePasswordDialog={handlePasswordDialog}
+        open={state.isPasswordDialogOpen}
+      />
       <div>
         <div>
           <img
@@ -73,6 +85,7 @@ export default function ProfileSection() {
               <div className="justify-stretch capitalize mt-6 flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
                 {/* <Chip color="primary" label={getSelf.data.roles[0]} /> */}
                 <button
+                  onClick={handlePasswordDialog}
                   type="button"
                   className="inline-flex items-center justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 >

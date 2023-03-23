@@ -23,6 +23,10 @@ export default function Header() {
       url: "/products",
     },
     {
+      label: "Cek Order",
+      url: "/cek-order",
+    },
+    {
       label: "Alamat",
       url: "/address",
     },
