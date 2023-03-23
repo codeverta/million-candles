@@ -10,7 +10,7 @@ function TrackOrder() {
             Cek Order
           </h2>
           <p className="mx-auto mb-8 max-w-2xl font-light text-gray-500 md:mb-12 sm:text-xl dark:text-gray-400">
-            Pantau dan track ordermu menggunakan kode unik yang kamu dapatkan
+            Pantau dan lacak ordermu menggunakan kode unik yang kamu dapatkan
             setelah memesan produk kami.
           </p>
           <form action="#">
@@ -35,9 +35,7 @@ function TrackOrder() {
                 </div>
                 <input
                   className="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                  placeholder="Enter your email"
-                  type="email"
-                  id="email"
+                  placeholder="Masukkan kode order"
                   required
                 />
               </div>
@@ -46,19 +44,13 @@ function TrackOrder() {
                   type="submit"
                   className="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer bg-primary-700 border-primary-600 sm:rounded-none sm:rounded-r-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
-                  Subscribe
+                  Cek
                 </button>
               </div>
             </div>
             <div className="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300">
-              We care about the protection of your data.{" "}
-              <a
-                href="#"
-                className="font-medium text-primary-600 dark:text-primary-500 hover:underline"
-              >
-                Read our Privacy Policy
-              </a>
-              .
+              Data yang sudah dinputkan akan muncul di bawah ini, jika memiliki
+              kendala silakan hubungi penjual.
             </div>
           </form>
         </div>

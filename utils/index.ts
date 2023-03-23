@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 interface ResourceI {
   id: string;
   type: string;
@@ -13,6 +15,12 @@ interface RootI {
   links: any;
   meta: any;
 }
+
+export const useLoaded = () => {
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => setLoaded(true), []);
+  return loaded;
+};
 
 export const toCurrency = (number: number): String => {
   return new Intl.NumberFormat("id-ID", {

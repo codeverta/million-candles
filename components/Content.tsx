@@ -2,26 +2,21 @@ import { Modal, Rating } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import api from "utils/api";
-import { getRelationships, toCurrency } from "utils";
+import { getRelationships, toCurrency, useLoaded } from "utils";
 
 const productParams = {
   "page[size]": 6,
   include: "documents",
 };
 
-export default function Content() {
+export default function Content(props: any) {
+  const { products } = props;
+  const loaded = useLoaded();
   const [state, setState] = useState<any>({
     isModalOpen: false,
     isLoading: false,
     selectedProduct: {},
     rating: [],
-  });
-  const query: UseQueryResult<any> = useQuery({
-    queryKey: ["products"],
-    queryFn: () => {
-      return api.get("products", { ...productParams });
-    },
-    staleTime: 1000 * 60 * 10,
   });
 
   const handleModal = (product: any): void => {
@@ -33,10 +28,10 @@ export default function Content() {
   };
 
   return (
-    <>
-      {state.isModalOpen && (
+    <div>
+      {state.isModalOpen && loaded && (
         <Modal
-          open={state.isModalOpen}
+          open={state.isModalOpen && loaded}
           onClose={handleModal}
           aria-labelledby="parent-modal-title"
           aria-describedby="parent-modal-description"
@@ -110,79 +105,74 @@ export default function Content() {
           Produk Kami
         </h2>
         <article className="grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-4/5 m-auto py-10">
-          {query.isLoading || query.isError ? (
-            <div>Loading...</div>
-          ) : (
-            <>
-              {query.data.data.data.map((product: any, index: number) => {
-                const documents =
-                  product.relationships.documents.data.length > 0
-                    ? getRelationships(query.data.data, product, "documents")
-                    : [];
-                const isDocumentExist = !!documents[0]?.attributes.filename;
-                return (
-                  <div
-                    key={product.id}
-                    className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
-                  >
-                    <button onClick={() => handleModal(product)}>
-                      {isDocumentExist ? (
-                        <img
-                          className="rounded-t-xl"
-                          src={
-                            process.env.NEXT_PUBLIC_BASE +
-                            "/storage/" +
-                            documents[0]?.attributes.filename
-                          }
-                          alt="product image"
-                          onError={(e: any) =>
-                            (e.target.src = "/assets/image-1@2x.jpg")
-                          }
-                        />
-                      ) : (
-                        <img
-                          className="rounded-t-xl"
-                          src="/assets/image-1@2x.jpg"
-                          alt="product image"
-                        />
-                      )}
-                    </button>
-                    <div className="px-5 pb-5">
-                      <a href="#">
-                        <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                          {product.attributes.name}
-                        </h5>
-                      </a>
-                      <Rating
-                        id={`product-${product.attributes.name}`}
-                        name="simple-controlled"
-                        value={
-                          state.rating[index] ??
-                          Math.floor(Math.random() * 5) + 1
-                        }
-                        onChange={(event, newValue) => {
-                          // setStat(newValue);
-                        }}
-                      />
-                      <div className="flex items-center justify-between">
-                        <span className="text-3xl font-bold text-gray-900 dark:text-white">
-                          {toCurrency(product.attributes.price)}
-                        </span>
-                        {/* <a
-                          href="#"
-                          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        >
-                          Add to cart
-                        </a> */}
-                      </div>
-                    </div>
+          {products.data.map((product: any, index: number) => {
+            const documents =
+              product.relationships.documents.data.length > 0
+                ? getRelationships(products, product, "documents")
+                : [];
+            const isDocumentExist = !!documents[0]?.attributes.filename;
+            return (
+              <div
+                key={product.id}
+                className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+              >
+                <button onClick={() => handleModal(product)}>
+                  {isDocumentExist ? (
+                    <img
+                      className="rounded-t-xl"
+                      src={
+                        process.env.NEXT_PUBLIC_BASE +
+                        "/storage/" +
+                        documents[0]?.attributes.filename
+                      }
+                      alt="product image"
+                      onError={(e: any) =>
+                        (e.target.src = "/assets/image-1@2x.jpg")
+                      }
+                    />
+                  ) : (
+                    <img
+                      className="rounded-t-xl"
+                      src="/assets/image-1@2x.jpg"
+                      alt="product image"
+                    />
+                  )}
+                </button>
+                <div className="px-5 pb-5">
+                  <a href="#">
+                    <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                      {product.attributes.name}
+                    </h5>
+                  </a>
+                  <p className="flex items-center gap-1">
+                    <Rating
+                      id={`product-${product.attributes.name}`}
+                      name="simple-controlled"
+                      max={1}
+                      value={1}
+                      onChange={(event, newValue) => {
+                        // setStat(newValue);
+                      }}
+                    />
+                    <span>5.0</span>| <span>Terjual 1 rb+</span>
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                      {toCurrency(product.attributes.price)}
+                    </span>
+                    <a
+                      href="#"
+                      className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                    >
+                      Keranjang
+                    </a>
                   </div>
-                );
-              })}
-            </>
-          )}
+                </div>
+              </div>
+            );
+          })}
         </article>
       </main>
-    </>
+    </div>
   );
 }

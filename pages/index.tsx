@@ -47,13 +47,13 @@ const features = [
   },
 ];
 function Home(props: any) {
-  const { products } = props;
-  console.log({ products });
+  const { products, posts } = props;
+  console.log({ products, posts });
 
   return (
     <div className="dark:bg-gray-900 bg-white text-gray-900 dark:text-white">
       <Hero />
-      <Content />
+      <Content products={products} />
       <section className="">
         <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
           <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
@@ -103,14 +103,16 @@ function Home(props: any) {
                   <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
                     {features.map((feature) => (
                       <div key={feature.name} className="relative pl-9">
-                        <dt className="inline font-semibold text-gray-400">
+                        <dt className="inline dark:text-white font-semibold text-gray-400">
                           <feature.icon
                             className="absolute top-1 left-1 h-5 w-5 text-indigo-600"
                             aria-hidden="true"
                           />
                           {feature.name}
                         </dt>{" "}
-                        <dd className="inline">{feature.description}</dd>
+                        <dd className="dark:text-gray-400 inline">
+                          {feature.description}
+                        </dd>
                       </div>
                     ))}
                   </dl>
@@ -144,7 +146,7 @@ function Home(props: any) {
                 menerangi kehidupan kita.
               </p>
             </div>
-            <div className="mx-auto dark:text-white mt-10 grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+            {/* <div className="mx-auto dark:text-white mt-10 grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
               {posts.map((post: any) => (
                 <article
                   key={post.id}
@@ -192,7 +194,7 @@ function Home(props: any) {
                   </div>
                 </article>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
         {/* Testimonial */}
@@ -244,19 +246,15 @@ Home.getLayout = function (page: React.ReactNode) {
 export default Home;
 
 export async function getStaticProps() {
-  const res = await fetch(`http://127.0.0.1:8000/api/v1/products`, {
-    headers: {
-      Accept: "application/vnd.api+json",
-      "Content-Type": "application/vnd.api+json",
-    },
+  const products = await api.get("products", {
+    "page[size]": 6,
+    include: "documents",
   });
-  const products = await res.json();
-  console.log({ products });
   const posts = getSortedPostsData();
 
   return {
     props: {
-      products,
+      products: products.data,
       posts: posts.slice(0, 3),
     },
   };
