@@ -1,10 +1,11 @@
 import Layout from "components/layout/Landing";
+import api from "utils/api";
 import { Content } from "../components";
 
-function Product() {
+function Product({ products }: any) {
   return (
     <div className="pt-24 dark:bg-gray-900">
-      <Content />
+      <Content products={products} />
     </div>
   );
 }
@@ -14,3 +15,15 @@ Product.getLayout = function (page: React.ReactNode) {
 };
 
 export default Product;
+
+export async function getServerSideProps() {
+  const products = await api.get("products", {
+    include: "documents",
+  });
+
+  return {
+    props: {
+      products: products.data,
+    },
+  };
+}

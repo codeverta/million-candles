@@ -7,8 +7,10 @@ const api = {
 
     axios.interceptors.request.use(
       (config) => {
-        const token = localStorage.getItem("token");
-        if (token) config.headers.Authorization = `Bearer ${token}`;
+        if (typeof window !== "undefined") {
+          const token = localStorage.getItem("token");
+          if (token) config.headers.Authorization = `Bearer ${token}`;
+        }
         config.headers["Content-Type"] = "application/vnd.api+json";
         config.headers["Accept"] = "application/vnd.api+json";
         return config;
@@ -19,8 +21,10 @@ const api = {
     );
 
     axios.interceptors.response.use(null, (error) => {
-      if (error.response.status === 401) {
-        window.location.href = "/";
+      if (typeof window !== "undefined") {
+        if (error.response.status === 401) {
+          window.location.href = "/";
+        }
       }
       try {
         error.response.data.errors.forEach((it: any) => {
