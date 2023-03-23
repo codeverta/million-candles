@@ -27,7 +27,7 @@ const features = [
 ];
 function Home(props: any) {
   const { products, posts } = props;
-
+  console.log({ products });
   return (
     <Layout>
       <div className="dark:bg-gray-900 bg-white text-gray-900 dark:text-white">
@@ -224,14 +224,20 @@ export default Home;
 
 export async function getServerSideProps() {
   try {
-    const products = await api.get("products", {
-      "page[size]": 6,
-      include: "documents",
-    });
+    const products = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_API}/products?include=documents`,
+      {
+        headers: {
+          Accept: "application/vnd.api+json",
+          "Content-Type": "application/vnd.api+json",
+        },
+      }
+    ).then((res) => res.json());
+    console.log({ products });
     const posts = getSortedPostsData();
     return {
       props: {
-        products: products.data,
+        products: products,
         posts: posts.slice(0, 3),
       },
     };
