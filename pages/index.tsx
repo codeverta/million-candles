@@ -222,7 +222,7 @@ function Home(props: any) {
 
 export default Home;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const posts = getSortedPostsData();
   return {
     props: {
