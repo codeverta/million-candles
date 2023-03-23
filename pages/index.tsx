@@ -27,7 +27,6 @@ const features = [
 ];
 function Home(props: any) {
   const { products, posts } = props;
-  console.log({ products, posts });
 
   return (
     <Layout>
@@ -224,16 +223,25 @@ function Home(props: any) {
 export default Home;
 
 export async function getServerSideProps() {
-  const products = await api.get("products", {
-    "page[size]": 6,
-    include: "documents",
-  });
-  const posts = getSortedPostsData();
-
-  return {
-    props: {
-      products: products.data,
-      posts: posts.slice(0, 3),
-    },
-  };
+  try {
+    const products = await api.get("products", {
+      "page[size]": 6,
+      include: "documents",
+    });
+    const posts = getSortedPostsData();
+    return {
+      props: {
+        products: products.data,
+        posts: posts.slice(0, 3),
+      },
+    };
+  } catch (error) {
+    console.log({ error });
+    return {
+      props: {
+        products: {},
+        posts: [],
+      },
+    };
+  }
 }
