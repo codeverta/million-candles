@@ -1,5 +1,6 @@
 ---
 title: "Aroma Terapi dengan Lilin: Menyembuhkan Tubuh dan Pikiran Anda"
+date: "2023-03-24"
 tag: "Aroma Terapi, Lilin Aromaterapi, Manfaat Kesehatan, Mengurangi Stres, Meningkatkan Kualitas Tidur, Meredakan Nyeri, Menenangkan Pikiran, Minyak Esensial"
 desc: "Lilin aromaterapi tidak hanya memberikan keharuman yang menyenangkan, tetapi juga dapat memberikan manfaat kesehatan yang luar biasa bagi tubuh dan pikiran Anda. Dalam artikel ini, Anda akan mempelajari tentang berbagai manfaat kesehatan dari lilin aromaterapi, seperti mengurangi stres dan kecemasan, meningkatkan kualitas tidur, meredakan nyeri, menenangkan pikiran, serta cara kerja dari aroma terapi yang terdapat pada minyak esensial. Dengan menggunakan lilin aromaterapi, Anda dapat merasakan manfaat kesehatan alami tanpa menggunakan obat-obatan kimia."
 ---
