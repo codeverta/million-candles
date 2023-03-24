@@ -1,7 +1,7 @@
 ---
 title: "Soy Candle vs. Wax Candle: Mana yang Lebih Baik untuk Lingkungan?"
 date: "2021-04-22"
-desc: "Lilin aromaterapi"
+desc: "Artikel ini membahas perbandingan antara lilin kedelai (soy candle) dan lilin biasa (wax candle) dari sudut pandang lingkungan. Kami menjelaskan bagaimana kedua jenis lilin dibuat dan dampaknya terhadap lingkungan, serta keuntungan dan kerugian dari masing-masing jenis lilin. Dengan membaca artikel ini, Anda akan mendapatkan informasi yang berguna untuk membuat keputusan yang bijaksana dalam memilih jenis lilin yang lebih ramah lingkungan."
 tags: "lilin aromaterapi, blog, souvenir, hiasan, romantis"
 ---
 
