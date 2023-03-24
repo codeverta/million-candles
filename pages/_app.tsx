@@ -36,7 +36,7 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
   const siteUrl = "https://souvenirlilin.com";
   const twitterHandle = "@souvenirlilin";
   const keywords =
-    "lilin aromaterapi jogja, lilin batang, souvenir cantik, souvenir jogja, ud million candles, souvenir lilin, lilin warna, lilin hias, lilin berkualitas, umkm";
+    "jual lilin, jual lilin jogja, lilin aromaterapi jogja, lilin batang, souvenir cantik, souvenir jogja, ud million candles, souvenir lilin, lilin warna, lilin hias, lilin berkualitas, umkm";
 
   return (
     <>

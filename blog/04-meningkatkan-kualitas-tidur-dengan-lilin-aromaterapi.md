@@ -1,7 +1,7 @@
 ---
 title: "Meningkatkan Kualitas Tidur dengan Lilin Aromaterapi"
 date: "2023-03-24"
-desc: "Lilin aromaterapi dapat membantu meningkatkan kualitas tidur dengan cara merelaksasi otot-otot dan meredakan kecemasan. Beberapa aroma lilin yang dapat membantu meningkatkan kualitas tidur adalah lavender, chamomile, dan vanilla. Lilin aromaterapi terbuat dari bahan alami dan memiliki aroma yang menyenangkan. Dalam artikel ini, Anda akan mempelajari lebih lanjut tentang bagaimana lilin aromaterapi dapat membantu meningkatkan kualitas tidur Anda dan memberikan manfaat untuk kesehatan fisik dan mental Anda.
+desc: "Lilin aromaterapi dapat membantu meningkatkan kualitas tidur dengan cara merelaksasi otot-otot dan meredakan kecemasan. Beberapa aroma lilin yang dapat membantu meningkatkan kualitas tidur adalah lavender, chamomile, dan vanilla. Lilin aromaterapi terbuat dari bahan alami dan memiliki aroma yang menyenangkan. Dalam artikel ini, Anda akan mempelajari lebih lanjut tentang bagaimana lilin aromaterapi dapat membantu meningkatkan kualitas tidur Anda dan memberikan manfaat untuk kesehatan fisik dan mental Anda."
 tags: "Lilin Aromaterapi, Meningkatkan Kualitas Tidur, Aroma Lavender, Chamomile, Vanilla, Kesehatan Fisik dan Mental"
 ---
 
