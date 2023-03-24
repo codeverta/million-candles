@@ -22,6 +22,7 @@ export default function Document() {
           `,
           }}
         />
+        <link rel="manifest" href="/manifest.json" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
       </Head>
       <body>

@@ -33,7 +33,7 @@ export default function Home({ allPostsData }: any) {
         </p>
         <ul>
           {allPostsData.map(({ id, date, title, desc }: PostMeta) => (
-            <li key={id} className="my-12">
+            <li key={id} className="py-12">
               <Link href={`/posts/${id}`}>
                 <p className="dark:text-gray-50 cursor-pointer text-3xl font-bold tracking-tight sm:text-4xl">
                   {title}
