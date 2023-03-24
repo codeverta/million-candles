@@ -32,7 +32,7 @@ class ProductController extends Controller
     public function creating(ProductRequest $request, ProductQuery $query): void
     {
         // do something only on creating...
-        dd($request, $query);
+        // dd($request, $query);
     }
 
 }
