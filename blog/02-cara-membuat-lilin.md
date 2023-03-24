@@ -1,7 +1,7 @@
 ---
 title: "Membuat Lilin Sendiri di Rumah: Panduan Praktis untuk Pemula"
 date: "2021-04-22"
-desc: "Cara membuat lilin di rumah dengan mudah"
+desc: "Artikel ini memberikan panduan praktis bagi pemula yang ingin mencoba membuat lilin sendiri di rumah. Kami menjelaskan langkah-langkah yang mudah diikuti dan bahan yang dibutuhkan untuk membuat lilin berbagai jenis, seperti lilin tealight, lilin pijat, dan lilin aromaterapi. Selain itu, kami juga memberikan tips dan trik untuk mendapatkan hasil yang maksimal dalam membuat lilin, serta cara untuk menghias lilin agar lebih menarik dan unik. Dengan membaca artikel ini, Anda akan dapat membuat lilin sendiri yang dapat digunakan untuk dekorasi rumah, hadiah, atau bahkan bisnis kecil."
 tags: "lilin aromaterapi, blog, souvenir, hiasan, romantis"
 ---
 
