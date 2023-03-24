@@ -2,7 +2,7 @@
 title: "Lilin Beeswax vs Lilin Parafin: Mana yang Lebih Baik untuk Kesehatan dan Lingkungan?"
 date: "2023-03-24"
 desc: "Artikel ini membahas perbandingan antara lilin beeswax dan lilin parafin dari sudut pandang kesehatan dan lingkungan. Selain itu, di akhir artikel, kami juga mempromosikan toko kami yang menawarkan berbagai produk lilin beeswax berkualitas tinggi yang aman dan ramah lingkungan. Dengan membeli produk dari toko kami, Anda tidak hanya mendukung usaha kecil lokal, tetapi juga membantu menjaga lingkungan yang lebih sehat dan lestari."
-tag: "Lilin beeswax, Lilin parafin, Lingkungan, Kesehatan, Produk lilin berkualitas, Toko lilin"
+tags: "Lilin beeswax, Lilin parafin, Lingkungan, Kesehatan, Produk lilin berkualitas, Toko lilin"
 ---
 
 Lilin adalah salah satu cara yang populer untuk menciptakan suasana yang nyaman dan romantis di rumah. Tetapi, pertanyaannya adalah, apakah bahan baku lilin yang digunakan aman dan ramah lingkungan? Ada dua jenis bahan baku lilin yang paling umum digunakan, yaitu lilin beeswax dan lilin parafin. Dalam artikel ini, kita akan membahas perbedaan antara keduanya dan menentukan mana yang lebih baik untuk kesehatan dan lingkungan.
