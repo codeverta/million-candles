@@ -45,6 +45,7 @@ class ProductSchema extends Schema
             ID::make(),
             Str::make('name'),
             Str::make('description'),
+            Str::make('code'),
             Number::make('stock'),
             Number::make('price'),
             BelongsTo::make('product-categories'),
