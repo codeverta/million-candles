@@ -4,6 +4,9 @@ import Layout from "components/layout/Landing";
 import { CheckRounded, CloudDone, RoundaboutLeft } from "@mui/icons-material";
 import { getSortedPostsData } from "lib/posts";
 import api from "utils/api";
+import Head from "next/head";
+import Script from "next/script";
+import { keyframes } from "@emotion/react";
 
 const features = [
   {
@@ -25,11 +28,84 @@ const features = [
     icon: CheckRounded,
   },
 ];
+
+// https://codepen.io/muhammad-arkam/pen/PooooGE
+const changeWord = keyframes`{
+    0% { opacity: 2; animation-timing-function: ease-out; width: 0px; }
+    10% { opacity: 1; width: 20%; }
+	20% { opacity: 1; width: 30%; }
+    27% { opacity: 0; width: 50%; }
+    /* 100% { opacity: 0; } */
+}
+`;
+
+const css = `
+.wrapper{
+	width: 50%;
+	position: absolute;
+	font-family: 'Roboto';
+    font-size : 4vh;
+    background-color: black;
+}
+.rw-words span{
+	position: absolute;
+    left: 80%;
+    top: 820%;
+	opacity: 0;
+	overflow: hidden;
+	width: 100%;
+	/* color: black; */
+    /* background-color:black; */
+}
+.rw-sentence span{
+	color: #444;
+	white-space: nowrap;
+	font-size: 200%;
+	font-weight: normal;
+}
+.rw-words-2 span{
+	animation: rotateWordsSecond 5s linear infinite 0s;
+}
+.rw-words span:nth-child(2) { 
+	animation-delay: 1s; 
+	color: #fff;
+}
+.rw-words span:nth-child(3) { 
+	animation-delay: 2s; 
+	color: #fff;	
+}
+.rw-words span:nth-child(4) { 
+	animation-delay: 3s; 
+	color: #fff;
+}
+.rw-words span:nth-child(5) { 
+	animation-delay: 4s; 
+	color: #fff;
+}
+.rw-words span:nth-child(6) {  
+	animation-delay: 5s; 
+	color: #fff;
+}
+`;
+
 function Home(props: any) {
   const { posts } = props;
   console.log({ posts });
   return (
     <Layout>
+      <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `{
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "url": "https://www.souvenirlilin.com",
+            "logo": "https://www.souvenirlilin.com/logolilin.png"
+          }`,
+          }}
+          type="application/ld+json"
+        />
+      </Head>
       <div className="dark:bg-gray-900 bg-white text-gray-900 dark:text-white">
         <Hero />
         <Content />
