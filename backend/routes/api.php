@@ -31,8 +31,8 @@ Route::prefix('/v1')->group(function () {
     Route::post('/auth/reset', [AuthController::class, 'reset']);
     Route::get('/auth/self', [AuthController::class, 'me'])->middleware('auth:sanctum');
     Route::get('/notifications', [NotificationController::class, 'index'])->middleware('auth:sanctum');
-    Route::prefix('/-actions', function() {
-
+    Route::prefix('/-actions')->group(function () {
+        Route::get('/totalSales', [OrderController::class, 'totalSales']);
     });
 });
 

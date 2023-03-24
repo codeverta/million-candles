@@ -1,0 +1,32 @@
+{
+  "theme_color": "#f69435",
+  "background_color": "#fdac5d",
+  "display": "browser",
+  "scope": "/",
+  "start_url": "/",
+  "name": "Million Candles",
+  "short_name": "Souvenir Lilin Jogja",
+  "description": "Kami adalah UMKM yang menyediakan berbagai macam jenis lilin berkualitas tinggi, mulai dari lilin aromaterapi, lilin souvenir, lilin warna, lilin hias dan masih banyak lagi. Kami menawarkan lilin hias yang indah untuk souvenir yang cocok untuk acara apa pun. Dari pernikahan hingga acara perusahaan atau perjalanan, lilin hias souvenir kami adalah pilihan yang tepat untuk membuat kenangan yang tak terlupakan.",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
