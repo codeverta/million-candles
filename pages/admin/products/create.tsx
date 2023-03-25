@@ -82,7 +82,7 @@ function CreateProduct() {
       if (tag) {
         setVariantDropdown({
           ...variantDropdown,
-          selected: [...variantDropdown.selected, tag],
+          // selected: [...variantDropdown.selected, tag],
         });
       }
     }
