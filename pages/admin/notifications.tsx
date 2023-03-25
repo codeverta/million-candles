@@ -27,7 +27,7 @@ function Notifications() {
                 className="inline-flex items-center mx-2"
                 color="primary"
                 size="small"
-                label={notification.data.buyer}
+                label={notification.data.destination_user.email}
               />
               telah membuat order dengan kode {notification.data.code}
             </ListItemButton>
