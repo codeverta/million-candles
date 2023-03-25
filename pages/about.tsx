@@ -1,4 +1,5 @@
 import Layout from "components/layout/Landing";
+import Head from "next/head";
 import { marked } from "marked";
 
 const text = marked.parse(`
@@ -17,12 +18,20 @@ Jika Anda ingin menambah suasana romantis di rumah Anda atau mencari hadiah yang
 
 function About() {
   return (
-    <div className="w-screen dark:bg-gray-900 bg-white text-gray-600 dark:text-white">
-      <article
-        className="  dark:prose-headings:text-white prose-p:text-gray-400 py-32 prose prose-xl m-auto"
-        dangerouslySetInnerHTML={{ __html: text }}
-      ></article>
-    </div>
+    <>
+      <Head>
+        <title>
+          Tentang Kami | UD Million Candles - Produsen Lilin Aromaterapi
+          Souvenir Lilin Jogja, Lilin Warna, Lilin Hias dan Lain-lain
+        </title>
+      </Head>
+      <div className="w-screen dark:bg-gray-900 bg-white text-gray-600 dark:text-white">
+        <article
+          className="  dark:prose-headings:text-white prose-p:text-gray-400 py-32 prose prose-xl m-auto"
+          dangerouslySetInnerHTML={{ __html: text }}
+        ></article>
+      </div>
+    </>
   );
 }
 

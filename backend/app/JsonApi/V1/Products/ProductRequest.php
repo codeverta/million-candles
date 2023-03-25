@@ -24,7 +24,8 @@ class ProductRequest extends ResourceRequest
         }
         return [
             'name' => ['required', 'string', $uniquePost],
-            'description' => ['required', 'string'],
+            'code' => ['string'],
+		'description' => ['required', 'string'],
             'product-categories' => JsonApiRule::toOne('product-categories'),
             'price' => ['required', JsonApiRule::number()],
             'stock' => ['required', JsonApiRule::number()],
