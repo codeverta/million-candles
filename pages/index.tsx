@@ -134,7 +134,7 @@ function Home(props: any) {
             <div className="grid grid-cols-2 gap-4 mt-8">
               <img
                 className="w-full rounded-lg"
-                src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png"
+                src="/assets/lilin1.jpeg"
                 alt="office content 1"
               />
               <img
@@ -175,9 +175,9 @@ function Home(props: any) {
                   </div>
                 </div>
                 <img
-                  src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
+                  src="/assets/lilin.png"
                   alt="Product screenshot"
-                  className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
+                  className="w-[48rem] max-w-none rounded-2xl shadow-2xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
                   width={2432}
                   height={1442}
                 />
