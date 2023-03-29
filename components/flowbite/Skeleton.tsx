@@ -24,7 +24,7 @@ function Skeleton() {
           <div className="h-3 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
           <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
         </div>
-        <span class="sr-only">Loading...</span>
+        <span className="sr-only">Loading...</span>
       </div>
     </div>
   );
