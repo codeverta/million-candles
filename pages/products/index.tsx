@@ -1,6 +1,6 @@
 import Layout from "components/layout/Landing";
 import Head from "next/head";
-import { Content } from "../components";
+import { Content } from "components";
 
 function Product() {
   return (

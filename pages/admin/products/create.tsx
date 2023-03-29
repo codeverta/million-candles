@@ -1,7 +1,9 @@
 import { List, ListItem, TextField, Button, Autocomplete } from "@mui/material";
+import { useEffect } from "react";
 import AdminLayout from "components/layout/AdminLayout";
 import React, { useMemo, useRef, useState } from "react";
 import { FilePond, registerPlugin } from "react-filepond";
+import { useForm } from "react-hook-form";
 
 // Import FilePond styles
 import "filepond/dist/filepond.min.css";
@@ -13,11 +15,19 @@ import SearchInput from "components/mui/SearchInput";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useRouter } from "next/router";
+import { Controller } from "react-hook-form";
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 function CreateProduct() {
   const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    control,
+    formState: { errors },
+  } = useForm();
   const productFileRef = useRef<null | any>(null);
   const getProductCategory = useQuery({
     queryKey: ["product-categories"],
@@ -60,6 +70,22 @@ function CreateProduct() {
       },
     ],
   });
+
+  useEffect(() => {
+    if (router.query.id) {
+      const id = router.query.id;
+      api.get(`products/${id}`).then((res: any) => {
+        setState({
+          ...state,
+          name: res.data.data.attributes.name,
+          price: res.data.data.attributes.price,
+          stock: res.data.data.attributes.stock,
+          description: res.data.data.attributes.description,
+        });
+      });
+    }
+    return () => {};
+  }, []);
 
   const onAddFile = () => {
     console.log({ productFileRef });
@@ -130,15 +156,23 @@ function CreateProduct() {
   };
 
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmitProduct)}>
       <List className="pb-32">
         <ListItem>
-          <TextField
-            className="w-full"
-            label="Nama"
-            placeholder="Masukkan Nama"
-            helperText="Wajib diisi"
-            onChange={(e) => setState({ ...state, name: e.target.value })}
+          <Controller
+            control={control}
+            name="name"
+            render={(field) => (
+              <TextField
+                {...field}
+                className="w-full"
+                label="Nama"
+                placeholder="Masukkan Nama"
+                helperText="Wajib diisi"
+                value={state.name}
+                onChange={(e) => setState({ ...state, name: e.target.value })}
+              />
+            )}
           />
         </ListItem>
         <ListItem>
@@ -147,6 +181,7 @@ function CreateProduct() {
             label="Harga"
             placeholder="Masukkan Harga"
             helperText="Wajib diisi"
+            value={state.price}
             onChange={(e) =>
               setState({ ...state, price: parseInt(e.target.value) })
             }
@@ -158,6 +193,7 @@ function CreateProduct() {
             label="Kode"
             placeholder="Masukkan Kode"
             helperText="Wajib diisi"
+            value={state.code}
             onChange={(e) => setState({ ...state, code: e.target.value })}
           />
         </ListItem>
@@ -234,18 +270,18 @@ function CreateProduct() {
         </ListItem>
         <ListItem>
           <Button
+            type="submit"
             variant="contained"
             color="primary"
             className="w-full bg-blue-500"
             title="Tambah Produk"
-            onClick={onSubmitProduct}
             disabled={!state.productCategoryId}
           >
             Tambah Produk
           </Button>
         </ListItem>
       </List>
-    </>
+    </form>
   );
 }
 

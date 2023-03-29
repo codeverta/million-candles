@@ -2,6 +2,8 @@ import { Modal, Rating } from "@mui/material";
 import { useState } from "react";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { getRelationships, toCurrency, useLoaded } from "utils";
+import Loading from "components/flowbite/Loading";
+import Skeleton from "components/flowbite/Skeleton";
 import api from "utils/api";
 
 const productParams = {
@@ -13,7 +15,7 @@ export default function Content() {
   const loaded = useLoaded();
   const query: UseQueryResult<any> = useQuery({
     queryKey: ["products"],
-    queryFn: () => {
+    queryFn: async () => {
       return api.get("products", { ...productParams });
     },
     staleTime: 1000 * 60 * 10,
@@ -113,7 +115,15 @@ export default function Content() {
         </h2>
         <article className="grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-4/5 m-auto py-10">
           {query.isLoading || query.isError ? (
-            <div>Loading...</div>
+            <>
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((it: number) => {
+                return (
+                  <div className="text-center">
+                    <Skeleton />
+                  </div>
+                );
+              })}
+            </>
           ) : (
             <>
               {" "}
@@ -126,12 +136,12 @@ export default function Content() {
                 return (
                   <div
                     key={product.id}
-                    className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+                    className="max-w-sm border border-gray-200 bg-white rounded shadow-md dark:bg-gray-800 dark:border-gray-700"
                   >
                     <button onClick={() => handleModal(product)}>
                       {isDocumentExist ? (
                         <img
-                          className="rounded-t-xl"
+                          className="rounded"
                           src={
                             process.env.NEXT_PUBLIC_BASE +
                             "/storage/" +
@@ -144,7 +154,7 @@ export default function Content() {
                         />
                       ) : (
                         <img
-                          className="rounded-t-xl"
+                          className="rounded"
                           src="/assets/image-1@2x.jpg"
                           alt="product image"
                         />
