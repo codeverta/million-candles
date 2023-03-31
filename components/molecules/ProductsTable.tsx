@@ -121,7 +121,7 @@ export default function ProductsTable() {
   };
 
   const handleEdit = () => {
-    router.push(`products/${selected[0]}`);
+    router.push(`products/create?id=${selected[0]}`);
   };
 
   const handleAlertAction = async ({
