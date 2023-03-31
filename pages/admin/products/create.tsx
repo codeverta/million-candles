@@ -1,9 +1,17 @@
-import { List, ListItem, TextField, Button, Autocomplete } from "@mui/material";
+import {
+  List,
+  ListItem,
+  TextField,
+  Button,
+  Autocomplete,
+  IconButton,
+} from "@mui/material";
 import { useEffect } from "react";
 import AdminLayout from "components/layout/AdminLayout";
 import React, { useMemo, useRef, useState } from "react";
 import { FilePond, registerPlugin } from "react-filepond";
 import { useForm } from "react-hook-form";
+import { Cancel } from "@mui/icons-material";
 
 // Import FilePond styles
 import "filepond/dist/filepond.min.css";
@@ -18,7 +26,9 @@ import { useRouter } from "next/router";
 import { Controller } from "react-hook-form";
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
-
+const productParams = {
+  include: "documents,product-categories",
+};
 function CreateProduct() {
   const router = useRouter();
   const {
@@ -52,7 +62,7 @@ function CreateProduct() {
     }));
   }, [getProductCategory]);
   const [files, setFiles] = useState<any>([]);
-  const [state, setState] = useState({
+  const [state, setState] = useState<any>({
     code: "",
     name: "",
     price: 0,
@@ -60,6 +70,7 @@ function CreateProduct() {
     variantInput: "",
     description: "",
     productCategoryId: "",
+    product: null,
   });
   const [variantDropdown, setVariantDropdown] = useState({
     value: "",
@@ -74,13 +85,11 @@ function CreateProduct() {
   useEffect(() => {
     if (router.query.id) {
       const id = router.query.id;
-      api.get(`products/${id}`).then((res: any) => {
+      api.get(`products/${id}`, productParams).then((res: any) => {
         setState({
           ...state,
-          name: res.data.data.attributes.name,
-          price: res.data.data.attributes.price,
-          stock: res.data.data.attributes.stock,
-          description: res.data.data.attributes.description,
+          ...res.data.data.attributes,
+          product: res.data,
         });
       });
     }
@@ -95,7 +104,7 @@ function CreateProduct() {
     _e: any,
     val: { label: string; value: string }
   ) => {
-    setState({ ...state, productCategoryId: val.value });
+    setState({ ...state, productCategoryId: val?.value });
   };
 
   const onProcessFile = () => {};
@@ -115,8 +124,10 @@ function CreateProduct() {
   };
 
   const onSubmitProduct = async () => {
+    const productId = router.query.id;
     const payload = {
       data: {
+        id: productId,
         type: "products",
         attributes: {
           code: state.code,
@@ -136,18 +147,33 @@ function CreateProduct() {
       },
     };
     try {
-      const res = await api.post("products", payload);
+      if (productId) {
+        api.patch(`products/${productId}`, payload);
+        const batchReq = productFileRef.current.props.files.map((it: any) => {
+          const formData = new FormData();
+          formData.append("documentable_type", "products");
+          formData.append("documentable_id", productId as string);
+          formData.append("image", it.file);
+          return api.post("documents/-actions/upload", formData);
+        });
 
-      const batchReq = productFileRef.current.props.files.map((it: any) => {
-        const formData = new FormData();
-        formData.append("documentable_type", "products");
-        formData.append("documentable_id", res.data.data.id);
-        formData.append("image", it.file);
-        return api.post("documents/-actions/upload", formData);
-      });
+        await Promise.all(batchReq);
+        toast.success("Produk Berhasil Diubah");
+      } else {
+        const res = await api.post("products", payload);
 
-      await Promise.all(batchReq);
-      toast.success("Produk Berhasil Ditambahkan");
+        const batchReq = productFileRef.current.props.files.map((it: any) => {
+          const formData = new FormData();
+          formData.append("documentable_type", "products");
+          formData.append("documentable_id", res.data.data.id);
+          formData.append("image", it.file);
+          return api.post("documents/-actions/upload", formData);
+        });
+
+        await Promise.all(batchReq);
+        toast.success("Produk Berhasil Ditambahkan");
+      }
+
       router.push("/admin/products");
     } catch (error) {
       console.error({ error });
@@ -159,20 +185,13 @@ function CreateProduct() {
     <form onSubmit={handleSubmit(onSubmitProduct)}>
       <List className="pb-32">
         <ListItem>
-          <Controller
-            control={control}
-            name="name"
-            render={(field) => (
-              <TextField
-                {...field}
-                className="w-full"
-                label="Nama"
-                placeholder="Masukkan Nama"
-                helperText="Wajib diisi"
-                value={state.name}
-                onChange={(e) => setState({ ...state, name: e.target.value })}
-              />
-            )}
+          <TextField
+            className="w-full"
+            label="Nama"
+            placeholder="Masukkan Nama"
+            helperText="Wajib diisi"
+            value={state.name}
+            onChange={(e) => setState({ ...state, name: e.target.value })}
           />
         </ListItem>
         <ListItem>
@@ -202,6 +221,7 @@ function CreateProduct() {
             className="w-full"
             label="Stok"
             placeholder="Stok"
+            value={state.stock}
             onChange={(e) =>
               setState({ ...state, stock: parseInt(e.target.value) })
             }
@@ -215,6 +235,7 @@ function CreateProduct() {
             placeholder="Deskripsi"
             multiline
             minRows={2}
+            value={state.description}
             onChange={(e) =>
               setState({ ...state, description: e.target.value })
             }
@@ -222,6 +243,7 @@ function CreateProduct() {
         </ListItem>
         <ListItem>
           <SearchInput
+            inputValue={state.product ? productCategoryOptions[0] : undefined}
             options={productCategoryOptions}
             getOptionLabel={(option: any) => option.label}
             onChange={changeProductCategory}
@@ -229,31 +251,6 @@ function CreateProduct() {
             className="!w-full"
           />
         </ListItem>
-        {/* <ListItem>
-          <Autocomplete
-            multiple
-            className="!w-full"
-            id="tags-outlined"
-            value={variantDropdown.selected}
-            options={variantDropdown.options as any}
-            getOptionLabel={(option: any) => option.value}
-            defaultValue={variantDropdown.selected}
-            clearOnBlur={false}
-            filterSelectedOptions
-            renderInput={(params) => {
-              return (
-                <TextField
-                  {...params}
-                  onChange={() =>
-                    onChangeProductVariant({ value: params.inputProps.value as string })
-                  }
-                  label="Varian Produk"
-                  placeholder="Varian"
-                />
-              );
-            }}
-          />
-        </ListItem> */}
         <ListItem>
           <FilePond
             files={files}
@@ -268,6 +265,32 @@ function CreateProduct() {
             labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
           />
         </ListItem>
+        <ListItem className="grid grid-cols-4 gap-4">
+          {router.query.id && state.product && (
+            <>
+              {state.product.included
+                .filter((it: any) => it.type == "documents")
+                .map((it: any) => {
+                  return (
+                    <span key={it.id} className="relative">
+                      <IconButton className="absolute -top-5 -left-4">
+                        <Cancel className="text-red-500" />
+                      </IconButton>
+                      <img
+                        height={100}
+                        className="!h-20 !w-20 object-contain border rounded shadow"
+                        src={
+                          process.env.NEXT_PUBLIC_BASE +
+                          "/storage/" +
+                          it.attributes.filename
+                        }
+                      />
+                    </span>
+                  );
+                })}
+            </>
+          )}
+        </ListItem>
         <ListItem>
           <Button
             type="submit"
@@ -277,7 +300,7 @@ function CreateProduct() {
             title="Tambah Produk"
             disabled={!state.productCategoryId}
           >
-            Tambah Produk
+            {router.query.id ? "Edit" : "Tambah"} Produk
           </Button>
         </ListItem>
       </List>

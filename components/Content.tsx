@@ -138,10 +138,13 @@ export default function Content() {
                     key={product.id}
                     className="max-w-sm border border-gray-200 bg-white rounded shadow-md dark:bg-gray-800 dark:border-gray-700"
                   >
-                    <button onClick={() => handleModal(product)}>
+                    <button
+                      className="mx-auto w-full"
+                      onClick={() => handleModal(product)}
+                    >
                       {isDocumentExist ? (
                         <img
-                          className="rounded"
+                          className="rounded h-40 w-full object-contain"
                           src={
                             process.env.NEXT_PUBLIC_BASE +
                             "/storage/" +
@@ -154,7 +157,7 @@ export default function Content() {
                         />
                       ) : (
                         <img
-                          className="rounded"
+                          className="rounded h-40 w-full object-contain"
                           src="/assets/image-1@2x.jpg"
                           alt="product image"
                         />
