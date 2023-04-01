@@ -31,12 +31,12 @@ export default function Home({ allPostsData }: any) {
           {allPostsData.map(({ id, date, title, desc }: PostMeta) => (
             <li key={id} className="py-12">
               <Link href={`/posts/${id}`}>
-                <p className="dark:text-gray-50 cursor-pointer text-3xl font-bold tracking-tight sm:text-4xl">
+                <h1 className="dark:text-gray-50 cursor-pointer text-3xl font-bold tracking-tight sm:text-4xl">
                   {title}
-                </p>
+                </h1>
               </Link>
               <p className="dark:text-gray-400">{desc}</p>
-              <p className="text-xs dark:text-gray-100">{date}</p>
+              <p className="text-xs dark:text-gray-100">Diupload pada {date}</p>
             </li>
           ))}
         </ul>

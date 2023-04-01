@@ -24,13 +24,17 @@ export default function Post({ postData }: any) {
           openGraph={SEO.openGraph}
         />
       </Head>
-      <div className="max-w-3xl mx-auto pt-8">
-        <p className=" dark:text-white font-semibold text-6xl">
+      <article className="max-w-3xl px-4 mx-auto pb-32">
+        <h1 className="dark:text-gray-50 py-4 cursor-pointer text-3xl font-bold tracking-tight sm:text-6xl">
           {postData.title}
+        </h1>
+        <p className="dark:text-gray-200 pt-2 pb-10">
+          Diupload pada: {postData.date}
+          <br />
+          Penulis: Rabih Utomo
+          <br />
+          Tags: {postData.tags}
         </p>
-        <p className="dark:text-gray-300 mb-16">{postData.date}</p>
-      </div>
-      <article className="max-w-3xl mx-auto pb-32">
         <div
           className="prose dark:prose-invert"
           dangerouslySetInnerHTML={{ __html: postData.contentHtml }}

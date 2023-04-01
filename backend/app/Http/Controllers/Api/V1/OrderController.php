@@ -13,6 +13,7 @@ use LaravelJsonApi\Laravel\Http\Controllers\Actions;
 use Midtrans\Config;
 use Midtrans\Snap;
 use Illuminate\Support\Facades\DB;
+use LaravelJsonApi\Core\Responses\DataResponse;
 
 class OrderController extends Controller
 {
@@ -131,5 +132,17 @@ class OrderController extends Controller
             ->sum('price_amount');
 
         return response()->json((int) $total);
+    }
+
+    public function searchOrder(Request $request)
+    {
+        $validatedData = $request->validate([
+            'code' => 'required',
+        ]);
+
+        $result = Order::with(["destinationUser", "orderDetails"])->where("code", '=', $validatedData['code'])->firstOrFail();
+
+        return DataResponse::make($result)->withServer('v1');
+        // return response()->json($result);
     }
 }

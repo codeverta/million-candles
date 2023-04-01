@@ -118,7 +118,7 @@ export default function Content() {
             <>
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((it: number) => {
                 return (
-                  <div className="text-center">
+                  <div key={it} className="text-center">
                     <Skeleton />
                   </div>
                 );
