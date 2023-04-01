@@ -1,15 +1,20 @@
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { toast } from "sonner";
 import Script from "next/script";
 import api from "utils/api";
 
 export default function Login() {
   const router = useRouter();
-  const [state, setState] = useState<{ email: string; password: string }>({
+  const [state, setState] = useState<{
+    email: string;
+    password: string;
+    isCaptchaSolved: boolean;
+  }>({
     email: "",
     password: "",
+    isCaptchaSolved: false,
   });
 
   const loginMutation = useMutation({
@@ -19,11 +24,14 @@ export default function Login() {
   });
 
   useEffect(() => {
-    console.log({ grecaptcha: window.grecaptcha });
     try {
       window.grecaptcha.render("g-recaptcha", {
         sitekey: "6LcnDhglAAAAAJLZ4B8MRtFC0lY9PEsTCMKs89AB",
-        callback: function (resp) {},
+        callback: function (res: any) {
+          if (res) {
+            setState({ ...state, isCaptchaSolved: true });
+          }
+        },
       });
     } catch (err) {
       console.log({ err });
@@ -32,6 +40,11 @@ export default function Login() {
   }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!state.isCaptchaSolved) {
+      toast.error("Isi captcha dulu");
+      return;
+    }
     event.preventDefault();
     const payload: LoginResource = {
       data: {
@@ -48,9 +61,9 @@ export default function Login() {
         toast.success("Login berhasil");
         localStorage.setItem("token", data.data.token);
         if (data.data.roles.includes("merchant")) {
-          router.push("admin");
+          router.push("/admin");
         } else if (data.data.roles.includes("buyer")) {
-          router.push("store");
+          router.push("/store");
         } else {
           console.error("role tidak ditemukan");
         }
@@ -68,8 +81,6 @@ export default function Login() {
   return (
     <>
       <section>
-        <Script src="https://www.google.com/recaptcha/api.js" />
-
         <div>
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:min-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 max-w-lg space-y-4 md:space-y-6 sm:p-8">
@@ -131,7 +142,11 @@ export default function Login() {
                 ></div>
                 <button
                   type="submit"
-                  className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className={"w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800".concat(
+                    state.isCaptchaSolved && state.email && state.password
+                      ? ""
+                      : " opacity-50 cursor-not-allowed focus:outline-none"
+                  )}
                 >
                   Sign in
                 </button>

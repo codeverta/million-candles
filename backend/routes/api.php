@@ -33,6 +33,7 @@ Route::prefix('/v1')->group(function () {
     Route::get('/notifications', [NotificationController::class, 'index'])->middleware('auth:sanctum');
     Route::prefix('/-actions')->group(function () {
         Route::get('/totalSales', [OrderController::class, 'totalSales']);
+        Route::get('/searchOrder', [OrderController::class, 'searchOrder'])->middleware('throttle:5,1');
     });
 });
 

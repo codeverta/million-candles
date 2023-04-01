@@ -36,7 +36,7 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
   const siteUrl = "https://souvenirlilin.com";
   const twitterHandle = "@souvenirlilin";
   const keywords =
-    "jual lilin, jual lilin jogja, lilin aromaterapi jogja, lilin batang, souvenir cantik, souvenir jogja, ud million candles, souvenir lilin, lilin warna, lilin hias, lilin berkualitas, umkm";
+    "jual lilin, jual lilin jogja, lilin aromaterapi jogja, lilin batang, souvenir cantik, souvenir jogja, ud million candles, souvenir lilin, lilin warna, lilin hias, lilin berkualitas, umkm, lilin, toko lilin terdekat, toko lilin, jual lilin terdekat, toko lilin jogja, lilin aromaterapi, soy wax, lilin aromaterapi jogja, jual sumbu lilin terdekat, pabrik lilin, jual lilin besar terdekat, lilin estetik, jual lilin jogja, toko lilin aromaterapi terdekat, jual lilin aromaterapi terdekat, tempat jual lilin terdekat, bahan lilin, bahan lilin karakter, bahan pembuat lilin medan, bakery, beli aroma terapi di kaliurang jogja, beli lilin, beli lilin aromaterapi di jogja, candle lilin, candle wax, dagen toko lilin, foto lilin aromaterapi, gagang lilin, gelas lilin aromaterapi jogja, grosir lilin, jalan kapten haryadi gang teratai, gondangan, sardonoharjo, kabupaten sleman, daerah istimewa yogyakarta, jual gelas lilin terapi jogja, jual kebutuhan lilin jogja, jual lilin, jual lilin aromaterapi jogja, jual lilin besar jogja, jual lilin dingin di jogja, jual lilin elektrik di jogja, jual lilin elektrik terdekat, jual lilin lebah, jual lilin lebah yogyakarta, jual lilin merah terdekat, jual lilin natal di jogja, jual lilin natal jogja, jual lilin sawit dijogja, jual lilin ulang tahun jogja, jual lilin ulang tahun terdekat, jual lilin ultah terdekat, jual soy wax terdekat, jual sumbu lilin jogja, jual sumbu lilin terdekat di jogja, jual tatakan lilin jogja, jual tealight terdekat, lilin aroma terapi johja, lilin aromaterapi di dekat yogyakarta, kota yogyakarta, daerah istimewa yogyakarta, lilin aromaterapi grafis, lilin aromaterapi terdekat, lilin aromatherapy, lilin bar, lilin candle, lilin di keleng poncowinatan, lilin elektrik, lilin estetik jogja, lilin gelas, lilin jogja, lilin kontak, lilin merah, lilin natal jogja, lilin pilar, lilin scented kab. sleman, lilin sleman";
 
   return (
     <>
@@ -70,6 +70,7 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
 
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
+          <Script src="https://www.google.com/recaptcha/api.js" />
           <Script
             type="text/javascript"
             src="https://app.sandbox.midtrans.com/snap/snap.js"
