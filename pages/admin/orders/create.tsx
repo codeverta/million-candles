@@ -327,7 +327,7 @@ function CreateOrder() {
                     <TableCell colSpan={2}>
                       <IconButton
                         onClick={() => handleDeleteRow(it)}
-                        className="absolute -top-5 -left-1"
+                        className="!absolute -top-5 -left-1"
                       >
                         <CancelIcon className="text-red-500" />
                       </IconButton>
@@ -340,7 +340,7 @@ function CreateOrder() {
                         onChange={(e) => handleProductQty(e, index)}
                         classes={{
                           input:
-                            "!rounded-sm py-[16.5px] px-[14px] border !border-gray-400 !ring-1 !focus:ring-2 !focus:ring-blue-500 !ring-gray-400",
+                            "!rounded-sm !py-[16.5px] !px-[14px] border !border-gray-400 !ring-1 !focus:ring-2 !focus:ring-blue-500 !ring-gray-400",
                         }}
                         placeholder="Jumlah"
                       />
