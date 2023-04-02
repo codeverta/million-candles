@@ -7,7 +7,7 @@ import Skeleton from "components/flowbite/Skeleton";
 import api from "utils/api";
 
 const productParams = {
-  "page[size]": 6,
+  "page[size]": 9,
   include: "documents",
 };
 
@@ -113,7 +113,7 @@ export default function Content() {
         <h2 className="text-center mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
           Produk Kami
         </h2>
-        <article className="grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-4/5 m-auto py-10">
+        <article className="grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 w-4/5 m-auto py-10">
           {query.isLoading || query.isError ? (
             <>
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((it: number) => {
@@ -136,7 +136,7 @@ export default function Content() {
                 return (
                   <div
                     key={product.id}
-                    className="max-w-sm border border-gray-200 bg-white rounded shadow-md dark:bg-gray-800 dark:border-gray-700"
+                    className="w-5/6 max-w-xs border border-gray-200 bg-white rounded shadow-md dark:bg-gray-800 dark:border-gray-700"
                   >
                     <button
                       className="mx-auto w-full"
@@ -187,9 +187,9 @@ export default function Content() {
                         </span>
                         <a
                           href="#"
-                          className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                          className="block w-fit text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                         >
-                          Keranjang
+                          + Beli
                         </a>
                       </div>
                     </div>

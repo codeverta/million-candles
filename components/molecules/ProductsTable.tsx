@@ -193,7 +193,7 @@ export default function ProductsTable() {
     return <EmptyData />;
   }
   return (
-    <div>
+    <div className="pb-16">
       <AlertDialog
         title={
           <span className="flex items-center gap-2">
@@ -210,6 +210,7 @@ export default function ProductsTable() {
       <Box sx={{ width: "100%" }}>
         <Paper sx={{ width: "100%", mb: 2 }}>
           <EnhancedTableToolbar
+            title="Produk"
             handleEdit={handleEdit}
             handleDelete={handleDeleteDialog}
             numSelected={selected.length}
