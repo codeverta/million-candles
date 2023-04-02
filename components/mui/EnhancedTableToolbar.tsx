@@ -6,12 +6,13 @@ import { alpha } from "@mui/material/styles";
 
 interface EnhancedTableToolbarProps {
   numSelected: number;
+  title: string;
   handleEdit?: () => void;
   handleDelete?: () => void;
 }
 
 export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-  const { numSelected } = props;
+  const { numSelected, title } = props;
 
   return (
     <Toolbar
@@ -43,7 +44,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           id="tableTitle"
           component="div"
         >
-          Penjualan
+          {title}
         </Typography>
       )}
       {numSelected == 1 && (

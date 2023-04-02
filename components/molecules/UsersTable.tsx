@@ -230,6 +230,7 @@ export default function UsersTable() {
       <Box sx={{ width: "100%" }}>
         <Paper sx={{ width: "100%", mb: 2 }}>
           <EnhancedTableToolbar
+            title="Pengguna"
             handleEdit={handleEdit}
             handleDelete={handleDeleteDialog}
             numSelected={selected.length}

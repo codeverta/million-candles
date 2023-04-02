@@ -144,10 +144,13 @@ export default function OrderTable() {
     return <EmptyData />;
   }
   return (
-    <div>
+    <div className="pb-16">
       <Box sx={{ width: "100%" }}>
         <Paper sx={{ width: "100%", mb: 2 }}>
-          <EnhancedTableToolbar numSelected={selected.length} />
+          <EnhancedTableToolbar
+            title="Penjualan"
+            numSelected={selected.length}
+          />
           <TableContainer>
             <Table
               aria-labelledby="tableTitle"

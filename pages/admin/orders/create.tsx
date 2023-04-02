@@ -35,7 +35,7 @@ const productParams = {
 };
 
 const userParams = {
-  "page[size]": 5,
+  // "page[size]": 5,
 };
 
 const paymentsType = [
@@ -338,12 +338,9 @@ function CreateOrder() {
                       <InputBase
                         value={it.attributes.quantity}
                         onChange={(e) => handleProductQty(e, index)}
-                        style={{
-                          padding: "16.5px 14px",
-                        }}
                         classes={{
                           input:
-                            "!rounded-sm border !border-gray-400 !ring-1 !focus:ring-2 !focus:ring-blue-500 !ring-gray-400",
+                            "!rounded-sm py-[16.5px] px-[14px] border !border-gray-400 !ring-1 !focus:ring-2 !focus:ring-blue-500 !ring-gray-400",
                         }}
                         placeholder="Jumlah"
                       />

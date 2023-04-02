@@ -22,15 +22,18 @@ function Notifications() {
       <List>
         {getNotifications.data.data.map((notification: any) => {
           return (
-            <ListItemButton className="py-4" key={notification.id}>
-              <Chip
-                className="inline-flex items-center mx-2"
-                color="primary"
-                size="small"
-                label={notification.data.destination_user.email}
-              />
-              telah membuat order dengan kode {notification.data.code}
-            </ListItemButton>
+            <>
+              {notification.data.destination_user && (
+                <ListItemButton className="py-4" key={notification.id}>
+                  <p className="text-sm">
+                    <span className="text-blue-600">
+                      {notification.data.destination_user.email}
+                    </span>{" "}
+                    telah membuat order dengan kode {notification.data.code}
+                  </p>
+                </ListItemButton>
+              )}
+            </>
           );
         })}
       </List>

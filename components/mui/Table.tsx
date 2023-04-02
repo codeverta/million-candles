@@ -232,7 +232,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           id="tableTitle"
           component="div"
         >
-          Penjualan
+          Produk
         </Typography>
       )}
       {numSelected == 1 && (
