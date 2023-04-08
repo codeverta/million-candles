@@ -18,6 +18,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useMutation } from "@tanstack/react-query";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import { Pagination } from "swiper";
 import api from "utils/api";
 import {
   BottomNavigation,
@@ -120,13 +121,13 @@ export default function ProductDialog(props: PropsI) {
           <>
             <Swiper
               slidesPerView="auto"
-              pagination={{
-                clickable: true,
-              }}
+              pagination={true}
+              modules={[Pagination]}
             >
               {getDocuments.map((document: any) => (
-                <SwiperSlide key={document.id} className="mx-1/2 max-w-xs p-1">
+                <SwiperSlide key={document.id} className=" p-1">
                   <img
+                    className="max-h-64 mx-auto"
                     key={document.id}
                     src={`${process.env.NEXT_PUBLIC_BASE}/storage/${document.attributes.filename}`}
                     onError={(e: any) =>

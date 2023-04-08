@@ -181,6 +181,12 @@ function CreateProduct() {
     }
   };
 
+  const deleteDocument = (id: string) => {
+    api.delete(`-actions/documents/${id}`).then((res) => {
+      toast.success(JSON.stringify(res.data));
+    });
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmitProduct)}>
       <List className="pb-32">
@@ -273,7 +279,10 @@ function CreateProduct() {
                 .map((it: any) => {
                   return (
                     <span key={it.id} className="relative">
-                      <IconButton className="absolute -top-5 -left-4">
+                      <IconButton
+                        onClick={() => deleteDocument(it.id)}
+                        className="!absolute -top-5 -left-4"
+                      >
                         <Cancel className="text-red-500" />
                       </IconButton>
                       <img
@@ -296,7 +305,7 @@ function CreateProduct() {
             type="submit"
             variant="contained"
             color="primary"
-            className="w-full bg-blue-500"
+            className="w-full pb-10 bg-blue-500"
             title="Tambah Produk"
             disabled={!state.productCategoryId}
           >

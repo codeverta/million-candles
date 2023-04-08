@@ -34,6 +34,7 @@ Route::prefix('/v1')->group(function () {
     Route::prefix('/-actions')->group(function () {
         Route::get('/totalSales', [OrderController::class, 'totalSales']);
         Route::get('/searchOrder', [OrderController::class, 'searchOrder'])->middleware('throttle:5,1');
+        Route::delete('/documents/{id}', [DocumentController::class, 'deleting']);
     });
 });
 

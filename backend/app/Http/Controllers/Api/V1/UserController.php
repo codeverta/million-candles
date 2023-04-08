@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\JsonApi\V1\Users\UserRequest;
 use App\Models\User;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions;
-use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
