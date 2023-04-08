@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDocumentRequest;
 use App\Models\Document;
+use Illuminate\Support\Facades\Log;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions;
 
 class DocumentController extends Controller
@@ -32,5 +33,17 @@ class DocumentController extends Controller
         ]);
 
         return response()->json($document);
+    }
+
+    public function deleting($request) 
+    {
+        try {
+            $document = Document::findOrFail($request);
+            $document->delete();
+            return response()->json(["success" => "document successfully deleted"]);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            Log::error("error deleting document");
+            return response()->json(['error' => 'Dokumen tidak ditemukan'], 404);
+        }
     }
 }
