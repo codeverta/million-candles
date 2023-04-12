@@ -305,7 +305,7 @@ function CreateProduct() {
             type="submit"
             variant="contained"
             color="primary"
-            className="w-full pb-10 bg-blue-500"
+            className="w-full bg-blue-500"
             title="Tambah Produk"
             disabled={!state.productCategoryId}
           >

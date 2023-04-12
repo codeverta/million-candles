@@ -28,7 +28,7 @@ const api = {
       }
       try {
         error.response.data.errors.forEach((it: any) => {
-          toast.error(error.detail);
+          toast.error(it.detail);
         });
       } catch (err: any) {
         console.log({ err });

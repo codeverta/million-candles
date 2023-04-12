@@ -11,12 +11,18 @@ import AuthProvider from "components/layout/AuthProvider";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import indoFormat from "dayjs/locale/id";
 import { NextSeo } from "next-seo";
+import { version } from "../package.json";
 import dayjs from "dayjs";
 
 const queryClient = new QueryClient();
 dayjs.locale(indoFormat);
 dayjs.extend(localizedFormat);
 api.init(process.env.NEXT_PUBLIC_BASE_API as string);
+
+if (typeof window !== "undefined") {
+  // @ts-ignore
+  window.version = version;
+}
 
 export default function App({ Component, pageProps }: AppLayoutProps) {
   const appProps = { getRelationship, getRelationships };
