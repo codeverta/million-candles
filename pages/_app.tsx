@@ -80,7 +80,11 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
           <Script
             type="text/javascript"
             src="https://app.sandbox.midtrans.com/snap/snap.js"
-            data-client-key="SB-Mid-client-kRWWsc4NnDa_F5Us"
+            data-client-key={
+              process.env.NODE_ENV == "production"
+                ? process.env.NEXT_PUBLIC_PROD_MIDTRANS_CLIENT_KEY
+                : process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY
+            }
           />
           <Toaster position="top-center" richColors />
           {getLayout(<Component {...pageProps} {...appProps} />)}

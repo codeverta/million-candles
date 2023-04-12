@@ -17,7 +17,7 @@ import { useRouter } from "next/router";
 import EnhancedTableToolbar from "components/mui/EnhancedTableToolbar";
 import EnhancedTableHead from "components/mui/EnhancedTableHead";
 import { getRelationship } from "utils";
-import EmptyData from "./EmptyData";
+import EmptyData from "components/molecules/EmptyData";
 
 interface Data {
   "no-resi": string;
@@ -54,7 +54,7 @@ const ordersParams = {
   include: "destination-users",
 };
 
-export default function OrderTable({ title }: { title: string }) {
+export default function Pembelian() {
   const router = useRouter();
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<any>("calories");
@@ -140,7 +140,10 @@ export default function OrderTable({ title }: { title: string }) {
     <div className="pb-16">
       <Box sx={{ width: "100%" }}>
         <Paper sx={{ width: "100%", mb: 2 }}>
-          <EnhancedTableToolbar title={title} numSelected={selected.length} />
+          <EnhancedTableToolbar
+            title="Pembelian"
+            numSelected={selected.length}
+          />
           <TableContainer>
             <Table aria-labelledby="tableTitle">
               <EnhancedTableHead
