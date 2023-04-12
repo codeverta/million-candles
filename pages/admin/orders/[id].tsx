@@ -128,7 +128,7 @@ function OrderDetail() {
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell>No. Invoice</TableCell>
+            <TableCell>NO. INVOICE</TableCell>
             <TableCell>{orders.data.attributes.code}</TableCell>
           </TableRow>
           <TableRow>

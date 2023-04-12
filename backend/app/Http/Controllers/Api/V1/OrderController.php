@@ -139,10 +139,10 @@ class OrderController extends Controller
         $validatedData = $request->validate([
             'code' => 'required',
         ]);
+        $result = DB::table('orders')
+        ->rightJoin('order_details', 'orders.id', '=', 'order_details.orders_id')
+        ->where('code', '=', $validatedData['code'])->get();
 
-        $result = Order::with(["destinationUser", "orderDetails"])->where("code", '=', $validatedData['code'])->firstOrFail();
-
-        return DataResponse::make($result)->withServer('v1');
-        // return response()->json($result);
+        return response()->json($result);
     }
 }
