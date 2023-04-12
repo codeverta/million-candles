@@ -51,7 +51,7 @@ const adminList = [
     label: "Notifikasi",
   },
   {
-    to: "/admin/orders",
+    to: "/admin/pembelian",
     icon: <ShoppingCartIcon />,
     label: "Pembelian",
   },

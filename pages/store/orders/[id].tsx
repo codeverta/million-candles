@@ -110,20 +110,17 @@ function OrderDetail() {
           }
           // @ts-ignore
           snap.pay(res.data.data.attributes.snap_token, {
-            onSuccess: function (result: any) {
+            onSuccess: function (_result: any) {
               /* You may add your own implementation here */
               toast.success("Pembayaran Berhasil!");
-              console.log(result);
             },
-            onPending: function (result: any) {
+            onPending: function (_result: any) {
               /* You may add your own implementation here */
               toast.success("Menunggu Pembayaran...");
-              console.log(result);
             },
-            onError: function (result: any) {
+            onError: function (_result: any) {
               /* You may add your own implementation here */
               toast.error("Pembayaran Gagal!");
-              console.log(result);
             },
             onClose: function () {
               /* You may add your own implementation here */

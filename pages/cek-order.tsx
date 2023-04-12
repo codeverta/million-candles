@@ -46,7 +46,6 @@ function TrackOrder() {
     queryClient.fetchQuery(["searchOrder"]);
   };
 
-  console.log({ searchOrder });
   return (
     <>
       {searchOrder.isLoading && state.isCaptchaSolved && <LoadingBackdrop />}

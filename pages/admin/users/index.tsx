@@ -3,7 +3,11 @@ import UsersTable from "components/molecules/UsersTable";
 import React from "react";
 
 function Users() {
-  return <UsersTable />;
+  return (
+    <div className="pb-24">
+      <UsersTable />
+    </div>
+  );
 }
 
 Users.getLayout = function getLayout(page: React.ReactNode) {

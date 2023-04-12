@@ -111,7 +111,6 @@ function CreateProduct() {
 
   const onChangeProductVariant = ({ value }: { value: string }) => {
     const newVal = String(value.split(","));
-    console.log(newVal);
     if (value.endsWith(",")) {
       const tag = value.slice(0, -1).trim();
       if (tag) {

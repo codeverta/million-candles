@@ -16,13 +16,12 @@ function Notifications() {
     return <LoadingBackdrop />;
   }
 
-  console.log({ getNotifications });
   return (
     <div>
       <List>
         {getNotifications.data.data.map((notification: any) => {
           return (
-            <>
+            <ListItem key={notification.id}>
               {notification.data.destination_user && (
                 <ListItemButton className="py-4" key={notification.id}>
                   <p className="text-sm">
@@ -33,7 +32,7 @@ function Notifications() {
                   </p>
                 </ListItemButton>
               )}
-            </>
+            </ListItem>
           );
         })}
       </List>

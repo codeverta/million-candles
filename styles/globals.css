@@ -11,6 +11,15 @@
   box-shadow: none;
 }
 
+[type="password"] {
+  padding: 16.5px 14px;
+}
+
+[type="password"]:focus {
+  border: 0;
+  box-shadow: none;
+}
+
 .filepond--wrapper {
   width: 100%;
 }
