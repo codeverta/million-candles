@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/kirimemail', [EmailController::class, 'index']);
 
 Route::get('/payments', function () {
     return Redirect::to('http://localhost:3000/store/orders');
