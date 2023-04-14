@@ -122,7 +122,9 @@ function TrackOrder() {
               </div>
             </form>
           </div>
-          <div>{JSON.stringify(searchOrder.data)}</div>
+          <div className="text-gray-200">
+            {JSON.stringify(searchOrder.data)}
+          </div>
         </div>
       </section>
     </>
