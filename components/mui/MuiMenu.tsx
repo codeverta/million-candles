@@ -33,7 +33,7 @@ export default function MuiMenu(props: PropsI) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <Link href={router.pathname + "profile"}>
+        <Link href={router.pathname + "/profile"}>
           <MenuItem>Profile</MenuItem>
         </Link>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
