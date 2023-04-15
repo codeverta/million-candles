@@ -27,7 +27,7 @@ if (typeof window !== "undefined") {
 export default function App({ Component, pageProps }: AppLayoutProps) {
   const appProps = { getRelationship, getRelationships };
   const getLayout = Component.getLayout || ((page: ReactNode) => page);
-
+  const isProduction = process.env.NODE_ENV === "production";
   // seo
   const pageTitle =
     "UD Million Candles - Produsen Lilin Aromaterapi Souvenir Lilin Jogja, Lilin Warna, Lilin Hias dan Lain-lain";
@@ -79,12 +79,12 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
           <Script src="https://www.google.com/recaptcha/api.js" />
           <Script
             type="text/javascript"
-            src="https://app.sandbox.midtrans.com/snap/snap.js"
-            data-client-key={
-              process.env.NODE_ENV == "production"
-                ? process.env.NEXT_PUBLIC_PROD_MIDTRANS_CLIENT_KEY
-                : process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY
+            src={
+              isProduction
+                ? "https://app.midtrans.com/snap/snap.js"
+                : "https://app.sandbox.midtrans.com/snap/snap.js"
             }
+            data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY}
           />
           <Toaster position="top-center" richColors />
           {getLayout(<Component {...pageProps} {...appProps} />)}
