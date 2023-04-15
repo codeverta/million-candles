@@ -17,7 +17,8 @@ import { useRouter } from "next/router";
 import EnhancedTableToolbar from "components/mui/EnhancedTableToolbar";
 import EnhancedTableHead from "components/mui/EnhancedTableHead";
 import { getRelationship } from "utils";
-import EmptyData from "./EmptyData";
+import EmptyData from "components/molecules/EmptyData";
+import AdminLayout from "components/layout/AdminLayout";
 
 interface Data {
   "no-resi": string;
@@ -51,10 +52,11 @@ const headCells: HeadCell[] = [
 
 const ordersParams = {
   "page[size]": 15,
+  "filter[order_type]": "buy",
   include: "destination-users",
 };
 
-export default function OrderTable({ title }: { title: string }) {
+function Pembelian() {
   const router = useRouter();
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<any>("calories");
@@ -63,7 +65,7 @@ export default function OrderTable({ title }: { title: string }) {
   const [rowsPerPage, setRowsPerPage] = React.useState(15);
   const queryClient = useQueryClient();
   const query = useQuery({
-    queryKey: ["orders"],
+    queryKey: ["buy"],
     queryFn: () => {
       return api.get("orders", { ...ordersParams });
     },
@@ -140,7 +142,10 @@ export default function OrderTable({ title }: { title: string }) {
     <div className="pb-16">
       <Box sx={{ width: "100%" }}>
         <Paper sx={{ width: "100%", mb: 2 }}>
-          <EnhancedTableToolbar title={title} numSelected={selected.length} />
+          <EnhancedTableToolbar
+            title="Pembelian"
+            numSelected={selected.length}
+          />
           <TableContainer>
             <Table aria-labelledby="tableTitle">
               <EnhancedTableHead
@@ -225,3 +230,9 @@ export default function OrderTable({ title }: { title: string }) {
     </div>
   );
 }
+
+Pembelian.getLayout = function getLayout(page: React.ReactNode) {
+  return <AdminLayout>{page}</AdminLayout>;
+};
+
+export default Pembelian;

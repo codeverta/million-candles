@@ -10,7 +10,7 @@ export default function Home() {
     router.push("/admin/orders");
   }, []);
 
-  return <OrderTable />;
+  return <OrderTable title="Penjualan" />;
 }
 
 Home.getLayout = function getLayout(page: any) {

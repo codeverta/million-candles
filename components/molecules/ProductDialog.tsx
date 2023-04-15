@@ -181,9 +181,6 @@ export default function ProductDialog(props: PropsI) {
           </Table>
         </article>
         <List className="fixed px-4 bg-white border-2 flex-col sm:flex-row flex w-screen justify-center bottom-0">
-          <Button size="medium" variant="outlined" className="w-full m-1">
-            Beli Langsung
-          </Button>
           <Button
             onClick={handleCreateCart}
             size="medium"

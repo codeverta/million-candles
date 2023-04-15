@@ -1,10 +1,64 @@
-import React from "react";
+import React, { FormEvent, useState, useEffect } from "react";
 import Layout from "components/layout/Landing";
 import Head from "next/head";
+import { Backdrop } from "@mui/material";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import api from "utils/api";
+import GoogleCaptcha from "components/molecules/GoogleCaptcha";
+import LoadingBackdrop from "components/mui/LoadingBackdrop";
 
 function TrackOrder() {
+  const queryClient = useQueryClient();
+  const [state, setState] = useState({
+    isModalOpen: false,
+    isCaptchaSolved: false,
+    order: {
+      attributes: {
+        code: "",
+      },
+    },
+  });
+  const searchOrder = useQuery({
+    queryKey: ["searchOrder"],
+    queryFn: () => {
+      try {
+        return api.get("-actions/searchOrder", {
+          code: state.order.attributes.code,
+        });
+      } catch (err) {
+        return err;
+      }
+    },
+    onSettled(data, error) {
+      setState({ ...state, isModalOpen: false });
+    },
+    enabled: false,
+    retry: false,
+    staleTime: 1000 * 60 * 24,
+  });
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    setState({ ...state, isModalOpen: true });
+  };
+
+  const onSuccess = () => {
+    queryClient.fetchQuery(["searchOrder"]);
+  };
+
   return (
     <>
+      {searchOrder.isLoading && state.isCaptchaSolved && <LoadingBackdrop />}
+      {state.isModalOpen && (
+        <Backdrop
+          className="z-10"
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={state.isModalOpen}
+          onClick={() => setState({ ...state, isModalOpen: false })}
+        >
+          <GoogleCaptcha onSuccess={onSuccess} />
+        </Backdrop>
+      )}
       <Head>
         <title>
           Cek Order | UD Million Candles - Produsen Lilin Aromaterapi Souvenir
@@ -21,14 +75,14 @@ function TrackOrder() {
               Pantau dan lacak ordermu menggunakan kode unik yang kamu dapatkan
               setelah memesan produk kami.
             </p>
-            <form action="#">
+            <form onSubmit={handleSubmit}>
               <div className="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
                 <div className="relative w-full">
                   <label
                     htmlFor="email"
                     className="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                   >
-                    Email address
+                    Kode Order
                   </label>
                   <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                     <svg
@@ -42,6 +96,12 @@ function TrackOrder() {
                     </svg>
                   </div>
                   <input
+                    onInput={(e: any) =>
+                      setState({
+                        ...state,
+                        order: { attributes: { code: e.target.value } },
+                      })
+                    }
                     className="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="Masukkan kode order"
                     required
@@ -61,6 +121,9 @@ function TrackOrder() {
                 memiliki kendala silakan hubungi penjual.
               </div>
             </form>
+          </div>
+          <div className="text-gray-200">
+            {JSON.stringify(searchOrder.data)}
           </div>
         </div>
       </section>

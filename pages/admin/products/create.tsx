@@ -111,7 +111,6 @@ function CreateProduct() {
 
   const onChangeProductVariant = ({ value }: { value: string }) => {
     const newVal = String(value.split(","));
-    console.log(newVal);
     if (value.endsWith(",")) {
       const tag = value.slice(0, -1).trim();
       if (tag) {
@@ -305,7 +304,7 @@ function CreateProduct() {
             type="submit"
             variant="contained"
             color="primary"
-            className="w-full pb-10 bg-blue-500"
+            className="w-full bg-blue-500"
             title="Tambah Produk"
             disabled={!state.productCategoryId}
           >

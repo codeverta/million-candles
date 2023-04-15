@@ -26,7 +26,7 @@ const adminList = [
     label: "Notifikasi",
   },
   {
-    to: "/admin/orders",
+    to: "/admin/pembelian",
     icon: <ShoppingCartIcon />,
     label: "Pembelian",
   },
@@ -73,7 +73,7 @@ export default function BottomNav() {
   }, [getSelf]);
 
   return (
-    <Paper className="fixed bottom-0 z-10 max-w-lg w-full" elevation={3}>
+    <Paper className="fixed bottom-0 max-w-lg w-full" elevation={3}>
       <BottomNavigation
         showLabels
         value={value}

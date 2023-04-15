@@ -124,11 +124,11 @@ function OrderDetail() {
   const is_validate_buyer = orders.data.attributes.is_validate_buyer;
 
   return (
-    <div>
+    <div className="pb-20">
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell>No. Invoice</TableCell>
+            <TableCell>NO. INVOICE</TableCell>
             <TableCell>{orders.data.attributes.code}</TableCell>
           </TableRow>
           <TableRow>
@@ -197,7 +197,7 @@ function OrderDetail() {
                   setState({ ...state, airwaybill: e.target.value })
                 }
                 disabled={!!getOrder.data.data.data.attributes.airwaybill}
-                value={orders.data.attributes.airwaybill}
+                value={orders.data.attributes.airwaybill ?? state.airwaybill}
                 label="No Resi"
               />
             </TableCell>

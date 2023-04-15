@@ -20,7 +20,7 @@ function ProductDetail() {
   if (getProduct.isError || getProduct.isLoading) {
     return <LoadingBackdrop />;
   }
-  console.log({ getProduct });
+
   return (
     <Table>
       <TableBody>

@@ -11,6 +11,7 @@ import AuthProvider from "components/layout/AuthProvider";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import indoFormat from "dayjs/locale/id";
 import { NextSeo } from "next-seo";
+import packageInfo from "../package.json";
 import dayjs from "dayjs";
 
 const queryClient = new QueryClient();
@@ -18,10 +19,15 @@ dayjs.locale(indoFormat);
 dayjs.extend(localizedFormat);
 api.init(process.env.NEXT_PUBLIC_BASE_API as string);
 
+if (typeof window !== "undefined") {
+  // @ts-ignore
+  window.version = packageInfo.version;
+}
+
 export default function App({ Component, pageProps }: AppLayoutProps) {
   const appProps = { getRelationship, getRelationships };
   const getLayout = Component.getLayout || ((page: ReactNode) => page);
-
+  const isProduction = process.env.NODE_ENV === "production";
   // seo
   const pageTitle =
     "UD Million Candles - Produsen Lilin Aromaterapi Souvenir Lilin Jogja, Lilin Warna, Lilin Hias dan Lain-lain";
@@ -73,8 +79,12 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
           <Script src="https://www.google.com/recaptcha/api.js" />
           <Script
             type="text/javascript"
-            src="https://app.sandbox.midtrans.com/snap/snap.js"
-            data-client-key="SB-Mid-client-kRWWsc4NnDa_F5Us"
+            src={
+              isProduction
+                ? "https://app.midtrans.com/snap/snap.js"
+                : "https://app.sandbox.midtrans.com/snap/snap.js"
+            }
+            data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY}
           />
           <Toaster position="top-center" richColors />
           {getLayout(<Component {...pageProps} {...appProps} />)}

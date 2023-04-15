@@ -17,9 +17,17 @@ class UserRequest extends ResourceRequest
      */
     public function rules(): array
     {
+        $user = $this->model();
+
+        $uniqueEmail = Rule::unique('users', 'email');
+
+        if($user) {
+            $uniqueEmail->ignoreModel($user);
+        }
+        
         return [
             'name' => ['string', 'nullable', Rule::unique('users', 'name')],
-            'email' => ['string', 'nullable', 'email', Rule::unique('users', 'email')],
+            'email' => ['string', 'nullable', 'email', $uniqueEmail],
             'password' => ['string', 'confirmed', Password::min(8)],
             'is_active' => ['boolean', 'nullable'],
             'deletedAt' => ['nullable', JsonApiRule::dateTime()],

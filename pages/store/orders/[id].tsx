@@ -110,20 +110,21 @@ function OrderDetail() {
           }
           // @ts-ignore
           snap.pay(res.data.data.attributes.snap_token, {
-            onSuccess: function (result: any) {
+            onSuccess: function (_result: any) {
               /* You may add your own implementation here */
-              toast.success("Pembayaran Berhasil!");
-              console.log(result);
+              toast.success(
+                "Pembayaran Berhasil! penjual akan segera memverifikasi pesanan anda. Terima kasih telah menggunakan layanan kami."
+              );
             },
-            onPending: function (result: any) {
+            onPending: function (_result: any) {
               /* You may add your own implementation here */
-              toast.success("Menunggu Pembayaran...");
-              console.log(result);
+              toast.success(
+                "Terima kasih telah melakukan pembayaran. Kami sedang menunggu konfirmasi dari penjual untuk memverifikasi pembayaran Anda. Harap bersabar dan tunggu pemberitahuan selanjutnya dari kami. Terima kasih telah menggunakan layanan kami."
+              );
             },
-            onError: function (result: any) {
+            onError: function (_result: any) {
               /* You may add your own implementation here */
-              toast.error("Pembayaran Gagal!");
-              console.log(result);
+              toast.error("Pembayaran Gagal! Silakan hubungi penjual");
             },
             onClose: function () {
               /* You may add your own implementation here */

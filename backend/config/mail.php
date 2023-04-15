@@ -48,6 +48,10 @@ return [
         'ses' => [
             'transport' => 'ses',
         ],
+        
+        'mailtrap' => [
+            'transport' => 'mailtrap'
+        ],
 
         'mailgun' => [
             'transport' => 'mailgun',

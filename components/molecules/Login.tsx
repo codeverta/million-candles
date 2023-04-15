@@ -4,9 +4,11 @@ import { useState, useEffect, useRef } from "react";
 import { toast } from "sonner";
 import Script from "next/script";
 import api from "utils/api";
+import GoogleCaptcha from "./GoogleCaptcha";
 
 export default function Login() {
   const router = useRouter();
+  const [isCaptchaSolved, setIsCaptchaSolved] = useState(false);
   const [state, setState] = useState<{
     email: string;
     password: string;
@@ -23,25 +25,13 @@ export default function Login() {
     },
   });
 
-  useEffect(() => {
-    try {
-      window.grecaptcha.render("g-recaptcha", {
-        sitekey: "6LcnDhglAAAAAJLZ4B8MRtFC0lY9PEsTCMKs89AB",
-        callback: function (res: any) {
-          if (res) {
-            setState({ ...state, isCaptchaSolved: true });
-          }
-        },
-      });
-    } catch (err) {
-      console.log({ err });
-    }
-    return () => {};
-  }, []);
+  const onSuccessCaptcha = () => {
+    setIsCaptchaSolved(true);
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!state.isCaptchaSolved) {
+    if (!isCaptchaSolved) {
       toast.error("Isi captcha dulu");
       return;
     }
@@ -135,18 +125,10 @@ export default function Login() {
                 >
                   Forgot password?
                 </a>
-                <div
-                  className="g-recaptcha"
-                  id="g-recaptcha"
-                  data-sitekey="6LcnDhglAAAAAJLZ4B8MRtFC0lY9PEsTCMKs89AB"
-                ></div>
+                <GoogleCaptcha onSuccess={onSuccessCaptcha} />
                 <button
                   type="submit"
-                  className={"w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800".concat(
-                    state.isCaptchaSolved && state.email && state.password
-                      ? ""
-                      : " opacity-50 cursor-not-allowed focus:outline-none"
-                  )}
+                  className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600  dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   Sign in
                 </button>
