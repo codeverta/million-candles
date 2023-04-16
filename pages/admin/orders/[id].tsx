@@ -189,8 +189,7 @@ function OrderDetail() {
               {toCurrency(getOrder.data.data.data.attributes.price_amount)}
             </TableCell>
           </TableRow>
-          {(getOrder.data.data.data.attributes.is_validate_buyer ||
-            getOrder.data.data.data.attributes.is_validate_seller) && (
+          {getOrder.data.data.data.attributes.is_validate_seller && (
             <TableRow>
               <TableCell colSpan={2}>
                 <TextField
