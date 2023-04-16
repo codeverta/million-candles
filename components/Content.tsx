@@ -12,7 +12,7 @@ const productParams = {
   include: "documents",
 };
 
-export default function Content() {
+export default function Content({ title = "Produk Kami" }) {
   const router = useRouter();
   const loaded = useLoaded();
   const query: UseQueryResult<any> = useQuery({
@@ -42,7 +42,7 @@ export default function Content() {
     <div>
       <main className="bg-white min-h-screen dark:bg-gray-900">
         <h2 className="text-center mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-          Produk Kami
+          {title}
         </h2>
         <article className="grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 max-w-4xl w-4/5 m-auto py-10">
           {query.isLoading || query.isError ? (
