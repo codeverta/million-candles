@@ -5,11 +5,14 @@ import LoadingBackdrop from "components/mui/LoadingBackdrop";
 import React from "react";
 import api from "utils/api";
 
+const notificationParams = {
+  "page[size]": 10,
+};
 function Notifications() {
   const getNotifications = useQuery({
     queryKey: ["notifications"],
     queryFn: () => {
-      return api.get("notifications");
+      return api.get("notifications", notificationParams);
     },
   });
   if (getNotifications.isError || getNotifications.isLoading) {
@@ -22,13 +25,27 @@ function Notifications() {
         {getNotifications.data.data.map((notification: any) => {
           return (
             <ListItem key={notification.id}>
-              {notification.data.destination_user && (
-                <ListItemButton className="py-4" key={notification.id}>
+              {notification.data.destination_user ? (
+                <ListItemButton key={notification.id}>
                   <p className="text-sm">
                     <span className="text-blue-600">
                       {notification.data.destination_user.email}
                     </span>{" "}
                     telah membuat order dengan kode {notification.data.code}
+                  </p>
+                </ListItemButton>
+              ) : (
+                <ListItemButton dense key={notification.id}>
+                  <p className="text-sm">
+                    Penjualan kepada{" "}
+                    <span className="text-blue-600">
+                      {notification.data.buyer_name}
+                    </span>{" "}
+                    dengan kode{" "}
+                    <span className="text-blue-600">
+                      {notification.data.code}
+                    </span>{" "}
+                    telah dibuat
                   </p>
                 </ListItemButton>
               )}

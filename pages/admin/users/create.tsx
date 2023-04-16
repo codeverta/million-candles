@@ -11,18 +11,24 @@ import {
   OutlinedInput,
   InputAdornment,
   IconButton,
+  Switch,
+  Typography,
 } from "@mui/material";
 import AdminLayout from "components/layout/AdminLayout";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "sonner";
 import api from "utils/api";
 
 function CreateUser() {
   const router = useRouter();
+  const [showPasswordInput, setShowPasswordInput] = useState(
+    router.query.id ? false : true
+  );
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [state, setState] = useState({
+  const [state, setState] = useState<any>({
+    users: {},
     user: {
       id: "",
       attributes: {
@@ -33,6 +39,26 @@ function CreateUser() {
       },
     },
   });
+
+  useEffect(() => {
+    // fetch user
+    const id = router.query.id;
+    api.get(`users/${id}`).then((res: any) => {
+      setState({
+        ...state,
+        users: res.data,
+        user: {
+          ...res.data.data,
+          attributes: {
+            ...res.data.data.attributes,
+            password: "",
+            password_confirmation: "",
+          },
+        },
+      });
+    });
+    return () => {};
+  }, []);
 
   const handleGeneratePass = () => {
     var randomstring = Math.random().toString(36).slice(-10);
@@ -95,6 +121,7 @@ function CreateUser() {
           <TextField
             className="w-full"
             label="Email"
+            value={state.user.attributes.email}
             onChange={(e) => changeUser("email", e.target.value)}
             placeholder="Masukkan Email"
             helperText="Wajib diisi"
@@ -103,85 +130,100 @@ function CreateUser() {
         <ListItem>
           <TextField
             className="w-full"
+            value={state.user.attributes.name}
             label="Nama"
             placeholder="Masukkan Nama"
             helperText="Wajib diisi"
             onChange={(e) => changeUser("name", e.target.value)}
           />
         </ListItem>
-        <ListItem className="flex flex-col">
-          <FormHelperText
-            onClick={handleGeneratePass}
-            className="text-blue-400 self-end"
-            id="generate-pass"
-          >
-            Isi Otomatis
-          </FormHelperText>
-          <FormControl
-            className="w-full !border-none !ring-0"
-            variant="outlined"
-          >
-            <InputLabel htmlFor="outlined-adornment-password">
-              Password
-            </InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              type={showPassword ? "text" : "password"}
-              placeholder="Masukkan Password"
-              value={state.user.attributes.password}
-              onChange={(e) => changeUser("password", e.target.value)}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={() => setShowPassword((show) => !show)}
-                    onMouseDown={(e: React.MouseEvent<HTMLButtonElement>) =>
-                      e.preventDefault()
-                    }
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Password"
+        {router.query.id && (
+          <ListItem className="w-full flex justify-between">
+            <Typography className="text-blue-400">Ganti Password?</Typography>
+            <Switch
+              onClick={() => setShowPasswordInput((state) => !state)}
+              checked={showPasswordInput}
             />
-          </FormControl>
-        </ListItem>
-        <ListItem>
-          <FormControl
-            className="w-full !border-none !ring-0"
-            variant="outlined"
-          >
-            <InputLabel htmlFor="outlined-adornment-password">
-              Password
-            </InputLabel>
-            <OutlinedInput
-              id="password-confirmation"
-              type={showConfirmPassword ? "text" : "password"}
-              placeholder="Masukkan Konfirmasi Password"
-              value={state.user.attributes.password_confirmation}
-              onChange={(e) =>
-                changeUser("password_confirmation", e.target.value)
-              }
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={() => setShowConfirmPassword((show) => !show)}
-                    onMouseDown={(e: React.MouseEvent<HTMLButtonElement>) =>
-                      e.preventDefault()
-                    }
-                    edge="end"
-                  >
-                    {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Password"
-            />
-          </FormControl>
-        </ListItem>
+          </ListItem>
+        )}
+        {showPasswordInput && (
+          <ListItem className="flex flex-col">
+            <FormHelperText
+              onClick={handleGeneratePass}
+              className="text-blue-400 self-end cursor-pointer"
+              id="generate-pass"
+            >
+              Isi Otomatis
+            </FormHelperText>
+            <FormControl
+              className="w-full !border-none !ring-0"
+              variant="outlined"
+            >
+              <InputLabel htmlFor="outlined-adornment-password">
+                Password
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Masukkan Password"
+                value={state.user.attributes.password}
+                onChange={(e) => changeUser("password", e.target.value)}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={() => setShowPassword((show) => !show)}
+                      onMouseDown={(e: React.MouseEvent<HTMLButtonElement>) =>
+                        e.preventDefault()
+                      }
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+              />
+            </FormControl>
+          </ListItem>
+        )}
+        {showPasswordInput && router.query.id && (
+          <ListItem>
+            <FormControl
+              className="w-full !border-none !ring-0"
+              variant="outlined"
+            >
+              <InputLabel htmlFor="outlined-adornment-password">
+                Password
+              </InputLabel>
+              <OutlinedInput
+                id="password-confirmation"
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Masukkan Konfirmasi Password"
+                value={state.user.attributes.password_confirmation}
+                onChange={(e) =>
+                  changeUser("password_confirmation", e.target.value)
+                }
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={() => setShowConfirmPassword((show) => !show)}
+                      onMouseDown={(e: React.MouseEvent<HTMLButtonElement>) =>
+                        e.preventDefault()
+                      }
+                      edge="end"
+                    >
+                      {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+              />
+            </FormControl>
+          </ListItem>
+        )}
+
         <ListItem>
           <Button
             variant="contained"

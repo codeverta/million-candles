@@ -122,7 +122,7 @@ export default function UsersTable() {
   };
 
   const handleEdit = () => {
-    router.push(`users/${selected[0]}`);
+    router.push(`users/create?id=${selected[0]}`);
   };
 
   const handleAlertAction = async ({

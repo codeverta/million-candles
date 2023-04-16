@@ -19,6 +19,11 @@ class UserPolicy
         //
     }
 
+    public function view(User $user)
+    {
+        return true;
+    }
+
     public function viewAny(User $user)
     {
         // todo ganti ini
