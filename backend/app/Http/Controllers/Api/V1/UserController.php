@@ -7,6 +7,7 @@ use App\JsonApi\V1\Users\UserRequest;
 use App\Models\User;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions;
 use App\Mail\RegisterEmail;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
@@ -40,5 +41,14 @@ class UserController extends Controller
         $user->assignRole('buyer');
         $user->givePermissionTo(['orders:create', 'orders:update', 'orders:read', 'products:read']);
 
+    }
+
+    public function updating(User $user, UserRequest $request)
+    {
+        // dd($request->input("data.attributes.password"));
+        $password = $request->input("data.attributes.password");
+        User::updating(function ($user) use ($password) {
+            $user->password = Hash::make($password);
+        });
     }
 }
