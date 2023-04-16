@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import AdminLayout from "components/layout/AdminLayout";
 import LoadingBackdrop from "components/mui/LoadingBackdrop";
 import React from "react";
+import dayjs from "dayjs";
 import api from "utils/api";
 
 const notificationParams = {
@@ -20,11 +21,11 @@ function Notifications() {
   }
 
   return (
-    <div>
+    <div className="pb-12">
       <List>
         {getNotifications.data.data.map((notification: any) => {
           return (
-            <ListItem key={notification.id}>
+            <li key={notification.id}>
               {notification.data.destination_user ? (
                 <ListItemButton key={notification.id}>
                   <p className="text-sm">
@@ -33,9 +34,12 @@ function Notifications() {
                     </span>{" "}
                     telah membuat order dengan kode {notification.data.code}
                   </p>
+                  <p className="text-[0.65rem] whitespace-nowrap tracking-tighter">
+                    {dayjs().to(dayjs(notification.created_at))}
+                  </p>
                 </ListItemButton>
               ) : (
-                <ListItemButton dense key={notification.id}>
+                <ListItemButton key={notification.id}>
                   <p className="text-sm">
                     Penjualan kepada{" "}
                     <span className="text-blue-600">
@@ -47,9 +51,12 @@ function Notifications() {
                     </span>{" "}
                     telah dibuat
                   </p>
+                  <p className="text-[0.65rem] whitespace-nowrap tracking-tighter">
+                    {dayjs().to(dayjs(notification.created_at))}
+                  </p>
                 </ListItemButton>
               )}
-            </ListItem>
+            </li>
           );
         })}
       </List>

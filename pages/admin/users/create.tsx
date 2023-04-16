@@ -94,24 +94,40 @@ function CreateUser() {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const payload = {
+    let payload: any = {
       data: {
         type: "users",
         attributes: state.user.attributes,
       },
     };
-
-    api
-      .post("users", payload)
-      .then((res: any) => {
-        if (res) {
-          toast.success("Pengguna berhasil dibuat");
-          router.push("/admin/users");
-        }
-      })
-      .catch((err) => {
-        toast.error(JSON.stringify(err));
+    if (router.query.id) {
+      payload = {
+        data: {
+          type: "users",
+          id: router.query.id,
+          attributes: {
+            password: state.user.attributes.password,
+            password_confirmation: state.user.attributes.password_confirmation,
+          },
+        },
+      };
+      api.patch("users/" + router.query.id, payload).then((res) => {
+        res && toast.success("Data pengguna berhasil diubah");
+        res && router.push("/admin/users");
       });
+    } else {
+      api
+        .post("users", payload)
+        .then((res: any) => {
+          if (res) {
+            toast.success("Pengguna berhasil dibuat");
+            router.push("/admin/users");
+          }
+        })
+        .catch((err) => {
+          toast.error(JSON.stringify(err));
+        });
+    }
   };
 
   return (
@@ -168,6 +184,7 @@ function CreateUser() {
                 placeholder="Masukkan Password"
                 value={state.user.attributes.password}
                 onChange={(e) => changeUser("password", e.target.value)}
+                autoComplete={router.query.id ? "on" : "off"}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -232,7 +249,7 @@ function CreateUser() {
             className="w-full bg-blue-500"
             title="Tambah Pengguna"
           >
-            Tambah Pengguna
+            {router.query.id ? "Edit Pengguna" : "Tambah Pengguna"}
           </Button>
         </ListItem>
       </List>
