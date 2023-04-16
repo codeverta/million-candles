@@ -21,6 +21,7 @@ class UserResource extends JsonApiResource
             'roles' => implode('', $roles->toArray()),
             'is_active' => (bool) $this->is_active,
             'email' => $this->email,
+            'name' => $this->name,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
             'deletedAt' => $this->deleted_at,

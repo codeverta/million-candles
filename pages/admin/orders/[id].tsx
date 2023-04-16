@@ -189,19 +189,22 @@ function OrderDetail() {
               {toCurrency(getOrder.data.data.data.attributes.price_amount)}
             </TableCell>
           </TableRow>
-          <TableRow>
-            <TableCell colSpan={2}>
-              <TextField
-                className="w-full"
-                onChange={(e: any) =>
-                  setState({ ...state, airwaybill: e.target.value })
-                }
-                disabled={!!getOrder.data.data.data.attributes.airwaybill}
-                value={orders.data.attributes.airwaybill ?? state.airwaybill}
-                label="No Resi"
-              />
-            </TableCell>
-          </TableRow>
+          {(getOrder.data.data.data.attributes.is_validate_buyer ||
+            getOrder.data.data.data.attributes.is_validate_seller) && (
+            <TableRow>
+              <TableCell colSpan={2}>
+                <TextField
+                  className="w-full"
+                  onChange={(e: any) =>
+                    setState({ ...state, airwaybill: e.target.value })
+                  }
+                  disabled={!!getOrder.data.data.data.attributes.airwaybill}
+                  value={orders.data.attributes.airwaybill ?? state.airwaybill}
+                  label="No Resi"
+                />
+              </TableCell>
+            </TableRow>
+          )}
         </TableBody>
       </Table>
 

@@ -20,13 +20,15 @@ class UserRequest extends ResourceRequest
         $user = $this->model();
 
         $uniqueEmail = Rule::unique('users', 'email');
+        $uniqueName = Rule::unique('users', 'name');
 
         if($user) {
             $uniqueEmail->ignoreModel($user);
+            $uniqueName->ignoreModel($user);
         }
         
         return [
-            'name' => ['string', 'nullable', Rule::unique('users', 'name')],
+            'name' => ['string', 'nullable', ],
             'email' => ['string', 'nullable', 'email', $uniqueEmail],
             'password' => ['string', 'confirmed', Password::min(8)],
             'is_active' => ['boolean', 'nullable'],

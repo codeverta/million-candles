@@ -22,7 +22,7 @@ const api = {
 
     axios.interceptors.response.use(null, (error) => {
       if (typeof window !== "undefined") {
-        if (error.response.status === 401) {
+        if (error.response?.status === 401) {
           window.location.href = "/";
         }
       }

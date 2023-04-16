@@ -9,6 +9,7 @@ import { Toaster } from "sonner";
 import { ReactNode } from "react";
 import AuthProvider from "components/layout/AuthProvider";
 import localizedFormat from "dayjs/plugin/localizedFormat";
+import relativeTimeFormat from "dayjs/plugin/relativeTime";
 import indoFormat from "dayjs/locale/id";
 import { NextSeo } from "next-seo";
 import packageInfo from "../package.json";
@@ -17,6 +18,7 @@ import dayjs from "dayjs";
 const queryClient = new QueryClient();
 dayjs.locale(indoFormat);
 dayjs.extend(localizedFormat);
+dayjs.extend(relativeTimeFormat);
 api.init(process.env.NEXT_PUBLIC_BASE_API as string);
 
 if (typeof window !== "undefined") {
