@@ -145,4 +145,9 @@ class OrderController extends Controller
 
         return response()->json($result);
     }
+
+    public function midtransWebhook(Request $request) {
+        $input = $request->all();
+        OrderCreated::dispatch($input);
+    }
 }

@@ -14,7 +14,29 @@ class OrdersNotification extends Notification
 
     /**
      * Create a new notification instance.
-     *
+     *  params bisa
+     *  App\Models\Order
+     *  atau
+     * {
+        "transaction_type": "off-us",
+        "transaction_time": "2023-04-16 11:58:47",
+        "transaction_status": "settlement",
+        "transaction_id": "af113759-42e5-4286-b2bc-ee4da6de625b",
+        "status_message": "midtrans payment notification",
+        "status_code": "200",
+        "signature_key": "c30351d646fceecf890a4010d091c51aa9b9c9d1ad40a67b1ba147278f61b4760cd3fb8f27572f65753e8026feb74f343a51ee94619254e72bd03d9401741731",
+        "settlement_time": "2023-04-16 11:59:24",
+        "payment_type": "qris",
+        "order_id": "12",
+        "merchant_id": "G025200197",
+        "issuer": "Mandiri",
+        "gross_amount": "11000.00",
+        "fraud_status": "accept",
+        "expiry_time": "2023-04-16 12:13:47",
+        "currency": "IDR",
+        "acquirer": "gopay"
+        }
+     * 
      * @return void
      */
     public function __construct($order)
