@@ -24,7 +24,7 @@ class UserRequest extends ResourceRequest
 
         if($user) {
             $uniqueEmail->ignoreModel($user);
-            $uniqueName->ignoreModel($uniqueName);
+            $uniqueName->ignoreModel($user);
         }
         
         return [
