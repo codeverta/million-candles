@@ -5,7 +5,10 @@ on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      NEXT_PUBLIC_BASE_API: ${{ secrets.NEXT_PUBLIC_BASE_API }}
+      NEXT_PUBLIC_BASE: ${{ secrets.NEXT_PUBLIC_BASE }}
+      NEXT_PUBLIC_MIDTRANS_CLIENT_KEY: ${{ secrets.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3

@@ -24,7 +24,7 @@
                     <tr>
                         <td style="text-align:center;">
                             <a href="https://souvenirlilin.com" title="logo" target="_blank">
-                                <img width="60" src="https://www.souvenirlilin.com/logolilin.png" title="logo" alt="logo">
+                                <img width="60" style="border-radius: 50%;" src="https://www.souvenirlilin.com/logolilin.png" title="logo" alt="logo">
                             </a>
                         </td>
                     </tr>
