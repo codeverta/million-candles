@@ -6,7 +6,6 @@ import { toCurrency } from "utils";
 import { Content } from "components";
 
 function ProductDetail({ product }: any) {
-  console.log({ product });
   return (
     <section className="text-gray-700 dark:text-gray-300 body-font overflow-hidden bg-white min-h-screen dark:bg-gray-900">
       <div className="container px-5 py-24 mx-auto">
