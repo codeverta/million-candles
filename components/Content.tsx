@@ -6,13 +6,13 @@ import Loading from "components/flowbite/Loading";
 import Skeleton from "components/flowbite/Skeleton";
 import api from "utils/api";
 import { useRouter } from "next/router";
-
-const productParams = {
-  "page[size]": 9,
-  include: "documents",
-};
+import Link from "next/link";
 
 export default function Content({ title = "Produk Kami" }) {
+  const productParams = {
+    "page[size]": 9,
+    include: "documents",
+  };
   const router = useRouter();
   const loaded = useLoaded();
   const query: UseQueryResult<any> = useQuery({
@@ -65,9 +65,9 @@ export default function Content({ title = "Produk Kami" }) {
                     : [];
                 const isDocumentExist = !!documents[0]?.attributes.filename;
                 return (
-                  <div
+                  <Link
                     key={product.id}
-                    onClick={() => router.push(`products/${product.id}`)}
+                    href={`/products/${product.id}`}
                     className="w-full transition-all hover:shadow-xl max-w-xs border border-gray-200 bg-white rounded shadow-md dark:bg-gray-800 dark:border-gray-700"
                   >
                     <button className="mx-auto w-full">
@@ -114,7 +114,7 @@ export default function Content({ title = "Produk Kami" }) {
                         </span>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
             </>
