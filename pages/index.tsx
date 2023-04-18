@@ -50,7 +50,7 @@ function Home(props: any) {
         <Hero />
         <Content />
         <section className="">
-          <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+          <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-lg lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
             <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
               <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
                 Buat Kenangan Indah dengan Lilin Kami
@@ -86,8 +86,8 @@ function Home(props: any) {
           </div>
           {/* feature */}
           <div className="overflow-hidden  py-24 sm:py-32">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-              <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+            <div className="mx-auto max-w-screen-lg px-6 lg:px-8">
+              <div className="mx-auto grid max-w-lg grid-cols-1 gap-y-16 gap-x-8 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
                 <div className="lg:pr-8 lg:pt-4">
                   <div className="lg:max-w-lg">
                     <h2 className="mt-2 text-3xl font-bold tracking-tight dark:text-white text-gray-900 sm:text-4xl">
@@ -117,7 +117,7 @@ function Home(props: any) {
                 <img
                   src="/assets/lilin.png"
                   alt="Product screenshot"
-                  className="w-[48rem] max-w-none rounded-2xl shadow-2xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
+                  className="w-[24rem] max-w-none mx-auto rounded-2xl shadow-2xl ring-1 ring-gray-400/10 sm:w-[40rem] md:-ml-4 lg:-ml-0"
                   width={2432}
                   height={1442}
                 />
@@ -126,7 +126,7 @@ function Home(props: any) {
           </div>
           {/* Blog */}
           <div className=" py-24 sm:py-32">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-screen-lg px-6 lg:px-8">
               <div className="mx-auto max-w-2xl lg:mx-0">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
                   Cerita Kami
