@@ -77,6 +77,11 @@ class OrdersNotification extends Notification
      */
     public function toArray($notifiable)
     {
+        if(!isset($this->order->code)) {
+            return [
+                'data' => $this->order,
+            ];
+        }
         return [
             'code' => $this->order->code,
             'destination_user' => $this->order->destinationUser()->first(),

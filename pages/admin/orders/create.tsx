@@ -212,6 +212,7 @@ function CreateOrder() {
 
         if (state.paymentType !== "midtrans") {
           toast.success("Order berhasil dibuat");
+          router.push("/admin");
           return;
         }
 
