@@ -2,19 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-[type="text"] {
-  padding: 16.5px 14px;
-}
-
-[type="text"]:focus {
-  border: 0;
-  box-shadow: none;
-}
-
+[type="text"],
+[type="number"],
 [type="password"] {
   padding: 16.5px 14px;
 }
 
+[type="text"]:focus,
+[type="number"]:focus,
 [type="password"]:focus {
   border: 0;
   box-shadow: none;

@@ -39,7 +39,7 @@ const headCells: HeadCell[] = [
     id: "no-resi",
     numeric: false,
     disablePadding: true,
-    label: "No Inv",
+    label: "Kode",
   },
   {
     id: "status",

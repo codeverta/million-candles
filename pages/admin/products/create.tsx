@@ -132,8 +132,8 @@ function CreateProduct() {
           code: state.code,
           description: state.description,
           name: state.name,
-          price: state.price,
-          stock: state.stock,
+          price: parseInt(state.price),
+          stock: parseInt(state.stock),
         },
         relationships: {
           "product-categories": {
@@ -203,12 +203,11 @@ function CreateProduct() {
           <TextField
             className="w-full"
             label="Harga"
+            type="number"
             placeholder="Masukkan Harga"
             helperText="Wajib diisi"
             value={state.price}
-            onChange={(e) =>
-              setState({ ...state, price: parseInt(e.target.value) })
-            }
+            onChange={(e) => setState({ ...state, price: e.target.value })}
           />
         </ListItem>
         <ListItem>
@@ -227,9 +226,8 @@ function CreateProduct() {
             label="Stok"
             placeholder="Stok"
             value={state.stock}
-            onChange={(e) =>
-              setState({ ...state, stock: parseInt(e.target.value) })
-            }
+            type="number"
+            onChange={(e) => setState({ ...state, stock: e.target.value })}
             helperText="Wajib diisi"
           />
         </ListItem>

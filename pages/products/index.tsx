@@ -11,9 +11,7 @@ function Product() {
           Lilin Jogja, Lilin Warna, Lilin Hias dan Lain-lain
         </title>
       </Head>
-      <div className="pt-24 dark:bg-gray-900">
-        <Content />
-      </div>
+      <Content />
     </>
   );
 }

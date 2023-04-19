@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -24,6 +25,12 @@ class Product extends Model
         'deleted_at'
     ];
 
+    protected static function booted(): void
+    {
+        static::creating(function (Order $order) {
+            $order->uuid = Str::uuid();
+        });
+    }
     /**
      * @return BelongsTo
      */

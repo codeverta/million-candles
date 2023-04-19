@@ -21,7 +21,7 @@ class Order extends Model
     {
         static::addGlobalScope(new OrderScope);
         static::creating(function (Order $order) {
-            // dd($order);
+            $order->uuid = Str::uuid();
         });
         static::created(function (Order $order) {
             $order->code = "INV" . Str::upper(Str::random(6)) . $order->id;
