@@ -59,13 +59,13 @@ export default function OrderTable({ title }: { title: string }) {
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<any>("calories");
   const [selected, setSelected] = React.useState<readonly string[]>([]);
-  const [page, setPage] = React.useState(0);
+  const [page, setPage] = React.useState(1);
   const [rowsPerPage, setRowsPerPage] = React.useState(15);
   const queryClient = useQueryClient();
   const query = useQuery({
-    queryKey: ["orders"],
+    queryKey: ["orders", page],
     queryFn: () => {
-      return api.get("orders", { ...ordersParams });
+      return api.get("orders", { ...ordersParams, "page[number]": page });
     },
   });
 
@@ -106,7 +106,7 @@ export default function OrderTable({ title }: { title: string }) {
   };
 
   const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
+    setPage(newPage + 1);
   };
 
   const handleChangeRowsPerPage = (
@@ -190,15 +190,6 @@ export default function OrderTable({ title }: { title: string }) {
                       >
                         {row.attributes.code}
                       </TableCell>
-                      {/* <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
-                        className="whitespace-nowrap"
-                      >
-                        {row.attributes.buyer_name ? row.attributes.buyer_name : getRelationship(query.data.data, row, 'destination-users', 'users').attributes.email}
-                      </TableCell> */}
                       <TableCell align="right">
                         <Chip
                           label={getOrderStatus(row).text}

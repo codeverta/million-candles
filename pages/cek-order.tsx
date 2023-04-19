@@ -18,7 +18,7 @@ function TrackOrder() {
       },
     },
   });
-  const searchOrder = useQuery({
+  const searchOrder = useQuery<any>({
     queryKey: ["searchOrder"],
     queryFn: () => {
       try {
@@ -39,10 +39,11 @@ function TrackOrder() {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    setState({ ...state, isModalOpen: true });
+    setState({ ...state, isModalOpen: true, isCaptchaSolved: false });
   };
 
   const onSuccess = () => {
+    setState({ ...state, isCaptchaSolved: true });
     queryClient.fetchQuery(["searchOrder"]);
   };
 
@@ -121,9 +122,38 @@ function TrackOrder() {
                 memiliki kendala silakan hubungi penjual.
               </div>
             </form>
-          </div>
-          <div className="text-gray-200">
-            {JSON.stringify(searchOrder.data)}
+            <div className="text-gray-200">
+              {searchOrder.data && searchOrder.data.data.length == 0 ? (
+                <p className="text-red-300">Data order tidak ditemukan</p>
+              ) : (
+                <>
+                  {" "}
+                  {state.isCaptchaSolved && (
+                    <ol className="text-left mt-8 relative border-l border-gray-200 dark:border-gray-700">
+                      {[0, 1, 2, 3].map((order: any) => {
+                        return (
+                          <li className="mb-10 ml-4">
+                            <div className="absolute animate-ping bg-yellow-600 w-3 h-3  rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900"></div>
+                            <div className="absolute bg-yellow-600 w-3 h-3  rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900"></div>
+                            <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                              February 2022
+                            </time>
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                              Application UI code in Tailwind CSS
+                            </h3>
+                            <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
+                              Get access to over 20+ pages including a dashboard
+                              layout, charts, kanban board, calendar, and
+                              pre-order E-commerce & Marketing pages.
+                            </p>
+                          </li>
+                        );
+                      })}
+                    </ol>
+                  )}
+                </>
+              )}
+            </div>
           </div>
         </div>
       </section>

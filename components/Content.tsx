@@ -2,10 +2,8 @@ import { Modal, Rating } from "@mui/material";
 import { useState } from "react";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { getRelationships, toCurrency, useLoaded } from "utils";
-import Loading from "components/flowbite/Loading";
 import Skeleton from "components/flowbite/Skeleton";
 import api from "utils/api";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function Content({ title = "Produk Kami" }) {
@@ -13,8 +11,6 @@ export default function Content({ title = "Produk Kami" }) {
     "page[size]": 9,
     include: "documents",
   };
-  const router = useRouter();
-  const loaded = useLoaded();
   const query: UseQueryResult<any> = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
