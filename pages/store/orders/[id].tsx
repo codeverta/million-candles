@@ -102,10 +102,10 @@ function OrderDetail() {
         onSuccess: (res) => {
           getOrder.refetch();
           handleConfirmation();
-          toast.success(
-            "Terima kasih, pesanan anda sedang diproses oleh sistem, harap tunggu konfirmasi dari penjual"
-          );
           if (state.payment_type !== "midtrans") {
+            toast.success(
+              "Terima kasih, pesanan anda sedang diproses oleh sistem, harap tunggu konfirmasi dari penjual"
+            );
             return;
           }
           // @ts-ignore

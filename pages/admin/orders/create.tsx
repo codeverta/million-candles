@@ -208,7 +208,13 @@ function CreateOrder() {
 
     createOrder.mutate(payload, {
       onSuccess: async (res) => {
-        toast.success("Order berhasil dibuat");
+        const orderId = res.data.data.id;
+
+        if (state.paymentType !== "midtrans") {
+          toast.success("Order berhasil dibuat");
+          return;
+        }
+
         // todo bikin post ke order details
         const batchCreateOrderDetails = state.selectedProducts.map(
           (product: any) => {
@@ -241,6 +247,41 @@ function CreateOrder() {
         );
 
         await Promise.all(batchCreateOrderDetails);
+        // patch to orders
+        api
+          .patch(`orders/${orderId}`, {
+            data: {
+              id: orderId,
+              type: "orders",
+              attributes: {
+                is_validate_buyer: true,
+                payments_type: state.paymentType,
+              },
+            },
+          })
+          .then((res: any) => {
+            // @ts-ignore
+            snap.pay(res.data.data.attributes.snap_token, {
+              onSuccess: function (_result: any) {
+                /* You may add your own implementation here */
+                toast.success(
+                  "Pembayaran Berhasil! penjual akan segera memverifikasi pesanan anda. Terima kasih telah menggunakan layanan kami."
+                );
+              },
+              onPending: function (_result: any) {
+                /* You may add your own implementation here */
+                toast.success("Menunggu Pembayaran oleh pembeli.");
+              },
+              onError: function (_result: any) {
+                /* You may add your own implementation here */
+                toast.error("Pembayaran Gagal! Silakan hubungi penjual");
+              },
+              onClose: function () {
+                /* You may add your own implementation here */
+                alert("you closed the popup without finishing the payment");
+              },
+            });
+          });
         router.push("/admin");
       },
       onError: () => {
