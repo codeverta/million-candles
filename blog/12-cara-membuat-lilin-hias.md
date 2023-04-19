@@ -1,5 +1,5 @@
 ---
-title: "Cara Membuat Lilin Hias"
+title: "Cara Membuat Lilin Hias Secara Praktis di Rumah"
 tags: "cara membuat lilin hias, bahan-bahan lilin, pewarna lilin, minyak wangi, pengharum, wadah lilin, kain katun, cheesecloth, lilin geser, meja kerja, pengaduk kayu, spatula, kertas lilin, gunting, suhu lingkungan, hadiah unik."
 desc: "Artikel ini menjelaskan langkah-langkah cara membuat lilin hias yang lengkap, mulai dari bahan-bahan yang dibutuhkan hingga tahap terakhir dalam pembuatan lilin hias. Dalam artikel ini dijelaskan cara mempersiapkan bahan, melelehkan lilin, menambahkan warna, aroma dan pengharum, menyalurkan lilin ke dalam wadah, mengatur suhu lingkungan dan cara melepaskan lilin dari wadah. Artikel ini ditulis dengan harapan membantu pembaca dalam membuat lilin hias yang indah dan unik."
 date: "2023-4-18"

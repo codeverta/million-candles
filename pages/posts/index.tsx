@@ -13,7 +13,7 @@ interface PostMeta {
 export default function Home({ allPostsData }: any) {
   return (
     <Layout>
-      <section className="dark:bg-gray-900 max-w-3xl mx-auto min-h-screen">
+      <section className="dark:bg-gray-900 px-6 max-w-3xl mx-auto min-h-screen">
         <h2 className="py-12 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white text-left">
           Menerangi Kehidupan dengan Lilin: Kumpulan Cerita dan Tips Mengenai
           Lilin
