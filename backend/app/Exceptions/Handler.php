@@ -46,5 +46,10 @@ class Handler extends ExceptionHandler
         $this->renderable(
             \LaravelJsonApi\Exceptions\ExceptionParser::make()->renderable()
         );
+        $this->reportable(function (Throwable $e) {
+            if (app()->bound('sentry')) {
+                app('sentry')->captureException($e);
+            }
+        });
     }
 }
