@@ -28,32 +28,15 @@ function Notifications() {
             <li key={notification.id}>
               {notification.data.destination_user ? (
                 <ListItemButton key={notification.id}>
-                  <p className="text-sm">
-                    <span className="text-blue-600">
-                      {notification.data.destination_user.email}
-                    </span>{" "}
-                    telah membuat order dengan kode {notification.data.code}
-                  </p>
-                  <p className="text-[0.65rem] whitespace-nowrap tracking-tighter">
-                    {dayjs().to(dayjs(notification.created_at))}
-                  </p>
+                  <PembelianNotification notification={notification} />
                 </ListItemButton>
               ) : (
                 <ListItemButton key={notification.id}>
-                  <p className="text-sm">
-                    Penjualan kepada{" "}
-                    <span className="text-blue-600">
-                      {notification.data.buyer_name}
-                    </span>{" "}
-                    dengan kode{" "}
-                    <span className="text-blue-600">
-                      {notification.data.code}
-                    </span>{" "}
-                    telah dibuat
-                  </p>
-                  <p className="text-[0.65rem] whitespace-nowrap tracking-tighter">
-                    {dayjs().to(dayjs(notification.created_at))}
-                  </p>
+                  {notification.data.code ? (
+                    <OrderNotification notification={notification} />
+                  ) : (
+                    <PaymentNotification notification={notification} />
+                  )}
                 </ListItemButton>
               )}
             </li>
@@ -63,6 +46,59 @@ function Notifications() {
     </div>
   );
 }
+
+const PembelianNotification = ({ notification }: any) => {
+  return (
+    <>
+      {" "}
+      <p className="text-sm">
+        <span className="text-blue-600">
+          {notification.data.destination_user.email}
+        </span>{" "}
+        telah membuat order dengan kode {notification.data.code}
+      </p>
+      <p className="text-[0.65rem] whitespace-nowrap tracking-tighter">
+        {dayjs().to(dayjs(notification.created_at))}
+      </p>
+    </>
+  );
+};
+
+const OrderNotification = ({ notification }: any) => {
+  return (
+    <>
+      {" "}
+      <p className="text-sm">
+        Penjualan kepada{" "}
+        <span className="text-blue-600">{notification.data.buyer_name}</span>{" "}
+        dengan kode{" "}
+        <span className="text-blue-600">{notification.data.code}</span> telah
+        dibuat
+      </p>
+      <p className="text-[0.65rem] whitespace-nowrap tracking-tighter">
+        {dayjs().to(dayjs(notification.created_at))}
+      </p>
+    </>
+  );
+};
+
+const PaymentNotification = ({ notification }: any) => {
+  return (
+    <>
+      {" "}
+      <p className="text-sm">
+        Penjualan menggunakan{" "}
+        <span className="text-blue-600">{notification.data.payment_type}</span>{" "}
+        sebesar{" "}
+        <span className="text-blue-600">{notification.data.gross_amount}</span>{" "}
+        telah berhasil dibuat
+      </p>
+      <p className="text-[0.65rem] whitespace-nowrap tracking-tighter">
+        {dayjs().to(dayjs(notification.created_at))}
+      </p>
+    </>
+  );
+};
 
 Notifications.getLayout = function getLayout(page: React.ReactNode) {
   return <AdminLayout>{page}</AdminLayout>;
