@@ -1,11 +1,4 @@
-import {
-  List,
-  ListItem,
-  TextField,
-  Button,
-  Autocomplete,
-  IconButton,
-} from "@mui/material";
+import { List, ListItem, TextField, Button, IconButton } from "@mui/material";
 import { useEffect } from "react";
 import AdminLayout from "components/layout/AdminLayout";
 import React, { useMemo, useRef, useState } from "react";
@@ -85,16 +78,20 @@ function CreateProduct() {
   useEffect(() => {
     if (router.query.id) {
       const id = router.query.id;
-      api.get(`products/${id}`, productParams).then((res: any) => {
-        setState({
-          ...state,
-          ...res.data.data.attributes,
-          product: res.data,
-        });
-      });
+      fetchProduct(id as string);
     }
     return () => {};
   }, []);
+
+  const fetchProduct = (id: string | number) => {
+    api.get(`products/${id}`, productParams).then((res: any) => {
+      setState({
+        ...state,
+        ...res.data.data.attributes,
+        product: res.data,
+      });
+    });
+  };
 
   const onAddFile = () => {
     console.log({ productFileRef });
@@ -183,6 +180,7 @@ function CreateProduct() {
   const deleteDocument = (id: string) => {
     api.delete(`-actions/documents/${id}`).then((res) => {
       toast.success(JSON.stringify(res.data));
+      fetchProduct(router.query.id as string);
     });
   };
 

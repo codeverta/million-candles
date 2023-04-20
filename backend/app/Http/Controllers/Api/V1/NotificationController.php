@@ -24,6 +24,6 @@ class NotificationController extends Controller
 
     public function index(Request $request)
     {
-        return Auth::user()->unreadNotifications;
+        return auth()->user()->unreadNotifications()->take(10)->get();
     }
 }
