@@ -1,7 +1,9 @@
 import {
   Button,
+  Checkbox,
   FormControl,
   FormControlLabel,
+  FormGroup,
   FormHelperText,
   IconButton,
   InputBase,
@@ -428,6 +430,19 @@ function CreateOrder() {
           <TableRow>
             <TableCell colSpan={2}>Total Penjualan</TableCell>
             <TableCell>{toCurrency(totalPrice)}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <FormGroup>
+                <FormControlLabel
+                  control={<Checkbox defaultChecked />}
+                  label="Print invoice"
+                  classes={{
+                    label: "text-sm",
+                  }}
+                />
+              </FormGroup>
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>

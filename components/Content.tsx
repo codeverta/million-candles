@@ -61,7 +61,7 @@ export default function Content({ title = "Produk Kami" }) {
                     : [];
                 const isDocumentExist = !!documents[0]?.attributes.filename;
                 return (
-                  <li className="transition-all hover:shadow-xl max-w-xs border border-gray-200 bg-white rounded shadow-md dark:bg-gray-800 dark:border-gray-700">
+                  <li className="transition-all hover:shadow-xl max-w-xs border border-gray-200 bg-white rounded dark:shadow-gray-800 dark:hover:shadow-gray-800 shadow-md dark:bg-gray-800 dark:border-gray-700">
                     <Link key={product.id} href={`/products/${product.id}`}>
                       <button className="mx-auto w-full">
                         {isDocumentExist ? (
