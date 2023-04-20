@@ -9,6 +9,7 @@ interface EnhancedTableToolbarProps {
   title: string;
   handleEdit?: () => void;
   handleDelete?: () => void;
+  handleFilter?: () => void;
 }
 
 export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
@@ -62,7 +63,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
         </Tooltip>
       ) : (
         <Tooltip title="Filter list">
-          <IconButton>
+          <IconButton onClick={props.handleFilter}>
             <FilterListIcon />
           </IconButton>
         </Tooltip>
