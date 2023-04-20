@@ -108,7 +108,8 @@ class OrderController extends Controller
                     $model->is_validate_buyer = true;
                 });
             } catch (\Exception $e) {
-                dd($e->getMessage());
+             	dd($e);  
+		dd($e->getMessage());
             }
             Order::creating(function ($model) use ($total_price, $snap_token)
             {
