@@ -27,7 +27,7 @@ class Product extends Model
 
     protected static function booted(): void
     {
-        static::creating(function (Order $order) {
+        static::creating(function (Product $order) {
             $order->uuid = Str::uuid();
         });
     }

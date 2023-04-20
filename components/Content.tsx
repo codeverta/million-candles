@@ -56,7 +56,7 @@ export default function Content({ title = "Produk Kami" }) {
               {" "}
               {query.data.data.data.map((product: any, index: number) => {
                 const documents =
-                  product.relationships.documents.data.length > 0
+                  product.relationships?.documents.data.length > 0
                     ? getRelationships(query.data.data, product, "documents")
                     : [];
                 const isDocumentExist = !!documents[0]?.attributes.filename;
