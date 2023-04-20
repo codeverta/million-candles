@@ -140,7 +140,7 @@ class OrderController extends Controller
             'code' => 'required',
         ]);
         $result = DB::table('orders')
-        ->rightJoin('order_details', 'orders.id', '=', 'order_details.orders_id')
+        ->leftJoin('order_details', 'orders.id', '=', 'order_details.orders_id')
         ->where('code', '=', $validatedData['code'])->get();
 
         return response()->json($result);

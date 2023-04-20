@@ -6,6 +6,8 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import api from "utils/api";
 import GoogleCaptcha from "components/molecules/GoogleCaptcha";
 import LoadingBackdrop from "components/mui/LoadingBackdrop";
+import { getOrderSequence, OrderSequence } from "utils/orders";
+import dayjs from "dayjs";
 
 function TrackOrder() {
   const queryClient = useQueryClient();
@@ -45,6 +47,10 @@ function TrackOrder() {
   const onSuccess = () => {
     setState({ ...state, isCaptchaSolved: true });
     queryClient.fetchQuery(["searchOrder"]);
+  };
+
+  const hasPingAnimation = (orderSequence: OrderSequence[], index: number) => {
+    return orderSequence.length - 1 === index;
   };
 
   return (
@@ -130,25 +136,50 @@ function TrackOrder() {
                   {" "}
                   {state.isCaptchaSolved && (
                     <ol className="text-left mt-8 relative border-l border-gray-200 dark:border-gray-700">
-                      {[0, 1, 2, 3].map((order: any) => {
-                        return (
-                          <li className="mb-10 ml-4">
-                            <div className="absolute animate-ping bg-yellow-600 w-3 h-3  rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900"></div>
-                            <div className="absolute bg-yellow-600 w-3 h-3  rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900"></div>
-                            <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
-                              February 2022
-                            </time>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                              Application UI code in Tailwind CSS
-                            </h3>
-                            <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
-                              Get access to over 20+ pages including a dashboard
-                              layout, charts, kanban board, calendar, and
-                              pre-order E-commerce & Marketing pages.
-                            </p>
-                          </li>
-                        );
-                      })}
+                      {searchOrder.data &&
+                        getOrderSequence(searchOrder.data.data[0]).map(
+                          (order: OrderSequence, index: number) => {
+                            return (
+                              <li key={index} className="mb-10 ml-4">
+                                <div
+                                  className={`absolute bg-yellow-600 w-3 h-3  rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900" +
+                                  ${
+                                    hasPingAnimation(
+                                      getOrderSequence(
+                                        searchOrder.data.data[0]
+                                      ),
+                                      index
+                                    )
+                                      ? "animate-ping"
+                                      : ""
+                                  }`}
+                                ></div>
+                                <div
+                                  className={`absolute bg-yellow-600 w-3 h-3  rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900
+                                  ${
+                                    hasPingAnimation(
+                                      getOrderSequence(
+                                        searchOrder.data.data[0]
+                                      ),
+                                      index
+                                    )
+                                      ? "bg-yellow-300"
+                                      : "bg-green-500"
+                                  }`}
+                                ></div>
+                                <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                                  {dayjs().format("LLLL")}
+                                </time>
+                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                                  {order.text}
+                                </h3>
+                                <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
+                                  {order.description}
+                                </p>
+                              </li>
+                            );
+                          }
+                        )}
                     </ol>
                   )}
                 </>

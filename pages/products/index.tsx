@@ -1,6 +1,15 @@
 import Layout from "components/layout/Landing";
 import Head from "next/head";
 import { Content } from "components";
+import {
+  List,
+  ListItemButton,
+  ListItem,
+  Table,
+  TableBody,
+  TableRow,
+  TableCell,
+} from "@mui/material";
 
 function Product() {
   return (
@@ -11,9 +20,7 @@ function Product() {
           Lilin Jogja, Lilin Warna, Lilin Hias dan Lain-lain
         </title>
       </Head>
-      <div className="pt-24 dark:bg-gray-900">
-        <Content />
-      </div>
+      <Content />
     </>
   );
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class OrderDetail extends Model
 {
@@ -22,7 +23,7 @@ class OrderDetail extends Model
     protected static function booted(): void
     {
         static::creating(function (OrderDetail $orderDetail) {
-            // dd($orderDetail);
+            $orderDetail->uuid = Str::uuid();
         });
     }
 

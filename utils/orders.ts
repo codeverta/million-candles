@@ -1,24 +1,56 @@
-export function getOrderSequence(order: any): {
+export interface OrderSequence {
   priority: number;
   text: string;
-} {
-  if (order.attributes.is_received) {
-    return { priority: 5, text: "Order berhasil diterima" };
-  } else if (order.attributes.is_shipped) {
-    return { priority: 4, text: "Order telah sampai tujuan" };
-  } else if (order.attributes.is_shipping) {
-    return { priority: 3, text: "Order berhasil dikirim oleh penjual" };
-  } else if (order.attributes.is_validate_seller) {
-    return { priority: 2, text: "Order berhasil terverifikasi oleh penjual" };
-  } else if (order.attributes.is_validate_buyer) {
-    return {
+  description: string;
+}
+
+export function getOrderSequence(order: any): OrderSequence[] {
+  const sequence = [];
+  if (order.is_validate_buyer) {
+    sequence.push({
       priority: 1,
       text: "Menunggu verifikasi oleh penjual agar order dapat diproses",
-    };
-  } else {
-    return { priority: 1, text: "" };
+      description:
+        "Menunggu konfirmasi dari penjual untuk memverifikasi order sehingga dapat diproses.",
+    });
   }
+  if (order.is_validate_seller) {
+    sequence.push({
+      priority: 2,
+      text: "Order berhasil terverifikasi oleh penjual",
+      description:
+        "Order telah diverifikasi oleh penjual dan siap untuk diproses.",
+    });
+  }
+
+  if (order.is_shipping) {
+    sequence.push({
+      priority: 3,
+      text: "Order berhasil dikirim oleh penjual",
+      description:
+        "Order telah dikirim oleh penjual dan sedang dalam perjalanan menuju tujuan.",
+    });
+  }
+
+  if (order.is_shipped) {
+    sequence.push({
+      priority: 4,
+      text: "Order telah sampai tujuan",
+      description: "Order telah sampai pada alamat yang dituju.",
+    });
+  }
+
+  if (order.is_received) {
+    sequence.push({
+      priority: 5,
+      text: "Order berhasil diterima",
+      description: "Order telah diterima oleh pembeli.",
+    });
+  }
+
+  return sequence;
 }
+
 export function getOrderStatus(order: any): any {
   const isValidateBuyer = order.attributes.is_validate_buyer;
   const isValidateSeller = order.attributes.is_validate_seller;

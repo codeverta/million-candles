@@ -19,7 +19,7 @@ export default function Landing({ children }: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <div className="dark:bg-gray-900">{children}</div>
+      {children}
       <Footer />
     </>
   );
