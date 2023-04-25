@@ -14,6 +14,8 @@ import indoFormat from "dayjs/locale/id";
 import { NextSeo } from "next-seo";
 import packageInfo from "../package.json";
 import dayjs from "dayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const queryClient = new QueryClient();
 dayjs.locale(indoFormat);
@@ -89,7 +91,9 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
             data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY}
           />
           <Toaster position="top-center" richColors />
-          {getLayout(<Component {...pageProps} {...appProps} />)}
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            {getLayout(<Component {...pageProps} {...appProps} />)}
+          </LocalizationProvider>
           <ReactQueryDevtools initialIsOpen={false} />
         </AuthProvider>
       </QueryClientProvider>

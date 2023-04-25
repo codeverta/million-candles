@@ -8,16 +8,29 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import api from "utils/api";
-import { Backdrop, Chip } from "@mui/material";
+import {
+  Backdrop,
+  Button,
+  Chip,
+  Dialog,
+  FormControl,
+  InputLabel,
+  List,
+  ListItem,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Typography,
+} from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { getOrderStatus } from "utils/orders";
 import { useRouter } from "next/router";
 import EnhancedTableToolbar from "components/mui/EnhancedTableToolbar";
 import EnhancedTableHead from "components/mui/EnhancedTableHead";
-import { getRelationship } from "utils";
 import EmptyData from "./EmptyData";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 interface Data {
   "no-resi": string;
@@ -60,12 +73,25 @@ export default function OrderTable({ title }: { title: string }) {
   const [orderBy, setOrderBy] = React.useState<any>("calories");
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(1);
+  const [state, setState] = React.useState({
+    isModalFilterOpen: false,
+    filter: {
+      orderStatus: "",
+    },
+  });
   const [rowsPerPage, setRowsPerPage] = React.useState(15);
-  const queryClient = useQueryClient();
   const query = useQuery({
-    queryKey: ["orders", page],
+    queryKey: ["orders", page, state.filter.orderStatus],
     queryFn: () => {
-      return api.get("orders", { ...ordersParams, "page[number]": page });
+      const params: any = {
+        ...ordersParams,
+        "page[number]": page,
+      };
+
+      state.filter.orderStatus
+        ? (params[`filter[${state.filter.orderStatus}]`] = true)
+        : null;
+      return api.get("orders", params);
     },
   });
 
@@ -120,6 +146,15 @@ export default function OrderTable({ title }: { title: string }) {
     router.push(`/admin/orders/${order.id}`);
   };
 
+  const handleFilter = () =>
+    setState({ ...state, isModalFilterOpen: !state.isModalFilterOpen });
+
+  const handleChangeFilter = (event: SelectChangeEvent) =>
+    setState({
+      ...state,
+      filter: { ...state.filter, orderStatus: event.target.value },
+    });
+
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   if (query.isError || query.isLoading) {
@@ -138,9 +173,59 @@ export default function OrderTable({ title }: { title: string }) {
   }
   return (
     <div className="pb-16">
+      <Dialog
+        onClose={() =>
+          setState({ ...state, isModalFilterOpen: !state.isModalFilterOpen })
+        }
+        classes={{
+          paper: "!w-72 !max-w-screen",
+        }}
+        open={state.isModalFilterOpen}
+      >
+        <List>
+          <ListItem dense>
+            <Typography>Filter</Typography>
+          </ListItem>
+          <ListItem>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">
+                Status Order
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={state.filter.orderStatus}
+                label="Status Order"
+                onChange={handleChangeFilter}
+              >
+                <MenuItem value={"is_received"}>Selesai</MenuItem>
+                <MenuItem value={"is_shipped"}>Selesai Dikirim</MenuItem>
+                <MenuItem value={"is_shipping"}>Dikirim</MenuItem>
+                <MenuItem value={"is_validate_seller"}>
+                  Terverifikasi Penjual
+                </MenuItem>
+                <MenuItem value={"is_validate_buyer"}>
+                  Terverifikasi Pembeli
+                </MenuItem>
+              </Select>
+            </FormControl>
+          </ListItem>
+          <ListItem className="flex gap-x-3">
+            <DatePicker label="Dari" className="w-full" />
+            <DatePicker label="Sampai" className="w-full" />
+          </ListItem>
+          <ListItem className="flex justify-end">
+            <Button onClick={handleFilter}>Simpan</Button>
+          </ListItem>
+        </List>
+      </Dialog>
       <Box sx={{ width: "100%" }}>
         <Paper sx={{ width: "100%", mb: 2 }}>
-          <EnhancedTableToolbar title={title} numSelected={selected.length} />
+          <EnhancedTableToolbar
+            title={title}
+            numSelected={selected.length}
+            handleFilter={handleFilter}
+          />
           <TableContainer>
             <Table aria-labelledby="tableTitle">
               <EnhancedTableHead

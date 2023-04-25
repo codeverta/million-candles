@@ -71,6 +71,13 @@ class OrderSchema extends Schema
         return [
             WhereIdIn::make($this),
             Where::make('is_shipping')->asBoolean(),
+            Where::make(
+            'is_shipped')->asBoolean(),
+            Where::make(
+            'is_validate_seller')->asBoolean(),
+            Where::make(
+            'is_validate_buyer')->asBoolean(),
+            Where::make('is_received')->asBoolean(),
             Where::make('order_type')
         ];
     }
