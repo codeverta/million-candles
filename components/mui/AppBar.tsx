@@ -14,6 +14,7 @@ import InputBase from "@mui/material/InputBase";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import MuiMenu from "./MuiMenu";
 import { useRouter } from "next/router";
+import { useTour } from "@reactour/tour";
 
 export const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -62,6 +63,7 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function ButtonAppBar() {
+  const { setIsOpen } = useTour();
   const router = useRouter();
   const [state, setState] = useState({
     anchorEl: null,
@@ -70,6 +72,17 @@ export default function ButtonAppBar() {
     drawer: false,
     menu: false,
   });
+
+  React.useEffect(() => {
+    // first
+    const hasOnboarding = localStorage.getItem("has_onboarding");
+    if (!hasOnboarding) {
+      // setIsOpen(true)
+    }
+    return () => {
+      // second
+    };
+  }, []);
 
   const handleDrawer = () => {
     setOpen({ ...open, drawer: !open.drawer });
@@ -101,6 +114,7 @@ export default function ButtonAppBar() {
                 aria-label="menu"
                 sx={{ mr: 2 }}
                 onClick={handleDrawer}
+                className="first-step"
               >
                 <MenuIcon />
               </IconButton>

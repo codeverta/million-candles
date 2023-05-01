@@ -28,7 +28,7 @@ export default function ProductCard(props: any) {
     setOpen({ ...open, dialog: !open.dialog });
   };
 
-  if (!getProducts.data) {
+  if (!getProducts?.data) {
     return <LoadingBackdrop />;
   }
 
