@@ -114,7 +114,7 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
               setIsOpen,
               setCurrentStep,
               steps,
-            }) => {
+            }: any) => {
               const last = currentStep === stepsLength - 1;
               return (
                 <Button
@@ -122,9 +122,9 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
                   onClick={() => {
                     if (last) {
                       setIsOpen(false);
-                      localStorage.setItem("has_onboarding", true);
+                      localStorage.setItem("has_onboarding", "true");
                     } else {
-                      setCurrentStep((s) =>
+                      setCurrentStep((s: any) =>
                         s === steps?.length - 1 ? 0 : s + 1
                       );
                     }
@@ -134,15 +134,15 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
                 </Button>
               );
             }}
-            prevButton={({ currentStep, setCurrentStep, steps }) => {
+            prevButton={({ currentStep, setCurrentStep, steps }: any) => {
               const first = currentStep === 0;
               return (
                 <button
                   onClick={() => {
                     if (first) {
-                      setCurrentStep((s) => steps.length - 1);
+                      setCurrentStep((s: any) => steps.length - 1);
                     } else {
-                      setCurrentStep((s) => s - 1);
+                      setCurrentStep((s: any) => s - 1);
                     }
                   }}
                 >

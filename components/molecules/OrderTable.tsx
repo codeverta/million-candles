@@ -98,7 +98,9 @@ export default function OrderTable({ title }: { title: string }) {
   });
 
   React.useEffect(() => {
-    const hasOnboarding = JSON.parse(localStorage.getItem("has_onboarding"));
+    const hasOnboarding = JSON.parse(
+      localStorage.getItem("has_onboarding") || "{}"
+    );
     console.log({ hasOnboarding });
     if (!hasOnboarding) {
       setIsOpen(true);
