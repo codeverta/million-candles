@@ -136,7 +136,8 @@ function CreateProduct() {
           "product-categories": {
             data: {
               type: "product-categories",
-              id: state.productCategoryId,
+              // id: state.productCategoryId,
+              id: "1",
             },
           },
         },
@@ -242,7 +243,7 @@ function CreateProduct() {
             }
           />
         </ListItem>
-        <ListItem>
+        {/* <ListItem>
           <SearchInput
             inputValue={state.product ? productCategoryOptions[0] : undefined}
             options={productCategoryOptions}
@@ -251,7 +252,7 @@ function CreateProduct() {
             label="Pilih Kategori"
             className="!w-full"
           />
-        </ListItem>
+        </ListItem> */}
         <ListItem>
           <FilePond
             files={files}
@@ -302,7 +303,6 @@ function CreateProduct() {
             color="primary"
             className="w-full bg-blue-500"
             title="Tambah Produk"
-            disabled={!state.productCategoryId}
           >
             {router.query.id ? "Edit" : "Tambah"} Produk
           </Button>

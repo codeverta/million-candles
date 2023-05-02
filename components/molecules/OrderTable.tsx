@@ -31,6 +31,7 @@ import EnhancedTableToolbar from "components/mui/EnhancedTableToolbar";
 import EnhancedTableHead from "components/mui/EnhancedTableHead";
 import EmptyData from "./EmptyData";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useTour } from "@reactour/tour";
 
 interface Data {
   "no-resi": string;
@@ -69,6 +70,7 @@ const ordersParams = {
 
 export default function OrderTable({ title }: { title: string }) {
   const router = useRouter();
+  const { setIsOpen } = useTour();
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<any>("calories");
   const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -94,6 +96,16 @@ export default function OrderTable({ title }: { title: string }) {
       return api.get("orders", params);
     },
   });
+
+  React.useEffect(() => {
+    const hasOnboarding = JSON.parse(
+      localStorage.getItem("has_onboarding") || "{}"
+    );
+    console.log({ hasOnboarding });
+    if (!hasOnboarding) {
+      setIsOpen(true);
+    }
+  }, []);
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -272,11 +284,13 @@ export default function OrderTable({ title }: { title: string }) {
                         id={labelId}
                         scope="row"
                         padding="none"
+                        className="second-step"
                       >
                         {row.attributes.code}
                       </TableCell>
                       <TableCell align="right">
                         <Chip
+                          className="third-step"
                           label={getOrderStatus(row).text}
                           color={getOrderStatus(row).color}
                         />

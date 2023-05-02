@@ -16,6 +16,9 @@ import packageInfo from "../package.json";
 import dayjs from "dayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { TourProvider } from "@reactour/tour";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const queryClient = new QueryClient();
 dayjs.locale(indoFormat);
@@ -27,6 +30,25 @@ if (typeof window !== "undefined") {
   // @ts-ignore
   window.version = packageInfo.version;
 }
+
+const steps = [
+  {
+    selector: ".first-step",
+    content: "Klik untuk memunculkan menu",
+  },
+  {
+    selector: ".second-step",
+    content: "Kode Order",
+  },
+  {
+    selector: ".third-step",
+    content: "Status Order",
+  },
+  {
+    selector: ".fourth-step",
+    content: "Daftar Menu",
+  },
+];
 
 export default function App({ Component, pageProps }: AppLayoutProps) {
   const appProps = { getRelationship, getRelationships };
@@ -80,23 +102,87 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
 
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
-          <Script src="https://www.google.com/recaptcha/api.js" />
-          <Script
-            type="text/javascript"
-            src={
-              isProduction
-                ? "https://app.midtrans.com/snap/snap.js"
-                : "https://app.sandbox.midtrans.com/snap/snap.js"
-            }
-            data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY}
-          />
-          <Toaster position="top-center" richColors />
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            {getLayout(<Component {...pageProps} {...appProps} />)}
-          </LocalizationProvider>
-          <ReactQueryDevtools initialIsOpen={false} />
+          <TourProvider
+            // components={{
+            //   Close,
+            // }}
+            steps={steps}
+            nextButton={({
+              Button,
+              currentStep,
+              stepsLength,
+              setIsOpen,
+              setCurrentStep,
+              steps,
+            }: any) => {
+              const last = currentStep === stepsLength - 1;
+              return (
+                <Button
+                  hideArrow={true}
+                  onClick={() => {
+                    if (last) {
+                      setIsOpen(false);
+                      localStorage.setItem("has_onboarding", "true");
+                    } else {
+                      setCurrentStep((s: any) =>
+                        s === steps?.length - 1 ? 0 : s + 1
+                      );
+                    }
+                  }}
+                >
+                  {last ? "Tutup" : <ArrowForwardIosIcon />}
+                </Button>
+              );
+            }}
+            prevButton={({ currentStep, setCurrentStep, steps }: any) => {
+              const first = currentStep === 0;
+              return (
+                <button
+                  onClick={() => {
+                    if (first) {
+                      setCurrentStep((s: any) => steps.length - 1);
+                    } else {
+                      setCurrentStep((s: any) => s - 1);
+                    }
+                  }}
+                >
+                  <ArrowBackIosIcon />
+                </button>
+              );
+            }}
+            showPrevNextButtons={true}
+            className="!p-10 rounded-lg"
+          >
+            <Script src="https://www.google.com/recaptcha/api.js" />
+            <Script
+              type="text/javascript"
+              src={
+                isProduction
+                  ? "https://app.midtrans.com/snap/snap.js"
+                  : "https://app.sandbox.midtrans.com/snap/snap.js"
+              }
+              data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY}
+            />
+            <Toaster position="top-center" richColors />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              {getLayout(<Component {...pageProps} {...appProps} />)}
+            </LocalizationProvider>
+            <ReactQueryDevtools initialIsOpen={false} />
+          </TourProvider>
         </AuthProvider>
       </QueryClientProvider>
     </>
+  );
+}
+
+function Close({ onClick }: any) {
+  return (
+    <button
+      onClick={onClick}
+      type="button"
+      className="absolute right-0 bottom-0 px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    >
+      Skip
+    </button>
   );
 }
