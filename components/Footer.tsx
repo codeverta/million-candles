@@ -11,6 +11,7 @@ export default function Footer() {
           <img
             width={60}
             height={60}
+            alt="Gambar logo million candles"
             className="mx-2 rounded-full"
             src="/logolilin.png"
           />
