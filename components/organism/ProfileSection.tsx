@@ -11,6 +11,9 @@ import { useRouter } from "next/router";
 import { Avatar, Chip } from "@mui/material";
 import { useGetFetchQuery } from "utils/hooks";
 import PasswordIcon from "@mui/icons-material/Password";
+import AnnouncementIcon from "@mui/icons-material/Announcement";
+import InfoIcon from "@mui/icons-material/Info";
+import SettingsIcon from "@mui/icons-material/Settings";
 import PasswordDialog from "components/molecules/PasswordDialog";
 
 function stringToColor(string: string) {
@@ -110,12 +113,36 @@ export default function ProfileSection() {
         <Divider />
         <nav aria-label="secondary mailbox folders">
           <List>
+            <ListItem disablePadding>
+              <ListItemButton component="button">
+                <ListItemIcon>
+                  <SettingsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Pengaturan" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton component="button">
+                <ListItemIcon>
+                  <InfoIcon />
+                </ListItemIcon>
+                <ListItemText primary="Tentang Aplikasi" />
+              </ListItemButton>
+            </ListItem>
             <ListItem onClick={handleLogout} disablePadding>
               <ListItemButton component="button">
                 <ListItemIcon>
                   <LogoutIcon />
                 </ListItemIcon>
                 <ListItemText primary="Log out" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton component="button">
+                <ListItemIcon>
+                  <AnnouncementIcon />
+                </ListItemIcon>
+                <ListItemText primary="Kritik dan Saran" />
               </ListItemButton>
             </ListItem>
           </List>
