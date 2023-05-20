@@ -163,7 +163,7 @@ export default function ProductDialog(props: PropsI) {
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell align="center" style={{ verticalAlign: "top" }}>
+                <TableCell align="left" style={{ verticalAlign: "top" }}>
                   <p>Deskripsi</p>
                 </TableCell>
                 <TableCell>{props.product.attributes.description}</TableCell>

@@ -25,24 +25,34 @@ interface EnhancedTableProps {
   orderBy: string;
   rowCount: number;
   headCells: HeadCell[];
+  readOnly?: boolean;
 }
 
 export default function EnhancedTableHead(props: EnhancedTableProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, headCells } =
-    props;
+  const {
+    onSelectAllClick,
+    order,
+    orderBy,
+    numSelected,
+    rowCount,
+    headCells,
+    readOnly,
+  } = props;
 
   return (
     <TableHead>
       <TableRow>
         <TableCell padding="checkbox" onClick={onSelectAllClick}>
-          <Checkbox
-            color="primary"
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            inputProps={{
-              "aria-label": "select all desserts",
-            }}
-          />
+          {!readOnly && (
+            <Checkbox
+              color="primary"
+              indeterminate={numSelected > 0 && numSelected < rowCount}
+              checked={rowCount > 0 && numSelected === rowCount}
+              inputProps={{
+                "aria-label": "select all desserts",
+              }}
+            />
+          )}
         </TableCell>
         {headCells.map((headCell) => (
           <TableCell
