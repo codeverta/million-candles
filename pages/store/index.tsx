@@ -1,5 +1,5 @@
 import StoreLayout from "components/layout/StoreLayout";
-import React from "react";
+import React, { useState } from "react";
 import { useGetFetchQuery } from "utils/hooks";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -12,6 +12,8 @@ import { useQuery } from "@tanstack/react-query";
 import api from "utils/api";
 import LoadingBackdrop from "components/mui/LoadingBackdrop";
 import ProductCard from "components/molecules/ProductCard";
+import ProductsTable from "components/molecules/store/ProductsTable";
+import ProductDialog from "components/molecules/ProductDialog";
 
 const productCategoriesParam = {
   "page[size]": 9,
@@ -23,6 +25,10 @@ const productsParam = {
 };
 
 function Home() {
+  const [state, setState] = useState({
+    isModalOpen: false,
+    selectedProduct: {},
+  });
   const getProductCategories = useQuery({
     queryKey: ["product-categories"],
     queryFn: () => {
@@ -45,10 +51,34 @@ function Home() {
     return <LoadingBackdrop />;
   }
 
-  const handleClick = () => {};
+  const handleClickProductRow = (product: any) => {
+    handleClickCard(product);
+  };
+
+  const handleProductDialog = () => {
+    setState({
+      ...state,
+      isModalOpen: !state.isModalOpen,
+    });
+  };
+
+  const handleClickCard = (product: any) => {
+    setState({
+      ...state,
+      selectedProduct: product,
+      isModalOpen: true,
+    });
+  };
 
   return (
     <div className="py-4">
+      {state.isModalOpen && (
+        <ProductDialog
+          product={state.selectedProduct}
+          open={state.isModalOpen}
+          handleClose={handleProductDialog}
+        />
+      )}
       <Swiper
         slidesPerView="auto"
         className="!px-2"
@@ -58,11 +88,7 @@ function Home() {
       >
         {getProductCategories.data.data.data.map((productCategory: any) => (
           <SwiperSlide className="!w-fit mx-1/2 p-1" key={productCategory.id}>
-            <Chip
-              onClick={handleClick}
-              color="primary"
-              label={productCategory.attributes.name}
-            />
+            <Chip color="primary" label={productCategory.attributes.name} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -81,7 +107,10 @@ function Home() {
                 className="!w-fit mx-1/2 max-w-xs p-1"
                 key={product.id}
               >
-                <ProductCard product={product} />
+                <ProductCard
+                  onClick={() => handleClickCard(product)}
+                  product={product}
+                />
               </SwiperSlide>
             );
           })}
@@ -102,12 +131,16 @@ function Home() {
                 className="!w-fit mx-1/2 max-w-xs p-1"
                 key={product.id}
               >
-                <ProductCard product={product} />
+                <ProductCard
+                  onClick={() => handleClickCard(product)}
+                  product={product}
+                />
               </SwiperSlide>
             );
           })}
         </Swiper>
       </article>
+      <ProductsTable handleRowClick={handleClickProductRow} />
     </div>
   );
 }

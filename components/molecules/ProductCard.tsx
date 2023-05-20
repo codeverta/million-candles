@@ -20,13 +20,6 @@ export default function ProductCard(props: any) {
     rating: [],
   });
   const root = React.useMemo(() => getProducts?.data, [getProducts]);
-  const [open, setOpen] = React.useState({
-    dialog: false,
-  });
-
-  const handleDialog = () => {
-    setOpen({ ...open, dialog: !open.dialog });
-  };
 
   if (!getProducts?.data) {
     return <LoadingBackdrop />;
@@ -35,14 +28,7 @@ export default function ProductCard(props: any) {
   const documents = getRelationships(root, props.product, "documents");
   return (
     <>
-      {open.dialog && (
-        <ProductDialog
-          product={props.product}
-          open={open.dialog}
-          handleClose={handleDialog}
-        />
-      )}
-      <Card onClick={handleDialog} sx={{ maxWidth: 200 }}>
+      <Card {...props} sx={{ maxWidth: 200 }}>
         <CardMedia
           component="img"
           classes={{
