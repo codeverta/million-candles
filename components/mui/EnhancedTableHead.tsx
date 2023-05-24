@@ -26,6 +26,7 @@ interface EnhancedTableProps {
   rowCount: number;
   headCells: HeadCell[];
   readOnly?: boolean;
+  className?: string;
 }
 
 export default function EnhancedTableHead(props: EnhancedTableProps) {
@@ -37,6 +38,7 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
     rowCount,
     headCells,
     readOnly,
+    className,
   } = props;
 
   return (
@@ -61,6 +63,7 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
             classes={headCell.classes ? headCell.classes : undefined}
+            className={className}
           >
             <TableSortLabel
               active={orderBy === headCell.id}

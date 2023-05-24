@@ -1,17 +1,14 @@
 import Layout from "components/layout/Landing";
 import Head from "next/head";
 import { Content } from "components";
-import {
-  List,
-  ListItemButton,
-  ListItem,
-  Table,
-  TableBody,
-  TableRow,
-  TableCell,
-} from "@mui/material";
+import ProductsTable from "components/molecules/landing/ProductsTable";
+import { useRouter } from "next/router";
 
 function Product() {
+  const router = useRouter();
+  const handleRowClick = (row: any) => {
+    router.push(`/products/${row.id}`);
+  };
   return (
     <>
       <Head>
@@ -21,6 +18,9 @@ function Product() {
         </title>
       </Head>
       <Content />
+      <main className="flex justify-center dark:bg-gray-900 bg-white">
+        <ProductsTable handleRowClick={handleRowClick} />
+      </main>
     </>
   );
 }
