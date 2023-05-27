@@ -13,9 +13,7 @@ function GoogleCaptcha(props: { onSuccess: () => void }) {
           }
         },
       });
-    } catch (error) {
-      console.log({ error });
-    }
+    } catch (_error) {}
   }, []);
   return (
     <div

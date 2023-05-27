@@ -23,9 +23,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
       }
       return api.get("auth/self");
     },
-    onError: (err: any) => {
-      console.log({ err });
-    },
+    onError: (_err: any) => {},
     enabled: !!isEnabled,
   });
 

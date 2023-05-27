@@ -93,9 +93,7 @@ function CreateProduct() {
     });
   };
 
-  const onAddFile = () => {
-    console.log({ productFileRef });
-  };
+  const onAddFile = () => {};
 
   const changeProductCategory = (
     _e: any,
@@ -173,7 +171,6 @@ function CreateProduct() {
 
       router.push("/admin/products");
     } catch (error) {
-      console.error({ error });
       toast.error("Produk Gagal Ditambahkan");
     }
   };
