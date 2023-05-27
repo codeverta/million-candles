@@ -43,20 +43,22 @@ function CreateUser() {
   useEffect(() => {
     // fetch user
     const id = router.query.id;
-    api.get(`users/${id}`).then((res: any) => {
-      setState({
-        ...state,
-        users: res.data,
-        user: {
-          ...res.data.data,
-          attributes: {
-            ...res.data.data.attributes,
-            password: "",
-            password_confirmation: "",
+    if (id) {
+      api.get(`users/${id}`).then((res: any) => {
+        setState({
+          ...state,
+          users: res.data,
+          user: {
+            ...res.data.data,
+            attributes: {
+              ...res.data.data.attributes,
+              password: "",
+              password_confirmation: "",
+            },
           },
-        },
+        });
       });
-    });
+    }
     return () => {};
   }, []);
 
