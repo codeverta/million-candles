@@ -6,7 +6,7 @@ export interface OrderSequence {
 
 export function getOrderSequence(order: any): OrderSequence[] {
   const sequence = [];
-  if (order.is_validate_buyer) {
+  if (Boolean(order.is_validate_buyer)) {
     sequence.push({
       priority: 1,
       text: "Menunggu verifikasi oleh penjual agar order dapat diproses",
@@ -14,7 +14,7 @@ export function getOrderSequence(order: any): OrderSequence[] {
         "Menunggu konfirmasi dari penjual untuk memverifikasi order sehingga dapat diproses.",
     });
   }
-  if (order.is_validate_seller) {
+  if (Boolean(order.is_validate_seller)) {
     sequence.push({
       priority: 2,
       text: "Order berhasil terverifikasi oleh penjual",
@@ -23,7 +23,7 @@ export function getOrderSequence(order: any): OrderSequence[] {
     });
   }
 
-  if (order.is_shipping) {
+  if (Boolean(order.is_shipping)) {
     sequence.push({
       priority: 3,
       text: "Order berhasil dikirim oleh penjual",
@@ -32,7 +32,7 @@ export function getOrderSequence(order: any): OrderSequence[] {
     });
   }
 
-  if (order.is_shipped) {
+  if (Boolean(order.is_shipped)) {
     sequence.push({
       priority: 4,
       text: "Order telah sampai tujuan",
@@ -40,7 +40,7 @@ export function getOrderSequence(order: any): OrderSequence[] {
     });
   }
 
-  if (order.is_received) {
+  if (Boolean(order.is_received)) {
     sequence.push({
       priority: 5,
       text: "Order berhasil diterima",

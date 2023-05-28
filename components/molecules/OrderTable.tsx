@@ -101,7 +101,6 @@ export default function OrderTable({ title }: { title: string }) {
     const hasOnboarding = JSON.parse(
       localStorage.getItem("has_onboarding") || "{}"
     );
-    console.log({ hasOnboarding });
     if (!hasOnboarding) {
       setIsOpen(true);
     }

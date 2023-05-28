@@ -282,7 +282,6 @@ export default function TransactionsTable() {
       return api.get("orders", { ...ordersParams });
     },
   });
-  console.log({ query });
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,

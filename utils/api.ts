@@ -30,9 +30,7 @@ const api = {
         error.response.data.errors.forEach((it: any) => {
           toast.error(it.detail);
         });
-      } catch (err: any) {
-        console.log({ err });
-      }
+      } catch (_err: any) {}
       return Promise.reject(error);
     });
   },
