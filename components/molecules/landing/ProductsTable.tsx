@@ -172,84 +172,77 @@ export default function ProductsTable({ handleRowClick }: any) {
   }
   return (
     <div className="max-w-4xl">
-      <Box sx={{ width: "100%" }}>
-        <Paper
-          sx={{ width: "100%", mb: 2 }}
-          className="dark:bg-gray-900 bg-white dark:text-white"
-        >
-          <TableContainer>
-            <Table className="" aria-labelledby="tableTitle">
-              <TableHead>
-                {headCells.map((headCell) => (
-                  <TableCell
-                    key={headCell.id}
-                    align={headCell.numeric ? "right" : "left"}
-                    padding={headCell.disablePadding ? "none" : "normal"}
-                    sortDirection={orderBy === headCell.id ? order : false}
-                    classes={headCell.classes ? headCell.classes : undefined}
-                    className="text-white"
-                  >
-                    {headCell.label}
-                  </TableCell>
-                ))}
-              </TableHead>
-              <TableBody>
-                {getProducts.data.data.data.map((row: any, index: number) => {
-                  const isItemSelected = isSelected(row.id);
-                  const labelId = `{row.id}`;
+      <TableContainer className="!dark:bg-gray-900">
+        <Table className="" aria-labelledby="tableTitle">
+          <TableHead>
+            {headCells.map((headCell) => (
+              <TableCell
+                key={headCell.id}
+                align={headCell.numeric ? "right" : "left"}
+                padding={headCell.disablePadding ? "none" : "normal"}
+                sortDirection={orderBy === headCell.id ? order : false}
+                classes={headCell.classes ? headCell.classes : undefined}
+                className="text-white"
+              >
+                {headCell.label}
+              </TableCell>
+            ))}
+          </TableHead>
+          <TableBody>
+            {getProducts.data.data.data.map((row: any, index: number) => {
+              const isItemSelected = isSelected(row.id);
+              const labelId = `{row.id}`;
 
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.id}
-                      selected={isItemSelected}
-                      onClick={() => handleRowClick(row)}
-                    >
-                      <TableCell
-                        padding="checkbox"
-                        onClick={(event) => {
-                          event.stopPropagation();
-                          handleClick(event, row.id);
-                        }}
-                        className="dark:text-white"
-                      >
-                        {getProducts.data.data.meta.page.from + index}
-                      </TableCell>
-                      <TableCell className="px-0 dark:text-white">
-                        {row.attributes.name}
-                      </TableCell>
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
-                        className="text-right dark:text-white"
-                      >
-                        {toCurrency(row.attributes.price)}
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[10, 15, 25]}
-            classes={{
-              root: "dark:text-white",
-            }}
-            component="div"
-            count={getProducts.data.data.meta.page.total ?? -1}
-            rowsPerPage={query.products["page[size]"]}
-            page={getProducts.data.data.meta.page.currentPage - 1}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </Paper>
-      </Box>
+              return (
+                <TableRow
+                  hover
+                  role="checkbox"
+                  aria-checked={isItemSelected}
+                  tabIndex={-1}
+                  key={row.id}
+                  selected={isItemSelected}
+                  onClick={() => handleRowClick(row)}
+                >
+                  <TableCell
+                    padding="checkbox"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      handleClick(event, row.id);
+                    }}
+                    className="dark:text-white"
+                  >
+                    {getProducts.data.data.meta.page.from + index}
+                  </TableCell>
+                  <TableCell className="px-0 dark:text-white">
+                    {row.attributes.name}
+                  </TableCell>
+                  <TableCell
+                    component="th"
+                    id={labelId}
+                    scope="row"
+                    padding="none"
+                    className="text-right dark:text-white"
+                  >
+                    {toCurrency(row.attributes.price)}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 15, 25]}
+        classes={{
+          root: "dark:text-white",
+        }}
+        component="div"
+        count={getProducts.data.data.meta.page.total ?? -1}
+        rowsPerPage={query.products["page[size]"]}
+        page={getProducts.data.data.meta.page.currentPage - 1}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
     </div>
   );
 }

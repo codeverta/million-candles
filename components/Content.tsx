@@ -54,15 +54,18 @@ export default function Content({ title = "Produk Kami" }) {
           ) : (
             <>
               {" "}
-              {query.data.data.data.map((product: any, index: number) => {
+              {query.data.data.data.map((product: any) => {
                 const documents =
                   product.relationships?.documents.data.length > 0
                     ? getRelationships(query.data.data, product, "documents")
                     : [];
                 const isDocumentExist = !!documents[0]?.attributes.filename;
                 return (
-                  <li className="transition-all hover:shadow-xl max-w-xs border border-gray-200 bg-white rounded dark:shadow-gray-800 dark:hover:shadow-gray-800 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <Link key={product.id} href={`/products/${product.id}`}>
+                  <li
+                    key={product.id}
+                    className="transition-all hover:shadow-xl max-w-xs border border-gray-200 bg-white rounded dark:shadow-gray-800 dark:hover:shadow-gray-800 shadow-md dark:bg-gray-800 dark:border-gray-700"
+                  >
+                    <Link href={`/products/${product.id}`}>
                       <button className="mx-auto w-full">
                         {isDocumentExist ? (
                           <img

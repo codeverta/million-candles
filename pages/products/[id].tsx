@@ -2,19 +2,61 @@ import React from "react";
 import Layout from "components/layout/Landing";
 import { useQuery } from "@tanstack/react-query";
 import api from "utils/api";
-import { toCurrency } from "utils";
+import { getRelationships, toCurrency } from "utils";
 import { Content } from "components";
-
-function ProductDetail({ product }: any) {
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+// @ts-ignore
+// @ts-nocheck
+import { Pagination } from "swiper";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+// import required modules
+function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
+  const documents =
+    product.data.relationships?.documents.data.length > 0
+      ? getRelationships(product, product.data, "documents")
+      : [];
+  const isDocumentExist = !!documents[0]?.attributes.filename;
   return (
     <section className="text-gray-700 dark:text-gray-300 body-font overflow-hidden bg-white min-h-screen dark:bg-gray-900">
       <div className="container px-5 py-24 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
-          <img
-            alt="ecommerce"
-            className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
-            src="/assets/image-1@2x.jpg"
-          />
+          <div className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200">
+            <Swiper
+              spaceBetween={30}
+              pagination={{
+                clickable: true,
+              }}
+              modules={[Pagination]}
+              className="h-full"
+            >
+              {isDocumentExist ? (
+                documents.map((document: DocumentData) => (
+                  <SwiperSlide key={document.id}>
+                    <img
+                      alt="ecommerce"
+                      src={
+                        process.env.NEXT_PUBLIC_BASE +
+                        "/storage/" +
+                        document.attributes.filename
+                      }
+                      className="h-full m-auto"
+                    />{" "}
+                  </SwiperSlide>
+                ))
+              ) : (
+                <SwiperSlide>
+                  <img
+                    alt="ecommerce"
+                    src="/assets/image-1@2x.jpg"
+                    className="h-full"
+                  />{" "}
+                </SwiperSlide>
+              )}
+            </Swiper>
+          </div>
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h2 className="text-sm title-font text-gray-500 tracking-widest">
               NAMA PRODUK
@@ -207,7 +249,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
-  const productData = await api.get("products/" + params.id);
+  const productData = await api.get("products/" + params.id, {
+    include: "documents",
+  });
   return {
     props: {
       product: productData.data,
