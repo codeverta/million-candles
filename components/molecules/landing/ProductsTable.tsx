@@ -209,11 +209,11 @@ export default function ProductsTable({ handleRowClick }: any) {
                       event.stopPropagation();
                       handleClick(event, row.id);
                     }}
-                    className="dark:text-white"
+                    className="!dark:text-white"
                   >
                     {getProducts.data.data.meta.page.from + index}
                   </TableCell>
-                  <TableCell className="px-0 dark:text-white">
+                  <TableCell className="px-0 !dark:text-white">
                     {row.attributes.name}
                   </TableCell>
                   <TableCell
@@ -221,7 +221,7 @@ export default function ProductsTable({ handleRowClick }: any) {
                     id={labelId}
                     scope="row"
                     padding="none"
-                    className="text-right dark:text-white"
+                    className="text-right !dark:text-white"
                   >
                     {toCurrency(row.attributes.price)}
                   </TableCell>
@@ -234,7 +234,7 @@ export default function ProductsTable({ handleRowClick }: any) {
       <TablePagination
         rowsPerPageOptions={[10, 15, 25]}
         classes={{
-          root: "dark:text-white",
+          root: "!dark:text-white",
         }}
         component="div"
         count={getProducts.data.data.meta.page.total ?? -1}

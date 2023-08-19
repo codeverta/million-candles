@@ -40,11 +40,11 @@ export default function Hero() {
           yang tepat untuk membuat kenangan yang tak terlupakan.
         </p>
         <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-          <a
-            href="#"
+          <Link
+            href="/products"
             className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-900"
           >
-            Link Tokopedia
+            Lihat Produk
             <svg
               className="ml-2 -mr-1 w-5 h-5"
               fill="currentColor"
@@ -57,7 +57,7 @@ export default function Hero() {
                 clipRule="evenodd"
               ></path>
             </svg>
-          </a>
+          </Link>
           <a
             href="https://wa.me/+6281578956156?text=Halo%20saya%20tertarik%20dengan%20produk%20lilin%20Anda"
             target="_blank"
