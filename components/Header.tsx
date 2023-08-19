@@ -142,7 +142,7 @@ export default function Header() {
           </div>
         </div>
       </nav>
-      <Banner />
+      {/* <Banner /> */}
     </header>
   );
 }

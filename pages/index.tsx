@@ -170,24 +170,7 @@ function Home(props: any) {
                         {post.desc}
                       </p>
                     </div>
-                    <div className="relative mt-8 flex items-center gap-x-4">
-                      {/* <img
-                        src={post.author.imageUrl}
-                        alt=""
-                        className="h-10 w-10 rounded-full bg-gray-50"
-                      /> */}
-                      {/* <div className="text-sm leading-6">
-                        <p className="font-semibold dark:text-gray-50 text-gray-900">
-                          <a href={post.author.href}>
-                            <span className="absolute inset-0" />
-                            {post.author.name}
-                          </a>
-                        </p>
-                        <p className="dark:text-gray-50 text-gray-600">
-                          {post.author.role}
-                        </p>
-                      </div> */}
-                    </div>
+                    <div className="relative mt-8 flex items-center gap-x-4"></div>
                   </article>
                 ))}
               </div>
