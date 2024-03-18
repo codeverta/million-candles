@@ -19,27 +19,45 @@ export default function Footer() {
         </a>
         <ul className="flex flex-wrap mt-4 justify-center items-center mb-6 text-gray-900 dark:text-white">
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6 ">
+            <a
+              href="https://wa.me/+6281578956156?text=Halo%20saya%20tertarik%20dengan%20produk%20lilin%20Anda"
+              target="_blank"
+              className="mr-4 hover:underline md:mr-6 "
+            >
               Whatsapp
             </a>
           </li>
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">
+            <a
+              href="https://www.instagram.com/souvenirlilin.id/"
+              target="_blank"
+              className="mr-4 hover:underline md:mr-6"
+            >
               Instagram
             </a>
           </li>
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">
-              Facebook
+            <a
+              href="https://www.tiktok.com/@souvenirlilin"
+              target="_blank"
+              className="mr-4 hover:underline md:mr-6"
+            >
+              Tiktok
             </a>
           </li>
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6 ">
+            <a
+              href="https://www.souvenirlilin.com/posts"
+              className="mr-4 hover:underline md:mr-6 "
+            >
               Blog
             </a>
           </li>
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">
+            <a
+              href="https://www.souvenirlilin.com/about"
+              className="mr-4 hover:underline md:mr-6"
+            >
               Tentang Kami
             </a>
           </li>

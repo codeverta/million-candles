@@ -14,6 +14,7 @@ use LaravelJsonApi\Eloquent\SoftDeletes;
 use LaravelJsonApi\Eloquent\Filters\WhereIdIn;
 use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Fields\SoftDelete;
+use LaravelJsonApi\Eloquent\Filters\Where;
 use LaravelJsonApi\Eloquent\Schema;
 
 class ProductSchema extends Schema
@@ -46,6 +47,7 @@ class ProductSchema extends Schema
             Str::make('name'),
             Str::make('description'),
             Str::make('code'),
+            Str::make('slug'),
             Number::make('stock'),
             Number::make('price'),
             BelongsTo::make('product-categories'),
@@ -66,6 +68,7 @@ class ProductSchema extends Schema
     {
         return [
             WhereIdIn::make($this),
+            Where::make("slug"),
         ];
     }
 
