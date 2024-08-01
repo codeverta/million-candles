@@ -78,7 +78,7 @@ function TrackOrder() {
             <h2 className="mb-4 text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl dark:text-white">
               Cek Order
             </h2>
-            <p className="mx-auto mb-8 max-w-2xl font-light text-gray-500 md:mb-12 sm:text-xl dark:text-gray-400">
+            <p className="mx-auto mb-8 max-w-2xl font-light text-gray-400 md:mb-12 sm:text-xl dark:text-gray-400">
               Pantau dan lacak ordermu menggunakan kode unik yang kamu dapatkan
               setelah memesan produk kami.
             </p>
@@ -93,7 +93,7 @@ function TrackOrder() {
                   </label>
                   <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                     <svg
-                      className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                      className="w-5 h-5 text-gray-400 dark:text-gray-400"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +123,7 @@ function TrackOrder() {
                   </button>
                 </div>
               </div>
-              <div className="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300">
+              <div className="mx-auto max-w-screen-sm text-sm text-left text-gray-400 newsletter-form-footer dark:text-gray-300">
                 Data yang sudah dinputkan akan muncul di bawah ini, jika
                 memiliki kendala silakan hubungi penjual.
               </div>
@@ -167,13 +167,13 @@ function TrackOrder() {
                                       : "bg-green-500"
                                   }`}
                                 ></div>
-                                <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                                <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-400">
                                   {dayjs().format("LLLL")}
                                 </time>
                                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                                   {order.text}
                                 </h3>
-                                <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
+                                <p className="mb-4 text-base font-normal text-gray-400 dark:text-gray-400">
                                   {order.description}
                                 </p>
                               </li>

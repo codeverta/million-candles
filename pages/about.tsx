@@ -7,7 +7,7 @@ const text = marked.parse(`
 
 Million Candles adalah perusahaan lilin asal Yogyakarta yang menyediakan berbagai jenis lilin dengan desain yang unik dan berkualitas tinggi. Kami menggunakan bahan-bahan berkualitas tinggi dan teknik pembuatan yang baik untuk menciptakan lilin yang indah dan harum.
 
-Kami menawarkan berbagai pilihan lilin, mulai dari lilin tealight hingga lilin besar yang dapat digunakan untuk acara spesial seperti pernikahan atau pesta ulang tahun. Selain itu, kami juga menyediakan lilin parfum yang dapat digunakan untuk menciptakan suasana yang menenangkan di rumah Anda.
+Kami menawarkan berbagai pilihan lilin, mulai dari lilin kecil hingga lilin besar yang dapat digunakan untuk acara spesial seperti pernikahan, pesta ulang tahun, acara ibadah gereja, atau mati lampu. Selain itu, kami juga menyediakan lilin parfum yang dapat digunakan untuk menciptakan suasana yang menenangkan di rumah Anda.
 
 Kami memiliki berbagai pilihan warna dan desain yang dapat disesuaikan dengan selera Anda. Kami juga dapat membuat lilin dengan desain yang sesuai dengan keinginan Anda.
 

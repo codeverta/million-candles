@@ -15,6 +15,7 @@ class VillageSeeder extends Seeder
      */
     public function run()
     {
+        ini_set('memory_limit', '-1');
         $csv = database_path('seeders/data/villages.csv'); // path to your CSV file
         $rows = array_map(function ($row) {
             return str_getcsv($row, ';');

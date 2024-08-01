@@ -40,6 +40,9 @@ export default function Content({ title = "Produk Kami" }) {
         <h2 className="text-center mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
           {title}
         </h2>
+        <span className="text-red-600 text-sm block max-w-md mx-auto">
+          * Harga yang ditampilkan merupakan harga distributor/grosir
+        </span>
         <ul className="grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 max-w-4xl w-4/5 m-auto py-10">
           {query.isLoading || query.isError ? (
             <>
@@ -89,9 +92,9 @@ export default function Content({ title = "Produk Kami" }) {
                         )}
                       </button>
                       <div className="px-5 pb-5">
-                        <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                        <h3 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                           {product.attributes.name}
-                        </h5>
+                        </h3>
                         <p className="flex items-center gap-1 dark:text-gray-200 text-gray-700">
                           <Rating
                             id={`product-${product.attributes.name}`}

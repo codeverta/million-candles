@@ -51,7 +51,7 @@ function Home(props: any) {
         <Content />
         <section className="">
           <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-lg lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
-            <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+            <div className="font-light text-gray-400 sm:text-lg dark:text-gray-400">
               <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
                 Buat Kenangan Indah dengan Lilin Kami
               </h2>
@@ -74,13 +74,17 @@ function Home(props: any) {
             <div className="grid grid-cols-2 gap-4 mt-8">
               <img
                 className="w-full rounded-lg"
-                src="/assets/lilin1.png"
-                alt="office content 1"
+                src="/assets/lilin1.webp"
+                height={500}
+                width={500}
+                alt="Gambar Lilin Kristal Sedang Warna Warni"
               />
               <img
                 className="mt-4 w-full lg:mt-10 rounded-lg"
-                src="/assets/lilin2.png"
-                alt="office content 2"
+                src="/assets/lilin2.webp"
+                height={500}
+                width={500}
+                alt="Gambar Paket Pengiriman Lilin"
               />
             </div>
           </div>
@@ -115,7 +119,7 @@ function Home(props: any) {
                   </div>
                 </div>
                 <img
-                  src="/assets/lilin.png"
+                  src="/assets/lilin.webp"
                   alt="Product screenshot"
                   className="w-[24rem] max-w-none mx-auto rounded-2xl shadow-2xl ring-1 ring-gray-400/10 sm:w-[40rem] md:-ml-4 lg:-ml-0"
                   width={2432}
@@ -149,7 +153,7 @@ function Home(props: any) {
                     className="flex max-w-xl flex-col items-start justify-between"
                   >
                     <div className="flex items-center gap-x-4 text-xs">
-                      <time dateTime={post.date} className="text-gray-500">
+                      <time dateTime={post.date} className="text-gray-400">
                         {post.date}
                       </time>
                       <a

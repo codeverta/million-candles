@@ -9,7 +9,7 @@ export default function NotFound() {
           <p className="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">
             Tidak Diijinkan.
           </p>
-          <p className="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
+          <p className="mb-4 text-lg font-light text-gray-400 dark:text-gray-400">
             Maaf, anda tidak diijinkan untuk mengakses halaman ini.
           </p>
           <a

@@ -19,6 +19,7 @@ class ProductResource extends JsonApiResource
         return [
             'name' => $this->name,
             'code' => $this->code,
+            'slug' => $this->slug,
             'description' => $this->description,
             'price' => (int) $this->price,
             'stock' => (int) $this->stock,
