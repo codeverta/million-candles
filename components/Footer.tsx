@@ -62,7 +62,7 @@ export default function Footer() {
             </a>
           </li>
         </ul>
-        <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+        <span className="text-sm text-gray-400 sm:text-center dark:text-gray-400">
           © 2007-{new Date().getFullYear()}{" "}
           <a href="#" className="hover:underline">
             Million Candles™

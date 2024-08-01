@@ -11,7 +11,7 @@ export default function Drawer(props: any) {
     >
       <h5
         id="drawer-body-scrolling-label"
-        className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400"
+        className="text-base font-semibold text-gray-400 uppercase dark:text-gray-400"
       >
         Menu
       </h5>

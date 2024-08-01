@@ -6,8 +6,8 @@ export default function Hero() {
       <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
         <Link
           href="/address"
+          aria-label="Alamat Kami"
           className="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
-          role="alert"
         >
           <span className="text-xs bg-blue-600 rounded-full text-white px-4 py-1.5 mr-3">
             Alamat
@@ -31,7 +31,7 @@ export default function Hero() {
         <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
           Produsen Lilin Yogyakarta <br /> Berskala Nasional
         </h1>
-        <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+        <p className="mb-8 text-lg font-normal text-gray-400 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
           Kami adalah UMKM yang menyediakan berbagai macam jenis lilin
           berkualitas tinggi, mulai dari lilin souvenir, lilin warna, lilin hias
           dan masih banyak lagi. Kami menawarkan lilin hias yang indah untuk

@@ -20,7 +20,13 @@ import { TourProvider } from "@reactour/tour";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 3, // Number of retries for failed queries
+    },
+  },
+});
 dayjs.locale(indoFormat);
 dayjs.extend(localizedFormat);
 dayjs.extend(relativeTimeFormat);
@@ -103,9 +109,6 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <TourProvider
-            // components={{
-            //   Close,
-            // }}
             steps={steps}
             nextButton={({
               Button,

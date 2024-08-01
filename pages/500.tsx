@@ -18,7 +18,7 @@ function ErroPage() {
           <h1 className="mb-4 text-4xl font-bold tracking-tight leading-none text-gray-900 lg:mb-6 md:text-5xl xl:text-6xl dark:text-white">
             Under Maintenance
           </h1>
-          <p className="font-light text-gray-500 md:text-lg xl:text-xl dark:text-gray-400">
+          <p className="font-light text-gray-400 md:text-lg xl:text-xl dark:text-gray-400">
             Our Enterprise administrators are performing scheduled maintenance.
           </p>
         </div>

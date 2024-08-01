@@ -32,7 +32,7 @@ const EmptyCart = () => (
       <h1 className="mt-4 text-lg tracking-tight font-bold text-gray-900">
         Wah, keranjang belanjamu kosong
       </h1>
-      <p className="mb-4 text-sm font-light text-gray-500 dark:text-gray-400">
+      <p className="mb-4 text-sm font-light text-gray-400 dark:text-gray-400">
         Yuk, isi dengan barang-barang impianmu!
       </p>
     </div>

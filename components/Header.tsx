@@ -22,10 +22,10 @@ export default function Header() {
       label: "Produk",
       url: "/products",
     },
-    {
-      label: "Cek Order",
-      url: "/cek-order",
-    },
+    // {
+    //   label: "Cek Order",
+    //   url: "/cek-order",
+    // },
     {
       label: "Alamat",
       url: "/address",
@@ -33,6 +33,10 @@ export default function Header() {
     {
       label: "Blog",
       url: "/posts",
+    },
+    {
+      label: "Gallery",
+      url: "/gallery",
     },
     {
       label: "Tentang",
@@ -73,9 +77,10 @@ export default function Header() {
         <div className="flex flex-wrap justify-around sm:justify-between items-center mx-auto max-w-screen-xl">
           <Link href="/" className="flex items-center">
             <img
+              width={35}
               src="/logolilin.png"
               className="mr-3 rounded-full h-6 sm:h-9"
-              alt="Flowbite Logo"
+              alt="Logo Souvenir LIlin"
             />
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               Million Candles
@@ -92,7 +97,7 @@ export default function Header() {
               data-collapse-toggle="mobile-menu-2"
               type="button"
               onClick={handleDrawer}
-              className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              className="inline-flex items-center p-2 ml-1 text-sm text-gray-400 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               aria-controls="mobile-menu-2"
               aria-expanded="false"
             >

@@ -211,10 +211,14 @@ export default function ProductsTable({ handleRowClick }: any) {
                     }}
                     className="!dark:text-white"
                   >
-                    {getProducts.data.data.meta.page.from + index}
+                    <span className="dark:text-white">
+                      {getProducts.data.data.meta.page.from + index}
+                    </span>
                   </TableCell>
                   <TableCell className="px-0 !dark:text-white">
-                    {row.attributes.name}
+                    <span className="dark:text-white">
+                      {row.attributes.name}
+                    </span>
                   </TableCell>
                   <TableCell
                     component="th"
@@ -223,7 +227,9 @@ export default function ProductsTable({ handleRowClick }: any) {
                     padding="none"
                     className="text-right !dark:text-white"
                   >
-                    {toCurrency(row.attributes.price)}
+                    <span className="dark:text-white">
+                      {toCurrency(row.attributes.price)}
+                    </span>
                   </TableCell>
                 </TableRow>
               );
