@@ -132,20 +132,15 @@ export default function Login() {
                 >
                   Sign in
                 </button>
-                <p className="text-sm font-light text-gray-400 dark:text-gray-400">
-                  Don’t have an account yet?{" "}
-                  <a
-                    href="#"
-                    className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                  >
-                    Sign up
-                  </a>
-                </p>
               </form>
             </div>
           </div>
         </div>
       </section>
+      <Script
+        src="https://www.google.com/recaptcha/api.js"
+        strategy="lazyOnload"
+      />
     </>
   );
 }

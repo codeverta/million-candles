@@ -156,16 +156,6 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
             showPrevNextButtons={true}
             className="!p-10 rounded-lg"
           >
-            <Script src="https://www.google.com/recaptcha/api.js" />
-            <Script
-              type="text/javascript"
-              src={
-                isProduction
-                  ? "https://app.midtrans.com/snap/snap.js"
-                  : "https://app.sandbox.midtrans.com/snap/snap.js"
-              }
-              data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY}
-            />
             <Toaster position="top-center" richColors />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               {getLayout(<Component {...pageProps} {...appProps} />)}
