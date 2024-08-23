@@ -15,6 +15,10 @@
   box-shadow: none;
 }
 
+[type="checkbox"] {
+  height: 100%;
+}
+
 .filepond--wrapper {
   width: 100%;
 }

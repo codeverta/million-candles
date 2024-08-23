@@ -78,6 +78,7 @@ export default function Header() {
           <Link href="/" className="flex items-center">
             <img
               width={35}
+              height={35}
               src="/logolilin.png"
               className="mr-3 rounded-full h-6 sm:h-9"
               alt="Logo Souvenir LIlin"

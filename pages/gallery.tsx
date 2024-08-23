@@ -1,143 +1,95 @@
-// import { useRef, useEffect } from 'react'
-import dynamic from "next/dynamic";
-import Layout from "components/layout/Landing";
-import Head from "next/head";
+"use client";
+import React, { useState, useEffect } from "react";
+import { Gallery, Item } from "react-photoswipe-gallery";
+import "photoswipe/dist/photoswipe.css";
 
-const categories = [
+const photos = [
   {
-    label: "All categories",
-    active: true,
+    src: "/Million Candles.jpeg",
+    title: "Photo 1",
   },
   {
-    label: "Foto",
+    src: "/2.jpeg",
+    title: "Photo 2",
   },
   {
-    label: "Video",
+    src: "/4.jpeg",
+    title: "Photo 4",
+  },
+  {
+    src: "/5.jpeg",
+    title: "Photo 5",
   },
 ];
 
-function Gallery(props: any) {
+const preloadImage = (src: string) => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => {
+      resolve({ src, width: img.width, height: img.height });
+    };
+  });
+};
+
+const PhotoGallery = () => {
+  const [loadedPhotos, setLoadedPhotos] = useState<any>([]);
+
+  useEffect(() => {
+    const loadPhotos = async () => {
+      const loaded = await Promise.all(
+        photos.map((photo) => preloadImage(photo.src))
+      );
+      setLoadedPhotos(
+        loaded.map((photo: any, index) => ({
+          ...photo,
+          title: photos[index].title,
+        }))
+      );
+    };
+
+    loadPhotos();
+  }, []);
+
   return (
-    <main>
-      <Head>
-        <title>
-          Alamat Kami | UD Million Candles - Produsen Lilin Aromaterapi Souvenir
-          Lilin Jogja, Lilin Warna, Lilin Hias dan Lain-lain
-        </title>
-      </Head>
-      <div className="flex items-center justify-center py-4 md:py-8 flex-wrap">
-        {categories.map((it) => (
-          <>
-            {it.active ? (
-              <button
-                type="button"
-                className="text-blue-700 hover:text-white border border-blue-600 bg-white hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:bg-gray-900 dark:focus:ring-blue-800"
-              >
-                {it.label}
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800"
-              >
-                {it.label}
-              </button>
-            )}
-          </>
-        ))}
-      </div>
-      <div className="grid md:max-w-5xl mx-auto  grid-cols-2 md:grid-cols-3 gap-4">
-        <div>
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg"
-            alt=""
-          />
+    <main className="dark:bg-gray-900">
+      <div className="container mx-auto py-12">
+        <div className="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
+          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+            Spoonie Seneng
+          </h2>
+          <p className="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">
+            Spoonie Seneng adalah Kegiatan Rutin Mingguan sebagai Penghibur
+            Pasien.
+          </p>
         </div>
-        <div>
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-6.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-7.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-8.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-9.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-10.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-11.jpg"
-            alt=""
-          />
-        </div>
+        <Gallery>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {loadedPhotos.map((photo: any, index: number) => (
+              <div key={index} className="overflow-hidden rounded-lg shadow-lg">
+                <Item
+                  original={photo.src}
+                  thumbnail={photo.src}
+                  width={photo.width}
+                  height={photo.height}
+                >
+                  {({ ref, open }) => (
+                    <img
+                      ref={ref}
+                      onClick={open}
+                      src={photo.src}
+                      alt={photo.title}
+                      className="w-full h-full object-cover cursor-pointer"
+                    />
+                  )}
+                </Item>
+              </div>
+            ))}
+          </div>
+        </Gallery>
       </div>
     </main>
   );
-}
-
-Gallery.getLayout = function (page: React.ReactNode) {
-  return <Layout>{page}</Layout>;
 };
 
-export default Gallery;
+export default PhotoGallery;

@@ -212,12 +212,6 @@ function CreateOrder() {
       onSuccess: async (res) => {
         const orderId = res.data.data.id;
 
-        if (state.paymentType !== "midtrans") {
-          toast.success("Order berhasil dibuat");
-          router.push("/admin");
-          return;
-        }
-
         // todo bikin post ke order details
         const batchCreateOrderDetails = state.selectedProducts.map(
           (product: any) => {
@@ -250,6 +244,12 @@ function CreateOrder() {
         );
 
         await Promise.all(batchCreateOrderDetails);
+        if (state.paymentType !== "midtrans") {
+          toast.success("Order berhasil dibuat");
+          // print invoice
+          router.push("/admin");
+          return;
+        }
         // patch to orders
         api
           .patch(`orders/${orderId}`, {
