@@ -12,6 +12,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useGetFetchQuery } from "utils/hooks";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ReceiptIcon from "@mui/icons-material/Receipt";
+import { Inventory } from "@mui/icons-material";
 import { useEffect } from "react";
 
 const adminList = [
@@ -21,10 +22,15 @@ const adminList = [
     label: "Penjualan",
   },
   {
-    to: "/admin/notifications",
-    icon: <NotificationsIcon />,
-    label: "Notifikasi",
+    to: "/admin/products",
+    icon: <Inventory />,
+    label: "Produk",
   },
+  // {
+  //   to: "/admin/notifications",
+  //   icon: <NotificationsIcon />,
+  //   label: "Notifikasi",
+  // },
   {
     to: "/admin/pembelian",
     icon: <ShoppingCartIcon />,

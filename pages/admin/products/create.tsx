@@ -17,6 +17,7 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useRouter } from "next/router";
 import { Controller } from "react-hook-form";
+import ReorderableFileUpload from "components/molecules/ReorderableFileUpload";
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 const productParams = {
@@ -144,11 +145,11 @@ function CreateProduct() {
     try {
       if (productId) {
         api.patch(`products/${productId}`, payload);
-        const batchReq = productFileRef.current.props.files.map((it: any) => {
+        const batchReq = files.map((it: any) => {
           const formData = new FormData();
           formData.append("documentable_type", "products");
           formData.append("documentable_id", productId as string);
-          formData.append("image", it.file);
+          formData.append("image", it);
           return api.post("documents/-actions/upload", formData);
         });
 
@@ -157,11 +158,11 @@ function CreateProduct() {
       } else {
         const res = await api.post("products", payload);
 
-        const batchReq = productFileRef.current.props.files.map((it: any) => {
+        const batchReq = files.map((it: any) => {
           const formData = new FormData();
           formData.append("documentable_type", "products");
           formData.append("documentable_id", res.data.data.id);
-          formData.append("image", it.file);
+          formData.append("image", it);
           return api.post("documents/-actions/upload", formData);
         });
 
@@ -182,87 +183,16 @@ function CreateProduct() {
     });
   };
 
+  const onChangeFile = (files: any) => {
+    console.log({ files });
+    setFiles(files);
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmitProduct)}>
       <List className="pb-32">
         <ListItem>
-          <TextField
-            className="w-full"
-            label="Nama"
-            placeholder="Masukkan Nama"
-            helperText="Wajib diisi"
-            value={state.name}
-            onChange={(e) => setState({ ...state, name: e.target.value })}
-          />
-        </ListItem>
-        <ListItem>
-          <TextField
-            className="w-full"
-            label="Harga"
-            type="number"
-            placeholder="Masukkan Harga"
-            helperText="Wajib diisi"
-            value={state.price}
-            onChange={(e) => setState({ ...state, price: e.target.value })}
-          />
-        </ListItem>
-        <ListItem>
-          <TextField
-            className="w-full"
-            label="Kode"
-            placeholder="Masukkan Kode"
-            helperText="Wajib diisi"
-            value={state.code}
-            onChange={(e) => setState({ ...state, code: e.target.value })}
-          />
-        </ListItem>
-        <ListItem>
-          <TextField
-            className="w-full"
-            label="Stok"
-            placeholder="Stok"
-            value={state.stock}
-            type="number"
-            onChange={(e) => setState({ ...state, stock: e.target.value })}
-            helperText="Wajib diisi"
-          />
-        </ListItem>
-        <ListItem>
-          <TextField
-            className="w-full"
-            label="Deskripsi"
-            placeholder="Deskripsi"
-            multiline
-            minRows={2}
-            value={state.description}
-            onChange={(e) =>
-              setState({ ...state, description: e.target.value })
-            }
-          />
-        </ListItem>
-        {/* <ListItem>
-          <SearchInput
-            inputValue={state.product ? productCategoryOptions[0] : undefined}
-            options={productCategoryOptions}
-            getOptionLabel={(option: any) => option.label}
-            onChange={changeProductCategory}
-            label="Pilih Kategori"
-            className="!w-full"
-          />
-        </ListItem> */}
-        <ListItem>
-          <FilePond
-            files={files}
-            onupdatefiles={setFiles}
-            allowMultiple={true}
-            maxFiles={10}
-            onaddfile={onAddFile}
-            onpreparefile={onProcessFile}
-            name="files"
-            onprocessfiles={onProcessFile}
-            ref={productFileRef}
-            labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
-          />
+          <ReorderableFileUpload files={files} onChangeFile={onChangeFile} />
         </ListItem>
         <ListItem className="grid grid-cols-4 gap-4">
           {router.query.id && state.product && (
@@ -292,6 +222,61 @@ function CreateProduct() {
                 })}
             </>
           )}
+        </ListItem>
+        <ListItem>
+          <TextField
+            className="w-full"
+            label="Kode"
+            placeholder="Masukkan Kode"
+            helperText="Wajib diisi"
+            value={state.code}
+            onChange={(e) => setState({ ...state, code: e.target.value })}
+          />
+        </ListItem>
+        <ListItem>
+          <TextField
+            className="w-full"
+            label="Nama"
+            placeholder="Masukkan Nama"
+            helperText="Wajib diisi"
+            value={state.name}
+            onChange={(e) => setState({ ...state, name: e.target.value })}
+          />
+        </ListItem>
+        <ListItem>
+          <TextField
+            className="w-full"
+            label="Harga"
+            type="number"
+            placeholder="Masukkan Harga"
+            helperText="Wajib diisi"
+            value={state.price}
+            onChange={(e) => setState({ ...state, price: e.target.value })}
+          />
+        </ListItem>
+        <ListItem>
+          <TextField
+            className="w-full"
+            label="Stok"
+            placeholder="Stok"
+            value={state.stock}
+            type="number"
+            onChange={(e) => setState({ ...state, stock: e.target.value })}
+            helperText="Wajib diisi"
+          />
+        </ListItem>
+        <ListItem>
+          <TextField
+            className="w-full"
+            label="Deskripsi"
+            placeholder="Deskripsi"
+            multiline
+            minRows={2}
+            value={state.description}
+            onChange={(e) =>
+              setState({ ...state, description: e.target.value })
+            }
+          />
         </ListItem>
         <ListItem>
           <Button

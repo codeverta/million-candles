@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Gallery, Item } from "react-photoswipe-gallery";
 import "photoswipe/dist/photoswipe.css";
+import Layout from "components/layout/Landing";
 
 const photos = [
   {
@@ -89,6 +90,10 @@ const PhotoGallery = () => {
       </div>
     </main>
   );
+};
+
+PhotoGallery.getLayout = function (page: React.ReactNode) {
+  return <Layout>{page}</Layout>;
 };
 
 export default PhotoGallery;
