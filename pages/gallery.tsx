@@ -5,19 +5,19 @@ import "photoswipe/dist/photoswipe.css";
 
 const photos = [
   {
-    src: "/Million Candles.jpeg",
+    src: "/Million Candles/BCS Pink/1.png",
     title: "Photo 1",
   },
   {
-    src: "/2.jpeg",
+    src: "/Million Candles/BCS Pink/2.png",
     title: "Photo 2",
   },
   {
-    src: "/4.jpeg",
+    src: "/Million Candles/BCS Pink/3.png",
     title: "Photo 4",
   },
   {
-    src: "/5.jpeg",
+    src: "/Million Candles/BCS Pink/4.png",
     title: "Photo 5",
   },
 ];
