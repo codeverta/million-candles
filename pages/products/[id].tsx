@@ -8,12 +8,15 @@ import { Content } from "components";
 import { Swiper, SwiperSlide } from "swiper/react";
 // @ts-ignore
 // @ts-nocheck
-import { Pagination } from "swiper";
+import { Pagination, Thumbs } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/thumbs";
 import Breadcrumb from "components/mui/Breadcrumb";
 import ProductVariants from "components/mui/ProductVariant";
+import { Button } from "@mui/material";
+//@ts-ignore
 
 function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
   const [thumbsSwiper, setThumbsSwiper] = React.useState<any>(null);
@@ -35,7 +38,7 @@ function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
               pagination={{ clickable: true }}
               thumbs={{ swiper: thumbsSwiper }}
               className="w-full"
-              modules={[Pagination]}
+              modules={[Pagination, Thumbs]}
             >
               {isDocumentExist ? (
                 documents.map((document: DocumentData) => (
@@ -62,30 +65,28 @@ function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
               )}
             </Swiper>
             <Swiper
+              modules={[Thumbs]}
+              watchSlidesProgress
+              onSwiper={setThumbsSwiper}
               spaceBetween={10}
               slidesPerView={3}
               freeMode={true}
-              watchSlidesProgress={true}
               className="mt-4"
             >
-              {isDocumentExist ? (
-                documents.map((document: DocumentData) => (
-                  <SwiperSlide key={document.id}>
-                    <img
-                      alt="ecommerce"
-                      src={
-                        process.env.NEXT_PUBLIC_BASE +
-                        "/storage/" +
-                        document.attributes.filename
-                      }
-                    />{" "}
-                  </SwiperSlide>
-                ))
-              ) : (
-                <SwiperSlide>
-                  <img alt="ecommerce" src="/assets/image-1@2x.jpg" />{" "}
-                </SwiperSlide>
-              )}
+              {isDocumentExist
+                ? documents.map((document: DocumentData) => (
+                    <SwiperSlide key={document.id}>
+                      <img
+                        alt="ecommerce"
+                        src={
+                          process.env.NEXT_PUBLIC_BASE +
+                          "/storage/" +
+                          document.attributes.filename
+                        }
+                      />{" "}
+                    </SwiperSlide>
+                  ))
+                : null}
             </Swiper>
           </div>
           <div className="lg:w-1/2 w-full md:pl-10 lg:py-6 mt-6 lg:mt-0">
@@ -170,8 +171,11 @@ function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
                 </button>
               </div>
 
-              <button className="bg-green-600 text-white px-4 py-2 rounded ml-2">
+              <button className="bg-green-500 text-white px-4 py-2 rounded ml-2">
                 + Keranjang
+              </button>
+              <button className="bg-green-600 text-white px-4 py-2 rounded ml-2">
+                Pesan
               </button>
             </div>
             {/* Seller Information and Shipping */}
