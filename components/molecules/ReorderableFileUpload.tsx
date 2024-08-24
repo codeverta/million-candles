@@ -3,7 +3,7 @@ import { useDropzone } from "react-dropzone";
 
 const ReorderableFileUpload = ({ files, onChangeFile }: any) => {
   const [_files, setFiles] = useState<any>([]);
-  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [draggedIndex, setDraggedIndex] = useState<any>(null);
 
   const onDrop = (acceptedFiles: any): any => {
     const newFiles = acceptedFiles.map((file: any) =>

@@ -15,7 +15,7 @@ const productVariants = {
 const ProductVariants = () => {
   const [selectedColor, setSelectedColor] = useState("Putih");
 
-  const handleColorChange = (color) => {
+  const handleColorChange = (color: string) => {
     setSelectedColor(color);
   };
 
