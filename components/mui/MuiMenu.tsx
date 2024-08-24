@@ -25,16 +25,19 @@ export default function MuiMenu(props: PropsI) {
   return (
     <div>
       <Menu
-        id="basic-menu"
+        id="appbar-menu"
         anchorEl={props.anchorEl}
         open={props.open}
         onClose={handleClose}
         MenuListProps={{
-          "aria-labelledby": "basic-button",
+          "aria-labelledby": "appbar-button",
         }}
       >
         <Link href={router.pathname + "/profile"}>
           <MenuItem>Profile</MenuItem>
+        </Link>
+        <Link href={router.pathname + "/admin/notifications"}>
+          <MenuItem>Notification</MenuItem>
         </Link>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>

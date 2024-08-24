@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Login from "./molecules/Login";
 import { Modal } from "@mui/material";
@@ -6,6 +6,7 @@ import Drawer from "./flowbite/Drawer";
 import { CSSTransition } from "react-transition-group";
 import { useRef } from "react";
 import Banner from "./flowbite/Banner";
+import { useRouter } from "next/router";
 
 interface Route {
   label: String;
@@ -48,6 +49,7 @@ export default function Header() {
     login: false,
   });
   const nodeRef = useRef(null);
+  const router = useRouter();
 
   const handleOpenLogin = () => {
     setOpen({ ...open, login: !open.login });
@@ -55,6 +57,17 @@ export default function Header() {
   const handleDrawer = () => {
     setOpen({ ...open, drawer: !open.drawer });
   };
+
+  useEffect(() => {
+    // Check if the token exists in localStorage
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      // If token exists, redirect to /admin/orders
+      router.push("/admin/orders");
+    }
+  }, [router]);
+
   return (
     <header>
       {open.login && (

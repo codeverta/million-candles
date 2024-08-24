@@ -8,12 +8,18 @@ import { Content } from "components";
 import { Swiper, SwiperSlide } from "swiper/react";
 // @ts-ignore
 // @ts-nocheck
-import { Pagination } from "swiper";
+import { Pagination, Thumbs } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-// import required modules
+import "swiper/css/thumbs";
+import Breadcrumb from "components/mui/Breadcrumb";
+import ProductVariants from "components/mui/ProductVariant";
+import { Button } from "@mui/material";
+//@ts-ignore
+
 function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
+  const [thumbsSwiper, setThumbsSwiper] = React.useState<any>(null);
   const documents =
     product.data.relationships?.documents.data.length > 0
       ? getRelationships(product, product.data, "documents")
@@ -21,16 +27,18 @@ function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
   const isDocumentExist = !!documents[0]?.attributes.filename;
   return (
     <section className="text-gray-700 dark:text-gray-300 body-font overflow-hidden bg-white min-h-screen dark:bg-gray-900">
-      <div className="container px-5 py-24 mx-auto">
-        <div className="lg:w-4/5 mx-auto flex flex-wrap">
-          <div className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200">
+      <div className="container mx-auto p-4">
+        <Breadcrumb currentLabel={product.data.attributes.name} />
+        <div className="flex flex-col md:flex-row">
+          {/* Swiper for product images */}
+          <div className="md:w-1/3">
             <Swiper
-              spaceBetween={30}
-              pagination={{
-                clickable: true,
-              }}
-              modules={[Pagination]}
-              className="h-full"
+              spaceBetween={10}
+              navigation={true}
+              pagination={{ clickable: true }}
+              thumbs={{ swiper: thumbsSwiper }}
+              className="w-full"
+              modules={[Pagination, Thumbs]}
             >
               {isDocumentExist ? (
                 documents.map((document: DocumentData) => (
@@ -56,38 +64,128 @@ function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
                 </SwiperSlide>
               )}
             </Swiper>
+            <Swiper
+              modules={[Thumbs]}
+              watchSlidesProgress
+              onSwiper={setThumbsSwiper}
+              spaceBetween={10}
+              slidesPerView={3}
+              freeMode={true}
+              className="mt-4"
+            >
+              {isDocumentExist
+                ? documents.map((document: DocumentData) => (
+                    <SwiperSlide key={document.id}>
+                      <img
+                        alt="ecommerce"
+                        src={
+                          process.env.NEXT_PUBLIC_BASE +
+                          "/storage/" +
+                          document.attributes.filename
+                        }
+                      />{" "}
+                    </SwiperSlide>
+                  ))
+                : null}
+            </Swiper>
           </div>
-          <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-            <h2 className="text-sm title-font text-gray-400 tracking-widest">
-              NAMA PRODUK
-            </h2>
+          <div className="lg:w-1/2 w-full md:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h1 className="text-gray-900 dark:text-gray-50 text-3xl title-font font-medium mb-1">
               {product.data.attributes.name}
             </h1>
-            <div className="flex mb-4"></div>
-            <p className="leading-relaxed">
-              {product.data.attributes.description}
+            <p className="text-green-600 font-bold text-xl mb-4">
+              {toCurrency(product.data.attributes.price)}
             </p>
-            <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5"></div>
-            <div className="flex">
-              <span className="title-font font-medium text-2xl dark:text-gray-50 text-gray-900">
-                {toCurrency(product.data.attributes.price)}
-              </span>
-              <button className="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 transition-all rounded">
-                Whatsapp
-              </button>
-              <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-400 ml-4">
-                <svg
-                  fill="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  className="w-5 h-5"
-                  viewBox="0 0 24 24"
+            <ProductVariants />
+            <div className="mb-4">
+              <span className="font-semibold">Kondisi: </span>Baru
+            </div>
+            <div className="mb-4">
+              <span className="font-semibold">Min. Pemesanan: </span>1 Buah
+            </div>
+            <div className="mb-4">
+              <span className="font-semibold">Stock: </span>
+              {product.data.attributes.stock}
+            </div>
+            <div className="mb-4">
+              <span className="font-semibold">Etalase: </span>Semua Etalase
+            </div>
+            <div className="mb-4">
+              {/* deskripsi */}
+              {product.data.attributes.description}
+            </div>
+            <div className="mt-4 flex items-center">
+              <div className="relative flex items-center max-w-[8rem]">
+                <button
+                  type="button"
+                  id="decrement-button"
+                  data-input-counter-decrement="quantity-input"
+                  className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
                 >
-                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-                </svg>
+                  <svg
+                    className="w-3 h-3 text-gray-900 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 18 2"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 1h16"
+                    />
+                  </svg>
+                </button>
+                <input
+                  type="text"
+                  id="quantity-input"
+                  data-input-counter
+                  aria-describedby="helper-text-explanation"
+                  className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="999"
+                  required
+                />
+                <button
+                  type="button"
+                  id="increment-button"
+                  data-input-counter-increment="quantity-input"
+                  className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+                >
+                  <svg
+                    className="w-3 h-3 text-gray-900 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 18 18"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 1v16M1 9h16"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <button className="bg-green-500 text-white px-4 py-2 rounded ml-2">
+                + Keranjang
               </button>
+              <button className="bg-green-600 text-white px-4 py-2 rounded ml-2">
+                Pesan
+              </button>
+            </div>
+            {/* Seller Information and Shipping */}
+            <div className="mt-8">
+              <h2 className="text-xl font-semibold mb-4">UD Million Candles</h2>
+              <div className="text-gray-700">Online kemarin</div>
+              <div className="text-gray-700">Kab. Sleman</div>
+              <div className="mt-4">
+                <button className="bg-gray-200 px-4 py-2 rounded">Chat</button>
+              </div>
             </div>
           </div>
         </div>

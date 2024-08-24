@@ -1,4 +1,4 @@
-import { Modal, Rating } from "@mui/material";
+import { Modal, Pagination, Rating } from "@mui/material";
 import { useState } from "react";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { getRelationships, toCurrency, useLoaded } from "utils";
@@ -6,13 +6,56 @@ import Skeleton from "components/flowbite/Skeleton";
 import api from "utils/api";
 import Link from "next/link";
 
+const ProductCard = ({ product, isDocumentExist, documents }: any) => (
+  <div className="w-full p-2">
+    <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-md overflow-hidden shadow-sm">
+      <Link href={`/products/${product.id}`}>
+        <button className="mx-auto w-full">
+          {isDocumentExist ? (
+            <img
+              className="w-full h-48 object-cover"
+              src={
+                process.env.NEXT_PUBLIC_BASE +
+                "/storage/" +
+                documents[0]?.attributes.filename
+              }
+              alt="product image"
+              onError={(e: any) => (e.target.src = "/assets/image-1@2x.jpg")}
+            />
+          ) : (
+            <img
+              className="w-full h-48 object-cover"
+              src="/assets/image-1@2x.jpg"
+              alt="product image"
+            />
+          )}
+        </button>
+      </Link>
+      <div className="p-4">
+        <Link href={`/products/${product.id}`}>
+          <h3 className="text-md font-semibold">{product.attributes.name}</h3>
+        </Link>
+        <div className="text-green-600 font-bold text-lg mb-2">
+          {toCurrency(product.attributes.price)}
+        </div>
+        <div className="flex items-center">
+          <span className="text-yellow-500 mr-2">★ 5.0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 export default function Content({ title = "Produk Kami" }) {
+  const [currentPage, setCurrentPage] = useState(1);
+
   const productParams = {
-    "page[size]": 9,
+    "page[size]": 8,
     include: "documents",
+    "page[number]": currentPage,
   };
   const query: UseQueryResult<any> = useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", currentPage],
     queryFn: async () => {
       return api.get("products", { ...productParams });
     },
@@ -34,6 +77,10 @@ export default function Content({ title = "Produk Kami" }) {
     });
   };
 
+  const onChangePage = (_e: any, page: number) => {
+    setCurrentPage(page);
+  };
+
   return (
     <>
       <main className="bg-white min-h-screen dark:bg-gray-900 pt-24">
@@ -43,7 +90,7 @@ export default function Content({ title = "Produk Kami" }) {
         <span className="text-red-600 text-sm block max-w-md mx-auto">
           * Harga yang ditampilkan merupakan harga distributor/grosir
         </span>
-        <ul className="grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 max-w-4xl w-4/5 m-auto py-10">
+        <ul className="mx-auto w-full md:w-3/4 p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {query.isLoading || query.isError ? (
             <>
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((it: number) => {
@@ -64,59 +111,24 @@ export default function Content({ title = "Produk Kami" }) {
                     : [];
                 const isDocumentExist = !!documents[0]?.attributes.filename;
                 return (
-                  <li
-                    key={product.id}
-                    className="transition-all hover:shadow-xl max-w-xs border border-gray-200 bg-white rounded dark:shadow-gray-800 dark:hover:shadow-gray-800 shadow-md dark:bg-gray-800 dark:border-gray-700"
-                  >
-                    <Link href={`/products/${product.id}`}>
-                      <button className="mx-auto w-full">
-                        {isDocumentExist ? (
-                          <img
-                            className="rounded h-40 w-full object-contain"
-                            src={
-                              process.env.NEXT_PUBLIC_BASE +
-                              "/storage/" +
-                              documents[0]?.attributes.filename
-                            }
-                            alt="product image"
-                            onError={(e: any) =>
-                              (e.target.src = "/assets/image-1@2x.jpg")
-                            }
-                          />
-                        ) : (
-                          <img
-                            className="rounded h-40 w-full object-contain"
-                            src="/assets/image-1@2x.jpg"
-                            alt="product image"
-                          />
-                        )}
-                      </button>
-                      <div className="px-5 pb-5">
-                        <h3 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                          {product.attributes.name}
-                        </h3>
-                        <p className="flex items-center gap-1 dark:text-gray-200 text-gray-700">
-                          <Rating
-                            id={`product-${product.attributes.name}`}
-                            name="simple-controlled"
-                            max={1}
-                            value={1}
-                            onChange={(event, newValue) => {
-                              // setStat(newValue);
-                            }}
-                          />
-                          <span>5.0</span>| <span>Terjual 1 rb+</span>
-                        </p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-2xl font-bold text-gray-900 dark:text-gray-200">
-                            {toCurrency(product.attributes.price)}
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
+                  <li key={product.id}>
+                    <ProductCard
+                      isDocumentExist={isDocumentExist}
+                      product={product}
+                      documents={documents}
+                    />
                   </li>
                 );
               })}
+              <div className="flex col-span-4 justify-end">
+                <Pagination
+                  page={currentPage}
+                  onChange={onChangePage}
+                  variant="outlined"
+                  color="primary"
+                  count={query.data.data.meta.page.lastPage}
+                />
+              </div>
             </>
           )}
         </ul>

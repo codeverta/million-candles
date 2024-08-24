@@ -62,7 +62,7 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
   const isProduction = process.env.NODE_ENV === "production";
   // seo
   const pageTitle =
-    "UD Million Candles - Produsen Lilin Aromaterapi Souvenir Lilin Jogja, Lilin Warna, Lilin Hias dan Lain-lain";
+    "UD Million Candles - Produsen Supplier Lilin Aromaterapi Souvenir Lilin Jogja, Lilin Warna, Lilin Hias dan Lain-lain";
   const pageDescription = `Kami adalah UMKM yang menyediakan berbagai macam jenis lilin
           berkualitas tinggi, mulai dari lilin aromaterapi, lilin souvenir, lilin warna, lilin hias
           dan masih banyak lagi. Kami menawarkan lilin hias yang indah untuk

@@ -3,7 +3,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import AppDrawer from "./Drawer";
@@ -15,6 +15,8 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import MuiMenu from "./MuiMenu";
 import { useRouter } from "next/router";
 import { useTour } from "@reactour/tour";
+import SearchPage from "./SearchPage";
+// import { MenuItem, Menu } from "@mui/material";
 
 export const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -62,11 +64,16 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function MainAppBar() {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>();
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
   const { setIsOpen } = useTour();
   const router = useRouter();
   const [state, setState] = useState({
     anchorEl: null,
+    search: false,
   });
   const [open, setOpen] = useState({
     drawer: false,
@@ -98,6 +105,10 @@ export default function ButtonAppBar() {
   const handleChangeSearch = (event: any) => {
     const paths = ["products", "orders", "users"];
     const curr = paths.find((it) => router.pathname.includes(it));
+    setState({ ...state, search: event.target.value });
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -126,17 +137,21 @@ export default function ButtonAppBar() {
             >
               Million Candles
             </Typography>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                onChange={handleChangeSearch}
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
-
+            <div>
+              <Search aria-controls="search-appbar">
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  onFocus={() => {
+                    setState({ ...state, search: true });
+                  }}
+                  onChange={handleChangeSearch}
+                  placeholder="Search…"
+                  inputProps={{ "aria-label": "search-appbar" }}
+                />
+              </Search>
+            </div>
             <Box sx={{ display: "flex" }}>
               <IconButton
                 size="large"
@@ -156,6 +171,9 @@ export default function ButtonAppBar() {
         anchorEl={state.anchorEl}
         open={open.menu}
       />
+      {state.search ? (
+        <SearchPage onClose={() => setState({ ...state, search: false })} />
+      ) : null}
     </>
   );
 }
