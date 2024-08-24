@@ -15,6 +15,7 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import MuiMenu from "./MuiMenu";
 import { useRouter } from "next/router";
 import { useTour } from "@reactour/tour";
+import SearchPage from "./SearchPage";
 // import { MenuItem, Menu } from "@mui/material";
 
 export const Search = styled("div")(({ theme }) => ({
@@ -72,7 +73,7 @@ export default function MainAppBar() {
   const router = useRouter();
   const [state, setState] = useState({
     anchorEl: null,
-    search: "",
+    search: false,
   });
   const [open, setOpen] = useState({
     drawer: false,
@@ -142,6 +143,9 @@ export default function MainAppBar() {
                   <SearchIcon />
                 </SearchIconWrapper>
                 <StyledInputBase
+                  onFocus={() => {
+                    setState({ ...state, search: true });
+                  }}
                   onChange={handleChangeSearch}
                   placeholder="Search…"
                   inputProps={{ "aria-label": "search-appbar" }}
@@ -167,6 +171,9 @@ export default function MainAppBar() {
         anchorEl={state.anchorEl}
         open={open.menu}
       />
+      {state.search ? (
+        <SearchPage onClose={() => setState({ ...state, search: false })} />
+      ) : null}
     </>
   );
 }
