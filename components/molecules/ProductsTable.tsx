@@ -225,6 +225,7 @@ export default function ProductsTable() {
                 onRequestSort={handleRequestSort}
                 rowCount={getProducts.data.data.data.length}
                 headCells={headCells}
+                className="dark:text-white text-black"
               />
               <TableBody>
                 {getProducts.data.data.data.map((row: any, index: number) => {

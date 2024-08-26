@@ -33,13 +33,16 @@ const ProductCard = ({ product, isDocumentExist, documents }: any) => (
       </Link>
       <div className="p-4">
         <Link href={`/products/${product.attributes.slug}`}>
-          <h3 className="text-md font-semibold">{product.attributes.name}</h3>
+          <h3 className="text-md font-semibold hover:underline">
+            {product.attributes.name}
+          </h3>
         </Link>
         <div className="text-green-600 font-bold text-lg mb-2">
           {toCurrency(product.attributes.price)}
         </div>
         <div className="flex items-center">
           <span className="text-yellow-500 mr-2">★ 5.0</span>
+          <span className="text-green-500 mr-2">1rb+ terjual</span>
         </div>
       </div>
     </div>
@@ -50,7 +53,7 @@ export default function Content({ title = "Produk Kami" }) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const productParams = {
-    "page[size]": 8,
+    "page[size]": 12,
     include: "documents",
     "page[number]": currentPage,
   };
@@ -90,12 +93,15 @@ export default function Content({ title = "Produk Kami" }) {
         <span className="text-red-600 text-sm block max-w-md mx-auto">
           * Harga yang ditampilkan merupakan harga distributor/grosir
         </span>
-        <ul className="mx-auto w-full md:w-3/4 p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <ul className="mx-auto w-full md:w-3/4 p-4 grid grid-cols-12 gap-4">
           {query.isLoading || query.isError ? (
             <>
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((it: number) => {
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((it: number) => {
                 return (
-                  <div key={it} className="text-center">
+                  <div
+                    key={it}
+                    className="col-span-12 sm:col-span-4 lg:col-span-3 text-center"
+                  >
                     <Skeleton />
                   </div>
                 );
@@ -111,7 +117,10 @@ export default function Content({ title = "Produk Kami" }) {
                     : [];
                 const isDocumentExist = !!documents[0]?.attributes.filename;
                 return (
-                  <li key={product.attributes.slug}>
+                  <li
+                    className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3"
+                    key={product.attributes.slug}
+                  >
                     <ProductCard
                       isDocumentExist={isDocumentExist}
                       product={product}
@@ -120,7 +129,7 @@ export default function Content({ title = "Produk Kami" }) {
                   </li>
                 );
               })}
-              <div className="flex col-span-4 justify-end">
+              <div className="flex col-span-12 justify-center">
                 <Pagination
                   page={currentPage}
                   onChange={onChangePage}
