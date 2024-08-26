@@ -203,12 +203,12 @@ ProductDetail.getLayout = function (page: React.ReactNode) {
 
 //
 export async function getStaticPaths() {
-  // const paths = getAllPostIds();
   const products = await api.get("products");
   const productsParams = products.data.data.map((it: any) => {
     return {
       params: {
-        id: it.id,
+        slug: it.attributes.slug,
+        // id: it.id,
       },
     };
   });
@@ -219,7 +219,13 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
-  const productData = await api.get("products/" + params.id, {
+  const product = await api.get("products", {
+    "filter[slug]": params.slug,
+  });
+  // if (!product.data.data || !product.data[0]?.id) {
+  //   throw new Error("Produk tidak ditemukan");
+  // }
+  const productData = await api.get("products/" + product.data.data[0].id, {
     include: "documents",
   });
   return {

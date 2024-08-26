@@ -32,7 +32,7 @@ const Breadcrumb = ({ currentLabel }: any) => {
         sx={{ display: "flex", alignItems: "center" }}
       >
         <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-        Category
+        Produk
       </Link>
       <Typography
         color="text.primary"

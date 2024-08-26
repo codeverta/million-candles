@@ -2,24 +2,14 @@ import { List, ListItem, TextField, Button, IconButton } from "@mui/material";
 import { useEffect } from "react";
 import AdminLayout from "components/layout/AdminLayout";
 import React, { useMemo, useRef, useState } from "react";
-import { FilePond, registerPlugin } from "react-filepond";
 import { useForm } from "react-hook-form";
 import { Cancel } from "@mui/icons-material";
-
-// Import FilePond styles
-import "filepond/dist/filepond.min.css";
-import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
-import FilePondPluginImagePreview from "filepond-plugin-image-preview";
-import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import api from "utils/api";
-import SearchInput from "components/mui/SearchInput";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useRouter } from "next/router";
-import { Controller } from "react-hook-form";
 import ReorderableFileUpload from "components/molecules/ReorderableFileUpload";
 
-registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 const productParams = {
   include: "documents,product-categories",
 };

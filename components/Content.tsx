@@ -9,7 +9,7 @@ import Link from "next/link";
 const ProductCard = ({ product, isDocumentExist, documents }: any) => (
   <div className="w-full p-2">
     <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-md overflow-hidden shadow-sm">
-      <Link href={`/products/${product.id}`}>
+      <Link href={`/products/${product.attributes.slug}`}>
         <button className="mx-auto w-full">
           {isDocumentExist ? (
             <img
@@ -32,7 +32,7 @@ const ProductCard = ({ product, isDocumentExist, documents }: any) => (
         </button>
       </Link>
       <div className="p-4">
-        <Link href={`/products/${product.id}`}>
+        <Link href={`/products/${product.attributes.slug}`}>
           <h3 className="text-md font-semibold">{product.attributes.name}</h3>
         </Link>
         <div className="text-green-600 font-bold text-lg mb-2">
@@ -111,7 +111,7 @@ export default function Content({ title = "Produk Kami" }) {
                     : [];
                 const isDocumentExist = !!documents[0]?.attributes.filename;
                 return (
-                  <li key={product.id}>
+                  <li key={product.attributes.slug}>
                     <ProductCard
                       isDocumentExist={isDocumentExist}
                       product={product}
