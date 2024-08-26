@@ -212,6 +212,10 @@ export async function getStaticPaths() {
       },
     };
   });
+  productsParams.forEach((it: any) => {
+    console.log(it.params.slug);
+  });
+  console.log({ productsParams });
   return {
     paths: productsParams,
     fallback: false,
