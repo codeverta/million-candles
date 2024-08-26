@@ -22,13 +22,18 @@ class Product extends Model
         'price',
         'stock',
         'code',
+        'slug',
         'deleted_at'
     ];
 
     protected static function booted(): void
     {
-        static::creating(function (Product $order) {
-            $order->uuid = Str::uuid();
+        static::creating(function (Product $product) {
+            $product->uuid = Str::uuid();
+        });
+
+        static::saving(function (Product $product) {
+            $product->slug = Str::slug($product->name);
         });
     }
     /**
