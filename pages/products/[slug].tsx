@@ -96,7 +96,9 @@ function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
             <p className="text-green-600 font-bold text-xl mb-4">
               {toCurrency(product.data.attributes.price)}
             </p>
-            <ProductVariants />
+            <div className="mb-4">
+              <ProductVariants />
+            </div>
             <div className="mb-4">
               <span className="font-semibold">Kondisi: </span>Baru
             </div>
@@ -110,7 +112,7 @@ function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
             <div className="mb-4">
               <span className="font-semibold">Etalase: </span>Semua Etalase
             </div>
-            <div className="mb-4">
+            <div className="mb-4" style={{ whiteSpace: "pre-line" }}>
               {/* deskripsi */}
               {product.data.attributes.description}
             </div>
