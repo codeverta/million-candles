@@ -212,10 +212,7 @@ export async function getStaticPaths() {
       },
     };
   });
-  productsParams.forEach((it: any) => {
-    console.log(it.params.slug);
-  });
-  console.log({ productsParams });
+
   return {
     paths: productsParams,
     fallback: false,
@@ -226,9 +223,6 @@ export async function getStaticProps({ params }: any) {
   const product = await api.get("products", {
     "filter[slug]": params.slug,
   });
-  // if (!product.data.data || !product.data[0]?.id) {
-  //   throw new Error("Produk tidak ditemukan");
-  // }
   const productData = await api.get("products/" + product.data.data[0].id, {
     include: "documents",
   });
