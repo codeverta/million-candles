@@ -286,6 +286,7 @@ export default function OrderTable({ title }: { title: string }) {
                         className="second-step"
                       >
                         {row.attributes.code}
+                        <p>{row.attributes.createdAt}</p>
                       </TableCell>
                       <TableCell align="right">
                         <Chip

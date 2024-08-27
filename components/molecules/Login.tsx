@@ -5,9 +5,11 @@ import { toast } from "sonner";
 import Script from "next/script";
 import api from "utils/api";
 import GoogleCaptcha from "./GoogleCaptcha";
+import LoadingBackdrop from "components/mui/LoadingBackdrop";
 
 export default function Login() {
   const router = useRouter();
+  const [loaded, setIsLoaded] = useState(false);
   const [isCaptchaSolved, setIsCaptchaSolved] = useState(false);
   const [state, setState] = useState<{
     email: string;
@@ -67,6 +69,24 @@ export default function Login() {
       },
     });
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 600);
+  }, []);
+
+  if (!loaded) {
+    return (
+      <>
+        <LoadingBackdrop />
+        <Script
+          src="https://www.google.com/recaptcha/api.js"
+          strategy="lazyOnload"
+        />
+      </>
+    );
+  }
 
   return (
     <>
@@ -137,10 +157,6 @@ export default function Login() {
           </div>
         </div>
       </section>
-      <Script
-        src="https://www.google.com/recaptcha/api.js"
-        strategy="lazyOnload"
-      />
     </>
   );
 }

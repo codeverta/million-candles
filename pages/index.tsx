@@ -209,7 +209,7 @@ function Home(props: any) {
                       <circle cx={1} cy={1} r={1} />
                     </svg>
                     <div className="dark:text-gray-50 text-gray-600">
-                      - Anonim
+                      - Pelanggan
                     </div>
                   </div>
                 </figcaption>
