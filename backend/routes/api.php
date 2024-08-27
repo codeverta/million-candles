@@ -71,6 +71,7 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
     $server->resource(
     'product-variants', JsonApiController::class);
     $server->resource('product-variant-options', JsonApiController::class);
+    $server->resource('documents', JsonApiController::class)->only('index');
     $server->resource('documents', '\\' . DocumentController::class)->actions('-actions', function ($actions) {
         $actions->post('upload');
     });
