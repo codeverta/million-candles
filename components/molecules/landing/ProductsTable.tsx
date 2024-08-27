@@ -182,7 +182,7 @@ export default function ProductsTable({ handleRowClick }: any) {
                 padding={headCell.disablePadding ? "none" : "normal"}
                 sortDirection={orderBy === headCell.id ? order : false}
                 classes={headCell.classes ? headCell.classes : undefined}
-                className="text-white"
+                className="dark:text-white text-black"
               >
                 {headCell.label}
               </TableCell>
@@ -209,7 +209,7 @@ export default function ProductsTable({ handleRowClick }: any) {
                       event.stopPropagation();
                       handleClick(event, row.id);
                     }}
-                    className="!dark:text-white"
+                    className="dark:text-white text-black"
                   >
                     <span className="dark:text-white">
                       {getProducts.data.data.meta.page.from + index}

@@ -18,8 +18,19 @@ import ProductVariants from "components/mui/ProductVariant";
 import { Button } from "@mui/material";
 //@ts-ignore
 
+function generateWhatsAppLink(phoneNumber, message) {
+  // Encode the message to make it URL-safe
+  const encodedMessage = encodeURIComponent(message);
+
+  // Construct the WhatsApp URL
+  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+  return whatsappURL;
+}
+
 function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
   const [thumbsSwiper, setThumbsSwiper] = React.useState<any>(null);
+  const [qty, setQty] = React.useState<number>(1);
   const documents =
     product.data.relationships?.documents.data.length > 0
       ? getRelationships(product, product.data, "documents")
@@ -120,65 +131,49 @@ function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
               <div className="relative flex items-center max-w-[8rem]">
                 <button
                   type="button"
+                  disabled={qty == 0}
                   id="decrement-button"
+                  onClick={() => (qty > 0 ? setQty(qty - 1) : null)}
                   data-input-counter-decrement="quantity-input"
-                  className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+                  className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-l-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none flex items-center"
                 >
-                  <svg
-                    className="w-3 h-3 text-gray-900 dark:text-white"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 2"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M1 1h16"
-                    />
-                  </svg>
+                  -
                 </button>
                 <input
+                  value={qty}
                   type="text"
                   id="quantity-input"
                   data-input-counter
                   aria-describedby="helper-text-explanation"
                   className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="999"
+                  placeholder="0"
+                  min={0}
                   required
                 />
                 <button
                   type="button"
+                  onClick={() => setQty(qty + 1)}
                   id="increment-button"
                   data-input-counter-increment="quantity-input"
-                  className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+                  className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-r-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none flex items-center"
                 >
-                  <svg
-                    className="w-3 h-3 text-gray-900 dark:text-white"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 18"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 1v16M1 9h16"
-                    />
-                  </svg>
+                  +
                 </button>
               </div>
 
-              <button className="bg-green-500 text-white px-4 py-2 rounded ml-2">
+              {/* <button className="bg-green-500 text-white px-4 py-2 rounded ml-2">
                 + Keranjang
-              </button>
-              <button className="bg-green-600 text-white px-4 py-2 rounded ml-2">
+              </button> */}
+              <a
+                target="_blank"
+                href={generateWhatsAppLink(
+                  "+6281578956156",
+                  `Halo saya ingin memesan \n${product.data.attributes.name}(${product.data.attributes.code}) ${qty}`
+                )}
+                className="bg-green-600 text-white px-4 py-2 rounded ml-2"
+              >
                 Pesan
-              </button>
+              </a>
             </div>
             {/* Seller Information and Shipping */}
             <div className="mt-8">
