@@ -2,7 +2,7 @@
 title: "Soy Candle vs. Wax Candle: Mana yang Lebih Baik untuk Lingkungan?"
 date: "2021-04-22"
 desc: "Artikel ini membahas perbandingan antara lilin kedelai (soy candle) dan lilin biasa (wax candle) dari sudut pandang lingkungan. Kami menjelaskan bagaimana kedua jenis lilin dibuat dan dampaknya terhadap lingkungan, serta keuntungan dan kerugian dari masing-masing jenis lilin. Dengan membaca artikel ini, Anda akan mendapatkan informasi yang berguna untuk membuat keputusan yang bijaksana dalam memilih jenis lilin yang lebih ramah lingkungan."
-tags: "lilin aromaterapi, blog, souvenir, hiasan, romantis"
+tags: "lilin dibuat dengan cara, nama produk lilin aromaterapi, kerajinan lilin hias, lilin aromaterapi unik, souvenir kantor jogja, candles adalah, cara membuat lilin hias, jual soy wax terdekat, pabrik lilin, candle wax, souvenir lilin aromaterapi, souvenir lilin, stearin lilin, lilin sumbu, sumbu lilin aromaterapi, souvenir pernikahan lilin aromaterapi, jual lilin aromaterapi terdekat, lilin 138, soy candle, soy wax candle, pabrik lilin, lilin aromaterapi, blog, souvenir, hiasan, romantis"
 ---
 
 Lilin telah digunakan sejak zaman kuno untuk keperluan pencahayaan dan memberikan wangi di rumah. Seiring dengan perkembangan zaman, kini lilin bukan hanya digunakan untuk keperluan fungsional, tetapi juga sebagai dekorasi dan karya seni. Ada banyak jenis lilin yang tersedia di pasaran, namun dua jenis yang paling umum adalah soy candle dan wax candle. Meskipun keduanya berfungsi sama, yaitu memberikan cahaya dan aroma di ruangan, tetapi ada beberapa perbedaan antara keduanya.
@@ -26,3 +26,9 @@ Selain itu, lilin kami juga terbuat dari bahan yang ramah lingkungan dan bebas d
 Kami mengutamakan kualitas produk kami, sehingga Anda dapat merasa yakin bahwa setiap lilin yang Anda beli dari kami terbuat dari bahan berkualitas tinggi dan dihasilkan dengan standar produksi yang baik. Kualitas produk kami juga didukung oleh pelayanan pelanggan yang ramah dan responsif, sehingga Anda dapat merasa nyaman dalam memilih dan menggunakan lilin kami.
 
 Kami menjual koleksi soy candle kami secara online dan dapat dikirimkan ke seluruh wilayah Indonesia. Dapatkan lilin berkualitas dengan aroma yang menenangkan dan ramah lingkungan hanya dengan mengunjungi situs web kami dan memesan sekarang!
+
+- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
+- **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
+- **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)
+- **Tokopedia:** [Souvenir Lilin di Tokopedia](https://www.tokopedia.com/souvenirlilin)

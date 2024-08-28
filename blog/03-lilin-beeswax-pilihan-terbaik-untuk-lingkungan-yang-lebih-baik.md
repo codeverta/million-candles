@@ -27,3 +27,9 @@ Lilin beeswax memiliki waktu bakar yang lebih lama dibandingkan dengan lilin par
 Lilin beeswax menjadi pilihan yang tepat bagi mereka yang peduli terhadap lingkungan sekitar dan ingin mengurangi dampak buruk lilin pada kesehatan dan lingkungan. Selain itu, dengan memilih lilin beeswax, Anda juga dapat menikmati keindahan dan manfaatnya yang alami dan menyegarkan.
 
 Demikianlah beberapa alasan mengapa lilin beeswax dapat menjadi pilihan terbaik untuk lingkungan yang lebih baik. Semoga informasi ini bermanfaat dan dapat membantu Anda dalam memilih lilin yang tepat untuk keperluan Anda.
+
+- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
+- **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
+- **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)
+- **Tokopedia:** [Souvenir Lilin di Tokopedia](https://www.tokopedia.com/souvenirlilin)

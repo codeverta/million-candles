@@ -74,7 +74,7 @@ export default function ProfileSection() {
             <div className="flex">
               <Avatar
                 sx={{ bgcolor: stringToColor(getSelf.data.me.name) }}
-                className="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
+                className="!h-24 !w-24 rounded-full ring-4 ring-white !sm:h-32 !sm:w-32"
               >
                 {getSelf.data.me.name[0]}
               </Avatar>
@@ -129,20 +129,20 @@ export default function ProfileSection() {
                 <ListItemText primary="Tentang Aplikasi" />
               </ListItemButton>
             </ListItem>
-            <ListItem onClick={handleLogout} disablePadding>
-              <ListItemButton component="button">
-                <ListItemIcon>
-                  <LogoutIcon />
-                </ListItemIcon>
-                <ListItemText primary="Log out" />
-              </ListItemButton>
-            </ListItem>
             <ListItem disablePadding>
               <ListItemButton component="button">
                 <ListItemIcon>
                   <AnnouncementIcon />
                 </ListItemIcon>
                 <ListItemText primary="Kritik dan Saran" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem onClick={handleLogout} disablePadding>
+              <ListItemButton component="button">
+                <ListItemIcon>
+                  <LogoutIcon />
+                </ListItemIcon>
+                <ListItemText primary="Log out" />
               </ListItemButton>
             </ListItem>
           </List>

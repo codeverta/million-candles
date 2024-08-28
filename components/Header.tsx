@@ -90,11 +90,9 @@ export default function Header() {
         <div className="flex flex-wrap justify-around sm:justify-between items-center mx-auto max-w-screen-xl">
           <Link href="/" className="flex items-center">
             <img
-              width={35}
-              height={35}
               src="/logolilin.png"
-              className="mr-3 rounded-full h-6 sm:h-9"
-              alt="Logo Souvenir LIlin"
+              className="mr-3 rounded-full w-9 h-9 sm:w-12 sm:h-12"
+              alt="Logo Souvenir Lilin"
             />
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               Million Candles

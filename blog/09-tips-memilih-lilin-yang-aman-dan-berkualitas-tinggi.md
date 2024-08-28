@@ -32,3 +32,9 @@ Promosi Produk Lilin
 Jika Anda mencari lilin berkualitas tinggi dan aman untuk digunakan, kunjungi toko-toko terdekat atau online store favorit Anda. Dapatkan koleksi lilin terbaik dengan berbagai aroma alami seperti lavender, peppermint, dan vanilla. Selain itu, lilin yang dijual juga terbuat dari bahan baku berkualitas tinggi seperti lilin lebah dan soy wax, sehingga aman untuk digunakan dan tidak mengeluarkan asap beracun saat dibakar.
 
 Dalam koleksi lilin kami, tersedia berbagai macam ukuran dan bentuk yang dapat disesuaikan dengan dekorasi rumah Anda. Lilin juga dilengkapi dengan wadah yang aman dan kokoh, sehingga tidak mudah tumpah dan menyebabkan kebakaran. Jangan ragu untuk memilih koleksi lilin terbaik kami dan ciptakan suasana yang nyaman dan tenang di rumah Anda.
+
+- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
+- **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
+- **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)
+- **Tokopedia:** [Souvenir Lilin di Tokopedia](https://www.tokopedia.com/souvenirlilin)
