@@ -1,3 +1,9 @@
+# *
 User-agent: *
-Disallow: /store/
-Disallow: /admin/
+Allow: /
+
+# Host
+Host: https://souvenirlilin.com
+
+# Sitemaps
+Sitemap: https://souvenirlilin.com/sitemap.xml
