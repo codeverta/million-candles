@@ -7,6 +7,8 @@ tags: "Lilin beeswax, Lilin parafin, Lingkungan, Kesehatan, Produk lilin berkual
 
 Lilin adalah salah satu cara yang populer untuk menciptakan suasana yang nyaman dan romantis di rumah. Tetapi, pertanyaannya adalah, apakah bahan baku lilin yang digunakan aman dan ramah lingkungan? Ada dua jenis bahan baku lilin yang paling umum digunakan, yaitu lilin beeswax dan lilin parafin. Dalam artikel ini, kita akan membahas perbedaan antara keduanya dan menentukan mana yang lebih baik untuk kesehatan dan lingkungan.
 
+![Lilin Pilar Ibadah](https://api.souvenirlilin.com/storage/image/uZnQ80HvbVWRzyzmDSQ42y8PUJHcGWy6QVEMYlKj.png)
+
 Lilin beeswax adalah lilin yang terbuat dari madu lebah. Lilin ini sangat alami dan tidak mengandung bahan kimia yang berbahaya. Selain itu, lilin beeswax juga memiliki sifat hypoallergenic, yang membuatnya aman bagi orang yang rentan alergi atau memiliki masalah pernapasan.
 
 Di sisi lain, lilin parafin adalah lilin yang terbuat dari minyak bumi yang diolah. Lilin parafin murah dan mudah didapat, namun memiliki dampak negatif pada lingkungan dan kesehatan manusia. Ketika dibakar, lilin parafin dapat mengeluarkan toksin dan zat kimia yang dapat menyebabkan iritasi, alergi, dan masalah pernapasan.
