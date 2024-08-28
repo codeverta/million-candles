@@ -39,3 +39,9 @@ Langkah-langkah:
 7. Gunakan gunting untuk memotong sumbu lilin agar sesuai dengan tinggi wadah atau kaca lilin yang digunakan.
    Lilin hias siap digunakan atau dijadikan sebagai hadiah unik untuk orang tersayang.
    Itulah langkah-langkah cara membuat lilin hias yang lengkap. Semoga bermanfaat dan berhasil membuat lilin hias yang indah dan menarik!
+
+- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
+- **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
+- **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)
+- **Tokopedia:** [Souvenir Lilin di Tokopedia](https://www.tokopedia.com/souvenirlilin)

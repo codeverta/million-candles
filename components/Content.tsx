@@ -34,7 +34,7 @@ const ProductCard = ({ product, isDocumentExist, documents }: any) => (
       <div className="p-4">
         <Link href={`/products/${product.attributes.slug}`}>
           <h3 className="text-md font-semibold hover:underline">
-            {product.attributes.name}
+            {product.attributes.name} ({product.attributes.code})
           </h3>
         </Link>
         <div className="text-green-600 font-bold text-lg mb-2">

@@ -257,8 +257,13 @@ export default function ProductsTable() {
                           }}
                         />
                       </TableCell>
-                      <TableCell className="px-0">
-                        {row.attributes.name}
+                      <TableCell className="px-0 text-sm">
+                        {row.attributes.name} ({row.attributes.code})
+                        <br />
+                        <span className="text-xs text-gray-400">
+                          Diupdate pada{" "}
+                          {dayjs(row.attributes.updatedAt).format("LL LT")}
+                        </span>
                       </TableCell>
                       <TableCell
                         component="th"

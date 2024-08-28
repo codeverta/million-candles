@@ -31,7 +31,7 @@ export default function Home({ allPostsData }: any) {
             {allPostsData.map(({ id, date, title, desc }: PostMeta) => (
               <li key={id} className="py-12">
                 <Link href={`/posts/${id}`}>
-                  <h1 className="dark:text-gray-50 cursor-pointer text-3xl font-bold tracking-tight sm:text-4xl hover:shadow-lg underline">
+                  <h1 className="dark:text-gray-50 cursor-pointer text-3xl font-bold tracking-tight sm:text-4xl  hover:underline">
                     {title}
                   </h1>
                 </Link>

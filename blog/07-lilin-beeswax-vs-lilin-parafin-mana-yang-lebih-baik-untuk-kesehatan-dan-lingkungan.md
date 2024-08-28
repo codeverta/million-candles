@@ -22,3 +22,9 @@ Jika Anda ingin menciptakan suasana yang nyaman dan romantis di rumah, pilihan t
 Dengan membeli produk lilin beeswax dari toko kami, Anda tidak hanya merasakan manfaat yang baik untuk kesehatan dan lingkungan, tetapi juga mendukung usaha kecil lokal kami untuk terus berkembang. Selain itu, kami juga menawarkan pengiriman yang cepat dan aman ke seluruh Indonesia.
 
 Jangan ragu untuk mengunjungi toko kami dan mencoba produk lilin beeswax kami yang berkualitas tinggi. Kami yakin Anda akan puas dengan hasilnya dan kembali lagi untuk membeli produk kami di masa depan. Terima kasih telah membaca artikel ini dan berkontribusi pada lingkungan yang lebih sehat dan lestari.
+
+- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
+- **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
+- **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)
+- **Tokopedia:** [Souvenir Lilin di Tokopedia](https://www.tokopedia.com/souvenirlilin)

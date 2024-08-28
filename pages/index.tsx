@@ -7,6 +7,7 @@ import api from "utils/api";
 import Head from "next/head";
 import Script from "next/script";
 import { keyframes } from "@emotion/react";
+import { Avatar } from "@mui/material";
 
 const features = [
   {
@@ -152,20 +153,12 @@ function Home(props: any) {
                     key={post.id}
                     className="flex max-w-xl flex-col items-start justify-between"
                   >
-                    <div className="flex items-center gap-x-4 text-xs">
-                      <time dateTime={post.date} className="text-gray-400">
-                        {post.date}
-                      </time>
-                      <a
-                        href={post.id}
-                        className="relative z-10 rounded-full py-1.5 px-3 font-medium text-gray-600"
-                      >
-                        {post.title}
-                      </a>
-                    </div>
                     <div className="group relative">
                       <h3 className="mt-3 text-lg font-semibold leading-6 dark:text-gray-200 dark:hover:text-white text-gray-900 dark:group-hover:text-gray-50 group-hover:text-gray-600">
-                        <a href={"posts/" + post.id} className="cursor-pointer">
+                        <a
+                          href={"posts/" + post.id}
+                          className="cursor-pointer hover:underline"
+                        >
                           <span className="absolute inset-0" />
                           {post.title}
                         </a>
@@ -183,11 +176,9 @@ function Home(props: any) {
           {/* Testimonial */}
           <section className="relative isolate overflow-hidden  py-24 px-6 sm:py-32 lg:px-8">
             <div className="mx-auto max-w-2xl lg:max-w-4xl">
-              {/* <img
-              className="mx-auto h-12"
-              src="https://tailwindui.com/img/logos/workcation-logo-indigo-600.svg"
-              alt=""
-            /> */}
+              <Avatar sx={{ bgcolor: "002233" }} className="mx-auto h-18 w-18">
+                A
+              </Avatar>
               <figure className="mt-10">
                 <blockquote className="text-center text-xl font-semibold leading-8 dark:text-gray-300 text-gray-900 sm:text-2xl sm:leading-9">
                   <p>
