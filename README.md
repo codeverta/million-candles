@@ -1,4 +1,4 @@
-MILLION CANDLES
+The Mighty MILLION CANDLES
 
 A brief description of your project goes here.
 
