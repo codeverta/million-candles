@@ -13,6 +13,7 @@ import ProductDialog from "components/molecules/ProductDialog";
 import { getRelationships, toCurrency } from "utils";
 import { useGetFetchQuery } from "utils/hooks";
 import LoadingBackdrop from "components/mui/LoadingBackdrop";
+import Link from "next/link";
 
 export default function ProductCard(props: any) {
   const getProducts: any = useGetFetchQuery(["products"]);
@@ -21,11 +22,6 @@ export default function ProductCard(props: any) {
   });
   const root = React.useMemo(() => getProducts?.data, [getProducts]);
 
-  if (!getProducts?.data) {
-    return <LoadingBackdrop />;
-  }
-
-  const documents = getRelationships(root, props.product, "documents");
   return (
     <>
       <Card {...props} sx={{ maxWidth: 200 }}>
@@ -35,36 +31,38 @@ export default function ProductCard(props: any) {
             img: "!object-fit !h-[154px]",
           }}
           image={
-            documents.length > 0
-              ? `${process.env.NEXT_PUBLIC_BASE}/storage/${documents[0].attributes.filename}`
+            props.product.images.length > 0
+              ? props.product.images[0].path
               : "/blah.png"
           }
-          onError={(e: any) => (e.target.src = "/assets/image-1@2x.jpg")}
         />
         <CardContent
           classes={{
             root: "!px-3 py-1",
           }}
         >
-          <div className="text-sm flex items-center max-w-full">
-            <p className="truncate">{props.product.attributes.name}</p>
-            <IconButton size="small" title="Terverifikasi Oleh Million Candles">
-              <VerifiedIcon fontSize="small" color="primary" />
-            </IconButton>
+          <div className="">
+            <Link href={`/products/${props.product.slug}`}>
+              <h3 className="text-md font-semibold hover:underline">
+                {props.product.name} ({props.product.code})
+                <IconButton
+                  size="small"
+                  title="Terverifikasi Oleh Million Candles"
+                >
+                  <VerifiedIcon fontSize="small" color="primary" />
+                </IconButton>
+              </h3>
+            </Link>
+            <div className="text-green-600 font-bold text-lg mb-2">
+              {toCurrency(props.product.price)}
+            </div>
+            <div className="flex items-center">
+              <span className="text-yellow-500 mr-2">★ 5.0</span>
+              <span className="text-green-500 mr-2">1rb+ terjual</span>
+            </div>
           </div>
-          <p className="text-md font-bold">
-            {toCurrency(props.product.attributes.price)}
-          </p>
         </CardContent>
-        <CardActions disableSpacing>
-          <Rating
-            name="simple-controlled"
-            value={state.rating[0] ?? Math.floor(Math.random() * 5) + 1}
-            onChange={(event, newValue) => {
-              // setStat(newValue);
-            }}
-          />
-        </CardActions>
+        <CardActions disableSpacing></CardActions>
       </Card>
     </>
   );

@@ -43,6 +43,10 @@ export default function Header() {
       label: "Tentang",
       url: "/about",
     },
+    {
+      label: "Kebijakan Privasi",
+      url: "/privacy-and-policy/jiwaku",
+    },
   ]);
   const [open, setOpen] = useState({
     drawer: false,
@@ -84,7 +88,7 @@ export default function Header() {
         </Modal>
       )}
 
-      {open.drawer && <Drawer handleDrawer={handleDrawer} />}
+      {open.drawer && <Drawer menu={menus} handleDrawer={handleDrawer} />}
 
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
         <div className="flex flex-wrap justify-around sm:justify-between items-center mx-auto max-w-screen-xl">

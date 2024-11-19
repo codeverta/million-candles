@@ -111,6 +111,14 @@ Bahan terbaik untuk lilin besar termasuk paraffin wax, soy wax, dan beeswax. Pil
 - Lilin pencahayaan besar
 - Lilin event besar
 
+Untuk membeli lilin aromaterapi yang dapat menenangkan jiwa dan menyegarkan ruangan Anda, kunjungi platform kami:
+
+- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
+- **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
+- **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)
+- **Tokopedia:** [Souvenir Lilin di Tokopedia](https://www.tokopedia.com/souvenirlilin)
+
 ## **Tautan Eksternal yang Relevan**
 
 1. [Choosing the Right Pillar Candle for Your Space - The Spruce](https://www.thespruce.com/choosing-pillar-candles-4126092) - **Teks jangkar: Memilih lilin pilar yang tepat**

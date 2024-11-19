@@ -12,6 +12,8 @@ date: "2024-08-28"
 
 ## **Pengenalan tentang Pabrik Lilin**
 
+![Lilin Pilar Ibadah](https://api.souvenirlilin.com/storage/image/eRPv4IlBho2l6nAaVTuDxaYJ33jP2CFz3HbZe6lK.png)
+
 ### **Apa Itu Pabrik Lilin?**
 
 Pabrik lilin adalah fasilitas yang memproduksi lilin dalam skala besar. Di pabrik ini, lilin diproduksi dari berbagai bahan baku seperti parafin, beeswax, dan soy wax. Proses produksi di pabrik lilin melibatkan beberapa tahap, mulai dari pengolahan bahan baku hingga pengemasan produk akhir. Pabrik lilin biasanya dilengkapi dengan mesin-mesin khusus untuk melelehkan, mencampur, dan menuangkan lilin ke dalam cetakan.
