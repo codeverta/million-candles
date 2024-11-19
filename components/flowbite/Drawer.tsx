@@ -39,46 +39,16 @@ export default function Drawer(props: any) {
       </button>
       <div className="py-4 overflow-y-auto">
         <ul className="space-y-2">
-          <li>
-            <Link
-              href="/"
-              className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-            >
-              <span className="ml-3">Dashboard</span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/products"
-              className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-            >
-              Produk
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/address"
-              className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-            >
-              Alamat
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/posts"
-              className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-            >
-              Blog
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/about"
-              className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-            >
-              Tentang Kami
-            </Link>
-          </li>
+          {props.menu.map((it: any) => (
+            <li>
+              <Link
+                href={it.url}
+                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <span className="ml-3">{it.label}</span>
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
