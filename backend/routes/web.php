@@ -16,7 +16,6 @@ use App\Http\Controllers\EmailController;
 */
 
 Route::get('/', function () {
-    return redirect('https://www.souvenirlilin.id');
     return view('welcome');
 });
 
