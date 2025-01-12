@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "components/layout/Landing";
 import { useQuery } from "@tanstack/react-query";
 import api from "utils/api";
@@ -16,6 +16,7 @@ import "swiper/css/thumbs";
 import Breadcrumb from "components/mui/Breadcrumb";
 import ProductVariants from "components/mui/ProductVariant";
 import { Button } from "@mui/material";
+import { useRouter } from "next/router";
 //@ts-ignore
 
 function generateWhatsAppLink(phoneNumber, message) {
@@ -28,18 +29,73 @@ function generateWhatsAppLink(phoneNumber, message) {
   return whatsappURL;
 }
 
-function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
+function ProductDetail() {
+  const [product, setProduct] = React.useState({
+    jsonapi: {
+      version: "1.0",
+    },
+    data: [
+      {
+        type: "products",
+        id: "1",
+        attributes: {
+          name: "",
+        },
+        relationships: {
+          documents: {
+            data: [
+              {
+                type: "",
+                id: "",
+              },
+            ],
+          },
+          "product-categories": {},
+          "product-variants": {},
+        },
+      },
+    ],
+    included: [
+      {
+        type: "documents",
+        id: "1",
+        attributes: {},
+        relationships: {
+          documentable_type: {},
+          documentable_id: {},
+        },
+      },
+    ],
+  });
   const [thumbsSwiper, setThumbsSwiper] = React.useState<any>(null);
   const [qty, setQty] = React.useState<number>(1);
   const documents =
-    product.data.relationships?.documents.data.length > 0
-      ? getRelationships(product, product.data, "documents")
+    product.data[0].relationships?.documents.data.length > 0
+      ? getRelationships(product, product.data[0], "documents")
       : [];
   const isDocumentExist = !!documents[0]?.attributes.filename;
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.query) {
+      const fetchProduct = async () => {
+        const slug = router.query;
+        const product = await api.get("products", {
+          "filter[slug]": slug,
+          include: "documents",
+        });
+
+        setProduct(product.data);
+        console.log({ product });
+      };
+
+      fetchProduct();
+    }
+  }, [router.query]);
   return (
     <section className="text-gray-700 dark:text-gray-300 body-font overflow-hidden bg-white min-h-screen dark:bg-gray-900">
       <div className="container mx-auto p-4">
-        <Breadcrumb currentLabel={product.data.attributes.name} />
+        <Breadcrumb currentLabel={product.data[0].attributes.name} />
         <div className="flex flex-col md:flex-row">
           {/* Swiper for product images */}
           <div className="md:w-1/3">
@@ -102,10 +158,10 @@ function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
           </div>
           <div className="lg:w-1/2 w-full md:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h1 className="text-gray-900 dark:text-gray-50 text-3xl title-font font-medium mb-1">
-              {product.data.attributes.name}
+              {product.data[0].attributes.name}
             </h1>
             <p className="text-green-600 font-bold text-xl mb-4">
-              {toCurrency(product.data.attributes.price)}
+              {toCurrency(product.data[0].attributes.price)}
             </p>
             <div className="mb-4">
               <ProductVariants />
@@ -118,14 +174,14 @@ function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
             </div>
             <div className="mb-4">
               <span className="font-semibold">Stock: </span>
-              {product.data.attributes.stock}
+              {product.data[0].attributes.stock}
             </div>
             <div className="mb-4">
               <span className="font-semibold">Etalase: </span>Semua Etalase
             </div>
             <div className="mb-4" style={{ whiteSpace: "pre-line" }}>
               {/* deskripsi */}
-              {product.data.attributes.description}
+              {product.data[0].attributes.description}
             </div>
             <div className="mt-4 flex items-center">
               <div className="relative flex items-center max-w-[8rem]">
@@ -140,7 +196,6 @@ function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
                   -
                 </button>
                 <input
-                  value={qty}
                   type="text"
                   id="quantity-input"
                   data-input-counter
@@ -168,7 +223,7 @@ function ProductDetail({ product }: { product: DataResponse<ProductData> }) {
                 target="_blank"
                 href={generateWhatsAppLink(
                   "+6281578956156",
-                  `Halo saya ingin memesan \n${product.data.attributes.name}(${product.data.attributes.code}) ${qty}`
+                  `Halo saya ingin memesan \n${product.data[0].attributes.name}(${product.data[0].attributes.code}) ${qty}`
                 )}
                 className="bg-green-600 text-white px-4 py-2 rounded ml-2"
               >
@@ -199,35 +254,21 @@ ProductDetail.getLayout = function (page: React.ReactNode) {
 };
 
 //
-export async function getStaticPaths() {
-  const products = await api.get("products");
-  const productsParams = products.data.data.map((it: any) => {
-    return {
-      params: {
-        slug: it.attributes.slug,
-        // id: it.id,
-      },
-    };
-  });
+// export async function getStaticPaths() {
+//   const products = await api.get("products");
+//   const productsParams = products.data.data.map((it: any) => {
+//     return {
+//       params: {
+//         slug: it.attributes.slug,
+//         // id: it.id,
+//       },
+//     };
+//   });
 
-  return {
-    paths: productsParams,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }: any) {
-  const product = await api.get("products", {
-    "filter[slug]": params.slug,
-  });
-  const productData = await api.get("products/" + product.data.data[0].id, {
-    include: "documents",
-  });
-  return {
-    props: {
-      product: productData.data,
-    },
-  };
-}
+//   return {
+//     paths: productsParams,
+//     fallback: false,
+//   };
+// }
 
 export default ProductDetail;
