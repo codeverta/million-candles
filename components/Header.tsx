@@ -47,6 +47,10 @@ export default function Header() {
       label: "Kebijakan Privasi",
       url: "/privacy-and-policy/jiwaku",
     },
+    {
+      label: "Invoice",
+      url: "/invoice",
+    },
   ]);
   const [open, setOpen] = useState({
     drawer: false,
@@ -90,7 +94,7 @@ export default function Header() {
 
       {open.drawer && <Drawer menu={menus} handleDrawer={handleDrawer} />}
 
-      <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+      <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 print:hidden">
         <div className="flex flex-wrap justify-around sm:justify-between items-center mx-auto max-w-screen-xl">
           <Link href="/" className="flex items-center">
             <img
