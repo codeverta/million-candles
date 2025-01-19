@@ -4,11 +4,11 @@ import { marked } from "marked";
 
 const text = marked.parse(`
 
-## Privacy Policy for Jiwaku
+## Privacy Policy for Souvenir Lilin
 
 **Effective Date**: 20-11-2024
 
-Welcome to Jiwaku! Your privacy is critically important to us, and we are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application (the "App"). Please read this Privacy Policy carefully to understand our practices regarding your information.
+Welcome to Souvenir Lilin! Your privacy is critically important to us, and we are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application (the "App"). Please read this Privacy Policy carefully to understand our practices regarding your information.
 
 ### 1. **Information We Collect**
 
@@ -49,7 +49,7 @@ We do not sell, trade, or rent your personal information. However, we may share 
 - Third-party vendors who assist in delivering the App’s functionality, such as cloud storage or analytics tools.
 
 #### b. **For Legal Obligations**
-- To comply with legal requirements or protect the rights, property, or safety of Jiwaku, our users, or others.
+- To comply with legal requirements or protect the rights, property, or safety of Souvenir Lilin, our users, or others.
 
 #### c. **With Your Consent**
 - If we intend to share your information for other purposes, we will seek your explicit consent.
@@ -93,7 +93,7 @@ Despite our efforts, no system is completely secure, and we cannot guarantee the
 
 ### 7. **Children's Privacy**
 
-Jiwaku is not intended for individuals under the age of 13 (or equivalent minimum age in your jurisdiction). We do not knowingly collect personal information from children. If we discover that we have inadvertently collected such information, we will delete it promptly.
+Souvenir Lilin is not intended for individuals under the age of 13 (or equivalent minimum age in your jurisdiction). We do not knowingly collect personal information from children. If we discover that we have inadvertently collected such information, we will delete it promptly.
 
 ---
 
@@ -105,7 +105,7 @@ The App may include links to third-party websites or services. We are not respon
 
 ### 9. **International Data Transfers**
 
-If you are accessing the App from outside [Your Country], please note that your information will be transferred to and processed in [Your Country], where privacy laws may not be as comprehensive as those in your jurisdiction.
+If you are accessing the App from outside Indonesia, please note that your information will be transferred to and processed in Indonesia, where privacy laws may not be as comprehensive as those in your jurisdiction.
 
 ---
 
@@ -118,9 +118,6 @@ We may update this Privacy Policy from time to time. Changes will be posted in t
 ### 11. **Contact Us**
 
 If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:  
-**Email**: rabihutomo11@gmail.com
-**Phone**: +6285601347820 
-
 `);
 
 function About() {
