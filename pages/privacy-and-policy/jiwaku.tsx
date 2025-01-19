@@ -105,7 +105,7 @@ The App may include links to third-party websites or services. We are not respon
 
 ### 9. **International Data Transfers**
 
-If you are accessing the App from outside [Your Country], please note that your information will be transferred to and processed in [Your Country], where privacy laws may not be as comprehensive as those in your jurisdiction.
+If you are accessing the App from outside Indonesia, please note that your information will be transferred to and processed in Indonesia, where privacy laws may not be as comprehensive as those in your jurisdiction.
 
 ---
 
@@ -118,9 +118,6 @@ We may update this Privacy Policy from time to time. Changes will be posted in t
 ### 11. **Contact Us**
 
 If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:  
-**Email**: rabihutomo11@gmail.com
-**Phone**: +6285601347820 
-
 `);
 
 function About() {

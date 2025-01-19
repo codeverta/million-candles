@@ -222,9 +222,9 @@ const InvoiceApp = () => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Description</TableCell>
-                  <TableCell align="right">Quantity</TableCell>
-                  <TableCell align="right">Price (IDR)</TableCell>
+                  <TableCell>Deskripsi</TableCell>
+                  <TableCell align="right">Jumlah</TableCell>
+                  <TableCell align="right">Harga (IDR)</TableCell>
                   <TableCell align="right">Total</TableCell>
                   <TableCell
                     sx={{ "@media print": { display: "none" } }}
@@ -351,7 +351,7 @@ const InvoiceApp = () => {
 
               <TextField
                 type="number"
-                label="Shipping Cost"
+                label="Ongkir"
                 value={invoiceData.shippingCost}
                 onChange={(e) =>
                   setInvoiceData({
@@ -523,9 +523,9 @@ const Invoice = ({ invoiceData }: { invoiceData: InvoiceData }) => {
       <table style={styles.table}>
         <thead>
           <tr>
-            <th style={styles.th}>Description</th>
-            <th style={styles.th}>Quantity</th>
-            <th style={styles.th}>Price (IDR)</th>
+            <th style={styles.th}>Deskripsi</th>
+            <th style={styles.th}>Jumlah</th>
+            <th style={styles.th}>Harga (IDR)</th>
             <th style={styles.th}>Total</th>
           </tr>
         </thead>
@@ -574,7 +574,7 @@ const Invoice = ({ invoiceData }: { invoiceData: InvoiceData }) => {
         <p>
           <strong>Notes:</strong>
         </p>
-        <p>Thank you for your business!</p>
+        <p>{invoiceData.notes}</p>
       </div>
     </div>
   );
