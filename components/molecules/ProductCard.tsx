@@ -31,7 +31,7 @@ export default function ProductCard(props: any) {
             img: "!object-fit !h-[154px]",
           }}
           image={
-            props.product.images.length > 0
+            props.product.images?.length > 0
               ? props.product.images[0].path
               : "/blah.png"
           }

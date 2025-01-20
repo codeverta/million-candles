@@ -179,7 +179,7 @@ export default function OrderTable({ title }: { title: string }) {
     );
   }
 
-  if (query.data.data.data.length == 0) {
+  if (query.data.data.data?.length == 0) {
     return <EmptyData />;
   }
   return (
