@@ -70,7 +70,7 @@ function ProductDetail() {
   const [thumbsSwiper, setThumbsSwiper] = React.useState<any>(null);
   const [qty, setQty] = React.useState<number>(1);
   const documents =
-    product.data[0].relationships?.documents.data.length > 0
+    product.data[0]?.relationships?.documents.data.length > 0
       ? getRelationships(product, product.data[0], "documents")
       : [];
   const isDocumentExist = !!documents[0]?.attributes.filename;

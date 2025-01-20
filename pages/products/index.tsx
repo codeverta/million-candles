@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 function Product() {
   const router = useRouter();
   const handleRowClick = (row: any) => {
-    router.push(`/products/${row.id}`);
+    router.push(`/products/${row.attributes.slug}`);
   };
   return (
     <>
