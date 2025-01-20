@@ -7,6 +7,7 @@ use App\Http\Requests\StoreDocumentRequest;
 use App\Models\Document;
 use Illuminate\Support\Facades\Log;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions;
+use Storage;
 
 class DocumentController extends Controller
 {
@@ -39,6 +40,10 @@ class DocumentController extends Controller
     {
         try {
             $document = Document::findOrFail($request);
+            // Delete the file from storage
+            if ($document->filename && Storage::exists($document->filename)) {
+                Storage::delete($document->filename);
+            }
             $document->delete();
             return response()->json(["success" => "document successfully deleted"]);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
