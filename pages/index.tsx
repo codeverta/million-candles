@@ -48,8 +48,8 @@ function Home(props: any) {
         />
       </Head>
       <div className="dark:bg-gray-900 bg-white text-gray-900 dark:text-white">
-        <Hero />
         <Content />
+        <Hero />
         <section className="">
           <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-lg lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
             <div className="font-light text-gray-400 sm:text-lg dark:text-gray-400">
