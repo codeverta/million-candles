@@ -1,6 +1,7 @@
+import React, { useEffect } from "react";
+import AOS from "aos";
 import Head from "next/head";
 import Header from "../Header";
-import React from "react";
 import Footer from "components/Footer";
 
 interface Props {
@@ -8,6 +9,15 @@ interface Props {
 }
 
 export default function Landing({ children }: Props) {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Animation duration in milliseconds
+      easing: "ease-in-out", // Animation easing
+      offset: 120, // Offset from the original trigger point
+      once: true, // Whether animation should happen only once
+    });
+  }, []);
+
   return (
     <>
       <Head>

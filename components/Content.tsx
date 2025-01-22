@@ -110,7 +110,7 @@ export default function Content({ title = "Produk Kami" }) {
           ) : (
             <>
               {" "}
-              {query.data.data.data.map((product: any) => {
+              {query.data.data.data.map((product: any, index: number) => {
                 const documents =
                   product.relationships?.documents.data.length > 0
                     ? getRelationships(query.data.data, product, "documents")
@@ -118,6 +118,8 @@ export default function Content({ title = "Produk Kami" }) {
                 const isDocumentExist = !!documents[0]?.attributes.filename;
                 return (
                   <li
+                    data-aos="fade-up"
+                    data-aos-delay={`${index * 100}`}
                     className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3"
                     key={product.attributes.slug}
                   >

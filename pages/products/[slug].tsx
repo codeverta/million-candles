@@ -157,7 +157,10 @@ function ProductDetail() {
             </Swiper>
           </div>
           <div className="lg:w-1/2 w-full md:pl-10 lg:py-6 mt-6 lg:mt-0">
-            <h1 className="text-gray-900 dark:text-gray-50 text-3xl title-font font-medium mb-1">
+            <h1
+              data-aos="fade-up"
+              className="text-gray-900 dark:text-gray-50 text-3xl title-font font-medium mb-1"
+            >
               {product.data[0].attributes.name}
             </h1>
             <p className="text-green-600 font-bold text-xl mb-4">
@@ -198,6 +201,7 @@ function ProductDetail() {
                 <input
                   type="text"
                   id="quantity-input"
+                  value={qty}
                   data-input-counter
                   aria-describedby="helper-text-explanation"
                   className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
