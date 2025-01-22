@@ -17,7 +17,6 @@ function Product() {
           Lilin Jogja, Lilin Warna, Lilin Hias dan Lain-lain
         </title>
       </Head>
-      <Content />
       <main className="flex justify-center dark:bg-gray-900 bg-white">
         <ProductsTable handleRowClick={handleRowClick} />
       </main>

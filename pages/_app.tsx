@@ -18,6 +18,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TourProvider } from "@reactour/tour";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import "aos/dist/aos.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {
