@@ -47,7 +47,7 @@ export default function Footer() {
           </li>
           <li>
             <a
-              href="https://www.souvenirlilin.com/posts"
+              href="https://www.souvenirlilin.id/posts"
               className="mr-4 hover:underline md:mr-6 "
             >
               Blog
@@ -55,7 +55,7 @@ export default function Footer() {
           </li>
           <li>
             <a
-              href="https://www.souvenirlilin.com/about"
+              href="https://www.souvenirlilin.id/about"
               className="mr-4 hover:underline md:mr-6"
             >
               Tentang Kami

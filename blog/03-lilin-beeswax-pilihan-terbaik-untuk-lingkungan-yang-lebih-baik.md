@@ -28,7 +28,7 @@ Lilin beeswax menjadi pilihan yang tepat bagi mereka yang peduli terhadap lingku
 
 Demikianlah beberapa alasan mengapa lilin beeswax dapat menjadi pilihan terbaik untuk lingkungan yang lebih baik. Semoga informasi ini bermanfaat dan dapat membantu Anda dalam memilih lilin yang tepat untuk keperluan Anda.
 
-- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **Website:** [souvenirlilin.id](https://www.souvenirlilin.id/)
 - **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
 - **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
 - **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)

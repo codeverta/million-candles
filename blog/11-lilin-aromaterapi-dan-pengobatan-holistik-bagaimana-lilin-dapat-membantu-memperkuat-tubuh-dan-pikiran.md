@@ -21,7 +21,7 @@ Aroma dari minyak esensial dalam lilin aromaterapi juga dapat membantu meningkat
 
 Lilin aromaterapi telah menjadi salah satu alat yang populer dalam pengobatan holistik untuk membantu memperkuat tubuh dan pikiran. Terapi lilin ini dapat membantu mengurangi stres dan kecemasan, meningkatkan kualitas tidur, meningkatkan konsentrasi, dan meningkatkan mood. Jika Anda mencari cara yang alami dan menyenangkan untuk meningkatkan kesehatan dan kesejahteraan Anda, cobalah terapi lilin aromaterapi dan rasakan manfaatnya bagi tubuh kita.
 
-- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **Website:** [souvenirlilin.id](https://www.souvenirlilin.id/)
 - **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
 - **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
 - **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)

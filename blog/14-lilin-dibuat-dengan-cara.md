@@ -59,11 +59,11 @@ Lilin yang dibuat dengan cara yang tepat tidak hanya memberikan pengalaman visua
 
 #### Temukan Lilin Berkualitas dari Souvenir Lilin
 
-Untuk lilin yang dibuat dengan perhatian penuh terhadap detail dan kualitas, kunjungi [Souvenir Lilin](https://www.souvenirlilin.com/). Kami menawarkan berbagai macam lilin yang dibuat dengan teknik pembuatan terbaik dan bahan berkualitas tinggi.
+Untuk lilin yang dibuat dengan perhatian penuh terhadap detail dan kualitas, kunjungi [Souvenir Lilin](https://www.souvenirlilin.id/). Kami menawarkan berbagai macam lilin yang dibuat dengan teknik pembuatan terbaik dan bahan berkualitas tinggi.
 
 Temukan lebih banyak pilihan lilin yang sesuai dengan selera dan kebutuhan Anda di platform kami:
 
-- **Website:** [Souvenir Lilin](https://www.souvenirlilin.com/)
+- **Website:** [Souvenir Lilin](https://www.souvenirlilin.id/)
 - **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
 - **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
 - **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)

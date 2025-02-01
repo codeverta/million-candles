@@ -30,7 +30,7 @@ Kesimpulan
 
 Lilin aromaterapi dapat memberikan manfaat kesehatan yang luar biasa bagi tubuh dan pikiran Anda. Aroma lilin yang berbeda dapat membantu meredakan stres dan kecemasan, meningkatkan kualitas tidur, meningkatkan konsentrasi dan fokus, meredakan nyeri dan inflamasi, serta menenangkan pikiran dan meningkatkan mood. Cobalah untuk menggunakan lilin aromaterapi sebagai cara yang mudah dan alami untuk meningkatkan kesehatan dan kesejahteraan Anda.
 
-- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **Website:** [souvenirlilin.id](https://www.souvenirlilin.id/)
 - **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
 - **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
 - **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)

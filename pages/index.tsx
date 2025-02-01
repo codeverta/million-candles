@@ -40,8 +40,8 @@ function Home(props: any) {
             __html: `{
             "@context": "https://schema.org",
             "@type": "Organization",
-            "url": "https://www.souvenirlilin.com",
-            "logo": "https://www.souvenirlilin.com/logolilin.png"
+            "url": "https://www.souvenirlilin.id",
+            "logo": "https://www.souvenirlilin.id/logolilin.png"
           }`,
           }}
           type="application/ld+json"

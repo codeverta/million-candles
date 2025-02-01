@@ -32,7 +32,7 @@ Mencari tempat jual lilin aromaterapi terdekat kini lebih mudah dengan adanya be
 
 3. **Media Sosial dan Website**: Ikuti akun media sosial dan kunjungi website dari penjual lilin yang terpercaya. Misalnya, Souvenir Lilin menawarkan berbagai pilihan lilin aromaterapi berkualitas yang bisa Anda pesan melalui website atau akun media sosial mereka.
 
-   - **Website:** [Souvenir Lilin](https://www.souvenirlilin.com/)
+   - **Website:** [Souvenir Lilin](https://www.souvenirlilin.id/)
    - **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
    - **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
 
@@ -44,7 +44,7 @@ Souvenir Lilin menawarkan berbagai lilin aromaterapi yang dibuat dengan bahan be
 
 Untuk membeli lilin aromaterapi yang dapat menenangkan jiwa dan menyegarkan ruangan Anda, kunjungi platform kami:
 
-- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **Website:** [souvenirlilin.id](https://www.souvenirlilin.id/)
 - **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
 - **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
 - **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)

@@ -29,7 +29,7 @@ Dengan memilih produk lilin aromaterapi kami yang terbuat dari palm wax, Anda ti
 
 Jangan ragu untuk mengunjungi toko kami dan mencoba produk lilin aromaterapi berkualitas kami yang terbuat dari bahan baku palm wax yang ramah lingkungan. Dapatkan pengalaman aromaterapi yang optimal dan dukung gerakan lingkungan yang berkelanjutan dengan memilih produk kami.
 
-- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **Website:** [souvenirlilin.id](https://www.souvenirlilin.id/)
 - **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
 - **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
 - **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)

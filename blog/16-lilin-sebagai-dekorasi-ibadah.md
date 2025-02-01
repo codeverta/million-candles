@@ -25,11 +25,11 @@ Lilin dapat menjadi elemen dekoratif yang menambah sentuhan spiritual pada rumah
 
 #### Rekomendasi Lilin untuk Dekorasi Ibadah
 
-Apabila Anda mencari lilin yang sempurna untuk menghiasi perayaan ibadah atau ritual spiritual Anda, kami merekomendasikan lilin dari [Souvenir Lilin](https://www.souvenirlilin.com/). Lilin-lilin kami dirancang dengan indah dan dibuat dengan bahan-bahan berkualitas yang memastikan pembakaran yang bersih dan tahan lama.
+Apabila Anda mencari lilin yang sempurna untuk menghiasi perayaan ibadah atau ritual spiritual Anda, kami merekomendasikan lilin dari [Souvenir Lilin](https://www.souvenirlilin.id/). Lilin-lilin kami dirancang dengan indah dan dibuat dengan bahan-bahan berkualitas yang memastikan pembakaran yang bersih dan tahan lama.
 
 Temukan lebih banyak pilihan lilin yang dapat mempercantik dan menyemarakkan momen spiritual Anda:
 
-- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **Website:** [souvenirlilin.id](https://www.souvenirlilin.id/)
 - **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
 - **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
 - **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)

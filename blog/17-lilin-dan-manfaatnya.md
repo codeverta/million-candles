@@ -12,7 +12,7 @@ date: "2024-08-28"
 
 ## **Pengenalan dan Sejarah Lilin**
 
-![Lilin Pilar Ibadah](https://api.souvenirlilin.com/storage/image/eRPv4IlBho2l6nAaVTuDxaYJ33jP2CFz3HbZe6lK.png)
+![Lilin Pilar Ibadah](https://api.souvenirlilin.id/storage/image/eRPv4IlBho2l6nAaVTuDxaYJ33jP2CFz3HbZe6lK.png)
 
 ### **Apa Itu Lilin?**
 
@@ -113,7 +113,7 @@ Untuk menghilangkan noda lilin dari pakaian, letakkan kertas tisu di atas noda, 
 
 Untuk membeli lilin aromaterapi yang dapat menenangkan jiwa dan menyegarkan ruangan Anda, kunjungi platform kami:
 
-- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **Website:** [souvenirlilin.id](https://www.souvenirlilin.id/)
 - **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
 - **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
 - **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)

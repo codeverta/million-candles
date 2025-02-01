@@ -12,7 +12,7 @@ date: "2024-08-28"
 
 ## **Pengenalan tentang Stearin**
 
-![Lilin Pilar Ibadah](https://api.souvenirlilin.com/storage/image/uZnQ80HvbVWRzyzmDSQ42y8PUJHcGWy6QVEMYlKj.png)
+![Lilin Pilar Ibadah](https://api.souvenirlilin.id/storage/image/uZnQ80HvbVWRzyzmDSQ42y8PUJHcGWy6QVEMYlKj.png)
 
 ### **Apa Itu Stearin?**
 
