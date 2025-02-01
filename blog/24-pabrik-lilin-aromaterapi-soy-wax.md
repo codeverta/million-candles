@@ -108,7 +108,7 @@ Harga lilin aromaterapi dari soy wax mungkin sedikit lebih mahal dibandingkan li
 
 Untuk membeli lilin aromaterapi yang dapat menenangkan jiwa dan menyegarkan ruangan Anda, kunjungi platform kami:
 
-- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **Website:** [souvenirlilin.id](https://www.souvenirlilin.id/)
 - **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
 - **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
 - **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)

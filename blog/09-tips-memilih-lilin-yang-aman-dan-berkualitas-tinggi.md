@@ -33,7 +33,7 @@ Jika Anda mencari lilin berkualitas tinggi dan aman untuk digunakan, kunjungi to
 
 Dalam koleksi lilin kami, tersedia berbagai macam ukuran dan bentuk yang dapat disesuaikan dengan dekorasi rumah Anda. Lilin juga dilengkapi dengan wadah yang aman dan kokoh, sehingga tidak mudah tumpah dan menyebabkan kebakaran. Jangan ragu untuk memilih koleksi lilin terbaik kami dan ciptakan suasana yang nyaman dan tenang di rumah Anda.
 
-- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **Website:** [souvenirlilin.id](https://www.souvenirlilin.id/)
 - **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
 - **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
 - **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)

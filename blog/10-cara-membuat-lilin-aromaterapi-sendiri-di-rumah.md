@@ -27,7 +27,7 @@ Setelah lilin benar-benar mengeras, lepaskan dari cetakan dan potong lilin sesua
 
 Membuat lilin aromaterapi sendiri di rumah sangatlah mudah dan menyenangkan. Anda dapat mengkreasikan aroma dan warna yang Anda sukai sesuai dengan preferensi Anda. Selain itu, lilin aromaterapi buatan sendiri juga dapat menjadi kado yang unik dan spesial untuk teman atau keluarga Anda. Jadi, tunggu apa lagi? Ayo coba membuat lilin aromaterapi sendiri di rumah dan nikmati suasana santai yang diciptakan oleh lilin aromaterapi buatan sendiri Anda.
 
-- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **Website:** [souvenirlilin.id](https://www.souvenirlilin.id/)
 - **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
 - **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
 - **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)

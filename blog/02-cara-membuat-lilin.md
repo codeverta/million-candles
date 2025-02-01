@@ -30,7 +30,7 @@ Setelah lilin benar-benar mengeras, lepaskan lilin dari cetakan. Gunakan kain at
 
 Dalam beberapa langkah sederhana, Anda dapat membuat lilin sendiri di rumah dengan mudah. Selain itu, membuat lilin sendiri juga dapat memberikan pengalaman yang menyenangkan dan memuaskan. Dapatkan bahan dan peralatan yang diperlukan untuk membuat lilin di toko perlengkapan kerajinan atau toko online. Selamat mencoba!
 
-- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **Website:** [souvenirlilin.id](https://www.souvenirlilin.id/)
 - **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
 - **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
 - **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)

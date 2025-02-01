@@ -28,7 +28,7 @@ Kesimpulannya, lilin adalah kado yang paling disukai oleh teman dan keluarga And
 
 Jadi, jika Anda mencari kado yang sempurna untuk teman dan keluarga Anda, pertimbangkanlah untuk memberikan lilin. Dengan aroma yang menenangkan dan kemampuan untuk menciptakan suasana yang nyaman, lilin adalah pilihan kado yang sangat disukai. Dalam tambahan, Anda bisa memilih dari berbagai aroma dan menghias lilin sesuai selera Anda. Jangan ragu untuk memberikan kado lilin pada kesempatan spesial seperti pernikahan, hari ulang tahun, atau perayaan Hari Natal. Dengan memberikan kado lilin, Anda akan memberikan hadiah yang bermanfaat dan bermakna bagi orang yang Anda sayangi. Dapatkan koleksi lilin terbaik hanya di toko-toko terdekat atau online store favorit Anda.
 
-- **Website:** [souvenirlilin.com](https://www.souvenirlilin.com/)
+- **Website:** [souvenirlilin.id](https://www.souvenirlilin.id/)
 - **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
 - **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
 - **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)

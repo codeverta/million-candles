@@ -41,7 +41,7 @@ TikTok adalah platform media sosial yang sangat efektif untuk mempromosikan prod
 
 Untuk lebih banyak pilihan lilin berkualitas yang dapat mempercantik dan menambah suasana rumah Anda, kunjungi platform kami:
 
-- **Website:** [Souvenir Lilin](https://www.souvenirlilin.com/)
+- **Website:** [Souvenir Lilin](https://www.souvenirlilin.id/)
 - **TikTok:** [@souvenirlilin](https://www.tiktok.com/@souvenirlilin)
 - **Instagram:** [souvenirlilin.id](https://www.instagram.com/souvenirlilin.id/)
 - **Shopee:** [souvenirlilin.id di Shopee](https://shopee.co.id/souvenirlilin.id)

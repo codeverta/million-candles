@@ -9,7 +9,7 @@ export default function Post({ postData }: any) {
     description: postData.desc,
     openGraph: {
       type: "website",
-      url: "https://www.souvenirlilin.com/og-image.png",
+      url: "https://www.souvenirlilin.id/og-image.png",
       title: postData.title,
       description: postData.desc,
     },
