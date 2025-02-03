@@ -46,6 +46,11 @@ function Home(props: any) {
           }}
           type="application/ld+json"
         />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2242816010232507"
+          crossOrigin="anonymous"
+        ></script>
       </Head>
       <div className="dark:bg-gray-900 bg-white text-gray-900 dark:text-white">
         <Content />
