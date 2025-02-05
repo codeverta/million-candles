@@ -419,13 +419,19 @@ const InvoiceApp = () => {
           display: "none",
         }}
       >
-        <Invoice invoiceData={invoiceData} />
+        <Invoice calculateTotal={calculateTotal} invoiceData={invoiceData} />
       </Container>
     </>
   );
 };
 
-const Invoice = ({ invoiceData }: { invoiceData: InvoiceData }) => {
+const Invoice = ({
+  invoiceData,
+  calculateTotal,
+}: {
+  invoiceData: InvoiceData;
+  calculateTotal: () => number;
+}) => {
   const styles = {
     container: {
       maxWidth: "800px",
@@ -553,7 +559,9 @@ const Invoice = ({ invoiceData }: { invoiceData: InvoiceData }) => {
           <span>
             <strong>Discount:</strong>
           </span>
-          <span>-Rp {discount.toLocaleString()}</span>
+          <span>
+            -{discount.toLocaleString()} {invoiceData.discountType}
+          </span>
         </div>
         <div style={styles.totalsRow}>
           <span>
@@ -566,7 +574,7 @@ const Invoice = ({ invoiceData }: { invoiceData: InvoiceData }) => {
             <strong>Total:</strong>
           </span>
           <span>
-            <strong>Rp {total.toLocaleString()}</strong>
+            <strong>Rp {calculateTotal()}</strong>
           </span>
         </div>
       </div>
