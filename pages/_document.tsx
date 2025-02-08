@@ -40,6 +40,7 @@ export default function Document() {
         />
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
+        <meta name="google-adsense-account" content="ca-pub-2242816010232507" />
       </Head>
       <body>
         <Main />
