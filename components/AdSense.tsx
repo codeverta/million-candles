@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-export default function AdSense({ adType = 1 }: { adType?: 1 | 2 }) {
+export default function AdSense({ adType = 1 }: { adType?: 1 | 2 | 3 }) {
   useEffect(() => {
     try {
       // @ts-ignore
@@ -25,7 +25,7 @@ export default function AdSense({ adType = 1 }: { adType?: 1 | 2 }) {
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </>
     );
-  } else {
+  } else if (adType === 2) {
     return (
       <>
         <ins
@@ -34,6 +34,25 @@ export default function AdSense({ adType = 1 }: { adType?: 1 | 2 }) {
           data-ad-format="autorelaxed"
           data-ad-client="ca-pub-2242816010232507"
           data-ad-slot="2192935561"
+        ></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2242816010232507"
+          crossOrigin="anonymous"
+        ></script>
+        <ins
+          className="adsbygoogle"
+          style={{ display: "block", textAlign: "center" }}
+          data-ad-layout="in-article"
+          data-ad-format="fluid"
+          data-ad-client="ca-pub-2242816010232507"
+          data-ad-slot="1387120353"
         ></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </>
