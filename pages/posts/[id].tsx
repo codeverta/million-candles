@@ -2,6 +2,7 @@ import Layout from "components/layout/Landing";
 import { getAllPostIds, getPostData } from "lib/posts";
 import Head from "next/head";
 import { NextSeo } from "next-seo";
+import AdSense from "components/AdSense";
 
 export default function Post({ postData }: any) {
   const SEO = {
@@ -40,6 +41,7 @@ export default function Post({ postData }: any) {
             className="prose dark:prose-invert"
             dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
           />
+          <AdSense />
         </article>
       </main>
     </Layout>

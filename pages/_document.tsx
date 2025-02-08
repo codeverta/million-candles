@@ -22,6 +22,22 @@ export default function Document() {
           `,
           }}
         />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2242816010232507"
+          crossOrigin="anonymous"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `{
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "url": "https://www.souvenirlilin.id",
+            "logo": "https://www.souvenirlilin.id/logolilin.png"
+          }`,
+          }}
+          type="application/ld+json"
+        />
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
       </Head>

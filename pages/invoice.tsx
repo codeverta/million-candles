@@ -560,7 +560,10 @@ const Invoice = ({
             <strong>Discount:</strong>
           </span>
           <span>
-            -{discount.toLocaleString()} {invoiceData.discountType}
+            -
+            {invoiceData.discountType == "percentage"
+              ? discount.toLocaleString() + "%"
+              : "RP " + discount.toLocaleString()}
           </span>
         </div>
         <div style={styles.totalsRow}>
