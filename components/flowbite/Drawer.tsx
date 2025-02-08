@@ -40,7 +40,7 @@ export default function Drawer(props: any) {
       <div className="py-4 overflow-y-auto">
         <ul className="space-y-2">
           {props.menu.map((it: any) => (
-            <li>
+            <li key={it.label}>
               <Link
                 href={it.url}
                 className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"

@@ -41,7 +41,7 @@ export default function Post({ postData }: any) {
             className="prose dark:prose-invert"
             dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
           />
-          <AdSense />
+          <AdSense adType={2} />
         </article>
       </main>
     </Layout>
