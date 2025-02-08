@@ -2,6 +2,7 @@
 import dynamic from "next/dynamic";
 import Layout from "components/layout/Landing";
 import Head from "next/head";
+import AdSense from "components/AdSense";
 const DynamicMap = dynamic(() => import("components/Map"), {
   ssr: false,
 });
@@ -16,6 +17,7 @@ function Address(props: any) {
         </title>
       </Head>
       <DynamicMap {...props} />
+      <AdSense />
     </main>
   );
 }

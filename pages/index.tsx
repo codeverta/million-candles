@@ -8,6 +8,7 @@ import Head from "next/head";
 import Script from "next/script";
 import { keyframes } from "@emotion/react";
 import { Avatar } from "@mui/material";
+import AdSense from "components/AdSense";
 
 const features = [
   {
@@ -34,26 +35,9 @@ function Home(props: any) {
   const { posts } = props;
   return (
     <Layout>
-      <Head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `{
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "url": "https://www.souvenirlilin.id",
-            "logo": "https://www.souvenirlilin.id/logolilin.png"
-          }`,
-          }}
-          type="application/ld+json"
-        />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2242816010232507"
-          crossOrigin="anonymous"
-        ></script>
-      </Head>
       <div className="dark:bg-gray-900 bg-white text-gray-900 dark:text-white">
         <Content />
+        <AdSense />
         <Hero />
         <section className="">
           <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-lg lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
