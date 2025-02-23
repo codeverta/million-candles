@@ -1,4 +1,12 @@
-**Pabrik Lilin adalah Inovasi dan Solusi untuk Kebutuhan Lilin Anda**
+---
+title: "Pabrik Lilin adalah Inovasi dan Solusi untuk Kebutuhan Lilin Anda"
+
+desc: "Kerajinan lilin hias adalah seni membuat lilin dengan desain dan dekorasi yang indah untuk keperluan estetika. Berbeda dengan lilin biasa yang hanya digunakan sebagai sumber cahaya, lilin hias memiliki nilai seni tinggi dan sering dijadikan sebagai dekorasi rumah, hadiah, atau bahkan souvenir pada acara-acara khusus seperti pernikahan dan ulang tahun."
+
+tags: "lilin dibuat dengan cara, nama produk lilin aromaterapi, kerajinan lilin hias, lilin aromaterapi unik, souvenir kantor jogja, candles adalah, cara membuat lilin hias, jual soy wax terdekat, pabrik lilin, candle wax, souvenir lilin aromaterapi, souvenir lilin, stearin lilin, lilin sumbu, sumbu lilin aromaterapi, souvenir pernikahan lilin aromaterapi, jual lilin aromaterapi terdekat, lilin 138, soy candle, soy wax candle, pabrik lilin, lilin aromaterapi, blog, souvenir, hiasan, romantis"
+
+date: "2024-08-28"
+---
 
 Pabrik lilin adalah tempat di mana berbagai jenis lilin diproduksi dengan kualitas terbaik untuk memenuhi kebutuhan pasar. Dari lilin dekoratif hingga lilin aromaterapi, pabrik lilin memiliki peran penting dalam menciptakan produk yang tidak hanya fungsional tetapi juga estetik. Dalam artikel ini, kita akan membahas lebih dalam tentang pabrik lilin, jenis-jenis lilin yang tersedia, dan di mana Anda bisa menemukan produk terbaik seperti lilin besar, lilin estetik, serta lilin aromaterapi di Jogja dan sekitarnya.
 

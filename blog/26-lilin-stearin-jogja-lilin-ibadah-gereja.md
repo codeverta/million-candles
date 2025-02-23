@@ -1,4 +1,9 @@
-**Jual Lilin Stearin, Lilin Ibadah Gereja, & Lilin Imlek Stiker Yesus: Pilihan Tepat untuk Kebutuhan Anda**
+---
+title: "Jual Lilin Stearin, Lilin Ibadah Gereja, & Lilin Imlek Stiker Yesus: Pilihan Tepat untuk Kebutuhan Anda"
+date: "2025-02-23"
+desc: "Kerajinan lilin hias adalah seni membuat lilin dengan desain dan dekorasi yang indah untuk keperluan estetika. Berbeda dengan lilin biasa yang hanya digunakan sebagai sumber cahaya, lilin hias memiliki nilai seni tinggi dan sering dijadikan sebagai dekorasi rumah, hadiah, atau bahkan souvenir pada acara-acara khusus seperti pernikahan dan ulang tahun."
+tags: "Lilin Aromaterapi, Meningkatkan Kualitas Tidur, Aroma Lavender, Chamomile, Vanilla, Kesehatan Fisik dan Mental"
+---
 
 Lilin memiliki peran penting dalam berbagai aspek kehidupan, mulai dari kebutuhan ibadah hingga tradisi budaya. Lilin stearin, lilin untuk ibadah gereja, dan lilin khusus Imlek dengan stiker Yesus adalah beberapa contoh produk lilin yang memiliki makna simbolis mendalam. Artikel ini akan membahas secara rinci keunggulan dan makna di balik lilin-lilin ini serta di mana Anda bisa membelinya.
 
