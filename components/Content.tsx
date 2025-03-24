@@ -93,10 +93,7 @@ export default function Content({ title = "Produk Kami" }) {
         <span className="text-red-600 text-sm block max-w-md mx-auto">
           * Harga yang ditampilkan merupakan harga distributor/grosir
         </span>
-        <ul
-          id="parent"
-          className="mx-auto w-full md:w-3/4 p-4 grid grid-cols-12 gap-4"
-        >
+        <ul id="parent" className="mx-auto w-full p-4 grid grid-cols-12 gap-4">
           {query.isLoading || query.isError ? (
             <>
               {[1, 2, 3, 4, 5, 6, 7, 8].map((it: number) => {

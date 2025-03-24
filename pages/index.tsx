@@ -1,12 +1,7 @@
 import { Content, Hero } from "components";
-import Footer from "components/Footer";
 import Layout from "components/layout/Landing";
 import { CheckRounded, CloudDone, RoundaboutLeft } from "@mui/icons-material";
 import { getSortedPostsData } from "lib/posts";
-import api from "utils/api";
-import Head from "next/head";
-import Script from "next/script";
-import { keyframes } from "@emotion/react";
 import { Avatar } from "@mui/material";
 import AdSense from "components/AdSense";
 
@@ -37,7 +32,6 @@ function Home(props: any) {
     <Layout>
       <div className="dark:bg-gray-900 bg-white text-gray-900 dark:text-white">
         <Content />
-        <AdSense />
         <Hero />
         <section className="">
           <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-lg lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">

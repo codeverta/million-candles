@@ -61,7 +61,7 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
   const getLayout = Component.getLayout || ((page: ReactNode) => page);
   // seo
   const pageTitle =
-    "UD Million Candles - Produsen Supplier Lilin Aromaterapi Souvenir Lilin Jogja, Lilin Warna, Lilin Hias, DEKORASI, HAMPERS, LILIN AROMATERAPI, SOUVENIR MURAH JOGJA, Home decor, Home Decor | Scented Candle | Hampers | Souvenir | Bouquet dan Lain-lain";
+    "Jual Lilin Jogja | Produsen Lilin Jogja & Souvenir Murah » UD Million Candles";
   const pageDescription = `DEKORASI, HAMPERS, LILIN AROMATERAPI, SOUVENIR MURAH JOGJA, Home decor, Home Decor | Scented Candle | Hampers | Souvenir | Bouquet. Kami adalah UMKM yang menyediakan berbagai macam jenis lilin
           berkualitas tinggi, mulai dari lilin aromaterapi, lilin souvenir, lilin warna, lilin hias
           dan masih banyak lagi. Kami menawarkan lilin hias yang indah untuk

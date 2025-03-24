@@ -123,12 +123,6 @@ If you have any questions or concerns about this Privacy Policy or our data prac
 function About() {
   return (
     <>
-      <Head>
-        <title>
-          Kebijakan Privasi | UD Million Candles - Produsen Lilin Aromaterapi
-          Souvenir Lilin Jogja, Lilin Warna, Lilin Hias dan Lain-lain
-        </title>
-      </Head>
       <div className="w-screen dark:bg-gray-900 bg-white text-gray-600 dark:text-white">
         <article
           className="  dark:prose-headings:text-white prose-p:text-gray-400 py-32 prose prose-xl m-auto"

@@ -37,7 +37,7 @@ function ProductDetail() {
     data: [
       {
         type: "products",
-        id: "1",
+        id: "",
         attributes: {
           name: "",
         },
@@ -58,7 +58,7 @@ function ProductDetail() {
     included: [
       {
         type: "documents",
-        id: "1",
+        id: "",
         attributes: {},
         relationships: {
           documentable_type: {},
@@ -77,9 +77,9 @@ function ProductDetail() {
   const router = useRouter();
 
   useEffect(() => {
-    if (router.query) {
+    if (router.query?.slug) {
       const fetchProduct = async () => {
-        const slug = router.query;
+        const slug = router.query.slug;
         const product = await api.get("products", {
           "filter[slug]": slug,
           include: "documents",
