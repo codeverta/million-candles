@@ -76,3 +76,32 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
         $actions->post('upload');
     });
 });
+
+
+Route::post('/midtrans-webhook', function (Request $request) {
+    // Log the request for debugging
+    Log::info('Midtrans Webhook:', $request->all());
+
+    // Extract necessary details from Midtrans webhook payload
+    $data = $request->all();
+    $orderId = $data['order_id'] ?? 'N/A';
+    $status = $data['transaction_status'] ?? 'unknown';
+    $amount = $data['gross_amount'] ?? '0';
+    $currency = $data['currency'] ?? 'IDR';
+
+    // Construct the message for Discord
+    $message = "**Midtrans Payment Notification**\n".
+               "📌 **Order ID:** `$orderId`\n".
+               "💰 **Amount:** `$amount $currency`\n".
+               "✅ **Status:** `$status`";
+
+    // Discord webhook URL
+    $webhookUrl = "https://discord.com/api/webhooks/1355898882441084928/1BqM1rbFDgkd6NFvxsxQct-kgqaV01Fd67bUGXBJKgvzy3Zo8iQD5EglAyEZd7bFi5dD";
+
+    // Send message to Discord webhook
+    Http::post($webhookUrl, [
+        'content' => $message
+    ]);
+
+    return response()->json(['message' => 'Notification sent to Discord'], 200);
+});
