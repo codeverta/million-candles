@@ -15583,3 +15583,5 @@ Error Output:
 #76 /Users/rabihutomo/code/million-candles/backend/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(16): require_once('/Users/rabihuto...')
 #77 {main}
 "} 
+[2025-03-30 13:59:50] local.INFO: Midtrans Webhook: {"transaction_time":"2023-11-15 18:45:13","transaction_status":"settlement","transaction_id":"513f1f01-c9da-474c-9fc9-d5c64364b709","status_message":"midtrans payment notification","status_code":"200","signature_key":"b726521f5776af6afec9d3b1c7758669a892d5964965771c4ff6c69d81022b4009b6f8328f2e7db9a2e1587ab489bf3e7f277c081ca34087560d0d85fa6d6d69","settlement_time":"2023-11-15 22:45:13","payment_type":"gopay","order_id":"payment_notif_test_G025200197_4d1df1ac-c58c-42e5-9155-0c12ee9363f8","merchant_id":"G025200197","gross_amount":"105000.00","fraud_status":"accept","currency":"IDR"} 
+[2025-03-31 00:20:03] local.INFO: Midtrans Webhook: {"order_id":"INV-1743380402","transaction_status":"success","gross_amount":"9000.00","currency":"IDR"} 
