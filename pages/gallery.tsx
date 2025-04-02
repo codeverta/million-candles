@@ -6,18 +6,17 @@ import Layout from "components/layout/Landing";
 import api from "utils/api";
 import { useQuery } from "@tanstack/react-query";
 import LoadingBackdrop from "components/mui/LoadingBackdrop";
-import AdSense from "components/AdSense";
 
 // Utility function to check if the file is an image
 const isImageFile = (filePath: any) => {
   const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
-  return imageExtensions.some((ext) => filePath.toLowerCase().endsWith(ext));
+  return imageExtensions.some((ext) => filePath.toLowerCase().includes(ext));
 };
 
 // Utility function to check if the file is a video
 const isVideoFile = (filePath: any) => {
   const videoExtensions = [".mp4", ".webm", ".ogg"];
-  return videoExtensions.some((ext) => filePath.toLowerCase().endsWith(ext));
+  return videoExtensions.some((ext) => filePath.toLowerCase().includes(ext));
 };
 
 const PhotoGallery = () => {
@@ -49,7 +48,6 @@ const PhotoGallery = () => {
             Kumpulan Foto dan Video Produk Kami
           </p>
         </div>
-        <AdSense />
         <Gallery>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {query.data.data.data

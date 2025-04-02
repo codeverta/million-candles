@@ -33,10 +33,10 @@ export default function Login() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!isCaptchaSolved) {
-      toast.error("Isi captcha dulu");
-      return;
-    }
+    // if (!isCaptchaSolved) {
+    //   toast.error("Isi captcha dulu");
+    //   return;
+    // }
     event.preventDefault();
     const payload: LoginResource = {
       data: {
