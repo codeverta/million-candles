@@ -9,11 +9,7 @@ const ProductCard = ({ product, isDocumentExist, documents }: any) => (
           {isDocumentExist ? (
             <img
               className="w-full h-48 object-cover"
-              src={
-                process.env.NEXT_PUBLIC_BASE +
-                "/storage/" +
-                documents[0]?.attributes.filename
-              }
+              src={documents[0]?.attributes.filename}
               alt="product image"
               onError={(e: any) => (e.target.src = "/assets/image-1@2x.jpg")}
             />
