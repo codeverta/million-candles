@@ -18,7 +18,7 @@ export default function Login() {
   }>({
     email: "",
     password: "",
-    isCaptchaSolved: false,
+    isCaptchaSolved: true,
   });
 
   const loginMutation = useMutation({
