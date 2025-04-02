@@ -59,9 +59,7 @@ const PhotoGallery = () => {
                   isVideoFile(file.attributes.filename)
               )
               .map((file: any, index: number) => {
-                const filepath = `${
-                  process.env.NEXT_PUBLIC_BASE as string
-                }/storage/${file.attributes.filename}`;
+                const filepath = file.attributes.filename;
                 return (
                   <div
                     key={index}

@@ -112,11 +112,7 @@ function ProductDetail() {
                   <SwiperSlide key={document.id}>
                     <img
                       alt="ecommerce"
-                      src={
-                        process.env.NEXT_PUBLIC_BASE +
-                        "/storage/" +
-                        document.attributes.filename
-                      }
+                      src={document.attributes.filename}
                       className="h-full m-auto"
                     />{" "}
                   </SwiperSlide>
@@ -143,14 +139,7 @@ function ProductDetail() {
               {isDocumentExist
                 ? documents.map((document: DocumentData) => (
                     <SwiperSlide key={document.id}>
-                      <img
-                        alt="ecommerce"
-                        src={
-                          process.env.NEXT_PUBLIC_BASE +
-                          "/storage/" +
-                          document.attributes.filename
-                        }
-                      />{" "}
+                      <img alt="ecommerce" src={document.attributes.filename} />{" "}
                     </SwiperSlide>
                   ))
                 : null}

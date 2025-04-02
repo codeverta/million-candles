@@ -221,7 +221,7 @@ function Cart() {
           {carts.data.map((cart: any, index: number) => {
             const product = getRelationship(carts, cart, "products");
             const documents = getRelationships(carts, product, "documents");
-            const url = `${process.env.NEXT_PUBLIC_BASE}/storage/${documents?.[0]?.attributes.filename}`;
+            const url = documents?.[0]?.attributes.filename;
             return (
               <List key={cart.id}>
                 <ListItem disablePadding>

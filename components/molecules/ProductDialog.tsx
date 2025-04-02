@@ -129,7 +129,7 @@ export default function ProductDialog(props: PropsI) {
                   <img
                     className="max-h-64 mx-auto"
                     key={document.id}
-                    src={`${process.env.NEXT_PUBLIC_BASE}/storage/${document.attributes.filename}`}
+                    src={document.attributes.filename}
                     onError={(e: any) =>
                       (e.target.src = "/assets/image-1@2x.jpg")
                     }

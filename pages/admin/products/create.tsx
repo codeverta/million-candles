@@ -201,11 +201,7 @@ function CreateProduct() {
                       <img
                         height={100}
                         className="!h-20 !w-20 object-contain border rounded shadow"
-                        src={
-                          process.env.NEXT_PUBLIC_BASE +
-                          "/storage/" +
-                          it.attributes.filename
-                        }
+                        src={it.attributes.filename}
                       />
                     </span>
                   );
