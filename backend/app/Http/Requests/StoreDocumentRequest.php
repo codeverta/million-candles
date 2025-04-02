@@ -26,7 +26,7 @@ class StoreDocumentRequest extends FormRequest
         return [
             'documentable_id' => 'required|max:255',
             'documentable_type' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:5120',
         ];
     }
 }

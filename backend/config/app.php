@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Facade;
 
 return [
+    'firebase_credentials' => env('FIREBASE_CREDENTIALS'),
+    'firebase_storage_bucket' => env('FIREBASE_STORAGE_BUCKET'),
 
     /*
     |--------------------------------------------------------------------------
