@@ -8,6 +8,8 @@ use App\Models\Document;
 use Illuminate\Support\Facades\Log;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions;
 use Storage;
+use Kreait\Firebase\Factory;
+use Illuminate\Support\Str;
 
 class DocumentController extends Controller
 {
@@ -25,12 +27,31 @@ class DocumentController extends Controller
 
     public function upload(StoreDocumentRequest $request)
     {
-        $image_path = $request->file('image')->store('image', 'public');
+        // Initialize Firebase
+        $firebase = (new Factory)
+            ->withServiceAccount(config('app.firebase_credentials'));
 
+        $storage = $firebase->createStorage();
+        $bucket = $storage->getBucket();
+
+        // Get the uploaded file
+        $file = $request->file('image');
+        $fileName = 'images/' . Str::random(20) . '.' . $file->getClientOriginalExtension();
+        
+        // Upload to Firebase Storage
+        $bucket->upload(
+            file_get_contents($file->getRealPath()),
+            ['name' => $fileName]
+        );
+
+        // Generate Firebase Storage public URL
+        $storagePath = "https://firebasestorage.googleapis.com/v0/b/" . config('app.firebase_storage_bucket') . "/o/" . urlencode($fileName) . "?alt=media";
+
+        // Save document details in the database
         $document = Document::create([
             'documentable_id' => $request->documentable_id,
             'documentable_type' => $request->documentable_type,
-            'filename' => $image_path,
+            'filename' => $storagePath,
         ]);
 
         return response()->json($document);
