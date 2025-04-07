@@ -140,7 +140,11 @@ function CreateProduct() {
           formData.append("documentable_type", "products");
           formData.append("documentable_id", productId as string);
           formData.append("image", it);
-          return api.post("documents/-actions/upload", formData);
+          return api.post("documents/-actions/upload", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
         });
 
         await Promise.all(batchReq);

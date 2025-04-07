@@ -32,6 +32,7 @@ import EnhancedTableHead from "components/mui/EnhancedTableHead";
 import EmptyData from "./EmptyData";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useTour } from "@reactour/tour";
+import dayjs from "dayjs";
 
 interface Data {
   "no-resi": string;
@@ -286,7 +287,7 @@ export default function OrderTable({ title }: { title: string }) {
                         className="second-step"
                       >
                         {row.attributes.code}
-                        <p>{row.attributes.createdAt}</p>
+                        <p>{dayjs(row.attributes.createdAt).format("LL LT")}</p>
                       </TableCell>
                       <TableCell align="right">
                         <Chip
