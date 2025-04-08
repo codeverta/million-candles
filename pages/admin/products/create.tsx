@@ -188,7 +188,7 @@ function CreateProduct() {
         <ListItem>
           <ReorderableFileUpload files={files} onChangeFile={onChangeFile} />
         </ListItem>
-        <ListItem className="grid grid-cols-4 gap-4">
+        <ListItem className="grid grid-cols-4 flex-wrap gap-4">
           {router.query.id && state.product && (
             <>
               {state.product.included
