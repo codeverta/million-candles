@@ -33,6 +33,39 @@ function Home(props: any) {
       <div className="dark:bg-gray-900 bg-white text-gray-900 dark:text-white">
         <Content />
         <Hero />
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center p-6 rounded-lg">
+                <div className="w-16 h-16 mx-auto mb-4 bg-amber-100 rounded-full flex items-center justify-center">
+                  <i className="fas fa-leaf text-amber-600 text-2xl"></i>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Eco-Friendly</h3>
+                <p className="text-gray-600">
+                  Made with 100% natural soy wax and essential oils
+                </p>
+              </div>
+              <div className="text-center p-6 rounded-lg">
+                <div className="w-16 h-16 mx-auto mb-4 bg-amber-100 rounded-full flex items-center justify-center">
+                  <i className="fas fa-hand-holding-heart text-amber-600 text-2xl"></i>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Handcrafted</h3>
+                <p className="text-gray-600">
+                  Each candle is carefully poured by our artisans
+                </p>
+              </div>
+              <div className="text-center p-6 rounded-lg">
+                <div className="w-16 h-16 mx-auto mb-4 bg-amber-100 rounded-full flex items-center justify-center">
+                  <i className="fas fa-clock text-amber-600 text-2xl"></i>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Long Lasting</h3>
+                <p className="text-gray-600">
+                  Up to 60 hours of burn time per candle
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
         <section className="">
           <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-lg lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
             <div className="font-light text-gray-400 sm:text-lg dark:text-gray-400">
