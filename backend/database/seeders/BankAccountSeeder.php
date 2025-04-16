@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use \DB;
+use Carbon\Carbon;
 
 class BankAccountSeeder extends Seeder
 {
@@ -17,27 +19,9 @@ class BankAccountSeeder extends Seeder
         $bankAccounts = [
             [
                 'bank_id' => 1,
-                'account_name' => 'Business Checking',
+                'account_name' => 'SRI WIDYAWATI',
                 'account_number' => 'BOFA-1234567890',
                 'starting_balance' => 10000.00,
-            ],
-            [
-                'bank_id' => 1,
-                'account_name' => 'Business Savings',
-                'account_number' => 'BOFA-0987654321',
-                'starting_balance' => 25000.00,
-            ],
-            [
-                'bank_id' => 2,
-                'account_name' => 'Operations Account',
-                'account_number' => 'CHASE-2468101214',
-                'starting_balance' => 15000.00,
-            ],
-            [
-                'bank_id' => 3,
-                'account_name' => 'Petty Cash Account',
-                'account_number' => 'WF-13579113151',
-                'starting_balance' => 2000.00,
             ],
         ];
 

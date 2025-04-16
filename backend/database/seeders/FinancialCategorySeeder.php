@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use \DB;
+use Carbon\Carbon;
 
 class FinancialCategorySeeder extends Seeder
 {
@@ -15,19 +17,19 @@ class FinancialCategorySeeder extends Seeder
     public function run()
     {
         $categories = [
-            'Rent',
-            'Utilities',
-            'Salary',
-            'Sales',
-            'Transportation',
-            'Inventory',
-            'Marketing',
-            'Office Supplies',
-            'Insurance',
-            'Taxes',
-            'Maintenance',
-            'Miscellaneous Income',
-            'Miscellaneous Expense',
+            'Sewa',
+            'Utilitas',
+            'Gaji',
+            'Penjualan',
+            'Transportasi',
+            'Inventaris',
+            'Pemasaran',
+            'Perlengkapan Kantor',
+            'Asuransi',
+            'Pajak',
+            'Pemeliharaan',
+            'Pendapatan Lain-lain',
+            'Pengeluaran Lain-lain',
         ];
 
         foreach ($categories as $category) {

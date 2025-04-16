@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use \DB;
+use Carbon\Carbon;
 
 class BankSeeder extends Seeder
 {
@@ -15,10 +17,8 @@ class BankSeeder extends Seeder
     public function run()
     {
         $banks = [
-            ['id' => 1, 'name' => 'Bank of America'],
-            ['id' => 2, 'name' => 'Chase Bank'],
-            ['id' => 3, 'name' => 'Wells Fargo'],
-            ['id' => 4, 'name' => 'Citibank'],
+            ['id' => 1, 'name' => 'Bank Mandiri'],
+            ['id' => 2, 'name' => 'Bank BCA'],
         ];
 
         foreach ($banks as $bank) {
