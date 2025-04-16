@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Route;
 use LaravelJsonApi\Laravel\Facades\JsonApiRoute;
 use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\API\FinancialApiController;
+use App\Http\Controllers\API\StockApiController;
+use App\Http\Controllers\API\MaterialController;
+use App\Http\Controllers\API\MaterialStockMovementController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -76,6 +80,36 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
         $actions->post('upload');
     });
 });
+
+// Financial API Routes
+Route::prefix('v1/financial')->group(function () {
+    // Get transactions with date filtering
+    Route::get('/transactions', [FinancialApiController::class, 'getTransactions']);
+    
+    // Get bank account summary
+    Route::get('/bank-accounts', [FinancialApiController::class, 'getBankAccounts']);
+    
+    // Get financial summary
+    Route::get('/summary', [FinancialApiController::class, 'getSummary']);
+    
+    // Create new transaction
+    Route::post('/transactions', [FinancialApiController::class, 'storeTransaction']);
+});
+
+// Stock API Routes
+Route::prefix('v1/inventory')->group(function () {
+    // Get stock movements with date filtering
+    Route::get('/movements', [StockApiController::class, 'getStockMovements']);
+    
+    // Get product stock levels
+    Route::get('/stock-levels', [StockApiController::class, 'getStockLevels']);
+    
+    // Create new stock movement
+    Route::post('/movements', [StockApiController::class, 'storeStockMovement']);
+});
+
+Route::apiResource('materials', MaterialController::class);
+Route::post('material-stock-movements', [MaterialStockMovementController::class, 'store']);
 
 
 Route::post('/midtrans-webhook', function (Request $request) {

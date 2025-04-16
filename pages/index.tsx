@@ -1,9 +1,16 @@
 import { Content, Hero } from "components";
 import Layout from "components/layout/Landing";
-import { CheckRounded, CloudDone, RoundaboutLeft } from "@mui/icons-material";
+import {
+  CheckRounded,
+  CloudDone,
+  RoundaboutLeft,
+  EnergySavingsLeaf,
+  Favorite,
+  AccessTime,
+} from "@mui/icons-material";
 import { getSortedPostsData } from "lib/posts";
 import { Avatar } from "@mui/material";
-import AdSense from "components/AdSense";
+// import AdSense from "components/AdSense";
 
 const features = [
   {
@@ -38,7 +45,7 @@ function Home(props: any) {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center p-6 rounded-lg">
                 <div className="w-16 h-16 mx-auto mb-4 bg-amber-100 rounded-full flex items-center justify-center">
-                  <i className="fas fa-leaf text-amber-600 text-2xl"></i>
+                  <EnergySavingsLeaf className="text-amber-600 text-2xl" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Eco-Friendly</h3>
                 <p className="text-gray-600">
@@ -47,7 +54,7 @@ function Home(props: any) {
               </div>
               <div className="text-center p-6 rounded-lg">
                 <div className="w-16 h-16 mx-auto mb-4 bg-amber-100 rounded-full flex items-center justify-center">
-                  <i className="fas fa-hand-holding-heart text-amber-600 text-2xl"></i>
+                  <Favorite className="text-amber-600 text-2xl" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Handcrafted</h3>
                 <p className="text-gray-600">
@@ -56,11 +63,11 @@ function Home(props: any) {
               </div>
               <div className="text-center p-6 rounded-lg">
                 <div className="w-16 h-16 mx-auto mb-4 bg-amber-100 rounded-full flex items-center justify-center">
-                  <i className="fas fa-clock text-amber-600 text-2xl"></i>
+                  <AccessTime className="text-amber-600 text-2xl" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Long Lasting</h3>
                 <p className="text-gray-600">
-                  Up to 60 hours of burn time per candle
+                  Up to 12 hours of burn time per candle
                 </p>
               </div>
             </div>

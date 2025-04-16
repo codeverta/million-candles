@@ -30,9 +30,10 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { toast } from "sonner";
 import { useGetFetchQuery } from "utils/hooks";
 import { useRouter } from "next/router";
+import PrintIcon from "@mui/icons-material/Print";
 
 const productParams = {
-  "fields[products]": "name,price",
+  "fields[products]": "name,price,code",
   // "page[size]": 5,
 };
 
@@ -62,12 +63,22 @@ function CreateOrder() {
     isBuyer: boolean;
     paymentType: string;
     selectedProducts: any;
+    discount: number;
+    discountType: "percentage" | "nominal";
+    shippingCost: number;
+    downPayment: number;
+    printInvoice: boolean;
   }>({
     buyerName: "",
     destinationUser: {},
     paymentType: "",
     isBuyer: false,
     selectedProducts: [],
+    discount: 0,
+    discountType: "nominal",
+    shippingCost: 0,
+    downPayment: 0,
+    printInvoice: true,
   });
   const getSelf: any = useGetFetchQuery(["self"]);
   const createOrder = useMutation({
@@ -99,14 +110,23 @@ function CreateOrder() {
     [getProducts]
   );
   const totalPrice = useMemo(() => {
-    return !productsGate
-      ? state.selectedProducts.reduce(
-          (total: any, current: any) =>
-            total + current.attributes.quantity * current.attributes.price,
-          0
-        )
-      : null;
+    const productTotal = state.selectedProducts.reduce(
+      (total: any, current: any) =>
+        total + current.attributes.quantity * current.attributes.price,
+      0
+    );
+
+    const discountValue =
+      state.discountType === "percentage"
+        ? (productTotal * state.discount) / 100
+        : state.discount;
+
+    return productTotal - discountValue + state.shippingCost;
   }, [state]);
+
+  const remainingPayment = useMemo(() => {
+    return totalPrice - state.downPayment;
+  }, [totalPrice, state.downPayment]);
 
   const usersOptions = useMemo(() => {
     if (usersGate) {
@@ -133,7 +153,9 @@ function CreateOrder() {
       ];
     }
     return products.data.map((it: any) => ({
-      label: `${it.attributes.name} - ${toCurrency(it.attributes.price)}`,
+      label: `(${it.attributes.code}) ${it.attributes.name} - ${toCurrency(
+        it.attributes.price
+      )}`,
       value: it.id,
     }));
   }, [getProducts]);
@@ -179,12 +201,39 @@ function CreateOrder() {
     setState({ ...state, selectedProducts });
   };
 
+  const handleDiscountChange = (e: any) => {
+    setState({ ...state, discount: parseFloat(e.target.value) || 0 });
+  };
+
+  const handleDiscountTypeChange = (e: any) => {
+    setState({ ...state, discountType: e.target.value });
+  };
+
+  const handleShippingCostChange = (e: any) => {
+    setState({ ...state, shippingCost: parseFloat(e.target.value) || 0 });
+  };
+
+  const handleDownPaymentChange = (e: any) => {
+    setState({ ...state, downPayment: parseFloat(e.target.value) || 0 });
+  };
+
+  const handlePrint = () => {
+    if (state.printInvoice) {
+      window.print();
+    }
+  };
+
   const handleSubmit = () => {
     const payload = {
       data: {
         type: "orders",
         attributes: {
           price_amount: totalPrice,
+          discount: state.discount,
+          discount_type: state.discountType,
+          shipping_cost: state.shippingCost,
+          down_payment: state.downPayment,
+          remaining_payment: remainingPayment,
           is_validate_seller: true,
           payments_type: state.paymentType,
           buyer_name: state.isBuyer ? undefined : state.buyerName,
@@ -244,47 +293,9 @@ function CreateOrder() {
         );
 
         await Promise.all(batchCreateOrderDetails);
-        if (state.paymentType !== "midtrans") {
-          toast.success("Order berhasil dibuat");
-          // print invoice
-          router.push("/admin");
-          return;
-        }
-        // patch to orders
-        api
-          .patch(`orders/${orderId}`, {
-            data: {
-              id: orderId,
-              type: "orders",
-              attributes: {
-                is_validate_buyer: true,
-                payments_type: state.paymentType,
-              },
-            },
-          })
-          .then((res: any) => {
-            // @ts-ignore
-            snap.pay(res.data.data.attributes.snap_token, {
-              onSuccess: function (_result: any) {
-                /* You may add your own implementation here */
-                toast.success(
-                  "Pembayaran Berhasil! penjual akan segera memverifikasi pesanan anda. Terima kasih telah menggunakan layanan kami."
-                );
-              },
-              onPending: function (_result: any) {
-                /* You may add your own implementation here */
-                toast.success("Menunggu Pembayaran oleh pembeli.");
-              },
-              onError: function (_result: any) {
-                /* You may add your own implementation here */
-                toast.error("Pembayaran Gagal! Silakan hubungi penjual");
-              },
-              onClose: function () {
-                /* You may add your own implementation here */
-                alert("you closed the popup without finishing the payment");
-              },
-            });
-          });
+
+        toast.success("Order berhasil dibuat");
+        handlePrint();
         router.push("/admin");
       },
       onError: () => {
@@ -375,7 +386,9 @@ function CreateOrder() {
                       >
                         <CancelIcon className="text-red-500" />
                       </IconButton>
-                      <p className="pr-10">{it.attributes.name}</p>
+                      <p className="pr-10">
+                        ({it.attributes.code}) {it.attributes.name}
+                      </p>
                       {toCurrency(it.attributes.price)}
                     </TableCell>
                     <TableCell colSpan={1}>
@@ -394,6 +407,101 @@ function CreateOrder() {
               })}
             </>
           )}
+          <TableRow>
+            <TableCell>Diskon</TableCell>
+            <TableCell colSpan={2}>
+              <div className="flex items-center gap-4">
+                <InputBase
+                  value={state.discount}
+                  onChange={handleDiscountChange}
+                  classes={{
+                    input:
+                      "!rounded-sm !py-[16.5px] !px-[14px] border !border-gray-400 !ring-1 !focus:ring-2 !focus:ring-blue-500 !ring-gray-400",
+                  }}
+                  placeholder="Masukkan diskon"
+                />
+                <FormControl>
+                  <RadioGroup
+                    row
+                    value={state.discountType}
+                    onChange={handleDiscountTypeChange}
+                  >
+                    <FormControlLabel
+                      value="nominal"
+                      control={<Radio size="small" />}
+                      label="Nominal (IDR)"
+                    />
+                    <FormControlLabel
+                      value="percentage"
+                      control={<Radio size="small" />}
+                      label="Persentase (%)"
+                    />
+                  </RadioGroup>
+                </FormControl>
+              </div>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Ongkir</TableCell>
+            <TableCell colSpan={2}>
+              <InputBase
+                value={state.shippingCost}
+                onChange={handleShippingCostChange}
+                classes={{
+                  input:
+                    "!rounded-sm !py-[16.5px] !px-[14px] border !border-gray-400 !ring-1 !focus:ring-2 !focus:ring-blue-500 !ring-gray-400",
+                }}
+                placeholder="Masukkan ongkir"
+              />
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>DP (Down Payment)</TableCell>
+            <TableCell colSpan={2}>
+              <InputBase
+                value={state.downPayment}
+                onChange={handleDownPaymentChange}
+                classes={{
+                  input:
+                    "!rounded-sm !py-[16.5px] !px-[14px] border !border-gray-400 !ring-1 !focus:ring-2 !focus:ring-blue-500 !ring-gray-400",
+                }}
+                placeholder="Masukkan DP"
+              />
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Sisa Pembayaran</TableCell>
+            <TableCell colSpan={2}>{toCurrency(remainingPayment)}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={state.printInvoice}
+                      onChange={(e) =>
+                        setState({ ...state, printInvoice: e.target.checked })
+                      }
+                    />
+                  }
+                  label="Print invoice"
+                  classes={{
+                    label: "text-sm",
+                  }}
+                />
+              </FormGroup>
+            </TableCell>
+            <TableCell colSpan={2}>
+              <Button
+                onClick={handlePrint}
+                variant="outlined"
+                startIcon={<PrintIcon />}
+              >
+                Print
+              </Button>
+            </TableCell>
+          </TableRow>
           <TableRow>
             <TableCell colSpan={2} style={{ verticalAlign: "top" }}>
               Pilih Metode Pembayaran
@@ -430,19 +538,6 @@ function CreateOrder() {
           <TableRow>
             <TableCell colSpan={2}>Total Penjualan</TableCell>
             <TableCell>{toCurrency(totalPrice)}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <FormGroup>
-                <FormControlLabel
-                  control={<Checkbox defaultChecked />}
-                  label="Print invoice"
-                  classes={{
-                    label: "text-sm",
-                  }}
-                />
-              </FormGroup>
-            </TableCell>
           </TableRow>
         </TableBody>
       </Table>
