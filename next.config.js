@@ -6,6 +6,11 @@ const nextConfig = {
     // Ignore TypeScript errors during production builds
     ignoreBuildErrors: true,
   },
+  i18n: {
+    locales: ["en", "id"],
+    defaultLocale: "en",
+    localeDetection: true, // Optional
+  },
 };
 
 module.exports = nextConfig;
