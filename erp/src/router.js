@@ -12,31 +12,31 @@ import SalaryCalculationPage from "@/pages/hrms/SalaryCalculationPage.vue";
 import AttendancePage from "@/pages/hrms/AttendancePage.vue";
 
 const routes = [
-  { path: "/dashboard", name: "Home", component: Dashboard },
-  { path: "/dashboard/login", name: "Login", component: Login },
+  { path: "/", name: "Home", component: Dashboard },
+  { path: "/login", name: "Login", component: Login },
   {
-    path: "/dashboard/stock-movements",
+    path: "/stock-movements",
     name: "StockMovements",
     component: StockMovements,
   },
-  { path: "/dashboard/finance", name: "Finance", component: Finance },
+  { path: "/finance", name: "Finance", component: Finance },
   {
-    path: "/dashboard/hrms/salary-rate-management",
+    path: "/hrms/salary-rate-management",
     name: "SalaryRateManagement",
     component: SalaryRateManagementPage,
   },
   {
-    path: "/dashboard/hrms/salary-detail",
+    path: "/hrms/salary-detail",
     name: "SalaryDetail",
     component: SalaryDetailPage,
   },
   {
-    path: "/dashboard/hrms/salary-calculation",
+    path: "/hrms/salary-calculation",
     name: "SalaryCalculation",
     component: SalaryCalculationPage,
   },
   {
-    path: "/dashboard/hrms/attendance",
+    path: "/hrms/attendance",
     name: "Attendance",
     component: AttendancePage,
   },

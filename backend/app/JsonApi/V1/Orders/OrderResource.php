@@ -21,8 +21,7 @@ class OrderResource extends JsonApiResource
             'order_type' => $this->order_type,
             'snap_token' => $this->snap_token,
             'airwaybill' => $this->airwaybill,
-            'payments_type' => $this->
-            payments_type,
+            'payments_type' => $this->payments_type,
             'buyer_name' => $this->buyer_name,
             'price_amount' => (int) $this->price_amount,
             'is_validate_seller' => (bool) $this->is_validate_seller,
@@ -30,6 +29,11 @@ class OrderResource extends JsonApiResource
             'is_shipping' => (bool) $this->is_shipping,
             'is_shipped' => (bool) $this->is_shipped,
             'is_received' => (bool) $this->is_received,
+            'discount' => (float) $this->discount,
+            'shipping_cost' => (float) $this->shipping_cost,
+            'discount_type' => $this->discount_type,
+            'down_payment' => (float) $this->down_payment,
+            'remaining_payment' => (float) $this->remaining_payment,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
         ];

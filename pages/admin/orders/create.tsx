@@ -75,7 +75,7 @@ function CreateOrder() {
     isBuyer: false,
     selectedProducts: [],
     discount: 0,
-    discountType: "nominal",
+    discountType: "percentage",
     shippingCost: 0,
     downPayment: 0,
     printInvoice: true,
@@ -242,7 +242,7 @@ function CreateOrder() {
           "origin-users": {
             data: {
               type: "users",
-              id: getSelf.data.me.id + "",
+              id: getSelf?.data.me.id + "",
             },
           },
           "destination-users": state.isBuyer
@@ -456,7 +456,7 @@ function CreateOrder() {
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>DP (Down Payment)</TableCell>
+            <TableCell>Jumlah Dibayar/DP</TableCell>
             <TableCell colSpan={2}>
               <InputBase
                 value={state.downPayment}

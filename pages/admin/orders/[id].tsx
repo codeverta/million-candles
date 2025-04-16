@@ -159,6 +159,45 @@ function OrderDetail() {
             </TableCell>
           </TableRow>
           <TableRow>
+            <TableCell>Pembeli</TableCell>
+            <TableCell>{orders.data.attributes.buyer_name}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Metode Pembayaran</TableCell>
+            <TableCell>{orders.data.attributes.payments_type}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Airwaybill</TableCell>
+            <TableCell>{orders.data.attributes.airwaybill ?? "N/A"}</TableCell>
+          </TableRow>
+          {orders.data.attributes.discount > 0 && (
+            <TableRow>
+              <TableCell>Diskon</TableCell>
+              <TableCell>
+                {orders.data.attributes.discount}{" "}
+                {orders.data.attributes.discount_type == "percentage"
+                  ? "%"
+                  : "IDR"}
+              </TableCell>
+            </TableRow>
+          )}
+          {orders.data.attributes.down_payment > 0 && (
+            <TableRow>
+              <TableCell>Uang Muka</TableCell>
+              <TableCell>{orders.data.attributes.down_payment}</TableCell>
+            </TableRow>
+          )}
+          <TableRow>
+            <TableCell>Sisa Pembayaran</TableCell>
+            <TableCell>{orders.data.attributes.remaining_payment}</TableCell>
+          </TableRow>
+          {orders.data.attributes.shipping_cost > 0 && (
+            <TableRow>
+              <TableCell>Biaya Pengiriman</TableCell>
+              <TableCell>{orders.data.attributes.shipping_cost}</TableCell>
+            </TableRow>
+          )}
+          <TableRow>
             <TableCell style={{ verticalAlign: "top" }}>
               Detail Produk
             </TableCell>

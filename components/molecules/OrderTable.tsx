@@ -66,6 +66,7 @@ const headCells: HeadCell[] = [
 
 const ordersParams = {
   "page[size]": 15,
+  sort: "-createdAt",
   include: "destination-users",
 };
 
@@ -167,6 +168,11 @@ export default function OrderTable({ title }: { title: string }) {
       filter: { ...state.filter, orderStatus: event.target.value },
     });
 
+  const handleEdit = () => {
+    const orderId = query?.data?.data.data[0].id;
+    router.push(`/admin/orders/${orderId}`);
+  };
+
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   if (query.isError || query.isLoading) {
@@ -235,6 +241,7 @@ export default function OrderTable({ title }: { title: string }) {
         <Paper sx={{ width: "100%", mb: 2 }}>
           <EnhancedTableToolbar
             title={title}
+            handleEdit={handleEdit}
             numSelected={selected.length}
             handleFilter={handleFilter}
           />
