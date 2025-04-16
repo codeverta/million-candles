@@ -17,12 +17,18 @@ import dayjs from "dayjs";
 import { getRelationship, getRelationships, toCurrency } from "utils";
 import { toast } from "sonner";
 import { getOrderStatus } from "utils/orders";
+import PrintIcon from "@mui/icons-material/Print";
 
 function OrderDetail() {
   const router = useRouter();
   const [state, setState] = useState({
     airwaybill: "",
   });
+
+  const handlePrint = () => {
+    router.push(`/admin/orders/${router.query.id}/print`);
+  };
+
   const getOrder = useQuery({
     queryKey: ["order"],
     queryFn: () => {
@@ -166,10 +172,14 @@ function OrderDetail() {
             <TableCell>Metode Pembayaran</TableCell>
             <TableCell>{orders.data.attributes.payments_type}</TableCell>
           </TableRow>
-          <TableRow>
-            <TableCell>Airwaybill</TableCell>
-            <TableCell>{orders.data.attributes.airwaybill ?? "N/A"}</TableCell>
-          </TableRow>
+          {orders.data.attributes.airwaybill && (
+            <TableRow>
+              <TableCell>Airwaybill</TableCell>
+              <TableCell>
+                {orders.data.attributes.airwaybill ?? "N/A"}
+              </TableCell>
+            </TableRow>
+          )}
           {orders.data.attributes.discount > 0 && (
             <TableRow>
               <TableCell>Diskon</TableCell>
@@ -187,10 +197,12 @@ function OrderDetail() {
               <TableCell>{orders.data.attributes.down_payment}</TableCell>
             </TableRow>
           )}
-          <TableRow>
-            <TableCell>Sisa Pembayaran</TableCell>
-            <TableCell>{orders.data.attributes.remaining_payment}</TableCell>
-          </TableRow>
+          {orders.data.attributes.remaining_payment > 0 && (
+            <TableRow>
+              <TableCell>Sisa Pembayaran</TableCell>
+              <TableCell>{orders.data.attributes.remaining_payment}</TableCell>
+            </TableRow>
+          )}
           {orders.data.attributes.shipping_cost > 0 && (
             <TableRow>
               <TableCell>Biaya Pengiriman</TableCell>
@@ -213,7 +225,9 @@ function OrderDetail() {
             return (
               <TableRow className="bg-gray-50" key={orderDetail.id}>
                 <TableCell>
-                  <p className="pl-4">- {products.attributes.name}</p>
+                  <p className="pl-4">
+                    - ({products.attributes.code}) {products.attributes.name}
+                  </p>
                 </TableCell>
                 <TableCell>
                   {toCurrency(orderDetail.attributes.price)} x{" "}
@@ -246,42 +260,53 @@ function OrderDetail() {
         </TableBody>
       </Table>
 
-      {is_validate_buyer && !is_validate_seller && (
-        <Button
-          onClick={!is_shipping ? handleVerifyOrder : undefined}
-          variant="contained"
-          size="large"
-          disabled={is_shipping}
-          className={`w-full ${!is_shipping ? "bg-blue-500" : "bg-blue-900"}`}
-        >
-          Verifikasi Penjualan
-        </Button>
-      )}
+      <div className="flex flex-col gap-2">
+        {is_validate_buyer && !is_validate_seller && (
+          <Button
+            onClick={!is_shipping ? handleVerifyOrder : undefined}
+            variant="contained"
+            size="large"
+            disabled={is_shipping}
+            className={`w-full ${!is_shipping ? "bg-blue-500" : "bg-blue-900"}`}
+          >
+            Verifikasi Penjualan
+          </Button>
+        )}
 
-      {is_validate_seller && (
-        <Button
-          onClick={!is_shipping ? handleSendOrder : undefined}
-          variant="contained"
-          size="large"
-          disabled={is_shipping || !!!state.airwaybill}
-          className={`w-full ${!is_shipping ? "bg-blue-500" : "bg-blue-900"}`}
-        >
-          {!is_shipping ? "Kirim" : "Terkirim"}
-        </Button>
-      )}
+        {is_validate_seller && (
+          <Button
+            onClick={!is_shipping ? handleSendOrder : undefined}
+            variant="contained"
+            size="large"
+            disabled={is_shipping || !!!state.airwaybill}
+            className={`w-full ${!is_shipping ? "bg-blue-500" : "bg-blue-900"}`}
+          >
+            {!is_shipping ? "Kirim" : "Terkirim"}
+          </Button>
+        )}
 
-      {is_shipping && (
+        {is_shipping && (
+          <Button
+            onClick={handleCompleteOrder}
+            variant="contained"
+            color="success"
+            size="large"
+            disabled={is_received}
+            className={`w-full bg-yellow-500 my-1 hover:bg-yellow-600`}
+          >
+            Selesaikan Penjualan
+          </Button>
+        )}
+
         <Button
-          onClick={handleCompleteOrder}
-          variant="contained"
-          color="success"
-          size="large"
-          disabled={is_received}
-          className={`w-full bg-yellow-500 my-1 hover:bg-yellow-600`}
+          onClick={handlePrint}
+          variant="outlined"
+          startIcon={<PrintIcon />}
+          className="w-full"
         >
-          Selesaikan Penjualan
+          Print Invoice
         </Button>
-      )}
+      </div>
     </div>
   );
 }
