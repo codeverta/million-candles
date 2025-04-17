@@ -25,7 +25,7 @@ export default function Header() {
     },
     {
       label: "Cara Pesan",
-      url: "/privacy-order",
+      url: "/cara-order",
     },
     {
       label: "Alamat",

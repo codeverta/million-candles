@@ -8,7 +8,7 @@ const CandleOrderPage = () => {
         {/* Header */}
         <header className="text-center mb-10">
           <h1 className="text-3xl md:text-4xl font-bold text-amber-800 mb-4">
-            Sweet Candle
+            Million Candles
           </h1>
           <p className="text-lg md:text-xl text-amber-700">
             Lilin aromaterapi pilihan untuk momen spesial Anda
@@ -146,7 +146,7 @@ const CandleOrderPage = () => {
 
         {/* Footer */}
         <footer className="mt-12 text-center text-gray-600">
-          <p>© 2025 Sweet Candle. Semua hak dilindungi.</p>
+          <p>© 2025 Million Candles. Semua hak dilindungi.</p>
         </footer>
       </div>
     </div>

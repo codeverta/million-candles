@@ -3,12 +3,16 @@ import AOS from "aos";
 import Head from "next/head";
 import Header from "../Header";
 import Footer from "components/Footer";
+import { useRouter } from "next/router";
 
+const DOMAIN = "https://www.souvenirlilin.id";
 interface Props {
   children: React.ReactNode;
 }
 
 export default function Landing({ children }: Props) {
+  const router = useRouter();
+  const canonicalUrl = `${DOMAIN}${router.asPath.split("?")[0]}`;
   useEffect(() => {
     AOS.init({
       duration: 1000, // Animation duration in milliseconds
@@ -21,6 +25,7 @@ export default function Landing({ children }: Props) {
   return (
     <>
       <Head>
+        <link rel="canonical" href={canonicalUrl} />
         <title>
           Produsen Lilin Terdekat di Jogja, Bandung, Semarang, Jakarta & Seluruh
           Indonesia
