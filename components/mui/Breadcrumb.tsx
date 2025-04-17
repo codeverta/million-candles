@@ -8,7 +8,6 @@ import GrainIcon from "@mui/icons-material/Grain";
 
 function handleClick(event: any) {
   event.preventDefault();
-  console.log("You clicked a breadcrumb.");
 }
 
 const Breadcrumb = ({ currentLabel }: any) => {

@@ -35,8 +35,6 @@ const PhotoGallery = () => {
     return <LoadingBackdrop />;
   }
 
-  console.log(query.data.data);
-
   return (
     <main className="dark:bg-gray-900">
       <div className="container mx-auto py-12">

@@ -1,6 +1,6 @@
 ---
 title: "Hari Arwah: Makna Mendalam dan Peran Tak Terduga Toko Lilin | 15 Fakta Menarik "
-date: "2025-04-8"
+date: "2025-04-15"
 desc: "Hari Arwah memiliki nilai spiritual tinggi bagi umat Kristiani. Temukan makna Hari Arwah dan bagaimana toko lilin berperan penting dalam tradisi ini."
 tags: "lilin aromaterapi terdekat, jual lilin semarang, toko lilin terdekat"
 ---

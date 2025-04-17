@@ -178,7 +178,6 @@ function CreateProduct() {
   };
 
   const onChangeFile = (files: any) => {
-    console.log({ files });
     setFiles(files);
   };
 

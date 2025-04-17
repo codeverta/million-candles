@@ -86,7 +86,6 @@ function ProductDetail() {
         });
 
         setProduct(product.data);
-        console.log({ product });
       };
 
       fetchProduct();
