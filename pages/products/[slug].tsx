@@ -113,7 +113,8 @@ function ProductDetail() {
                     <img
                       alt="ecommerce"
                       src={document.attributes.filename}
-                      className="h-full m-auto"
+                      className="h-auto w-auto max-w-full max-h-full m-auto"
+                      style={{ objectFit: "contain" }}
                     />{" "}
                   </SwiperSlide>
                 ))
@@ -150,7 +151,8 @@ function ProductDetail() {
               data-aos="fade-up"
               className="text-gray-900 dark:text-gray-50 text-3xl title-font font-medium mb-1"
             >
-              {product.data[0].attributes.name}
+              {product.data[0].attributes.name} (
+              {product.data[0].attributes.code})
             </h1>
             <p className="text-green-600 font-bold text-xl mb-4">
               {toCurrency(product.data[0].attributes.price)}
@@ -235,7 +237,12 @@ function ProductDetail() {
           </div>
         </div>
         <section className="mt-16">
-          <Content title="Produk Lainnya" />
+          <Content
+            queryParams={{
+              "page[size]": 4,
+            }}
+            title="Produk Lainnya"
+          />
         </section>
       </div>
     </section>

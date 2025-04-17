@@ -23,10 +23,10 @@ export default function Header() {
       label: "Produk",
       url: "/products",
     },
-    // {
-    //   label: "Cek Order",
-    //   url: "/cek-order",
-    // },
+    {
+      label: "Cara Pesan",
+      url: "/privacy-order",
+    },
     {
       label: "Alamat",
       url: "/address",
@@ -42,14 +42,6 @@ export default function Header() {
     {
       label: "Tentang",
       url: "/about",
-    },
-    {
-      label: "Kebijakan Privasi",
-      url: "/privacy-and-policy/jiwaku",
-    },
-    {
-      label: "Invoice",
-      url: "/invoice",
     },
   ]);
   const [open, setOpen] = useState({

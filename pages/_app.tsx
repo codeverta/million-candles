@@ -61,19 +61,14 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
   const getLayout = Component.getLayout || ((page: ReactNode) => page);
   // seo
   const pageTitle =
-    "Jual Lilin Jogja | Produsen Lilin Jogja & Souvenir Murah » UD Million Candles";
-  const pageDescription = `DEKORASI, HAMPERS, LILIN AROMATERAPI, SOUVENIR MURAH JOGJA, Home decor, Home Decor | Scented Candle | Hampers | Souvenir | Bouquet. Kami adalah UMKM yang menyediakan berbagai macam jenis lilin
-          berkualitas tinggi, mulai dari lilin aromaterapi, lilin souvenir, lilin warna, lilin hias
-          dan masih banyak lagi. Kami menawarkan lilin hias yang indah untuk
-          souvenir yang cocok untuk acara apa pun. Dari pernikahan hingga acara
-          perusahaan atau perjalanan, lilin hias souvenir kami adalah pilihan
-          yang tepat untuk membuat kenangan yang tak terlupakan. `;
+    "Produsen Lilin Terdekat di Jogja, Bandung, Semarang, Jakarta & Seluruh Indonesia";
+  const pageDescription = `Million Candles adalah produsen lilin aromaterapi handmade dengan wangi menenangkan, cocok untuk dekorasi, kado, dan relaksasi. Tersedia pengiriman ke Jogja, Jakarta, Bandung, Bali, dan seluruh Indonesia.`;
   const ogImageUrl = "https://souvenirlilin.id/og-image.png";
   const siteName = "UD Million Candles";
   const siteUrl = "https://souvenirlilin.id";
   const twitterHandle = "@souvenirlilin";
   const keywords =
-    "DEKORASI, HAMPERS, LILIN AROMATERAPI, SOUVENIR MURAH JOGJA, Home decor, Home Decor | Scented Candle | Hampers | Souvenir | Bouquet, jual lilin, jual lilin jogja, lilin aromaterapi jogja, lilin batang, souvenir cantik, souvenir jogja, ud million candles, souvenir lilin, lilin warna, lilin hias, lilin berkualitas, umkm, lilin, toko lilin terdekat, toko lilin, jual lilin terdekat, toko lilin jogja, lilin aromaterapi, soy wax, lilin aromaterapi jogja, jual sumbu lilin terdekat, pabrik lilin, jual lilin besar terdekat, lilin estetik, jual lilin jogja, toko lilin aromaterapi terdekat, jual lilin aromaterapi terdekat, tempat jual lilin terdekat, bahan lilin, bahan lilin karakter, bahan pembuat lilin medan, bakery, beli aroma terapi di kaliurang jogja, beli lilin, beli lilin aromaterapi di jogja, candle lilin, candle wax, dagen toko lilin, foto lilin aromaterapi, gagang lilin, gelas lilin aromaterapi jogja, grosir lilin, jalan kapten haryadi gang teratai, gondangan, sardonoharjo, kabupaten sleman, daerah istimewa yogyakarta, jual gelas lilin terapi jogja, jual kebutuhan lilin jogja, jual lilin, jual lilin aromaterapi jogja, jual lilin besar jogja, jual lilin dingin di jogja, jual lilin elektrik di jogja, jual lilin elektrik terdekat, jual lilin lebah, jual lilin lebah yogyakarta, jual lilin merah terdekat, jual lilin natal di jogja, jual lilin natal jogja, jual lilin sawit dijogja, jual lilin ulang tahun jogja, jual lilin ulang tahun terdekat, jual lilin ultah terdekat, jual soy wax terdekat, jual sumbu lilin jogja, jual sumbu lilin terdekat di jogja, jual tatakan lilin jogja, jual tealight terdekat, lilin aroma terapi jogja, lilin aromaterapi di dekat yogyakarta, kota yogyakarta, daerah istimewa yogyakarta, lilin aromaterapi grafis, lilin aromaterapi terdekat, lilin aromatherapy, lilin bar, lilin candle, lilin di keleng poncowinatan, lilin elektrik, lilin estetik jogja, lilin gelas, lilin jogja, lilin kontak, lilin merah, lilin natal jogja, lilin pilar, lilin scented kab. sleman, lilin sleman";
+    "jual lilin, jual lilin jogja, lilin aromaterapi jogja, lilin batang, souvenir cantik, souvenir jogja, ud million candles, souvenir lilin, lilin warna, lilin hias, lilin berkualitas";
 
   return (
     <>
@@ -164,17 +159,5 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
         </AuthProvider>
       </QueryClientProvider>
     </>
-  );
-}
-
-function Close({ onClick }: any) {
-  return (
-    <button
-      onClick={onClick}
-      type="button"
-      className="absolute right-0 bottom-0 px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    >
-      Skip
-    </button>
   );
 }

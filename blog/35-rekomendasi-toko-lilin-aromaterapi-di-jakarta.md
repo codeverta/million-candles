@@ -128,7 +128,7 @@ Berikut contoh `LocalBusiness` schema markup dalam format JSON-LD yang bisa dita
     "latitude": -6.266593,
     "longitude": 106.813210
   },
-  "url": "https://candelastudio.id",
+  "url": "https://souvenirlilin.id",
   "telephone": "+62-21-555-5555",
   "openingHours": "Mo-Sa 10:00-21:00",
   "priceRange": "$$"

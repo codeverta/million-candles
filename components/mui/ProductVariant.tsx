@@ -23,7 +23,8 @@ const ProductVariants = () => {
     <>
       <div>
         <h2 className="font-semibold text-md mb-2">
-          Pilih warna: <span className="text-green-500">{selectedColor}</span>
+          Tersedia warna:{" "}
+          <span className="text-green-500">{selectedColor}</span>
         </h2>
         <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
           {productVariants.colorOptions.map((option, index) => (

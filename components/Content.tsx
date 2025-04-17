@@ -45,13 +45,17 @@ const ProductCard = ({ product, isDocumentExist, documents }: any) => (
   </div>
 );
 
-export default function Content({ title = "Produk Kami" }) {
+export default function Content({
+  title = "Produk Kami",
+  queryParams = {},
+}: any) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const productParams = {
     "page[size]": 12,
     include: "documents",
     "page[number]": currentPage,
+    ...queryParams,
   };
   const query: UseQueryResult<any> = useQuery({
     queryKey: ["products", currentPage],

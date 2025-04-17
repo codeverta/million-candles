@@ -15,6 +15,7 @@ import {
 } from "@mui/icons-material";
 import { getSortedPostsData } from "lib/posts";
 import { Avatar } from "@mui/material";
+import Head from "next/head";
 // import AdSense from "components/AdSense";
 
 const features = [
@@ -42,6 +43,44 @@ function Home(props: any) {
   const { posts } = props;
   return (
     <Layout>
+      <Head>
+        {/* FAQ Schema JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "Apakah lilin dari Million Candles aman digunakan di dalam ruangan?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Ya, lilin kami menggunakan bahan alami seperti soy wax dan palm wax yang aman dan tidak menghasilkan asap berbahaya.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Apakah tersedia pengiriman ke seluruh Indonesia?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Tentu! Kami melayani pengiriman ke seluruh Indonesia termasuk Jogja, Jakarta, Bali, Bandung, dan kota lainnya.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Apakah bisa request custom lilin atau gift set?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Bisa! Kami menyediakan layanan custom label, aroma, dan kemasan khusus untuk keperluan hadiah atau souvenir event.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
+      </Head>
       <div className="dark:bg-gray-900 bg-white text-gray-900 dark:text-white">
         <Content />
         <Hero />

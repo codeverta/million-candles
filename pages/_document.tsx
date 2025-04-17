@@ -1,10 +1,16 @@
 import { Html, Head, Main, NextScript } from "next/document";
 import { GA_TRACKING_ID } from "lib/gtag";
+import { useRouter } from "next/router";
+
+const DOMAIN = "https://www.souvenirlilin.id";
 
 export default function Document() {
+  const router = useRouter();
+  const canonicalUrl = `${DOMAIN}${router.asPath.split("?")[0]}`;
   return (
     <Html lang="en">
       <Head>
+        <link rel="canonical" href={canonicalUrl} />
         {/* Global Site Tag (gtag.js) - Google Analytics */}
         <script
           async

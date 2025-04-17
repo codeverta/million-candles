@@ -31,7 +31,7 @@ export default function Hero() {
           </svg>
         </Link>
         <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-          Produsen Lilin Yogyakarta <br /> Berskala Nasional
+          Produsen Lilin <br /> Berskala Nasional
         </h1>
         <p className="mb-8 text-lg font-normal text-gray-600 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
           {manifest.description}
