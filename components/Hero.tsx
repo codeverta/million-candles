@@ -38,10 +38,10 @@ export default function Hero() {
         </p>
         <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
           <Link
-            href="/products"
+            href="/cara-order"
             className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-900"
           >
-            Lihat Produk
+            Cara Pesan Lilin
             <svg
               className="ml-2 -mr-1 w-5 h-5"
               fill="currentColor"
