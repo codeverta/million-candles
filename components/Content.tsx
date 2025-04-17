@@ -33,12 +33,12 @@ const ProductCard = ({ product, isDocumentExist, documents }: any) => (
             {product.attributes.name} ({product.attributes.code})
           </h3>
         </Link>
-        <div className="text-green-600 font-bold text-lg mb-2">
+        <div className="text-green-700 font-bold text-lg mb-2">
           {toCurrency(product.attributes.price)}
         </div>
         <div className="flex items-center">
-          <span className="text-yellow-500 mr-2">★ 5.0</span>
-          <span className="text-green-500 mr-2">1rb+ terjual</span>
+          <span className="text-yellow-600 mr-2">★ 5.0</span>
+          <span className="text-green-700 mr-2">1rb+ terjual</span>
         </div>
       </div>
     </div>
@@ -90,7 +90,7 @@ export default function Content({
         <h2 className="text-center mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
           {title}
         </h2>
-        <span className="text-red-600 text-sm block max-w-md mx-auto">
+        <span className="text-red-600 text-sm block max-w-md mx-auto text-center">
           * Harga yang ditampilkan merupakan harga distributor/grosir
         </span>
         <ul id="parent" className="mx-auto w-full p-4 grid grid-cols-12 gap-4">

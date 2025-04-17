@@ -56,8 +56,8 @@ export default function Post({ postData }: { postData: PostData }) {
       modifiedTime: postData.date,
     },
     twitter: {
-      handle: "@millioncandles",
-      site: "@millioncandles",
+      handle: "@souvenirlilin",
+      site: "@souvenirlilin",
       cardType: "summary_large_image",
     },
   };

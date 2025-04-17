@@ -203,20 +203,21 @@ export default function Footer() {
   return (
     <footer className="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800 print:hidden">
       <div className="mx-auto max-w-screen-xl text-center">
-        <ul className="flex flex-wrap justify-center items-center text-gray-900 dark:text-white">
+        <p className="text-justify text-gray-600 dark:text-gray-400">
           {keywords.map((keyword, index) => (
-            <li key={index}>
+            <>
               &nbsp;
               <a
+                key={index}
                 href={`/posts?search=${keyword}`}
-                className="hover:underline text-sm text-gray-600 dark:text-gray-400"
+                className="hover:underline  text-xs text-gray-600 dark:text-gray-400"
               >
                 {keyword}
-              </a>{" "}
-              |{" "}
-            </li>
+              </a>
+              &nbsp;
+            </>
           ))}
-        </ul>
+        </p>
         <a
           href="#"
           className="flex mx-4 justify-center items-center text-2xl font-semibold text-gray-900 dark:text-white"

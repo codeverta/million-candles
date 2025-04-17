@@ -111,6 +111,7 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
               <Button
                 type="submit"
                 variant="contained"
+                className="!bg-blue-500"
                 color="primary"
                 style={{
                   borderRadius: "0 4px 4px 0",
