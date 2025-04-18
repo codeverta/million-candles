@@ -242,6 +242,7 @@ export default function OrderTable({ title }: { title: string }) {
           <EnhancedTableToolbar
             title={title}
             handleEdit={handleEdit}
+            editable={false}
             numSelected={selected.length}
             handleFilter={handleFilter}
           />

@@ -7,13 +7,14 @@ import { alpha } from "@mui/material/styles";
 interface EnhancedTableToolbarProps {
   numSelected: number;
   title: string;
+  editable?: boolean;
   handleEdit?: () => void;
   handleDelete?: () => void;
   handleFilter?: () => void;
 }
 
 export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-  const { numSelected, title } = props;
+  const { numSelected, title, editable = true } = props;
 
   return (
     <Toolbar
@@ -48,7 +49,7 @@ export default function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           {title}
         </Typography>
       )}
-      {numSelected == 1 && (
+      {numSelected == 1 && editable && (
         <Tooltip title="Edit" onClick={props.handleEdit}>
           <IconButton>
             <EditIcon />

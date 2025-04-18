@@ -14,7 +14,6 @@ function Product() {
       <Head>
         <title>
           Produk Kami | UD Million Candles - Produsen Lilin Aromaterapi Souvenir
-          Lilin Jogja, Lilin Warna, Lilin Hias dan Lain-lain
         </title>
       </Head>
       <main className="flex justify-center dark:bg-gray-900 bg-white">

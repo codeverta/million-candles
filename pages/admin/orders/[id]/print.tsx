@@ -1,15 +1,13 @@
+import React, { useMemo, useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import React, { useMemo, useState } from "react";
-import api from "utils/api";
 import { useRouter } from "next/router";
+import api from "utils/api";
 import { getRelationship, getRelationships } from "utils";
 
 const PrintOrder = () => {
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const [state, setState] = useState({
-    airwaybill: "",
-  });
+
   const getOrder = useQuery({
     queryKey: ["order"],
     queryFn: () => {
@@ -17,102 +15,42 @@ const PrintOrder = () => {
         include: "order-details.products,destination-users",
       });
     },
-    onError: (err: any) => {
+    onError: (err) => {
       return err;
     },
     refetchOnWindowFocus: false,
   });
+
   const orderData = getOrder.data?.data;
   const ordersGate = getOrder.isLoading || getOrder.isError;
+
+  // Get order details relationship
   const orderDetails = useMemo(
     () =>
-      !ordersGate
-        ? getRelationships(
-            getOrder.data.data,
-            getOrder.data.data.data,
-            "order-details"
-          )
+      getOrder.data
+        ? getRelationships(orderData, orderData.data, "order-details")
         : null,
-    [getOrder]
+    [orderData]
   );
-
-  React.useEffect(() => {
-    // In a real application, this would be fetched from an API
-    // For this example, we're using the provided data
-    const mockData = {
-      jsonapi: {
-        version: "1.0",
-      },
-      links: {
-        self: "http://localhost:8000/api/v1/orders/20",
-      },
-      data: {
-        type: "orders",
-        id: "20",
-        attributes: {
-          code: "INVPFTMAS20",
-          order_type: "sell",
-          snap_token: null,
-          airwaybill: null,
-          payments_type: "cash",
-          buyer_name: "Linda",
-          price_amount: 180000,
-          is_validate_seller: true,
-          is_validate_buyer: false,
-          is_shipping: false,
-          is_shipped: false,
-          is_received: false,
-          discount: 0,
-          shipping_cost: 0,
-          discount_type: "percentage",
-          down_payment: 0,
-          remaining_payment: 180000,
-          createdAt: "2025-04-16T11:37:13.000000Z",
-          updatedAt: "2025-04-16T11:37:13.000000Z",
-        },
-        relationships: {
-          "order-details": {
-            data: [
-              {
-                type: "order-details",
-                id: "24",
-              },
-            ],
-          },
-        },
-      },
-      included: [
-        {
-          type: "order-details",
-          id: "24",
-          attributes: {
-            qty: 30,
-            price: 6000,
-            total_price: null,
-          },
-          relationships: {
-            products: {
-              data: {
-                type: "products",
-                id: "1",
-              },
-            },
-          },
-        },
-        {
-          type: "products",
-          id: "1",
-          attributes: {
-            name: "Million Kecil",
-            code: "MK",
-            price: 6000,
-          },
-        },
-      ],
-    };
-
-    setLoading(false);
+  if (orderData) {
+    console.log(orderDetails);
+  }
+  useEffect(() => {
+    // Simulate API loading
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
   }, []);
+
+  // Helper function to get product data
+  const getProductForOrderDetail = (orderDetail) => {
+    if (!orderData) return null;
+
+    const productRelationship = orderDetail.relationships.products.data;
+    return orderData.included?.find(
+      (item) => item.type === "products" && item.id === productRelationship.id
+    );
+  };
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat("id-ID", {
@@ -137,7 +75,7 @@ const PrintOrder = () => {
     );
   }
 
-  if (!orderData) {
+  if (!orderData || !orderDetails) {
     return (
       <div className="flex items-center justify-center h-full">
         No order data found
@@ -146,72 +84,72 @@ const PrintOrder = () => {
   }
 
   const order = orderData.data.attributes;
-  const product = orderData.included.find((item) => item.type === "products");
-
-  // Check if optional fields exist and have non-zero values
-  const hasDiscount = order.discount !== undefined && order.discount > 0;
-  const hasShippingCost =
-    order.shipping_cost !== undefined && order.shipping_cost > 0;
-  const hasDownPayment =
-    order.down_payment !== undefined && order.down_payment > 0;
-  const hasDiscountType =
-    order.discount_type !== undefined && order.discount_type !== "";
 
   return (
     <div
-      className="w-full bg-white mx-auto"
-      style={{ maxWidth: "97mm", height: "140mm" }}
+      className="bg-white mx-auto"
+      style={{ width: "210mm", minHeight: "297mm" }}
     >
       {/* Print Container */}
-      <div className="p-4 border border-gray-300 rounded shadow">
+      <div className="p-4 border border-gray-800 rounded">
         {/* Header */}
-        <div className="text-center mb-4">
-          <h1 className="text-xl font-bold">INVOICE</h1>
-          <div className="text-sm">{order.code}</div>
-          <div className="text-xs mt-1">{formatDate(order.createdAt)}</div>
+        <div className="flex items-center mb-2 border-b border-black pb-1">
+          <div className="mr-2">
+            <div className="rounded-full border-2 border-red-600 w-12 h-12 flex items-center justify-center text-red-600 font-bold text-base">
+              <span>MC</span>
+            </div>
+          </div>
+          <div className="flex-1">
+            <h1 className="text-xl font-bold text-red-600">
+              UD MILLION CANDLES
+            </h1>
+            <p className="text-sm uppercase font-semibold">
+              Menjual Berbagai Lilin Hias dan Aromaterapi
+            </p>
+            <p className="text-xs">
+              Gg Melati 08E, Jl Kaliurang Km 9.3, Sleman - Yogyakarta 55581
+            </p>
+            <p className="text-xs">Telp. 081578956156</p>
+          </div>
         </div>
 
         {/* Customer Info */}
-        <div className="mb-4">
-          <div className="text-sm">
-            <span className="font-semibold">Customer:</span> {order.buyer_name}
+        <div className="flex justify-between text-sm mb-2">
+          <div>
+            <p className="font-semibold">NOTA KONTAN NO. {order.code}</p>
           </div>
-          <div className="text-sm">
-            <span className="font-semibold">Payment Method:</span>{" "}
-            {order.payments_type}
+          <div className="text-right">
+            <p>Yogyakarta, {formatDate(order.createdAt)}</p>
+            <p>
+              Kepada: <span className="font-semibold">{order.buyer_name}</span>
+            </p>
           </div>
         </div>
 
-        {/* Order Items */}
-        <div className="mb-4">
-          <table className="w-full text-xs">
+        {/* Order Items Table */}
+        <div className="mb-2">
+          <table className="w-full border-collapse text-sm">
             <thead>
-              <tr className="border-b border-gray-300">
-                <th className="text-left py-1">Item</th>
-                <th className="text-right py-1">Qty</th>
-                <th className="text-right py-1">Price</th>
-                <th className="text-right py-1">Total</th>
+              <tr className="border-y border-black">
+                <th className="text-left py-2 px-2 w-24">Qty</th>
+                <th className="text-left py-2 px-2">Nama Barang</th>
+                <th className="text-right py-2 px-2 w-32">Harga</th>
+                <th className="text-right py-2 px-2 w-32">Jumlah</th>
               </tr>
             </thead>
             <tbody>
-              {orderDetails.map((orderDetail: any) => {
-                const product = getRelationship(
-                  getOrder.data.data,
-                  orderDetail,
-                  "products"
-                );
+              {orderDetails.map((orderDetail, index) => {
+                const product = getProductForOrderDetail(orderDetail);
                 return (
-                  <tr className="border-b border-gray-200">
-                    <td className="py-1">
-                      {product.attributes.name} ({product.attributes.code})
+                  <tr key={index} className="border-b border-gray-200">
+                    <td className="py-2 px-2">{orderDetail.attributes.qty}</td>
+                    <td className="py-2 px-2">
+                      {product?.attributes.name} ({product?.attributes.code})
                     </td>
-                    <td className="text-right py-1">
-                      {orderDetail.attributes.qty}
-                    </td>
-                    <td className="text-right py-1">
+                    <td className="text-right py-2 px-2">
                       {formatCurrency(orderDetail.attributes.price)}
                     </td>
-                    <td className="text-right py-1">
+                    <td className="text-right py-2 px-2">
                       {formatCurrency(
                         orderDetail.attributes.price *
                           orderDetail.attributes.qty
@@ -220,56 +158,85 @@ const PrintOrder = () => {
                   </tr>
                 );
               })}
+
+              {/* Add empty rows for compactness */}
+              {[...Array(5 - orderDetails.length)].map((_, index) => (
+                <tr key={`empty-${index}`} className="border-b border-gray-200">
+                  <td className="py-2 px-2">&nbsp;</td>
+                  <td className="py-2 px-2">&nbsp;</td>
+                  <td className="py-2 px-2">&nbsp;</td>
+                  <td className="py-2 px-2">&nbsp;</td>
+                </tr>
+              ))}
+
+              {/* Subtotal, Discount, Down Payment, Remaining Payment */}
+              <tr className="border-t border-black">
+                <td colSpan="2" className="py-2 px-2"></td>
+                <td className="text-right py-2 px-2 font-semibold">
+                  Subtotal:
+                </td>
+                <td className="text-right py-2 px-2 font-semibold">
+                  {formatCurrency(order.price_amount)}
+                </td>
+              </tr>
+              {order.discount > 0 && (
+                <tr>
+                  <td colSpan="2" className="py-2 px-2"></td>
+                  <td className="text-right py-2 px-2">
+                    Discount:{" "}
+                    {order.discount_type === "percentage"
+                      ? `${order.discount}%`
+                      : formatCurrency(order.discount)}
+                  </td>
+                  <td className="text-right py-2 px-2">
+                    {order.discount_type === "percentage"
+                      ? formatCurrency(
+                          (order.price_amount * order.discount) / 100
+                        )
+                      : formatCurrency(order.discount)}
+                  </td>
+                </tr>
+              )}
+              {order.down_payment > 0 && (
+                <tr>
+                  <td colSpan="2" className="py-2 px-2"></td>
+                  <td className="text-right py-2 px-2">Uang Muka:</td>
+                  <td className="text-right py-2 px-2">
+                    {formatCurrency(order.down_payment)}
+                  </td>
+                </tr>
+              )}
+              <tr className="border-t border-black">
+                <td colSpan="1" className="py-2 px-2"></td>
+                <td colSpan={2} className="text-right py-2 px-2 font-semibold">
+                  Sisa Pembayaran:
+                </td>
+                <td className="text-right py-2 px-2 font-semibold">
+                  {formatCurrency(order.remaining_payment)}
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
 
-        {/* Summary */}
-        <div className="mb-4">
-          <div className="flex justify-between text-sm">
-            <span>Subtotal:</span>
-            <span>{formatCurrency(order.price_amount)}</span>
-          </div>
-
-          {/* Conditionally show these fields only if they exist and have non-zero values */}
-          {hasDiscount && (
-            <div className="flex justify-between text-sm">
-              <span>
-                Discount {hasDiscountType ? `(${order.discount_type})` : ""}:
-              </span>
-              <span>-{formatCurrency(order.discount)}</span>
-            </div>
-          )}
-
-          {hasShippingCost && (
-            <div className="flex justify-between text-sm">
-              <span>Shipping Cost:</span>
-              <span>{formatCurrency(order.shipping_cost)}</span>
-            </div>
-          )}
-
-          <div className="flex justify-between font-bold mt-2 pt-2 border-t border-gray-300">
-            <span>Total:</span>
-            <span>{formatCurrency(order.price_amount)}</span>
-          </div>
-
-          {hasDownPayment && (
-            <>
-              <div className="flex justify-between text-sm mt-2">
-                <span>Down Payment:</span>
-                <span>{formatCurrency(order.down_payment)}</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span>Remaining Payment:</span>
-                <span>{formatCurrency(order.remaining_payment)}</span>
-              </div>
-            </>
-          )}
-        </div>
-
         {/* Footer */}
-        <div className="text-xs text-center mt-6 pt-2 border-t border-gray-300">
-          <p>Thank you for your purchase!</p>
+        <div className="flex justify-between mt-4 text-sm">
+          <div className="w-1/3">
+            <p className="font-semibold mb-8">Tanda Terima,</p>
+            <p>____________________</p>
+          </div>
+
+          <div className="w-1/3 text-center">
+            <div className="border border-black p-1 text-xs text-center">
+              <p>Barang yang sudah dibeli tidak</p>
+              <p>dapat ditukar/dikembalikan</p>
+            </div>
+          </div>
+
+          <div className="w-1/3 text-right">
+            <p className="font-semibold mb-8">Hormat kami,</p>
+            <p className="">____________________</p>
+          </div>
         </div>
       </div>
 
@@ -279,7 +246,7 @@ const PrintOrder = () => {
           onClick={() => window.print()}
           className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded shadow"
         >
-          Print Invoice
+          Print Nota
         </button>
       </div>
 
@@ -287,13 +254,13 @@ const PrintOrder = () => {
       <style jsx>{`
         @media print {
           body {
-            width: 97mm;
-            height: 140mm;
+            width: 210mm;
+            height: 297mm;
             margin: 0;
             padding: 0;
           }
           @page {
-            size: 97mm 140mm;
+            size: A4 portrait;
             margin: 0;
           }
         }

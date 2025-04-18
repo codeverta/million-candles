@@ -194,19 +194,25 @@ function OrderDetail() {
           {orders.data.attributes.down_payment > 0 && (
             <TableRow>
               <TableCell>Uang Muka</TableCell>
-              <TableCell>{orders.data.attributes.down_payment}</TableCell>
+              <TableCell>
+                {toCurrency(orders.data.attributes.down_payment)}
+              </TableCell>
             </TableRow>
           )}
           {orders.data.attributes.remaining_payment > 0 && (
             <TableRow>
               <TableCell>Sisa Pembayaran</TableCell>
-              <TableCell>{orders.data.attributes.remaining_payment}</TableCell>
+              <TableCell>
+                {toCurrency(orders.data.attributes.remaining_payment)}
+              </TableCell>
             </TableRow>
           )}
           {orders.data.attributes.shipping_cost > 0 && (
             <TableRow>
               <TableCell>Biaya Pengiriman</TableCell>
-              <TableCell>{orders.data.attributes.shipping_cost}</TableCell>
+              <TableCell>
+                {toCurrency(orders.data.attributes.shipping_cost)}
+              </TableCell>
             </TableRow>
           )}
           <TableRow>

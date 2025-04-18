@@ -22,7 +22,6 @@ function About() {
       <Head>
         <title>
           Tentang Kami | UD Million Candles - Produsen Lilin Aromaterapi
-          Souvenir Lilin Jogja, Lilin Warna, Lilin Hias dan Lain-lain
         </title>
       </Head>
       <div className="w-full dark:bg-gray-900 bg-white text-gray-600 dark:text-gray-200">
