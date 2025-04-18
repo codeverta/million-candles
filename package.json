@@ -44,6 +44,7 @@
     "react-photoswipe-gallery": "^3.0.2",
     "react-share": "^5.2.2",
     "remark": "^14.0.2",
+    "remark-gfm": "^3.0.1",
     "remark-html": "^15.0.2",
     "sonner": "^0.1.1",
     "swiper": "^9.0.5"

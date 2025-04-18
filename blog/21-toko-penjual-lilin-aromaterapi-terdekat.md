@@ -9,8 +9,6 @@ tags: "lilin, pabrik lilin, sejarah lilin, jenis lilin, manfaat lilin, lilin aro
 date: "2024-08-28"
 ---
 
-# **Temukan Lilin Aromaterapi Terdekat: Panduan untuk Pembelian dan Penjual**
-
 ## **Pengenalan tentang Lilin Aromaterapi**
 
 ### **Apa Itu Lilin Aromaterapi?**

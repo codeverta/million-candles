@@ -2,7 +2,7 @@ import Head from "next/head";
 import Layout from "components/layout/Landing";
 import { getSortedPostsData } from "lib/posts";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
 import { TextField, Button } from "@mui/material";
 
@@ -53,6 +53,16 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
   const endIndex = startIndex + POSTS_PER_PAGE;
   const currentPosts = filteredPosts.slice(startIndex, endIndex);
 
+  // Get meta description
+  const metaDescription = useMemo(() => {
+    if (searchTerm) {
+      return `Hasil pencarian untuk "${searchTerm}" di blog kami. Temukan artikel menarik tentang lilin.`;
+    }
+    return allPostsData.length > 0
+      ? allPostsData[0].desc
+      : "Kumpulan cerita dan tips mengenai lilin.";
+  }, [searchTerm, allPostsData]);
+
   // Handle search input change and form submission
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -70,10 +80,12 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
   return (
     <Layout>
       <Head>
-        <meta
-          name="description"
-          content="Kumpulan cerita dan tips mengenai lilin"
-        />
+        <title>
+          {searchTerm
+            ? `Hasil Pencarian untuk "${searchTerm}" - Blog Lilin`
+            : "Blog Lilin - Kumpulan Cerita dan Tips"}
+        </title>
+        <meta name="description" content={metaDescription} />
       </Head>
       <main className="dark:bg-gray-900 min-h-screen">
         <section className="px-6 max-w-4xl mx-auto py-12">

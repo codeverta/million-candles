@@ -26,15 +26,6 @@ export default function Landing({ children }: Props) {
     <>
       <Head>
         <link rel="canonical" href={canonicalUrl} />
-        <title>
-          Produsen Lilin Terdekat di Jogja, Bandung, Semarang, Jakarta & Seluruh
-          Indonesia
-        </title>
-        <meta
-          name="description"
-          content="Million Candles adalah produsen lilin aromaterapi handmade dengan wangi menenangkan, cocok untuk dekorasi, kado, dan relaksasi. Tersedia pengiriman ke Jogja, Jakarta, Bandung, Bali, dan seluruh Indonesia."
-        />
-
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

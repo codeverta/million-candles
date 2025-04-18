@@ -7,7 +7,7 @@ tags: "lilin dibuat dengan cara, nama produk lilin aromaterapi, kerajinan lilin 
 
 Lilin telah digunakan sejak zaman kuno untuk keperluan pencahayaan dan memberikan wangi di rumah. Seiring dengan perkembangan zaman, kini lilin bukan hanya digunakan untuk keperluan fungsional, tetapi juga sebagai dekorasi dan karya seni. Ada banyak jenis lilin yang tersedia di pasaran, namun dua jenis yang paling umum adalah soy candle dan wax candle. Meskipun keduanya berfungsi sama, yaitu memberikan cahaya dan aroma di ruangan, tetapi ada beberapa perbedaan antara keduanya.
 
-![Lilin Pilar Ibadah](https://api.souvenirlilin.id/storage/image/uZnQ80HvbVWRzyzmDSQ42y8PUJHcGWy6QVEMYlKj.png)
+![Lilin Pilar Ibadah](https://firebasestorage.googleapis.com/v0/b/firstproject-ad87e.appspot.com/o/images%2FsdpU54JeOjnvFCGmjcvKNBz7aXVsJKyBjxH8U9Yn.png?alt=media)
 
 Pertama-tama, perbedaan mendasar antara soy candle dan wax candle adalah bahan dasar yang digunakan dalam pembuatannya. Soy candle terbuat dari minyak kedelai, sedangkan wax candle dapat terbuat dari beberapa jenis lilin seperti parafin, lebah, atau lilin palma. Soy candle dianggap lebih ramah lingkungan karena bahan dasarnya berasal dari tanaman kedelai yang dapat diperbaharui dan tidak mengandung bahan kimia berbahaya seperti beberapa jenis wax candle yang mungkin mengeluarkan asap berbahaya ketika dibakar.
 

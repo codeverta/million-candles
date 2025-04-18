@@ -5,8 +5,6 @@ desc: "Hari Arwah memiliki nilai spiritual tinggi bagi umat Kristiani. Temukan m
 tags: "lilin aromaterapi terdekat, jual lilin semarang, toko lilin terdekat"
 ---
 
-# **Makna Hari Arwah dan Peran Penting Toko Lilin di Baliknya**
-
 ## **Pengantar: Apa Itu Hari Arwah?**
 
 Hari Arwah adalah momen refleksi spiritual yang sangat penting bagi umat Katolik dan sebagian besar penganut Kristen di seluruh dunia. Diperingati setiap tanggal 2 November, hari ini didedikasikan untuk mendoakan jiwa-jiwa orang yang telah meninggal, khususnya mereka yang masih berada di api penyucian menurut kepercayaan Katolik.

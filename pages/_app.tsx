@@ -61,7 +61,7 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
   const getLayout = Component.getLayout || ((page: ReactNode) => page);
   // seo
   const pageTitle =
-    "Produsen Lilin Terdekat di Jogja, Bandung, Semarang, Jakarta & Seluruh Indonesia";
+    "Produsen Lilin Terdekat di Jogja, Semarang, Jakarta & Seluruh Indonesia";
   const pageDescription = `Million Candles adalah produsen lilin aromaterapi handmade dengan wangi menenangkan, cocok untuk dekorasi, kado, dan relaksasi. Tersedia pengiriman ke Jogja, Jakarta, Bandung, Bali, dan seluruh Indonesia.`;
   const ogImageUrl = "https://souvenirlilin.id/og-image.png";
   const siteName = "UD Million Candles";

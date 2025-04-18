@@ -5,8 +5,6 @@ desc: "Sedang cari **toko penjual lilin Surabaya terdekat**? Temukan rekomendasi
 tags: "lilin aromaterapi terdekat, jual lilin, toko lilin terdekat"
 ---
 
-# **15+ Rekomendasi Toko Penjual Lilin Surabaya Terdekat & Terpercaya**
-
 ## **Pentingnya Lilin dalam Kehidupan Sehari-hari & Perayaan Khusus**
 
 ### **Lilin Sebagai Elemen Spiritual dan Dekoratif**

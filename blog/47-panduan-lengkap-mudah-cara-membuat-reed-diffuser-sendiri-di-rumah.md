@@ -2,7 +2,7 @@
 title: "Panduan Lengkap & Mudah: Cara Membuat Reed Diffuser Sendiri di Rumah"
 date: "2025-04-17"
 desc: "Temukan cara membuat Reed diffuser sendiri di rumah dengan bahan alami. Panduan lengkap, mudah, dan hemat untuk mengharumkan ruangan secara alami."
-tags: "lilin aromaterapi terdekat, jual lilin ntt, toko lilin terdekat"
+tags: "lilin aromaterapi terdekat, jual lilin ntt, reed diffuser, toko lilin terdekat"
 ---
 
 Ingin ruangan selalu wangi tanpa harus semprot-semprot parfum setiap saat? Yuk, coba bikin sendiri reed diffuser di rumah! Reed diffuser adalah salah satu cara paling praktis dan alami untuk menciptakan suasana harum, rileks, dan nyaman di dalam ruangan. Di artikel ini, kita akan membahas cara membuat Reed diffuser dengan langkah-langkah yang super mudah, bahan yang gampang ditemukan, serta tips agar hasilnya maksimal!

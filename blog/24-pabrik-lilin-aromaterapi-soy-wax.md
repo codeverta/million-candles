@@ -8,8 +8,6 @@ tags: "lilin dibuat dengan cara, nama produk lilin aromaterapi, kerajinan lilin 
 date: "2024-08-28"
 ---
 
-# **Pabrik Lilin Aromaterapi: Produksi Berkualitas dengan Bahan Alami seperti Soy Wax**
-
 ## **Pengenalan tentang Lilin Aromaterapi dan Soy Wax**
 
 ### **Apa Itu Lilin Aromaterapi?**

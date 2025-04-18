@@ -12,7 +12,7 @@ const CandleOrderPage = () => {
             Million Candles
           </h1>
           <p className="text-lg md:text-xl text-amber-700">
-            Lilin aromaterapi pilihan untuk momen spesial Anda
+            Produsen lilin pilihan untuk momen spesial Anda
           </p>
         </header>
 
