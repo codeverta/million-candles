@@ -60,8 +60,7 @@ const Breadcrumb = ({ postTitle, slug }) => {
 };
 
 // Related Posts Component
-const RelatedPosts = ({ currentSlug, posts }) => {
-  console.log({ posts });
+const RelatedPosts = ({ currentSlug, posts }: any) => {
   const currentPost = posts.find((p) => p.id === currentSlug);
   const relatedPosts = posts
     .filter(
