@@ -5,18 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductVariant extends Model
+class VariantCombination extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
     protected $fillable = [
-        'name',
         'product_id',
+        'sku',
+        'price',
+        'stock',
     ];
 
     /**
-     * Get the product that owns the variant.
+     * Get the product that owns this combination.
      */
     public function product()
     {
@@ -24,10 +25,10 @@ class ProductVariant extends Model
     }
 
     /**
-     * Get all the options for this variant.
+     * Get all the values for this variant combination.
      */
-    public function productVariantOption()
+    public function values()
     {
-        return $this->hasMany(ProductVariantOption::class);
+        return $this->hasMany(VariantCombinationValue::class);
     }
 }

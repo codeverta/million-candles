@@ -228,8 +228,10 @@ const PrintOrder = () => {
 
           <div className="w-1/3 text-center">
             <div className="border border-black p-1 text-xs text-center">
-              <p>Barang yang sudah dibeli tidak</p>
-              <p>dapat ditukar/dikembalikan</p>
+              <p>
+                Terima kasih atas kepercayaan Anda berbelanja di UD Million
+                Candles.
+              </p>
             </div>
           </div>
 

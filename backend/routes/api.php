@@ -13,7 +13,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\API\FinancialApiController;
 use App\Http\Controllers\API\StockApiController;
 use App\Http\Controllers\API\MaterialController;
-use App\Http\Controllers\API\MaterialStockMovementController;
+use App\Http\Controllers\MaterialStockMovementController;
+use App\Http\Controllers\VariantCombinationController;
+use App\Http\Controllers\ProductVariantOptionController;
+use App\Http\Controllers\ProductVariantController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,6 +39,10 @@ Route::prefix('/v1')->group(function () {
     Route::post('/auth/forgot', [AuthController::class, 'forgot']);
     Route::post('/auth/reset', [AuthController::class, 'reset']);
     Route::get('/auth/self', [AuthController::class, 'me'])->middleware('auth:sanctum');
+    Route::get('/product-relations/{id}', [ProductController::class, 'show']);
+    Route::apiResource('variant-combinations', VariantCombinationController::class);
+    Route::apiResource('product-variant-options', ProductVariantOptionController::class);
+    Route::apiResource('product-variants', ProductVariantController::class);
     Route::get('/notifications', [NotificationController::class, 'index'])->middleware('auth:sanctum');
     Route::prefix('/-actions')->group(function () {
         Route::get('/totalSales', [OrderController::class, 'totalSales']);
@@ -72,9 +81,6 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
     });
     $server->resource('order-details', JsonApiController::class);
     $server->resource('carts', JsonApiController::class);
-    $server->resource(
-    'product-variants', JsonApiController::class);
-    $server->resource('product-variant-options', JsonApiController::class);
     $server->resource('documents', JsonApiController::class)->only('index');
     $server->resource('documents', '\\' . DocumentController::class)->actions('-actions', function ($actions) {
         $actions->post('upload');
