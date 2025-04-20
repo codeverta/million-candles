@@ -20,8 +20,7 @@ import ReorderableFileUpload from "components/molecules/ReorderableFileUpload";
 import ProductVariantComponent from "./ProductVariantComponent"; // Import the new component
 
 const productParams = {
-  include:
-    "documents,product-categories,product-variants,product-variant-options,variant-combinations",
+  include: "documents,product-categories",
 };
 
 function CreateProduct() {

@@ -59,7 +59,7 @@ const ProductVariantComponent = ({
       // Transform data structure to match our component state
       const loadedVariants = [];
 
-      for (const variant of variantsResponse.data.data) {
+      for (const variant of variantsResponse.data) {
         // Fetch options for this variant
         const optionsResponse = await api.get(
           `product-variant-options?product_variant_id=${variant.id}`
@@ -67,10 +67,10 @@ const ProductVariantComponent = ({
 
         loadedVariants.push({
           id: variant.id,
-          name: variant.attributes.name,
-          options: optionsResponse.data.data.map((option) => ({
+          name: variant.name,
+          options: optionsResponse.data.map((option) => ({
             id: option.id,
-            name: option.attributes.name,
+            name: option.name,
           })),
         });
       }
