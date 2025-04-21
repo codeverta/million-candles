@@ -24,7 +24,7 @@ class Order extends Model
             $order->uuid = Str::uuid();
         });
         static::created(function (Order $order) {
-            $order->code = "INV" . Str::upper(Str::random(6)) . $order->id;
+            $order->code = "INV" . str_pad($order->id, 6, '0', STR_PAD_LEFT);
             $order->save();
         });
         static::updating(function(Order $order)

@@ -19,9 +19,11 @@ class OrderDetailRequest extends ResourceRequest
         return [
             'qty' => ['nullable', 'min:0', 'max:1000', 'numeric'],
             'price' => ['required', 'numeric'],
+            'total_price' => ['required', 'numeric'],
             'products' => [JsonApiRule::toOne('products')],
+            'variant_combination_id' => ['nullable', 'exists:variant_combinations,id'],
+            'variant_sku' => ['nullable', 'exists:variant_combinations,sku'],
             'orders' => [JsonApiRule::toOne('orders')],
         ];
     }
-
 }

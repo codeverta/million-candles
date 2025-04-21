@@ -17,6 +17,9 @@ class OrderDetail extends Model
         'price',
         'products_id',
         'orders_id',
+        'variant_combination_id',
+        'variant_sku',
+        'total_price',
     ];
 
 
@@ -36,5 +39,10 @@ class OrderDetail extends Model
     public function products(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function variantCombination()
+    {
+        return $this->belongsTo(VariantCombination::class);
     }
 }
