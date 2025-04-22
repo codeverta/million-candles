@@ -61,11 +61,7 @@ function ProductDetail() {
   const router = useRouter();
 
   // Get base URL for absolute URLs in JSON-LD
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    (typeof window !== "undefined"
-      ? `${window.location.protocol}//${window.location.host}`
-      : "");
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
 
   const documents =
     product.data[0]?.relationships?.documents.data.length > 0
@@ -193,17 +189,11 @@ function ProductDetail() {
                 />
               </div>
               <div className="mb-4">
-                <span className="font-semibold">Kondisi: </span>Baru
-              </div>
-              <div className="mb-4">
                 <span className="font-semibold">Min. Pemesanan: </span>1 Buah
               </div>
               <div className="mb-4">
                 <span className="font-semibold">Stock: </span>
                 {currentStock}
-              </div>
-              <div className="mb-4">
-                <span className="font-semibold">Etalase: </span>Semua Etalase
               </div>
               <div className="mb-4" style={{ whiteSpace: "pre-line" }}>
                 {/* deskripsi */}
@@ -259,7 +249,7 @@ function ProductDetail() {
                 <h2 className="text-xl font-semibold mb-4">
                   UD Million Candles
                 </h2>
-                <div className="text-gray-700">Online kemarin</div>
+                <div className="text-gray-700">Online</div>
                 <div className="text-gray-700">Kab. Sleman</div>
                 <div className="mt-4">
                   <button className="bg-gray-200 px-4 py-2 rounded">

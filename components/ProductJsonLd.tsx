@@ -1,8 +1,11 @@
 // components/ProductJsonLd.js
 import React from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
-const ProductJsonLd = ({ product, baseUrl }: any) => {
+const ProductJsonLd = ({ product, baseUrl }) => {
+  const router = useRouter();
+
   // Only render if we have a product
   if (!product || !product.data || !product.data[0]) {
     return null;
@@ -15,17 +18,17 @@ const ProductJsonLd = ({ product, baseUrl }: any) => {
   const documents =
     productData?.relationships?.documents?.data?.length > 0
       ? product.included?.filter(
-          (item: any) =>
+          (item) =>
             item.type === "documents" &&
             productData.relationships.documents.data.some(
-              (doc: any) => doc.id === item.id
+              (doc) => doc.id === item.id
             )
         )
       : [];
 
   const images =
     documents.length > 0
-      ? documents.map((doc: any) => `${baseUrl}${doc.attributes.filename}`)
+      ? documents.map((doc) => `${baseUrl}${doc.attributes.filename}`)
       : [`${baseUrl}/assets/image-1@2x.jpg`];
 
   // Build the structured data
@@ -42,7 +45,7 @@ const ProductJsonLd = ({ product, baseUrl }: any) => {
     },
     offers: {
       "@type": "Offer",
-      url: `${baseUrl}${window.location.pathname}`,
+      url: `${baseUrl}${router.asPath}`,
       priceCurrency: "IDR",
       price: attributes.price,
       itemCondition: "https://schema.org/NewCondition",
