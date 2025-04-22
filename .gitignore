@@ -37,3 +37,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+/backend/storage/framework/cache/*
+!/backend/storage/framework/cache/.gitignore
