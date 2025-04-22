@@ -10,6 +10,16 @@ use Illuminate\Support\Facades\Route;
 use LaravelJsonApi\Laravel\Facades\JsonApiRoute;
 use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\API\FinancialApiController;
+use App\Http\Controllers\API\StockApiController;
+use App\Http\Controllers\API\MaterialController;
+use App\Http\Controllers\MaterialStockMovementController;
+use App\Http\Controllers\VariantCombinationController;
+use App\Http\Controllers\ProductVariantOptionController;
+use App\Http\Controllers\ProductVariantController;
+use App\Http\Controllers\FinancialTransactionController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,6 +40,10 @@ Route::prefix('/v1')->group(function () {
     Route::post('/auth/forgot', [AuthController::class, 'forgot']);
     Route::post('/auth/reset', [AuthController::class, 'reset']);
     Route::get('/auth/self', [AuthController::class, 'me'])->middleware('auth:sanctum');
+    Route::get('/product-relations/{id}', [ProductController::class, 'show']);
+    Route::apiResource('variant-combinations', VariantCombinationController::class);
+    Route::apiResource('product-variant-options', ProductVariantOptionController::class);
+    Route::apiResource('product-variants', ProductVariantController::class);
     Route::get('/notifications', [NotificationController::class, 'index'])->middleware('auth:sanctum');
     Route::prefix('/-actions')->group(function () {
         Route::get('/totalSales', [OrderController::class, 'totalSales']);
@@ -37,6 +51,18 @@ Route::prefix('/v1')->group(function () {
         Route::post('/midtransWebhook', [OrderController::class, 'midtransWebhook']);
         Route::delete('/documents/{id}', [DocumentController::class, 'deleting']);
     });
+    Route::prefix('financial-transactions')->group(function () {
+        Route::get('/', [FinancialTransactionController::class, 'index']);
+        Route::post('/', [FinancialTransactionController::class, 'store']);
+        Route::get('/{id}', [FinancialTransactionController::class, 'show']);
+        Route::put('/{id}', [FinancialTransactionController::class, 'update']);
+        Route::delete('/{id}', [FinancialTransactionController::class, 'destroy']);
+    });
+    
+    Route::get('/summary', [FinancialTransactionController::class, 'summary']);
+    Route::get('/bank-accounts', [FinancialTransactionController::class, 'bankAccounts']);
+    Route::get('/dropdown-data', [FinancialTransactionController::class, 'dropdownData']);
+
 });
 
 JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
@@ -68,14 +94,41 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
     });
     $server->resource('order-details', JsonApiController::class);
     $server->resource('carts', JsonApiController::class);
-    $server->resource(
-    'product-variants', JsonApiController::class);
-    $server->resource('product-variant-options', JsonApiController::class);
     $server->resource('documents', JsonApiController::class)->only('index');
     $server->resource('documents', '\\' . DocumentController::class)->actions('-actions', function ($actions) {
         $actions->post('upload');
     });
 });
+
+// Financial API Routes
+Route::prefix('v1/financial')->group(function () {
+    // Get transactions with date filtering
+    Route::get('/transactions', [FinancialApiController::class, 'getTransactions']);
+    
+    // Get bank account summary
+    Route::get('/bank-accounts', [FinancialApiController::class, 'getBankAccounts']);
+    
+    // Get financial summary
+    Route::get('/summary', [FinancialApiController::class, 'getSummary']);
+    
+    // Create new transaction
+    Route::post('/transactions', [FinancialApiController::class, 'storeTransaction']);
+});
+
+// Stock API Routes
+Route::prefix('v1/inventory')->group(function () {
+    // Get stock movements with date filtering
+    Route::get('/movements', [StockApiController::class, 'getStockMovements']);
+    
+    // Get product stock levels
+    Route::get('/stock-levels', [StockApiController::class, 'getStockLevels']);
+    
+    // Create new stock movement
+    Route::post('/movements', [StockApiController::class, 'storeStockMovement']);
+});
+
+Route::apiResource('materials', MaterialController::class);
+Route::post('material-stock-movements', [MaterialStockMovementController::class, 'store']);
 
 
 Route::post('/midtrans-webhook', function (Request $request) {

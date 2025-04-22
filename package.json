@@ -1,6 +1,6 @@
 {
   "name": "million-candles",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,11 +8,18 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "build:vue": "cd erp && npm run build && cp -r dist/* ../public/dashboard/",
+    "enhance-markdown": "node scripts/enhance-markdown.js",
+    "process-internal-links": "node scripts/process-internal-links.js"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@headlessui/react": "^1.7.12",
     "@mui/base": "^5.0.0-alpha.118",
     "@mui/icons-material": "^5.11.9",
@@ -39,7 +46,9 @@
     "react-photoswipe-gallery": "^3.0.2",
     "react-share": "^5.2.2",
     "remark": "^14.0.2",
+    "remark-gfm": "^3.0.1",
     "remark-html": "^15.0.2",
+    "slugify": "^1.6.6",
     "sonner": "^0.1.1",
     "swiper": "^9.0.5"
   },

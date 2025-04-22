@@ -8,11 +8,9 @@ tags: "lilin, pabrik lilin, sejarah lilin, jenis lilin, manfaat lilin, lilin aro
 date: "2024-08-28"
 ---
 
-# **Lilin: Sejarah, Jenis, dan Manfaatnya**
-
 ## **Pengenalan dan Sejarah Lilin**
 
-![Lilin Pilar Ibadah](https://api.souvenirlilin.id/storage/image/eRPv4IlBho2l6nAaVTuDxaYJ33jP2CFz3HbZe6lK.png)
+![Lilin Pilar Ibadah](https://firebasestorage.googleapis.com/v0/b/firstproject-ad87e.appspot.com/o/images%2FsdpU54JeOjnvFCGmjcvKNBz7aXVsJKyBjxH8U9Yn.png?alt=media)
 
 ### **Apa Itu Lilin?**
 

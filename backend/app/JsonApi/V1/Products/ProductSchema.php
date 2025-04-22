@@ -16,6 +16,9 @@ use LaravelJsonApi\Eloquent\Pagination\PagePagination;
 use LaravelJsonApi\Eloquent\Fields\SoftDelete;
 use LaravelJsonApi\Eloquent\Filters\Where;
 use LaravelJsonApi\Eloquent\Schema;
+use LaravelJsonApi\Eloquent\Fields\Attribute;
+use LaravelJsonApi\Eloquent\Fields\Map;
+
 
 class ProductSchema extends Schema
 {
@@ -52,7 +55,6 @@ class ProductSchema extends Schema
             Number::make('price'),
             BelongsTo::make('product-categories'),
             BelongsTo::make('documents'),
-            HasMany::make('product-variants'),
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
             SoftDelete::make('deletedAt'),

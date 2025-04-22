@@ -4,6 +4,7 @@ namespace App\JsonApi\V1\Products;
 
 use Illuminate\Http\Request;
 use LaravelJsonApi\Core\Resources\JsonApiResource;
+use App\Models\Product;
 
 class ProductResource extends JsonApiResource
 {
@@ -23,6 +24,9 @@ class ProductResource extends JsonApiResource
             'description' => $this->description,
             'price' => (int) $this->price,
             'stock' => (int) $this->stock,
+            // 'variants' => $this->variants->load('options'),
+            'product_variants' => $this->productVariants->loadMissing('productVariantOption.productVariant'),
+            'variant_combinations' => $this->variantCombinations->loadMissing('values.productVariantOption.productVariant'),
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
             'deletedAt' => $this->deleted_at,
@@ -40,7 +44,6 @@ class ProductResource extends JsonApiResource
         return [
             $this->relation('documents'),
             $this->relation('product-categories'),
-            $this->relation('product-variants'),
         ];
     }
 

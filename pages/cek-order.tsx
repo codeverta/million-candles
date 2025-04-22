@@ -69,7 +69,6 @@ function TrackOrder() {
       <Head>
         <title>
           Cek Order | UD Million Candles - Produsen Lilin Aromaterapi Souvenir
-          Lilin Jogja, Lilin Warna, Lilin Hias dan Lain-lain
         </title>
       </Head>
       <section className="bg-white flex min-h-screen dark:bg-gray-900">

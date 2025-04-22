@@ -1,0 +1,176 @@
+{
+  "title": "Souvenir Lilin Jogja",
+  "description": "Toko Souvenir Lilin Jogja adalah toko souvenir yang terletak di Yogyakarta, Indonesia. Kami berkomitmen untuk memberikan pengalaman berbelanja terbaik kepada pelanggan kami dan memastikan bahwa mereka meninggalkan dengan sepotong Yogyakarta untuk dikenang selamanya. Tim kami berdedikasi untuk mencari produk terbaik dan memberikan layanan pelanggan yang luar biasa.",
+  "home": {
+    "welcome": "Selamat datang di Souvenir Lilin Jogja",
+    "shopNow": "Belanja Sekarang",
+    "featuredProducts": "Produk Unggulan",
+    "latestNews": "Berita Terbaru"
+  },
+  "products": {
+    "title": "Produk",
+    "description": "Temukan berbagai macam souvenir unik dan berkualitas tinggi yang mencerminkan budaya dan warisan Yogyakarta. Produk kami termasuk kerajinan tangan tradisional, batik, dan spesialisasi lokal lainnya. Setiap item dibuat dengan hati-hati untuk memastikan bahwa Anda menerima kualitas terbaik."
+  },
+  "about": {
+    "title": "Tentang Kami",
+    "description": "Souvenir Lilin Jogja adalah toko souvenir di Yogyakarta, Indonesia. Kami berkomitmen untuk memberikan pengalaman berbelanja terbaik kepada pelanggan kami dan memastikan bahwa mereka meninggalkan dengan sepotong Yogyakarta untuk dikenang selamanya. Tim kami berdedikasi untuk mencari produk terbaik dan memberikan layanan pelanggan yang luar biasa."
+  },
+  "contact": {
+    "title": "Hubungi Kami",
+    "description": "Jika Anda memiliki pertanyaan atau permintaan, silakan hubungi kami. Kami di sini untuk membantu Anda dengan apa pun yang Anda butuhkan. Anda dapat menghubungi kami melalui email, telepon, atau dengan mengunjungi toko kami di Yogyakarta."
+  },
+  "cart": {
+    "title": "Keranjang Belanja",
+    "description": "Keranjang belanja Anda kosong. Mulailah menambahkan produk ke keranjang Anda untuk melanjutkan pembelian."
+  },
+  "checkout": {
+    "title": "Pembayaran",
+    "description": "Tinjau pesanan Anda dan lanjutkan ke pembayaran. Silakan berikan informasi pengiriman dan detail pembayaran Anda untuk menyelesaikan pembelian."
+  },
+  "order": {
+    "title": "Konfirmasi Pesanan",
+    "description": "Terima kasih atas pesanan Anda! Kami menghargai bisnis Anda dan akan memproses pesanan Anda sesegera mungkin. Anda akan menerima email konfirmasi dengan detail pesanan Anda segera."
+  },
+  "footer": {
+    "about": "Tentang Kami",
+    "contact": "Hubungi Kami",
+    "privacy": "Kebijakan Privasi",
+    "terms": "Syarat dan Ketentuan",
+    "followUs": "Ikuti Kami"
+  },
+  "error": {
+    "notFound": "Halaman Tidak Ditemukan",
+    "serverError": "Kesalahan Server",
+    "unauthorized": "Akses Tidak Sah"
+  },
+  "success": {
+    "orderPlaced": "Pesanan Anda telah berhasil ditempatkan!",
+    "itemAdded": "Item berhasil ditambahkan ke keranjang!",
+    "profileUpdated": "Profil berhasil diperbarui!"
+  },
+  "loading": {
+    "loading": "Memuat...",
+    "fetchingData": "Mengambil data...",
+    "processing": "Memproses..."
+  },
+  "search": {
+    "placeholder": "Cari produk...",
+    "noResults": "Tidak ada hasil ditemukan untuk pencarian Anda."
+  },
+  "pagination": {
+    "previous": "Sebelumnya",
+    "next": "Selanjutnya",
+    "page": "Halaman"
+  },
+  "filter": {
+    "category": "Kategori",
+    "priceRange": "Rentang Harga",
+    "sortBy": "Urutkan Berdasarkan",
+    "apply": "Terapkan",
+    "reset": "Atur Ulang"
+  },
+  "newsletter": {
+    "title": "Berlangganan Buletin",
+    "description": "Daftar untuk mendapatkan pembaruan terbaru tentang produk baru, penawaran khusus, dan berita dari Souvenir Lilin Jogja.",
+    "emailPlaceholder": "Masukkan alamat email Anda",
+    "subscribe": "Berlangganan"
+  },
+  "socialMedia": {
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn"
+  },
+  "auth": {
+    "login": "Masuk",
+    "register": "Daftar",
+    "logout": "Keluar",
+    "email": "Email",
+    "password": "Kata Sandi",
+    "confirmPassword": "Konfirmasi Kata Sandi",
+    "forgotPassword": "Lupa Kata Sandi?",
+    "resetPassword": "Atur Ulang Kata Sandi"
+  },
+  "profile": {
+    "title": "Profil",
+    "description": "Kelola informasi akun Anda, termasuk detail pengiriman dan preferensi pembayaran.",
+    "updateProfile": "Perbarui Profil",
+    "changePassword": "Ubah Kata Sandi"
+  },
+  "orderHistory": {
+    "title": "Riwayat Pesanan",
+    "description": "Lihat riwayat pesanan Anda dan status terkini dari setiap pesanan yang telah Anda buat."
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "description": "Sesuaikan preferensi akun Anda, termasuk pengaturan privasi dan notifikasi."
+  },
+  "wishlist": {
+    "title": "Daftar Keinginan",
+    "description": "Simpan produk favorit Anda untuk dibeli nanti. Anda dapat mengelola daftar keinginan Anda di sini."
+  },
+  "notifications": {
+    "title": "Notifikasi",
+    "description": "Kelola pengaturan notifikasi Anda untuk menerima pembaruan tentang produk baru, penawaran khusus, dan berita dari Souvenir Lilin Jogja."
+  },
+  "privacy": {
+    "title": "Kebijakan Privasi",
+    "description": "Baca tentang bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda."
+  },
+  "terms": {
+    "title": "Syarat dan Ketentuan",
+    "description": "Baca syarat dan ketentuan penggunaan situs web kami dan layanan yang kami tawarkan."
+  },
+  "notFound": {
+    "title": "404 Tidak Ditemukan",
+    "description": "Maaf, halaman yang Anda cari tidak ada."
+  },
+  "serverError": {
+    "title": "Kesalahan Server",
+    "description": "Maaf, terjadi kesalahan pada server kami. Silakan coba lagi nanti."
+  },
+  "unauthorized": {
+    "title": "Akses Tidak Sah",
+    "description": "Anda tidak memiliki izin untuk mengakses halaman ini. Silakan masuk untuk melanjutkan."
+  },
+  "resetPassword": {
+    "title": "Atur Ulang Kata Sandi",
+    "description": "Masukkan alamat email Anda untuk menerima tautan pengaturan ulang kata sandi."
+  },
+  "resetPasswordSuccess": {
+    "title": "Kata Sandi Berhasil Diatur Ulang",
+    "description": "Silakan periksa email Anda untuk instruksi lebih lanjut tentang cara mengatur ulang kata sandi Anda."
+  },
+  "resetPasswordError": {
+    "title": "Kesalahan Pengaturan Ulang Kata Sandi",
+    "description": "Terjadi kesalahan saat mencoba mengatur ulang kata sandi Anda. Silakan coba lagi."
+  },
+  "resetPasswordEmailSent": {
+    "title": "Email Pengaturan Ulang Kata Sandi Terkirim",
+    "description": "Kami telah mengirimkan email kepada Anda dengan instruksi untuk mengatur ulang kata sandi Anda."
+  },
+  "resetPasswordEmailError": {
+    "title": "Kesalahan Pengiriman Email",
+    "description": "Kami tidak dapat mengirim email pengaturan ulang kata sandi. Silakan coba lagi nanti."
+  },
+  "resetPasswordLinkExpired": {
+    "title": "Tautan Pengaturan Ulang Kata Sandi Kedaluwarsa",
+    "description": "Tautan yang Anda gunakan untuk mengatur ulang kata sandi telah kedaluwarsa. Silakan coba lagi."
+  },
+  "resetPasswordLinkInvalid": {
+    "title": "Tautan Pengaturan Ulang Kata Sandi Tidak Valid",
+    "description": "Tautan yang Anda gunakan untuk mengatur ulang kata sandi tidak valid. Silakan coba lagi."
+  },
+  "resetPasswordSuccessMessage": {
+    "title": "Kata Sandi Berhasil Diatur Ulang",
+    "description": "Kata sandi Anda telah berhasil diatur ulang. Silakan masuk dengan kata sandi baru Anda."
+  },
+  "resetPasswordErrorMessage": {
+    "title": "Kesalahan Pengaturan Ulang Kata Sandi",
+    "description": "Terjadi kesalahan saat mencoba mengatur ulang kata sandi Anda. Silakan coba lagi."
+  },
+  "resetPasswordSuccessNotification": {
+    "title": "Sukses",
+    "description": "Kata sandi Anda telah berhasil diatur ulang. Silakan masuk dengan kata sandi baru Anda."
+  }
+}

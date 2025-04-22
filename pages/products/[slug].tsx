@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "components/layout/Landing";
-import { useQuery } from "@tanstack/react-query";
 import api from "utils/api";
 import { getRelationships, toCurrency } from "utils";
 import { Content } from "components";
@@ -15,9 +14,7 @@ import "swiper/css/pagination";
 import "swiper/css/thumbs";
 import Breadcrumb from "components/mui/Breadcrumb";
 import ProductVariants from "components/mui/ProductVariant";
-import { Button } from "@mui/material";
 import { useRouter } from "next/router";
-//@ts-ignore
 
 function generateWhatsAppLink(phoneNumber, message) {
   // Encode the message to make it URL-safe
@@ -30,51 +27,42 @@ function generateWhatsAppLink(phoneNumber, message) {
 }
 
 function ProductDetail() {
-  const [product, setProduct] = React.useState({
-    jsonapi: {
-      version: "1.0",
-    },
+  const [product, setProduct] = useState({
+    jsonapi: { version: "1.0" },
     data: [
       {
         type: "products",
         id: "",
         attributes: {
           name: "",
+          code: "",
+          price: 0,
+          stock: 0,
+          description: "",
+          product_variants: [],
+          variant_combinations: [],
         },
         relationships: {
           documents: {
-            data: [
-              {
-                type: "",
-                id: "",
-              },
-            ],
+            data: [],
           },
           "product-categories": {},
-          "product-variants": {},
         },
       },
     ],
-    included: [
-      {
-        type: "documents",
-        id: "",
-        attributes: {},
-        relationships: {
-          documentable_type: {},
-          documentable_id: {},
-        },
-      },
-    ],
+    included: [],
   });
-  const [thumbsSwiper, setThumbsSwiper] = React.useState<any>(null);
-  const [qty, setQty] = React.useState<number>(1);
+
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [qty, setQty] = useState(1);
+  const [selectedVariant, setSelectedVariant] = useState(null);
+  const router = useRouter();
+
   const documents =
     product.data[0]?.relationships?.documents.data.length > 0
       ? getRelationships(product, product.data[0], "documents")
       : [];
   const isDocumentExist = !!documents[0]?.attributes.filename;
-  const router = useRouter();
 
   useEffect(() => {
     if (router.query?.slug) {
@@ -86,12 +74,37 @@ function ProductDetail() {
         });
 
         setProduct(product.data);
-        console.log({ product });
       };
 
       fetchProduct();
     }
   }, [router.query]);
+
+  const handleVariantChange = (variant) => {
+    setSelectedVariant(variant);
+  };
+
+  // Get current price - either from selected variant or base product price
+  const currentPrice = selectedVariant
+    ? selectedVariant.price
+    : product.data[0].attributes.price;
+
+  // Get current stock - either from selected variant or base product stock
+  const currentStock = selectedVariant
+    ? selectedVariant.stock
+    : product.data[0].attributes.stock;
+
+  // Prepare message for WhatsApp order
+  const prepareOrderMessage = () => {
+    let message = `Halo saya ingin memesan \n${product.data[0].attributes.name} (${product.data[0].attributes.code}) ${qty}`;
+
+    if (selectedVariant) {
+      message += `\nVariant: ${selectedVariant.sku}`;
+    }
+
+    return message;
+  };
+
   return (
     <section className="text-gray-700 dark:text-gray-300 body-font overflow-hidden bg-white min-h-screen dark:bg-gray-900">
       <div className="container mx-auto p-4">
@@ -108,13 +121,14 @@ function ProductDetail() {
               modules={[Pagination, Thumbs]}
             >
               {isDocumentExist ? (
-                documents.map((document: DocumentData) => (
+                documents.map((document) => (
                   <SwiperSlide key={document.id}>
                     <img
                       alt="ecommerce"
                       src={document.attributes.filename}
-                      className="h-full m-auto"
-                    />{" "}
+                      className="h-auto w-auto max-w-full max-h-full m-auto"
+                      style={{ objectFit: "contain" }}
+                    />
                   </SwiperSlide>
                 ))
               ) : (
@@ -123,7 +137,7 @@ function ProductDetail() {
                     alt="ecommerce"
                     src="/assets/image-1@2x.jpg"
                     className="h-full"
-                  />{" "}
+                  />
                 </SwiperSlide>
               )}
             </Swiper>
@@ -137,9 +151,9 @@ function ProductDetail() {
               className="mt-4"
             >
               {isDocumentExist
-                ? documents.map((document: DocumentData) => (
+                ? documents.map((document) => (
                     <SwiperSlide key={document.id}>
-                      <img alt="ecommerce" src={document.attributes.filename} />{" "}
+                      <img alt="ecommerce" src={document.attributes.filename} />
                     </SwiperSlide>
                   ))
                 : null}
@@ -150,13 +164,17 @@ function ProductDetail() {
               data-aos="fade-up"
               className="text-gray-900 dark:text-gray-50 text-3xl title-font font-medium mb-1"
             >
-              {product.data[0].attributes.name}
+              {product.data[0].attributes.name} (
+              {product.data[0].attributes.code})
             </h1>
             <p className="text-green-600 font-bold text-xl mb-4">
-              {toCurrency(product.data[0].attributes.price)}
+              {toCurrency(currentPrice)}
             </p>
             <div className="mb-4">
-              <ProductVariants />
+              <ProductVariants
+                product={product.data[0]}
+                onVariantChange={handleVariantChange}
+              />
             </div>
             <div className="mb-4">
               <span className="font-semibold">Kondisi: </span>Baru
@@ -166,7 +184,7 @@ function ProductDetail() {
             </div>
             <div className="mb-4">
               <span className="font-semibold">Stock: </span>
-              {product.data[0].attributes.stock}
+              {currentStock}
             </div>
             <div className="mb-4">
               <span className="font-semibold">Etalase: </span>Semua Etalase
@@ -209,14 +227,11 @@ function ProductDetail() {
                 </button>
               </div>
 
-              {/* <button className="bg-green-500 text-white px-4 py-2 rounded ml-2">
-                + Keranjang
-              </button> */}
               <a
                 target="_blank"
                 href={generateWhatsAppLink(
                   "+6281578956156",
-                  `Halo saya ingin memesan \n${product.data[0].attributes.name}(${product.data[0].attributes.code}) ${qty}`
+                  prepareOrderMessage()
                 )}
                 className="bg-green-600 text-white px-4 py-2 rounded ml-2"
               >
@@ -235,33 +250,20 @@ function ProductDetail() {
           </div>
         </div>
         <section className="mt-16">
-          <Content title="Produk Lainnya" />
+          <Content
+            queryParams={{
+              "page[size]": 4,
+            }}
+            title="Produk Lainnya"
+          />
         </section>
       </div>
     </section>
   );
 }
 
-ProductDetail.getLayout = function (page: React.ReactNode) {
+ProductDetail.getLayout = function (page) {
   return <Layout>{page}</Layout>;
 };
-
-//
-// export async function getStaticPaths() {
-//   const products = await api.get("products");
-//   const productsParams = products.data.data.map((it: any) => {
-//     return {
-//       params: {
-//         slug: it.attributes.slug,
-//         // id: it.id,
-//       },
-//     };
-//   });
-
-//   return {
-//     paths: productsParams,
-//     fallback: false,
-//   };
-// }
 
 export default ProductDetail;

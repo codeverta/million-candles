@@ -1,4 +1,12 @@
-import { List, ListItem, TextField, Button, IconButton } from "@mui/material";
+import {
+  List,
+  ListItem,
+  TextField,
+  Button,
+  IconButton,
+  Divider,
+  Typography,
+} from "@mui/material";
 import { useEffect } from "react";
 import AdminLayout from "components/layout/AdminLayout";
 import React, { useMemo, useRef, useState } from "react";
@@ -9,10 +17,12 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useRouter } from "next/router";
 import ReorderableFileUpload from "components/molecules/ReorderableFileUpload";
+import ProductVariantComponent from "./ProductVariantComponent"; // Import the new component
 
 const productParams = {
   include: "documents,product-categories",
 };
+
 function CreateProduct() {
   const router = useRouter();
   const {
@@ -22,7 +32,6 @@ function CreateProduct() {
     control,
     formState: { errors },
   } = useForm();
-  const productFileRef = useRef<null | any>(null);
   const getProductCategory = useQuery({
     queryKey: ["product-categories"],
     queryFn: () => {
@@ -56,15 +65,14 @@ function CreateProduct() {
     productCategoryId: "",
     product: null,
   });
-  const [variantDropdown, setVariantDropdown] = useState({
-    value: "",
-    selected: [],
-    options: [
-      {
-        value: "Tambahkan Produk",
-      },
-    ],
+
+  // New state for product variants
+  const [productVariants, setProductVariants] = useState({
+    variants: [],
+    combinations: [],
   });
+
+  const [hasVariants, setHasVariants] = useState(false);
 
   useEffect(() => {
     if (router.query.id) {
@@ -75,37 +83,26 @@ function CreateProduct() {
   }, []);
 
   const fetchProduct = (id: string | number) => {
-    api.get(`products/${id}`, productParams).then((res: any) => {
+    api.get(`products/${id}`, productParams).then(async (res: any) => {
       setState({
         ...state,
         ...res.data.data.attributes,
         product: res.data,
       });
+
+      // Check if product has variants
+      const variantsResponse = await api.get(
+        `product-variants?product_id=${res.data.data.id}`
+      );
+
+      if (variantsResponse.data.length > 0) {
+        setHasVariants(true);
+      }
     });
   };
 
-  const onAddFile = () => {};
-
-  const changeProductCategory = (
-    _e: any,
-    val: { label: string; value: string }
-  ) => {
-    setState({ ...state, productCategoryId: val?.value });
-  };
-
-  const onProcessFile = () => {};
-
-  const onChangeProductVariant = ({ value }: { value: string }) => {
-    const newVal = String(value.split(","));
-    if (value.endsWith(",")) {
-      const tag = value.slice(0, -1).trim();
-      if (tag) {
-        setVariantDropdown({
-          ...variantDropdown,
-          // selected: [...variantDropdown.selected, tag],
-        });
-      }
-    }
+  const handleVariantChange = (variantData) => {
+    setProductVariants(variantData);
   };
 
   const onSubmitProduct = async () => {
@@ -132,41 +129,124 @@ function CreateProduct() {
         },
       },
     };
-    try {
-      if (productId) {
-        api.patch(`products/${productId}`, payload);
-        const batchReq = files.map((it: any) => {
-          const formData = new FormData();
-          formData.append("documentable_type", "products");
-          formData.append("documentable_id", productId as string);
-          formData.append("image", it);
-          return api.post("documents/-actions/upload", formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
-        });
 
-        await Promise.all(batchReq);
+    try {
+      let newProductId;
+
+      if (productId) {
+        await api.patch(`products/${productId}`, payload);
+        newProductId = productId;
         toast.success("Produk Berhasil Diubah");
       } else {
         const res = await api.post("products", payload);
-
-        const batchReq = files.map((it: any) => {
-          const formData = new FormData();
-          formData.append("documentable_type", "products");
-          formData.append("documentable_id", res.data.data.id);
-          formData.append("image", it);
-          return api.post("documents/-actions/upload", formData);
-        });
-
-        await Promise.all(batchReq);
+        newProductId = res.data.data.id;
         toast.success("Produk Berhasil Ditambahkan");
       }
 
-      router.push("/admin/products");
+      // Handle file uploads
+      const batchReq = files.map((it: any) => {
+        const formData = new FormData();
+        formData.append("documentable_type", "products");
+        formData.append("documentable_id", newProductId as string);
+        formData.append("image", it);
+        return api.post("documents/-actions/upload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      });
+
+      await Promise.all(batchReq);
+
+      // Process variants if we have any
+      if (hasVariants && productVariants.variants.length > 0) {
+        await saveProductVariants(newProductId);
+      }
+
+      // router.push("/admin/products");
     } catch (error) {
+      console.error(error);
       toast.error("Produk Gagal Ditambahkan");
+    }
+  };
+
+  const saveProductVariants = async (productId) => {
+    try {
+      // Create variants
+      const variantPromises = productVariants.variants.map(async (variant) => {
+        // Create variant
+        const variantResponse = await api.post("product-variants", {
+          name: variant.name,
+          product_id: productId,
+        });
+
+        const variantId = variantResponse.data.id;
+
+        // Create options
+        const optionPromises = variant.options.map((option) =>
+          api.post("product-variant-options", {
+            name: option.name,
+            product_variant_id: variantId,
+          })
+        );
+
+        const optionResponses = await Promise.all(optionPromises);
+
+        return {
+          variantId,
+          options: optionResponses.map((res) => ({
+            id: res.data.id,
+            name: res.data.name,
+          })),
+        };
+      });
+
+      const savedVariants = await Promise.all(variantPromises);
+
+      // Create variant combinations
+      const combinationPromises = productVariants.combinations.map(
+        async (combo) => {
+          // Map option names to option IDs from saved variants
+          const optionIds = [];
+
+          // For each option in the combination
+          for (const opt of combo.options) {
+            // Find the variant that matches this option's variant name
+            const variant = savedVariants.find((v) =>
+              productVariants.variants.find(
+                (origV) => origV.name === opt.variantName
+              )
+            );
+
+            if (variant) {
+              // Find the matching option in this variant
+              const matchingOption = variant.options.find(
+                (o) => o.name === opt.optionName
+              );
+              if (matchingOption) {
+                optionIds.push(matchingOption.id);
+              }
+            }
+          }
+
+          if (optionIds.length > 0) {
+            return api.post("variant-combinations", {
+              product_id: productId,
+              sku: combo.sku,
+              price: combo.price,
+              stock: combo.stock,
+              option_ids: optionIds,
+            });
+          }
+        }
+      );
+
+      await Promise.all(combinationPromises);
+
+      toast.success("Product variants saved successfully");
+    } catch (error) {
+      console.error("Error saving variants:", error);
+      toast.error("Failed to save product variants");
     }
   };
 
@@ -178,8 +258,11 @@ function CreateProduct() {
   };
 
   const onChangeFile = (files: any) => {
-    console.log({ files });
     setFiles(files);
+  };
+
+  const toggleVariants = () => {
+    setHasVariants(!hasVariants);
   };
 
   return (
@@ -188,7 +271,7 @@ function CreateProduct() {
         <ListItem>
           <ReorderableFileUpload files={files} onChangeFile={onChangeFile} />
         </ListItem>
-        <ListItem className="grid grid-cols-4 gap-4">
+        <ListItem className="grid grid-cols-4 flex-wrap gap-4">
           {router.query.id && state.product && (
             <>
               {state.product.included
@@ -239,7 +322,11 @@ function CreateProduct() {
             label="Harga"
             type="number"
             placeholder="Masukkan Harga"
-            helperText="Wajib diisi"
+            helperText={
+              hasVariants
+                ? "Harga default (akan dioverride oleh harga varian)"
+                : "Wajib diisi"
+            }
             value={state.price}
             onChange={(e) => setState({ ...state, price: e.target.value })}
           />
@@ -252,7 +339,11 @@ function CreateProduct() {
             value={state.stock}
             type="number"
             onChange={(e) => setState({ ...state, stock: e.target.value })}
-            helperText="Wajib diisi"
+            helperText={
+              hasVariants
+                ? "Stok default (akan dioverride oleh stok varian)"
+                : "Wajib diisi"
+            }
           />
         </ListItem>
         <ListItem>
@@ -268,6 +359,31 @@ function CreateProduct() {
             }
           />
         </ListItem>
+
+        <ListItem>
+          <Button
+            variant="outlined"
+            onClick={toggleVariants}
+            className="w-full"
+          >
+            {hasVariants
+              ? "Nonaktifkan Varian Produk"
+              : "Aktifkan Varian Produk"}
+          </Button>
+        </ListItem>
+
+        {/* Product Variants Component */}
+        {hasVariants && (
+          <ListItem>
+            <div className="w-full">
+              <ProductVariantComponent
+                productId={router.query.id}
+                onChange={handleVariantChange}
+              />
+            </div>
+          </ListItem>
+        )}
+
         <ListItem>
           <Button
             type="submit"

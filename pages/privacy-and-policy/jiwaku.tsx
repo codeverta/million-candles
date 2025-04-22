@@ -3,7 +3,6 @@ import Head from "next/head";
 import { marked } from "marked";
 
 const text = marked.parse(`
-
 ## Privacy Policy for Souvenir Lilin
 
 **Effective Date**: 20-11-2024
@@ -115,9 +114,31 @@ We may update this Privacy Policy from time to time. Changes will be posted in t
 
 ---
 
-### 11. **Contact Us**
+### 11. **Return Policy**
 
-If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:  
+**Effective Date**: 20-11-2024
+
+At Souvenir Lilin, we strive for customer satisfaction. If you are not completely satisfied with your candle purchase, we offer the following return policy:
+
+#### a. **Eligibility for Returns**
+- Returns are accepted within 14 days of the delivery date.
+- Items must be unused, in their original packaging, and in the same condition as received.
+- Customized or personalized items are not eligible for returns unless they arrive damaged or defective.
+
+#### b. **Return Process**
+- To initiate a return, please contact our customer support at [Insert Support Email] with your order number and reason for return.
+- We will provide you with return instructions and a return shipping address.
+- Customers are responsible for return shipping costs unless the item arrived damaged or defective.
+
+#### c. **Refunds**
+- Once we receive and inspect the returned item, we will notify you of the approval or rejection of your refund.
+- If approved, a refund will be processed to your original method of payment within [Insert Timeframe].
+- Shipping costs are non-refundable.
+
+#### d. **Damaged or Defective Items**
+- If you receive a damaged or defective item, please contact us immediately with photos of the damage.
+- We will arrange for a replacement or refund at no additional cost to you.
+
 `);
 
 function About() {

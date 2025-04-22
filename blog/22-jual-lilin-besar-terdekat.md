@@ -8,8 +8,6 @@ tags: "lilin, pabrik lilin, sejarah lilin, jenis lilin, manfaat lilin, lilin aro
 date: "2024-08-28"
 ---
 
-# **Temukan Jual Lilin Besar Terdekat: Panduan Lengkap untuk Pembelian**
-
 ## **Pengenalan tentang Lilin Besar**
 
 ### **Apa Itu Lilin Besar?**

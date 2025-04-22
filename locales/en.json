@@ -1,0 +1,232 @@
+{
+  "title": "Souvenir Lilin Jogja",
+  "description": "Souvenir Lilin Jogja is a souvenir shop in Yogyakarta, Indonesia. We offer a wide range of unique and high-quality souvenirs that reflect the rich culture and heritage of Yogyakarta. Our products include traditional handicrafts, batik, and other local specialties. We are committed to providing our customers with the best shopping experience and ensuring that they leave with a piece of Yogyakarta to cherish forever.",
+  "home": {
+    "title": "Home",
+    "description": "Welcome to Souvenir Lilin Jogja! We are a souvenir shop located in Yogyakarta, Indonesia. Our mission is to provide you with the best souvenirs that reflect the rich culture and heritage of Yogyakarta. Explore our wide range of unique and high-quality products that make perfect gifts for your loved ones."
+  },
+  "products": {
+    "title": "Products",
+    "description": "Discover our wide range of unique and high-quality souvenirs that reflect the rich culture and heritage of Yogyakarta. Our products include traditional handicrafts, batik, and other local specialties. Each item is carefully crafted to ensure that you receive the best quality."
+  },
+  "about": {
+    "title": "About Us",
+    "description": "Souvenir Lilin Jogja is a souvenir shop in Yogyakarta, Indonesia. We are committed to providing our customers with the best shopping experience and ensuring that they leave with a piece of Yogyakarta to cherish forever. Our team is dedicated to sourcing the best products and providing excellent customer service."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "If you have any questions or inquiries, please feel free to contact us. We are here to help you with anything you need. You can reach us via email, phone, or by visiting our store in Yogyakarta."
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "description": "Your shopping cart is empty. Start adding products to your cart to proceed with your purchase."
+  },
+  "checkout": {
+    "title": "Checkout",
+    "description": "Review your order and proceed to checkout. Please provide your shipping information and payment details to complete your purchase."
+  },
+  "order": {
+    "title": "Order Confirmation",
+    "description": "Thank you for your order! We appreciate your business and will process your order as soon as possible. You will receive a confirmation email with your order details shortly."
+  },
+  "footer": {
+    "about": "About Us",
+    "contact": "Contact Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "followUs": "Follow Us"
+  },
+  "error": {
+    "notFound": "Page Not Found",
+    "serverError": "Server Error",
+    "unauthorized": "Unauthorized Access"
+  },
+  "success": {
+    "orderPlaced": "Your order has been placed successfully!",
+    "itemAdded": "Item added to cart successfully!",
+    "profileUpdated": "Profile updated successfully!"
+  },
+  "loading": {
+    "loading": "Loading...",
+    "fetchingData": "Fetching data...",
+    "processing": "Processing..."
+  },
+  "search": {
+    "placeholder": "Search for products...",
+    "noResults": "No results found for your search."
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page"
+  },
+  "filter": {
+    "category": "Category",
+    "priceRange": "Price Range",
+    "sortBy": "Sort By",
+    "apply": "Apply",
+    "reset": "Reset"
+  },
+  "newsletter": {
+    "subscribe": "Subscribe to our newsletter",
+    "emailPlaceholder": "Enter your email address",
+    "subscribeButton": "Subscribe"
+  },
+  "socialMedia": {
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot Password?",
+    "rememberMe": "Remember Me",
+    "loginButton": "Login",
+    "registerButton": "Register"
+  },
+  "profile": {
+    "title": "Profile",
+    "editProfile": "Edit Profile",
+    "orderHistory": "Order History",
+    "wishlist": "Wishlist",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "currency": "Currency",
+    "notifications": "Notifications",
+    "privacy": "Privacy Settings",
+    "saveChanges": "Save Changes"
+  },
+  "notFound": {
+    "title": "404 Not Found",
+    "description": "Sorry, the page you are looking for does not exist."
+  },
+  "serverError": {
+    "title": "500 Server Error",
+    "description": "Sorry, something went wrong on our end. Please try again later."
+  },
+  "unauthorized": {
+    "title": "401 Unauthorized",
+    "description": "You do not have permission to access this page."
+  },
+  "successMessages": {
+    "itemAddedToCart": "Item added to cart successfully!",
+    "profileUpdated": "Profile updated successfully!",
+    "orderPlaced": "Your order has been placed successfully!"
+  },
+  "errorMessages": {
+    "itemNotFound": "Item not found.",
+    "cartEmpty": "Your cart is empty.",
+    "orderFailed": "Order placement failed. Please try again."
+  },
+  "validationMessages": {
+    "requiredField": "This field is required.",
+    "invalidEmail": "Please enter a valid email address.",
+    "passwordMismatch": "Passwords do not match."
+  },
+  "confirmationMessages": {
+    "deleteItem": "Are you sure you want to delete this item?",
+    "logout": "Are you sure you want to logout?"
+  },
+  "general": {
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "close": "Close",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View",
+    "addToCart": "Add to Cart",
+    "buyNow": "Buy Now",
+    "continueShopping": "Continue Shopping"
+  },
+  "date": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "tomorrow": "Tomorrow",
+    "daysAgo": "{days} days ago",
+    "daysFromNow": "{days} days from now"
+  },
+  "time": {
+    "hoursAgo": "{hours} hours ago",
+    "hoursFromNow": "{hours} hours from now",
+    "minutesAgo": "{minutes} minutes ago",
+    "minutesFromNow": "{minutes} minutes from now"
+  },
+  "currency": {
+    "usd": "USD",
+    "eur": "EUR",
+    "idr": "IDR"
+  },
+  "payment": {
+    "creditCard": "Credit Card",
+    "paypal": "PayPal",
+    "bankTransfer": "Bank Transfer",
+    "cashOnDelivery": "Cash on Delivery"
+  },
+  "shipping": {
+    "standardShipping": "Standard Shipping",
+    "expressShipping": "Express Shipping",
+    "freeShipping": "Free Shipping",
+    "internationalShipping": "International Shipping"
+  },
+  "reviews": {
+    "title": "Customer Reviews",
+    "writeReview": "Write a Review",
+    "rating": "Rating",
+    "review": "Review",
+    "submitReview": "Submit Review",
+    "noReviews": "No reviews yet."
+  },
+  "wishlist": {
+    "title": "Wishlist",
+    "addToWishlist": "Add to Wishlist",
+    "removeFromWishlist": "Remove from Wishlist",
+    "noItems": "Your wishlist is empty."
+  },
+  "gallery": {
+    "title": "Gallery",
+    "viewMore": "View More",
+    "noImages": "No images available."
+  },
+  "blog": {
+    "title": "Blog",
+    "readMore": "Read More",
+    "noPosts": "No blog posts available."
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "noQuestions": "No questions available."
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "description": "Please read our terms of service carefully before using our website. By using our website, you agree to comply with these terms."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "description": "Your privacy is important to us. Please read our privacy policy to understand how we collect, use, and protect your information."
+  },
+  "cookies": {
+    "title": "Cookie Policy",
+    "description": "We use cookies to enhance your experience on our website. Please read our cookie policy to understand how we use cookies and how you can manage them."
+  },
+  "accessibility": {
+    "title": "Accessibility",
+    "description": "We are committed to making our website accessible to everyone. If you have any accessibility concerns, please contact us."
+  },
+  "sitemap": {
+    "title": "Sitemap",
+    "description": "Explore our website structure and find the information you need quickly."
+  }
+}

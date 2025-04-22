@@ -10,14 +10,23 @@ class ProductVariant extends Model
     use HasFactory;
 
     public $timestamps = false;
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'product_id',
+    ];
 
-    public function products()
+    /**
+     * Get the product that owns the variant.
+     */
+    public function product()
     {
         return $this->belongsTo(Product::class);
     }
 
-    public function productVariantOptions()
+    /**
+     * Get all the options for this variant.
+     */
+    public function productVariantOption()
     {
         return $this->hasMany(ProductVariantOption::class);
     }

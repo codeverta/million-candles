@@ -1,9 +1,220 @@
 import React from "react";
 
+const keywords = [
+  "toko lilin terdekat",
+  "jual lilin aromaterapi terdekat",
+  "toko lilin aromaterapi terdekat",
+  "toko aromaterapi terdekat",
+  "toko stearin terdekat",
+  "jual lilin besar terdekat",
+  "pabrik lilin terdekat",
+  "lilin aromaterapi terdekat",
+  "jual lilin terdekat",
+  "lilin",
+  "teknik lilin",
+  "toko bahan lilin terdekat",
+  "sebutkan alat dan bahan untuk membuat lilin warna-warni",
+  "pabrik lilin",
+  "jual stearin terdekat",
+  "lilin aromaterapi jogja",
+  "lilin aromaterapi dapat digunakan dalam acara seperti...",
+  "minyak esensial yang digunakan dalam pembuatan lilin aromaterapi harus memiliki kualitas...",
+  "proses pewarnaan kerajinan lilin dilakukan pada saat",
+  "tempat jual lilin aromaterapi terdekat",
+  "toko lilin",
+  "penjual lilin terdekat",
+  "toko lilin jogja",
+  "tempat jual lilin terdekat",
+  "lilin aromaterapi dapat digunakan dalam acara seperti",
+  "jual sumbu lilin terdekat",
+  "jenis jenis lilin",
+  "bahan tambahan dalam lilin aromaterapi seperti pewarna dan minyak esensial harus ditambahkan",
+  "proses pencairan lilin yang tepat dengan cara",
+  "supplier produsen lilin batang jogja yogyakarta",
+  "jual lilin merah terdekat",
+  "lilin dibuat dengan cara",
+  "lilin aromaterapi",
+  "toko aroma terapi terdekat",
+  "toko lilin ulang tahun terdekat",
+  "jual lilin besar",
+  "penjual lilin aromaterapi terdekat",
+  "teknik yang paling tepat untuk membuat lilin hias dengan berbagai bentuk adalah",
+  "proses membuat kerajinan lilin sebelum dibentuk atau dicetak adalah",
+  "lilin terbuat dari apa",
+  "toko jual lilin terdekat",
+  "tempat jual lilin besar terdekat",
+  "toko lilin elektrik terdekat",
+  "jual aromaterapi terdekat",
+  "cara membuat lilin hias",
+  "teknik pembuatan lilin",
+  "million candles",
+  "toko sumbu lilin terdekat",
+  "lilin terdekat",
+  "proses pembuatan lilin",
+  "lilin ibadah",
+  "toko lilin semarang",
+  "sumbu lilin beli dimana",
+  "teknik membuat lilin",
+  "bahan dasar lilin",
+  "lilin terbuat dari",
+  "manfaat lilin aromaterapi",
+  "harga lilin paskah",
+  "jual lilin",
+  "jual lilin ulang tahun terdekat",
+  "soy wax",
+  "bahan tambahan dalam lilin aromaterapi seperti pewarna dan minyak esensial harus ditambahkan...",
+  "harga lilin paskah besar",
+  "teknik pengolahan lilin",
+  "jenis lilin",
+  "teknik kerajinan lilin",
+  "lilin hias",
+  "logo lilin aromaterapi",
+  "pembuatan lilin",
+  "lilin aroma terapi adalah",
+  "lilin elektrik",
+  "stearin beli dimana",
+  "jual lilin elektrik terdekat",
+  "suhu lilin ketika dilelehkan adalah",
+  "sejarah lilin aromaterapi",
+  "cara pembuatan lilin",
+  "jual soy wax terdekat",
+  "toko lilin merah terdekat",
+  "jenis-jenis lilin",
+  "aromaterapi jogja",
+  "souvenir lilin aromaterapi",
+  "cara membuat lilin",
+  "fungsi lilin",
+  "kegunaan lilin",
+  "jual lilin merah",
+  "stearin lilin",
+  "toko merah terdekat",
+  "jual lampu lilin terdekat",
+  "tempat jual lilin ulang tahun terdekat",
+  "beli lilin aromaterapi dimana",
+  "macam macam lilin",
+  "kerajinan lilin hias",
+  "bahan pembuatan lilin",
+  "apa itu stearin",
+  "proses pembuatan kerajinan lilin",
+  "sifat lilin",
+  "karakteristik lilin",
+  "lilin merah beli dimana",
+  "jual cetakan lilin terdekat",
+  "apa itu lilin",
+  "toko oleh oleh terdekat",
+  "lilin aromaterapi biasanya dikemas dengan menggunakan...",
+  "toko lilin cina terdekat",
+  "cara buat lilin",
+  "bahan dasar pembuatan lilin",
+  "membuat lilin",
+  "lilin abadi",
+  "teknik pembuatan kerajinan lilin",
+  "ciri-ciri lilin",
+  "usaha terdekat",
+  "jual palm wax terdekat",
+  "beli sumbu lilin dimana",
+  "jual aroma terapi terdekat",
+  "lilin aromaterapi diy",
+  "lilin lebah beli dimana",
+  "sumbu lilin aromaterapi",
+  "sumbu lilin",
+  "cara membuat lilin sendiri",
+  "lilin sumbu",
+  "lilin adalah",
+  "jual lilin lebah terdekat",
+  "tempat beli lilin ulang tahun terdekat",
+  "berapa lama lilin mengeras",
+  "lilin aromaterapi unik",
+  "fungsi lilin di meja makan",
+  "beli lilin ulang tahun terdekat",
+  "jual lilin ulang tahun",
+  "toko perlengkapan ulang tahun terdekat",
+  "cara bikin lilin",
+  "lilin pilar",
+  "fungsi kerajinan lilin",
+  "teknik pengolahan bahan lunak dari lilin yaitu dengan menggunakan teknik",
+  "lilin terbuat dari bahan",
+  "bahan buat lilin",
+  "bahan utama lilin",
+  "bahan bahan membuat lilin",
+  "desain lilin aromaterapi",
+  "kemasan lilin aromaterapi",
+  "bahan membuat lilin",
+  "bahan untuk membuat lilin",
+  "kegunaan lilin aromaterapi",
+  "ciri ciri lilin",
+  "beli lilin",
+  "candles",
+  "jual ear candle terdekat",
+  "produksi lilin",
+  "stearin",
+  "lilin apung",
+  "lilin shop",
+  "pabrik lilin di jakarta",
+  "rumah lilin",
+  "tempat jualan lilin ulang tahun terdekat",
+  "apakah lilin aromaterapi bisa dipakai berapa kali",
+  "beli lilin dimana",
+  "beli lilin terdekat",
+  "jual lilin ultah terdekat",
+  "bahan lilin aromaterapi",
+  "harga lilin merah",
+  "jual es lilin terdekat",
+  "lilin ulir panjang",
+  "sketsa lilin aromaterapi",
+  "candle",
+  "candle candle",
+  "lilin batang magic",
+  "lilin jari",
+  "lilin merah",
+  "lilin stearin",
+  "candle shop near me",
+  "lilin ulang tahun terdekat",
+  "aroma lilin",
+  "palm wax beli dimana",
+  "parafin untuk lilin",
+  "yang jual lilin ulang tahun terdekat",
+  "bagaimana proses pembuatan lilin menjadi bentuk-bentuk yang unik",
+  "isi ulang rokok elektrik terdekat",
+  "lilin aromaterapi biasanya dikemas dengan menggunakan",
+  "lilin gelas",
+  "beli lilin ulang tahun dimana",
+  "souvenir lilin",
+  "bentuk kreasi dari ragam hias lilin yaitu",
+  "kerajinan lilin adalah",
+  "lilin tanggung",
+  "bahan baku untuk membuat lilin yaitu",
+  "lilin soya",
+  "stearin beli di toko apa",
+  "lilin aromaterapi souvenir",
+  "nama produk lilin aromaterapi",
+  "soy wax adalah",
+  "souvenir pernikahan lilin aromaterapi",
+  "bahan baku lilin",
+  "gambar lilin hias",
+  "bahan pembuat lilin",
+  "cetakan lilin hias",
+  "lilin terbuat dari bahan apa",
+  "lilin spa",
+  "produk...",
+];
+
 export default function Footer() {
   return (
     <footer className="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800 print:hidden">
       <div className="mx-auto max-w-screen-xl text-center">
+        <p className="text-justify leading-[2px] text-gray-600 dark:text-gray-400">
+          {keywords.map((keyword, index) => (
+            <a
+              key={index}
+              href={`/posts?search=${keyword}`}
+              className="hover:underline  text-xs text-gray-600 dark:text-gray-400"
+            >
+              {" "}
+              {keyword}{" "}
+            </a>
+          ))}
+        </p>
         <a
           href="#"
           className="flex mx-4 justify-center items-center text-2xl font-semibold text-gray-900 dark:text-white"
@@ -17,57 +228,10 @@ export default function Footer() {
           />
           Million Candles
         </a>
-        <ul className="flex flex-wrap mt-4 justify-center items-center mb-6 text-gray-900 dark:text-white">
-          <li>
-            <a
-              href="https://wa.me/+6281578956156?text=Halo%20saya%20tertarik%20dengan%20produk%20lilin%20Anda"
-              target="_blank"
-              className="mr-4 hover:underline md:mr-6 "
-            >
-              Whatsapp
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.instagram.com/souvenirlilin.id/"
-              target="_blank"
-              className="mr-4 hover:underline md:mr-6"
-            >
-              Instagram
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.tiktok.com/@souvenirlilin"
-              target="_blank"
-              className="mr-4 hover:underline md:mr-6"
-            >
-              Tiktok
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.souvenirlilin.id/posts"
-              className="mr-4 hover:underline md:mr-6 "
-            >
-              Blog
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.souvenirlilin.id/about"
-              className="mr-4 hover:underline md:mr-6"
-            >
-              Tentang Kami
-            </a>
-          </li>
-        </ul>
-        <span className="text-sm text-gray-400 sm:text-center dark:text-gray-400">
-          © 2007-{new Date().getFullYear()}{" "}
-          <a href="#" className="hover:underline">
-            Million Candles™
-          </a>
-        </span>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          &copy; {new Date().getFullYear()} Million Candles. All rights
+          reserved.
+        </p>
       </div>
     </footer>
   );

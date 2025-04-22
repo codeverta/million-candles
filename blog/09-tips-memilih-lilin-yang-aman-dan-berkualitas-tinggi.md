@@ -1,7 +1,7 @@
 ---
 title: "Tips Memilih Lilin yang Aman dan Berkualitas Tinggi"
 date: "2023-03-24"
-desc: "Artikel ini membahas tentang tips memilih lilin yang aman dan berkualitas tinggi. Pembaca dapat mempelajari tentang bahan baku lilin, aroma terapi, waktu bakar, wadah, label, dan harga dalam memilih lilin yang aman dan berkualitas tinggi. Selain itu, pembaca juga dapat menemukan informasi tentang koleksi lilin berkualitas tinggi yang tersedia di toko-toko terdekat atau online store favorit mereka. Tag-tag yang digunakan dalam artikel ini dapat membantu pembaca mencari informasi yang relevan dan menemukan inspirasi dalam menggunakan lilin untuk dekorasi rumah dan aroma terapi."
+desc: "Lilin sering kali menjadi pilihan untuk memperindah dekorasi rumah atau untuk memberikan aroma yang menenangkan. Namun, ada beberapa hal yang perlu dipertimbangkan ketika memilih lilin, terutama dalam hal keamanan dan kualitas. Berikut adalah beberapa tips memilih lilin yang aman dan berkualitas tinggi."
 tags: "lilin, dekorasi rumah, aroma terapi, bahan baku lilin, keamanan lilin"
 ---
 

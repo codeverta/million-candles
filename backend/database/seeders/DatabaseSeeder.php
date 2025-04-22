@@ -17,12 +17,17 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            UserSeeder::class,
-            ProductSeeder::class,
-            ProvinceSeeder::class,
-            RegencySeeder::class,
-            DistrictSeeder::class,
-            VillageSeeder::class,
+            // UserSeeder::class,
+            // ProductSeeder::class,
+            // ProvinceSeeder::class,
+            // RegencySeeder::class,
+            // DistrictSeeder::class,
+            // VillageSeeder::class,
+            // BankSeeder::class,
+            // BankAccountSeeder::class,
+            // FinancialCategorySeeder::class,
+            FinancialTransactionSeeder::class,
+            StockMovementSeeder::class,
         ]);
     }
 }

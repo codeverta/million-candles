@@ -10,8 +10,6 @@ tags: "lilin dibuat dengan cara, nama produk lilin aromaterapi, kerajinan lilin 
 date: "2024-08-28"
 ---
 
-# **Cara Membuat Lilin Hias: Panduan Lengkap untuk Dekorasi Rumah**
-
 ## **Pengenalan tentang Lilin Hias**
 
 ### **Apa Itu Lilin Hias?**

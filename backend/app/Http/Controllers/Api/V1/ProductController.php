@@ -8,6 +8,7 @@ use LaravelJsonApi\Laravel\Http\Controllers\Actions;
 use App\JsonApi\V1\Products\ProductRequest;
 use App\JsonApi\V1\Products\ProductQuery;
 use LaravelJsonApi\Core\Responses\DataResponse;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -34,5 +35,4 @@ class ProductController extends Controller
         // do something only on creating...
         // dd($request, $query);
     }
-
 }
