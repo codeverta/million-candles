@@ -1,6 +1,5 @@
 <script setup>
 import NavMain from "@/components/NavMain.vue";
-import NavProjects from "@/components/NavProjects.vue";
 import NavUser from "@/components/NavUser.vue";
 import TeamSwitcher from "@/components/TeamSwitcher.vue";
 import {
@@ -20,8 +19,8 @@ import {
   GalleryVerticalEnd,
   Map,
   PieChart,
-  Settings2,
   SquareTerminal,
+  Wallet,
 } from "lucide-vue-next";
 
 const props = defineProps({
@@ -36,7 +35,7 @@ const data = {
   user: {
     name: "shadcn",
     email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "https://randomuser.me/api/portraits/men/33.jpg",
   },
   teams: [
     {
@@ -58,7 +57,7 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "/dashboard",
+      url: "/",
       icon: SquareTerminal,
       isActive: false,
     },
@@ -84,34 +83,15 @@ const data = {
     },
     {
       title: "Stock Movements",
-      url: "/dashboard/stock-movements",
+      url: "/stock-movements",
       icon: SquareTerminal,
       isActive: false,
     },
     {
       title: "Finance",
-      url: "/dashboard/finance",
-      icon: Bot,
-      isActive: false,
-    },
-    {
-      title: "Finance",
       url: "/finance",
-      icon: Bot,
-      items: [
-        {
-          title: "Accounts",
-          url: "/dashboard/finance",
-        },
-        {
-          title: "Budgets",
-          url: "#",
-        },
-        {
-          title: "Reports",
-          url: "#",
-        },
-      ],
+      icon: Wallet,
+      isActive: false,
     },
     {
       title: "HRMS",
@@ -120,19 +100,19 @@ const data = {
       items: [
         {
           title: "Salary Rate Management",
-          url: "/dashboard/hrms/salary-rate-management",
+          url: "/hrms/salary-rate-management",
         },
         {
           title: "Salary Detail",
-          url: "/dashboard/hrms/salary-detail",
+          url: "/hrms/salary-detail",
         },
         {
           title: "Salary Calculation",
-          url: "/dashboard/hrms/salary-calculation",
+          url: "/hrms/salary-calculation",
         },
         {
           title: "Attendance",
-          url: "/dashboard/hrms/attendance",
+          url: "/hrms/attendance",
         },
       ],
     },

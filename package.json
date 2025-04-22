@@ -9,7 +9,9 @@
     "lint": "next lint",
     "prepare": "husky install",
     "postbuild": "next-sitemap",
-    "build:vue": "cd erp && npm run build && cp -r dist/* ../public/dashboard/"
+    "build:vue": "cd erp && npm run build && cp -r dist/* ../public/dashboard/",
+    "enhance-markdown": "node scripts/enhance-markdown.js",
+    "process-internal-links": "node scripts/process-internal-links.js"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -46,6 +48,7 @@
     "remark": "^14.0.2",
     "remark-gfm": "^3.0.1",
     "remark-html": "^15.0.2",
+    "slugify": "^1.6.6",
     "sonner": "^0.1.1",
     "swiper": "^9.0.5"
   },

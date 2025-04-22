@@ -2,12 +2,14 @@
 import { Button } from "@/components/ui/button";
 import { useRoute } from "vue-router";
 import DashboardLayout from "./layout/DashboardLayout.vue";
+import { Toaster } from "@/components/ui/sonner";
 
 const route = useRoute();
 </script>
 
 <template>
-  <template v-if="route.path !== '/dashboard/login'">
+  <Toaster />
+  <template v-if="route.path !== '/login'">
     <DashboardLayout />
   </template>
   <template v-else>

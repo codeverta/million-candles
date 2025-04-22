@@ -140,11 +140,16 @@ const PrintOrder = () => {
             <tbody>
               {orderDetails.map((orderDetail, index) => {
                 const product = getProductForOrderDetail(orderDetail);
+                // Get variant combination data
+                const variantCombination =
+                  orderDetail.attributes.variantCombination || {};
+
                 return (
                   <tr key={index} className="border-b border-gray-200">
                     <td className="py-2 px-2">{orderDetail.attributes.qty}</td>
                     <td className="py-2 px-2">
-                      {product?.attributes.name} ({product?.attributes.code})
+                      ({product?.attributes.code}) {product?.attributes.name} (
+                      {variantCombination.variant_sku})
                     </td>
                     <td className="text-right py-2 px-2">
                       {formatCurrency(orderDetail.attributes.price)}

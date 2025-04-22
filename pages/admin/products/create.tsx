@@ -83,7 +83,7 @@ function CreateProduct() {
   }, []);
 
   const fetchProduct = (id: string | number) => {
-    api.get(`products/${id}`, productParams).then((res: any) => {
+    api.get(`products/${id}`, productParams).then(async (res: any) => {
       setState({
         ...state,
         ...res.data.data.attributes,
@@ -91,10 +91,11 @@ function CreateProduct() {
       });
 
       // Check if product has variants
-      if (
-        res.data.included &&
-        res.data.included.some((item: any) => item.type === "product-variants")
-      ) {
+      const variantsResponse = await api.get(
+        `product-variants?product_id=${res.data.data.id}`
+      );
+
+      if (variantsResponse.data.length > 0) {
         setHasVariants(true);
       }
     });

@@ -17,6 +17,7 @@ use App\Http\Controllers\MaterialStockMovementController;
 use App\Http\Controllers\VariantCombinationController;
 use App\Http\Controllers\ProductVariantOptionController;
 use App\Http\Controllers\ProductVariantController;
+use App\Http\Controllers\FinancialTransactionController;
 
 
 /*
@@ -50,6 +51,18 @@ Route::prefix('/v1')->group(function () {
         Route::post('/midtransWebhook', [OrderController::class, 'midtransWebhook']);
         Route::delete('/documents/{id}', [DocumentController::class, 'deleting']);
     });
+    Route::prefix('financial-transactions')->group(function () {
+        Route::get('/', [FinancialTransactionController::class, 'index']);
+        Route::post('/', [FinancialTransactionController::class, 'store']);
+        Route::get('/{id}', [FinancialTransactionController::class, 'show']);
+        Route::put('/{id}', [FinancialTransactionController::class, 'update']);
+        Route::delete('/{id}', [FinancialTransactionController::class, 'destroy']);
+    });
+    
+    Route::get('/summary', [FinancialTransactionController::class, 'summary']);
+    Route::get('/bank-accounts', [FinancialTransactionController::class, 'bankAccounts']);
+    Route::get('/dropdown-data', [FinancialTransactionController::class, 'dropdownData']);
+
 });
 
 JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {

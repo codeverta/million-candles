@@ -15,6 +15,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import { ChevronRight } from "lucide-vue-next";
+import { RouterLink } from "vue-router";
 
 defineProps({
   items: { type: Array, required: true },
@@ -49,9 +50,9 @@ defineProps({
                   :key="subItem.title"
                 >
                   <SidebarMenuSubButton as-child>
-                    <a :href="subItem.url">
+                    <RouterLink :to="subItem.url">
                       <span>{{ subItem.title }}</span>
-                    </a>
+                    </RouterLink>
                   </SidebarMenuSubButton>
                 </SidebarMenuSubItem>
               </SidebarMenuSub>
@@ -60,10 +61,10 @@ defineProps({
         </Collapsible>
         <SidebarMenuItem v-else>
           <SidebarMenuButton :tooltip="item.title" as-child>
-            <a :href="item.url">
+            <RouterLink :to="item.url">
               <component :is="item.icon" v-if="item.icon" />
               <span>{{ item.title }}</span>
-            </a>
+            </RouterLink>
           </SidebarMenuButton>
         </SidebarMenuItem>
       </template>

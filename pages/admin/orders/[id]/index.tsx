@@ -6,6 +6,9 @@ import {
   TableCell,
   TableRow,
   TextField,
+  Typography,
+  Box,
+  Divider,
 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import AdminLayout from "components/layout/AdminLayout";
@@ -147,12 +150,13 @@ function OrderDetail() {
             <TableCell>Pembeli</TableCell>
             <TableCell>
               {orders.data.attributes.buyer_name ??
-                getRelationship(
+                (getRelationship(
                   orders,
                   orders.data,
                   "destination-users",
                   "users"
-                ).attributes.email}
+                )?.attributes?.email ||
+                  "N/A")}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -163,10 +167,6 @@ function OrderDetail() {
                 color={getOrderStatus(orders.data).color}
               />
             </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Pembeli</TableCell>
-            <TableCell>{orders.data.attributes.buyer_name}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Metode Pembayaran</TableCell>
@@ -228,18 +228,138 @@ function OrderDetail() {
               orderDetail,
               "products"
             );
+
+            // Get variant combination data
+            const variantCombination =
+              orderDetail.attributes.variantCombination || {};
+
             return (
-              <TableRow className="bg-gray-50" key={orderDetail.id}>
-                <TableCell>
-                  <p className="pl-4">
-                    - ({products.attributes.code}) {products.attributes.name}
-                  </p>
-                </TableCell>
-                <TableCell>
-                  {toCurrency(orderDetail.attributes.price)} x{" "}
-                  {orderDetail.attributes.qty}
-                </TableCell>
-              </TableRow>
+              <React.Fragment key={orderDetail.id}>
+                <TableRow className="bg-gray-50">
+                  <TableCell>
+                    <p className="pl-4 font-medium">
+                      - ({products.attributes.code}) {products.attributes.name}
+                    </p>
+                  </TableCell>
+                  <TableCell>
+                    {toCurrency(orderDetail.attributes.price)} x{" "}
+                    {orderDetail.attributes.qty}
+                  </TableCell>
+                </TableRow>
+
+                {/* Variant Information Row */}
+                <TableRow className="bg-gray-50">
+                  <TableCell colSpan={2}>
+                    <Box className="pl-8 py-2">
+                      <Typography variant="subtitle2" className="mb-1">
+                        Variant:{" "}
+                        <span className="font-normal">
+                          {orderDetail.attributes.variantSku || "N/A"}
+                        </span>
+                      </Typography>
+
+                      {/* Product Variants Info */}
+                      {products.attributes.product_variants && (
+                        <Box className="ml-2 mt-2">
+                          <Typography
+                            variant="caption"
+                            className="text-gray-600"
+                          >
+                            Product Variants:
+                          </Typography>
+                          <Box className="flex flex-wrap gap-2 mt-1">
+                            {products.attributes.product_variants.map(
+                              (variant: any) => (
+                                <Box
+                                  key={variant.id}
+                                  className="bg-blue-50 p-2 rounded border border-blue-100"
+                                >
+                                  <Typography
+                                    variant="body2"
+                                    className="font-medium"
+                                  >
+                                    {variant.name}:
+                                  </Typography>
+                                  <Box className="flex flex-wrap gap-1 mt-1">
+                                    {variant.product_variant_option.map(
+                                      (option: any) => (
+                                        <Chip
+                                          key={option.id}
+                                          label={option.name}
+                                          size="small"
+                                          variant="outlined"
+                                          className="text-xs"
+                                        />
+                                      )
+                                    )}
+                                  </Box>
+                                </Box>
+                              )
+                            )}
+                          </Box>
+                        </Box>
+                      )}
+
+                      {/* Selected Variant Combination */}
+                      {variantCombination && variantCombination.sku && (
+                        <Box className="ml-2 mt-3 p-2 bg-green-50 rounded border border-green-100">
+                          <Typography
+                            variant="caption"
+                            className="text-gray-600"
+                          >
+                            Selected Variant Combination:
+                          </Typography>
+                          <Box className="mt-1">
+                            <Typography variant="body2">
+                              <span className="font-medium">SKU:</span>{" "}
+                              {variantCombination.sku}
+                            </Typography>
+                            <Typography variant="body2">
+                              <span className="font-medium">Price:</span>{" "}
+                              {toCurrency(parseFloat(variantCombination.price))}
+                            </Typography>
+                            {variantCombination.values &&
+                              variantCombination.values.length > 0 && (
+                                <Box className="mt-1">
+                                  <Typography
+                                    variant="caption"
+                                    className="font-medium"
+                                  >
+                                    Selected Options:
+                                  </Typography>
+                                  <Box className="flex flex-wrap gap-1 mt-1">
+                                    {variantCombination.values.map(
+                                      (value: any) =>
+                                        value.product_variant_option && (
+                                          <Chip
+                                            key={value.id}
+                                            label={`${
+                                              value.product_variant_option
+                                                .product_variant?.name || ""
+                                            }: ${
+                                              value.product_variant_option.name
+                                            }`}
+                                            size="small"
+                                            color="primary"
+                                            className="text-xs"
+                                          />
+                                        )
+                                    )}
+                                  </Box>
+                                </Box>
+                              )}
+                          </Box>
+                        </Box>
+                      )}
+                    </Box>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell colSpan={2} className="p-1">
+                    <Divider />
+                  </TableCell>
+                </TableRow>
+              </React.Fragment>
             );
           })}
           <TableRow>
@@ -266,7 +386,7 @@ function OrderDetail() {
         </TableBody>
       </Table>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 mt-4">
         {is_validate_buyer && !is_validate_seller && (
           <Button
             onClick={!is_shipping ? handleVerifyOrder : undefined}

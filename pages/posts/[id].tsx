@@ -1,8 +1,9 @@
+// pages/posts/[id].jsx
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { NextSeo } from "next-seo";
-import { getPostData, getAllPostIds, getSortedPostsData } from "lib/posts";
+import { getPostData, getAllPostIds } from "lib/posts";
 import {
   Calendar,
   User,
@@ -13,6 +14,7 @@ import {
 } from "lucide-react";
 import CopyLinkButton from "./CopyLinkButton";
 import Layout from "components/layout/Landing";
+import RelatedPosts from "./RelatedPosts"; // Import the new component
 
 // Utility function to convert date
 const convertDate = (date) => {
@@ -59,51 +61,7 @@ const Breadcrumb = ({ postTitle, slug }) => {
   );
 };
 
-// Related Posts Component
-const RelatedPosts = ({ currentSlug, posts }: any) => {
-  const currentPost = posts.find((p) => p.id === currentSlug);
-  const relatedPosts = posts
-    .filter(
-      (post) =>
-        post.id !== currentSlug &&
-        post.tags
-          .split(",")
-          ?.some((tag) => currentPost?.tags?.split(",").includes(tag))
-    )
-    .slice(0, 3);
-  if (relatedPosts.length === 0) return null;
-
-  return (
-    <section className="my-12 border-t pt-8 dark:border-gray-700">
-      <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">
-        Related Posts
-      </h3>
-      <div className="grid md:grid-cols-3 gap-6">
-        {relatedPosts.map((post) => (
-          <div
-            key={post.id}
-            className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-md"
-          >
-            <Link className="block" href={`/posts/${post.id}`}>
-              <h4 className="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400">
-                {post.title}
-              </h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
-                {post.desc}
-              </p>
-              <div className="mt-4 flex items-center text-xs text-gray-500 dark:text-gray-400">
-                <Calendar className="w-4 h-4 mr-2" />
-                {convertDate(post.date)}
-              </div>
-            </Link>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
-
-function Post({ postData, allPosts, slug }) {
+function Post({ postData, slug }) {
   // Generate a random background image URL from Lorem Picsum
   const backgroundImageUrl = `https://picsum.photos/seed/${slug}/1600/900`;
 
@@ -183,7 +141,7 @@ function Post({ postData, allPosts, slug }) {
             {/* Header Section */}
             <header className="mb-10 border-b pb-6 dark:border-gray-700 relative">
               <div className="absolute top-0 right-0 text-4xl">
-                {postData.tags && postData.tags.split(", ").includes("tech")
+                {postData.tags && postData.tags.split(",").includes("tech")
                   ? "💻"
                   : "📝"}
               </div>
@@ -249,8 +207,10 @@ function Post({ postData, allPosts, slug }) {
             />
           </article>
 
-          {/* Related Posts */}
-          <RelatedPosts currentSlug={slug} posts={allPosts} />
+          {/* Related Posts - Using our new component */}
+          {postData.relatedPosts && postData.relatedPosts.length > 0 && (
+            <RelatedPosts posts={postData.relatedPosts} />
+          )}
         </div>
 
         {/* Footer Decoration */}
@@ -272,12 +232,10 @@ export default Post;
 export async function getStaticProps({ params }) {
   const slug = params.id;
   const postData = await getPostData(slug);
-  const allPosts = await getSortedPostsData();
 
   return {
     props: {
       postData,
-      allPosts,
       slug,
     },
   };

@@ -13,10 +13,11 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableRow,
   TextField,
-  Typography,
+  MenuItem,
+  Select,
+  Box,
 } from "@mui/material";
 import StoreLayout from "components/layout/StoreLayout";
 import React, { useMemo, useState } from "react";
@@ -25,50 +26,15 @@ import { toCurrency } from "utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import api from "utils/api";
 import LoadingBackdrop from "components/mui/LoadingBackdrop";
-import DeleteIcon from "@mui/icons-material/Delete";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { toast } from "sonner";
 import { useGetFetchQuery } from "utils/hooks";
 import { useRouter } from "next/router";
-import PrintIcon from "@mui/icons-material/Print";
+import { paymentsType } from "./functions";
 
-const productParams = {
-  "fields[products]": "name,price,code",
-  // "page[size]": 5,
-};
-
-const userParams = {
-  // "page[size]": 5,
-};
-
-const paymentsType = [
-  {
-    label: "Cash",
-    value: "cash",
-  },
-  {
-    label: "Transfer",
-    value: "transfer",
-  },
-  {
-    label: "Midtrans",
-    value: "midtrans",
-  },
-];
 function CreateOrder() {
   const router = useRouter();
-  const [state, setState] = useState<{
-    buyerName: string;
-    destinationUser: any;
-    isBuyer: boolean;
-    paymentType: string;
-    selectedProducts: any;
-    discount: number;
-    discountType: "percentage" | "nominal";
-    shippingCost: number;
-    downPayment: number;
-    printInvoice: boolean;
-  }>({
+  const [state, setState] = useState<any>({
     buyerName: "",
     destinationUser: {},
     paymentType: "",
@@ -80,6 +46,14 @@ function CreateOrder() {
     downPayment: 0,
     printInvoice: true,
   });
+
+  // Add a state to track variant selection modal
+  const [variantSelectionData, setVariantSelectionData] = useState<any>({
+    isOpen: false,
+    product: null,
+    selectedVariantCombination: null,
+  });
+
   const getSelf: any = useGetFetchQuery(["self"]);
   const createOrder = useMutation({
     mutationKey: ["order", "create"],
@@ -90,13 +64,13 @@ function CreateOrder() {
   const getProducts = useQuery({
     queryKey: ["products"],
     queryFn: () => {
-      return api.get("products", productParams);
+      return api.get("products");
     },
   });
   const getUsers = useQuery({
     queryKey: ["users"],
     queryFn: () => {
-      return api.get("users", userParams);
+      return api.get("users");
     },
   });
   const productsGate = getProducts.isLoading || getProducts.isError;
@@ -109,10 +83,20 @@ function CreateOrder() {
     () => (!productsGate ? getProducts.data.data : null),
     [getProducts]
   );
+
+  // Helper function to check if a product has variants
+  const hasVariants = (product) => {
+    return product?.attributes?.variant_combinations?.length > 0;
+  };
+
   const totalPrice = useMemo(() => {
     const productTotal = state.selectedProducts.reduce(
-      (total: any, current: any) =>
-        total + current.attributes.quantity * current.attributes.price,
+      (total: any, current: any) => {
+        const price = current.selectedVariantCombination
+          ? parseFloat(current.selectedVariantCombination.price)
+          : current.attributes.price;
+        return total + current.attributes.quantity * price;
+      },
       0
     );
 
@@ -164,11 +148,73 @@ function CreateOrder() {
     if (!value) {
       return;
     }
+
     const newProduct = products.data.find((it: any) => it.id == value.value);
-    newProduct.attributes.quantity = 1;
+
+    // Check if product has variants
+    if (hasVariants(newProduct)) {
+      // Open variant selection modal
+      setVariantSelectionData({
+        isOpen: true,
+        product: newProduct,
+        selectedVariantCombination: null,
+      });
+    } else {
+      // Regular product without variants
+      newProduct.attributes.quantity = 1;
+      setState({
+        ...state,
+        selectedProducts: [
+          ...state.selectedProducts,
+          { ...newProduct, selectedVariantCombination: null },
+        ],
+      });
+    }
+  };
+
+  const handleVariantSelectionConfirm = () => {
+    if (
+      !variantSelectionData.product ||
+      !variantSelectionData.selectedVariantCombination
+    ) {
+      return;
+    }
+
+    const productWithVariant = {
+      ...variantSelectionData.product,
+      selectedVariantCombination:
+        variantSelectionData.selectedVariantCombination,
+      attributes: {
+        ...variantSelectionData.product.attributes,
+        quantity: 1,
+      },
+    };
+
     setState({
       ...state,
-      selectedProducts: [...state.selectedProducts, newProduct],
+      selectedProducts: [...state.selectedProducts, productWithVariant],
+    });
+
+    // Reset variant selection state
+    setVariantSelectionData({
+      isOpen: false,
+      product: null,
+      selectedVariantCombination: null,
+    });
+  };
+
+  const handleVariantSelectionCancel = () => {
+    setVariantSelectionData({
+      isOpen: false,
+      product: null,
+      selectedVariantCombination: null,
+    });
+  };
+
+  const handleVariantCombinationChange = (variantCombination) => {
+    setVariantSelectionData({
+      ...variantSelectionData,
+      selectedVariantCombination: variantCombination,
     });
   };
 
@@ -176,7 +222,12 @@ function CreateOrder() {
     setState({
       ...state,
       selectedProducts: state.selectedProducts.filter(
-        (selected: any) => selected.id != it.id
+        (selected: any) =>
+          selected.id != it.id ||
+          // If same product but different variant combination
+          (selected.id === it.id &&
+            selected.selectedVariantCombination?.id !==
+              it.selectedVariantCombination?.id)
       ),
     });
   };
@@ -261,17 +312,23 @@ function CreateOrder() {
       onSuccess: async (res) => {
         const orderId = res.data.data.id;
 
-        // todo bikin post ke order details
+        // Create order details with variant information if available
         const batchCreateOrderDetails = state.selectedProducts.map(
           (product: any) => {
-            return api.post(`order-details`, {
+            const price = product.selectedVariantCombination
+              ? parseFloat(product.selectedVariantCombination.price)
+              : product.attributes.price;
+
+            const payload = {
               data: {
                 type: "order-details",
                 attributes: {
                   qty: parseInt(product.attributes.quantity),
-                  price: product.attributes.price,
-                  total_price:
-                    product.attributes.quantity * product.attributes.price,
+                  price: price,
+                  total_price: product.attributes.quantity * price,
+                  variant_combination_id:
+                    product.selectedVariantCombination?.id || null,
+                  variant_sku: product.selectedVariantCombination?.sku || null,
                 },
                 relationships: {
                   products: {
@@ -288,7 +345,9 @@ function CreateOrder() {
                   },
                 },
               },
-            });
+            };
+
+            return api.post(`order-details`, payload);
           }
         );
 
@@ -318,8 +377,97 @@ function CreateOrder() {
     return <LoadingBackdrop />;
   }
 
+  // Format the display of variant options
+  const getVariantDisplayText = (variantCombination) => {
+    if (!variantCombination) return "";
+    return variantCombination.sku || "Default";
+  };
+
+  // Get price to display for a product
+  const getProductPrice = (product) => {
+    if (product.selectedVariantCombination) {
+      return toCurrency(parseFloat(product.selectedVariantCombination.price));
+    }
+    return toCurrency(product.attributes.price);
+  };
+
   return (
     <div>
+      {/* Product Variant Selection Modal */}
+      {variantSelectionData.isOpen && variantSelectionData.product && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+            <h2 className="text-xl font-bold mb-4">Choose Variant</h2>
+            <p className="mb-4">
+              {variantSelectionData.product.attributes.name} -{" "}
+              {variantSelectionData.product.attributes.code}
+            </p>
+
+            <div className="mb-6">
+              <FormControl fullWidth className="mb-4">
+                <Select
+                  value={
+                    variantSelectionData.selectedVariantCombination?.id || ""
+                  }
+                  onChange={(e) => {
+                    const selectedId = e.target.value;
+                    const selectedVariant =
+                      variantSelectionData.product.attributes.variant_combinations.find(
+                        (v) => v.id.toString() === selectedId.toString()
+                      );
+                    handleVariantCombinationChange(selectedVariant);
+                  }}
+                  displayEmpty
+                  className="mb-2"
+                >
+                  <MenuItem value="" disabled>
+                    Select variant
+                  </MenuItem>
+                  {variantSelectionData.product.attributes.variant_combinations.map(
+                    (variant) => (
+                      <MenuItem key={variant.id} value={variant.id}>
+                        {variant.sku} - {toCurrency(parseFloat(variant.price))}
+                      </MenuItem>
+                    )
+                  )}
+                </Select>
+              </FormControl>
+
+              {variantSelectionData.selectedVariantCombination && (
+                <div className="mb-4 p-2 bg-gray-100 rounded">
+                  <p>
+                    <strong>Price:</strong>{" "}
+                    {toCurrency(
+                      parseFloat(
+                        variantSelectionData.selectedVariantCombination.price
+                      )
+                    )}
+                  </p>
+                  <p>
+                    <strong>Stock:</strong>{" "}
+                    {variantSelectionData.selectedVariantCombination.stock}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            <div className="flex justify-end gap-2">
+              <Button onClick={handleVariantSelectionCancel} variant="outlined">
+                Cancel
+              </Button>
+              <Button
+                onClick={handleVariantSelectionConfirm}
+                variant="contained"
+                disabled={!variantSelectionData.selectedVariantCombination}
+                className="bg-blue-500"
+              >
+                Add to Order
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <Table>
         <TableBody>
           <TableRow>
@@ -378,7 +526,12 @@ function CreateOrder() {
             <>
               {state.selectedProducts.map((it: any, index: number) => {
                 return (
-                  <TableRow className="relative" key={index}>
+                  <TableRow
+                    className="relative"
+                    key={`${it.id}-${
+                      it.selectedVariantCombination?.id || "default"
+                    }`}
+                  >
                     <TableCell colSpan={2}>
                       <IconButton
                         onClick={() => handleDeleteRow(it)}
@@ -388,8 +541,15 @@ function CreateOrder() {
                       </IconButton>
                       <p className="pr-10">
                         ({it.attributes.code}) {it.attributes.name}
+                        {it.selectedVariantCombination && (
+                          <span className="ml-2 text-sm bg-gray-100 px-2 py-1 rounded">
+                            {getVariantDisplayText(
+                              it.selectedVariantCombination
+                            )}
+                          </span>
+                        )}
                       </p>
-                      {toCurrency(it.attributes.price)}
+                      {getProductPrice(it)}
                     </TableCell>
                     <TableCell colSpan={1}>
                       <InputBase
@@ -472,35 +632,6 @@ function CreateOrder() {
           <TableRow>
             <TableCell>Sisa Pembayaran</TableCell>
             <TableCell colSpan={2}>{toCurrency(remainingPayment)}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <FormGroup>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={state.printInvoice}
-                      onChange={(e) =>
-                        setState({ ...state, printInvoice: e.target.checked })
-                      }
-                    />
-                  }
-                  label="Print invoice"
-                  classes={{
-                    label: "text-sm",
-                  }}
-                />
-              </FormGroup>
-            </TableCell>
-            <TableCell colSpan={2}>
-              <Button
-                onClick={handlePrint}
-                variant="outlined"
-                startIcon={<PrintIcon />}
-              >
-                Print
-              </Button>
-            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell colSpan={2} style={{ verticalAlign: "top" }}>

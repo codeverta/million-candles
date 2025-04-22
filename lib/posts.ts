@@ -1,9 +1,15 @@
+// lib/posts.js
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 import gfm from "remark-gfm";
+import {
+  buildKeywordPostMap,
+  addInternalLinks,
+  addContextualLinks,
+} from "./internalLinks";
 
 const postsDirectory = path.join(process.cwd(), "blog");
 
@@ -27,8 +33,9 @@ export function getSortedPostsData() {
       ...matterResult.data,
     };
   });
+
   // Sort posts by date
-  return allPostsData.sort((a: any, b: any) => {
+  return allPostsData.sort((a, b) => {
     if (a.date < b.date) {
       return 1;
     } else {
@@ -48,18 +55,33 @@ export function getAllPostIds() {
   });
 }
 
-export async function getPostData(id: string) {
+export async function getPostData(id) {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
 
+  // Get all posts and build keyword map for internal linking
+  const allPosts = getSortedPostsData();
+  const keywordMap = buildKeywordPostMap();
+
+  // Add internal links to the content
+  // You can choose between addInternalLinks (section-based) or addContextualLinks (inline)
+  const contentWithLinks = addContextualLinks(
+    matterResult.content,
+    id,
+    allPosts,
+    keywordMap,
+    3 // Maximum number of links to add
+  );
+
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()
     .use(html)
     .use(gfm)
-    .process(matterResult.content);
+    .process(contentWithLinks);
+
   const contentHtml = processedContent.toString();
 
   // Combine the data with the id and contentHtml
@@ -68,4 +90,37 @@ export async function getPostData(id: string) {
     contentHtml,
     ...matterResult.data,
   };
+}
+
+// Optional: Add this function if you want to preprocess all posts at build time
+export async function preprocessAllPosts() {
+  const allPosts = getSortedPostsData();
+  const keywordMap = buildKeywordPostMap();
+
+  for (const post of allPosts) {
+    const fullPath = path.join(postsDirectory, `${post.id}.md`);
+    const fileContents = fs.readFileSync(fullPath, "utf8");
+    const matterResult = matter(fileContents);
+
+    // Add internal links
+    const contentWithLinks = addContextualLinks(
+      matterResult.content,
+      post.id,
+      allPosts,
+      keywordMap,
+      3
+    );
+
+    // Write back to the file if content changed
+    if (contentWithLinks !== matterResult.content) {
+      const updatedFileContent = matter.stringify(
+        contentWithLinks,
+        matterResult.data
+      );
+      fs.writeFileSync(fullPath, updatedFileContent);
+      console.log(`Updated internal links in: ${post.id}`);
+    }
+  }
+
+  console.log("Finished preprocessing all posts with internal links");
 }
