@@ -14,6 +14,15 @@ const convertDate = (date) => {
 };
 
 const RelatedPosts = ({ posts }) => {
+  const colors = [
+    "bg-blue-500",
+    "bg-green-500",
+    "bg-yellow-500",
+    "bg-purple-500",
+    "bg-pink-500",
+    "bg-red-500",
+    "bg-indigo-500",
+  ];
   if (!posts || posts.length === 0) return null;
 
   return (
@@ -24,14 +33,14 @@ const RelatedPosts = ({ posts }) => {
       </h3>
 
       <div className="grid md:grid-cols-3 gap-6">
-        {posts.map((post) => (
+        {posts.map((post, index) => (
           <div
             key={post.id}
             className="bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md 
                      transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
           >
             {/* Random background color for visual interest */}
-            <div className={`h-2 ${getRandomColorClass()}`}></div>
+            <div className={`h-2 ${colors[index]}`}></div>
 
             <div className="p-6">
               <Link className="block" href={`/posts/${post.id}`}>
@@ -65,19 +74,5 @@ const RelatedPosts = ({ posts }) => {
     </section>
   );
 };
-
-// Helper function to get a random color class
-function getRandomColorClass() {
-  const colors = [
-    "bg-blue-500",
-    "bg-green-500",
-    "bg-yellow-500",
-    "bg-purple-500",
-    "bg-pink-500",
-    "bg-red-500",
-    "bg-indigo-500",
-  ];
-  return colors[Math.floor(Math.random() * colors.length)];
-}
 
 export default RelatedPosts;

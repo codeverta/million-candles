@@ -125,7 +125,7 @@ function insertRelatedPostLinks(content, relatedPosts) {
   }
 }
 
-// New function to find contextual keyword mentions and add inline links
+// Updated function to prevent nested links
 function insertContextualLinks(content, allPosts, currentPostId) {
   // Create a map of keywords to posts for efficient lookup
   const keywordToPostMap = new Map();
@@ -178,15 +178,43 @@ function insertContextualLinks(content, allPosts, currentPostId) {
       return paragraph;
     }
 
-    // Check for significant keyword matches
-    keywordToPostMap.forEach((posts, keyword) => {
-      // Only proceed if we haven't reached limit and haven't already modified this paragraph
-      if (insertedLinks < MAX_LINKS && !linkedPostIds.has(posts[0].id)) {
-        // Case-insensitive search
-        const lowerParagraph = paragraph.toLowerCase();
-        const keywordIndex = lowerParagraph.indexOf(keyword);
+    // Create a map to track which parts of the paragraph are already linked
+    // We'll use this to prevent overlapping or nested links
+    const linkedRanges = [];
 
-        if (keywordIndex !== -1) {
+    // Sort keywords by length (descending) to prioritize longer phrases
+    const sortedKeywords = Array.from(keywordToPostMap.keys()).sort(
+      (a, b) => b.length - a.length
+    );
+
+    // Process each keyword
+    for (const keyword of sortedKeywords) {
+      // Only proceed if we haven't reached limit and haven't already linked this post
+      const posts = keywordToPostMap.get(keyword);
+      if (
+        !posts ||
+        !posts[0] ||
+        insertedLinks >= MAX_LINKS ||
+        linkedPostIds.has(posts[0].id)
+      ) {
+        continue;
+      }
+
+      // Case-insensitive search
+      const lowerParagraph = paragraph.toLowerCase();
+      let keywordIndex = lowerParagraph.indexOf(keyword);
+
+      if (keywordIndex !== -1) {
+        // Check if this range overlaps with any existing linked range
+        const keywordEnd = keywordIndex + keyword.length;
+        const overlaps = linkedRanges.some(
+          ([start, end]) =>
+            (keywordIndex >= start && keywordIndex < end) || // Start inside existing range
+            (keywordEnd > start && keywordEnd <= end) || // End inside existing range
+            (keywordIndex <= start && keywordEnd >= end) // Completely contains existing range
+        );
+
+        if (!overlaps) {
           // Get the actual cased version from the original paragraph
           const actualKeyword = paragraph.substring(
             keywordIndex,
@@ -197,18 +225,29 @@ function insertContextualLinks(content, allPosts, currentPostId) {
           const post = posts[0]; // Use the first post that matches this keyword
           const replacement = `[${actualKeyword}](/posts/${post.id})`;
 
-          // Replace the first occurrence only
+          // Replace the keyword with the link
           paragraph =
             paragraph.substring(0, keywordIndex) +
             replacement +
             paragraph.substring(keywordIndex + actualKeyword.length);
 
-          // Mark this post as linked
+          // Update our tracking
+          linkedRanges.push([keywordIndex, keywordIndex + replacement.length]);
           linkedPostIds.add(post.id);
           insertedLinks++;
+
+          // Since we modified the paragraph, we need to adjust our indices
+          // for any keywords we find later
+          const lengthDiff = replacement.length - actualKeyword.length;
+          for (let i = 0; i < linkedRanges.length; i++) {
+            if (linkedRanges[i][0] > keywordIndex) {
+              linkedRanges[i][0] += lengthDiff;
+              linkedRanges[i][1] += lengthDiff;
+            }
+          }
         }
       }
-    });
+    }
 
     return paragraph;
   });
@@ -249,6 +288,7 @@ export async function getPostData(id) {
     allPosts,
     id
   );
+  console.log("Enhanced Content:", enhancedContent);
 
   // Insert related posts section
   enhancedContent = insertRelatedPostLinks(enhancedContent, relatedPosts);

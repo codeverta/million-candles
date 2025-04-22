@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class VariantCombinationValue extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     protected $fillable = [
         'variant_combination_id',

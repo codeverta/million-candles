@@ -706,6 +706,10 @@ export async function getStaticProps() {
       "Ulasan Produk",
       "Inspirasi",
       "Edukasi",
+      "Lilin Ibadah",
+      "Aromaterapi",
+      "Lilin Taper",
+      "Lilin Kristal",
     ];
     const readTimes = [
       "3 min read",

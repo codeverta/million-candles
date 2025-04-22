@@ -149,12 +149,7 @@ function Post({ postData, slug }) {
                 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-gray-100 
                 leading-tight mb-6 transition-colors duration-300 relative"
               >
-                <span className="block">
-                  {postData.title}
-                  <span className="text-2xl ml-3 align-top">
-                    {Math.random() > 0.5 ? "🌟" : "🔥"}
-                  </span>
-                </span>
+                <span className="block">{postData.title}</span>
               </h1>
 
               {/* Metadata */}

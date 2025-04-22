@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class VariantCombination extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
+    
     protected $fillable = [
         'product_id',
         'sku',
