@@ -1,7 +1,6 @@
 # *
 User-agent: *
 Allow: /
-Disallow: /posts?search=
 
 # Host
 Host: https://souvenirlilin.id

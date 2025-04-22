@@ -30,7 +30,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { toast } from "sonner";
 import { useGetFetchQuery } from "utils/hooks";
 import { useRouter } from "next/router";
-import { paymentsType } from "./functions";
+import { paymentsType } from "lib/functions";
 
 function CreateOrder() {
   const router = useRouter();
