@@ -125,52 +125,52 @@ function enhanceMarkdownFile(filePath) {
   const updatedData = { ...data };
 
   // Ensure we have a title
-  if (!updatedData.title) {
-    // Extract title from first heading
-    const titleMatch = content.match(/^#\s+(.+)$/m);
-    if (titleMatch) {
-      updatedData.title = titleMatch[1];
-      needsUpdate = true;
-    }
-  }
+  // if (!updatedData.title) {
+  //   // Extract title from first heading
+  //   const titleMatch = content.match(/^#\s+(.+)$/m);
+  //   if (titleMatch) {
+  //     updatedData.title = titleMatch[1];
+  //     needsUpdate = true;
+  //   }
+  // }
 
   // Ensure we have a date
-  if (!updatedData.date) {
-    updatedData.date = new Date().toISOString().split("T")[0];
-    needsUpdate = true;
-  }
+  // if (!updatedData.date) {
+  //   updatedData.date = new Date().toISOString().split("T")[0];
+  //   needsUpdate = true;
+  // }
 
   // Generate slug if not present
-  if (!updatedData.slug) {
-    updatedData.slug = slugify(
-      updatedData.title || path.basename(filePath, ".md"),
-      {
-        lower: true,
-        strict: true,
-      }
-    );
-    needsUpdate = true;
-  }
+  // if (!updatedData.slug) {
+  //   updatedData.slug = slugify(
+  //     updatedData.title || path.basename(filePath, ".md"),
+  //     {
+  //       lower: true,
+  //       strict: true,
+  //     }
+  //   );
+  //   needsUpdate = true;
+  // }
 
   // Add description if missing
-  if (!updatedData.desc) {
-    updatedData.desc = generateDescription(content);
-    needsUpdate = true;
-  }
+  // if (!updatedData.desc) {
+  //   updatedData.desc = generateDescription(content);
+  //   needsUpdate = true;
+  // }
 
   // Add keywords if missing
-  if (!updatedData.keywords) {
-    const keywords = extractKeywords(content, updatedData.title || "");
-    updatedData.keywords = keywords.join(", ");
-    needsUpdate = true;
-  }
+  // if (!updatedData.keywords) {
+  //   const keywords = extractKeywords(content, updatedData.title || "");
+  //   updatedData.keywords = keywords.join(", ");
+  //   needsUpdate = true;
+  // }
 
-  // Add tags if missing (using top 3 keywords)
-  if (!updatedData.tags) {
-    const keywords = updatedData.keywords.split(", ");
-    updatedData.tags = keywords.slice(0, 3).join(", ");
-    needsUpdate = true;
-  }
+  // // Add tags if missing (using top 3 keywords)
+  // if (!updatedData.tags) {
+  //   const keywords = updatedData.keywords.split(", ");
+  //   updatedData.tags = keywords.slice(0, 3).join(", ");
+  //   needsUpdate = true;
+  // }
 
   // Update the file if needed
   if (needsUpdate) {

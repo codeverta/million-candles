@@ -1,15 +1,11 @@
-// lib/posts.js
+// lib/posts.js - Update your existing file with these new functions
+
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 import gfm from "remark-gfm";
-import {
-  buildKeywordPostMap,
-  addInternalLinks,
-  addContextualLinks,
-} from "./internalLinks";
 
 const postsDirectory = path.join(process.cwd(), "blog");
 
@@ -33,7 +29,6 @@ export function getSortedPostsData() {
       ...matterResult.data,
     };
   });
-
   // Sort posts by date
   return allPostsData.sort((a, b) => {
     if (a.date < b.date) {
@@ -55,6 +50,186 @@ export function getAllPostIds() {
   });
 }
 
+// New function to find related posts based on tags and content keywords
+function findRelatedPosts(currentPostId, currentPostTags, allPosts) {
+  // Convert tags to array if it's a string
+  const tags =
+    typeof currentPostTags === "string"
+      ? currentPostTags.split(",").map((tag) => tag.trim().toLowerCase())
+      : [];
+
+  // Filter out the current post and find posts with similar tags
+  return allPosts
+    .filter((post) => post.id !== currentPostId)
+    .map((post) => {
+      let score = 0;
+
+      // Check for shared tags - this is the strongest signal for relatedness
+      const postTags =
+        typeof post.tags === "string"
+          ? post.tags.split(",").map((tag) => tag.trim().toLowerCase())
+          : [];
+
+      // Calculate tag overlap
+      const sharedTags = tags.filter((tag) => postTags.includes(tag));
+      score += sharedTags.length * 2; // Weight tag matches more heavily
+
+      // Simple keyword matching from title/description
+      const postKeywords = (post.title + " " + (post.desc || "")).toLowerCase();
+
+      // Check for certain important keywords (customize for your content)
+      const keywordsToCheck = ["lilin", "candle", "aromaterapi", "wax", "soy"];
+      keywordsToCheck.forEach((keyword) => {
+        if (
+          postKeywords.includes(keyword) &&
+          tags.some((tag) => tag.includes(keyword))
+        ) {
+          score += 1;
+        }
+      });
+
+      return {
+        ...post,
+        relatednessScore: score,
+      };
+    })
+    .filter((post) => post.relatednessScore > 0)
+    .sort((a, b) => b.relatednessScore - a.relatednessScore)
+    .slice(0, 3); // Get top 3 related posts
+}
+
+// Insert suggestion to read related articles
+function insertRelatedPostLinks(content, relatedPosts) {
+  if (!relatedPosts || relatedPosts.length === 0) return content;
+
+  // Create markdown for related posts section
+  let relatedLinksMarkdown = "\n\n### Artikel Terkait\n";
+  relatedPosts.forEach((post) => {
+    relatedLinksMarkdown += `* [${post.title}](/posts/${post.id})\n`;
+  });
+
+  // Add a horizontal rule before recommended posts
+  relatedLinksMarkdown = "\n\n---" + relatedLinksMarkdown;
+
+  // Find a good place to insert links - before the last paragraph or at the end
+  const paragraphs = content.split("\n\n");
+
+  if (paragraphs.length > 3) {
+    // Insert before the last paragraph (which might be a conclusion)
+    const insertPosition = paragraphs.length - 1;
+    paragraphs.splice(insertPosition, 0, relatedLinksMarkdown);
+    return paragraphs.join("\n\n");
+  } else {
+    // If post is short, just append at the end
+    return content + relatedLinksMarkdown;
+  }
+}
+
+// New function to find contextual keyword mentions and add inline links
+function insertContextualLinks(content, allPosts, currentPostId) {
+  // Create a map of keywords to posts for efficient lookup
+  const keywordToPostMap = new Map();
+
+  allPosts.forEach((post) => {
+    if (post.id === currentPostId) return; // Skip current post
+
+    // Extract main keywords from title
+    const words = post.title.toLowerCase().split(/\s+/);
+    words.forEach((word) => {
+      // Only use significant words (longer than 3 chars)
+      if (word.length > 3) {
+        if (!keywordToPostMap.has(word)) {
+          keywordToPostMap.set(word, []);
+        }
+        keywordToPostMap.get(word).push(post);
+      }
+    });
+
+    // Also add full title as a phrase to match
+    const normalizedTitle = post.title.toLowerCase();
+    if (!keywordToPostMap.has(normalizedTitle)) {
+      keywordToPostMap.set(normalizedTitle, []);
+    }
+    keywordToPostMap.get(normalizedTitle).push(post);
+  });
+
+  // Track which posts we've already linked to avoid duplicates
+  const linkedPostIds = new Set();
+
+  // Process content by paragraphs to maintain structure
+  const paragraphs = content.split("\n\n");
+
+  // Limit total inserted links
+  const MAX_LINKS = 6;
+  let insertedLinks = 0;
+
+  const processedParagraphs = paragraphs.map((paragraph) => {
+    // Skip if we've reached the max links or paragraph already has markdown links
+    if (insertedLinks >= MAX_LINKS || paragraph.includes("](")) {
+      return paragraph;
+    }
+
+    // Don't modify headings, code blocks, etc.
+    if (
+      paragraph.startsWith("#") ||
+      paragraph.startsWith("```") ||
+      paragraph.startsWith("!")
+    ) {
+      return paragraph;
+    }
+
+    // Check for significant keyword matches
+    keywordToPostMap.forEach((posts, keyword) => {
+      // Only proceed if we haven't reached limit and haven't already modified this paragraph
+      if (insertedLinks < MAX_LINKS && !linkedPostIds.has(posts[0].id)) {
+        // Case-insensitive search
+        const lowerParagraph = paragraph.toLowerCase();
+        const keywordIndex = lowerParagraph.indexOf(keyword);
+
+        if (keywordIndex !== -1) {
+          // Get the actual cased version from the original paragraph
+          const actualKeyword = paragraph.substring(
+            keywordIndex,
+            keywordIndex + keyword.length
+          );
+
+          // Create a link to the related post
+          const post = posts[0]; // Use the first post that matches this keyword
+          const replacement = `[${actualKeyword}](/posts/${post.id})`;
+
+          // Replace the first occurrence only
+          paragraph =
+            paragraph.substring(0, keywordIndex) +
+            replacement +
+            paragraph.substring(keywordIndex + actualKeyword.length);
+
+          // Mark this post as linked
+          linkedPostIds.add(post.id);
+          insertedLinks++;
+        }
+      }
+    });
+
+    return paragraph;
+  });
+
+  // Insert a "Read more" section if we didn't add any contextual links
+  if (insertedLinks === 0 && allPosts.length > 1) {
+    // Find a relevant post to recommend
+    const recommendedPost = allPosts
+      .filter((post) => post.id !== currentPostId)
+      .sort(() => 0.5 - Math.random())[0]; // Random selection
+
+    if (recommendedPost) {
+      processedParagraphs.push(
+        `\n\n> **Baca juga:** [${recommendedPost.title}](/posts/${recommendedPost.id})`
+      );
+    }
+  }
+
+  return processedParagraphs.join("\n\n");
+}
+
 export async function getPostData(id) {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -62,26 +237,27 @@ export async function getPostData(id) {
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
 
-  // Get all posts and build keyword map for internal linking
+  // Get all posts to find related content
   const allPosts = getSortedPostsData();
-  const keywordMap = buildKeywordPostMap();
 
-  // Add internal links to the content
-  // You can choose between addInternalLinks (section-based) or addContextualLinks (inline)
-  const contentWithLinks = addContextualLinks(
+  // Find related posts based on tags and content
+  const relatedPosts = findRelatedPosts(id, matterResult.data.tags, allPosts);
+
+  // Insert contextual links within the content
+  let enhancedContent = insertContextualLinks(
     matterResult.content,
-    id,
     allPosts,
-    keywordMap,
-    3 // Maximum number of links to add
+    id
   );
+
+  // Insert related posts section
+  enhancedContent = insertRelatedPostLinks(enhancedContent, relatedPosts);
 
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()
     .use(html)
     .use(gfm)
-    .process(contentWithLinks);
-
+    .process(enhancedContent);
   const contentHtml = processedContent.toString();
 
   // Combine the data with the id and contentHtml
@@ -89,38 +265,6 @@ export async function getPostData(id) {
     id,
     contentHtml,
     ...matterResult.data,
+    relatedPosts, // Include related posts data for use in the component
   };
-}
-
-// Optional: Add this function if you want to preprocess all posts at build time
-export async function preprocessAllPosts() {
-  const allPosts = getSortedPostsData();
-  const keywordMap = buildKeywordPostMap();
-
-  for (const post of allPosts) {
-    const fullPath = path.join(postsDirectory, `${post.id}.md`);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
-    const matterResult = matter(fileContents);
-
-    // Add internal links
-    const contentWithLinks = addContextualLinks(
-      matterResult.content,
-      post.id,
-      allPosts,
-      keywordMap,
-      3
-    );
-
-    // Write back to the file if content changed
-    if (contentWithLinks !== matterResult.content) {
-      const updatedFileContent = matter.stringify(
-        contentWithLinks,
-        matterResult.data
-      );
-      fs.writeFileSync(fullPath, updatedFileContent);
-      console.log(`Updated internal links in: ${post.id}`);
-    }
-  }
-
-  console.log("Finished preprocessing all posts with internal links");
 }
