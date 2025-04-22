@@ -85,13 +85,13 @@ async function loadTransactions() {
 const totalIncome = computed(() => {
   return transactions.value
     .filter((t) => t.type === "income" && matchesReportPeriod(t.date))
-    .reduce((sum, t) => sum + t.amount, 0);
+    .reduce((sum, t) => sum + parseFloat(t.amount), 0);
 });
 
 const totalExpense = computed(() => {
   return transactions.value
     .filter((t) => t.type === "expense" && matchesReportPeriod(t.date))
-    .reduce((sum, t) => sum + t.amount, 0);
+    .reduce((sum, t) => sum + parseFloat(t.amount), 0);
 });
 
 const netProfit = computed(() => {
@@ -120,7 +120,7 @@ const categoryReport = computed(() => {
     .forEach((t) => {
       if (t.type === "income") {
         if (report[t.category]) {
-          report[t.category].income += t.amount;
+          report[t.category].income += parseFloat(t.amount);
         } else {
           report[t.category] = {
             name: t.category,
@@ -131,7 +131,7 @@ const categoryReport = computed(() => {
         }
       } else {
         if (report[t.category]) {
-          report[t.category].expense += t.amount;
+          report[t.category].expense += parseFloat(t.amount);
         } else {
           report[t.category] = {
             name: t.category,
@@ -287,7 +287,7 @@ function generateReport() {
               :key="category.name"
               class="border-t"
             >
-              <td class="px-4 py-3">{{ category.name }}</td>
+              <td class="px-4 py-3">{{ category.name.name }}</td>
               <td class="px-4 py-3 text-right text-green-600">
                 {{ formatCurrency(category.income) }}
               </td>

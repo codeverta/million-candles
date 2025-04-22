@@ -32,6 +32,7 @@
 
     <!-- Akun Bank / Kas -->
     <AccountsTab v-if="activeTab == 'accounts'" :active-tab="activeTab" />
+    <ReportsTab v-if="activeTab == 'reports'" :active-tab="activeTab" />
   </div>
 </template>
 
@@ -42,6 +43,7 @@ import AccountsTab from "./accounts.vue";
 import { ref, computed, onMounted } from "vue";
 import router from "@/router";
 import { useRoute } from "vue-router";
+import ReportsTab from "./reports.vue";
 
 const route = useRoute();
 // Tabs
@@ -49,8 +51,9 @@ const tabs = [
   { id: "transactions", name: "Transaksi Keuangan" },
   { id: "profitLoss", name: "Laporan Laba Rugi" },
   { id: "accounts", name: "Akun Bank / Kas" },
+  { id: "reports", name: "Laporan Keuangan" },
 ];
-const activeTab = computed(() => route.query.tab || "home");
+const activeTab = computed(() => route.query.tab || "transactions");
 
 // Years for report
 const currentYear = new Date().getFullYear();

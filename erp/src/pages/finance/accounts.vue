@@ -1,12 +1,34 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { formatCurrency } from "@/lib/utils";
+import financialApi from "@/services/financial-api";
 
 const props = defineProps({
   activeTab: {
     type: String,
     required: true,
   },
+});
+// Data state
+const loading = ref(false);
+const error = ref(null);
+const categories = ref([]);
+const transactions = ref([]);
+const pagination = ref({
+  current_page: 1,
+  per_page: 15,
+  total: 0,
+});
+// Filters
+const filters = ref({
+  start_date: null,
+  end_date: null,
+  date: null,
+  category_id: "",
+  type: "",
+  bank_account_id: "",
+  page: 1,
+  per_page: 15,
 });
 
 // Accounts
@@ -30,6 +52,46 @@ const accounts = ref([
     description: "Rekening operasional",
   },
 ]);
+
+onMounted(async () => {
+  // Load transactions
+  await loadTransactions();
+});
+
+// Load transactions based on current filters
+async function loadTransactions() {
+  try {
+    loading.value = true;
+    error.value = null;
+
+    // Convert date filter to start_date and end_date as expected by API
+    const params = { ...filters.value };
+    if (params.date) {
+      params.start_date = params.date;
+      params.end_date = params.date;
+      delete params.date;
+    }
+
+    const response = await financialApi.getTransactions(params);
+    transactions.value = response.data.data || [];
+
+    // Set pagination data if available
+    if (response.data.meta) {
+      pagination.value = {
+        current_page: response.data.meta.current_page,
+        per_page: response.data.meta.per_page,
+        total: response.data.meta.total,
+      };
+    }
+  } catch (err) {
+    error.value =
+      "Failed to load transactions: " +
+      (err.response?.data?.message || err.message);
+    console.error("API Error:", err);
+  } finally {
+    loading.value = false;
+  }
+}
 
 function getAccountBalance(accountId) {
   const account = accounts.value.find((a) => a.id === accountId);

@@ -17,8 +17,9 @@ class BankSeeder extends Seeder
     public function run()
     {
         $banks = [
-            ['id' => 1, 'name' => 'Bank Mandiri'],
-            ['id' => 2, 'name' => 'Bank BCA'],
+            ['id' => 1, 'name' => 'Cash'],
+            ['id' => 2, 'name' => 'Bank Mandiri'],
+            ['id' => 3, 'name' => 'Bank BCA'],
         ];
 
         foreach ($banks as $bank) {

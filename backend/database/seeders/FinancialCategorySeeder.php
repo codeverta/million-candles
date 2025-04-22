@@ -30,6 +30,8 @@ class FinancialCategorySeeder extends Seeder
             'Pemeliharaan',
             'Pendapatan Lain-lain',
             'Pengeluaran Lain-lain',
+            'Bahan Baku',
+            'Biaya Produksi',
         ];
 
         foreach ($categories as $category) {
