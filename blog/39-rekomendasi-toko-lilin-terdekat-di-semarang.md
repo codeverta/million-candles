@@ -95,24 +95,30 @@ Pastikan Anda tahu berapa lama pengiriman, dan apakah ada jaminan penggantian ji
 
 ---
 
-## **FAQ Tentang Toko Lilin di Semarang**
+## FAQ Tentang Toko Lilin di Semarang
 
-**1. Apakah ada toko lilin custom di Semarang?**  
+### Apakah ada toko lilin custom di Semarang?
+
 Ya, tapi kebanyakan toko online seperti Million Candles punya opsi custom yang lebih lengkap dan harga lebih bersaing.
 
-**2. Apakah bisa pesan lilin untuk acara gereja besar?**  
-Tentu saja. Million Candles melayani pemesanan skala besar, bahkan untuk komunitas atau paroki.
+### Apakah bisa pesan lilin untuk acara gereja besar?
 
-**3. Apakah harga grosir tersedia?**  
+Tentu saja Million Candles melayani pemesanan skala besar, bahkan untuk komunitas atau paroki.
+
+### Apakah harga grosir tersedia?
+
 Ya, tersedia harga khusus untuk pemesanan dalam jumlah banyak.
 
-**4. Apakah pengiriman ke Semarang cepat?**  
+### Apakah pengiriman ke Semarang cepat?
+
 Rata-rata 2–3 hari kerja, tergantung jasa ekspedisi dan lokasi Anda.
 
-**5. Bisa request lilin bentuk khusus?**  
+### Bisa request lilin bentuk khusus?
+
 Bisa! Misalnya bentuk salib, hati, atau tulisan nama.
 
-**6. Apakah lilin aromaterapi aman untuk anak-anak?**  
+### Apakah lilin aromaterapi aman untuk anak-anak?
+
 Ya, selama digunakan di ruangan terbuka dan tidak dalam jangkauan anak kecil.
 
 ---

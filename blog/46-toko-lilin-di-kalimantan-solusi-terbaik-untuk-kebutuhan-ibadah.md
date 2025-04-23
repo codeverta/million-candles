@@ -124,24 +124,30 @@ Banyak pelanggan dari Kalimantan memberikan ulasan positif:
 
 ---
 
-## **FAQ Seputar Toko Lilin di Kalimantan**
+## FAQ Seputar Toko Lilin di Kalimantan
 
-**1. Apakah saya bisa pesan lilin custom dari Kalimantan?**  
+### Apakah saya bisa pesan lilin custom dari Kalimantan?
+
 Tentu bisa! www.souvenirlilin.id melayani pesanan seluruh Indonesia.
 
-**2. Berapa lama pengiriman ke Kalimantan?**  
+### Berapa lama pengiriman ke Kalimantan?
+
 Rata-rata 3–7 hari kerja tergantung kota tujuan.
 
-**3. Apakah ada lilin aromaterapi?**  
+### Apakah ada lilin aromaterapi?
+
 Ya, tersedia berbagai aroma dan warna menarik.
 
-**4. Bisa pesan lewat WhatsApp?**  
+### Bisa pesan lewat WhatsApp?
+
 Bisa, tersedia kontak langsung di website untuk pemesanan via chat.
 
-**5. Ada minimal pemesanan?**  
+### Ada minimal pemesanan?
+
 Tidak ada minimal, tapi pemesanan banyak dapat diskon.
 
-**6. Apakah bisa kirim ke pedalaman Kalimantan?**  
+### Apakah bisa kirim ke pedalaman Kalimantan?
+
 Bisa, selama ada akses ekspedisi JNE/J&T atau POS.
 
 ---

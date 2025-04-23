@@ -131,24 +131,30 @@ Pelanggan menyebutkan bahwa lilin dari www.souvenirlilin.id:
 
 ---
 
-## **FAQ Seputar Toko Lilin Merauke**
+## FAQ Seputar Toko Lilin Merauke
 
-**1. Apakah saya bisa pesan lilin custom dari Merauke?**  
+### Apakah saya bisa pesan lilin custom dari Merauke?
+
 Bisa, melalui www.souvenirlilin.id semua proses bisa dilakukan secara online.
 
-**2. Berapa lama pengiriman ke Merauke?**  
+### Berapa lama pengiriman ke Merauke?
+
 Biasanya 5–10 hari kerja tergantung ekspedisi.
 
-**3. Apakah ada lilin dengan aroma tertentu?**  
+### Apakah ada lilin dengan aroma tertentu?
+
 Ya, tersedia lilin aromaterapi dengan berbagai pilihan wangi.
 
-**4. Bisa pesan dalam jumlah besar untuk gereja?**  
+### Bisa pesan dalam jumlah besar untuk gereja?
+
 Tentu, ada harga khusus untuk pemesanan massal.
 
-**5. Apakah bisa bayar lewat transfer bank lokal?**  
+### Apakah bisa bayar lewat transfer bank lokal?
+
 Bisa, tersedia banyak opsi pembayaran yang fleksibel.
 
-**6. Apakah desain lilin bisa pakai nama acara atau logo gereja?**  
+### Apakah desain lilin bisa pakai nama acara atau logo gereja?
+
 Ya, Anda bisa mengirimkan desain sendiri atau minta bantuan tim desain www.souvenirlilin.id.
 
 ---

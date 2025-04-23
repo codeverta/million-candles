@@ -3,7 +3,12 @@ import React from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-const ProductJsonLd = ({ product, baseUrl }) => {
+const ProductJsonLd = ({
+  product,
+  baseUrl,
+  reviews = [],
+  aggregateRating = null,
+}: any) => {
   const router = useRouter();
 
   // Only render if we have a product
@@ -31,6 +36,11 @@ const ProductJsonLd = ({ product, baseUrl }) => {
       ? documents.map((doc) => `${baseUrl}${doc.attributes.filename}`)
       : [`${baseUrl}/assets/image-1@2x.jpg`];
 
+  // Calculate price validity (default to 30 days from now)
+  const priceValidDate = new Date();
+  priceValidDate.setDate(priceValidDate.getDate() + 30);
+  const priceValidUntil = priceValidDate.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+
   // Build the structured data
   const jsonLd = {
     "@context": "https://schema.org/",
@@ -48,6 +58,7 @@ const ProductJsonLd = ({ product, baseUrl }) => {
       url: `${baseUrl}${router.asPath}`,
       priceCurrency: "IDR",
       price: attributes.price,
+      priceValidUntil: priceValidUntil, // Added priceValidUntil field
       itemCondition: "https://schema.org/NewCondition",
       availability:
         attributes.stock > 0
@@ -55,6 +66,35 @@ const ProductJsonLd = ({ product, baseUrl }) => {
           : "https://schema.org/OutOfStock",
     },
   };
+
+  // Add review data if available
+  if (reviews && reviews.length > 0) {
+    jsonLd.review = reviews.map((review) => ({
+      "@type": "Review",
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: review.rating,
+        bestRating: "5",
+      },
+      author: {
+        "@type": "Person",
+        name: review.author,
+      },
+      datePublished: review.date,
+      reviewBody: review.content,
+    }));
+  }
+
+  // Add aggregate rating if available
+  if (aggregateRating) {
+    jsonLd.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: aggregateRating.average,
+      reviewCount: aggregateRating.count,
+      bestRating: "5",
+      worstRating: "1",
+    };
+  }
 
   return (
     <Head>

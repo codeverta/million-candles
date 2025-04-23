@@ -121,22 +121,28 @@ Kini kamu sudah tahu 9 toko terbaik yang jual lilin terdekat di Bekasi. Dari lil
 
 ---
 
-## **FAQ seputar Jual Lilin Terdekat di Bekasi**
+## FAQ seputar Jual Lilin Terdekat di Bekasi
 
-**1. Apa saja jenis lilin yang paling laris di Bekasi?**  
+### Apa saja jenis lilin yang paling laris di Bekasi?
+
 Lilin aromaterapi, lilin dekorasi acara, dan lilin souvenir pernikahan.
 
-**2. Apakah Souvenirlilin.id bisa kirim ke Bekasi?**  
+### Apakah Souvenirlilin.id bisa kirim ke Bekasi?
+
 Ya, pengiriman tersedia ke seluruh wilayah Bekasi, cepat dan aman.
 
-**3. Di mana saya bisa beli lilin besar untuk acara pernikahan?**  
+### Di mana saya bisa beli lilin besar untuk acara pernikahan?
+
 Coba ke Dekor Bekasi Lilin atau pesan langsung di Souvenirlilin.id.
 
-**4. Apakah ada toko lilin custom di Bekasi?**  
+### Apakah ada toko lilin custom di Bekasi?
+
 Ya, KadoLilinku.ID dan Souvenirlilin.id menyediakan custom lilin.
 
-**5. Berapa harga lilin aromaterapi di Bekasi?**  
+### Berapa harga lilin aromaterapi di Bekasi?
+
 Mulai dari Rp15.000–Rp80.000, tergantung ukuran dan bahan.
 
-**6. Apakah ada workshop membuat lilin di Bekasi?**  
+### Apakah ada workshop membuat lilin di Bekasi?
+
 Beberapa kafe dan studio kreatif di Bekasi kini sering mengadakan workshop lilin DIY.

@@ -129,24 +129,30 @@ Lilin juga hadir dalam festival budaya, misa malam Natal, hingga prosesi jalan s
 
 ---
 
-## **FAQ Seputar Toko Lilin di Nusa Tenggara Timur**
+## FAQ Seputar Toko Lilin di Nusa Tenggara Timur
 
-**1. Apakah toko lilin tersedia di semua kota di NTT?**  
+### Apakah toko lilin tersedia di semua kota di NTT?
+
 Tidak semua kota punya toko khusus, tapi bisa beli secara online dengan pengiriman ke seluruh NTT.
 
-**2. Apakah lilin bisa dipesan custom dengan nama gereja atau acara?**  
+### Apakah lilin bisa dipesan custom dengan nama gereja atau acara?
+
 Ya, banyak toko yang menawarkan layanan custom untuk lilin ibadah dan souvenir.
 
-**3. Berapa lama waktu pengiriman lilin ke daerah pelosok NTT?**  
+### Berapa lama waktu pengiriman lilin ke daerah pelosok NTT?
+
 Sekitar 4–7 hari kerja tergantung jasa pengiriman dan cuaca.
 
-**4. Apa jenis lilin paling laris di NTT?**  
+### Apa jenis lilin paling laris di NTT?
+
 Lilin ibadah putih polos dan lilin aromaterapi.
 
-**5. Apakah ada toko lilin di NTT yang bisa pesan lewat WhatsApp?**  
+### Apakah ada toko lilin di NTT yang bisa pesan lewat WhatsApp?
+
 Beberapa toko menyediakan layanan pemesanan via WhatsApp untuk mempermudah pelanggan.
 
-**6. Apakah lilin bisa disimpan lama?**  
+### Apakah lilin bisa disimpan lama?
+
 Ya, asalkan disimpan di tempat kering dan sejuk, lilin bisa bertahan hingga bertahun-tahun.
 
 ---

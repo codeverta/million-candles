@@ -155,29 +155,29 @@ Jauhkan dari jendela langsung dan tempat panas agar minyak tidak cepat menguap.
 
 ---
 
-## **FAQ Seputar Cara Membuat Reed Diffuser**
+## FAQ Seputar Cara Membuat Reed Diffuser
 
-### **Apakah Reed Diffuser Bisa Digunakan di Kamar Tidur?**
+### Apakah Reed Diffuser Bisa Digunakan di Kamar Tidur?
 
 Ya, sangat cocok terutama dengan minyak lavender atau chamomile untuk tidur lebih nyenyak.
 
-### **Berapa Lama Reed Diffuser Bertahan?**
+### Berapa Lama Reed Diffuser Bertahan?
 
 Biasanya 2–4 minggu tergantung jumlah stick dan ukuran ruangan.
 
-### **Apa Perbedaan Reed Diffuser dan Humidifier?**
+### Apa Perbedaan Reed Diffuser dan Humidifier?
 
 Reed diffuser tidak mengeluarkan uap dan hanya menyebarkan aroma. Humidifier melembapkan udara.
 
-### **Bisa Tidak Menggunakan Base Oil?**
+### Bisa Tidak Menggunakan Base Oil?
 
 Bisa, tapi aromanya akan terlalu kuat dan stick tidak bekerja maksimal.
 
-### **Apakah Reed Diffuser Efektif untuk Ruangan Besar?**
+### Apakah Reed Diffuser Efektif untuk Ruangan Besar?
 
 Untuk ruangan besar, gunakan lebih banyak stick atau diffuser tambahan.
 
-### **Bisa Gak Pakai Tusuk Sate Sebagai Pengganti Stick?**
+### Bisa Gak Pakai Tusuk Sate Sebagai Pengganti Stick?
 
 Bisa, tapi efektivitasnya lebih rendah dibanding reed stick asli karena pori-porinya berbeda.
 

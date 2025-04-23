@@ -50,16 +50,19 @@ Yogyakarta tidak hanya terkenal dengan budaya dan wisatanya, tetapi juga kerajin
 
 ---
 
-### **FAQ Seputar Lilin Hias Jogja**
+## FAQ Seputar Lilin Hias Jogja
 
-**Q: Di mana lokasi toko lilin Jogja terdekat yang buka hari Minggu?**  
-A: ABC Kerajinan Lilin di Malioboro buka setiap hari, termasuk akhir pekan.
+### Di mana lokasi toko lilin Jogja terdekat yang buka hari Minggu?
 
-**Q: Apakah ada lilin hias Jogja untuk pernikahan?**  
-A: Tentu! Lilin Dekor Asri menyediakan paket dekorasi pernikahan dengan tema vintage atau minimalis.
+ABC Kerajinan Lilin di Malioboro buka setiap hari, termasuk akhir pekan.
 
-**Q: Berapa harga grosir lilin aromaterapi di Jogja?**  
-A: Harga grosir mulai Rp 8.000 per buah dengan minimal order 100 pcs.
+### Apakah ada lilin hias Jogja untuk pernikahan?
+
+Tentu! Lilin Dekor Asri menyediakan paket dekorasi pernikahan dengan tema vintage atau minimalis.
+
+### Berapa harga grosir lilin aromaterapi di Jogja?\*\*
+
+Harga grosir mulai Rp 8.000 per buah dengan minimal order 100 pcs.
 
 ---
 

@@ -15,6 +15,7 @@ import {
 import CopyLinkButton from "./CopyLinkButton";
 import Layout from "components/layout/Landing";
 import RelatedPosts from "./RelatedPosts"; // Import the new component
+import BlogSchemaJsonLd from "components/BlogSchemaJsonLd";
 
 // Utility function to convert date
 const convertDate = (date) => {
@@ -100,6 +101,15 @@ function Post({ postData, slug }) {
           images: [
             postData.image || `https://picsum.photos/seed/${slug}/1200/630`,
           ],
+        }}
+      />
+      {/* Add the BlogSchemaJsonLd component */}
+      <BlogSchemaJsonLd
+        post={postData}
+        baseUrl="https://souvenirlilin.id"
+        author={{
+          name: postData.author || "Rabih Utomo",
+          url: "https://souvenirlilin.id/about",
         }}
       />
 

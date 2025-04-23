@@ -92,20 +92,31 @@ DIY candle-making adalah proses pembuatan lilin secara mandiri dengan menggunaka
 - Hindari paparan sinar matahari langsung.
 - Potong sumbu sebelum digunakan agar pembakaran lebih merata.
 
-## **FAQ Seputar DIY dan Teknik Pembuatan Lilin**
+## FAQ Seputar DIY dan Teknik Pembuatan Lilin
 
-1. **Apakah lilin soy lebih baik dibandingkan paraffin?**
-   - Ya, lilin soy lebih ramah lingkungan dan tidak menghasilkan asap berlebihan.
-2. **Bagaimana cara menghindari gelembung udara pada lilin?**
-   - Tuangkan lilin secara perlahan dan hindari mengaduk terlalu cepat.
-3. **Apakah bisa menggunakan pewarna makanan untuk lilin?**
-   - Tidak disarankan karena tidak larut dengan baik dalam lilin.
-4. **Berapa lama waktu yang dibutuhkan untuk mengeras?**
-   - Sekitar 4-6 jam tergantung jenis lilin yang digunakan.
-5. **Apakah semua minyak esensial bisa digunakan?**
-   - Tidak, pastikan menggunakan minyak yang tahan panas agar tidak menguap terlalu cepat.
-6. **Bagaimana cara membersihkan lilin yang tumpah?**
-   - Gunakan air panas atau pengikis untuk menghilangkan lilin yang mengeras.
+### Apakah lilin soy lebih baik dibandingkan paraffin?
+
+Ya, lilin soy lebih ramah lingkungan dan tidak menghasilkan asap berlebihan.
+
+### Bagaimana cara menghindari gelembung udara pada lilin?
+
+Tuangkan lilin secara perlahan dan hindari mengaduk terlalu cepat.
+
+### Apakah bisa menggunakan pewarna makanan untuk lilin?
+
+Tidak disarankan karena tidak larut dengan baik dalam lilin.
+
+### Berapa lama waktu yang dibutuhkan untuk mengeras?
+
+Sekitar 4-6 jam tergantung jenis lilin yang digunakan.
+
+### Apakah semua minyak esensial bisa digunakan?
+
+Tidak, pastikan menggunakan minyak yang tahan panas agar tidak menguap terlalu cepat.
+
+### Bagaimana cara membersihkan lilin yang tumpah?
+
+Gunakan air panas atau pengikis untuk menghilangkan lilin yang mengeras.
 
 ## **Kesimpulan**
 

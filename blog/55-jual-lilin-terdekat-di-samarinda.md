@@ -121,22 +121,28 @@ Dari lilin aromaterapi hingga lilin besar untuk acara spesial, Samarinda punya b
 
 ---
 
-## **FAQ Seputar Jual Lilin Terdekat di Samarinda**
+## FAQ Seputar Jual Lilin Terdekat di Samarinda
 
-**1. Di mana tempat jual lilin aromaterapi terbaik di Samarinda?**  
+### Di mana tempat jual lilin aromaterapi terbaik di Samarinda?
+
 Aroma Wangi Samarinda dan Scented Moments adalah dua pilihan lokal terbaik. Bisa juga beli online di Souvenirlilin.id.
 
-**2. Apakah saya bisa pesan lilin custom di Samarinda?**  
+### Apakah saya bisa pesan lilin custom di Samarinda?
+
 Ya, LilinKita.ID dan Kado Lilin Kreatif menyediakan layanan custom.
 
-**3. Apakah lilin besar tersedia di toko terdekat?**  
+### Apakah lilin besar tersedia di toko terdekat?
+
 Tentu, toko seperti Cahaya Lilin dan Dekorasi Event punya stok lilin jumbo.
 
-**4. Apa keuntungan beli lilin di toko fisik dibanding online?**  
+### Apa keuntungan beli lilin di toko fisik dibanding online?
+
 Kamu bisa mencium langsung aromanya dan pilih bentuk yang kamu suka.
 
-**5. Apakah Souvenirlilin.id melayani pengiriman ke Samarinda?**  
+### Apakah Souvenirlilin.id melayani pengiriman ke Samarinda?
+
 Ya! Mereka melayani pengiriman cepat ke seluruh Samarinda.
 
-**6. Berapa harga lilin souvenir per buah?**  
+### Berapa harga lilin souvenir per buah?
+
 Mulai dari Rp15.000–Rp40.000 tergantung desain dan aroma.

@@ -56,13 +56,18 @@ Lilin hias memiliki sejarah panjang yang dimulai sejak zaman kuno. Awalnya, lili
 
 Kerajinan lilin hias memiliki potensi bisnis yang menjanjikan, terutama sebagai hadiah dan dekorasi acara. Dengan kreativitas dan pemasaran yang tepat, usaha ini dapat berkembang pesat.
 
-### **FAQ tentang Kerajinan Lilin Hias**
+## FAQ tentang Kerajinan Lilin Hias
 
-1. **Apakah lilin hias aman digunakan di dalam ruangan?**  
-   Ya, asalkan menggunakan bahan yang aman dan sumbu yang tidak berasap.
-2. **Bisakah saya membuat lilin hias tanpa pewarna kimia?**  
-   Bisa, gunakan pewarna alami seperti bubuk kayu manis atau kunyit.
-3. **Berapa lama lilin hias bisa bertahan?**  
-   Tergantung pada ukuran dan bahan yang digunakan, umumnya bisa bertahan hingga beberapa bulan.
+### Apakah lilin hias aman digunakan di dalam ruangan?
+
+Ya, asalkan menggunakan bahan yang aman dan sumbu yang tidak berasap.
+
+### Bisakah saya membuat lilin hias tanpa pewarna kimia?
+
+Bisa, gunakan pewarna alami seperti bubuk kayu manis atau kunyit.
+
+### Berapa lama lilin hias bisa bertahan?
+
+Tergantung pada ukuran dan bahan yang digunakan, umumnya bisa bertahan hingga beberapa bulan.
 
 ---

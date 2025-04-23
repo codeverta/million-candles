@@ -125,24 +125,30 @@ Pilih lilin yang tahan lama dan minim asap. Hindari lilin yang mudah meleleh ata
 
 ---
 
-## **FAQ Seputar Hari Arwah dan Toko Lilin**
+## FAQ Seputar Hari Arwah dan Toko Lilin
 
-**1. Apakah Hari Arwah hanya dirayakan oleh umat Katolik?**  
+### Apakah Hari Arwah hanya dirayakan oleh umat Katolik?
+
 Mayoritas perayaannya memang di kalangan Katolik, tapi beberapa komunitas Kristen lainnya juga mengenang orang meninggal di hari ini.
 
-**2. Mengapa lilin digunakan dalam Hari Arwah?**  
+### Mengapa lilin digunakan dalam Hari Arwah?
+
 Karena lilin melambangkan terang ilahi dan doa yang terus mengalir bagi jiwa-jiwa yang telah berpulang.
 
-**3. Apakah toko lilin buka lebih lama saat Hari Arwah?**  
+### Apakah toko lilin buka lebih lama saat Hari Arwah?
+
 Banyak toko memperpanjang jam buka untuk melayani lonjakan permintaan.
 
-**4. Jenis lilin apa yang terbaik untuk doa pribadi di rumah?**  
+### Jenis lilin apa yang terbaik untuk doa pribadi di rumah?
+
 Lilin putih kecil atau lilin altar sederhana sangat cocok untuk suasana doa pribadi.
 
-**5. Apakah saya bisa menggunakan lilin elektrik sebagai pengganti?**  
+### Apakah saya bisa menggunakan lilin elektrik sebagai pengganti?
+
 Boleh, terutama di tempat umum atau rumah dengan anak kecil, namun lilin asli lebih simbolik.
 
-**6. Di mana saya bisa membeli lilin khusus Hari Arwah secara online?**  
+### Di mana saya bisa membeli lilin khusus Hari Arwah secara online?
+
 Banyak tersedia di marketplace seperti Tokopedia dan Shopee, atau langsung dari toko lilin lokal di kota Anda.
 
 ---

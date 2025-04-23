@@ -122,24 +122,30 @@ Toko seperti Million Candles justru lebih lengkap, fleksibel, dan punya banyak k
 
 ---
 
-## **FAQ: Pertanyaan Umum Tentang Toko Penjual Lilin di Surabaya**
+## FAQ: Pertanyaan Umum Tentang Toko Penjual Lilin di Surabaya
 
-**1. Apakah Million Candles melayani Surabaya?**  
+### Apakah Million Candles melayani Surabaya?
+
 Ya, mereka melayani pengiriman cepat ke Surabaya dan seluruh Indonesia.
 
-**2. Apakah bisa pesan lilin custom?**  
+### Apakah bisa pesan lilin custom?
+
 Tentu! Anda bisa pesan ukuran, aroma, dan desain sesuai kebutuhan.
 
-**3. Kapan waktu terbaik untuk beli lilin acara?**  
+### Kapan waktu terbaik untuk beli lilin acara?
+
 Minimal 1 minggu sebelum acara agar ada waktu untuk produksi dan pengiriman.
 
-**4. Apakah harga lebih murah jika beli banyak?**  
+### Apakah harga lebih murah jika beli banyak?
+
 Iya, tersedia harga grosir khusus untuk pemesanan besar.
 
-**5. Apakah lilin aman digunakan di dalam ruangan?**  
+### Apakah lilin aman digunakan di dalam ruangan?
+
 Ya, selama digunakan sesuai instruksi dan bahan yang digunakan aman.
 
-**6. Apakah tersedia lilin aromaterapi?**  
+### Apakah tersedia lilin aromaterapi?
+
 Ya, dengan aroma alami seperti lavender, sereh, dan kayu manis.
 
 ---

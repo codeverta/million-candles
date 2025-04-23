@@ -142,24 +142,30 @@ Untuk menciptakan suasana hangat dan intim.
 
 ---
 
-## **FAQ Seputar Cara Pembuatan Lilin Aromaterapi**
+## FAQ Seputar Cara Pembuatan Lilin Aromaterapi
 
-**1. Apakah saya bisa menggunakan pewarna dalam lilin?**  
+### Apakah saya bisa menggunakan pewarna dalam lilin?
+
 Ya, gunakan pewarna khusus lilin agar tidak merusak struktur lilin.
 
-**2. Berapa lama lilin aromaterapi bisa disimpan?**  
+### Berapa lama lilin aromaterapi bisa disimpan?
+
 Bisa bertahan hingga 12 bulan jika disimpan dengan benar.
 
-**3. Apakah lilin aromaterapi bisa dijual?**  
+### Apakah lilin aromaterapi bisa dijual?
+
 Tentu! Banyak yang memulai bisnis rumahan dari lilin aromaterapi.
 
-**4. Apakah saya perlu alat khusus untuk membuat lilin?**  
+### Apakah saya perlu alat khusus untuk membuat lilin?
+
 Tidak, alat dapur biasa pun cukup asal digunakan dengan hati-hati.
 
-**5. Apakah bisa menggunakan minyak masak sebagai pengganti?**  
+### Apakah bisa menggunakan minyak masak sebagai pengganti?
+
 Tidak disarankan karena tidak menghasilkan aroma dan bisa berbahaya.
 
-**6. Bagaimana cara tahu lilin saya sukses?**  
+### Bagaimana cara tahu lilin saya sukses?
+
 Lilin menyala stabil, tidak berasap, dan aromanya tercium lembut.
 
 ---

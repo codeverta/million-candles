@@ -83,29 +83,29 @@ Revolusi industri membawa perubahan signifikan dalam pembuatan lilin. Pada abad 
    - Gunakan termometer untuk memantau suhu lilin agar tidak terlalu panas.
    - Cobalah berbagai kombinasi pewarna dan aroma untuk menemukan preferensi pribadi Anda.
 
-## **FAQ Tentang Lilin**
+## FAQ Tentang Lilin
 
-### **Apa bahan utama dalam pembuatan lilin?**
+### Apa bahan utama dalam pembuatan lilin?
 
 Bahan utama dalam pembuatan lilin termasuk wax (lilin) yang dapat berasal dari parafin, beeswax, soy wax, atau gel. Selain itu, lilin juga dapat mengandung pewarna dan minyak esensial untuk menambah warna dan aroma.
 
-### **Apa perbedaan antara lilin parafin dan lilin beeswax?**
+### Apa perbedaan antara lilin parafin dan lilin beeswax?
 
 Lilin parafin terbuat dari produk sampingan minyak bumi dan biasanya lebih murah dan mudah ditemukan. Lilin beeswax, di sisi lain, berasal dari sarang lebah dan lebih mahal tetapi dikenal karena kemampuannya untuk membersihkan udara dan memiliki aroma alami yang menyenangkan.
 
-### **Bagaimana cara menggunakan lilin aromaterapi dengan benar?**
+### Bagaimana cara menggunakan lilin aromaterapi dengan benar?
 
 Untuk menggunakan lilin aromaterapi dengan benar, pastikan untuk meletakkannya di tempat yang berventilasi baik dan jauh dari bahan mudah terbakar. Nyalakan lilin selama periode singkat, sekitar 1-2 jam, untuk mendapatkan manfaat aroma tanpa mengurangi kualitas lilin.
 
-### **Apakah lilin berbahaya untuk kesehatan?**
+### Apakah lilin berbahaya untuk kesehatan?
 
 Beberapa lilin, terutama yang berbahan dasar parafin, dapat mengeluarkan zat berbahaya saat dibakar. Untuk meminimalkan risiko, gunakan lilin dengan bahan dasar alami seperti beeswax atau soy wax dan pastikan ruangan Anda berventilasi baik saat membakar lilin.
 
-### **Berapa lama lilin biasanya terbakar?**
+### Berapa lama lilin biasanya terbakar?
 
 Durasi pembakaran lilin tergantung pada jenis dan ukuran lilin. Lilin kecil mungkin terbakar selama 4-6 jam, sedangkan lilin pilar besar bisa terbakar hingga 60 jam atau lebih. Periksa petunjuk pabrikan untuk informasi spesifik tentang durasi pembakaran.
 
-### **Bagaimana cara menghilangkan noda lilin dari pakaian?**
+### Bagaimana cara menghilangkan noda lilin dari pakaian?
 
 Untuk menghilangkan noda lilin dari pakaian, letakkan kertas tisu di atas noda, lalu setrika dengan suhu rendah. Lilin akan meleleh dan menyerap ke dalam tisu. Setelah itu, cuci pakaian seperti biasa untuk menghilangkan sisa noda.
 

@@ -122,24 +122,30 @@ Acara gereja besar membutuhkan koordinasi. Pesanlah lebih awal untuk menghindari
 
 ---
 
-## **FAQ (Pertanyaan Umum Seputar Lilin Paskah)**
+## FAQ (Pertanyaan Umum Seputar Lilin Paskah)
 
-**1. Apakah bisa pesan lilin Paskah custom?**  
+### Apakah bisa pesan lilin Paskah custom?
+
 Ya, Million Candles menerima desain custom, termasuk logo gereja atau teks khusus.
 
-**2. Apakah melayani pengiriman ke luar kota?**  
+### Apakah melayani pengiriman ke luar kota?
+
 Tentu! Pengiriman tersedia ke seluruh wilayah Indonesia.
 
-**3. Berapa lama proses produksinya?**  
+### Berapa lama proses produksinya?
+
 Biasanya 3–5 hari kerja, tergantung jumlah dan tingkat kustomisasi.
 
-**4. Apakah ada potongan harga untuk pemesanan grosir?**  
+### Apakah ada potongan harga untuk pemesanan grosir?
+
 Ya, tersedia harga khusus untuk pemesanan dalam jumlah besar.
 
-**5. Lilin terbuat dari apa?**  
+### Lilin terbuat dari apa?
+
 Mayoritas menggunakan parafin berkualitas tinggi dan ada juga pilihan lilin lebah (beeswax).
 
-**6. Apa keunggulan membeli dari Million Candles?**  
+### Apa keunggulan membeli dari Million Candles?
+
 Produk handmade eksklusif, pelayanan personal, dan pengiriman cepat!
 
 ---

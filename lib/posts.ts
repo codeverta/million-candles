@@ -6,6 +6,7 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 import gfm from "remark-gfm";
+import { insertContextualLinks, findRelatedPosts } from "./functions";
 
 const postsDirectory = path.join(process.cwd(), "blog");
 
@@ -50,54 +51,6 @@ export function getAllPostIds() {
   });
 }
 
-// New function to find related posts based on tags and content keywords
-function findRelatedPosts(currentPostId, currentPostTags, allPosts) {
-  // Convert tags to array if it's a string
-  const tags =
-    typeof currentPostTags === "string"
-      ? currentPostTags.split(",").map((tag) => tag.trim().toLowerCase())
-      : [];
-
-  // Filter out the current post and find posts with similar tags
-  return allPosts
-    .filter((post) => post.id !== currentPostId)
-    .map((post) => {
-      let score = 0;
-
-      // Check for shared tags - this is the strongest signal for relatedness
-      const postTags =
-        typeof post.tags === "string"
-          ? post.tags.split(",").map((tag) => tag.trim().toLowerCase())
-          : [];
-
-      // Calculate tag overlap
-      const sharedTags = tags.filter((tag) => postTags.includes(tag));
-      score += sharedTags.length * 2; // Weight tag matches more heavily
-
-      // Simple keyword matching from title/description
-      const postKeywords = (post.title + " " + (post.desc || "")).toLowerCase();
-
-      // Check for certain important keywords (customize for your content)
-      const keywordsToCheck = ["lilin", "candle", "aromaterapi", "wax", "soy"];
-      keywordsToCheck.forEach((keyword) => {
-        if (
-          postKeywords.includes(keyword) &&
-          tags.some((tag) => tag.includes(keyword))
-        ) {
-          score += 1;
-        }
-      });
-
-      return {
-        ...post,
-        relatednessScore: score,
-      };
-    })
-    .filter((post) => post.relatednessScore > 0)
-    .sort((a, b) => b.relatednessScore - a.relatednessScore)
-    .slice(0, 3); // Get top 3 related posts
-}
-
 // Insert suggestion to read related articles
 function insertRelatedPostLinks(content, relatedPosts) {
   if (!relatedPosts || relatedPosts.length === 0) return content;
@@ -125,150 +78,155 @@ function insertRelatedPostLinks(content, relatedPosts) {
   }
 }
 
-// Updated function to prevent nested links
-function insertContextualLinks(content, allPosts, currentPostId) {
-  // Create a map of keywords to posts for efficient lookup
-  const keywordToPostMap = new Map();
+// lib/posts.js - Add these parsing functions
 
-  allPosts.forEach((post) => {
-    if (post.id === currentPostId) return; // Skip current post
+// Parse FAQ sections from markdown content
+function parseFAQSection(content) {
+  // First, find the FAQ section
+  const faqSectionRegex = /##\s+(FAQ|Frequently Asked Questions)/i;
+  const faqSectionMatch = content.match(faqSectionRegex);
 
-    // Extract main keywords from title
-    const words = post.title.toLowerCase().split(/\s+/);
-    words.forEach((word) => {
-      // Only use significant words (longer than 3 chars)
-      if (word.length > 3) {
-        if (!keywordToPostMap.has(word)) {
-          keywordToPostMap.set(word, []);
-        }
-        keywordToPostMap.get(word).push(post);
-      }
-    });
+  if (!faqSectionMatch) return null;
 
-    // Also add full title as a phrase to match
-    const normalizedTitle = post.title.toLowerCase();
-    if (!keywordToPostMap.has(normalizedTitle)) {
-      keywordToPostMap.set(normalizedTitle, []);
-    }
-    keywordToPostMap.get(normalizedTitle).push(post);
-  });
+  // Get the starting index of the FAQ section
+  const faqStartIndex = faqSectionMatch.index;
 
-  // Track which posts we've already linked to avoid duplicates
-  const linkedPostIds = new Set();
+  // Find the next section heading (if any)
+  const nextSectionRegex = /\n##\s+/g;
+  nextSectionRegex.lastIndex = faqStartIndex + faqSectionMatch[0].length;
+  const nextSectionMatch = nextSectionRegex.exec(content);
 
-  // Process content by paragraphs to maintain structure
-  const paragraphs = content.split("\n\n");
+  // Get the content between FAQ heading and next section (or end of string)
+  const endIndex = nextSectionMatch ? nextSectionMatch.index : content.length;
+  const faqSection = content.substring(faqStartIndex, endIndex);
 
-  // Limit total inserted links
-  const MAX_LINKS = 6;
-  let insertedLinks = 0;
+  // Now extract questions and answers
+  const items = [];
+  const qaRegex = /###\s*(.*?)\s*\n([\s\S]*?)(?=###|##|$)/g;
+  let qaMatch;
 
-  const processedParagraphs = paragraphs.map((paragraph) => {
-    // Skip if we've reached the max links or paragraph already has markdown links
-    if (insertedLinks >= MAX_LINKS || paragraph.includes("](")) {
-      return paragraph;
-    }
+  while ((qaMatch = qaRegex.exec(faqSection)) !== null) {
+    // Skip the first match if it's just the "## FAQ" heading with no content
+    if (qaMatch[1].match(/^\s*(FAQ|Frequently Asked Questions)\s*$/i)) continue;
 
-    // Don't modify headings, code blocks, etc.
-    if (
-      paragraph.startsWith("#") ||
-      paragraph.startsWith("```") ||
-      paragraph.startsWith("!")
-    ) {
-      return paragraph;
-    }
+    const question = qaMatch[1].trim().replace(/^Q:\s*/i, "");
+    const answer = qaMatch[2].trim();
 
-    // Create a map to track which parts of the paragraph are already linked
-    // We'll use this to prevent overlapping or nested links
-    const linkedRanges = [];
-
-    // Sort keywords by length (descending) to prioritize longer phrases
-    const sortedKeywords = Array.from(keywordToPostMap.keys()).sort(
-      (a, b) => b.length - a.length
-    );
-
-    // Process each keyword
-    for (const keyword of sortedKeywords) {
-      // Only proceed if we haven't reached limit and haven't already linked this post
-      const posts = keywordToPostMap.get(keyword);
-      if (
-        !posts ||
-        !posts[0] ||
-        insertedLinks >= MAX_LINKS ||
-        linkedPostIds.has(posts[0].id)
-      ) {
-        continue;
-      }
-
-      // Case-insensitive search
-      const lowerParagraph = paragraph.toLowerCase();
-      let keywordIndex = lowerParagraph.indexOf(keyword);
-
-      if (keywordIndex !== -1) {
-        // Check if this range overlaps with any existing linked range
-        const keywordEnd = keywordIndex + keyword.length;
-        const overlaps = linkedRanges.some(
-          ([start, end]) =>
-            (keywordIndex >= start && keywordIndex < end) || // Start inside existing range
-            (keywordEnd > start && keywordEnd <= end) || // End inside existing range
-            (keywordIndex <= start && keywordEnd >= end) // Completely contains existing range
-        );
-
-        if (!overlaps) {
-          // Get the actual cased version from the original paragraph
-          const actualKeyword = paragraph.substring(
-            keywordIndex,
-            keywordIndex + keyword.length
-          );
-
-          // Create a link to the related post
-          const post = posts[0]; // Use the first post that matches this keyword
-          const replacement = `[${actualKeyword}](/posts/${post.id})`;
-
-          // Replace the keyword with the link
-          paragraph =
-            paragraph.substring(0, keywordIndex) +
-            replacement +
-            paragraph.substring(keywordIndex + actualKeyword.length);
-
-          // Update our tracking
-          linkedRanges.push([keywordIndex, keywordIndex + replacement.length]);
-          linkedPostIds.add(post.id);
-          insertedLinks++;
-
-          // Since we modified the paragraph, we need to adjust our indices
-          // for any keywords we find later
-          const lengthDiff = replacement.length - actualKeyword.length;
-          for (let i = 0; i < linkedRanges.length; i++) {
-            if (linkedRanges[i][0] > keywordIndex) {
-              linkedRanges[i][0] += lengthDiff;
-              linkedRanges[i][1] += lengthDiff;
-            }
-          }
-        }
-      }
-    }
-
-    return paragraph;
-  });
-
-  // Insert a "Read more" section if we didn't add any contextual links
-  if (insertedLinks === 0 && allPosts.length > 1) {
-    // Find a relevant post to recommend
-    const recommendedPost = allPosts
-      .filter((post) => post.id !== currentPostId)
-      .sort(() => 0.5 - Math.random())[0]; // Random selection
-
-    if (recommendedPost) {
-      processedParagraphs.push(
-        `\n\n> **Baca juga:** [${recommendedPost.title}](/posts/${recommendedPost.id})`
-      );
+    if (question && answer) {
+      items.push({ question, answer });
     }
   }
 
-  return processedParagraphs.join("\n\n");
+  return items.length > 0 ? items : null;
+}
+// Parse HowTo sections from markdown content
+function parseHowToSection(content: string) {
+  // Look for sections that start with ## How to
+  const howToRegex = /## (?:How to|Cara) (.*?)(?=##|$)/i;
+  const howToMatch = content.match(howToRegex);
+
+  if (!howToMatch) return null;
+
+  const howToTitle = howToMatch[1].trim();
+  const howToContent = howToMatch[0].trim();
+
+  // Extract description (first paragraph after title)
+  const descriptionMatch = howToContent.match(
+    /## How to .*?\n\n(.*?)(?=\n\n|$)/
+  );
+  const description = descriptionMatch ? descriptionMatch[1].trim() : "";
+
+  // Extract steps - assuming they start with "### Langkah X:" or "### X."
+  const steps = [];
+  const stepRegex = /### (?:Langkah )?(\d+)[:.](.*?)(?=### (?:Step )?|$)/gs;
+  let stepMatch;
+
+  while ((stepMatch = stepRegex.exec(howToContent)) !== null) {
+    const stepName = stepMatch[2].trim().split("\n")[0];
+    const stepText = stepMatch[2].trim().split("\n").slice(1).join("\n").trim();
+
+    // Extract image if there's any in markdown format
+    const imageMatch = stepText.match(/!\[.*?\]\((.*?)\)/);
+    const image = imageMatch ? imageMatch[1] : null;
+
+    steps.push({
+      name: stepName,
+      text: stepText,
+      image,
+    });
+  }
+
+  // Look for supplies/tools sections
+  const suppliesMatch = howToContent.match(
+    /### (?:Supplies|Materials) Needed:?\n([\s\S]*?)(?=###|$)/i
+  );
+  const supplies = suppliesMatch
+    ? suppliesMatch[1]
+        .trim()
+        .split("\n")
+        .filter(
+          (line) => line.trim().startsWith("*") || line.trim().startsWith("-")
+        )
+        .map((line) => line.replace(/^\s*[*-]\s*/, "").trim())
+    : [];
+
+  const toolsMatch = howToContent.match(
+    /### Tools Needed:?\n([\s\S]*?)(?=###|$)/i
+  );
+  const tools = toolsMatch
+    ? toolsMatch[1]
+        .trim()
+        .split("\n")
+        .filter(
+          (line) => line.trim().startsWith("*") || line.trim().startsWith("-")
+        )
+        .map((line) => line.replace(/^\s*[*-]\s*/, "").trim())
+    : [];
+
+  // Look for time estimation
+  const timeMatch = howToContent.match(/Time: (.*?)(?=\n|$)/i);
+  const time = timeMatch ? convertToISO8601Duration(timeMatch[1].trim()) : null;
+
+  // This is what we'll return if we found steps
+  if (steps.length > 0) {
+    return {
+      title: `How to ${howToTitle}`,
+      description,
+      steps,
+      supplies,
+      tools,
+      totalTime: time,
+    };
+  }
+
+  return null;
 }
 
+// Helper function to convert human-readable time to ISO 8601 duration format
+function convertToISO8601Duration(timeString: string) {
+  // Simple conversion for common formats like "30 minutes", "2 hours", etc.
+  const minutesMatch = timeString.match(/(\d+)\s*(?:min|minute|minutes)/i);
+  if (minutesMatch) {
+    return `PT${minutesMatch[1]}M`;
+  }
+
+  const hoursMatch = timeString.match(/(\d+)\s*(?:hr|hour|hours)/i);
+  if (hoursMatch) {
+    return `PT${hoursMatch[1]}H`;
+  }
+
+  const hoursAndMinutesMatch = timeString.match(
+    /(\d+)\s*(?:hr|hour|hours).*?(\d+)\s*(?:min|minute|minutes)/i
+  );
+  if (hoursAndMinutesMatch) {
+    return `PT${hoursAndMinutesMatch[1]}H${hoursAndMinutesMatch[2]}M`;
+  }
+
+  // Default to 30 minutes if we can't parse
+  return "PT30M";
+}
+
+// Modify your existing getPostData function to include FAQ and HowTo data
 export async function getPostData(id) {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -282,13 +240,16 @@ export async function getPostData(id) {
   // Find related posts based on tags and content
   const relatedPosts = findRelatedPosts(id, matterResult.data.tags, allPosts);
 
+  // Parse FAQ and HowTo sections from content
+  const faq = parseFAQSection(matterResult.content);
+  const howTo = parseHowToSection(matterResult.content);
+
   // Insert contextual links within the content
   let enhancedContent = insertContextualLinks(
     matterResult.content,
     allPosts,
     id
   );
-  console.log("Enhanced Content:", enhancedContent);
 
   // Insert related posts section
   enhancedContent = insertRelatedPostLinks(enhancedContent, relatedPosts);
@@ -306,5 +267,7 @@ export async function getPostData(id) {
     contentHtml,
     ...matterResult.data,
     relatedPosts, // Include related posts data for use in the component
+    faq, // Include FAQ data if exists
+    howTo, // Include HowTo data if exists
   };
 }

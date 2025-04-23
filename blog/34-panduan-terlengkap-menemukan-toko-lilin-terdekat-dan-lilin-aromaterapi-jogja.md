@@ -138,24 +138,30 @@ Kini lilin hadir dalam bentuk **lilin massage**, **lilin pewangi lemari**, bahka
 
 ---
 
-## **FAQ Seputar Toko Lilin Terdekat & Lilin Aromaterapi Jogja**
+## FAQ Seputar Toko Lilin Terdekat & Lilin Aromaterapi Jogja
 
-**1. Di mana saya bisa menemukan toko lilin terdekat di Jogja?**  
+### Di mana saya bisa menemukan toko lilin terdekat di Jogja?
+
 Gunakan Google Maps atau tanyakan di komunitas lokal Jogja di media sosial.
 
-**2. Apa keunggulan lilin aromaterapi Jogja dibanding produk luar kota?**  
+### Apa keunggulan lilin aromaterapi Jogja dibanding produk luar kota?
+
 Aromanya khas lokal, bahan alami, dan mendukung UMKM.
 
-**3. Apakah bisa membeli lilin langsung dari pabriknya?**  
+### Apakah bisa membeli lilin langsung dari pabriknya?
+
 Ya, beberapa pabrik menerima pembelian langsung atau sistem pre-order.
 
-**4. Apakah lilin aromaterapi aman untuk ibu hamil?**  
+### Apakah lilin aromaterapi aman untuk ibu hamil?
+
 Gunakan aroma ringan dan hindari pembakaran terlalu lama. Konsultasi dengan dokter tetap disarankan.
 
-**5. Di mana saya bisa ikut workshop membuat lilin di Jogja?**  
+### Di mana saya bisa ikut workshop membuat lilin di Jogja?
+
 Java Candle Studio dan Aroma Nusantara sering mengadakan pelatihan terbuka.
 
-**6. Apakah lilin lokal bisa dijual kembali?**  
+### Apakah lilin lokal bisa dijual kembali?
+
 Tentu saja! Banyak reseller sukses menjual ulang lilin aromaterapi Jogja secara online.
 
 ---

@@ -103,25 +103,25 @@ Lilin hias adalah lilin yang dirancang khusus untuk keperluan dekoratif. Berbeda
 
 - Cobalah berbagai bentuk cetakan dan kombinasi warna untuk menciptakan lilin hias yang unik dan menarik.
 
-## **FAQ tentang Cara Membuat Lilin Hias**
+## FAQ tentang Cara Membuat Lilin Hias
 
-### **Apa bahan terbaik untuk membuat lilin hias?**
+### Apa bahan terbaik untuk membuat lilin hias?
 
 Paraffin wax adalah bahan yang paling umum digunakan karena mudah meleleh dan dicetak. Namun, soy wax dan beeswax juga pilihan bagus karena lebih ramah lingkungan.
 
-### **Bagaimana cara memilih sumbu lilin yang tepat?**
+### Bagaimana cara memilih sumbu lilin yang tepat?
 
 Pilih sumbu berdasarkan ukuran lilin yang akan dibuat. Sumbu dengan diameter lebih besar cocok untuk lilin yang lebih besar, sementara sumbu kecil lebih baik untuk lilin berukuran kecil.
 
-### **Bisakah saya menambahkan aroma pada lilin hias?**
+### Bisakah saya menambahkan aroma pada lilin hias?
 
 Ya, Anda bisa menambahkan minyak esensial atau aroma lilin khusus. Pastikan aroma yang digunakan tahan panas agar tidak mempengaruhi pembakaran lilin.
 
-### **Berapa lama waktu yang dibutuhkan untuk membuat lilin hias?**
+### Berapa lama waktu yang dibutuhkan untuk membuat lilin hias?
 
 Waktu pembuatan lilin hias bervariasi tergantung pada ukuran dan kompleksitas desain. Secara umum, proses ini bisa memakan waktu beberapa jam hingga lilin benar-benar mengeras.
 
-### **Apakah saya bisa menggunakan pewarna makanan untuk lilin?**
+### Apakah saya bisa menggunakan pewarna makanan untuk lilin?
 
 Tidak disarankan menggunakan pewarna makanan, karena tidak tahan panas dan dapat mempengaruhi pembakaran lilin. Gunakan pewarna lilin khusus untuk hasil terbaik.
 

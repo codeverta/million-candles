@@ -108,24 +108,30 @@ Jenis wax seperti soy wax, beeswax, atau paraffin memengaruhi performa sumbu. Pi
 
 ---
 
-## **FAQ: Sumbu Lilin Beli di Mana dan Tips Seputarnya**
+## FAQ: Sumbu Lilin Beli di Mana dan Tips Seputarnya
 
-**1. Apakah semua sumbu bisa digunakan untuk semua jenis lilin?**  
+### Apakah semua sumbu bisa digunakan untuk semua jenis lilin?
+
 Tidak. Pilih sumbu sesuai dengan ukuran lilin dan jenis wax yang kamu gunakan.
 
-**2. Apa yang terjadi kalau sumbu terlalu kecil?**  
+### Apa yang terjadi kalau sumbu terlalu kecil?
+
 Lilin tidak terbakar dengan sempurna, nyala kecil, dan bisa mati sendiri.
 
-**3. Di mana tempat termudah membeli sumbu lilin?**  
+### Di mana tempat termudah membeli sumbu lilin?
+
 Marketplace dan website seperti www.souvenirlilin.id adalah pilihan paling praktis.
 
-**4. Bisa beli sumbu lilin eceran?**  
+### Bisa beli sumbu lilin eceran?
+
 Bisa. Banyak toko online dan offline yang menjual eceran hingga grosir.
 
-**5. Bagaimana menyimpan sumbu lilin?**  
+### Bagaimana menyimpan sumbu lilin?
+
 Simpan di tempat kering, tidak lembap, dan tidak terkena sinar matahari langsung.
 
-**6. Apakah www.souvenirlilin.id juga menjual bahan lilin lainnya?**  
+### Apakah www.souvenirlilin.id juga menjual bahan lilin lainnya?
+
 Ya! Mulai dari wax, pewarna, hingga wadah lilin tersedia lengkap di sana.
 
 ---

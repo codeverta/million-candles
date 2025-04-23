@@ -115,24 +115,30 @@ Ajak anak-anak membuat lilin kecil dengan hiasan gambar salib, bunga, atau tulis
 
 ---
 
-## **FAQ Seputar Lilin Paskah**
+## FAQ Seputar Lilin Paskah
 
-**1. Apakah lilin Paskah harus berwarna putih?**  
+### Apakah lilin Paskah harus berwarna putih?
+
 Tidak wajib, tetapi warna putih melambangkan kemurnian dan kebangkitan.
 
-**2. Apa bedanya lilin biasa dan lilin Paskah?**  
+### Apa bedanya lilin biasa dan lilin Paskah?
+
 Lilin Paskah memiliki simbol dan makna khusus serta digunakan dalam liturgi.
 
-**3. Bisakah saya memesan lilin dengan desain sendiri?**  
+### Bisakah saya memesan lilin dengan desain sendiri?
+
 Ya! www.souvenirlilin.id melayani desain custom sesuai permintaan.
 
-**4. Berapa lama proses produksi lilin Paskah?**  
+### Berapa lama proses produksi lilin Paskah?
+
 Rata-rata 3–7 hari kerja, tergantung jumlah dan kompleksitas desain.
 
-**5. Apakah ada diskon untuk pembelian besar?**  
+### Apakah ada diskon untuk pembelian besar?
+
 Ya, tersedia diskon khusus untuk pemesanan jumlah banyak atau gereja.
 
-**6. Apakah lilin bisa dikirim ke luar kota?**  
+### Apakah lilin bisa dikirim ke luar kota?
+
 Tentu saja, www.souvenirlilin.id melayani pengiriman ke seluruh Indonesia.
 
 ---

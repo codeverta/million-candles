@@ -53,15 +53,22 @@ Lilin aromaterapi adalah lilin yang mengandung minyak esensial alami yang mengha
 
 Bisnis lilin hias dan aromaterapi memiliki prospek cerah karena meningkatnya permintaan untuk dekorasi rumah dan kebutuhan relaksasi. Dengan kreativitas dalam desain dan aroma, Anda bisa menarik berbagai segmen pasar, mulai dari dekorasi rumah hingga souvenir pernikahan.
 
-### **FAQ tentang Lilin Abadi dan Aromaterapi**
+## FAQ tentang Lilin Abadi dan Aromaterapi
 
-1. **Apa itu lilin abadi?**  
-   Lilin abadi adalah lilin yang bisa digunakan berulang kali dengan menambah gel lilin.
-2. **Apakah lilin putih bisa ditambahkan aroma?**  
-   Ya, tambahkan minyak esensial saat parafin meleleh untuk memberi aroma.
-3. **Apakah lilin aromaterapi aman untuk anak-anak?**  
-   Gunakan aroma yang ringan dan hindari bahan kimia berbahaya.
-4. **Bisakah lilin aromaterapi membantu tidur nyenyak?**  
-   Ya, aroma lavender dan chamomile efektif membantu relaksasi dan tidur.
+### Apa itu lilin abadi?
+
+Lilin abadi adalah lilin yang bisa digunakan berulang kali dengan menambah gel lilin.
+
+### Apakah lilin putih bisa ditambahkan aroma?
+
+Ya, tambahkan minyak esensial saat parafin meleleh untuk memberi aroma.
+
+### Apakah lilin aromaterapi aman untuk anak-anak?
+
+Gunakan aroma yang ringan dan hindari bahan kimia berbahaya.
+
+### Bisakah lilin aromaterapi membantu tidur nyenyak?
+
+Ya, aroma lavender dan chamomile efektif membantu relaksasi dan tidur.
 
 ---

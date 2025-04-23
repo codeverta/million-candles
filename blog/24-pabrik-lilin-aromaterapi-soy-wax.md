@@ -73,21 +73,21 @@ Pabrik lilin yang menggunakan soy wax cenderung menghasilkan produk dengan kuali
 
 Dalam dunia yang semakin sadar lingkungan, produk yang dibuat dari bahan-bahan alami seperti soy wax memiliki nilai jual yang lebih tinggi. Konsumen yang peduli lingkungan cenderung memilih lilin aromaterapi yang ramah lingkungan, sehingga meningkatkan daya tarik produk.
 
-## **FAQ tentang Pabrik Lilin Aromaterapi dan Soy Wax**
+## FAQ tentang Pabrik Lilin Aromaterapi dan Soy Wax
 
-### **Apa keuntungan menggunakan soy wax dibandingkan paraffin wax?**
+### Apa keuntungan menggunakan soy wax dibandingkan paraffin wax?
 
 Soy wax lebih ramah lingkungan, terbakar lebih lama, dan menghasilkan aroma yang lebih konsisten dibandingkan paraffin wax. Soy wax juga tidak menghasilkan asap hitam atau zat beracun saat dibakar.
 
-### **Bagaimana proses produksi lilin aromaterapi di pabrik?**
+### Bagaimana proses produksi lilin aromaterapi di pabrik?
 
 Proses produksi lilin aromaterapi melibatkan pemilihan bahan baku, pencampuran soy wax dengan minyak esensial, pencetakan, pendinginan, dan pengemasan. Setiap langkah dilakukan dengan hati-hati untuk memastikan kualitas lilin yang dihasilkan.
 
-### **Mengapa soy wax menjadi pilihan utama bagi pabrik lilin aromaterapi?**
+### Mengapa soy wax menjadi pilihan utama bagi pabrik lilin aromaterapi?
 
 Soy wax dipilih karena ramah lingkungan, memiliki kualitas pembakaran yang lebih baik, dan mampu mendistribusikan aroma lebih efektif dibandingkan bahan lilin lainnya.
 
-### **Apakah lilin aromaterapi dari soy wax lebih mahal?**
+### Apakah lilin aromaterapi dari soy wax lebih mahal?
 
 Harga lilin aromaterapi dari soy wax mungkin sedikit lebih mahal dibandingkan lilin paraffin karena kualitas bahan dan manfaat kesehatannya. Namun, keunggulan yang ditawarkan membuatnya layak untuk investasi.
 

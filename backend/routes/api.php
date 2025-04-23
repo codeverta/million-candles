@@ -18,6 +18,7 @@ use App\Http\Controllers\VariantCombinationController;
 use App\Http\Controllers\ProductVariantOptionController;
 use App\Http\Controllers\ProductVariantController;
 use App\Http\Controllers\FinancialTransactionController;
+use App\Http\Controllers\BankAccountController;
 
 
 /*
@@ -62,7 +63,8 @@ Route::prefix('/v1')->group(function () {
     Route::get('/summary', [FinancialTransactionController::class, 'summary']);
     Route::get('/bank-accounts', [FinancialTransactionController::class, 'bankAccounts']);
     Route::get('/dropdown-data', [FinancialTransactionController::class, 'dropdownData']);
-
+    Route::apiResource('bank-accounts', BankAccountController::class);
+    Route::get('bank-accounts/{bankAccount}/transactions', [BankAccountController::class, 'getTransactions']);
 });
 
 JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {

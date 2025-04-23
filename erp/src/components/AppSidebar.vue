@@ -33,25 +33,15 @@ const props = defineProps({
 // This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "rabih",
+    email: "rabih@gmail.com",
     avatar: "https://randomuser.me/api/portraits/men/33.jpg",
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "UD Million Candles",
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
     },
   ],
   navMain: [
@@ -82,39 +72,10 @@ const data = {
       ],
     },
     {
-      title: "Stock Movements",
-      url: "/stock-movements",
-      icon: SquareTerminal,
-      isActive: false,
-    },
-    {
       title: "Finance",
       url: "/finance",
       icon: Wallet,
       isActive: false,
-    },
-    {
-      title: "HRMS",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Salary Rate Management",
-          url: "/hrms/salary-rate-management",
-        },
-        {
-          title: "Salary Detail",
-          url: "/hrms/salary-detail",
-        },
-        {
-          title: "Salary Calculation",
-          url: "/hrms/salary-calculation",
-        },
-        {
-          title: "Attendance",
-          url: "/hrms/attendance",
-        },
-      ],
     },
     // {
     //   title: 'Settings',
@@ -139,23 +100,6 @@ const data = {
     //     },
     //   ],
     // },
-  ],
-  projects: [
-    {
-      name: "Warehouse Management",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Financial Analysis",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Employee Engagement",
-      url: "#",
-      icon: Map,
-    },
   ],
 };
 </script>

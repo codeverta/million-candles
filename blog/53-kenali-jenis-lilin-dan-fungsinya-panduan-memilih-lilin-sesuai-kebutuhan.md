@@ -140,24 +140,30 @@ Lilin custom dengan desain personal, aroma pilihan, dan packaging elegan jadi pi
 
 ---
 
-## **FAQ Seputar Jenis Lilin dan Karakteristiknya**
+## FAQ Seputar Jenis Lilin dan Karakteristiknya
 
-**1. Lilin terbaik untuk aromaterapi apa?**  
+### Lilin terbaik untuk aromaterapi apa?
+
 Soy wax dengan minyak esensial murni adalah kombinasi terbaik.
 
-**2. Apa lilin gel bisa diberi aroma?**  
+### Apa lilin gel bisa diberi aroma?
+
 Bisa, tapi terbatas jenis aroma yang bisa digunakan agar tidak merusak transparansi gel.
 
-**3. Mana yang lebih tahan lama, beeswax atau parafin?**  
+### Mana yang lebih tahan lama, beeswax atau parafin?
+
 Beeswax. Meski mahal, durasi nyalanya jauh lebih lama.
 
-**4. Lilin tanpa wadah berbahaya?**  
+### Lilin tanpa wadah berbahaya?
+
 Jika tidak digunakan dengan alas tahan panas, bisa membahayakan. Gunakan wadah atau tatakan.
 
-**5. Apa perbedaan sumbu pre-waxed dan polos?**  
+### Apa perbedaan sumbu pre-waxed dan polos?
+
 Pre-waxed lebih mudah digunakan dan hasil pembakarannya stabil.
 
-**6. Apakah semua lilin aromaterapi aman untuk anak-anak?**  
+### Apakah semua lilin aromaterapi aman untuk anak-anak?
+
 Gunakan lilin dari bahan alami tanpa pewangi sintetis dan simpan jauh dari jangkauan anak-anak.
 
 ---

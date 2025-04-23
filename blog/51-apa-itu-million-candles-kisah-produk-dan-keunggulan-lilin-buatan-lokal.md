@@ -96,24 +96,30 @@ Di sana, kamu bisa lihat katalog, memilih aroma, desain, dan memesan secara lang
 
 ---
 
-## **FAQ Seputar Million Candles dan Produk Lilin Lokal**
+## FAQ Seputar Million Candles dan Produk Lilin Lokal
 
-**1. Apakah Million Candles menerima pesanan dalam jumlah besar?**  
+### Apakah Million Candles menerima pesanan dalam jumlah besar?
+
 Ya, tersedia harga grosir dan layanan konsultasi untuk pemesanan massal.
 
-**2. Apa jenis aroma yang paling populer?**  
+### Apa jenis aroma yang paling populer?
+
 Lavender, sandalwood, dan jasmine menjadi pilihan favorit pelanggan.
 
-**3. Apakah produknya aman untuk anak-anak dan hewan peliharaan?**  
+### Apakah produknya aman untuk anak-anak dan hewan peliharaan?
+
 Ya, karena menggunakan bahan alami tanpa zat berbahaya.
 
-**4. Bisa pesan desain khusus untuk acara pribadi?**  
+### Bisa pesan desain khusus untuk acara pribadi?
+
 Tentu! Tersedia pilihan custom desain dan kemasan.
 
-**5. Bagaimana cara menjadi reseller Million Candles?**  
+### Bagaimana cara menjadi reseller Million Candles?
+
 Silakan hubungi mereka via website untuk informasi program reseller.
 
-**6. Apakah mereka mengirim ke seluruh Indonesia?**  
+### Apakah mereka mengirim ke seluruh Indonesia?
+
 Ya, pengiriman tersedia ke seluruh wilayah Indonesia.
 
 ---

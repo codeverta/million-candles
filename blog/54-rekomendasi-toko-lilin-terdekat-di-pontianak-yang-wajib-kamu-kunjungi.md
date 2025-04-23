@@ -132,22 +132,28 @@ Pontianak menawarkan banyak pilihan _toko lilin terdekat_ yang berkualitas, dari
 
 ---
 
-## **FAQ seputar Toko Lilin Terdekat di Pontianak**
+## FAQ seputar Toko Lilin Terdekat di Pontianak
 
-**1. Apa saja jenis lilin yang paling laris di Pontianak?**  
+### Apa saja jenis lilin yang paling laris di Pontianak?
+
 Lilin aromaterapi, lilin dekoratif, dan lilin souvenir custom adalah yang paling diminati.
 
-**2. Di mana saya bisa beli lilin besar terdekat di Pontianak?**  
+### Di mana saya bisa beli lilin besar terdekat di Pontianak?
+
 Coba kunjungi Cahaya Lilin Store atau pesan online melalui Souvenirlilin.id.
 
-**3. Apakah ada toko lilin yang bisa custom desain di Pontianak?**  
+### Apakah ada toko lilin yang bisa custom desain di Pontianak?
+
 Ya, Kado Lilin Unik dan Souvenirlilin.id menerima desain custom untuk semua jenis lilin.
 
-**4. Berapa harga lilin aromaterapi di Pontianak?**  
+### Berapa harga lilin aromaterapi di Pontianak?
+
 Harga mulai dari Rp15.000 hingga Rp100.000 tergantung aroma dan ukuran.
 
-**5. Apakah lilin aromaterapi aman untuk anak-anak?**  
+### Apakah lilin aromaterapi aman untuk anak-anak?
+
 Ya, selama tidak mengandung bahan kimia berbahaya dan digunakan dengan pengawasan.
 
-**6. Bagaimana cara memesan lilin dari Souvenirlilin.id?**  
+### Bagaimana cara memesan lilin dari Souvenirlilin.id?
+
 Kunjungi [souvenirlilin.id](https://souvenirlilin.id), pilih produk, dan lakukan pembayaran online.

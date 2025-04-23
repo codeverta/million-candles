@@ -134,24 +134,30 @@ Faktor harga dipengaruhi oleh bahan, ukuran, dan tingkat kerumitan desain.
 
 ---
 
-## **FAQ: Pertanyaan Umum tentang Lilin Aromaterapi di Jogja**
+## FAQ: Pertanyaan Umum tentang Lilin Aromaterapi di Jogja
 
-**1. Apakah lilin aromaterapi aman untuk semua usia?**  
+### Apakah lilin aromaterapi aman untuk semua usia?
+
 Ya, asalkan bahan yang digunakan alami dan bebas bahan kimia berbahaya.
 
-**2. Di mana bisa beli lilin aromaterapi terdekat dari lokasi saya?**  
+### Di mana bisa beli lilin aromaterapi terdekat dari lokasi saya?
+
 Coba cari di Google Maps dengan kata kunci “jual lilin aromaterapi terdekat”.
 
-**3. Berapa lama waktu bakar lilin aromaterapi?**  
+### Berapa lama waktu bakar lilin aromaterapi?
+
 Tergantung ukuran, umumnya 20–60 jam.
 
-**4. Bisa request aroma sendiri?**  
+### Bisa request aroma sendiri?
+
 Banyak pengrajin di Jogja menawarkan layanan custom aroma.
 
-**5. Apa lilin aromaterapi bisa jadi hadiah?**  
+### Apa lilin aromaterapi bisa jadi hadiah?
+
 Tentu! Desainnya yang estetik dan manfaatnya cocok dijadikan kado.
 
-**6. Bagaimana cara menyimpan lilin aromaterapi?**  
+### Bagaimana cara menyimpan lilin aromaterapi?
+
 Simpan di tempat sejuk dan kering agar aroma tidak cepat hilang.
 
 ---

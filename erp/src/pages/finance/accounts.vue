@@ -9,16 +9,18 @@ const props = defineProps({
     required: true,
   },
 });
+
 // Data state
 const loading = ref(false);
 const error = ref(null);
-const categories = ref([]);
+const accounts = ref([]);
 const transactions = ref([]);
 const pagination = ref({
   current_page: 1,
   per_page: 15,
   total: 0,
 });
+
 // Filters
 const filters = ref({
   start_date: null,
@@ -31,32 +33,37 @@ const filters = ref({
   per_page: 15,
 });
 
-// Accounts
-const accounts = ref([
-  {
-    id: 1,
-    name: "Bank Mandiri",
-    initialBalance: 5000000,
-    description: "Rekening utama perusahaan",
-  },
-  {
-    id: 2,
-    name: "Kas Toko",
-    initialBalance: 1000000,
-    description: "Kas fisik di toko",
-  },
-  {
-    id: 3,
-    name: "Bank BCA",
-    initialBalance: 3000000,
-    description: "Rekening operasional",
-  },
-]);
-
 onMounted(async () => {
-  // Load transactions
-  await loadTransactions();
+  // Load bank accounts
+  await loadBankAccounts();
 });
+
+// Load bank accounts from API
+async function loadBankAccounts() {
+  try {
+    loading.value = true;
+    error.value = null;
+
+    const response = await financialApi.getBankAccounts();
+    accounts.value = response.data.data || [];
+
+    // Set pagination data if available
+    if (response.data.meta) {
+      pagination.value = {
+        current_page: response.data.meta.current_page,
+        per_page: response.data.meta.per_page,
+        total: response.data.meta.total,
+      };
+    }
+  } catch (err) {
+    error.value =
+      "Failed to load bank accounts: " +
+      (err.response?.data?.message || err.message);
+    console.error("API Error:", err);
+  } finally {
+    loading.value = false;
+  }
+}
 
 // Load transactions based on current filters
 async function loadTransactions() {
@@ -93,57 +100,109 @@ async function loadTransactions() {
   }
 }
 
+// New account form
+const showAccountForm = ref(false);
+const newAccount = ref({
+  name: "",
+  starting_balance: 0,
+  description: "",
+  account_number: "",
+  bank_id: null,
+});
+
+// Add new bank account
+async function addAccount() {
+  try {
+    loading.value = true;
+    error.value = null;
+
+    // Create the account via API
+    const response = await financialApi.createBankAccount({
+      ...newAccount.value,
+      starting_balance: parseFloat(newAccount.value.starting_balance),
+    });
+
+    // Add the new account to the list
+    accounts.value.push(response.data.data);
+
+    // Reset form
+    newAccount.value = {
+      name: "",
+      starting_balance: 0,
+      description: "",
+      account_number: "",
+      bank_id: null,
+    };
+
+    showAccountForm.value = false;
+  } catch (err) {
+    error.value =
+      "Failed to create bank account: " +
+      (err.response?.data?.message || err.message);
+
+    // Show validation errors if any
+    if (err.response?.data?.errors) {
+      // You can handle validation errors here
+      console.error("Validation errors:", err.response.data.errors);
+    }
+  } finally {
+    loading.value = false;
+  }
+}
+
+// Delete a bank account
+async function deleteAccount(accountId) {
+  if (!confirm("Are you sure you want to delete this account?")) {
+    return;
+  }
+
+  try {
+    loading.value = true;
+    error.value = null;
+
+    await financialApi.deleteBankAccount(accountId);
+
+    // Remove the account from the list
+    accounts.value = accounts.value.filter(
+      (account) => account.id !== accountId
+    );
+  } catch (err) {
+    error.value =
+      "Failed to delete bank account: " +
+      (err.response?.data?.message || err.message);
+  } finally {
+    loading.value = false;
+  }
+}
+
+// Get account transactions
+async function viewAccountTransactions(accountId) {
+  filters.value.bank_account_id = accountId;
+  await loadTransactions();
+}
+
+// Computed properties for account balances
+function getAccountIncome(accountId) {
+  return transactions.value
+    .filter((t) => t.bank_account_id === accountId && t.type === "income")
+    .reduce((sum, t) => sum + parseFloat(t.amount), 0);
+}
+
+function getAccountExpense(accountId) {
+  return transactions.value
+    .filter((t) => t.bank_account_id === accountId && t.type === "expense")
+    .reduce((sum, t) => sum + parseFloat(t.amount), 0);
+}
+
 function getAccountBalance(accountId) {
   const account = accounts.value.find((a) => a.id === accountId);
   if (!account) return 0;
 
   return (
-    account.initialBalance +
+    parseFloat(account.starting_balance) +
     getAccountIncome(accountId) -
     getAccountExpense(accountId)
   );
-}
-
-function addAccount() {
-  const id =
-    accounts.value.length > 0
-      ? Math.max(...accounts.value.map((a) => a.id)) + 1
-      : 1;
-
-  accounts.value.push({
-    id,
-    ...newAccount.value,
-    initialBalance: parseFloat(newAccount.value.initialBalance),
-  });
-
-  // Reset form
-  newAccount.value = {
-    name: "",
-    initialBalance: 0,
-    description: "",
-  };
-
-  showAccountForm.value = false;
-}
-
-// New account form
-const showAccountForm = ref(false);
-const newAccount = ref({
-  name: "",
-  initialBalance: 0,
-  description: "",
-});
-
-function getAccountIncome(accountId) {
-  return transactions.value
-    .filter((t) => t.accountId === accountId && t.type === "income")
-    .reduce((sum, t) => sum + t.amount, 0);
-}
-
-function getAccountExpense(accountId) {
-  return transactions.value
-    .filter((t) => t.accountId === accountId && t.type === "expense")
-    .reduce((sum, t) => sum + t.amount, 0);
 }
 </script>
 <template>
@@ -158,20 +217,40 @@ function getAccountExpense(accountId) {
       </button>
     </div>
 
+    <!-- Error Alert -->
+    <div v-if="error" class="bg-red-100 text-red-700 p-4 rounded-md">
+      {{ error }}
+    </div>
+
+    <!-- Loading Indicator -->
+    <div v-if="loading" class="flex justify-center p-4">
+      <div
+        class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"
+      ></div>
+    </div>
+
     <!-- Accounts Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <div
         v-for="account in accounts"
         :key="account.id"
         class="border rounded-lg overflow-hidden"
       >
         <div class="p-4 border-b bg-muted/30">
-          <h3 class="font-medium">{{ account.name }}</h3>
+          <h3 class="font-medium">
+            {{ account.account_name }} ({{ account.bank.name }})
+          </h3>
+          <p
+            v-if="account.account_number"
+            class="text-sm text-muted-foreground"
+          >
+            {{ account.account_number }}
+          </p>
         </div>
         <div class="p-4 space-y-2">
           <div class="flex justify-between">
             <span class="text-muted-foreground">Saldo Awal:</span>
-            <span>{{ formatCurrency(account.initialBalance) }}</span>
+            <span>{{ formatCurrency(account.starting_balance) }}</span>
           </div>
           <div class="flex justify-between">
             <span class="text-muted-foreground">Total Masuk:</span>
@@ -190,9 +269,18 @@ function getAccountExpense(accountId) {
             <span>{{ formatCurrency(getAccountBalance(account.id)) }}</span>
           </div>
         </div>
-        <div class="p-4 border-t bg-muted/20">
-          <button class="text-primary hover:text-primary/80 text-sm">
+        <div class="p-4 border-t bg-muted/20 flex justify-between">
+          <button
+            @click="viewAccountTransactions(account.id)"
+            class="text-primary hover:text-primary/80 text-sm"
+          >
             Lihat Histori Transaksi
+          </button>
+          <button
+            @click="deleteAccount(account.id)"
+            class="text-red-600 hover:text-red-800 text-sm"
+          >
+            Hapus
           </button>
         </div>
       </div>
@@ -226,10 +314,20 @@ function getAccountExpense(accountId) {
           </div>
 
           <div>
+            <label class="block text-sm font-medium mb-1">Nomor Rekening</label>
+            <input
+              type="text"
+              v-model="newAccount.account_number"
+              class="w-full rounded-md border border-input bg-background px-3 py-2"
+              placeholder="Optional"
+            />
+          </div>
+
+          <div>
             <label class="block text-sm font-medium mb-1">Saldo Awal</label>
             <input
               type="number"
-              v-model="newAccount.initialBalance"
+              v-model="newAccount.starting_balance"
               class="w-full rounded-md border border-input bg-background px-3 py-2"
               required
               min="0"
@@ -243,6 +341,7 @@ function getAccountExpense(accountId) {
               v-model="newAccount.description"
               class="w-full rounded-md border border-input bg-background px-3 py-2"
               rows="2"
+              placeholder="Optional"
             ></textarea>
           </div>
 
@@ -257,8 +356,10 @@ function getAccountExpense(accountId) {
             <button
               type="submit"
               class="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md"
+              :disabled="loading"
             >
-              Simpan
+              <span v-if="loading">Menyimpan...</span>
+              <span v-else>Simpan</span>
             </button>
           </div>
         </form>
@@ -268,5 +369,5 @@ function getAccountExpense(accountId) {
 </template>
 
 <style scoped>
-/* Your component styles here */
+/* Additional component styles here */
 </style>

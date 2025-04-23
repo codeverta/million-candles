@@ -68,25 +68,25 @@ Untuk pesta ulang tahun, pilih lilin dengan aroma ceria dan kemasan yang berwarn
 
 Souvenir lilin aromaterapi untuk acara perusahaan dapat memiliki desain yang lebih formal dengan aroma yang menenangkan seperti sandalwood atau cedar. Kemasan bisa disesuaikan dengan logo perusahaan atau pesan yang ingin disampaikan.
 
-## **FAQ tentang Souvenir Lilin Aromaterapi**
+## FAQ tentang Souvenir Lilin Aromaterapi
 
-### **Apa itu lilin aromaterapi?**
+### Apa itu lilin aromaterapi?
 
 Lilin aromaterapi adalah lilin yang mengandung minyak esensial dengan manfaat terapeutik. Lilin ini dirancang untuk memberikan efek relaksasi, meningkatkan suasana hati, dan mendukung kesehatan emosional.
 
-### **Bagaimana cara memilih aroma yang tepat untuk souvenir lilin?**
+### Bagaimana cara memilih aroma yang tepat untuk souvenir lilin?
 
 Pilih aroma berdasarkan manfaat yang diinginkan. Aroma menenangkan seperti lavendel cocok untuk acara relaksasi, sedangkan aroma energizing seperti lemon cocok untuk acara yang membutuhkan dorongan energi.
 
-### **Apa bahan terbaik untuk membuat lilin aromaterapi?**
+### Apa bahan terbaik untuk membuat lilin aromaterapi?
 
 Bahan terbaik termasuk soy wax dan beeswax, yang ramah lingkungan dan tidak beracun. Pilih minyak esensial murni untuk hasil aromaterapi yang optimal.
 
-### **Bagaimana cara mempersonalisasi kemasan souvenir lilin?**
+### Bagaimana cara mempersonalisasi kemasan souvenir lilin?
 
 Kemasan dapat dipersonalisasi dengan desain khusus, label dengan ucapan terima kasih atau nama acara, serta warna yang sesuai dengan tema acara.
 
-### **Berapa lama lilin aromaterapi bisa bertahan?**
+### Berapa lama lilin aromaterapi bisa bertahan?
 
 Lama pembakaran lilin tergantung pada ukuran dan bahan lilin. Secara umum, lilin aromaterapi dapat bertahan dari beberapa jam hingga beberapa hari tergantung pada ukuran dan frekuensi penggunaannya.
 

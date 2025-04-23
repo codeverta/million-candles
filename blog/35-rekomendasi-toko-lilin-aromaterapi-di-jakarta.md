@@ -138,24 +138,30 @@ Berikut contoh `LocalBusiness` schema markup dalam format JSON-LD yang bisa dita
 
 ---
 
-### **FAQ: Pertanyaan Seputar Lilin Aromaterapi di Jakarta**
+## FAQ: Pertanyaan Seputar Lilin Aromaterapi di Jakarta
 
-**1. Apakah lilin aromaterapi aman untuk digunakan setiap hari?**  
+### Apakah lilin aromaterapi aman untuk digunakan setiap hari?
+
 Ya, selama digunakan sesuai petunjuk dan bahan dasarnya alami seperti soy wax.
 
-**2. Di mana saya bisa menemukan toko lilin aromaterapi terdekat di Jakarta?**  
+### Di mana saya bisa menemukan toko lilin aromaterapi terdekat di Jakarta?
+
 Cek Google Maps dengan kata kunci “lilin aromaterapi terdekat” atau gunakan direktori lokal seperti Tokopedia dan Shopee.
 
-**3. Apakah bisa pesan custom aroma?**  
+### Apakah bisa pesan custom aroma?
+
 Banyak toko lokal seperti The Candela Studio dan JakartaWangi menawarkan layanan custom aroma.
 
-**4. Berapa lama lilin aromaterapi bertahan?**  
+### Berapa lama lilin aromaterapi bertahan?
+
 Tergantung ukurannya. Rata-rata lilin 100g bisa menyala 15-20 jam.
 
-**5. Apakah lilin aromaterapi cocok untuk hadiah?**  
+### Apakah lilin aromaterapi cocok untuk hadiah?
+
 Sangat cocok! Banyak toko menawarkan kemasan premium dan kartu ucapan.
 
-**6. Apakah ada lilin yang bebas asap dan ramah lingkungan?**  
+### Apakah ada lilin yang bebas asap dan ramah lingkungan?
+
 Pilih lilin berbasis soy wax atau beeswax untuk opsi yang lebih alami dan bebas asap.
 
 ---

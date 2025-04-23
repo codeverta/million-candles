@@ -37,6 +37,10 @@ export const financialApi = {
   getDropdownData() {
     return axios.get("/dropdown-data");
   },
+
+  createBankAccount(accountData) {
+    return axios.post("/bank-accounts", accountData);
+  },
 };
 
 export default financialApi;
