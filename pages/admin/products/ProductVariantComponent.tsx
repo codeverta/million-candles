@@ -82,7 +82,7 @@ const ProductVariantComponent = ({
         `variant-combinations?product_id=${productId}`
       );
       setCombinations(
-        combinationsResponse.data.data.map((combo) => ({
+        combinationsResponse.data.map((combo) => ({
           id: combo.id,
           sku: combo.attributes.sku,
           price: combo.attributes.price,
