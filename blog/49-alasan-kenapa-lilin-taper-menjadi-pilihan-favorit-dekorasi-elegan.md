@@ -185,29 +185,35 @@ _"Wanginya lembut dan desainnya minimalis. Sangat puas dengan pelayanannya."_
 
 ---
 
-## **Pertanyaan Umum Seputar Lilin Taper dan Cara Membelinya**
+## FAQ, Pertanyaan Umum Seputar Lilin Taper dan Cara Membelinya\*\*
 
-**1. Apakah lilin taper aman untuk anak-anak?**  
+### Apakah lilin taper aman untuk anak-anak?
+
 Ya, asalkan digunakan dengan pengawasan dan menggunakan bahan non-toksik.
 
-**2. Apa perbedaan lilin taper dan lilin pilar?**  
+### Apa perbedaan lilin taper dan lilin pilar?
+
 Lilin taper lebih ramping dan panjang, cocok untuk tempat lilin khusus.
 
-**3. Apakah bisa pesan lilin taper custom di www.souvenirlilin.id?**  
+### Apakah bisa pesan lilin taper custom di www.souvenirlilin.id?
+
 Tentu saja! Kamu bisa memilih warna, aroma, bahkan ukiran nama.
 
-**4. Berapa lama lilin taper bisa menyala?**  
+### Berapa lama lilin taper bisa menyala?
+
 Tergantung ukuran, tapi rata-rata bisa menyala 6-10 jam.
 
-**5. Apakah tersedia pengiriman ke luar pulau?**  
+### Apakah tersedia pengiriman ke luar pulau?
+
 Ya, kami kirim ke seluruh Indonesia.
 
-**6. Bagaimana cara memastikan lilin tidak menetes saat menyala?**  
+### Bagaimana cara memastikan lilin tidak menetes saat menyala?
+
 Gunakan tempat lilin berkualitas dan hindari angin langsung.
 
 ---
 
-## **Kesimpulan: Hadirkan Nuansa Mewah dan Hangat dengan Lilin Taper**
+## Kesimpulan: Hadirkan Nuansa Mewah dan Hangat dengan Lilin Taper
 
 Lilin taper bukan hanya dekorasi biasa, melainkan simbol keindahan, keanggunan, dan kehangatan. Mau tampilan ruangan jadi lebih berkelas atau suasana acara jadi lebih sakral? **Pilih lilin taper dari www.souvenirlilin.id dan wujudkan atmosfer sempurna dalam sekejap!**
 
