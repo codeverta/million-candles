@@ -432,12 +432,9 @@ function Home(props: any) {
                     </li>
                     <li className="flex items-start">
                       <CheckRounded className="text-amber-500 mt-1 mr-3" />
-                      <span>MOQ fleksibel dan layanan white-label</span>
+                      <span>Tidak ada MOQ dan layanan white-label</span>
                     </li>
                   </ul>
-                  <button className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-medium transition">
-                    Minta Katalog Grosir
-                  </button>
                 </div>
                 <div className="md:w-1/2 bg-white p-8 rounded-lg shadow-lg">
                   <h3 className="text-xl font-semibold mb-4 text-center">

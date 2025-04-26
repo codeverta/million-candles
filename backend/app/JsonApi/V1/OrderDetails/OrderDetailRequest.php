@@ -17,7 +17,7 @@ class OrderDetailRequest extends ResourceRequest
     public function rules(): array
     {
         return [
-            'qty' => ['nullable', 'min:0', 'max:1000', 'numeric'],
+            'qty' => ['nullable', 'min:0', 'max:99999', 'numeric'],
             'price' => ['required', 'numeric'],
             'total_price' => ['required', 'numeric'],
             'products' => [JsonApiRule::toOne('products')],
