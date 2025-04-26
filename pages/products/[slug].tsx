@@ -15,6 +15,7 @@ import Breadcrumb from "components/mui/Breadcrumb";
 import ProductVariants from "components/mui/ProductVariant";
 import { useRouter } from "next/router";
 import ProductJsonLd from "components/ProductJsonLd"; // Import the JSON-LD component
+import { BreadcrumbJsonLd } from "next-seo";
 
 function generateWhatsAppLink(phoneNumber, message) {
   // Encode the message to make it URL-safe
@@ -175,6 +176,25 @@ function ProductDetail() {
       {!isLoading && product && (
         <ProductJsonLd product={product} baseUrl={baseUrl} />
       )}
+      <BreadcrumbJsonLd
+        itemListElements={[
+          {
+            position: 1,
+            name: "Home",
+            item: "https://souvenirlilin.id/",
+          },
+          {
+            position: 2,
+            name: "Products",
+            item: "https://souvenirlilin.id/products",
+          },
+          {
+            position: 3,
+            name: product.data[0].attributes.name,
+            item: `https://souvenirlilin.id/products/${product.data[0].attributes.slug}`,
+          },
+        ]}
+      />
 
       <section className="text-gray-700 dark:text-gray-300 body-font overflow-hidden bg-white min-h-screen dark:bg-gray-900">
         <div className="container mx-auto p-4">

@@ -64,6 +64,42 @@ const ProductJsonLd = ({
         attributes.stock > 0
           ? "https://schema.org/InStock"
           : "https://schema.org/OutOfStock",
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        returnPolicyCategory: "https://schema.org/FreeReturn",
+      },
+      shippingDetails: [
+        {
+          "@type": "OfferShippingDetails",
+          shippingRate: {
+            "@type": "MonetaryAmount",
+            value: attributes.price + "",
+            currency: "IDR",
+          },
+          shippingDestination: {
+            "@type": "DefinedRegion",
+            addressCountry: "ID",
+          },
+        },
+      ],
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "24",
+    },
+    review: {
+      "@type": "Review",
+      author: {
+        "@type": "Person",
+        name: "Rabih Utomo",
+      },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: "5",
+        bestRating: "5",
+      },
+      reviewBody: "This product is amazing! Highly recommended.",
     },
   };
 

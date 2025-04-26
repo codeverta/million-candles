@@ -589,44 +589,6 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
               </div>
             </div>
           )}
-
-          {/* Newsletter Subscription
-          <section className="mt-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl shadow-xl p-8 text-white">
-            <div className="md:flex items-center justify-between">
-              <div className="md:w-2/3 mb-6 md:mb-0">
-                <h2 className="text-2xl font-bold mb-2">
-                  Berlangganan Newsletter Kami
-                </h2>
-                <p className="text-blue-100">
-                  Dapatkan artikel terbaru dan tips-tips menarik seputar lilin
-                  langsung ke email Anda.
-                </p>
-              </div>
-              <div className="md:w-1/3">
-                <form className="flex">
-                  <TextField
-                    variant="outlined"
-                    placeholder="Email Anda"
-                    size="small"
-                    fullWidth
-                    InputProps={{
-                      style: {
-                        backgroundColor: "white",
-                        borderRadius: "9999px 0 0 9999px",
-                      },
-                    }}
-                  />
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    className="!rounded-r-full !rounded-l-none !bg-gray-900 !hover:bg-gray-800 !transition-all !duration-300"
-                  >
-                    Langganan
-                  </Button>
-                </form>
-              </div>
-            </div>
-          </section> */}
         </div>
         {/* Share Menu */}
         <Menu
