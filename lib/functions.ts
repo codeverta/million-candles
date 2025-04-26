@@ -204,3 +204,15 @@ export function findRelatedPosts(currentPostId, currentPostTags, allPosts) {
     .sort((a, b) => b.relatednessScore - a.relatednessScore)
     .slice(0, 3); // Get top 3 related posts
 }
+
+// components/post/utils.js
+export const convertDate = (date) => {
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  return new Date(date).toLocaleDateString(undefined, options);
+};
+
+export const estimateReadingTime = (content) => {
+  const wordsPerMinute = 200;
+  const wordCount = content.split(/\s+/).length;
+  return Math.ceil(wordCount / wordsPerMinute);
+};

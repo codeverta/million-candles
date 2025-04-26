@@ -14,26 +14,10 @@ import {
 } from "lucide-react";
 import CopyLinkButton from "./CopyLinkButton";
 import Layout from "components/layout/Landing";
-import RelatedPosts from "./RelatedPosts"; // Import the new component
+import RelatedPosts from "./RelatedPosts";
 import BlogSchemaJsonLd from "components/BlogSchemaJsonLd";
-
-// Utility function to convert date
-const convertDate = (date) => {
-  const options = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  return new Date(date).toLocaleDateString(undefined, options);
-};
-
-// Utility function for reading time estimation
-const estimateReadingTime = (content) => {
-  const wordsPerMinute = 200;
-  const wordCount = content.split(/\s+/).length;
-  const readingTime = Math.ceil(wordCount / wordsPerMinute);
-  return readingTime;
-};
+import BreadcrumbSchemaJsonLd from "components/BreadcrumbSchemaJsonLd"; // Import the new component
+import { convertDate, estimateReadingTime } from "lib/functions";
 
 // Dynamic Breadcrumb Component
 const Breadcrumb = ({ postTitle, slug }) => {
@@ -113,18 +97,10 @@ function Post({ postData, slug }) {
         }}
       />
 
-      <main className="relative min-h-screen bg-cover bg-center bg-no-repeat transition-colors duration-300 max-w-[1200px] mx-auto my-4">
-        {/* Decorative Emoji Floating Elements */}
-        <div className="fixed top-20 left-10 text-6xl opacity-20 rotate-12 hidden md:block">
-          🚀
-        </div>
-        <div className="fixed top-40 right-10 text-7xl opacity-20 -rotate-12 hidden md:block">
-          💡
-        </div>
-        <div className="fixed bottom-20 left-20 text-5xl opacity-20 rotate-6 hidden md:block">
-          ✨
-        </div>
+      {/* Add the BreadcrumbSchemaJsonLd component */}
+      <BreadcrumbSchemaJsonLd slug={slug} postTitle={postData.title} />
 
+      <main className="relative min-h-screen bg-cover bg-center bg-no-repeat transition-colors duration-300 max-w-[1200px] mx-auto my-4">
         <div className="">
           <article
             className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-2xl rounded-xl 

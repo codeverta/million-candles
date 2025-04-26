@@ -203,7 +203,7 @@ function ProductDetail() {
                     modules={[Pagination, Thumbs]}
                   >
                     {isDocumentExist ? (
-                      documents.map((document) => (
+                      documents.map((document: any) => (
                         <SwiperSlide key={document.id}>
                           <div className="relative h-80 w-full flex items-center justify-center bg-gray-100 dark:bg-gray-800">
                             <div className="absolute inset-0 flex items-center justify-center">
