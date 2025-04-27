@@ -27,6 +27,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LinkIcon from "@mui/icons-material/Link";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 interface PostMeta {
   id: string;
@@ -657,7 +658,7 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   // Get posts and add sample categories and read times
   const allPostsData = getSortedPostsData().map((post, index) => {
     // Add sample categories and read times (in a real app, these would come from the actual data)
@@ -691,6 +692,7 @@ export async function getStaticProps() {
   return {
     props: {
       allPostsData,
+      ...(await serverSideTranslations(locale, ["common", "order"])),
     },
   };
 }

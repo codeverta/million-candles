@@ -8,6 +8,7 @@ import GoogleCaptcha from "components/molecules/GoogleCaptcha";
 import LoadingBackdrop from "components/mui/LoadingBackdrop";
 import { getOrderSequence, OrderSequence } from "utils/orders";
 import dayjs from "dayjs";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 function TrackOrder() {
   const queryClient = useQueryClient();
@@ -194,5 +195,13 @@ function TrackOrder() {
 TrackOrder.getLayout = function getLayout(page: React.ReactNode) {
   return <Layout>{page}</Layout>;
 };
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "order"])), // <- fixed to load 'order' not 'common'
+    },
+  };
+}
 
 export default TrackOrder;

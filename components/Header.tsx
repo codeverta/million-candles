@@ -13,7 +13,7 @@ const languages = [
   { code: "id", name: "Bahasa Indonesia", flag: "🇮🇩" },
   { code: "zh", name: "中文", flag: "🇨🇳" },
   { code: "ja", name: "日本語", flag: "🇯🇵" },
-  { code: "ko", name: "한국어", flag: "🇰🇷" },
+  { code: "kr", name: "한국어", flag: "🇰🇷" },
 ];
 
 export default function Header(props) {
@@ -89,18 +89,19 @@ export default function Header(props) {
       router.push("/admin/orders");
     }
 
+    // Check for system dark mode preference only on initial mount
     if (
+      typeof window !== "undefined" &&
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
     ) {
       setDarkMode(true);
       document.documentElement.classList.add("dark");
     }
-  }, []);
+  }, [router]); // Add router as dependency
 
-  // Update menus when language changes
   useEffect(() => {
-    setMenus([
+    const updatedMenus = [
       { label: t("menu.home", "Home"), url: "/" },
       { label: t("menu.products", "Products"), url: "/products" },
       { label: t("menu.how_to_order", "How to Order"), url: "/cara-order" },
@@ -108,8 +109,9 @@ export default function Header(props) {
       { label: t("menu.blog", "Blog"), url: "/posts" },
       { label: t("menu.gallery", "Gallery"), url: "/gallery" },
       { label: t("menu.about", "About"), url: "/about" },
-    ]);
-  }, [t]); // This hook will run when the language (and hence `t()`) changes
+    ];
+    setMenus(updatedMenus);
+  }, [locale]); // Use locale instead of t as dependency
 
   return (
     <header className="sticky top-0 z-50">
@@ -236,7 +238,7 @@ export default function Header(props) {
                   router.pathname === menu.url ||
                   (menu.url !== "/" && router.pathname.startsWith(menu.url));
                 return (
-                  <li key={menu.label}>
+                  <li key={index}>
                     <Link
                       href={menu.url}
                       className={`block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:p-0 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent dark:border-gray-700 transition-colors relative
