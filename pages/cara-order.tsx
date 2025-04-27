@@ -154,7 +154,7 @@ CandleOrderPage.getLayout = function (page: React.ReactNode) {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["order"])), // <- fixed to load 'order' not 'common'
+      ...(await serverSideTranslations(locale, ["common", "order"])),
     },
   };
 }

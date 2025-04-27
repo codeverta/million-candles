@@ -6,6 +6,7 @@ import Layout from "components/layout/Landing";
 import api from "utils/api";
 import { useQuery } from "@tanstack/react-query";
 import LoadingBackdrop from "components/mui/LoadingBackdrop";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // Utility function to check if the file is an image
 const isImageFile = (filePath: any) => {
@@ -101,5 +102,13 @@ const PhotoGallery = () => {
 PhotoGallery.getLayout = function (page: React.ReactNode) {
   return <Layout>{page}</Layout>;
 };
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "order"])), // <- fixed to load 'order' not 'common'
+    },
+  };
+}
 
 export default PhotoGallery;
