@@ -1,3 +1,5 @@
+const { i18n } = require("./next-i18next.config");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
@@ -6,11 +8,7 @@ const nextConfig = {
     // Ignore TypeScript errors during production builds
     ignoreBuildErrors: true,
   },
-  i18n: {
-    locales: ["en", "id"],
-    defaultLocale: "en",
-    localeDetection: true, // Optional
-  },
+  i18n,
 };
 
 module.exports = nextConfig;

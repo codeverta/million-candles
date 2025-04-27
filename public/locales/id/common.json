@@ -1,0 +1,109 @@
+{
+  "brand": "Million Candles",
+  "flag": "🇮🇩",
+  "menu": {
+    "login": "Log in",
+    "home": "Home",
+    "products": "Produk",
+    "how_to_order": "Cara Pesan",
+    "address": "Alamat",
+    "blog": "Cerita",
+    "gallery": "Galeri",
+    "about": "Tentang"
+  },
+  "address": {
+    "full": "Jalan Kaliurang KM 9, Sleman, Yogyakarta, Indonesia"
+  },
+  "tagline": {
+    "local_producer": "Produsen Lilin Lokal",
+    "national_scale": "Berskala Nasional"
+  },
+  "description": "Kami adalah supplier yang menyediakan berbagai macam jenis lilin berkualitas tinggi seperti lilin aromaterapi, lilin souvenir, lilin warna, lilin hias, lilin ibadah, lilin rohani, pabrik lilin dan masih banyak lagi. Kami menawarkan lilin hias yang indah untuk souvenir yang cocok untuk acara apa pun. Dari pernikahan hingga acara perusahaan atau perjalanan, lilin hias souvenir kami adalah pilihan yang tepat untuk membuat kenangan yang tak terlupakan.",
+  "how_to_order_candles": "Cara Pesan Lilin",
+  "whatsapp": "Whatsapp",
+  "our_products": "Produk Kami",
+  "other_products": "Produk Lainnya",
+  "disclaimer_price": "* Harga yang ditampilkan merupakan harga distributor/grosir",
+  "features": {
+    "eco_friendly": "Ramah Lingkungan",
+    "made_from": "Terbuat dari 100% palm wax alami dan minyak atsiri",
+    "handmade": "Buatan Tangan",
+    "crafted_with_love": "Setiap lilin dituang dengan hati-hati oleh para pengrajin kami",
+    "long_lasting": "Tahan Lama",
+    "burn_time": "Hingga 12 jam waktu nyala untuk setiap lilin",
+    "handcrafted_with_love": "Handcrafted With Love",
+    "make_beautiful_memories": "Buat Kenangan Indah dengan",
+    "our_candle": "Lilin Kami",
+    "souvenir_description": "Dengan Lilin Hias Souvenir kami, Anda dapat membawa pulang kenangan indah dari acara atau perjalanan Anda. Setiap lilin kami dibuat dengan bahan berkualitas tinggi dan dihiasi dengan indah oleh para seniman kami."
+  },
+  "shipping": {
+    "package": "Paket Pengiriman Lilin",
+    "fast_shipping": "Pengiriman Cepat",
+    "nationwide": "Seluruh Indonesia"
+  },
+  "premium_collection": {
+    "title": "Koleksi Premium",
+    "subtitle": "Produk Lilin Aromaterapi Kami",
+    "description": "Nikmati keindahan dan manfaat lilin aromaterapi handmade kami yang dibuat dengan bahan-bahan alami terbaik."
+  },
+  "quality_section": {
+    "product_quality": "Kualitas Produk",
+    "product_quality_description": "Kami hanya menggunakan bahan-bahan berkualitas tinggi untuk membuat lilin hias kami, dan setiap produk kami diuji untuk memastikan keamanan dan ketahanannya. Kami juga memiliki tim seniman yang berbakat yang menghiasi setiap lilin dengan desain yang indah dan unik, membuatnya menjadi souvenir yang spesial.",
+    "size_and_color": "Ukuran dan warna",
+    "size_and_color_description": "Lilin hias kami hadir dalam berbagai ukuran, mulai dari yang kecil dan portabel hingga yang besar dan indah. Kami juga memiliki berbagai warna yang berbeda, termasuk putih, biru, hijau, merah, dan banyak lagi, sehingga Anda dapat memilih yang sesuai dengan tema acara Anda.",
+    "calming_aroma": "Aroma yang Menenangkan",
+    "calming_aroma_description": "Lilin hias kami juga memberikan aroma yang menenangkan, membawa kedamaian dan ketenangan ke dalam ruangan. Kami menggunakan minyak wangi berkualitas tinggi untuk memberikan aroma yang tahan lama dan menyenangkan."
+  },
+  "lifespan": {
+    "title": "Masa Pakai",
+    "description": "Hingga 12 Jam"
+  },
+  "natural": {
+    "title": "100% Natural",
+    "description": "Ramah Lingkungan"
+  },
+  "business_opportunity": {
+    "title": "Peluang Bisnis Grosir",
+    "description": "Tingkatkan bisnis Anda dengan koleksi lilin premium kami. Sempurna untuk hotel, spa, butik, dan toko hadiah.",
+    "custom_branding": "Tersedia opsi branding khusus",
+    "no_moq_white_label": "Tidak ada MOQ dan layanan white-label"
+  },
+  "wholesale_benefits": {
+    "title": "Keuntungan Pembelian Grosir",
+    "competitive_price": "Harga Kompetitif",
+    "competitive_price_description": "Dapatkan diskon hingga 5% dari harga eceran untuk pemesanan dalam jumlah besar",
+    "exclusive_aromas": "Aroma Eksklusif",
+    "exclusive_aromas_description": "Akses ke pilihan wangi eksklusif hanya untuk pelanggan grosir",
+    "dedicated_support": "Dukungan Khusus",
+    "dedicated_support_description": "Manajer akun pribadi untuk klien grosir"
+  },
+  "blog_section": {
+    "title": "Cerita Kami",
+    "description": "Kumpulan blog yang membahas tentang berbagai aspek lilin, mulai dari sejarah dan berbagai jenis lilin, hingga cara membuat lilin sendiri dan bagaimana memilih lilin yang tepat untuk berbagai keperluan. Anda juga akan menemukan cerita inspiratif tentang bagaimana lilin dapat menjadi simbol harapan dan kehangatan dalam kehidupan sehari-hari. Mari kita eksplorasi keajaiban lilin bersama-sama dan pelajari cara menggunakannya untuk menerangi kehidupan kita."
+  },
+  "testimonials": {
+    "title": "Apa Kata Pelanggan Kami",
+    "sarah_johnson": {
+      "quote": "Tamu hotel kami selalu memuji aroma yang harum di lobi kami. Lilin Aroma Vanilla kami menciptakan suasana yang sangat menyambut.",
+      "name": "Sarah Johnson",
+      "position": "Manajer Hotel, The Grand Plaza"
+    },
+    "emily_chen": {
+      "quote": "Sebagai pemilik butik, saya sangat menghargai kualitas dan presentasi lilin-lilin ini. Lilin ini telah menjadi produk hadiah terlaris kami!",
+      "name": "Emily Chen",
+      "position": "Pemilik, The Curated Corner"
+    },
+    "michael_rodriguez": {
+      "quote": "Waktu nyala lilin ini luar biasa dan aromanya sempurna - tidak terlalu menyengat. Saya sudah membeli setiap varian dalam koleksi ini!",
+      "name": "Michael Rodriguez",
+      "position": "Pelanggan Setia"
+    },
+    "wedding_customer": {
+      "quote": "Terima kasih @souvenirlilin untuk produk yang indah! Lilin yang saya beli untuk pernikahan saya benar-benar menambahkan sentuhan yang sempurna ke acara tersebut, dan tamu-tamu saya sangat menyukainya",
+      "name": "Pelanggan"
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Million Candles. All rights reserved."
+  }
+}

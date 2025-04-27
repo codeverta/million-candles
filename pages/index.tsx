@@ -10,7 +10,6 @@ import {
   Star,
   StarHalf,
   Percent,
-  LocalShipping,
   HeadsetMic,
 } from "@mui/icons-material";
 import { getSortedPostsData } from "lib/posts";
@@ -18,31 +17,58 @@ import { Avatar } from "@mui/material";
 import Head from "next/head";
 import { LocalBusinessJsonLd, LogoJsonLd } from "next-seo";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
 // import AdSense from "components/AdSense";
 
-const features = [
-  {
-    name: "Kualitas Produk.",
-    description:
-      "Kami hanya menggunakan bahan-bahan berkualitas tinggi untuk membuat lilin hias kami, dan setiap produk kami diuji untuk memastikan keamanan dan ketahanannya. Kami juga memiliki tim seniman yang berbakat yang menghiasi setiap lilin dengan desain yang indah dan unik, membuatnya menjadi souvenir yang spesial.",
-    icon: RoundaboutLeft,
-  },
-  {
-    name: "Ukuran dan warna.",
-    description:
-      "Lilin hias kami hadir dalam berbagai ukuran, mulai dari yang kecil dan portabel hingga yang besar dan indah. Kami juga memiliki berbagai warna yang berbeda, termasuk putih, biru, hijau, merah, dan banyak lagi, sehingga Anda dapat memilih yang sesuai dengan tema acara Anda.",
-    icon: CloudDone,
-  },
-  {
-    name: "Aroma yang Menenangkan.",
-    description:
-      "Lilin hias kami juga memberikan aroma yang menenangkan, membawa kedamaian dan ketenangan ke dalam ruangan. Kami menggunakan minyak wangi berkualitas tinggi untuk memberikan aroma yang tahan lama dan menyenangkan..",
-    icon: CheckRounded,
-  },
-];
-
 function Home(props: any) {
+  const { t } = useTranslation();
   const { posts } = props;
+
+  const testimonials = [
+    {
+      quote: "testimonials.sarah_johnson.quote",
+      name: "testimonials.sarah_johnson.name",
+      position: "testimonials.sarah_johnson.position",
+      imageUrl: "https://randomuser.me/api/portraits/women/43.jpg",
+      rating: [<Star />, <Star />, <Star />, <Star />, <Star />],
+    },
+    {
+      quote: "testimonials.emily_chen.quote",
+      name: "testimonials.emily_chen.name",
+      position: "testimonials.emily_chen.position",
+      imageUrl: "https://randomuser.me/api/portraits/women/65.jpg",
+      rating: [<Star />, <Star />, <Star />, <Star />, <Star />],
+    },
+    {
+      quote: "testimonials.michael_rodriguez.quote",
+      name: "testimonials.michael_rodriguez.name",
+      position: "testimonials.michael_rodriguez.position",
+      imageUrl: "https://randomuser.me/api/portraits/men/32.jpg",
+      rating: [<Star />, <Star />, <Star />, <Star />, <StarHalf />],
+    },
+  ];
+
+  const features = [
+    {
+      name: t("quality_section.product_quality"),
+      description: t("quality_section.product_quality_description"),
+      icon: RoundaboutLeft,
+    },
+    {
+      name: t("quality_section.size_and_color"),
+      description: t("quality_section.size_and_color_description"),
+      icon: CloudDone,
+    },
+    {
+      name: t("quality_section.calming_aroma"),
+      description: t("quality_section.calming_aroma_description"),
+      icon: CheckRounded,
+    },
+  ];
+
   return (
     <Layout>
       <Head>
@@ -209,28 +235,30 @@ function Home(props: any) {
                 <div className="w-16 h-16 mx-auto mb-4 bg-amber-100 rounded-full flex items-center justify-center">
                   <EnergySavingsLeaf className="text-amber-600 text-2xl" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Ramah Lingkungan</h3>
-                <p className="text-gray-600">
-                  Terbuat dari 100% palm wax alami dan minyak atsiri
-                </p>
+                <h3 className="text-xl font-semibold mb-2">
+                  {t("features.eco_friendly")}
+                </h3>
+                <p className="text-gray-600">{t("features.made_from")}</p>
               </div>
               <div className="text-center p-6 rounded-lg">
                 <div className="w-16 h-16 mx-auto mb-4 bg-amber-100 rounded-full flex items-center justify-center">
                   <Favorite className="text-amber-600 text-2xl" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Buatan Tangan</h3>
+                <h3 className="text-xl font-semibold mb-2">
+                  {t("features.handmade")}
+                </h3>
                 <p className="text-gray-600">
-                  Setiap lilin dituang dengan hati-hati oleh para pengrajin kami
+                  {t("features.crafted_with_love")}
                 </p>
               </div>
               <div className="text-center p-6 rounded-lg">
                 <div className="w-16 h-16 mx-auto mb-4 bg-amber-100 rounded-full flex items-center justify-center">
                   <AccessTime className="text-amber-600 text-2xl" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Tahan Lama</h3>
-                <p className="text-gray-600">
-                  Hingga 12 jam waktu nyala untuk setiap lilin
-                </p>
+                <h3 className="text-xl font-semibold mb-2">
+                  {t("features.long_lasting")}
+                </h3>
+                <p className="text-gray-600">{t("features.burn_time")}</p>
               </div>
             </div>
           </div>
@@ -240,25 +268,20 @@ function Home(props: any) {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-6 order-2 lg:order-1">
                 <span className="inline-block px-4 py-1.5 bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 font-medium rounded-full text-sm">
-                  Handcrafted With Love
+                  {t("features.handcrafted_with_love")}
                 </span>
                 <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight">
-                  Buat Kenangan Indah dengan{" "}
+                  {t("features.make_beautiful_memories")}{" "}
                   <span className="text-amber-600 dark:text-amber-400">
-                    Lilin Kami
+                    {t("features.our_candle")}
                   </span>
                 </h1>
                 <div className="h-1 w-24 bg-amber-500 rounded-full"></div>
                 <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Dengan Lilin Hias Souvenir kami, Anda dapat membawa pulang
-                  kenangan indah dari acara atau perjalanan Anda. Setiap lilin
-                  kami dibuat dengan bahan berkualitas tinggi dan dihiasi dengan
-                  indah oleh para seniman kami.
+                  {t("features.souvenir_description")}
                 </p>
                 <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Kami menawarkan lilin hias yang indah untuk souvenir yang
-                  sempurna untuk acara apa pun - dari pernikahan hingga acara
-                  perusahaan atau perjalanan.
+                  {t("description")}
                 </p>
               </div>
               <div className="relative order-1 lg:order-2">
@@ -275,7 +298,7 @@ function Home(props: any) {
                     <img
                       className="w-full h-full object-cover"
                       src="/assets/lilin2.webp"
-                      alt="Paket Pengiriman Lilin"
+                      alt={t("shipping.package")}
                     />
                   </div>
                   <div className="absolute -bottom-6 -right-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 flex items-center gap-3 transform hover:scale-105 transition-all duration-300">
@@ -297,10 +320,10 @@ function Home(props: any) {
                     </div>
                     <div>
                       <p className="text-sm font-medium text-gray-900 dark:text-white">
-                        Pengiriman Cepat
+                        {t("shipping.fast_shipping")}
                       </p>
                       <p className="text-xs text-gray-600 dark:text-gray-400">
-                        Seluruh Indonesia
+                        {t("shipping.nationwide")}
                       </p>
                     </div>
                   </div>
@@ -315,19 +338,20 @@ function Home(props: any) {
                 <div className="lg:pr-8 lg:pt-4">
                   <div className="lg:max-w-lg">
                     <span className="inline-block px-3 py-1 text-sm font-medium text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-900/30 rounded-full mb-4">
-                      Koleksi Premium
+                      {t("premium_collection.title")}
                     </span>
                     <h2 className="mt-2 text-3xl font-bold tracking-tight dark:text-white text-gray-900 sm:text-4xl leading-tight">
-                      Produk{" "}
+                      {t("premium_collection.subtitle").split(" ")[0]}{" "}
                       <span className="text-amber-600 dark:text-amber-400">
-                        Lilin Aromaterapi
-                      </span>{" "}
-                      Kami
+                        {t("premium_collection.subtitle")
+                          .split(" ")
+                          .slice(1)
+                          .join(" ")}
+                      </span>
                     </h2>
                     <div className="mt-6 h-1 w-20 bg-amber-500 rounded-full"></div>
                     <p className="mt-6 text-lg leading-8 dark:text-gray-300 text-gray-600">
-                      Nikmati keindahan dan manfaat lilin aromaterapi handmade
-                      kami yang dibuat dengan bahan-bahan alami terbaik.
+                      {t("premium_collection.description")}
                     </p>
                     <dl className="mt-10 max-w-xl space-y-6 text-base leading-7 text-gray-600 lg:max-w-none">
                       {features.map((feature) => (
@@ -336,10 +360,10 @@ function Home(props: any) {
                           className="relative p-12 rounded-xl transition-all duration-300 hover:bg-white dark:hover:bg-gray-800 hover:shadow-md"
                         >
                           <dt className="font-semibold dark:text-white text-gray-900 text-lg mb-1">
-                            {feature.name}
+                            {t(feature.name)}
                           </dt>
                           <dd className="dark:text-gray-400 text-gray-600">
-                            {feature.description}
+                            {t(feature.description)}
                           </dd>
                         </div>
                       ))}
@@ -351,7 +375,7 @@ function Home(props: any) {
                   <div className="relative">
                     <img
                       src="/assets/lilin.webp"
-                      alt="Koleksi lilin aromaterapi premium"
+                      alt={t("premium_collection.subtitle")}
                       className="w-full max-w-none rounded-2xl shadow-2xl ring-1 ring-gray-400/10 object-cover lg:w-[48rem] h-[30rem] transform hover:scale-[1.02] transition-transform duration-500"
                       width={2432}
                       height={1442}
@@ -375,10 +399,10 @@ function Home(props: any) {
                       </div>
                       <div>
                         <p className="text-sm font-medium text-gray-900 dark:text-white">
-                          Masa Pakai
+                          {t("lifespan.title")}
                         </p>
                         <p className="text-xs text-gray-600 dark:text-gray-400">
-                          Hingga 12 Jam
+                          {t("lifespan.description")}
                         </p>
                       </div>
                     </div>
@@ -402,10 +426,10 @@ function Home(props: any) {
                     </div>
                     <div>
                       <p className="text-sm font-medium text-gray-900 dark:text-white">
-                        100% Natural
+                        {t("natural.title")}
                       </p>
                       <p className="text-xs text-gray-600 dark:text-gray-400">
-                        Ramah Lingkungan
+                        {t("natural.description")}
                       </p>
                     </div>
                   </div>
@@ -419,26 +443,27 @@ function Home(props: any) {
               <div className="flex flex-col md:flex-row items-center">
                 <div className="md:w-1/2 mb-10 md:mb-0 md:pr-10">
                   <h2 className="text-3xl font-bold mb-6">
-                    Peluang Bisnis Grosir
+                    {t("business_opportunity.title")}
                   </h2>
                   <p className="text-lg text-gray-700 mb-6">
-                    Tingkatkan bisnis Anda dengan koleksi lilin premium kami.
-                    Sempurna untuk hotel, spa, butik, dan toko hadiah.
+                    {t("business_opportunity.description")}
                   </p>
                   <ul className="space-y-3 mb-8">
                     <li className="flex items-start">
                       <CheckRounded className="text-amber-500 mt-1 mr-3" />
-                      <span>Tersedia opsi branding khusus</span>
+                      <span>{t("business_opportunity.custom_branding")}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckRounded className="text-amber-500 mt-1 mr-3" />
-                      <span>Tidak ada MOQ dan layanan white-label</span>
+                      <span>
+                        {t("business_opportunity.no_moq_white_label")}
+                      </span>
                     </li>
                   </ul>
                 </div>
                 <div className="md:w-1/2 bg-white p-8 rounded-lg shadow-lg">
                   <h3 className="text-xl font-semibold mb-4 text-center">
-                    Keuntungan Pembelian Grosir
+                    {t("wholesale_benefits.title")}
                   </h3>
                   <div className="space-y-6">
                     <div className="flex items-start">
@@ -446,10 +471,13 @@ function Home(props: any) {
                         <Percent className="text-amber-600" />
                       </div>
                       <div>
-                        <h4 className="font-medium">Harga Kompetitif</h4>
+                        <h4 className="font-medium">
+                          {t("wholesale_benefits.competitive_price")}
+                        </h4>
                         <p className="text-gray-600 text-sm">
-                          Dapatkan diskon hingga 5% dari harga eceran untuk
-                          pemesanan dalam jumlah besar
+                          {t(
+                            "wholesale_benefits.competitive_price_description"
+                          )}
                         </p>
                       </div>
                     </div>
@@ -458,10 +486,11 @@ function Home(props: any) {
                         <Star className="text-amber-600" />
                       </div>
                       <div>
-                        <h4 className="font-medium">Aroma Eksklusif</h4>
+                        <h4 className="font-medium">
+                          {t("wholesale_benefits.exclusive_aromas")}
+                        </h4>
                         <p className="text-gray-600 text-sm">
-                          Akses ke pilihan wangi eksklusif hanya untuk pelanggan
-                          grosir
+                          {t("wholesale_benefits.exclusive_aromas_description")}
                         </p>
                       </div>
                     </div>
@@ -470,9 +499,13 @@ function Home(props: any) {
                         <HeadsetMic className="text-amber-600" />
                       </div>
                       <div>
-                        <h4 className="font-medium">Dukungan Khusus</h4>
+                        <h4 className="font-medium">
+                          {t("wholesale_benefits.dedicated_support")}
+                        </h4>
                         <p className="text-gray-600 text-sm">
-                          Manajer akun pribadi untuk klien grosir
+                          {t(
+                            "wholesale_benefits.dedicated_support_description"
+                          )}
                         </p>
                       </div>
                     </div>
@@ -486,17 +519,10 @@ function Home(props: any) {
             <div className="mx-auto max-w-screen-lg px-6 lg:px-8">
               <div className="mx-auto max-w-2xl lg:mx-0">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  Cerita Kami
+                  {t("blog_section.title")}
                 </h2>
                 <p className="mt-2 text-lg leading-8 dark:text-gray-400 text-gray-600">
-                  Kumpulan blog yang membahas tentang berbagai aspek lilin,
-                  mulai dari sejarah dan berbagai jenis lilin, hingga cara
-                  membuat lilin sendiri dan bagaimana memilih lilin yang tepat
-                  untuk berbagai keperluan. Anda juga akan menemukan cerita
-                  inspiratif tentang bagaimana lilin dapat menjadi simbol
-                  harapan dan kehangatan dalam kehidupan sehari-hari. Mari kita
-                  eksplorasi keajaiban lilin bersama-sama dan pelajari cara
-                  menggunakannya untuk menerangi kehidupan kita.
+                  {t("blog_section.description")}
                 </p>
               </div>
               <div className="mx-auto dark:text-white mt-10 grid max-w-7xl grid-cols-1 gap-y-10 gap-x-6 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 md:grid-cols-2 lg:grid-cols-3">
@@ -513,7 +539,7 @@ function Home(props: any) {
                       />
                       <div className="absolute top-3 right-3">
                         <span className="inline-flex items-center rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-800">
-                          {post.category || "Blog"}
+                          {post.category || t("blog_section.title")}
                         </span>
                       </div>
                     </div>
@@ -543,7 +569,7 @@ function Home(props: any) {
                         </div>
                         <div className="ml-3">
                           <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                            {post.author || "Million Candles "}
+                            {post.author || t("brand")}
                           </p>
                           <div className="flex text-xs text-gray-500 dark:text-gray-400">
                             <time
@@ -586,115 +612,40 @@ function Home(props: any) {
           <section className="py-16 bg-white">
             <div className="container mx-auto px-6">
               <h2 className="text-3xl font-bold text-center mb-12">
-                Apa Kata Pelanggan Kami
+                {t("testimonials.title")}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {/* Testimonial 1 */}
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <div className="flex items-center mb-4">
-                    <div className="text-amber-500 mr-2 flex">
-                      <Star />
-                      <Star />
-                      <Star />
-                      <Star />
-                      <Star />
+                {testimonials.map((testimonial, index) => (
+                  <div
+                    key={testimonial.name}
+                    className="bg-gray-50 p-6 rounded-lg"
+                  >
+                    <div className="flex items-center mb-4"></div>
+                    <p className="text-gray-700 mb-4">{t(testimonial.quote)}</p>
+                    <div className="flex items-center">
+                      <img
+                        src={testimonial.imageUrl}
+                        alt={`Foto Testimonial ${t(testimonial.name)}`}
+                        className="w-10 h-10 rounded-full mr-3"
+                        loading="lazy"
+                      />
+                      <div>
+                        <h4 className="font-medium">{t(testimonial.name)}</h4>
+                        <p className="text-gray-600 text-sm">
+                          {t(testimonial.position)}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <p className="text-gray-700 mb-4">
-                    "Tamu hotel kami selalu memuji aroma yang harum di lobi
-                    kami. Lilin Aroma Vanilla kami menciptakan suasana yang
-                    sangat menyambut."
-                  </p>
-                  <div className="flex items-center">
-                    <img
-                      src="https://randomuser.me/api/portraits/women/43.jpg"
-                      alt="Foto Testimonial Sarah Johnson"
-                      className="w-10 h-10 rounded-full mr-3"
-                      loading="lazy"
-                    />
-                    <div>
-                      <h4 className="font-medium">Sarah Johnson</h4>
-                      <p className="text-gray-600 text-sm">
-                        Manajer Hotel, The Grand Plaza
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Testimonial 2 */}
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <div className="flex items-center mb-4">
-                    <div className="text-amber-500 mr-2 flex">
-                      <Star />
-                      <Star />
-                      <Star />
-                      <Star />
-                      <Star />
-                    </div>
-                  </div>
-                  <p className="text-gray-700 mb-4">
-                    "Sebagai pemilik butik, saya sangat menghargai kualitas dan
-                    presentasi lilin-lilin ini. Lilin ini telah menjadi produk
-                    hadiah terlaris kami!"
-                  </p>
-                  <div className="flex items-center">
-                    <img
-                      src="https://randomuser.me/api/portraits/women/65.jpg"
-                      alt="Foto Testimonial Emily Chen"
-                      className="w-10 h-10 rounded-full mr-3"
-                      loading="lazy"
-                    />
-                    <div>
-                      <h4 className="font-medium">Emily Chen</h4>
-                      <p className="text-gray-600 text-sm">
-                        Pemilik, The Curated Corner
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Testimonial 3 */}
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <div className="flex items-center mb-4">
-                    <div className="text-amber-500 mr-2 flex">
-                      <Star />
-                      <Star />
-                      <Star />
-                      <Star />
-                      <StarHalf />
-                    </div>
-                  </div>
-                  <p className="text-gray-700 mb-4">
-                    "Waktu nyala lilin ini luar biasa dan aromanya sempurna -
-                    tidak terlalu menyengat. Saya sudah membeli setiap varian
-                    dalam koleksi ini!"
-                  </p>
-                  <div className="flex items-center">
-                    <img
-                      src="https://randomuser.me/api/portraits/men/32.jpg"
-                      alt="Foto Testimonial Michael Rodriguez"
-                      className="w-10 h-10 rounded-full mr-3"
-                      loading="lazy"
-                    />
-                    <div>
-                      <h4 className="font-medium">Michael Rodriguez</h4>
-                      <p className="text-gray-600 text-sm">Pelanggan Setia</p>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </section>
-          <section className="relative isolate overflow-hidden  py-24 px-6 sm:py-32 lg:px-8">
+          <section className="relative isolate overflow-hidden py-24 px-6 sm:py-32 lg:px-8">
             <div className="mx-auto max-w-2xl lg:max-w-4xl">
               <figure className="mt-10">
                 <blockquote className="text-center text-xl font-semibold leading-8 dark:text-gray-300 text-gray-900 sm:text-2xl sm:leading-9">
-                  <p>
-                    “Terima kasih @souvenirlilin untuk produk yang indah! Lilin
-                    yang saya beli untuk pernikahan saya benar-benar menambahkan
-                    sentuhan yang sempurna ke acara tersebut, dan tamu-tamu saya
-                    sangat menyukainya”
-                  </p>
+                  <p>{t("testimonials.wedding_customer.quote")}</p>
                 </blockquote>
                 <figcaption className="mt-10">
                   <div className="mt-4 flex items-center justify-center space-x-3 text-base">
@@ -708,7 +659,7 @@ function Home(props: any) {
                       <circle cx={1} cy={1} r={1} />
                     </svg>
                     <div className="dark:text-gray-50 text-gray-600">
-                      - Pelanggan
+                      - {t("testimonials.wedding_customer.name")}
                     </div>
                   </div>
                 </figcaption>
@@ -723,11 +674,12 @@ function Home(props: any) {
 
 export default Home;
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   const posts = getSortedPostsData();
   return {
     props: {
       posts: posts.slice(0, 6),
+      ...(await serverSideTranslations(locale, ["common", "order"])),
     },
   };
 }

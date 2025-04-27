@@ -5,6 +5,7 @@ import { getRelationships, toCurrency, useLoaded } from "utils";
 import Skeleton from "components/flowbite/Skeleton";
 import api from "utils/api";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 
 const ProductCard = ({ product, isDocumentExist, documents }: any) => (
   <div className="w-full p-2">
@@ -46,9 +47,10 @@ const ProductCard = ({ product, isDocumentExist, documents }: any) => (
 );
 
 export default function Content({
-  title = "Produk Kami",
+  title = "our_products",
   queryParams = {},
 }: any) {
+  const { t } = useTranslation("common");
   const [currentPage, setCurrentPage] = useState(1);
 
   const productParams = {
@@ -88,10 +90,10 @@ export default function Content({
     <>
       <main className="bg-white min-h-screen dark:bg-gray-900 pt-24">
         <h2 className="text-center mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-          {title}
+          {t(title)}
         </h2>
         <span className="text-red-600 text-sm block max-w-md mx-auto text-center">
-          * Harga yang ditampilkan merupakan harga distributor/grosir
+          {t("disclaimer_price")}
         </span>
         <ul id="parent" className="mx-auto w-full p-4 grid grid-cols-12 gap-4">
           {query.isLoading || query.isError ? (

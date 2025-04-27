@@ -18,6 +18,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TourProvider } from "@reactour/tour";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { appWithTranslation } from "next-i18next";
 import "aos/dist/aos.css";
 
 const queryClient = new QueryClient({
@@ -56,7 +57,7 @@ const steps = [
   },
 ];
 
-export default function App({ Component, pageProps }: AppLayoutProps) {
+function App({ Component, pageProps }: AppLayoutProps) {
   const appProps = { getRelationship, getRelationships };
   const getLayout = Component.getLayout || ((page: ReactNode) => page);
   // seo
@@ -161,3 +162,5 @@ export default function App({ Component, pageProps }: AppLayoutProps) {
     </>
   );
 }
+
+export default appWithTranslation(App);

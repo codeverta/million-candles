@@ -1,75 +1,118 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Login from "./molecules/Login";
 import { Modal } from "@mui/material";
 import Drawer from "./flowbite/Drawer";
-import { CSSTransition } from "react-transition-group";
-import { useRef } from "react";
-import Banner from "./flowbite/Banner";
 import { useRouter } from "next/router";
+import { ChevronDown, Globe, Moon, Sun, Menu, X } from "lucide-react";
+import { useTranslation } from "next-i18next";
 
-interface Route {
-  label: String;
-  url: String;
-}
+// Define available languages
+const languages = [
+  { code: "en", name: "English", flag: "🇺🇸" },
+  { code: "id", name: "Bahasa Indonesia", flag: "🇮🇩" },
+  { code: "zh", name: "中文", flag: "🇨🇳" },
+  { code: "ja", name: "日本語", flag: "🇯🇵" },
+  { code: "ko", name: "한국어", flag: "🇰🇷" },
+];
 
-export default function Header() {
-  const [menus] = useState<Route[]>([
-    {
-      label: "Home",
-      url: "/",
-    },
-    {
-      label: "Produk",
-      url: "/products",
-    },
-    {
-      label: "Cara Pesan",
-      url: "/cara-order",
-    },
-    {
-      label: "Alamat",
-      url: "/address",
-    },
-    {
-      label: "Blog",
-      url: "/posts",
-    },
-    {
-      label: "Gallery",
-      url: "/gallery",
-    },
-    {
-      label: "Tentang",
-      url: "/about",
-    },
-  ]);
+export default function Header(props) {
+  const { t } = useTranslation("common");
+  const [menus, setMenus] = useState([]);
   const [open, setOpen] = useState({
     drawer: false,
     login: false,
+    langDropdown: false,
   });
-  const nodeRef = useRef(null);
+
   const router = useRouter();
+  const { locale } = router;
+
+  const [currentLang, setCurrentLang] = useState(
+    languages.find((lang) => lang.code === locale) || languages[0]
+  );
+
+  const [darkMode, setDarkMode] = useState(false);
+  const langDropdownRef = useRef(null);
 
   const handleOpenLogin = () => {
     setOpen({ ...open, login: !open.login });
   };
+
   const handleDrawer = () => {
     setOpen({ ...open, drawer: !open.drawer });
   };
 
-  useEffect(() => {
-    // Check if the token exists in localStorage
-    const token = localStorage.getItem("token");
+  const toggleLangDropdown = () => {
+    setOpen({ ...open, langDropdown: !open.langDropdown });
+  };
 
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    if (!darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
+
+  const changeLanguage = (locale) => {
+    router.push(router.pathname, router.asPath, { locale });
+  };
+
+  const handleLanguageChange = (lang) => {
+    setCurrentLang(lang);
+    setOpen({ ...open, langDropdown: false });
+    changeLanguage(lang.code);
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        langDropdownRef.current &&
+        !langDropdownRef.current.contains(event.target)
+      ) {
+        setOpen((prev) => ({ ...prev, langDropdown: false }));
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Check for authentication token
+  useEffect(() => {
+    // This hook is for initial locale setup and checking system dark mode preference
+    const token = localStorage.getItem("token");
     if (token) {
-      // If token exists, redirect to /admin/orders
       router.push("/admin/orders");
     }
-  }, [router]);
+
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      setDarkMode(true);
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
+  // Update menus when language changes
+  useEffect(() => {
+    setMenus([
+      { label: t("menu.home", "Home"), url: "/" },
+      { label: t("menu.products", "Products"), url: "/products" },
+      { label: t("menu.how_to_order", "How to Order"), url: "/cara-order" },
+      { label: t("menu.address", "Address"), url: "/address" },
+      { label: t("menu.blog", "Blog"), url: "/posts" },
+      { label: t("menu.gallery", "Gallery"), url: "/gallery" },
+      { label: t("menu.about", "About"), url: "/about" },
+    ]);
+  }, [t]); // This hook will run when the language (and hence `t()`) changes
 
   return (
-    <header>
+    <header className="sticky top-0 z-50">
       {open.login && (
         <Modal
           open={open.login}
@@ -84,82 +127,135 @@ export default function Header() {
         </Modal>
       )}
 
-      {open.drawer && <Drawer menu={menus} handleDrawer={handleDrawer} />}
+      {open.drawer && (
+        <Drawer
+          menu={menus}
+          handleDrawer={handleDrawer}
+          currentPath={router.pathname}
+        />
+      )}
 
-      <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 print:hidden">
-        <div className="flex flex-wrap justify-around sm:justify-between items-center mx-auto max-w-screen-xl">
+      <nav className="bg-white border-b border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 dark:border-gray-700 transition-colors duration-200 print:hidden shadow-sm">
+        <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <Link href="/" className="flex items-center">
             <img
               src="/logolilin.png"
-              className="mr-3 rounded-full w-9 h-9 sm:w-12 sm:h-12"
-              alt="Logo Souvenir Lilin"
+              className="mr-3 rounded-full w-9 h-9 sm:w-12 sm:h-12 transition-transform hover:scale-105"
+              alt="Million Candles Logo"
             />
-            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-              Million Candles
+            <span className="self-center text-xl font-semibold whitespace-nowrap text-gray-800 dark:text-white">
+              {t("brand", "Million Candles")}
             </span>
           </Link>
-          <div className="flex items-center lg:order-2">
+
+          <div className="flex items-center lg:order-3 space-x-2">
+            {/* Language Selector */}
+            <div className="relative" ref={langDropdownRef}>
+              <button
+                onClick={toggleLangDropdown}
+                className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 font-medium rounded-lg text-sm px-3 py-2 flex items-center transition-colors"
+                aria-expanded={open.langDropdown}
+              >
+                <Globe className="w-5 h-5 mr-1" />
+                <span className="mr-1">{currentLang.flag}</span>
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${
+                    open.langDropdown ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {open.langDropdown && (
+                <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-1 z-10">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => handleLanguageChange(lang)}
+                      className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center ${
+                        currentLang.code === lang.code
+                          ? "bg-gray-50 dark:bg-gray-700"
+                          : ""
+                      }`}
+                    >
+                      <span className="mr-2">{lang.flag}</span>
+                      {lang.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Dark Mode Toggle */}
+            <button
+              onClick={toggleDarkMode}
+              className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 font-medium rounded-lg text-sm p-2.5 flex items-center transition-colors"
+              aria-label={
+                darkMode ? "Switch to light mode" : "Switch to dark mode"
+              }
+            >
+              {darkMode ? (
+                <Sun className="w-5 h-5" />
+              ) : (
+                <Moon className="w-5 h-5" />
+              )}
+            </button>
+
+            {/* Login Button */}
             <button
               onClick={handleOpenLogin}
-              className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+              className="text-gray-800 dark:text-white bg-transparent hover:bg-gray-50 dark:hover:bg-gray-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 border border-gray-300 dark:border-gray-600 transition-colors"
             >
-              Log in
+              {t("login", "Log in")}
             </button>
+
+            {/* Mobile Menu Button */}
             <button
-              data-collapse-toggle="mobile-menu-2"
               type="button"
               onClick={handleDrawer}
-              className="inline-flex items-center p-2 ml-1 text-sm text-gray-400 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               aria-controls="mobile-menu-2"
-              aria-expanded="false"
+              aria-expanded={open.drawer}
             >
-              <span className="sr-only">Open main menu</span>
-              <svg
-                className="w-6 h-6"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-              <svg
-                className="hidden w-6 h-6"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
+              <span className="sr-only">Toggle menu</span>
+              {open.drawer ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
+
+          {/* Desktop Menu */}
           <div
-            className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
-            id="mobile-menu-2"
+            className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-2"
+            id="desktop-menu"
           >
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-              {menus.map((menu: any, index) => (
-                <li key={index}>
-                  <Link
-                    href={menu.url}
-                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    {menu.label}
-                  </Link>
-                </li>
-              ))}
+              {menus.map((menu, index) => {
+                const isActive =
+                  router.pathname === menu.url ||
+                  (menu.url !== "/" && router.pathname.startsWith(menu.url));
+                return (
+                  <li key={menu.label}>
+                    <Link
+                      href={menu.url}
+                      className={`block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:p-0 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent dark:border-gray-700 transition-colors relative
+                        ${
+                          isActive
+                            ? "text-blue-600 dark:text-white font-semibold after:absolute after:w-full after:h-0.5 after:bg-blue-600 after:dark:bg-white after:bottom-0 after:left-0"
+                            : "text-gray-700 dark:text-gray-300 lg:hover:text-blue-600 dark:hover:text-white lg:dark:hover:text-white after:absolute after:w-0 after:h-0.5 after:bg-blue-600 after:dark:bg-white after:bottom-0 after:left-0 hover:after:w-full after:transition-all"
+                        }`}
+                      aria-current={isActive ? "page" : undefined}
+                    >
+                      {menu.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
       </nav>
-      {/* <Banner /> */}
     </header>
   );
 }

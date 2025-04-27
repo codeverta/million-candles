@@ -148,8 +148,10 @@ const PrintOrder = () => {
                   <tr key={index} className="border-b border-gray-200">
                     <td className="py-2 px-2">{orderDetail.attributes.qty}</td>
                     <td className="py-2 px-2">
-                      ({product?.attributes.code}) {product?.attributes.name} (
-                      {variantCombination.variant_sku})
+                      ({product?.attributes.code}) {product?.attributes.name}{" "}
+                      {variantCombination.variant_sku
+                        ? `(${variantCombination.variant_sku})`
+                        : ""}
                     </td>
                     <td className="text-right py-2 px-2">
                       {formatCurrency(orderDetail.attributes.price)}

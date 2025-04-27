@@ -1,4 +1,10 @@
-# Apa Itu White Label? Peluang Emas untuk Bisnis Lilin [2025]
+---
+title: "Apa Itu White Label? Peluang Emas untuk Bisnis Lilin [2025]"
+date: "2025-04-26"
+image: "https://firebasestorage.googleapis.com/v0/b/firstproject-ad87e.appspot.com/o/images%2FLILXxlETubzhZ9kdR27S0KwYgxVPRPFXdCfvk85s.png?alt=media"
+desc: "Di tengah persaingan bisnis modern, istilah **white label** makin sering terdengar. Tapi, **apa itu white label** sebenarnya?"
+tags: "jual lilin aromaterapi, aromaterapi terdekat, jual lilin besar terdekat"
+---
 
 ## Mengenal Konsep White Label
 
