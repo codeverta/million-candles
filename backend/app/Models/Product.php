@@ -116,4 +116,101 @@ class Product extends Model
             ];
         });
     }
+
+
+    /**
+     * Get the translations for the product.
+     */
+    public function translations()
+    {
+        return $this->hasMany(ProductTranslation::class);
+    }
+
+    /**
+     * Get the translation for the current locale or fallback to default.
+     *
+     * @param string|null $locale
+     * @return \App\Models\ProductTranslation|null
+     */
+    public function translation(?string $locale = null)
+    {
+        $locale = $locale ?: App::getLocale();
+        dd($locale);
+        // First try to find a translation for the current locale
+        $translation = $this->translations()->where('locale', $locale)->first();
+        
+        // If not found and locale isn't already the fallback locale, try the fallback
+        if (!$translation && $locale !== config('app.fallback_locale')) {
+            $translation = $this->translations()->where('locale', config('app.fallback_locale'))->first();
+        }
+        
+        return $translation;
+    }
+
+    /**
+     * Get the translated name attribute.
+     *
+     * @return string
+     */
+    public function getTranslatedNameAttribute()
+    {
+        $translation = $this->translation();
+        return $translation && $translation->name ? $translation->name : $this->name;
+    }
+
+    /**
+     * Get the translated description attribute.
+     *
+     * @return string
+     */
+    public function getTranslatedDescriptionAttribute()
+    {
+        $translation = $this->translation();
+        return $translation && $translation->description ? $translation->description : $this->description;
+    }
+
+    /**
+     * Get the price in the specified currency.
+     *
+     * @param string|null $currencyCode
+     * @return float
+     */
+    public function getPriceInCurrencyAttribute(?string $currencyCode = null)
+    {
+        // If no currency specified, use default
+        if (!$currencyCode) {
+            $currency = Currency::getDefault();
+            return $this->price;
+        }
+
+        $currency = Currency::find($currencyCode);
+        if (!$currency) {
+            return $this->price; // Return original price if currency not found
+        }
+
+        return $currency->convert($this->price);
+    }
+
+    /**
+     * Get the formatted price in the specified currency.
+     *
+     * @param string|null $currencyCode
+     * @return string
+     */
+    public function getFormattedPriceAttribute()
+    {
+        $currencyCode = request()->query('currency');
+        // If no currency specified, use default
+        if (!$currencyCode) {
+            $currency = Currency::getDefault();
+            return $currency->format($this->price);
+        }
+
+        $currency = Currency::find($currencyCode);
+        if (!$currency) {
+            return Currency::getDefault()->format($this->price);
+        }
+
+        return $currency->convertAndFormat($this->price);
+    }
 }

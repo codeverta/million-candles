@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Content } from "components";
 import ProductsTable from "components/molecules/landing/ProductsTable";
 import { useRouter } from "next/router";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 function Product() {
   const router = useRouter();
@@ -26,5 +27,13 @@ function Product() {
 Product.getLayout = function (page: React.ReactNode) {
   return <Layout>{page}</Layout>;
 };
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "order"])),
+    },
+  };
+}
 
 export default Product;

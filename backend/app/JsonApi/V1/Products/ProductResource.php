@@ -17,6 +17,10 @@ class ProductResource extends JsonApiResource
      */
     public function attributes($request): iterable
     {
+
+                        // $locale = $request->query('locale', App::getLocale());
+                        // $translation = $resource->translation($locale);
+                        // return $translation && $translation->description ? $translation->description : $resource->description;
         return [
             'name' => $this->name,
             'code' => $this->code,
@@ -27,6 +31,10 @@ class ProductResource extends JsonApiResource
             // 'variants' => $this->variants->load('options'),
             'product_variants' => $this->productVariants->loadMissing('productVariantOption.productVariant'),
             'variant_combinations' => $this->variantCombinations->loadMissing('values.productVariantOption.productVariant'),
+            'formattedPrice' => $this->getFormattedPriceAttribute($request->get('currency')),
+            'priceInCurrency' => $this->resource->getPriceInCurrencyAttribute($request->get('currency')),
+            // 'translatedName' => $this->translatedName,
+            // 'translatedDescription' => $this->translatedDescription,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
             'deletedAt' => $this->deleted_at,

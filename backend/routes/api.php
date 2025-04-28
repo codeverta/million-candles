@@ -4,7 +4,7 @@ use App\Http\Controllers\Api\V1\DocumentController;
 use App\Http\Controllers\Api\V1\NotificationController;
 use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\ProductController;
-use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\Api\V1\{UserController, ProductTranslationController, CurrencyController};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use LaravelJsonApi\Laravel\Facades\JsonApiRoute;
@@ -74,7 +74,7 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
     });
 
 
-    $server->resource('products', '\\' . ProductController::class)
+    $server->resource('products', JsonApiController::class)
     ->relationships(function ($relations) {
            $relations->hasOne('product-categories')->readOnly();
        });
@@ -100,6 +100,8 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
     $server->resource('documents', '\\' . DocumentController::class)->actions('-actions', function ($actions) {
         $actions->post('upload');
     });
+    $server->resource('product-translations', ProductTranslationController::class);
+    $server->resource('currencies', CurrencyController::class);
 });
 
 // Financial API Routes

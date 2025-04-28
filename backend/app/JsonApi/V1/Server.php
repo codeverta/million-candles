@@ -14,6 +14,8 @@ use App\JsonApi\V1\Provinces\ProvinceSchema;
 use App\JsonApi\V1\Regencies\RegencySchema;
 use App\JsonApi\V1\Users\UserSchema;
 use App\JsonApi\V1\Villages\VillageSchema;
+use App\JsonApi\V1\ProductTranslations\ProductTranslationSchema;
+use App\JsonApi\V1\Currencies\CurrencySchema;
 use App\Models\Cart;
 use LaravelJsonApi\Core\Server\Server as BaseServer;
 use Illuminate\Support\Facades\Auth;
@@ -60,7 +62,9 @@ class Server extends BaseServer
             UserSchema::class,
             DocumentSchema::class,
             CartSchema::class,
-            ProductVariantOptionSchema::class
+            ProductVariantOptionSchema::class,
+            ProductTranslationSchema::class,
+            CurrencySchema::class,
         ];
     }
 }

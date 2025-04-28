@@ -55,6 +55,41 @@ class ProductSchema extends Schema
             Number::make('price'),
             BelongsTo::make('product-categories'),
             BelongsTo::make('documents'),
+            Str::make('formattedPrice')
+                ->readOnly()
+                ->serializeUsing(
+                    static function ($value, $resource, $request) {
+                        $currencyCode = $request->query('currency');
+                        return $resource->getFormattedPrice($currencyCode);
+                    }
+                ),
+            // Number::make('priceInCurrency')
+            //     ->readOnly()
+            //     ->serializeUsing(
+            //         static function ($value, $resource, $request) {
+            //             $currencyCode = $request->query('currency');
+            //             return $resource->getPriceInCurrency($currencyCode);
+            //         }
+            //     ),
+            // Str::make('translatedName')
+            //     ->readOnly()
+            //     ->serializeUsing(
+            //         static function ($value, $resource, $request) {
+            //             dd("hree");
+            //             $locale = $request->query('locale', App::getLocale());
+            //             $translation = $resource->translation($locale);
+            //             return $translation && $translation->name ? $translation->name : $resource->name;
+            //         }
+            //     ),
+            // Str::make('translatedDescription')
+            //     ->readOnly()
+            //     ->serializeUsing(
+            //         static function ($value, $resource, $request) {
+            //             $locale = $request->query('locale', App::getLocale());
+            //             $translation = $resource->translation($locale);
+            //             return $translation && $translation->description ? $translation->description : $resource->description;
+            //         }
+            //     ),
             DateTime::make('createdAt')->sortable()->readOnly(),
             DateTime::make('updatedAt')->sortable()->readOnly(),
             SoftDelete::make('deletedAt'),

@@ -16,6 +16,8 @@ import ProductVariants from "components/mui/ProductVariant";
 import { useRouter } from "next/router";
 import ProductJsonLd from "components/ProductJsonLd"; // Import the JSON-LD component
 import { BreadcrumbJsonLd } from "next-seo";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import ProductDetailSkeleton from "components/molecules/landing/ProductDetailSkeleton";
 
 function generateWhatsAppLink(phoneNumber, message) {
   // Encode the message to make it URL-safe
@@ -41,34 +43,6 @@ const ThumbnailSkeleton = () => (
         className="bg-gray-200 dark:bg-gray-700 w-full h-20 rounded opacity-60"
       ></div>
     ))}
-  </div>
-);
-
-// Skeleton component for product details
-const ProductDetailsSkeleton = () => (
-  <div className="w-full md:pl-10 lg:py-6 mt-6 lg:mt-0">
-    <div>
-      <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-4 opacity-60"></div>
-      <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/4 mb-6 opacity-60"></div>
-
-      <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-full mb-3 opacity-60"></div>
-      <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-full mb-3 opacity-60"></div>
-
-      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2 mb-6 opacity-60"></div>
-
-      <div className="h-24 bg-gray-200 dark:bg-gray-700 rounded w-full mb-6 opacity-60"></div>
-
-      <div className="flex items-center">
-        <div className="h-12 bg-gray-200 dark:bg-gray-700 rounded w-32 mr-4 opacity-60"></div>
-        <div className="h-12 bg-gray-200 dark:bg-gray-700 rounded w-24 opacity-60"></div>
-      </div>
-
-      <div className="mt-8">
-        <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/2 mb-4 opacity-60"></div>
-        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mb-2 opacity-60"></div>
-        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/4 mb-2 opacity-60"></div>
-      </div>
-    </div>
   </div>
 );
 
@@ -148,7 +122,7 @@ function ProductDetail() {
     !isLoading &&
     (selectedVariant
       ? selectedVariant.price
-      : product?.data[0].attributes.price);
+      : product?.data[0].attributes.formattedPrice);
 
   // Get current stock - either from selected variant or base product stock
   const currentStock =
@@ -295,7 +269,7 @@ function ProductDetail() {
 
             {/* Product Details Section */}
             {isLoading ? (
-              <ProductDetailsSkeleton />
+              <ProductDetailSkeleton />
             ) : (
               <div className="lg:w-1/2 w-full md:pl-10 lg:py-6 mt-6 lg:mt-0">
                 <h1 className="text-gray-900 dark:text-gray-50 text-3xl title-font font-medium mb-1">
@@ -303,7 +277,7 @@ function ProductDetail() {
                   {product.data[0].attributes.code})
                 </h1>
                 <p className="text-green-600 font-bold text-xl mb-4">
-                  {toCurrency(currentPrice)}
+                  {currentPrice}
                 </p>
                 <div className="mb-4">
                   <ProductVariants
@@ -415,5 +389,13 @@ function ProductDetail() {
 ProductDetail.getLayout = function (page) {
   return <Layout>{page}</Layout>;
 };
+
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "order"])),
+    },
+  };
+}
 
 export default ProductDetail;
