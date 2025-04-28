@@ -135,7 +135,6 @@ class Product extends Model
     public function translation(?string $locale = null)
     {
         $locale = $locale ?: App::getLocale();
-        dd($locale);
         // First try to find a translation for the current locale
         $translation = $this->translations()->where('locale', $locale)->first();
         

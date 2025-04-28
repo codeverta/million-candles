@@ -6,6 +6,7 @@ import Skeleton from "components/flowbite/Skeleton";
 import api from "utils/api";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 const ProductCard = ({ product, isDocumentExist, documents }: any) => (
   <div className="w-full p-2">
@@ -52,15 +53,17 @@ export default function Content({
 }: any) {
   const { t } = useTranslation("common");
   const [currentPage, setCurrentPage] = useState(1);
+  const router = useRouter();
 
   const productParams = {
     "page[size]": 12,
     include: "documents",
     "page[number]": currentPage,
+    locale: router.locale,
     ...queryParams,
   };
   const query: UseQueryResult<any> = useQuery({
-    queryKey: ["products", currentPage],
+    queryKey: ["products", currentPage, title],
     queryFn: async () => {
       return api.get("products", { ...productParams });
     },
@@ -88,7 +91,7 @@ export default function Content({
 
   return (
     <>
-      <main className="bg-white min-h-screen dark:bg-gray-900 pt-24">
+      <main className="bg-white dark:bg-gray-900 pt-24">
         <h2 className="text-center mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
           {t(title)}
         </h2>

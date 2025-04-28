@@ -66,6 +66,7 @@ function ProductDetail() {
           const slug = router.query.slug;
           const product = await api.get("products", {
             "filter[slug]": slug,
+            locale: router.locale,
             include: "documents",
           });
 
@@ -80,6 +81,7 @@ function ProductDetail() {
       fetchProduct();
     }
   }, [router.query]);
+  console.log({ router });
 
   // Handle image loading
   useEffect(() => {
@@ -271,7 +273,7 @@ function ProductDetail() {
             {isLoading ? (
               <ProductDetailSkeleton />
             ) : (
-              <div className="lg:w-1/2 w-full md:pl-10 lg:py-6 mt-6 lg:mt-0">
+              <div className="lg:w-1/2 w-full md:pl-10 py-6 lg:py-0  mt-6 lg:mt-0">
                 <h1 className="text-gray-900 dark:text-gray-50 text-3xl title-font font-medium mb-1">
                   {product.data[0].attributes.name} (
                   {product.data[0].attributes.code})
@@ -284,9 +286,6 @@ function ProductDetail() {
                     product={product.data[0]}
                     onVariantChange={handleVariantChange}
                   />
-                </div>
-                <div className="mb-4">
-                  <span className="font-semibold">Min. Pemesanan: </span>1 Buah
                 </div>
                 <div className="mb-4">
                   <span className="font-semibold">Stock: </span>

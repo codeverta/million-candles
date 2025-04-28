@@ -18,14 +18,24 @@ class ProductResource extends JsonApiResource
     public function attributes($request): iterable
     {
 
-                        // $locale = $request->query('locale', App::getLocale());
-                        // $translation = $resource->translation($locale);
-                        // return $translation && $translation->description ? $translation->description : $resource->description;
+        $locale = $request->get('locale');
+        $translatedDescription = null;
+        $translatedName = null;
+
+        if($locale) {
+            $translation = $this->resource->translation($locale);
+            if(isset($translation)) {
+                $translatedName = $translation->name;
+                $translatedDescription = $translation->description;
+            }
+        }
+
+        // dd($translation->description);
         return [
-            'name' => $this->name,
+            'name' => $translatedName ? $translatedName : $this->name,
             'code' => $this->code,
             'slug' => $this->slug,
-            'description' => $this->description,
+            'description' => $translatedDescription ? $translatedDescription : $this->description,
             'price' => (int) $this->price,
             'stock' => (int) $this->stock,
             // 'variants' => $this->variants->load('options'),
