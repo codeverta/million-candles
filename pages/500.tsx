@@ -1,6 +1,6 @@
 import React from "react";
 
-function ErroPage() {
+function ErrorPage() {
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
@@ -27,4 +27,4 @@ function ErroPage() {
   );
 }
 
-export default ErroPage;
+export default ErrorPage;

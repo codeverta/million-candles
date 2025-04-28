@@ -216,3 +216,27 @@ export const estimateReadingTime = (content) => {
   const wordCount = content.split(/\s+/).length;
   return Math.ceil(wordCount / wordsPerMinute);
 };
+
+// Helper function to convert human-readable time to ISO 8601 duration format
+export function convertToISO8601Duration(timeString: string) {
+  // Simple conversion for common formats like "30 minutes", "2 hours", etc.
+  const minutesMatch = timeString.match(/(\d+)\s*(?:min|minute|minutes)/i);
+  if (minutesMatch) {
+    return `PT${minutesMatch[1]}M`;
+  }
+
+  const hoursMatch = timeString.match(/(\d+)\s*(?:hr|hour|hours)/i);
+  if (hoursMatch) {
+    return `PT${hoursMatch[1]}H`;
+  }
+
+  const hoursAndMinutesMatch = timeString.match(
+    /(\d+)\s*(?:hr|hour|hours).*?(\d+)\s*(?:min|minute|minutes)/i
+  );
+  if (hoursAndMinutesMatch) {
+    return `PT${hoursAndMinutesMatch[1]}H${hoursAndMinutesMatch[2]}M`;
+  }
+
+  // Default to 30 minutes if we can't parse
+  return "PT30M";
+}

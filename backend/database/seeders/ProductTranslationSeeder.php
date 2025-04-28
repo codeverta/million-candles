@@ -4,11 +4,13 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\ProductTranslation;
 
 class ProductTranslationSeeder extends Seeder
 {
     public function run(): void
     {
+        ProductTranslation::truncate();
         $productId = 1; // Ganti sesuai product ID kamu
 
         $translations = [

@@ -19,8 +19,10 @@ class ProductResource extends JsonApiResource
     {
 
         $locale = $request->get('locale');
+        $currency = $request->get('currency');
         $translatedDescription = null;
         $translatedName = null;
+        $formattedPrice = null;
 
         if($locale) {
             $translation = $this->resource->translation($locale);
@@ -28,6 +30,10 @@ class ProductResource extends JsonApiResource
                 $translatedName = $translation->name;
                 $translatedDescription = $translation->description;
             }
+        }
+
+        if($currency) {
+            $formattedPrice = $this->resource->getFormattedPriceAttribute();
         }
 
         // dd($translation->description);
@@ -41,7 +47,7 @@ class ProductResource extends JsonApiResource
             // 'variants' => $this->variants->load('options'),
             'product_variants' => $this->productVariants->loadMissing('productVariantOption.productVariant'),
             'variant_combinations' => $this->variantCombinations->loadMissing('values.productVariantOption.productVariant'),
-            'formattedPrice' => $this->getFormattedPriceAttribute($request->get('currency')),
+            'formattedPrice' => $formattedPrice,
             'priceInCurrency' => $this->resource->getPriceInCurrencyAttribute($request->get('currency')),
             // 'translatedName' => $this->translatedName,
             // 'translatedDescription' => $this->translatedDescription,

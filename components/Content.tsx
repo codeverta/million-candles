@@ -36,7 +36,7 @@ const ProductCard = ({ product, isDocumentExist, documents }: any) => (
           </h3>
         </Link>
         <div className="text-green-700 font-bold text-lg mb-2">
-          {toCurrency(product.attributes.price)}
+          {product.attributes.formattedPrice}
         </div>
         <div className="flex items-center">
           <span className="text-yellow-600 mr-2">★ 5.0</span>
@@ -54,16 +54,24 @@ export default function Content({
   const { t } = useTranslation("common");
   const [currentPage, setCurrentPage] = useState(1);
   const router = useRouter();
+  const currency = {
+    id: "IDR",
+    en: "USD",
+    ja: "JPY",
+    kr: "KRW",
+    zh: "CNY",
+  };
 
   const productParams = {
     "page[size]": 12,
     include: "documents",
     "page[number]": currentPage,
     locale: router.locale,
+    currency: currency[router.locale],
     ...queryParams,
   };
   const query: UseQueryResult<any> = useQuery({
-    queryKey: ["products", currentPage, title],
+    queryKey: ["products", currentPage, router.locale],
     queryFn: async () => {
       return api.get("products", { ...productParams });
     },
