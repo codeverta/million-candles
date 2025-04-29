@@ -110,6 +110,10 @@
     "title": "Galeri",
     "description": "Kumpulan Foto dan Video Produk Kami"
   },
+  "blog": {
+    "title": "Kumpulan Cerita dan Tips Mengenai Lilin",
+    "description": "Kumpulan blog yang membahas tentang berbagai aspek lilin, mulai dari sejarah dan berbagai jenis lilin, hingga cara membuat lilin sendiri dan bagaimana memilih lilin yang tepat untuk berbagai keperluan."
+  },
   "footer": {
     "copyright": "© 2025 Million Candles. All rights reserved."
   }

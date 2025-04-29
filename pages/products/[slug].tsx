@@ -185,7 +185,7 @@ function ProductDetail() {
           <div className="flex flex-col md:flex-row">
             {/* Product Images Section */}
             <div className="md:w-1/3">
-              {isLoading || !imagesLoaded ? (
+              {isLoading || !imagesLoaded || !product.data ? (
                 <div className="w-full">
                   <ProductImageSkeleton />
                   <ThumbnailSkeleton />
@@ -196,7 +196,12 @@ function ProductDetail() {
                     spaceBetween={10}
                     navigation={true}
                     pagination={{ clickable: true }}
-                    thumbs={{ swiper: thumbsSwiper }}
+                    thumbs={{
+                      swiper:
+                        thumbsSwiper && !thumbsSwiper.destroyed
+                          ? thumbsSwiper
+                          : null,
+                    }}
                     className="w-full"
                     modules={[Pagination, Thumbs]}
                   >
@@ -242,7 +247,12 @@ function ProductDetail() {
                     <Swiper
                       modules={[Thumbs]}
                       watchSlidesProgress
-                      onSwiper={setThumbsSwiper}
+                      onSwiper={(swiper) => {
+                        // Only set thumbsSwiper if it's not destroyed
+                        if (swiper && !swiper.destroyed) {
+                          setThumbsSwiper(swiper);
+                        }
+                      }}
                       spaceBetween={10}
                       slidesPerView={3}
                       freeMode={true}
@@ -257,7 +267,10 @@ function ProductDetail() {
                               src={document.attributes.filename}
                               className="h-full w-full object-cover z-10 relative"
                               onLoad={(e) => {
-                                e.target.previousSibling.style.display = "none";
+                                const prevSibling = e.target.previousSibling;
+                                if (prevSibling) {
+                                  prevSibling.style.display = "none";
+                                }
                               }}
                             />
                           </div>

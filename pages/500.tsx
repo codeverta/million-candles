@@ -1,4 +1,6 @@
 import React from "react";
+import Layout from "components/layout/Landing";
+import AdminLayout from "components/layout/AdminLayout";
 
 function ErrorPage() {
   return (
@@ -26,5 +28,14 @@ function ErrorPage() {
     </div>
   );
 }
+
+ErrorPage.getLayout = function (page: React.ReactNode) {
+  typeof window !== "undefined" &&
+  window.location.pathname.startsWith("/admin") ? (
+    <AdminLayout>{page}</AdminLayout>
+  ) : (
+    <Layout>{page}</Layout>
+  );
+};
 
 export default ErrorPage;

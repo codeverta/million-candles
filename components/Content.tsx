@@ -71,7 +71,7 @@ export default function Content({
     ...queryParams,
   };
   const query: UseQueryResult<any> = useQuery({
-    queryKey: ["products", currentPage, router.locale],
+    queryKey: [router.locale, currentPage, "products"],
     queryFn: async () => {
       return api.get("products", { ...productParams });
     },

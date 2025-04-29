@@ -28,6 +28,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LinkIcon from "@mui/icons-material/Link";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 interface PostMeta {
   id: string;
@@ -54,6 +55,7 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
   const [sharePostId, setSharePostId] = useState<string | null>(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
+  const { t } = useTranslation("common");
 
   // Extract unique categories from posts
   const categories = useMemo(() => {
@@ -249,21 +251,18 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
       <main className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 min-h-screen">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           {/* Hero Section */}
-          <section className="text-center mb-16">
-            <h1 className="text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-500">
-              Kumpulan Cerita dan Tips Mengenai Lilin
+          <section className="container mx-auto px-4 py-12 text-center">
+            <h1 className="text-xl font-bold tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-600">
+              {t("blog.title")}
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-10">
-              Kumpulan blog yang membahas tentang berbagai aspek lilin, mulai
-              dari sejarah dan berbagai jenis lilin, hingga cara membuat lilin
-              sendiri dan bagaimana memilih lilin yang tepat untuk berbagai
-              keperluan.
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
+              {t("blog.description")}
             </p>
 
             {/* Search form */}
             <form
               onSubmit={handleSearchSubmit}
-              className="flex max-w-md mx-auto mb-8 relative"
+              className="max-w-md mx-auto mb-6 relative"
             >
               <TextField
                 fullWidth
@@ -272,27 +271,26 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
                 value={searchTerm}
                 onChange={handleSearchChange}
                 InputProps={{
-                  startAdornment: <SearchIcon className="text-gray-400 mx-2" />,
+                  startAdornment: <SearchIcon className="text-gray-400 mr-2" />,
                   style: {
-                    backgroundColor: "white",
                     borderRadius: "9999px",
-                    paddingLeft: "8px",
+                    backgroundColor: "white",
                   },
                   className:
-                    "shadow-md hover:shadow-lg transition-shadow duration-300 pr-16",
+                    "shadow-sm hover:shadow-md transition-all duration-200",
                 }}
               />
               <Button
                 type="submit"
                 variant="contained"
-                className="!absolute !right-0 !h-full !rounded-r-full !px-6 !bg-gradient-to-r !from-blue-500 !to-purple-600 !shadow-md !hover:shadow-lg !transition-all !duration-300"
+                className="!absolute !right-0 !h-full !rounded-r-full !px-5 !bg-gradient-to-r !from-purple-500 !to-blue-600 !transition-all !duration-200"
               >
                 Cari
               </Button>
             </form>
 
             {/* Categories */}
-            <div className="flex flex-wrap justify-center gap-2 mb-8">
+            <div className="flex flex-wrap justify-center gap-2 mb-6">
               {categories.map((category) => (
                 <Chip
                   key={category}
@@ -302,31 +300,27 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
                   variant={
                     selectedCategory === category ? "filled" : "outlined"
                   }
-                  className="!transition-all !duration-300 !hover:shadow-md"
+                  className="!text-sm !transition-all !duration-200"
                 />
               ))}
             </div>
 
             {/* Show search results info if searching */}
             {(searchTerm || selectedCategory) && (
-              <div className="text-left mb-8 text-gray-600 dark:text-gray-300">
+              <div className="text-sm text-left max-w-md mx-auto text-gray-500 dark:text-gray-400">
                 {filteredPosts.length > 0 ? (
                   <p>
                     Menemukan {filteredPosts.length} hasil
-                    {searchTerm && ` untuk pencarian "${searchTerm}"`}
+                    {searchTerm && ` untuk "${searchTerm}"`}
                     {selectedCategory &&
-                      (searchTerm
-                        ? ` dalam kategori "${selectedCategory}"`
-                        : ` dalam kategori "${selectedCategory}"`)}
+                      ` dalam kategori "${selectedCategory}"`}
                   </p>
                 ) : (
                   <p>
                     Tidak ada hasil
-                    {searchTerm && ` untuk pencarian "${searchTerm}"`}
+                    {searchTerm && ` untuk "${searchTerm}"`}
                     {selectedCategory &&
-                      (searchTerm
-                        ? ` dalam kategori "${selectedCategory}"`
-                        : ` dalam kategori "${selectedCategory}"`)}
+                      ` dalam kategori "${selectedCategory}"`}
                   </p>
                 )}
               </div>
@@ -660,7 +654,7 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
 
 export async function getStaticProps({ locale }) {
   // Get posts and add sample categories and read times
-  const allPostsData = getSortedPostsData().map((post, index) => {
+  const allPostsData = getSortedPostsData(locale).map((post, index) => {
     // Add sample categories and read times (in a real app, these would come from the actual data)
     const categories = [
       "Sejarah Lilin",
