@@ -152,7 +152,7 @@ export default function Header(props) {
 
           <div className="flex items-center lg:order-3 space-x-2">
             {/* Language Selector */}
-            <div className="relative" ref={langDropdownRef}>
+            <div className="hidden sm:block relative" ref={langDropdownRef}>
               <button
                 onClick={toggleLangDropdown}
                 className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 font-medium rounded-lg text-sm px-3 py-2 flex items-center transition-colors"
@@ -187,25 +187,10 @@ export default function Header(props) {
               )}
             </div>
 
-            {/* Dark Mode Toggle */}
-            {/* <button
-              onClick={toggleDarkMode}
-              className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 font-medium rounded-lg text-sm p-2.5 flex items-center transition-colors"
-              aria-label={
-                darkMode ? "Switch to light mode" : "Switch to dark mode"
-              }
-            >
-              {darkMode ? (
-                <Sun className="w-5 h-5" />
-              ) : (
-                <Moon className="w-5 h-5" />
-              )}
-            </button> */}
-
             {/* Login Button */}
             <button
               onClick={handleOpenLogin}
-              className="text-gray-800 dark:text-white bg-transparent hover:bg-gray-50 dark:hover:bg-gray-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 border border-gray-300 dark:border-gray-600 transition-colors"
+              className="hidden sm:block text-gray-800 dark:text-white bg-transparent hover:bg-gray-50 dark:hover:bg-gray-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 border border-gray-300 dark:border-gray-600 transition-colors"
             >
               {t("login", "Log in")}
             </button>
@@ -258,6 +243,50 @@ export default function Header(props) {
           </div>
         </div>
       </nav>
+      <div className="flex justify-between items-center px-4 lg:px-6 py-2.5 bg-white dark:bg-gray-800 border-b sm:border-0 border-gray-200 dark:border-gray-700 lg:hidden">
+        <div className="block sm:hidden relative" ref={langDropdownRef}>
+          <button
+            onClick={toggleLangDropdown}
+            className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 font-medium rounded-lg text-sm px-3 py-2 flex items-center transition-colors"
+            aria-expanded={open.langDropdown}
+          >
+            <Globe className="w-5 h-5 mr-1" />
+            <span className="mr-1">{currentLang.flag}</span>
+            <ChevronDown
+              className={`w-4 h-4 transition-transform ${
+                open.langDropdown ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+
+          {open.langDropdown && (
+            <div className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-1 z-10">
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={() => handleLanguageChange(lang)}
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center ${
+                    currentLang.code === lang.code
+                      ? "bg-gray-50 dark:bg-gray-700"
+                      : ""
+                  }`}
+                >
+                  <span className="mr-2">{lang.flag}</span>
+                  {lang.name}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Login Button */}
+        <button
+          onClick={handleOpenLogin}
+          className="block sm:hidden text-gray-800 dark:text-white bg-transparent hover:bg-gray-50 dark:hover:bg-gray-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 border border-gray-300 dark:border-gray-600 transition-colors"
+        >
+          {t("login", "Log in")}
+        </button>
+      </div>
     </header>
   );
 }

@@ -1,17 +1,4 @@
-// 1. Create a structured folder organization for multilingual content
-// Example structure:
-// /blog
-//   /id (Indonesian content)
-//     post-1.md
-//     post-2.md
-//   /en (English content)
-//     post-1.md
-//     post-2.md
-//   /es (Spanish content)
-//     post-1.md
-//     post-2.md
-
-// 2. Update your lib/posts.js to support language selection
+// lib/posts.js - Updated for multilingual support
 
 import fs from "fs";
 import path from "path";
@@ -22,67 +9,44 @@ import gfm from "remark-gfm";
 import { insertContextualLinks, findRelatedPosts } from "./functions";
 import { parseFAQSection, parseHowToSection } from "./parser";
 
-// Define available languages
-export const LANGUAGES = {
-  id: "Bahasa Indonesia",
-  en: "English",
-  // Add more languages as needed
-};
+// Base blog directory
+const blogBaseDirectory = path.join(process.cwd(), "blog");
 
-// Default language
-export const DEFAULT_LANGUAGE = "id";
-
-// Get posts directory based on language
-function getPostsDirectory(language = DEFAULT_LANGUAGE) {
-  return path.join(process.cwd(), "blog", language);
+// Get all supported languages
+export function getSupportedLanguages() {
+  // Read all directories under /blog
+  return fs
+    .readdirSync(blogBaseDirectory, { withFileTypes: true })
+    .filter((dirent) => dirent.isDirectory())
+    .map((dirent) => dirent.name);
 }
 
-// Get all available languages for a specific post
-export function getAvailableLanguagesForPost(postId) {
-  const availableLanguages = {};
-
-  Object.keys(LANGUAGES).forEach((langCode) => {
-    const langDir = getPostsDirectory(langCode);
-    const postPath = path.join(langDir, `${postId}.md`);
-
-    if (fs.existsSync(postPath)) {
-      availableLanguages[langCode] = LANGUAGES[langCode];
-    }
-  });
-
-  return availableLanguages;
-}
-
-// Get all posts data with language support
-export function getSortedPostsData(language = DEFAULT_LANGUAGE) {
-  const postsDirectory = getPostsDirectory(language);
+// Get posts for a specific language
+export function getSortedPostsData(lang = "en") {
+  const langDirectory = path.join(blogBaseDirectory, lang);
 
   // Check if language directory exists
-  if (!fs.existsSync(postsDirectory)) {
+  if (!fs.existsSync(langDirectory)) {
     return [];
   }
 
-  // Get file names under language directory
-  const fileNames = fs.readdirSync(postsDirectory);
+  // Get file names under /blog/[lang]
+  const fileNames = fs.readdirSync(langDirectory);
   const allPostsData = fileNames.map((fileName) => {
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.md$/, "");
 
     // Read markdown file as string
-    const fullPath = path.join(postsDirectory, fileName);
+    const fullPath = path.join(langDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, "utf8");
 
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
 
-    // Get available translations
-    const availableLanguages = getAvailableLanguagesForPost(id);
-
-    // Combine the data with the id and language info
+    // Combine the data with the id and language
     return {
       id,
-      language,
-      availableLanguages,
+      lang,
       ...matterResult.data,
     };
   });
@@ -97,25 +61,33 @@ export function getSortedPostsData(language = DEFAULT_LANGUAGE) {
   });
 }
 
-// Get all post IDs with language support
+// Get all posts across all languages
+export function getAllPostsData() {
+  const languages = getSupportedLanguages();
+  let allPosts = [];
+
+  languages.forEach((lang) => {
+    const langPosts = getSortedPostsData(lang);
+    allPosts = [...allPosts, ...langPosts];
+  });
+  console.log(allPosts.length);
+
+  return allPosts;
+}
+
 export function getAllPostIds() {
+  const languages = getSupportedLanguages();
   let allPostIds = [];
 
-  // Collect post IDs from all language directories
-  Object.keys(LANGUAGES).forEach((language) => {
-    const postsDirectory = getPostsDirectory(language);
+  languages.forEach((lang) => {
+    const langDirectory = path.join(blogBaseDirectory, lang);
+    const fileNames = fs.readdirSync(langDirectory);
 
-    // Skip if language directory doesn't exist
-    if (!fs.existsSync(postsDirectory)) {
-      return;
-    }
-
-    const fileNames = fs.readdirSync(postsDirectory);
     const langPostIds = fileNames.map((fileName) => {
       return {
         params: {
+          lang,
           id: fileName.replace(/\.md$/, ""),
-          language,
         },
       };
     });
@@ -126,24 +98,18 @@ export function getAllPostIds() {
   return allPostIds;
 }
 
-// Insert suggestion to read related articles with localized text
-function insertRelatedPostLinks(content, relatedPosts, language) {
+// Insert suggestion to read related articles
+function insertRelatedPostLinks(content, relatedPosts, lang) {
   if (!relatedPosts || relatedPosts.length === 0) return content;
 
-  // Localized heading text
-  const relatedArticlesText = {
-    id: "Artikel Terkait",
-    en: "Related Articles",
-    // Add more translations as needed
-  };
+  // Create markdown for related posts section - adjust heading based on language
+  let heading = "### Related Articles";
+  if (lang === "id") heading = "### Artikel Terkait";
+  if (lang === "zh") heading = "### 相关文章";
 
-  // Use the localized heading or fallback to English
-  const heading = relatedArticlesText[language] || relatedArticlesText.en;
-
-  // Create markdown for related posts section
-  let relatedLinksMarkdown = `\n\n### ${heading}\n`;
+  let relatedLinksMarkdown = `\n\n${heading}\n`;
   relatedPosts.forEach((post) => {
-    relatedLinksMarkdown += `* [${post.title}](/posts/${language}/${post.id})\n`;
+    relatedLinksMarkdown += `* [${post.title}](/${post.lang}/posts/${post.id})\n`;
   });
 
   // Add a horizontal rule before recommended posts
@@ -163,32 +129,48 @@ function insertRelatedPostLinks(content, relatedPosts, language) {
   }
 }
 
-// Get post data with language support
-export async function getPostData(id, language = DEFAULT_LANGUAGE) {
-  const postsDirectory = getPostsDirectory(language);
-  const fullPath = path.join(postsDirectory, `${id}.md`);
+export async function getPostData(id, lang = "id") {
+  // Define the fallback language order
+  const languageFallbacks = [lang, ...getSupportedLanguages()]; // Try requested language first, then English, then Chinese
 
-  // If the post doesn't exist in the requested language, try falling back to default
-  if (!fs.existsSync(fullPath) && language !== DEFAULT_LANGUAGE) {
-    const defaultPath = path.join(
-      getPostsDirectory(DEFAULT_LANGUAGE),
-      `${id}.md`
-    );
+  let fileContents;
+  let usedLanguage = lang;
+  let fullPath;
 
-    if (fs.existsSync(defaultPath)) {
-      return getPostData(id, DEFAULT_LANGUAGE);
+  // Try each language in the fallback sequence
+  for (const currentLang of languageFallbacks) {
+    try {
+      fullPath = path.join(blogBaseDirectory, currentLang, `${id}.md`);
+      fileContents = fs.readFileSync(fullPath, "utf8");
+      usedLanguage = currentLang; // Store which language was successfully found
+      console.log(`Found post ${id} in language: ${currentLang}`);
+      break; // Exit the loop if file is found
+    } catch (error) {
+      if (error.code === "ENOENT") {
+        console.log(
+          `Post ${id} not found in ${currentLang}, trying next fallback...`
+        );
+        continue; // Try next language
+      } else {
+        throw error; // Rethrow if it's a different error
+      }
     }
-
-    throw new Error(`Post ${id} not found in any language`);
   }
 
-  const fileContents = fs.readFileSync(fullPath, "utf8");
+  // If file is still not found after all fallbacks
+  if (!fileContents) {
+    throw new Error(
+      `Post ${id} not found in any language: ${languageFallbacks.join(", ")}`
+    );
+  }
+
+  console.log({ lang: usedLanguage, id, fullPath });
 
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
 
-  // Get all posts in the current language to find related content
-  const allPosts = getSortedPostsData(language);
+  // Get all posts in the same language to find related content
+  const allPosts = getSortedPostsData(usedLanguage);
 
   // Find related posts based on tags and content
   const relatedPosts = findRelatedPosts(id, matterResult.data.tags, allPosts);
@@ -204,11 +186,11 @@ export async function getPostData(id, language = DEFAULT_LANGUAGE) {
     id
   );
 
-  // Insert related posts section with localized text
+  // Insert related posts section
   enhancedContent = insertRelatedPostLinks(
     enhancedContent,
     relatedPosts,
-    language
+    usedLanguage
   );
 
   // Use remark to convert markdown into HTML string
@@ -218,18 +200,15 @@ export async function getPostData(id, language = DEFAULT_LANGUAGE) {
     .process(enhancedContent);
   const contentHtml = processedContent.toString();
 
-  // Get available translations for this post
-  const availableLanguages = getAvailableLanguagesForPost(id);
-
   // Combine the data with the id, language, and contentHtml
   return {
     id,
-    language,
-    availableLanguages,
+    lang: usedLanguage, // Return the language that was actually used
     contentHtml,
     ...matterResult.data,
     relatedPosts,
     faq,
     howTo,
+    // translatedFrom: usedLanguage !== lang ? usedLanguage : undefined, // Indicate if content was from a fallback language
   };
 }

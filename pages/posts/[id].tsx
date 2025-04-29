@@ -18,6 +18,7 @@ import RelatedPosts from "./RelatedPosts";
 import BlogSchemaJsonLd from "components/BlogSchemaJsonLd";
 import BreadcrumbSchemaJsonLd from "components/BreadcrumbSchemaJsonLd"; // Import the new component
 import { convertDate, estimateReadingTime } from "lib/functions";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // Dynamic Breadcrumb Component
 const Breadcrumb = ({ postTitle, slug }) => {
@@ -142,7 +143,7 @@ function Post({ postData, slug }) {
               <div className="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400">
                 <div className="flex items-center gap-2">
                   <Calendar className="w-5 h-5" />
-                  <span>{convertDate(postData.date)}</span>
+                  <span>{postData.date}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <User className="w-5 h-5" />
@@ -210,26 +211,41 @@ Post.getLayout = function (page: React.ReactNode) {
 export default Post;
 
 // In Pages Router, we use getStaticProps instead of directly fetching data in component
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, locale }) {
   const slug = params.id;
-  const postData = await getPostData(slug);
-
+  const postData = await getPostData(slug, locale);
   return {
     props: {
       postData,
       slug,
+      locale,
+      ...(await serverSideTranslations(locale, ["common", "order"])),
     },
   };
 }
 
 // getStaticPaths replaces generateStaticParams - they're functionally similar
-export async function getStaticPaths() {
-  const paths = getAllPostIds().map((postId) => ({
+export async function getStaticPaths({ locales }) {
+  const postIds = getAllPostIds();
+  const paths: {
     params: {
-      id: postId.params.id,
-    },
-  }));
+      id: string;
+    };
+    locale: string;
+  }[] = [];
 
+  postIds.forEach((postId) => {
+    for (const locale of locales) {
+      paths.push({
+        params: {
+          id: postId.params.id,
+        },
+        locale,
+      });
+    }
+  });
+
+  console.log(JSON.stringify(paths, null, 1));
   return {
     paths,
     fallback: false,

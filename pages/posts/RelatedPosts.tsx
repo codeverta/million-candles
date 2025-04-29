@@ -58,7 +58,7 @@ const RelatedPosts = ({ posts }) => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
                     <Calendar className="w-4 h-4 mr-2" />
-                    {convertDate(post.date)}
+                    {post.date}
                   </div>
 
                   <span className="text-blue-600 dark:text-blue-400 text-sm flex items-center">
