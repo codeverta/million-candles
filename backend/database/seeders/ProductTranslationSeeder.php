@@ -155,6 +155,114 @@ $translations = [
 ];
 
 DB::table('product_translations')->insert($translations);
+$translations = [
+    [
+        'product_id' => 5,
+        'locale' => 'id',
+        'name' => 'Lilin Kristal Marbel Warna Oranye Tinggi 20 cm Diameter 2.3 cm',
+        'description' => "- Tahan lama hingga 8 jam\n- Desain elegan dengan tekstur marble\n- Ramah lingkungan, terbuat dari stearin\n- Tersedia dalam berbagai macam warna\n\nContoh penggunaan:\n- Digunakan untuk berbagai acara spesial seperti pernikahan, ibadah, dll\n\nBahan:\n- Stearin berkualitas tinggi\n\nUkuran:\n- Tinggi: 20 cm\n- Diameter: 2.3 cm\n- Berat: 190 gram\n\nLilin kristal dari Million Candles hadir dengan desain yang elegan dan daya tahan hingga 8 jam. Cocok untuk mempercantik dekorasi ruangan atau memberikan suasana yang tenang dan nyaman. Terbuat dari bahan stearin yang ramah lingkungan, lilin ini tersedia dalam berbagai macam warna yang bisa disesuaikan dengan kebutuhan Anda. Tambahkan ke keranjang sekarang dan rasakan perbedaannya!\n\n*Sticker label dapat dilepas",
+    ],
+    [
+        'product_id' => 5,
+        'locale' => 'en',
+        'name' => 'Orange Marble Crystal Candle Height 20 cm Diameter 2.3 cm',
+        'description' => "- Lasts up to 8 hours\n- Elegant design with marble texture\n- Eco-friendly, made from stearin\n- Available in various colors\n\nExample usage:\n- Used for various special occasions such as weddings, worship, etc.\n\nMaterial:\n- High-quality stearin\n\nSize:\n- Height: 20 cm\n- Diameter: 2.3 cm\n- Weight: 190 grams\n\nThe crystal candle from Million Candles features an elegant design and lasts up to 8 hours. Perfect for enhancing room decor or creating a calm and cozy atmosphere. Made from eco-friendly stearin, this candle comes in a variety of colors to suit your needs. Add it to your cart now and feel the difference!\n\n*Sticker label can be removed",
+    ],
+    [
+        'product_id' => 5,
+        'locale' => 'ja',
+        'name' => 'オレンジ大理石模様のクリスタルキャンドル 高さ20cm 直径2.3cm',
+        'description' => "- 最長4時間燃焼\n- 大理石模様のエレガントなデザイン\n- 環境に優しいステアリン製\n- 多彩なカラー展開\n\n使用例：\n- 結婚式、礼拝などの特別なイベントに使用\n\n素材：\n- 高品質ステアリン\n\nサイズ：\n- 高さ：20cm\n- 直径：2.3cm\n- 重さ：190g\n\nMillion Candlesのクリスタルキャンドルは、エレガントなデザインと最大4時間の燃焼時間を誇ります。部屋の装飾を引き立てたり、落ち着いた快適な雰囲気を作るのに最適です。環境にやさしいステアリン素材で、さまざまな色から選べます。今すぐカートに追加して、その違いを実感してください！\n\n*ラベルステッカーは取り外し可能です",
+    ],
+    [
+        'product_id' => 5,
+        'locale' => 'kr',
+        'name' => '오렌지 마블 크리스탈 양초 높이 20cm 지름 2.3cm',
+        'description' => "- 최대 4시간 지속\n- 대리석 텍스처의 우아한 디자인\n- 친환경 스테아린 소재\n- 다양한 색상으로 제공\n\n사용 예시:\n- 결혼식, 예배 등 다양한 특별한 행사에 사용\n\n재질:\n- 고품질 스테아린\n\n크기:\n- 높이: 20cm\n- 지름: 2.3cm\n- 무게: 190g\n\nMillion Candles의 크리스탈 양초는 우아한 디자인과 최대 4시간 지속되는 성능을 자랑합니다. 실내 장식을 아름답게 하거나 평온하고 아늑한 분위기를 연출하는 데 적합합니다. 친환경적인 스테아린 소재로 제작되었으며 다양한 색상으로 제공됩니다. 지금 장바구니에 추가하고 그 차이를 느껴보세요!\n\n*라벨 스티커는 제거 가능합니다",
+    ],
+    [
+        'product_id' => 5,
+        'locale' => 'zh',
+        'name' => '橙色大理石水晶蜡烛 高20厘米 直径2.3厘米',
+        'description' => "- 持续燃烧时间可达4小时\n- 大理石纹理的优雅设计\n- 环保硬脂材质制成\n- 提供多种颜色选择\n\n使用示例：\n- 用于婚礼、礼拜等各种特殊场合\n\n材料：\n- 高品质硬脂\n\n尺寸：\n- 高：20厘米\n- 直径：2.3厘米\n- 重量：190克\n\nMillion Candles的水晶蜡烛拥有优雅的外观和最长4小时的燃烧时间，非常适合美化室内装饰或营造宁静舒适的氛围。采用环保硬脂制成，提供多种颜色可选。立即添加到购物车，体验不一样的感觉！\n\n*可拆卸标签贴纸",
+    ],
+];
+
+DB::table('product_translations')->insert($translations);
+
+
+$translations = [
+    [
+        'product_id' => 7,
+        'locale' => 'id',
+        'name' => 'Lilin Kristal Gelas Warna Warni Tinggi 6 cm Diameter 5 cm',
+        'description' => "- Tahan lama hingga 1.5 jam\n- Desain elegan dengan tekstur marble\n- Ramah lingkungan, terbuat dari stearin\n- Tersedia dalam berbagai macam warna\n\nBahan:\n- Stearin berkualitas tinggi\n\nUkuran:\n- Tinggi: 6 cm\n- Diameter: 5 cm\n- Berat: 180 gram\n\nLilin kristal dari Million Candles hadir dengan desain yang elegan dan daya tahan hingga 1.5 jam. Cocok untuk mempercantik dekorasi ruangan atau memberikan suasana yang tenang dan nyaman. Terbuat dari bahan stearin yang ramah lingkungan, lilin ini tersedia dalam berbagai macam warna yang bisa disesuaikan dengan kebutuhan Anda. Tambahkan ke keranjang sekarang dan rasakan perbedaannya!\n\n*Sticker label dapat dilepas",
+    ],
+    [
+        'product_id' => 7,
+        'locale' => 'en',
+        'name' => 'Colorful Glass Crystal Candle Height 6 cm Diameter 5 cm',
+        'description' => "- Burns up to 1.5 hours\n- Elegant design with marble texture\n- Eco-friendly, made from stearin\n- Available in various colors\n\nMaterial:\n- High-quality stearin\n\nSize:\n- Height: 6 cm\n- Diameter: 5 cm\n- Weight: 180 grams\n\nCrystal candles from Million Candles come with an elegant design and a burn time of up to 1.5 hours. Perfect for enhancing room décor or creating a calm and cozy atmosphere. Made from eco-friendly stearin, this candle is available in a variety of colors to suit your needs. Add to cart now and feel the difference!\n\n*Sticker label can be removed",
+    ],
+    [
+        'product_id' => 7,
+        'locale' => 'ja',
+        'name' => 'カラフルなガラスクリスタルキャンドル 高さ6cm 直径5cm',
+        'description' => "- 最大1.5時間燃焼\n- マーブル模様のエレガントなデザイン\n- 環境に優しいステアリン製\n- さまざまな色でご用意\n\n素材：\n- 高品質ステアリン\n\nサイズ：\n- 高さ：6cm\n- 直径：5cm\n- 重さ：180g\n\nMillion Candlesのクリスタルキャンドルは、エレガントなデザインと最大1.5時間の燃焼時間を備えています。部屋の装飾を引き立てたり、落ち着いた心地よい雰囲気を演出するのに最適です。環境に優しいステアリン素材で作られており、さまざまな色をご用意しています。今すぐカートに追加して、その違いを体感してください！\n\n*ステッカーラベルは取り外し可能",
+    ],
+    [
+        'product_id' => 7,
+        'locale' => 'kr',
+        'name' => '다채로운 유리 크리스탈 양초 높이 6cm 지름 5cm',
+        'description' => "- 최대 1.5시간 연소\n- 대리석 질감의 우아한 디자인\n- 친환경 스테아린 재질\n- 다양한 색상으로 제공\n\n재질:\n- 고품질 스테아린\n\n크기:\n- 높이: 6cm\n- 지름: 5cm\n- 무게: 180g\n\nMillion Candles의 크리스탈 양초는 우아한 디자인과 최대 1.5시간의 연소 시간을 자랑합니다. 실내 장식을 아름답게 하거나 차분하고 편안한 분위기를 조성하는 데 적합합니다. 친환경적인 스테아린 재질로 제작되었으며 다양한 색상으로 제공됩니다. 지금 장바구니에 담고 차이를 느껴보세요!\n\n*스티커 라벨은 제거할 수 있습니다",
+    ],
+    [
+        'product_id' => 7,
+        'locale' => 'zh',
+        'name' => '彩色玻璃水晶蜡烛 高6厘米 直径5厘米',
+        'description' => "- 可燃烧长达1.5小时\n- 大理石纹理的优雅设计\n- 环保硬脂制成\n- 提供多种颜色\n\n材料：\n- 高质量硬脂\n\n尺寸：\n- 高度：6厘米\n- 直径：5厘米\n- 重量：180克\n\nMillion Candles的水晶蜡烛具有优雅的设计和最长1.5小时的燃烧时间。非常适合装饰房间或营造安静舒适的氛围。由环保的硬脂制成，提供多种颜色可选。立即加入购物车，体验不同之处！\n\n*标签贴纸可拆卸",
+    ],
+];
+
+DB::table('product_translations')->insert($translations);
+
+
+$translations = [
+    [
+        'product_id' => 9,
+        'locale' => 'id',
+        'name' => 'Lilin Marbel Kristal Memories Tinggi 8.5 cm Diameter 3.5 cm',
+        'description' => "- Tahan lama hingga 3 jam\n- Desain elegan dengan tekstur marble\n- Ramah lingkungan, terbuat dari stearin\n- Tersedia dalam berbagai macam warna\n- Digunakan untuk berbagai acara spesial seperti pernikahan, ibadah, dll\n\nBahan:\n- Stearin berkualitas tinggi\n\nUkuran:\n- Tinggi: 8.5 cm\n- Diameter: 3.5 cm\n- Berat: 354 gram\n\nLilin marble kristal dari Million Candles hadir dengan desain yang elegan dan daya tahan hingga 4 jam. Cocok untuk mempercantik dekorasi ruangan atau memberikan suasana yang tenang dan nyaman. Terbuat dari bahan stearin yang ramah lingkungan, lilin ini tersedia dalam berbagai macam warna yang bisa disesuaikan dengan kebutuhan Anda. Tambahkan ke keranjang sekarang dan rasakan perbedaannya!\n\n*Sticker label dapat dilepas",
+    ],
+    [
+        'product_id' => 9,
+        'locale' => 'en',
+        'name' => 'Memories Marble Crystal Candle Height 8.5 cm Diameter 3.5 cm',
+        'description' => "- Burns up to 3 hours\n- Elegant marble-textured design\n- Eco-friendly, made from stearin\n- Available in various colors\n- Suitable for special occasions like weddings, religious ceremonies, etc.\n\nMaterial:\n- High-quality stearin\n\nSize:\n- Height: 8.5 cm\n- Diameter: 3.5 cm\n- Weight: 354 grams\n\nMarble crystal candles from Million Candles feature an elegant design and burn time of up to 4 hours. Perfect for beautifying your space or creating a calm and cozy atmosphere. Made from eco-friendly stearin and available in a variety of colors to suit your needs. Add to cart now and feel the difference!\n\n*Sticker label can be removed",
+    ],
+    [
+        'product_id' => 9,
+        'locale' => 'ja',
+        'name' => 'メモリーズ マーブルクリスタルキャンドル 高さ8.5cm 直径3.5cm',
+        'description' => "- 最大3時間燃焼\n- マーブル模様のエレガントなデザイン\n- 環境に優しいステアリン製\n- さまざまな色でご用意\n- 結婚式、宗教行事など特別なイベントに最適\n\n素材：\n- 高品質ステアリン\n\nサイズ：\n- 高さ：8.5cm\n- 直径：3.5cm\n- 重さ：354g\n\nMillion Candlesのマーブルクリスタルキャンドルは、エレガントなデザインと最大4時間の燃焼時間を提供します。空間を美しく演出し、落ち着いた心地よい雰囲気を作るのに最適です。環境に配慮したステアリン素材で作られ、さまざまな色からお選びいただけます。今すぐカートに追加して、その違いを実感してください！\n\n*ステッカーラベルは取り外し可能",
+    ],
+    [
+        'product_id' => 9,
+        'locale' => 'kr',
+        'name' => '메모리즈 마블 크리스탈 양초 높이 8.5cm 지름 3.5cm',
+        'description' => "- 최대 3시간 연소\n- 대리석 텍스처의 우아한 디자인\n- 친환경 스테아린 소재\n- 다양한 색상 제공\n- 결혼식, 종교 행사 등 특별한 날에 적합\n\n재질:\n- 고품질 스테아린\n\n크기:\n- 높이: 8.5cm\n- 지름: 3.5cm\n- 무게: 354g\n\nMillion Candles의 마블 크리스탈 양초는 우아한 디자인과 최대 4시간의 연소 시간을 자랑합니다. 실내를 아름답게 장식하거나 차분하고 포근한 분위기를 연출하기에 적합합니다. 친환경적인 스테아린으로 제작되었으며 다양한 색상으로 제공됩니다. 지금 장바구니에 담고 그 차이를 느껴보세요!\n\n*스티커 라벨은 제거할 수 있습니다",
+    ],
+    [
+        'product_id' => 9,
+        'locale' => 'zh',
+        'name' => '回忆大理石水晶蜡烛 高8.5厘米 直径3.5厘米',
+        'description' => "- 可燃烧长达3小时\n- 大理石质感的优雅设计\n- 环保硬脂制成\n- 提供多种颜色\n- 适用于婚礼、宗教仪式等各种特别场合\n\n材料：\n- 高品质硬脂\n\n尺寸：\n- 高度：8.5厘米\n- 直径：3.5厘米\n- 重量：354克\n\nMillion Candles 的大理石水晶蜡烛具有优雅的设计和最长 4 小时的燃烧时间。非常适合美化空间或营造安静温馨的氛围。采用环保硬脂制成，提供多种颜色以满足您的需求。立即加入购物车，体验不同之处！\n\n*标签贴纸可拆卸",
+    ],
+];
+
+DB::table('product_translations')->insert($translations);
+
+
 
     }
 }

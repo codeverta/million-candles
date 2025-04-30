@@ -508,13 +508,13 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
               </div>
             </>
           ) : (
-            <div className="text-center py-20 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <div className="text-center py-20 bg-white dark:bg-gray-800 rounded-lg">
               <div className="text-7xl mb-4">🔍</div>
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                Tidak ada artikel yang ditemukan
+                {t("blog.not_found.title")}
               </h2>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
-                Coba ubah kata kunci pencarian atau kategori yang dipilih
+                {t("blog.not_found.description")}
               </p>
               <Button
                 variant="contained"

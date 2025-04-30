@@ -70,7 +70,6 @@ export function getAllPostsData() {
     const langPosts = getSortedPostsData(lang);
     allPosts = [...allPosts, ...langPosts];
   });
-  console.log(allPosts.length);
 
   return allPosts;
 }
@@ -143,13 +142,9 @@ export async function getPostData(id, lang = "id") {
       fullPath = path.join(blogBaseDirectory, currentLang, `${id}.md`);
       fileContents = fs.readFileSync(fullPath, "utf8");
       usedLanguage = currentLang; // Store which language was successfully found
-      console.log(`Found post ${id} in language: ${currentLang}`);
       break; // Exit the loop if file is found
     } catch (error) {
       if (error.code === "ENOENT") {
-        console.log(
-          `Post ${id} not found in ${currentLang}, trying next fallback...`
-        );
         continue; // Try next language
       } else {
         throw error; // Rethrow if it's a different error
@@ -163,8 +158,6 @@ export async function getPostData(id, lang = "id") {
       `Post ${id} not found in any language: ${languageFallbacks.join(", ")}`
     );
   }
-
-  console.log({ lang: usedLanguage, id, fullPath });
 
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);

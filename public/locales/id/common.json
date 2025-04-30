@@ -112,7 +112,11 @@
   },
   "blog": {
     "title": "Kumpulan Cerita dan Tips Mengenai Lilin",
-    "description": "Kumpulan blog yang membahas tentang berbagai aspek lilin, mulai dari sejarah dan berbagai jenis lilin, hingga cara membuat lilin sendiri dan bagaimana memilih lilin yang tepat untuk berbagai keperluan."
+    "description": "Kumpulan blog yang membahas tentang berbagai aspek lilin, mulai dari sejarah dan berbagai jenis lilin, hingga cara membuat lilin sendiri dan bagaimana memilih lilin yang tepat untuk berbagai keperluan.",
+    "not_found": {
+      "title": "Tidak ada artikel yang ditemukan",
+      "description": "Coba ubah kata kunci pencarian atau kategori yang dipilih"
+    }
   },
   "footer": {
     "copyright": "© 2025 Million Candles. All rights reserved."

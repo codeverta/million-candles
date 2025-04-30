@@ -108,7 +108,11 @@
   },
   "blog": {
     "title": "Collection of Stories and Tips About Candles",
-    "description": "A collection of blogs discussing various aspects of candles, from their history and types to how to make your own candles and choose the right ones for different needs."
+    "description": "A collection of blogs discussing various aspects of candles, from their history and types to how to make your own candles and choose the right ones for different needs.",
+    "not_found": {
+      "title": "No articles found",
+      "description": "Try changing the search keywords or selected category"
+    }
   },
   "gallery": {
     "title": "Gallery",

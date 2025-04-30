@@ -5,12 +5,16 @@ import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GrainIcon from "@mui/icons-material/Grain";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 function handleClick(event: any) {
   event.preventDefault();
 }
 
 const Breadcrumb = ({ currentLabel }: any) => {
+  const { t } = useTranslation("common");
+  const { locale } = useRouter();
   return (
     <Breadcrumbs aria-label="breadcrumb" separator="›" sx={{ padding: "16px" }}>
       <Link
@@ -21,17 +25,17 @@ const Breadcrumb = ({ currentLabel }: any) => {
         sx={{ display: "flex", alignItems: "center" }}
       >
         <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-        Home
+        {t("menu.home", "Home")}
       </Link>
       <Link
         underline="hover"
         color="inherit"
-        href="/getting-started/installation/"
+        href={`/${locale}/products`}
         onClick={handleClick}
         sx={{ display: "flex", alignItems: "center" }}
       >
         <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-        Produk
+        {t("menu.products", "Products")}
       </Link>
       <Typography
         color="text.primary"

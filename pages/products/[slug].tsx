@@ -81,7 +81,6 @@ function ProductDetail() {
       fetchProduct();
     }
   }, [router.query]);
-  console.log({ router });
 
   // Handle image loading
   useEffect(() => {

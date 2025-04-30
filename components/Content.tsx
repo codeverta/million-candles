@@ -71,27 +71,12 @@ export default function Content({
     ...queryParams,
   };
   const query: UseQueryResult<any> = useQuery({
-    queryKey: [router.locale, currentPage, "products"],
+    queryKey: [title],
     queryFn: async () => {
       return api.get("products", { ...productParams });
     },
     staleTime: 1000 * 60 * 10,
   });
-
-  const [state, setState] = useState<any>({
-    isModalOpen: false,
-    isLoading: false,
-    selectedProduct: {},
-    rating: [],
-  });
-
-  const handleModal = (product: any): void => {
-    setState({
-      ...state,
-      isModalOpen: !state.isModalOpen,
-      selectedProduct: product,
-    });
-  };
 
   const onChangePage = (_e: any, page: number) => {
     setCurrentPage(page);

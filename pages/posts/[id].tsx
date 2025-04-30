@@ -245,7 +245,6 @@ export async function getStaticPaths({ locales }) {
     }
   });
 
-  console.log(JSON.stringify(paths, null, 1));
   return {
     paths,
     fallback: false,

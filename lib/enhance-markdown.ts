@@ -176,7 +176,6 @@ function enhanceMarkdownFile(filePath) {
   if (needsUpdate) {
     const updatedFileContent = matter.stringify(content, updatedData);
     fs.writeFileSync(filePath, updatedFileContent);
-    console.log(`Enhanced: ${path.basename(filePath)}`);
     return true;
   }
 
@@ -195,8 +194,6 @@ function enhanceAllMarkdownFiles() {
       if (updated) updatedCount++;
     }
   });
-
-  console.log(`Enhanced ${updatedCount} of ${fileNames.length} markdown files`);
 }
 
 // Run the enhancement
