@@ -101,9 +101,14 @@ export default function Header(props) {
               className="mr-3 rounded-full w-9 h-9 sm:w-12 sm:h-12 transition-transform hover:scale-105"
               alt="Million Candles Logo"
             />
-            <span className="self-center text-xl font-semibold whitespace-nowrap text-gray-800 dark:text-white">
-              {t("brand", "Million Candles")}
-            </span>
+            <div className="flex flex-col">
+              <span className="self-center text-xl font-semibold whitespace-nowrap text-gray-800 dark:text-white">
+                {t("brand", "Million Candles")}
+              </span>
+              <span className="text-xs text-gray-600 dark:text-gray-400">
+                {t("established", "Est. 2007")}
+              </span>
+            </div>
           </Link>
 
           <div className="flex items-center lg:order-3 space-x-2">

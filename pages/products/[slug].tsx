@@ -18,16 +18,8 @@ import ProductJsonLd from "components/ProductJsonLd"; // Import the JSON-LD comp
 import { BreadcrumbJsonLd } from "next-seo";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import ProductDetailSkeleton from "components/molecules/landing/ProductDetailSkeleton";
-
-function generateWhatsAppLink(phoneNumber, message) {
-  // Encode the message to make it URL-safe
-  const encodedMessage = encodeURIComponent(message);
-
-  // Construct the WhatsApp URL
-  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-  return whatsappURL;
-}
+import { currency } from "lib/currency";
+import { generateWhatsAppLink } from "lib/functions";
 
 // Skeleton component for product image
 const ProductImageSkeleton = () => (
@@ -67,6 +59,7 @@ function ProductDetail() {
           const product = await api.get("products", {
             "filter[slug]": slug,
             locale: router.locale,
+            currency: currency[router.locale] || "id",
             include: "documents",
           });
 

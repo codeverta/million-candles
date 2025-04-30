@@ -119,6 +119,63 @@
     }
   },
   "footer": {
-    "copyright": "© 2025 Million Candles. All rights reserved."
+    "about": "Tentang Kami",
+    "profile": "Profil Perusahaan",
+    "careers": "Karir",
+    "blog": "Blog",
+    "contact": "Kontak Kami",
+    "help": "Bantuan",
+    "howToBuy": "Cara Pembelian",
+    "payment": "Pembayaran",
+    "shipping": "Pengiriman",
+    "returns": "Pengembalian",
+    "faq": "FAQ",
+    "info": "Informasi",
+    "terms": "Syarat & Ketentuan",
+    "privacy": "Kebijakan Privasi",
+    "shippingPolicy": "Kebijakan Pengiriman",
+    "returnPolicy": "Kebijakan Pengembalian"
+  },
+  "social": {
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "whatsapp": "WhatsApp"
+  },
+  "payment": {
+    "bca": "BCA",
+    "mandiri": "Mandiri",
+    "bni": "BNI",
+    "bri": "BRI"
+  },
+  "stats": {
+    "title": "Dampak Kami dalam Angka",
+    "subtitle": "Sejak 2007, kami telah menerangi rumah-rumah di seluruh Indonesia dengan lilin buatan tangan kami",
+    "candlesProduced": {
+      "label": "Lilin Diproduksi per Hari",
+      "description": "Fasilitas produksi efisiensi tinggi kami"
+    },
+    "candleVariants": {
+      "label": "Varian Lilin",
+      "description": "Aroma, desain, dan gaya unik"
+    },
+    "yearsOfExcellence": {
+      "label": "Tahun Keunggulan",
+      "value": "Sejak 2007",
+      "description": "17+ tahun membuat lilin premium"
+    },
+    "cities": {
+      "label": "Melayani seluruh Indonesia",
+      "value": "Kota-kota Besar",
+      "description": "Seperti Jakarta, Bali dan lainnya"
+    },
+    "candlesSold": {
+      "label": "Lilin Terjual per Tahun",
+      "description": "Dipercaya oleh rumah dan bisnis"
+    },
+    "quality": {
+      "label": "Jaminan Kualitas",
+      "description": "Komitmen terhadap keunggulan"
+    }
   }
 }

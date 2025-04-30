@@ -117,5 +117,65 @@
   "gallery": {
     "title": "画廊",
     "description": "我们产品的照片和视频合集"
+  },
+  "stats": {
+    "title": "我们的影响力数字体现",
+    "subtitle": "自2007年以来，我们用手工蜡烛照亮了整个印度尼西亚的家庭",
+    "candlesProduced": {
+      "label": "每日生产蜡烛数",
+      "description": "高效能的生产设施"
+    },
+    "candleVariants": {
+      "label": "蜡烛种类",
+      "description": "独特的香味、设计和风格"
+    },
+    "yearsOfExcellence": {
+      "label": "卓越年数",
+      "value": "自2007年起",
+      "description": "17+年精心制作优质蜡烛"
+    },
+    "cities": {
+      "label": "服务遍及印尼各地",
+      "value": "主要城市",
+      "description": "如雅加达、巴厘岛等"
+    },
+    "candlesSold": {
+      "label": "年销售蜡烛数量",
+      "description": "深受家庭和企业信赖"
+    },
+    "quality": {
+      "label": "质量保证",
+      "description": "追求卓越"
+    }
+  },
+  "footer": {
+    "about": "关于我们",
+    "profile": "公司简介",
+    "careers": "招聘信息",
+    "blog": "博客",
+    "contact": "联系我们",
+    "help": "帮助",
+    "howToBuy": "如何购买",
+    "payment": "支付",
+    "shipping": "配送",
+    "returns": "退货",
+    "faq": "常见问题",
+    "info": "信息",
+    "terms": "条款与条件",
+    "privacy": "隐私政策",
+    "shippingPolicy": "配送政策",
+    "returnPolicy": "退货政策"
+  },
+  "social": {
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "whatsapp": "WhatsApp"
+  },
+  "payment": {
+    "bca": "BCA",
+    "mandiri": "Mandiri",
+    "bni": "BNI",
+    "bri": "BRI"
   }
 }

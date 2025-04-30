@@ -240,3 +240,13 @@ export function convertToISO8601Duration(timeString: string) {
   // Default to 30 minutes if we can't parse
   return "PT30M";
 }
+
+export function generateWhatsAppLink(phoneNumber: string, message: string) {
+  // Encode the message to make it URL-safe
+  const encodedMessage = encodeURIComponent(message);
+
+  // Construct the WhatsApp URL
+  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+  return whatsappURL;
+}

@@ -117,5 +117,65 @@
   "gallery": {
     "title": "Gallery",
     "description": "Collection of Our Product Photos and Videos"
+  },
+  "stats": {
+    "title": "Our Impact by the Numbers",
+    "subtitle": "Since 2007, we've been illuminating homes across Indonesia with our handcrafted candles",
+    "candlesProduced": {
+      "label": "Candles Produced Daily",
+      "description": "Our high-efficiency production facility"
+    },
+    "candleVariants": {
+      "label": "Candle Variants",
+      "description": "Unique scents, designs and styles"
+    },
+    "yearsOfExcellence": {
+      "label": "Years of Excellence",
+      "value": "Since 2007",
+      "description": "17+ years crafting premium candles"
+    },
+    "cities": {
+      "label": "Serving all of Indonesia",
+      "value": "Major Cities",
+      "description": "Such as Jakarta, Bali and more"
+    },
+    "candlesSold": {
+      "label": "Candles Sold Annually",
+      "description": "Trusted by homes and businesses"
+    },
+    "quality": {
+      "label": "Quality Assurance",
+      "description": "Commitment to excellence"
+    }
+  },
+  "footer": {
+    "about": "About Us",
+    "profile": "Company Profile",
+    "careers": "Careers",
+    "blog": "Blog",
+    "contact": "Contact Us",
+    "help": "Help",
+    "howToBuy": "How to Buy",
+    "payment": "Payment",
+    "shipping": "Shipping",
+    "returns": "Returns",
+    "faq": "FAQ",
+    "info": "Information",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "shippingPolicy": "Shipping Policy",
+    "returnPolicy": "Return Policy"
+  },
+  "social": {
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "whatsapp": "WhatsApp"
+  },
+  "payment": {
+    "bca": "BCA",
+    "mandiri": "Mandiri",
+    "bni": "BNI",
+    "bri": "BRI"
   }
 }

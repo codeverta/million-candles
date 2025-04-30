@@ -117,5 +117,65 @@
   "gallery": {
     "title": "ギャラリー",
     "description": "私たちの製品の写真とビデオのコレクション"
+  },
+  "stats": {
+    "title": "数字で見る私たちの影響力",
+    "subtitle": "2007年からインドネシア全土の家庭を手作りキャンドルで照らしています",
+    "candlesProduced": {
+      "label": "1日あたりのキャンドル生産数",
+      "description": "高効率な生産施設"
+    },
+    "candleVariants": {
+      "label": "キャンドルの種類",
+      "description": "ユニークな香り、デザイン、スタイル"
+    },
+    "yearsOfExcellence": {
+      "label": "卓越の年数",
+      "value": "2007年から",
+      "description": "17年以上のプレミアムキャンドル制作"
+    },
+    "cities": {
+      "label": "インドネシア全域対応",
+      "value": "主要都市",
+      "description": "ジャカルタ、バリなど"
+    },
+    "candlesSold": {
+      "label": "年間販売キャンドル数",
+      "description": "家庭と企業からの信頼"
+    },
+    "quality": {
+      "label": "品質保証",
+      "description": "卓越性への取り組み"
+    }
+  },
+  "footer": {
+    "about": "私たちについて",
+    "profile": "会社概要",
+    "careers": "採用情報",
+    "blog": "ブログ",
+    "contact": "お問い合わせ",
+    "help": "ヘルプ",
+    "howToBuy": "購入方法",
+    "payment": "お支払い",
+    "shipping": "配送",
+    "returns": "返品",
+    "faq": "よくある質問",
+    "info": "情報",
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー",
+    "shippingPolicy": "配送ポリシー",
+    "returnPolicy": "返品ポリシー"
+  },
+  "social": {
+    "instagram": "インスタグラム",
+    "facebook": "フェイスブック",
+    "twitter": "ツイッター",
+    "whatsapp": "ワッツアップ"
+  },
+  "payment": {
+    "bca": "BCA",
+    "mandiri": "Mandiri",
+    "bni": "BNI",
+    "bri": "BRI"
   }
 }

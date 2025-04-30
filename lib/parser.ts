@@ -3,7 +3,7 @@ import { convertToISO8601Duration } from "./functions";
 // Parse FAQ sections from markdown content
 export function parseFAQSection(content) {
   // First, find the FAQ section
-  const faqSectionRegex = /##\s+(FAQ|Frequently Asked Questions)/i;
+  const faqSectionRegex = /##\s+(FAQ|Frequently Asked Questions|关于)/i;
   const faqSectionMatch = content.match(faqSectionRegex);
 
   if (!faqSectionMatch) return null;

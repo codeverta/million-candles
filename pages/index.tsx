@@ -20,6 +20,7 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import BusinessStats from "components/molecules/landing/BusinessStats";
 
 // import AdSense from "components/AdSense";
 
@@ -228,6 +229,7 @@ function Home(props: any) {
       <div className="dark:bg-gray-900 bg-white text-gray-900 dark:text-white">
         <Hero />
         <Content />
+        <BusinessStats />
         <section className="py-16 bg-white">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

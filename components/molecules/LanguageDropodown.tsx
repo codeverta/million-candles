@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { ChevronDown, Globe } from "lucide-react";
+import { i18n } from "next-i18next";
 
 // Define available languages
 const languages = [
@@ -26,6 +27,7 @@ export default function LanguageDropdown() {
 
   const changeLanguage = (locale) => {
     router.push(router.pathname, router.asPath, { locale });
+    i18n?.changeLanguage(locale);
   };
 
   const handleLanguageChange = (lang) => {

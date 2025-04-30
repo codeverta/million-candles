@@ -117,5 +117,65 @@
   "gallery": {
     "title": "갤러리",
     "description": "우리 제품 사진 및 비디오 모음"
+  },
+  "stats": {
+    "title": "숫자로 보는 우리의 영향력",
+    "subtitle": "2007년부터 인도네시아 전역에 수제 양초를 밝혀왔습니다",
+    "candlesProduced": {
+      "label": "일일 생산 양초 수",
+      "description": "고효율 생산 시설"
+    },
+    "candleVariants": {
+      "label": "양초 종류",
+      "description": "독특한 향, 디자인, 스타일"
+    },
+    "yearsOfExcellence": {
+      "label": "우수한 경력",
+      "value": "2007년부터",
+      "description": "17년 이상의 프리미엄 양초 제작 경험"
+    },
+    "cities": {
+      "label": "인도네시아 전역 서비스",
+      "value": "주요 도시",
+      "description": "자카르타, 발리 등"
+    },
+    "candlesSold": {
+      "label": "연간 판매 양초",
+      "description": "가정과 기업의 신뢰"
+    },
+    "quality": {
+      "label": "품질 보증",
+      "description": "탁월함에 대한 약속"
+    }
+  },
+  "footer": {
+    "about": "회사 소개",
+    "profile": "회사 프로필",
+    "careers": "채용 정보",
+    "blog": "블로그",
+    "contact": "문의하기",
+    "help": "도움말",
+    "howToBuy": "구매 방법",
+    "payment": "결제",
+    "shipping": "배송",
+    "returns": "반품",
+    "faq": "자주 묻는 질문",
+    "info": "정보",
+    "terms": "이용 약관",
+    "privacy": "개인정보처리방침",
+    "shippingPolicy": "배송 정책",
+    "returnPolicy": "반품 정책"
+  },
+  "social": {
+    "instagram": "인스타그램",
+    "facebook": "페이스북",
+    "twitter": "트위터",
+    "whatsapp": "왓츠앱"
+  },
+  "payment": {
+    "bca": "BCA",
+    "mandiri": "Mandiri",
+    "bni": "BNI",
+    "bri": "BRI"
   }
 }
