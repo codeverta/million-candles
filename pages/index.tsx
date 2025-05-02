@@ -117,10 +117,10 @@ function Home(props: any) {
           url="https://souvenirlilin.id"
           telephone="+6281578956156"
           address={{
-            streetAddress: "Jl. Malioboro No.123",
+            streetAddress: "Jl. Kaliurang Km. 9,5",
             addressLocality: "Yogyakarta",
             addressRegion: "DIY",
-            postalCode: "55271",
+            postalCode: "55581",
             addressCountry: "ID",
           }}
           geo={{

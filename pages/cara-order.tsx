@@ -8,12 +8,12 @@ const CandleOrderPage = () => {
   const { t } = useTranslation("order");
 
   return (
-    <div className="min-h-screen bg-amber-50 text-gray-800 p-4 md:p-8">
+    <div className="min-h-screen text-gray-800 p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <header className="text-center mb-10">
           <h1 className="text-3xl md:text-4xl font-bold text-amber-800 mb-4">
-            {t("header.title")}
+            {t("howToOrder.title")}
           </h1>
           <p className="text-lg md:text-xl text-amber-700">
             {t("header.subtitle")}
@@ -23,9 +23,7 @@ const CandleOrderPage = () => {
         {/* Main Content */}
         <main>
           <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 mb-8">
-            <h2 className="text-2xl md:text-3xl font-semibold text-amber-800 mb-6 text-center">
-              {t("howToOrder.title")}
-            </h2>
+            <h2 className="text-2xl md:text-3xl font-semibold text-amber-800 mb-6 text-center"></h2>
 
             <div className="space-y-8">
               {/* Step 1 */}

@@ -1,6 +1,7 @@
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import React from "react";
+import { version } from "../package.json";
 
 const keywords = [
   "toko lilin terdekat",
@@ -291,7 +292,7 @@ export default function Footer() {
     {
       title: t("footer.help"),
       links: [
-        { name: t("footer.howToBuy"), url: "/how-to-buy" },
+        { name: t("footer.howToBuy"), url: "/cara-order" },
         { name: t("footer.payment"), url: "/payment" },
         { name: t("footer.shipping"), url: "/shipping" },
         { name: t("footer.returns"), url: "/returns" },
@@ -485,7 +486,7 @@ export default function Footer() {
         <div className="mt-12 border-t border-gray-200 pt-8 dark:border-gray-800">
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
             &copy; {new Date().getFullYear()} Million Candles. All rights
-            reserved.
+            reserved. v.{version}
           </p>
         </div>
       </div>

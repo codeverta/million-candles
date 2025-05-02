@@ -21,7 +21,6 @@ export default function ProductCard(props: any) {
     rating: [],
   });
   const root = React.useMemo(() => getProducts?.data, [getProducts]);
-
   return (
     <>
       <Card {...props} sx={{ maxWidth: 200 }}>
@@ -42,19 +41,17 @@ export default function ProductCard(props: any) {
           }}
         >
           <div className="">
-            <Link href={`/products/${props.product.slug}`}>
-              <h3 className="text-md font-semibold hover:underline">
-                {props.product.name} ({props.product.code})
-                <IconButton
-                  size="small"
-                  title="Terverifikasi Oleh Million Candles"
-                >
-                  <VerifiedIcon fontSize="small" color="primary" />
-                </IconButton>
-              </h3>
-            </Link>
+            <h3 className="text-md font-semibold hover:underline">
+              {props.product.attributes.name} ({props.product.attributes.code})
+              <IconButton
+                size="small"
+                title="Terverifikasi Oleh Million Candles"
+              >
+                <VerifiedIcon fontSize="small" color="primary" />
+              </IconButton>
+            </h3>
             <div className="text-green-600 font-bold text-lg mb-2">
-              {toCurrency(props.product.price)}
+              {toCurrency(props.product.attributes.price)}
             </div>
             <div className="flex items-center">
               <span className="text-yellow-500 mr-2">★ 5.0</span>
