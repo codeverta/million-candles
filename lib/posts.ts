@@ -1,4 +1,4 @@
-// lib/posts.js - Updated for multilingual support
+// lib/posts.js - Updated for multilingual support and table of contents
 
 import fs from "fs";
 import path from "path";
@@ -7,7 +7,16 @@ import { remark } from "remark";
 import html from "remark-html";
 import gfm from "remark-gfm";
 import { insertContextualLinks, findRelatedPosts } from "./functions";
-import { parseFAQSection, parseHowToSection } from "./parser";
+import {
+  insertRelatedPostLinks,
+  parseFAQSection,
+  parseHowToSection,
+} from "./parser";
+import {
+  extractHeadings,
+  insertTableOfContents,
+  addIdsToHeadings,
+} from "./toc";
 
 // Base blog directory
 const blogBaseDirectory = path.join(process.cwd(), "blog");
@@ -97,40 +106,12 @@ export function getAllPostIds() {
   return allPostIds;
 }
 
-// Insert suggestion to read related articles
-function insertRelatedPostLinks(content, relatedPosts, lang) {
-  if (!relatedPosts || relatedPosts.length === 0) return content;
-
-  // Create markdown for related posts section - adjust heading based on language
-  let heading = "### Related Articles";
-  if (lang === "id") heading = "### Artikel Terkait";
-  if (lang === "zh") heading = "### 相关文章";
-
-  let relatedLinksMarkdown = `\n\n${heading}\n`;
-  relatedPosts.forEach((post) => {
-    relatedLinksMarkdown += `* [${post.title}](/${post.lang}/posts/${post.id})\n`;
-  });
-
-  // Add a horizontal rule before recommended posts
-  relatedLinksMarkdown = "\n\n---" + relatedLinksMarkdown;
-
-  // Find a good place to insert links - before the last paragraph or at the end
-  const paragraphs = content.split("\n\n");
-
-  if (paragraphs.length > 3) {
-    // Insert before the last paragraph (which might be a conclusion)
-    const insertPosition = paragraphs.length - 1;
-    paragraphs.splice(insertPosition, 0, relatedLinksMarkdown);
-    return paragraphs.join("\n\n");
-  } else {
-    // If post is short, just append at the end
-    return content + relatedLinksMarkdown;
-  }
-}
-
-export async function getPostData(id, lang = "id") {
+export async function getPostData(id, lang = "en") {
   // Define the fallback language order
-  const languageFallbacks = [lang, ...getSupportedLanguages()]; // Try requested language first, then English, then Chinese
+  const languageFallbacks = [
+    lang,
+    ...getSupportedLanguages().filter((l) => l !== lang),
+  ];
 
   let fileContents;
   let usedLanguage = lang;
@@ -162,22 +143,33 @@ export async function getPostData(id, lang = "id") {
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
 
+  // Extract front matter and content
+  const { data: frontMatter, content: markdownContent } = matterResult;
+
+  // Check if user wants to generate table of contents from frontmatter
+  const shouldGenerateTOC = frontMatter.toc !== false; // Generate TOC by default unless explicitly disabled
+
   // Get all posts in the same language to find related content
   const allPosts = getSortedPostsData(usedLanguage);
 
   // Find related posts based on tags and content
-  const relatedPosts = findRelatedPosts(id, matterResult.data.tags, allPosts);
+  const relatedPosts = findRelatedPosts(id, frontMatter.tags, allPosts);
 
   // Parse FAQ and HowTo sections from content
-  const faq = parseFAQSection(matterResult.content);
-  const howTo = parseHowToSection(matterResult.content);
+  const faq = parseFAQSection(markdownContent);
+  const howTo = parseHowToSection(markdownContent);
+
+  // Extract headings for TOC and to add IDs later
+  const headings = extractHeadings(markdownContent);
+
+  // Generate table of contents if needed
+  let enhancedContent = markdownContent;
+  if (shouldGenerateTOC && headings.length >= 3) {
+    enhancedContent = insertTableOfContents(enhancedContent, usedLanguage);
+  }
 
   // Insert contextual links within the content
-  let enhancedContent = insertContextualLinks(
-    matterResult.content,
-    allPosts,
-    id
-  );
+  enhancedContent = insertContextualLinks(enhancedContent, allPosts, id);
 
   // Insert related posts section
   enhancedContent = insertRelatedPostLinks(
@@ -191,14 +183,20 @@ export async function getPostData(id, lang = "id") {
     .use(html)
     .use(gfm)
     .process(enhancedContent);
-  const contentHtml = processedContent.toString();
+
+  // Get the HTML content
+  let contentHtml = processedContent.toString();
+
+  // Add IDs to headings in the HTML for anchor links
+  contentHtml = addIdsToHeadings(contentHtml, headings);
 
   // Combine the data with the id, language, and contentHtml
   return {
     id,
     lang: usedLanguage, // Return the language that was actually used
     contentHtml,
-    ...matterResult.data,
+    headings, // Include headings for potential client-side TOC rendering
+    ...frontMatter,
     relatedPosts,
     faq,
     howTo,

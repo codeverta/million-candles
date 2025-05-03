@@ -1,0 +1,59 @@
+/* Add these styles to your global CSS file */
+
+/* TOC container styling */
+.toc-container {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.toc-container:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for headings with IDs */
+h2[id],
+h3[id],
+h4[id] {
+  scroll-margin-top: 100px;
+  /* Ensures headings aren't hidden under fixed headers */
+  position: relative;
+}
+
+/* Add a subtle visual indicator when headings are linked to */
+h2[id]:hover::before,
+h3[id]:hover::before,
+h4[id]:hover::before {
+  content: "#";
+  position: absolute;
+  left: -1.5rem;
+  opacity: 0.4;
+  font-weight: normal;
+}
+
+/* Animation for highlighted section */
+@keyframes highlight-pulse {
+  0% {
+    background-color: rgba(59, 130, 246, 0);
+  }
+
+  50% {
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+
+  100% {
+    background-color: rgba(59, 130, 246, 0);
+  }
+}
+
+.highlight-section {
+  animation: highlight-pulse 1.5s ease;
+}
+
+/* Make TOC sticky on desktop but static on mobile */
+@media (max-width: 768px) {
+  .toc-container {
+    position: relative;
+    top: 0;
+    max-height: none;
+  }
+}

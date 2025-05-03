@@ -121,3 +121,34 @@ export function parseHowToSection(content: string) {
 
   return null;
 }
+
+// Insert suggestion to read related articles
+export function insertRelatedPostLinks(content, relatedPosts, lang) {
+  if (!relatedPosts || relatedPosts.length === 0) return content;
+
+  // Create markdown for related posts section - adjust heading based on language
+  let heading = "### Related Articles";
+  if (lang === "id") heading = "### Artikel Terkait";
+  if (lang === "zh") heading = "### 相关文章";
+
+  let relatedLinksMarkdown = `\n\n${heading}\n`;
+  relatedPosts.forEach((post) => {
+    relatedLinksMarkdown += `* [${post.title}](/${post.lang}/posts/${post.id})\n`;
+  });
+
+  // Add a horizontal rule before recommended posts
+  relatedLinksMarkdown = "\n\n---" + relatedLinksMarkdown;
+
+  // Find a good place to insert links - before the last paragraph or at the end
+  const paragraphs = content.split("\n\n");
+
+  if (paragraphs.length > 3) {
+    // Insert before the last paragraph (which might be a conclusion)
+    const insertPosition = paragraphs.length - 1;
+    paragraphs.splice(insertPosition, 0, relatedLinksMarkdown);
+    return paragraphs.join("\n\n");
+  } else {
+    // If post is short, just append at the end
+    return content + relatedLinksMarkdown;
+  }
+}
