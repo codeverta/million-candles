@@ -1,8 +1,9 @@
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import React from "react";
-import { version } from "../package.json";
+import packageInfo from "../package.json";
 
+const version = packageInfo.version;
 const keywords = [
   "toko lilin terdekat",
   "jual lilin aromaterapi terdekat",
@@ -377,7 +378,6 @@ export default function Footer() {
                 className="mr-2 rounded-full"
                 src="/logolilin.png"
               />
-              Million Candles
             </a>
             <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
               Million Candles menyediakan berbagai pilihan lilin aromaterapi
