@@ -11,13 +11,13 @@ const languages = [
   { code: "ja", name: "日本語", flag: "🇯🇵" },
   { code: "kr", name: "한국어", flag: "🇰🇷" },
   // add india and thailand
-  // { code: "hi", name: "हिन्दी", flag: "🇮🇳" },
-  // { code: "th", name: "ภาษาไทย", flag: "🇹🇭" },
-  // { code: "vi", name: "Tiếng Việt", flag: "🇻🇳" },
-  // { code: "ms", name: "Bahasa Melayu", flag: "🇲🇾" },
-  // { code: "de", name: "Deutsch", flag: "🇩🇪" },
-  // { code: "fr", name: "Français", flag: "🇫🇷" },
-  // { code: "es", name: "Español", flag: "🇪🇸" },
+  { code: "hi", name: "हिन्दी", flag: "🇮🇳" },
+  { code: "th", name: "ภาษาไทย", flag: "🇹🇭" },
+  { code: "vi", name: "Tiếng Việt", flag: "🇻🇳" },
+  { code: "ms", name: "Bahasa Melayu", flag: "🇲🇾" },
+  { code: "de", name: "Deutsch", flag: "🇩🇪" },
+  { code: "fr", name: "Français", flag: "🇫🇷" },
+  { code: "es", name: "Español", flag: "🇪🇸" },
 ];
 
 export default function LanguageDropdown() {

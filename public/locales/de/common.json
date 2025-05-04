@@ -1,0 +1,183 @@
+{
+  "brand": "Million Candles",
+  "flag": "🇩🇪",
+  "menu": {
+    "login": "Anmelden",
+    "home": "Startseite",
+    "products": "Produkte",
+    "how_to_order": "Bestellanleitung",
+    "address": "Adresse",
+    "blog": "Blog",
+    "gallery": "Galerie",
+    "about": "Über uns"
+  },
+  "address": {
+    "full": "Jalan Kaliurang KM 9, Sleman, Yogyakarta, Indonesien"
+  },
+  "tagline": {
+    "local_producer": "Lokaler Kerzenhersteller",
+    "national_scale": "National tätig"
+  },
+  "description": "Wir sind ein Lieferant, der eine große Auswahl an hochwertigen Kerzen anbietet, wie Aromakerzen, Souvenirkerzen, farbige Kerzen, dekorative Kerzen, Andachtskerzen, spirituelle Kerzen, Kerzen aus eigener Herstellung und vieles mehr. Wir bieten wunderschöne dekorative Kerzen als Souvenirs an, die für jeden Anlass geeignet sind. Von Hochzeiten über Firmenveranstaltungen bis hin zu Reisen sind unsere dekorativen Souvenirkerzen die perfekte Wahl für unvergessliche Erinnerungen.",
+  "how_to_order_candles": "So bestellen Sie Kerzen",
+  "whatsapp": "WhatsApp",
+  "our_products": "Unsere Produkte",
+  "other_products": "Weitere Produkte",
+  "disclaimer_price": "* Die angezeigten Preise sind Großhandels-/Händlerpreise",
+  "features": {
+    "eco_friendly": "Umweltfreundlich",
+    "made_from": "Hergestellt aus 100% natürlichem Palmwachs und ätherischen Ölen",
+    "handmade": "Handgefertigt",
+    "crafted_with_love": "Jede Kerze wird von unseren Handwerkern sorgfältig gegossen",
+    "long_lasting": "Langlebig",
+    "burn_time": "Bis zu 12 Stunden Brenndauer pro Kerze",
+    "handcrafted_with_love": "Mit Liebe handgefertigt",
+    "make_beautiful_memories": "Schaffen Sie wunderschöne Erinnerungen mit",
+    "our_candle": "Unseren Kerzen",
+    "souvenir_description": "Mit unseren dekorativen Souvenirkerzen können Sie wunderschöne Erinnerungen an Ihre Veranstaltungen oder Reisen mit nach Hause nehmen. Jede unserer Kerzen wird aus hochwertigen Materialien gefertigt und von unseren Künstlern wunderschön verziert."
+  },
+  "shipping": {
+    "package": "Kerzenversandpaket",
+    "fast_shipping": "Schneller Versand",
+    "nationwide": "Bundesweit"
+  },
+  "premium_collection": {
+    "title": "Premium Kollektion",
+    "subtitle": "Unsere Aromakerzenprodukte",
+    "description": "Genießen Sie die Schönheit und die Vorteile unserer handgefertigten Aromakerzen aus besten natürlichen Inhaltsstoffen."
+  },
+  "quality_section": {
+    "product_quality": "Produktqualität",
+    "product_quality_description": "Wir verwenden nur hochwertige Materialien für unsere dekorativen Kerzen, und jedes unserer Produkte wird auf Sicherheit und Haltbarkeit geprüft. Wir haben auch ein Team talentierter Künstler, die jede Kerze mit wunderschönen und einzigartigen Designs verzieren, was sie zu einem besonderen Souvenir macht.",
+    "size_and_color": "Größe und Farbe",
+    "size_and_color_description": "Unsere dekorativen Kerzen sind in verschiedenen Größen erhältlich, von klein und handlich bis groß und prächtig. Wir haben auch eine Vielzahl verschiedener Farben, darunter Weiß, Blau, Grün, Rot und viele mehr, sodass Sie diejenige auswählen können, die zum Thema Ihrer Veranstaltung passt.",
+    "calming_aroma": "Beruhigendes Aroma",
+    "calming_aroma_description": "Unsere dekorativen Kerzen verströmen zudem ein beruhigendes Aroma, das Frieden und Ruhe in den Raum bringt. Wir verwenden hochwertige Duftöle für ein langanhaltendes und angenehmes Aroma."
+  },
+  "lifespan": {
+    "title": "Lebensdauer",
+    "description": "Bis zu 12 Stunden"
+  },
+  "natural": {
+    "title": "100% Natürlich",
+    "description": "Umweltfreundlich"
+  },
+  "business_opportunity": {
+    "title": "Großhandelsgeschäftsmöglichkeiten",
+    "description": "Steigern Sie Ihr Geschäft mit unserer Premium-Kerzenkollektion. Perfekt für Hotels, Spas, Boutiquen und Geschenkläden.",
+    "custom_branding": "Sonderbranding-Optionen verfügbar",
+    "no_moq_white_label": "Kein Mindestbestellwert und White-Label-Service"
+  },
+  "wholesale_benefits": {
+    "title": "Vorteile des Großeinkaufs",
+    "competitive_price": "Wettbewerbsfähige Preise",
+    "competitive_price_description": "Erhalten Sie bis zu 5% Rabatt auf den Einzelhandelspreis bei Großbestellungen",
+    "exclusive_aromas": "Exklusive Düfte",
+    "exclusive_aromas_description": "Zugang zu einer Auswahl exklusiver Düfte nur für Großhandelskunden",
+    "dedicated_support": "Spezielle Unterstützung",
+    "dedicated_support_description": "Persönliche Kundenbetreuer für Großhandelskunden"
+  },
+  "blog_section": {
+    "title": "Unsere Geschichten",
+    "description": "Eine Sammlung von Blogbeiträgen, die verschiedene Aspekte von Kerzen behandeln, von der Geschichte und den verschiedenen Arten von Kerzen bis hin zur Herstellung eigener Kerzen und der Auswahl der richtigen Kerzen für verschiedene Zwecke. Sie finden auch inspirierende Geschichten darüber, wie Kerzen im Alltag zu einem Symbol der Hoffnung und Wärme werden können. Lassen Sie uns gemeinsam die Magie der Kerzen entdecken und lernen, wie wir sie nutzen können, um unser Leben zu erhellen."
+  },
+  "testimonials": {
+    "title": "Was unsere Kunden sagen",
+    "sarah_johnson": {
+      "quote": "Unsere Hotelgäste loben immer das angenehme Aroma in unserer Lobby. Unsere Vanille-Duftkerzen schaffen eine sehr einladende Atmosphäre.",
+      "name": "Sarah Johnson",
+      "position": "Hotelmanagerin, The Grand Plaza"
+    },
+    "emily_chen": {
+      "quote": "Als Boutique-Besitzerin schätze ich die Qualität und Präsentation dieser Kerzen sehr. Sie sind zu unseren meistverkauften Geschenkartikeln geworden!",
+      "name": "Emily Chen",
+      "position": "Inhaberin, The Curated Corner"
+    },
+    "michael_rodriguez": {
+      "quote": "Die Brenndauer dieser Kerzen ist unglaublich und der Duft ist perfekt – nicht zu aufdringlich. Ich habe bereits jede Variante dieser Kollektion gekauft!",
+      "name": "Michael Rodriguez",
+      "position": "Treuer Kunde"
+    },
+    "wedding_customer": {
+      "quote": "Vielen Dank @souvenirlilin für die wunderschönen Produkte! Die Kerzen, die ich für meine Hochzeit gekauft habe, haben der Veranstaltung wirklich die perfekte Note verliehen, und meine Gäste waren begeistert.",
+      "name": "Kunde/Kundin"
+    }
+  },
+  "about_us": {
+    "content": "# Über Million Candles\n\nMillion Candles ist ein Kerzenunternehmen aus Yogyakarta, das eine Vielzahl einzigartiger und hochwertiger Kerzen anbietet. Wir verwenden hochwertige Materialien und gute Herstellungstechniken, um schöne und duftende Kerzen zu kreieren.\n\nWir bieten eine große Auswahl an Kerzen, von kleinen bis hin zu großen Kerzen, die für besondere Anlässe wie Hochzeiten, Geburtstagsfeiern, Gottesdienste oder Stromausfälle verwendet werden können. Darüber hinaus bieten wir auch Duftkerzen an, die verwendet werden können, um eine beruhigende Atmosphäre in Ihrem Zuhause zu schaffen.\n\nWir haben eine Vielzahl von Farben und Designs zur Auswahl, die an Ihren Geschmack angepasst werden können. Wir können auch Kerzen mit Designs nach Ihren Wünschen herstellen.\n\nWir legen großen Wert auf die Qualität und Sicherheit unserer Kunden und bemühen uns daher stets, sichere und umweltfreundliche Materialien zu verwenden.\n\nWenn Sie die romantische Atmosphäre in Ihrem Zuhause verbessern oder ein einzigartiges Geschenk für einen besonderen Anlass suchen, zögern Sie nicht, unsere Website zu besuchen und unsere Auswahl an Kerzen anzusehen. Wir helfen Ihnen gerne dabei, die richtigen Kerzen für Ihre Bedürfnisse zu finden."
+  },
+  "gallery": {
+    "title": "Galerie",
+    "description": "Eine Sammlung von Fotos und Videos unserer Produkte"
+  },
+  "blog": {
+    "title": "Eine Sammlung von Geschichten und Tipps rund um Kerzen",
+    "description": "Eine Sammlung von Blogbeiträgen, die verschiedene Aspekte von Kerzen behandeln, von der Geschichte und den verschiedenen Arten von Kerzen bis hin zur Herstellung eigener Kerzen und der Auswahl der richtigen Kerzen für verschiedene Zwecke.",
+    "not_found": {
+      "title": "Keine Artikel gefunden",
+      "description": "Versuchen Sie, die Suchbegriffe oder die ausgewählte Kategorie zu ändern"
+    }
+  },
+  "footer": {
+    "title": "Million Candles",
+    "desc": "Million Candles bietet eine große Auswahl an hochwertigen Aromakerzen, um eine gemütliche und entspannende Atmosphäre in Ihrem Zuhause zu schaffen.",
+    "about": "Über uns",
+    "profile": "Unternehmensprofil",
+    "careers": "Karriere",
+    "blog": "Blog",
+    "contact": "Kontaktieren Sie uns",
+    "help": "Hilfe",
+    "howToBuy": "Wie man kauft",
+    "payment": "Zahlung",
+    "shipping": "Versand",
+    "returns": "Rücksendungen",
+    "faq": "FAQ",
+    "info": "Informationen",
+    "terms": "Allgemeine Geschäftsbedingungen",
+    "privacy": "Datenschutzbestimmungen",
+    "shippingPolicy": "Versandrichtlinien",
+    "returnPolicy": "Rückgaberichtlinien"
+  },
+  "social": {
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "whatsapp": "WhatsApp"
+  },
+  "payment": {
+    "bca": "BCA",
+    "mandiri": "Mandiri",
+    "bni": "BNI",
+    "bri": "BRI"
+  },
+  "stats": {
+    "title": "Unser Einfluss in Zahlen",
+    "subtitle": "Seit 2007 erhellen wir Häuser in ganz Indonesien mit unseren handgefertigten Kerzen",
+    "candlesProduced": {
+      "label": "Produzierte Kerzen pro Tag",
+      "description": "Unsere hocheffizienten Produktionsanlagen"
+    },
+    "candleVariants": {
+      "label": "Kerzenvarianten",
+      "description": "Einzigartige Düfte, Designs und Stile"
+    },
+    "yearsOfExcellence": {
+      "label": "Jahre der Exzellenz",
+      "value": "Seit 2007",
+      "description": "Über 17 Jahre Herstellung von Premium-Kerzen"
+    },
+    "cities": {
+      "label": "Lieferung in ganz Indonesien",
+      "value": "Großstädte",
+      "description": "Wie Jakarta, Bali und andere"
+    },
+    "candlesSold": {
+      "label": "Verkaufte Kerzen pro Jahr",
+      "description": "Vertraut von Haushalten und Unternehmen"
+    },
+    "quality": {
+      "label": "Qualitätsgarantie",
+      "description": "Engagement für Exzellenz"
+    }
+  }
+}
