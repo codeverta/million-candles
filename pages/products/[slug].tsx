@@ -20,24 +20,76 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import ProductDetailSkeleton from "components/molecules/landing/ProductDetailSkeleton";
 import { currency } from "lib/currency";
 import { generateWhatsAppLink } from "lib/functions";
+import { Star } from "lucide-react";
 
 // Skeleton component for product image
 const ProductImageSkeleton = () => (
   <div className="bg-gray-200 dark:bg-gray-700 w-full h-80 rounded opacity-60"></div>
 );
 
-// Skeleton component for thumbnails
-const ThumbnailSkeleton = () => (
-  <div className="mt-4 grid grid-cols-3 gap-2">
-    {[1, 2, 3].map((item) => (
-      <div
-        key={item}
-        className="bg-gray-200 dark:bg-gray-700 w-full h-20 rounded opacity-60"
-      ></div>
-    ))}
-  </div>
-);
+import ProductActions from "components/product/ProductActions";
 
+const ProductReview = ({ product }) => {
+  if (!product) return null;
+  const productAttributes = product.data[0].attributes;
+  const productReviews = productAttributes.product_reviews || [];
+  const averageRating =
+    productReviews.length > 0
+      ? (
+          productReviews.reduce((sum, review) => sum + review.rating, 0) /
+          productReviews.length
+        ).toFixed(1)
+      : "No ratings";
+
+  return (
+    <>
+      {productReviews.length > 0 && (
+        <div className="mt-6 border-t pt-4 dark:border-gray-700">
+          <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
+            Customer Reviews
+          </h3>
+          <div className="space-y-4">
+            {productReviews.map((review) => (
+              <div
+                key={review.id}
+                className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg"
+              >
+                <div className="flex justify-between items-start">
+                  <div>
+                    <p className="font-medium text-gray-900 dark:text-gray-100">
+                      {review.user?.name || "Anonymous"}
+                    </p>
+                    <div className="flex text-yellow-500 mt-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          size={16}
+                          fill={i < review.rating ? "currentColor" : "none"}
+                          stroke={
+                            i < review.rating ? "currentColor" : "currentColor"
+                          }
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                    {new Date(review.created_at).toLocaleDateString()}
+                  </span>
+                </div>
+                <p className="mt-2 text-gray-700 dark:text-gray-300">
+                  {review.review}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+/**
+ * ProductDetail page component
+ */
 function ProductDetail() {
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -174,193 +226,43 @@ function ProductDetail() {
             <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/2 mb-4 opacity-60"></div>
           )}
 
-          <div className="flex flex-col md:flex-row">
-            {/* Product Images Section */}
-            <div className="md:w-1/3">
-              {isLoading || !imagesLoaded || !product.data ? (
-                <div className="w-full">
-                  <ProductImageSkeleton />
-                  <ThumbnailSkeleton />
-                </div>
-              ) : (
-                <>
-                  <Swiper
-                    spaceBetween={10}
-                    navigation={true}
-                    pagination={{ clickable: true }}
-                    thumbs={{
-                      swiper:
-                        thumbsSwiper && !thumbsSwiper.destroyed
-                          ? thumbsSwiper
-                          : null,
-                    }}
-                    className="w-full"
-                    modules={[Pagination, Thumbs]}
-                  >
-                    {isDocumentExist ? (
-                      documents.map((document: any) => (
-                        <SwiperSlide key={document.id}>
-                          <div className="relative h-80 w-full flex items-center justify-center bg-gray-100 dark:bg-gray-800">
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <div className="bg-gray-200 dark:bg-gray-700 w-full h-full opacity-60"></div>
-                            </div>
-                            <img
-                              alt={product.data[0].attributes.name}
-                              src={document.attributes.filename}
-                              className="h-auto w-auto max-w-full max-h-full m-auto z-10 relative"
-                              style={{ objectFit: "contain" }}
-                              onLoad={(e) => {
-                                // Remove the skeleton when the image loads
-                                e.target.previousSibling.style.display = "none";
-                              }}
-                            />
-                          </div>
-                        </SwiperSlide>
-                      ))
-                    ) : (
-                      <SwiperSlide>
-                        <div className="relative h-80 w-full">
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="bg-gray-200 dark:bg-gray-700 w-full h-full opacity-60"></div>
-                          </div>
-                          <img
-                            alt="Product"
-                            src="/assets/image-1@2x.jpg"
-                            className="h-full w-full object-contain z-10 relative"
-                            onLoad={(e) => {
-                              e.target.previousSibling.style.display = "none";
-                            }}
-                          />
-                        </div>
-                      </SwiperSlide>
-                    )}
-                  </Swiper>
-                  {isDocumentExist && (
-                    <Swiper
-                      modules={[Thumbs]}
-                      watchSlidesProgress
-                      onSwiper={(swiper) => {
-                        // Only set thumbsSwiper if it's not destroyed
-                        if (swiper && !swiper.destroyed) {
-                          setThumbsSwiper(swiper);
-                        }
-                      }}
-                      spaceBetween={10}
-                      slidesPerView={3}
-                      freeMode={true}
-                      className="mt-4"
-                    >
-                      {documents.map((document) => (
-                        <SwiperSlide key={document.id}>
-                          <div className="relative h-20">
-                            <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 opacity-60"></div>
-                            <img
-                              alt="Thumbnail"
-                              src={document.attributes.filename}
-                              className="h-full w-full object-cover z-10 relative"
-                              onLoad={(e) => {
-                                const prevSibling = e.target.previousSibling;
-                                if (prevSibling) {
-                                  prevSibling.style.display = "none";
-                                }
-                              }}
-                            />
-                          </div>
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                  )}
-                </>
-              )}
+          <div className="flex gap-6 flex-col md:flex-row">
+            {/* Product Images Section - Left Column (Sticky) - Smaller */}
+            <div className="md:w-1/4 md:sticky md:top-20 md:self-start">
+              <ProductImageGallery
+                isLoading={isLoading}
+                isImagesLoaded={imagesLoaded}
+                documents={documents}
+                isDocumentExist={isDocumentExist}
+                productName={
+                  !isLoading && product
+                    ? product.data[0].attributes.name
+                    : "Product"
+                }
+              />
             </div>
 
-            {/* Product Details Section */}
-            {isLoading ? (
-              <ProductDetailSkeleton />
-            ) : (
-              <div className="lg:w-1/2 w-full md:pl-10 py-6 lg:py-0  mt-6 lg:mt-0">
-                <h1 className="text-gray-900 dark:text-gray-50 text-3xl title-font font-medium mb-1">
-                  {product.data[0].attributes.name} (
-                  {product.data[0].attributes.code})
-                </h1>
-                <p className="text-green-600 font-bold text-xl mb-4">
-                  {currentPrice}
-                </p>
-                <div className="mb-4">
-                  <ProductVariants
-                    product={product.data[0]}
-                    onVariantChange={handleVariantChange}
-                  />
-                </div>
-                <div className="mb-4">
-                  <span className="font-semibold">Stock: </span>
-                  {currentStock}
-                </div>
-                <div className="mb-4" style={{ whiteSpace: "pre-line" }}>
-                  {/* deskripsi */}
-                  {product.data[0].attributes.description}
-                </div>
-                <div className="mt-4 flex items-center">
-                  <div className="relative flex items-center max-w-[8rem]">
-                    <button
-                      type="button"
-                      disabled={qty <= 1}
-                      id="decrement-button"
-                      onClick={() => (qty > 1 ? setQty(qty - 1) : null)}
-                      data-input-counter-decrement="quantity-input"
-                      className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-l-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none flex items-center"
-                    >
-                      -
-                    </button>
-                    <input
-                      type="text"
-                      id="quantity-input"
-                      value={qty}
-                      data-input-counter
-                      aria-describedby="helper-text-explanation"
-                      className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="1"
-                      min={1}
-                      required
-                      readOnly
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setQty(qty + 1)}
-                      id="increment-button"
-                      data-input-counter-increment="quantity-input"
-                      className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-r-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none flex items-center"
-                    >
-                      +
-                    </button>
-                  </div>
+            {/* Product Details Section - Middle Column - Larger */}
+            <div className="md:w-2/4">
+              <ProductInformation
+                isLoading={isLoading}
+                product={product}
+                currentPrice={currentPrice}
+                currentStock={currentStock}
+                handleVariantChange={handleVariantChange}
+                qty={qty}
+                incrementQuantity={incrementQuantity}
+                decrementQuantity={decrementQuantity}
+                prepareOrderMessage={prepareOrderMessage}
+              />
+            </div>
 
-                  <a
-                    target="_blank"
-                    href={generateWhatsAppLink(
-                      "+6281578956156",
-                      prepareOrderMessage()
-                    )}
-                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded ml-2 transition duration-300"
-                    rel="noopener noreferrer"
-                  >
-                    Pesan
-                  </a>
-                </div>
-                {/* Seller Information and Shipping */}
-                <div className="mt-8">
-                  <h2 className="text-xl font-semibold mb-4">
-                    UD Million Candles
-                  </h2>
-                  <div className="text-gray-700 dark:text-gray-300">Online</div>
-                  <div className="text-gray-700 dark:text-gray-300">
-                    Kab. Sleman
-                  </div>
-                </div>
-              </div>
-            )}
+            {/* Product Actions - Right Column (Sticky) - Smaller */}
+            <div className="md:w-1/4 md:sticky md:self-start">
+              <ProductActions />
+            </div>
           </div>
-
+          <ProductReview product={product} />
           {/* Related Products Section */}
           <section className="mt-16">
             {isLoading ? (
