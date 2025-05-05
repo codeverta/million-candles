@@ -27,17 +27,17 @@ const ProductActions = ({ product }) => {
 
   const ActionButtons = () => (
     <div className="flex gap-3 w-full">
-      <button className="flex-1 bg-white text-green-500 border border-green-500 font-semibold text-sm py-2.5 px-4 md:py-1 md:px-2 rounded-lg hover:bg-gray-50 transition">
+      <button className="flex-1 bg-white text-green-500 border border-green-500 font-semibold text-sm py-2.5 px-4 md:py-2.5 md:px-2 rounded-lg hover:bg-gray-50 transition">
         Beli
       </button>
-      <button className="flex-1 bg-green-500 text-white font-semibold text-sm py-2.5 px-4 md:py-1 md:px-2 rounded-lg hover:bg-green-600 transition">
+      <button className="flex-1 bg-green-600 text-white font-semibold text-sm py-2.5 px-4 md:py-2.5 md:px-2 rounded-lg hover:bg-green-700 transition">
         + Keranjang
       </button>
     </div>
   );
 
   return (
-    <div className="mx-auto">
+    <div className="mx-auto border rounded-lg p-4">
       <h2 className="text-xl font-semibold mb-6">Atur jumlah dan catatan</h2>
 
       {/* Quantity selector */}

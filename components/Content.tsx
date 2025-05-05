@@ -9,44 +9,150 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { currency } from "lib/currency";
 
-const ProductCard = ({ product, isDocumentExist, documents }: any) => (
-  <div className="w-full p-2">
-    <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-md overflow-hidden shadow-sm">
-      <Link href={`/products/${product.attributes.slug}`}>
-        <button className="mx-auto w-full">
-          {isDocumentExist ? (
-            <img
-              className="w-full h-48 object-cover"
-              src={documents[0]?.attributes.filename}
-              alt="product image"
-              onError={(e: any) => (e.target.src = "/assets/image-1@2x.jpg")}
-            />
-          ) : (
-            <img
-              className="w-full h-48 object-cover"
-              src="/assets/image-1@2x.jpg"
-              alt="product image"
-            />
-          )}
-        </button>
-      </Link>
-      <div className="p-4">
+import React from "react";
+import { Star, Eye, ShoppingBag } from "lucide-react";
+
+// Custom star rating component
+const StarRating = ({ rating }) => {
+  const MAX_STARS = 5;
+
+  // Convert rating to number between 0-5
+  const normalizedRating = Math.min(Math.max(Number(rating) || 0, 0), 5);
+
+  return (
+    <div className="flex">
+      {[...Array(MAX_STARS)].map((_, index) => {
+        // For each star position, determine if it should be filled, half-filled or empty
+        const starValue = index + 1;
+        const filled = normalizedRating >= starValue;
+        const halfFilled =
+          normalizedRating > index && normalizedRating < starValue;
+
+        return (
+          <span
+            key={index}
+            className={`text-sm ${
+              filled || halfFilled ? "text-yellow-500" : "text-gray-300"
+            }`}
+          >
+            ★
+          </span>
+        );
+      })}
+    </div>
+  );
+};
+
+const ProductCard = ({ product, isDocumentExist, documents }) => {
+  // Calculate average rating from product reviews
+  const calculateAverageRating = () => {
+    if (
+      !product.attributes.product_reviews ||
+      product.attributes.product_reviews.length === 0
+    ) {
+      return 0;
+    }
+
+    const totalRating = product.attributes.product_reviews.reduce(
+      (sum, review) => sum + review.rating,
+      0
+    );
+
+    return (totalRating / product.attributes.product_reviews.length).toFixed(1);
+  };
+
+  // Format number with k suffix for thousands
+  const formatNumber = (num) => {
+    return num >= 1000 ? (num / 1000).toFixed(1) + "k" : num;
+  };
+
+  const rating = calculateAverageRating();
+  const amountSold = product.attributes.amount_sold || 0;
+  const viewsCount = product.attributes.views_count || 0;
+
+  return (
+    <div className="w-full h-full">
+      <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 h-full flex flex-col">
         <Link href={`/products/${product.attributes.slug}`}>
-          <h3 className="text-md font-semibold hover:underline">
-            {product.attributes.name} ({product.attributes.code})
-          </h3>
+          <div className="relative overflow-hidden group">
+            {isDocumentExist ? (
+              <img
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                src={documents[0]?.attributes.filename}
+                alt={product.attributes.name}
+                onError={(e) => (e.target.src = "/assets/image-1@2x.jpg")}
+              />
+            ) : (
+              <img
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                src="/assets/image-1@2x.jpg"
+                alt={product.attributes.name}
+              />
+            )}
+            <div className="absolute top-2 right-2 bg-white dark:bg-gray-700 rounded-full px-2 py-1 flex items-center text-xs font-medium shadow-sm">
+              <Eye
+                size={14}
+                className="text-gray-500 dark:text-gray-300 mr-1"
+              />
+              <span>{formatNumber(viewsCount)}</span>
+            </div>
+          </div>
         </Link>
-        <div className="text-green-700 font-bold text-lg mb-2">
-          {product.attributes.formattedPrice}
-        </div>
-        <div className="flex items-center">
-          <span className="text-yellow-600 mr-2">★ 5.0</span>
-          <span className="text-green-700 mr-2">1rb+ terjual</span>
+
+        <div className="p-4 flex flex-col flex-grow">
+          <Link href={`/products/${product.attributes.slug}`}>
+            <h3 className="text-md font-semibold hover:text-blue-600 dark:hover:text-blue-400 hover:underline line-clamp-2 mb-1">
+              {product.attributes.name}{" "}
+              <span className="text-gray-500 dark:text-gray-400">
+                ({product.attributes.code})
+              </span>
+            </h3>
+          </Link>
+
+          <div className="text-green-700 dark:text-green-500 font-bold text-lg mb-2">
+            {product.attributes.formattedPrice ||
+              `Rp ${product.attributes.price.toLocaleString("id-ID")}`}
+          </div>
+
+          <div className="flex flex-wrap items-center text-sm gap-2 mt-auto">
+            <div className="flex items-center gap-2">
+              <div className="flex items-center text-yellow-500">
+                <Star size={16} className="fill-yellow-500 text-yellow-500" />
+                <span className="ml-1 font-medium">{rating}</span>
+              </div>
+              <StarRating rating={rating} />
+            </div>
+
+            <div className="flex items-center text-green-600 dark:text-green-500">
+              <ShoppingBag size={14} className="mr-1" />
+              <span className="font-medium">
+                {amountSold > 0
+                  ? `${formatNumber(amountSold)}+ sold`
+                  : "New arrival"}
+              </span>
+            </div>
+          </div>
+
+          {product.attributes.stock > 0 && (
+            <div className="mt-3 text-xs text-gray-500 dark:text-gray-400">
+              {product.attributes.stock < 10 ? (
+                <span className="text-red-500">
+                  Only {product.attributes.stock} left in stock
+                </span>
+              ) : (
+                <span>In stock: {product.attributes.stock}</span>
+              )}
+            </div>
+          )}
+
+          {/* <button className="w-full mt-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md font-medium transition-colors duration-200 flex items-center justify-center">
+            Add to Cart
+          </button> */}
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default function Content({
   title = "our_products",

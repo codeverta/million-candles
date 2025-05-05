@@ -45,7 +45,7 @@ const ProductImageGallery = ({
         {isDocumentExist ? (
           documents.map((document) => (
             <SwiperSlide key={document.id}>
-              <div className="relative h-80 w-full flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+              <div className="relative rounded-lg border h-80 w-full flex items-center justify-center bg-gray-100 dark:bg-gray-800">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-gray-200 dark:bg-gray-700 w-full h-full opacity-60"></div>
                 </div>
@@ -97,8 +97,8 @@ const ProductImageGallery = ({
           className="mt-4"
         >
           {documents.map((document) => (
-            <SwiperSlide key={document.id}>
-              <div className="relative h-20">
+            <SwiperSlide className="border rounded-md" key={document.id}>
+              <div className=" h-20">
                 <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 opacity-60"></div>
                 <img
                   alt="Thumbnail"
