@@ -1,7 +1,7 @@
 import React from "react";
 
 // Skeleton component for product details
-const ProductDetailSkeleton = () => (
+export const ProductDetailSkeleton = () => (
   <div className="w-full md:pl-10 lg:py-6 mt-6 lg:mt-0">
     <div>
       <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-4 opacity-60"></div>
@@ -28,4 +28,19 @@ const ProductDetailSkeleton = () => (
   </div>
 );
 
-export default ProductDetailSkeleton;
+// Skeleton component for product image
+export const ProductImageSkeleton = () => (
+  <div className="bg-gray-200 dark:bg-gray-700 w-full h-80 rounded opacity-60"></div>
+);
+
+// Skeleton component for thumbnails
+export const ThumbnailSkeleton = () => (
+  <div className="mt-4 grid grid-cols-3 gap-2">
+    {[1, 2, 3].map((item) => (
+      <div
+        key={item}
+        className="bg-gray-200 dark:bg-gray-700 w-full h-20 rounded opacity-60"
+      ></div>
+    ))}
+  </div>
+);

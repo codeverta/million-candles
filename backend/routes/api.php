@@ -10,15 +10,17 @@ use Illuminate\Support\Facades\Route;
 use LaravelJsonApi\Laravel\Facades\JsonApiRoute;
 use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\API\FinancialApiController;
+// use App\Http\Controllers\API\FinancialApiController;
 use App\Http\Controllers\API\StockApiController;
-use App\Http\Controllers\API\MaterialController;
+// use App\Http\Controllers\API\MaterialController;
 use App\Http\Controllers\MaterialStockMovementController;
 use App\Http\Controllers\VariantCombinationController;
 use App\Http\Controllers\ProductVariantOptionController;
 use App\Http\Controllers\ProductVariantController;
 use App\Http\Controllers\FinancialTransactionController;
 use App\Http\Controllers\BankAccountController;
+use App\Http\Controllers\ProductReviewController;
+use \App\Http\Middleware\TrackProductViews;
 
 
 /*
@@ -46,6 +48,12 @@ Route::prefix('/v1')->group(function () {
     Route::apiResource('product-variant-options', ProductVariantOptionController::class);
     Route::apiResource('product-variants', ProductVariantController::class);
     Route::get('/notifications', [NotificationController::class, 'index'])->middleware('auth:sanctum');
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/products/{product}/reviews', [ProductReviewController::class, 'store']);
+        Route::get('/reviews', [ProductReviewController::class, 'index']);
+        Route::post('/reviews/{review}/approve', [ProductReviewController::class, 'approve']);
+        Route::delete('/reviews/{review}', [ProductReviewController::class, 'destroy']);
+    });
     Route::prefix('/-actions')->group(function () {
         Route::get('/totalSales', [OrderController::class, 'totalSales']);
         Route::get('/searchOrder', [OrderController::class, 'searchOrder'])->middleware('throttle:5,1');
@@ -73,11 +81,11 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
         $relations->hasMany('products')->readOnly();
     });
 
-
-    $server->resource('products', JsonApiController::class)
-    ->relationships(function ($relations) {
-           $relations->hasOne('product-categories')->readOnly();
-       });
+        $server->resource('products', JsonApiController::class)
+        ->middleware(TrackProductViews::class)
+        ->relationships(function ($relations) {
+            $relations->hasOne('product-categories')->readOnly();
+        });
 
     $server->resource('provinces', JsonApiController::class)
     ->relationships(function ($relations) {
@@ -105,33 +113,33 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
 });
 
 // Financial API Routes
-Route::prefix('v1/financial')->group(function () {
-    // Get transactions with date filtering
-    Route::get('/transactions', [FinancialApiController::class, 'getTransactions']);
+// Route::prefix('v1/financial')->group(function () {
+//     // Get transactions with date filtering
+//     Route::get('/transactions', [FinancialApiController::class, 'getTransactions']);
     
-    // Get bank account summary
-    Route::get('/bank-accounts', [FinancialApiController::class, 'getBankAccounts']);
+//     // Get bank account summary
+//     Route::get('/bank-accounts', [FinancialApiController::class, 'getBankAccounts']);
     
-    // Get financial summary
-    Route::get('/summary', [FinancialApiController::class, 'getSummary']);
+//     // Get financial summary
+//     Route::get('/summary', [FinancialApiController::class, 'getSummary']);
     
-    // Create new transaction
-    Route::post('/transactions', [FinancialApiController::class, 'storeTransaction']);
-});
+//     // Create new transaction
+//     Route::post('/transactions', [FinancialApiController::class, 'storeTransaction']);
+// });
 
 // Stock API Routes
-Route::prefix('v1/inventory')->group(function () {
-    // Get stock movements with date filtering
-    Route::get('/movements', [StockApiController::class, 'getStockMovements']);
+// Route::prefix('v1/inventory')->group(function () {
+//     // Get stock movements with date filtering
+//     Route::get('/movements', [StockApiController::class, 'getStockMovements']);
     
-    // Get product stock levels
-    Route::get('/stock-levels', [StockApiController::class, 'getStockLevels']);
+//     // Get product stock levels
+//     Route::get('/stock-levels', [StockApiController::class, 'getStockLevels']);
     
-    // Create new stock movement
-    Route::post('/movements', [StockApiController::class, 'storeStockMovement']);
-});
+//     // Create new stock movement
+//     Route::post('/movements', [StockApiController::class, 'storeStockMovement']);
+// });
 
-Route::apiResource('materials', MaterialController::class);
+// Route::apiResource('materials', MaterialController::class);
 Route::post('material-stock-movements', [MaterialStockMovementController::class, 'store']);
 
 

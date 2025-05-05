@@ -23,7 +23,8 @@ class Product extends Model
         'stock',
         'code',
         'slug',
-        'deleted_at'
+        'deleted_at',
+        'views_count',
     ];
 
     protected static function booted(): void
@@ -211,5 +212,16 @@ class Product extends Model
         }
 
         return $currency->convertAndFormat($this->price);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(ProductReview::class);
+    }
+
+    // Optional: Add a method to calculate average rating
+    public function getAverageRatingAttribute()
+    {
+        return $this->reviews()->where('is_approved', true)->avg('rating') ?? 0;
     }
 }

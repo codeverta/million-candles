@@ -257,20 +257,10 @@ const socialMediaLinks = [
   },
 ];
 
-const paymentMethods = [
-  { name: "BCA", url: "/payment-bca", image: "/bca.png" },
-  { name: "Mandiri", url: "/payment-mandiri", image: "/mandiri.png" },
-  { name: "BNI", url: "/payment-bni", image: "/bni.png" },
-  { name: "BRI", url: "/payment-bri", image: "/bri.png" },
-  { name: "GOPAY", url: "/payment-gopay", image: "/gopay.png" },
-  { name: "OVO", url: "/payment-ovo", image: "/ovo.png" },
-  { name: "DANA", url: "/payment-dana", image: "/dana.png" },
-];
-
 const shippingMethods = [
   { name: "JNE", url: "/shipping-jne", image: "/jne.png" },
   { name: "J&T", url: "/shipping-jnt", image: "/jnt.png" },
-  { name: "SiCepat", url: "/shipping-sicepat", image: "/sicepat.png" },
+  { name: "SiCepat", url: "https://www.sicepat.com/", image: "/sicepat.png" },
   { name: "AnterAja", url: "/shipping-anteraja", image: "/anteraja.png" },
   { name: "Grab", url: "/shipping-grab", image: "/grab.png" },
   { name: "GoSend", url: "/shipping-gosend", image: "/gosend.png" },
@@ -335,14 +325,21 @@ export default function Footer() {
   ];
 
   const paymentMethods = [
-    { name: t("payment.bca"), url: "/payment-bca", image: "/bca.png" },
+    {
+      name: t("payment.bca"),
+      url: "/payment-bca",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi6YqCV5pKHgR1wbFk9rQM4royDuLH7oMX-A&s",
+    },
     {
       name: t("payment.mandiri"),
       url: "/payment-mandiri",
-      image: "/mandiri.png",
     },
-    { name: t("payment.bni"), url: "/payment-bni", image: "/bni.png" },
-    { name: t("payment.bri"), url: "/payment-bri", image: "/bri.png" },
+    {
+      name: t("payment.bni"),
+      url: "/payment-bni",
+    },
+    { name: t("payment.bri"), url: "/payment-bri" },
   ];
   return (
     <footer className="bg-white dark:bg-gray-900 print:hidden">
@@ -445,13 +442,15 @@ export default function Footer() {
                   className="flex h-8 w-16 items-center justify-center rounded-md bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
                   title={payment.name}
                 >
-                  <span className="text-xs font-medium">{payment.name}</span>
-                  {/* Uncomment when you have actual images */}
-                  {/* <img
-                    src={payment.image}
-                    alt={payment.name}
-                    className="h-6 w-auto"
-                  /> */}
+                  {payment.image ? (
+                    <img
+                      src={payment.image}
+                      alt={payment.name}
+                      className="h-6 w-auto mr-1"
+                    />
+                  ) : (
+                    <span className="text-xs font-medium">{payment.name}</span>
+                  )}
                 </a>
               ))}
             </div>
@@ -487,6 +486,15 @@ export default function Footer() {
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
             &copy; {new Date().getFullYear()} Million Candles. All rights
             reserved. v.{version}
+            <br />
+            Mau bikin website kyk gini? silahkan chat{" "}
+            <a
+              href="https://wa.me/+6285726394401"
+              className="text-blue-500 hover:underline"
+            >
+              0857-2639-4401
+            </a>{" "}
+            melalui WhatsApp.
           </p>
         </div>
       </div>

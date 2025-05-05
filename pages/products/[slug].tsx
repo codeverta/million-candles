@@ -1,32 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Head from "next/head";
 import Layout from "components/layout/Landing";
-import api from "utils/api";
-import { getRelationships, toCurrency } from "utils";
-import { Content } from "components";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Thumbs } from "swiper";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/thumbs";
 import Breadcrumb from "components/mui/Breadcrumb";
-import ProductVariants from "components/mui/ProductVariant";
-import { useRouter } from "next/router";
-import ProductJsonLd from "components/ProductJsonLd"; // Import the JSON-LD component
-import { BreadcrumbJsonLd } from "next-seo";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import ProductDetailSkeleton from "components/molecules/landing/ProductDetailSkeleton";
-import { currency } from "lib/currency";
-import { generateWhatsAppLink } from "lib/functions";
 import { Star } from "lucide-react";
 
-// Skeleton component for product image
-const ProductImageSkeleton = () => (
-  <div className="bg-gray-200 dark:bg-gray-700 w-full h-80 rounded opacity-60"></div>
-);
+// Import custom components
+import ProductImageGallery from "components/product/ProductImageGallery";
+import ProductInformation from "components/product/ProductInformation";
+import RelatedProducts from "components/product/RelatedProducts";
+import SEOComponents from "components/product/SEOComponents";
 
+// Import custom hook
+import useProduct from "hooks/useProduct";
 import ProductActions from "components/product/ProductActions";
 
 const ProductReview = ({ product }) => {
@@ -91,135 +77,36 @@ const ProductReview = ({ product }) => {
  * ProductDetail page component
  */
 function ProductDetail() {
-  const [product, setProduct] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [qty, setQty] = useState(1);
-  const [selectedVariant, setSelectedVariant] = useState(null);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  const router = useRouter();
+  // Use the custom hook to get product data and functionality
+  const {
+    product,
+    isLoading,
+    imagesLoaded,
+    documents,
+    isDocumentExist,
+    currentPrice,
+    currentStock,
+    selectedVariant,
+    qty,
+    handleVariantChange,
+    incrementQuantity,
+    decrementQuantity,
+    prepareOrderMessage,
+  } = useProduct();
 
   // Get base URL for absolute URLs in JSON-LD
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
 
-  useEffect(() => {
-    if (router.query?.slug) {
-      const fetchProduct = async () => {
-        setIsLoading(true);
-        try {
-          const slug = router.query.slug;
-          const product = await api.get("products", {
-            "filter[slug]": slug,
-            locale: router.locale,
-            currency: currency[router.locale] || "id",
-            include: "documents",
-          });
-
-          setProduct(product.data);
-        } catch (error) {
-          console.error("Error fetching product:", error);
-        } finally {
-          setIsLoading(false);
-        }
-      };
-
-      fetchProduct();
-    }
-  }, [router.query]);
-
-  // Handle image loading
-  useEffect(() => {
-    if (!isLoading && product) {
-      const documents =
-        product.data[0]?.relationships?.documents.data.length > 0
-          ? getRelationships(product, product.data[0], "documents")
-          : [];
-
-      if (documents.length === 0) {
-        // No images to load, set as loaded
-        setImagesLoaded(true);
-        return;
-      }
-
-      // We'll set imagesLoaded to true after a reasonable timeout
-      // A more sophisticated approach would be to track each image load
-      const timer = setTimeout(() => {
-        setImagesLoaded(true);
-      }, 1000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isLoading, product]);
-
-  const handleVariantChange = (variant) => {
-    setSelectedVariant(variant);
-  };
-
-  // Prepare data objects for when product is loaded
-  const documents =
-    !isLoading && product?.data[0]?.relationships?.documents.data.length > 0
-      ? getRelationships(product, product.data[0], "documents")
-      : [];
-  const isDocumentExist =
-    !isLoading && documents.length > 0 && !!documents[0]?.attributes.filename;
-
-  // Get current price - either from selected variant or base product price
-  const currentPrice =
-    !isLoading &&
-    (selectedVariant
-      ? selectedVariant.price
-      : product?.data[0].attributes.formattedPrice);
-
-  // Get current stock - either from selected variant or base product stock
-  const currentStock =
-    !isLoading &&
-    (selectedVariant
-      ? selectedVariant.stock
-      : product?.data[0].attributes.stock);
-
-  // Prepare message for WhatsApp order
-  const prepareOrderMessage = () => {
-    if (isLoading || !product) return "";
-
-    let message = `Halo saya ingin memesan \n${product.data[0].attributes.name} (${product.data[0].attributes.code}) ${qty}`;
-
-    if (selectedVariant) {
-      message += `\nVariant: ${selectedVariant.sku}`;
-    }
-
-    return message;
-  };
-
   return (
     <>
-      {/* Add JSON-LD structured data if product is loaded */}
+      {/* SEO Components */}
       {!isLoading && product && (
-        <>
-          <ProductJsonLd product={product} baseUrl={baseUrl} />
-          <BreadcrumbJsonLd
-            itemListElements={[
-              {
-                position: 1,
-                name: "Home",
-                item: "https://souvenirlilin.id/",
-              },
-              {
-                position: 2,
-                name: "Products",
-                item: "https://souvenirlilin.id/products",
-              },
-              {
-                position: 3,
-                name: product.data[0].attributes.name,
-                item: `https://souvenirlilin.id/products/${product.data[0].attributes.slug}`,
-              },
-            ]}
-          />
-        </>
+        <SEOComponents product={product} baseUrl={baseUrl} />
       )}
 
       <section className="text-gray-700 dark:text-gray-300 body-font overflow-hidden bg-white min-h-screen dark:bg-gray-900">
         <div className="container mx-auto p-4">
+          {/* Breadcrumb */}
           {!isLoading && product ? (
             <Breadcrumb currentLabel={product.data[0].attributes.name} />
           ) : (
@@ -265,26 +152,7 @@ function ProductDetail() {
           <ProductReview product={product} />
           {/* Related Products Section */}
           <section className="mt-16">
-            {isLoading ? (
-              <div>
-                <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-1/4 mb-6 opacity-60"></div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                  {[1, 2, 3, 4].map((item) => (
-                    <div
-                      key={item}
-                      className="bg-gray-200 dark:bg-gray-700 rounded h-64 opacity-60"
-                    ></div>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <Content
-                queryParams={{
-                  "page[size]": 4,
-                }}
-                title="other_products"
-              />
-            )}
+            <RelatedProducts isLoading={isLoading} />
           </section>
         </div>
       </section>
