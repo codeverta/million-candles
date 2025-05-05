@@ -8,10 +8,6 @@ import GrainIcon from "@mui/icons-material/Grain";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
-function handleClick(event: any) {
-  event.preventDefault();
-}
-
 const Breadcrumb = ({ currentLabel }: any) => {
   const { t } = useTranslation("common");
   const { locale } = useRouter();
@@ -21,7 +17,6 @@ const Breadcrumb = ({ currentLabel }: any) => {
         underline="hover"
         color="inherit"
         href="/"
-        onClick={handleClick}
         sx={{ display: "flex", alignItems: "center" }}
       >
         <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
@@ -31,7 +26,6 @@ const Breadcrumb = ({ currentLabel }: any) => {
         underline="hover"
         color="inherit"
         href={`/${locale}/products`}
-        onClick={handleClick}
         sx={{ display: "flex", alignItems: "center" }}
       >
         <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />
