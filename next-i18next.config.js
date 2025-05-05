@@ -15,6 +15,7 @@ module.exports = {
       "fr",
       "es",
       "ru",
+      "ar",
     ],
     localeDetection: true,
   },

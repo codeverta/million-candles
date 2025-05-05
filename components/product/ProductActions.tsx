@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 
 const ProductActions = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
+  const [subPrice, setSubPrice] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const productAttributes = product?.data[0].attributes;
 
   useEffect(() => {
     const checkIfMobile = () => {
@@ -55,7 +57,9 @@ const ProductActions = ({ product }) => {
         >
           <span className="text-lg">+</span>
         </button>
-        <span className="ml-4 text-amber-500 text-sm font-medium">Sisa 1</span>
+        <span className="ml-4 text-amber-500 text-sm font-medium">
+          Sisa {productAttributes?.stock}
+        </span>
       </div>
 
       {/* Pricing information */}
@@ -65,7 +69,11 @@ const ProductActions = ({ product }) => {
         </p> */}
         <div className="flex justify-between items-center">
           <span className="text-base">Subtotal</span>
-          <span className="text-xl font-bold">0</span>
+          <span className="text-xl font-bold">
+            {isNaN(productAttributes?.priceInCurrency * quantity)
+              ? "0"
+              : (productAttributes?.priceInCurrency * quantity).toFixed(3)}
+          </span>
         </div>
       </div>
 

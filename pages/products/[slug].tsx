@@ -88,7 +88,7 @@ function ProductDetail() {
 
             {/* Product Actions - Right Column (Sticky) - Smaller */}
             <div className="md:w-1/4 md:sticky md:top-32 md:self-start">
-              <ProductActions />
+              <ProductActions product={product} />
             </div>
           </div>
           <ProductReview product={product} />
