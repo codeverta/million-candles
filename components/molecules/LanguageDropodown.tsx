@@ -6,18 +6,21 @@ import { i18n } from "next-i18next";
 // Define available languages
 const languages = [
   { code: "en", name: "English", flag: "🇺🇸" },
-  { code: "id", name: "Bahasa Indonesia", flag: "🇮🇩" },
   { code: "zh", name: "中文", flag: "🇨🇳" },
+  { code: "hi", name: "हिन्दी", flag: "🇮🇳" },
+  { code: "es", name: "Español", flag: "🇪🇸" },
+  { code: "ar", name: "Standard Arabic", flag: "🇸🇦" },
+  { code: "fr", name: "Français", flag: "🇫🇷" },
+  { code: "bn", name: "Bengali", flag: "🇧🇩" },
+  { code: "pt", name: "Português", flag: "🇵🇹" },
+  { code: "ru", name: "Русский", flag: "🇷🇺" },
+  { code: "id", name: "Bahasa Indonesia", flag: "🇮🇩" },
   { code: "ja", name: "日本語", flag: "🇯🇵" },
   { code: "kr", name: "한국어", flag: "🇰🇷" },
-  // add india and thailand
-  { code: "hi", name: "हिन्दी", flag: "🇮🇳" },
   { code: "th", name: "ภาษาไทย", flag: "🇹🇭" },
   { code: "vi", name: "Tiếng Việt", flag: "🇻🇳" },
   { code: "ms", name: "Bahasa Melayu", flag: "🇲🇾" },
   { code: "de", name: "Deutsch", flag: "🇩🇪" },
-  { code: "fr", name: "Français", flag: "🇫🇷" },
-  { code: "es", name: "Español", flag: "🇪🇸" },
 ];
 
 export default function LanguageDropdown() {

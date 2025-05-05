@@ -82,7 +82,7 @@ export default function Content({
         <h2 className="text-center mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
           {t(title)}
         </h2>
-        <span className="text-red-600 text-sm block max-w-md mx-auto text-center">
+        <span className="text-red-600 text-sm block max-w-md px-2 mx-auto text-center">
           {t("disclaimer_price")}
         </span>
         <ul id="parent" className="mx-auto w-full p-4 grid grid-cols-12 gap-4">

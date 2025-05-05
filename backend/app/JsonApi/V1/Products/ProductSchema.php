@@ -52,6 +52,7 @@ class ProductSchema extends Schema
             Str::make('code'),
             Str::make('slug'),
             Number::make('stock'),
+            Number::make('view_count'),
             Number::make('price'),
             BelongsTo::make('product-categories'),
             BelongsTo::make('documents'),
