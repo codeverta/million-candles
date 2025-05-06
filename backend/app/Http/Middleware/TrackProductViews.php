@@ -18,7 +18,7 @@ class TrackProductViews
     public function handle(Request $request, Closure $next)
     {
         $response = $next($request);
-        
+	
         if ($request->route()->getName() === 'v1.products.index' && $request->input("filter.slug")) {
             $slug = $request->input("filter.slug");
 
