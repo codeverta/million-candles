@@ -27,7 +27,7 @@ import BusinessStats from "components/molecules/landing/BusinessStats";
 function Home(props: any) {
   const { t } = useTranslation();
   const { posts } = props;
-
+  console.log({ posts });
   const testimonials = [
     {
       quote: "testimonials.sarah_johnson.quote",
@@ -677,7 +677,15 @@ function Home(props: any) {
 export default Home;
 
 export async function getStaticProps({ locale }) {
-  const posts = getSortedPostsData();
+  const posts = getSortedPostsData(locale);
+  if (posts.length == 0) {
+    return {
+      props: {
+        posts: getSortedPostsData("en"),
+        ...(await serverSideTranslations(locale, ["common", "order"])),
+      },
+    };
+  }
   return {
     props: {
       posts: posts.slice(0, 6),

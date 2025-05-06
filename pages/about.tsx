@@ -4,6 +4,7 @@ import { marked } from "marked";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { LocalBusinessJsonLd } from "next-seo";
+import IndonesiaHeatmap from "components/IndonesiaHeatmap";
 
 function About() {
   const { t } = useTranslation("common");
@@ -133,8 +134,23 @@ function About() {
             className="py-16 md:py-24 prose prose-lg md:prose-xl dark:prose-invert prose-headings:text-gray-800 dark:prose-headings:text-white prose-p:text-gray-600 dark:prose-p:text-gray-300 m-auto"
             dangerouslySetInnerHTML={{ __html: text }}
           ></article>
+          <div className="py-8 text-center">
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
+              {t("about.map_title", "Our Candles Trusted Across Indonesia")}
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+              {t(
+                "about.map_description",
+                `From Sumatra to Papua, our candles have brought warmth, light, and
+              comfort to homes and businesses across the archipelago. Each location
+              on the map represents a story, a moment, and a loyal customer who
+              trusts the glow of our craftsmanship.`
+              )}
+            </p>
+          </div>
         </div>
       </div>
+      <IndonesiaHeatmap />
     </>
   );
 }

@@ -19,19 +19,18 @@ class TrackProductViews
     {
         $response = $next($request);
         
-        if ($request->route()->getName() === 'v1.products.show') {
-            $product = $request->route('product');
+        if ($request->route()->getName() === 'v1.products.index' && $request->input("filter.slug")) {
+            $slug = $request->input("filter.slug");
 
-            if(isset($product->id)) {
-                $productId = $product->id;
-                // Only count unique views (by session)
-                $viewKey = 'product_viewed_' . $productId;
-                if (!session()->has($viewKey)) {
-                    DB::table('products')->where('id', $productId)->increment('views_count');
-                    session()->put($viewKey, true);
-                }
+            if ($slug) {
+            // Only count unique views (by session)
+            $viewKey = 'product_viewed_' . $slug;
+            if (!session()->has($viewKey)) {
+                DB::table('products')->where('slug', $slug)->increment('views_count');
+                session()->put($viewKey, true);
+            }
             } else {
-                return $response;
+            return $response;
             }
         }
         

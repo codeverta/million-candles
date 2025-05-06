@@ -47,7 +47,7 @@ function ProductDetail() {
       )}
 
       <section className="text-gray-700 dark:text-gray-300 bg-white min-h-screen dark:bg-gray-900">
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto">
           {/* Breadcrumb */}
           {!isLoading && product ? (
             <Breadcrumb currentLabel={product.data[0].attributes.name} />
