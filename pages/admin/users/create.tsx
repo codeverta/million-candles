@@ -36,6 +36,8 @@ function CreateUser() {
         name: "",
         password: "",
         password_confirmation: "",
+        address: "", // Added address field
+        phone_number: "", // Added phone_number field
       },
     },
   });
@@ -78,7 +80,13 @@ function CreateUser() {
   };
 
   const changeUser = (
-    key: "email" | "name" | "password" | "password_confirmation",
+    key:
+      | "email"
+      | "name"
+      | "password"
+      | "password_confirmation"
+      | "address"
+      | "phone_number",
     value: string
   ) => {
     const newState = {
@@ -108,8 +116,14 @@ function CreateUser() {
           type: "users",
           id: router.query.id,
           attributes: {
-            password: state.user.attributes.password,
-            password_confirmation: state.user.attributes.password_confirmation,
+            password: state.user.attributes.password
+              ? state.user.attributes.password
+              : undefined,
+            password_confirmation: state.user.attributes.password_confirmation
+              ? state.user.attributes.password_confirmation
+              : undefined,
+            address: state.user.attributes.address, // Include address in update
+            phone_number: state.user.attributes.phone_number, // Include phone_number in update
           },
         },
       };
@@ -153,6 +167,28 @@ function CreateUser() {
             placeholder="Masukkan Nama"
             helperText="Wajib diisi"
             onChange={(e) => changeUser("name", e.target.value)}
+          />
+        </ListItem>
+        {/* New Address Field */}
+        <ListItem>
+          <TextField
+            className="w-full"
+            value={state.user.attributes.address}
+            label="Alamat"
+            placeholder="Masukkan Alamat"
+            multiline
+            rows={3}
+            onChange={(e) => changeUser("address", e.target.value)}
+          />
+        </ListItem>
+        {/* New Phone Number Field */}
+        <ListItem>
+          <TextField
+            className="w-full"
+            value={state.user.attributes.phone_number}
+            label="Nomor Telepon"
+            placeholder="Masukkan Nomor Telepon"
+            onChange={(e) => changeUser("phone_number", e.target.value)}
           />
         </ListItem>
         {router.query.id && (

@@ -29,6 +29,8 @@ class UserRequest extends ResourceRequest
         
         return [
             'name' => ['string', 'nullable', ],
+            'address' => ['string', 'nullable', ],
+            'phone_number' => ['string', 'nullable', ],
             'email' => ['string', 'nullable', 'email', $uniqueEmail],
             'password' => ['string', 'confirmed', Password::min(8)],
             'is_active' => ['boolean', 'nullable'],

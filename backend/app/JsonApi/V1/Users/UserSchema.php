@@ -40,6 +40,8 @@ class UserSchema extends Schema
             ID::make(),
             Str::make('email'),
             Str::make('name'),
+            Str::make('address'),
+            Str::make('phone_number'),
             Str::make('password')->hidden(),
             Str::make('password_confirmation')->hidden(),
             Boolean::make('is_active'),

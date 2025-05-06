@@ -22,6 +22,8 @@ class UserResource extends JsonApiResource
             'is_active' => (bool) $this->is_active,
             'email' => $this->email,
             'name' => $this->name,
+            'address' => $this->address,
+            'phone_number' => $this->phone_number,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
             'deletedAt' => $this->deleted_at,
