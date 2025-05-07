@@ -21,6 +21,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { appWithTranslation } from "next-i18next";
 import "aos/dist/aos.css";
 import "./posts/toc.css";
+import CartProvider from "context/CartContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -154,7 +155,9 @@ function App({ Component, pageProps }: AppLayoutProps) {
           >
             <Toaster position="top-center" richColors />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              {getLayout(<Component {...pageProps} {...appProps} />)}
+              <CartProvider>
+                {getLayout(<Component {...pageProps} {...appProps} />)}
+              </CartProvider>
             </LocalizationProvider>
             <ReactQueryDevtools initialIsOpen={false} />
           </TourProvider>

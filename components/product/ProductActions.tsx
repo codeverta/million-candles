@@ -1,10 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useRouter } from "next/router";
+import { useCart } from "context/CartContext";
+
+// Helper function for formatting price in Indonesian Rupiah
+const formatPrice = (price) => {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(price);
+};
 
 const ProductActions = ({ product }) => {
+  const { addToCart, cart } = useCart();
   const [quantity, setQuantity] = useState(1);
-  const [subPrice, setSubPrice] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [addedToCart, setAddedToCart] = useState(false);
+  const router = useRouter();
+
   const productAttributes = product?.data[0].attributes;
+  const productId = product?.data[0].id;
 
   useEffect(() => {
     const checkIfMobile = () => {
@@ -24,22 +40,107 @@ const ProductActions = ({ product }) => {
   };
 
   const increaseQuantity = () => {
-    setQuantity(quantity + 1);
+    if (quantity < productAttributes?.stock) {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const handleAddToCart = () => {
+    // Structure the product data in the format expected by Google Merchant
+    const productForCart = {
+      id: productId,
+      attributes: {
+        ...productAttributes,
+        item_id: productId,
+        item_name: productAttributes.name,
+        price: productAttributes.priceInCurrency,
+        currency: "IDR",
+        item_category: "Candles", // You might want to get this from the API
+        item_variant: "Standard", // If you have variant data
+        quantity: quantity,
+      },
+    };
+
+    // Add structured data for Google Merchant
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "add_to_cart",
+      ecommerce: {
+        currency: "IDR",
+        value: productAttributes.priceInCurrency * quantity,
+        items: [
+          {
+            item_id: productId,
+            item_name: productAttributes.name,
+            price: productAttributes.priceInCurrency,
+            quantity: quantity,
+            currency: "IDR",
+            item_category: "Candles", // Adjust based on your category
+          },
+        ],
+      },
+    });
+    setAddedToCart(true);
+    // Add to cart
+    addToCart(productForCart, quantity);
+  };
+
+  const handleBuyNow = () => {
+    // Add to cart first
+    handleAddToCart();
+
+    // Then navigate to checkout
+    // Track begin_checkout event for Google Merchant
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "begin_checkout",
+      ecommerce: {
+        currency: "IDR",
+        value: productAttributes.priceInCurrency * quantity,
+        items: [
+          {
+            item_id: productId,
+            item_name: productAttributes.name,
+            price: productAttributes.priceInCurrency,
+            quantity: quantity,
+            currency: "IDR",
+          },
+        ],
+      },
+    });
+
+    // Navigate to checkout page
+    router.push("/checkout");
   };
 
   const ActionButtons = () => (
     <div className="flex gap-3 w-full">
-      <button className="flex-1 bg-white text-green-500 border border-green-500 font-semibold text-sm py-2.5 px-4 md:py-2.5 md:px-2 rounded-lg hover:bg-gray-50 transition">
+      <button
+        onClick={handleBuyNow}
+        className="flex-1 bg-white text-green-500 border border-green-500 font-semibold text-sm py-2.5 px-4 md:py-2.5 md:px-2 rounded-lg hover:bg-gray-50 transition"
+      >
         Beli
       </button>
-      <button className="flex-1 bg-green-600 text-white font-semibold text-sm py-2.5 px-4 md:py-2.5 md:px-2 rounded-lg hover:bg-green-700 transition">
+      <button
+        onClick={handleAddToCart}
+        className="flex-1 bg-green-600 text-white font-semibold text-sm py-2.5 px-4 md:py-2.5 md:px-2 rounded-lg hover:bg-green-700 transition"
+      >
         + Keranjang
       </button>
     </div>
   );
 
+  // Calculate subtotal
+  const subtotal = productAttributes?.priceInCurrency * quantity;
+
   return (
-    <div className="mx-auto border rounded-lg p-4">
+    <div className="mx-auto border rounded-lg p-4 relative">
+      {addedToCart && (
+        <div className="absolute top-0 left-0 right-0 bg-green-100 text-green-700 p-2 rounded-t-lg text-center">
+          Produk berhasil ditambahkan ke keranjang!
+        </div>
+      )}
+
       <h2 className="text-xl font-semibold mb-6">Atur jumlah dan catatan</h2>
 
       {/* Quantity selector */}
@@ -47,6 +148,7 @@ const ProductActions = ({ product }) => {
         <button
           onClick={decreaseQuantity}
           className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200"
+          aria-label="Decrease quantity"
         >
           <span className="text-lg">−</span>
         </button>
@@ -54,6 +156,8 @@ const ProductActions = ({ product }) => {
         <button
           onClick={increaseQuantity}
           className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200"
+          aria-label="Increase quantity"
+          disabled={quantity >= productAttributes?.stock}
         >
           <span className="text-lg">+</span>
         </button>
@@ -64,15 +168,22 @@ const ProductActions = ({ product }) => {
 
       {/* Pricing information */}
       <div className="mb-4">
-        {/* <p className="text-right text-sm text-gray-400 line-through">
-          Rp3.999.000
-        </p> */}
+        {/* Original price if discounted */}
+        {productAttributes?.originalPrice &&
+          productAttributes.originalPrice >
+            productAttributes.priceInCurrency && (
+            <p className="text-right text-sm text-gray-400 line-through">
+              {formatPrice(productAttributes.originalPrice)}
+            </p>
+          )}
         <div className="flex justify-between items-center">
           <span className="text-base">Subtotal</span>
-          <span className="text-xl font-bold">
-            {isNaN(productAttributes?.priceInCurrency * quantity)
-              ? "0"
-              : (productAttributes?.priceInCurrency * quantity).toFixed(3)}
+          <span
+            className="text-xl font-bold"
+            itemProp="price"
+            content={isNaN(subtotal) ? "0" : subtotal.toString()}
+          >
+            {formatPrice(subtotal)}
           </span>
         </div>
       </div>

@@ -111,7 +111,7 @@ const Breadcrumb = ({ postTitle, slug }) => {
 
 function Post({ postData, slug }) {
   // Generate a random background image URL from Lorem Picsum
-  const backgroundImageUrl = `https://picsum.photos/seed/${slug}/1600/900`;
+  const backgroundImageUrl = `https://picsum.photos/seed/${slug}/800/450`;
 
   // Reading time calculation
   const readingTime = estimateReadingTime(
