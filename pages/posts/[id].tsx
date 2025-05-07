@@ -117,7 +117,6 @@ function Post({ postData, slug }) {
   const readingTime = estimateReadingTime(
     postData.contentHtml.replace(/<[^>]*>/g, "")
   );
-  console.log({ postData });
 
   return (
     <>

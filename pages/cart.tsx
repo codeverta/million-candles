@@ -124,12 +124,10 @@ const CartPage = () => {
                       </div>
                     </td>
                     <td className="py-4 text-right">
-                      {formatPrice(item.attributes.priceInCurrency)}
+                      {item.attributes.price.toFixed(2)}
                     </td>
                     <td className="py-4 text-right">
-                      {formatPrice(
-                        item.attributes.priceInCurrency * item.quantity
-                      )}
+                      {(item.attributes.price * item.quantity).toFixed(2)}
                     </td>
                     <td className="py-4 text-right">
                       <button
@@ -166,7 +164,7 @@ const CartPage = () => {
 
             <div className="flex justify-between py-2 border-b">
               <span>Subtotal</span>
-              <span>{formatPrice(cartTotal)}</span>
+              <span>{cartTotal.toFixed(2)}</span>
             </div>
 
             <div className="flex justify-between py-2 border-b">
@@ -176,7 +174,7 @@ const CartPage = () => {
 
             <div className="flex justify-between py-4 font-bold">
               <span>Total</span>
-              <span>{formatPrice(cartTotal)}</span>
+              <span>{cartTotal.toFixed(2)}</span>
             </div>
 
             <button

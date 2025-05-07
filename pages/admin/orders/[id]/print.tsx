@@ -32,9 +32,6 @@ const PrintOrder = () => {
         : null,
     [orderData]
   );
-  if (orderData) {
-    console.log(orderDetails);
-  }
   useEffect(() => {
     // Simulate API loading
     setTimeout(() => {
@@ -42,7 +39,7 @@ const PrintOrder = () => {
     }, 500);
   }, []);
 
-  // Helper function to get product data
+  // Helper function to get product data=
   const getProductForOrderDetail = (orderDetail) => {
     if (!orderData) return null;
 

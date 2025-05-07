@@ -300,7 +300,7 @@ export default function Footer() {
       { name: "Grab", url: "/shipping-grab", image: "/grab.png" },
       { name: "GoSend", url: "/shipping-gosend", image: "/gosend.png" },
     ]);
-  }, [locale, t]); // Re-run when the t function changes (typically when language changes)
+  }, [locale]); // Re-run when the t function changes (typically when language changes)
 
   return (
     <footer className="bg-white dark:bg-gray-900 print:hidden">

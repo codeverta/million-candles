@@ -67,7 +67,7 @@ export default function Header(props) {
       { label: t("menu.about", "About"), url: "/about" },
     ];
     setMenus(updatedMenus);
-  }, [locale, t]); // Use both locale and t as dependencies
+  }, [locale]);
 
   return (
     <header className="sticky top-0 z-50">

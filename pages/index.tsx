@@ -27,7 +27,6 @@ import BusinessStats from "components/molecules/landing/BusinessStats";
 function Home(props: any) {
   const { t } = useTranslation();
   const { posts } = props;
-  console.log({ posts });
   const testimonials = [
     {
       quote: "testimonials.sarah_johnson.quote",
