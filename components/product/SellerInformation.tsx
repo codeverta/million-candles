@@ -5,7 +5,7 @@ import React from "react";
  */
 const SellerInformation = () => {
   return (
-    <div className="mt-8">
+    <div className="mt-8 text-gray-600 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
       <h2 className="text-xl font-semibold mb-4">UD Million Candles</h2>
       <div className="text-gray-700 dark:text-gray-300">Online</div>
       <div className="text-gray-700 dark:text-gray-300">Kab. Sleman</div>
