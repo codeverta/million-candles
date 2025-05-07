@@ -19,6 +19,7 @@ import BlogSchemaJsonLd from "components/BlogSchemaJsonLd";
 import BreadcrumbSchemaJsonLd from "components/BreadcrumbSchemaJsonLd"; // Import the new component
 import { convertDate, estimateReadingTime } from "lib/functions";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import DisqusThread from "components/DisqusThread";
 
 // Improved TOC Component with smooth scrolling
 function TOC({ headings }) {
@@ -249,6 +250,11 @@ function Post({ postData, slug }) {
               prose-pre:bg-gray-100 dark:prose-pre:bg-gray-800
               selection:bg-blue-100 dark:selection:bg-blue-900"
               dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
+            />
+            <DisqusThread
+              url={"https://www.souvenirlilin.id/posts/" + slug}
+              identifier={slug}
+              title={postData.title}
             />
           </article>
 

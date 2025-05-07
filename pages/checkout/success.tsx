@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useCart } from "context/CartContext";
+import Layout from "components/layout/Landing";
 
 const CheckoutSuccessPage = () => {
   const router = useRouter();
@@ -99,6 +100,10 @@ const CheckoutSuccessPage = () => {
       </div>
     </div>
   );
+};
+
+CheckoutSuccessPage.getLayout = function (page) {
+  return <Layout>{page}</Layout>;
 };
 
 export default CheckoutSuccessPage;
