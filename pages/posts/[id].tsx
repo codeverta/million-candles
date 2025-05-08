@@ -127,12 +127,11 @@ function Post({ postData, slug }) {
         openGraph={{
           title: postData.title,
           description: postData.desc,
-          url: `https://www.souvenirlilin.id/blog/${slug}`,
+          url: `https://www.souvenirlilin.id/posts/${slug}`,
           siteName: "Million Candles",
           images: [
             {
-              url:
-                postData.image || `https://picsum.photos/seed/${slug}/1200/630`,
+              url: postData.image || backgroundImageUrl,
               width: 1200,
               height: 630,
               alt: postData.title,
@@ -146,9 +145,7 @@ function Post({ postData, slug }) {
           title: postData.title,
           description: postData.desc,
           creator: "@souvenirlilin",
-          images: [
-            postData.image || `https://picsum.photos/seed/${slug}/1200/630`,
-          ],
+          images: [postData.image || backgroundImageUrl],
         }}
       />
       {/* Add the BlogSchemaJsonLd component */}
