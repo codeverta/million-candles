@@ -181,13 +181,20 @@ export default function Content({
   });
 
   const onChangePage = (_e: any, page: number) => {
+    const section = document.getElementById("products");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
     setCurrentPage(page);
   };
 
   return (
     <>
       <main className="bg-white dark:bg-gray-900 pt-24">
-        <h2 className="text-center mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+        <h2
+          id="products"
+          className="text-center mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+        >
           {t(title)}
         </h2>
         <span className="text-red-600 text-sm block max-w-md px-2 mx-auto text-center">

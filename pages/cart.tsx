@@ -4,6 +4,7 @@ import Link from "next/link"; // Assuming you're using Next.js
 import Image from "next/image"; // For optimized image loading
 import { useRouter } from "next/router";
 import Layout from "../components/layout/Landing"; // Adjust import path as needed
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const CartPage = () => {
   const {
@@ -217,3 +218,11 @@ CartPage.getLayout = function (page) {
 };
 
 export default CartPage;
+
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "order"])),
+    },
+  };
+}

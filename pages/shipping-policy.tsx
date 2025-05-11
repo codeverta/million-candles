@@ -8,6 +8,7 @@ import { remark } from "remark";
 import html from "remark-html";
 import gfm from "remark-gfm";
 import { useRouter } from "next/router";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // Function to get the terms content
 export async function getStaticProps() {
@@ -302,4 +303,12 @@ export default function ShippingPolicy({ termsContent, sections, metadata }) {
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "order"])),
+    },
+  };
 }
