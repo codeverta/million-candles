@@ -138,7 +138,9 @@
     "terms": "Syarat & Ketentuan",
     "privacy": "Kebijakan Privasi",
     "shippingPolicy": "Kebijakan Pengiriman",
-    "returnPolicy": "Kebijakan Pengembalian"
+    "returnPolicy": "Kebijakan Pengembalian",
+    "paymentMethod": "Metode Pembayaran",
+    "shippingMethod": "Metode Pengiriman"
   },
   "social": {
     "instagram": "Instagram",

@@ -67,7 +67,7 @@ export default function Header(props) {
       { label: t("menu.about", "About"), url: "/about" },
     ];
     setMenus(updatedMenus);
-  }, [locale]);
+  }, [locale, t]);
 
   return (
     <header className="sticky top-0 z-50">
@@ -98,12 +98,15 @@ export default function Header(props) {
         handleDrawer={handleDrawer}
         handleOpenLogin={handleOpenLogin}
         open={open}
+        toggleDarkMode={toggleDarkMode}
+        darkMode={darkMode}
       />
+
       <div className="block sm:hidden flex justify-between items-center px-4 lg:px-6 py-2.5 bg-white dark:bg-gray-800 border-b sm:border-0 border-gray-200 dark:border-gray-700 lg:hidden">
         {/* Login Button */}
         <button
           onClick={handleOpenLogin}
-          className=" text-gray-800 dark:text-white bg-transparent hover:bg-gray-50 dark:hover:bg-gray-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 border border-gray-300 dark:border-gray-600 transition-colors"
+          className="text-gray-800 dark:text-white bg-transparent hover:bg-gray-50 dark:hover:bg-gray-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 border border-gray-300 dark:border-gray-600 transition-colors"
         >
           {t("login", "Log in")}
         </button>

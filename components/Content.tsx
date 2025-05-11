@@ -170,8 +170,10 @@ export default function Content({
     currency: currency[router.locale],
     ...queryParams,
   };
+
   const query: UseQueryResult<any> = useQuery({
-    queryKey: [title, router.locale],
+    // Include currentPage in the queryKey so React Query refetches when it changes
+    queryKey: [title, router.locale, currentPage],
     queryFn: async () => {
       return api.get("products", { ...productParams });
     },
