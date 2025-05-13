@@ -39,7 +39,7 @@ const BusinessStatsSection = () => {
     },
     {
       icon: <Flame className="text-amber-500" size={32} />,
-      value: "3M+",
+      value: "1,000,000+",
       labelKey: "stats.candlesSold.label",
       descriptionKey: "stats.candlesSold.description",
     },

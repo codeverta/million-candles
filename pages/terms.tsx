@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // Function to get the terms content
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   const termsPath = path.join(process.cwd(), "public", "document", "terms.md");
   const fileContents = fs.readFileSync(termsPath, "utf8");
 
@@ -40,6 +40,7 @@ export async function getStaticProps() {
       termsContent: contentHtml,
       sections,
       metadata: data,
+      ...(await serverSideTranslations(locale, ["common", "order"])),
     },
   };
 }
@@ -302,12 +303,4 @@ export default function TermsAndConditions({
       </main>
     </div>
   );
-}
-
-export async function getServerSideProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ["common", "order"])),
-    },
-  };
 }

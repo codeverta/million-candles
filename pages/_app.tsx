@@ -93,6 +93,7 @@ function App({ Component, pageProps }: AppLayoutProps) {
             },
           ],
           url: siteUrl,
+          type: "website",
           site_name: siteName,
         }}
         twitter={{

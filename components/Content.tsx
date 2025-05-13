@@ -61,9 +61,16 @@ const ProductCard = ({ product, isDocumentExist, documents }) => {
     return (totalRating / product.attributes.product_reviews.length).toFixed(1);
   };
 
-  // Format number with k suffix for thousands
-  const formatNumber = (num) => {
-    return num >= 1000 ? (num / 1000).toFixed(1) + "k" : num;
+  const formatNumber = (num: number) => {
+    if (num >= 1_000_000_000) {
+      return (num / 1_000_000_000).toFixed(1).replace(/\.0$/, "") + "B";
+    } else if (num >= 1_000_000) {
+      return (num / 1_000_000).toFixed(1).replace(/\.0$/, "") + "M";
+    } else if (num >= 1_000) {
+      return (num / 1_000).toFixed(1).replace(/\.0$/, "") + "k";
+    } else {
+      return num.toString();
+    }
   };
 
   const rating = calculateAverageRating();
