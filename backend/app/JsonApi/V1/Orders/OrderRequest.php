@@ -34,6 +34,7 @@ class OrderRequest extends ResourceRequest
             'discount_type' => ['nullable', 'string', 'in:percentage,nominal'],
             'down_payment' => ['nullable', 'numeric', 'min:0', 'max:50000000'],
             'remaining_payment' => ['nullable', 'numeric', 'min:0', 'max:50000000'],
+            'shipping_cost' => ['nullable', 'numeric', 'min:0', 'max:50000000'],
             'price_amount' => ['nullable', 'numeric', 'min:1000', 'max:50000000'],
             'is_validate' => ['boolean'],
             'is_shipping' => ['boolean'],

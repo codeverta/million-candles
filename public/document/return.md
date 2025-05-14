@@ -14,7 +14,7 @@ Thank you for supporting our candle business! We want you to be completely satis
 
 ---
 
-### 1. Eligibility for Replacement
+## 1. Eligibility for Replacement
 
 To qualify for a free replacement, all of the following must apply:
 
@@ -24,7 +24,7 @@ To qualify for a free replacement, all of the following must apply:
 
 ---
 
-### 2. Replacement Options
+## 2. Replacement Options
 
 If your item meets the eligibility criteria, we’ll replace it with:
 
@@ -35,7 +35,7 @@ We do **not** offer refunds for scented candles; instead, we’ll send you the p
 
 ---
 
-### 3. How to Request a Replacement
+## 3. How to Request a Replacement
 
 1. **Contact us** within 14 days of delivery:
    - Email: support@yourcandleshop.com
@@ -48,14 +48,14 @@ We do **not** offer refunds for scented candles; instead, we’ll send you the p
 
 ---
 
-### 4. Shipping & Handling
+## 4. Shipping & Handling
 
 - **Return shipping**: We’ll provide a prepaid label for all eligible replacements.
 - **Processing time**: Once we receive the returned item (if required), or once we’ve verified your claim, we’ll ship the replacement within **3–5 business days**.
 
 ---
 
-### 5. Non-Eligible Items
+## 5. Non-Eligible Items
 
 - Items returned without prior approval
 - Products showing signs of use (outside of shipping damage)
@@ -63,13 +63,13 @@ We do **not** offer refunds for scented candles; instead, we’ll send you the p
 
 ---
 
-### 6. Exchanges (Change of Mind)
+## 6. Exchanges (Change of Mind)
 
 If you simply change your mind about the size or scent, contact us within 7 days of delivery to arrange an exchange. You will be responsible for return shipping costs, and we’ll ship your new selection once we receive the original item.
 
 ---
 
-### 7. Contact & Support
+## 7. Contact & Support
 
 Questions? Reach out anytime:
 
@@ -79,7 +79,7 @@ Questions? Reach out anytime:
 
 ---
 
-### 8. Policy Updates
+## 8. Policy Updates
 
 We reserve the right to update this policy. Any changes will be posted here with a revised “Last updated” date.
 

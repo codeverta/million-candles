@@ -26,7 +26,7 @@ const RelatedPosts = ({ posts }) => {
   if (!posts || posts.length === 0) return null;
 
   return (
-    <section className="my-12 border-t pt-8 dark:border-gray-700">
+    <section className="my-12 mx-4 md:mx-0 border-t pt-8 dark:border-gray-700">
       <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100 flex items-center">
         <span>Artikel Terkait</span>
         <span className="ml-2 text-yellow-500">✨</span>

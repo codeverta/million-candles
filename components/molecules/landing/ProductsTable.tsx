@@ -1,24 +1,19 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import Checkbox from "@mui/material/Checkbox";
-import { isError, useQuery } from "@tanstack/react-query";
+import TableHead from "@mui/material/TableHead";
+import { useQuery } from "@tanstack/react-query";
 import api from "utils/api";
-import { Backdrop, TableHead } from "@mui/material";
+import { Backdrop, Skeleton } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
-import EnhancedTableToolbar from "components/mui/EnhancedTableToolbar";
-import EnhancedTableHead from "components/mui/EnhancedTableHead";
 import { HeadCell } from "components/mui/EnhancedTableHead";
 import { toCurrency } from "utils";
 import EmptyData from "../EmptyData";
-import dayjs from "dayjs";
 
 type Order = "asc" | "desc";
 
@@ -56,6 +51,65 @@ const productsParams = {
   "page[size]": 10,
   "page[number]": 1,
   include: "product-categories,documents",
+};
+
+// Skeleton component for loading state
+const ProductTableSkeleton = () => {
+  return (
+    <div className="max-w-4xl">
+      <TableContainer className="!dark:bg-gray-900">
+        <Table aria-labelledby="tableTitle">
+          <thead>
+            <tr>
+              {headCells.map((headCell) => (
+                <th
+                  key={headCell.id}
+                  className={`${
+                    headCell.numeric ? "text-right" : "text-left"
+                  } dark:text-white text-black ${
+                    headCell.classes?.root || ""
+                  } ${headCell.disablePadding ? "py-2" : "py-4"}`}
+                >
+                  {headCell.label}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {[...Array(10)].map((_, index) => (
+              <tr key={index}>
+                <td className="py-2 dark:text-white text-black">
+                  <Skeleton variant="text" width={20} />
+                </td>
+                <td className="px-0 dark:text-white text-black">
+                  <Skeleton variant="text" width={150} />
+                </td>
+                <td className="text-right dark:text-white text-black">
+                  <Skeleton
+                    variant="text"
+                    width={80}
+                    style={{ marginLeft: "auto" }}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 15, 25]}
+        classes={{
+          root: "!dark:text-white",
+        }}
+        component="div"
+        count={0}
+        rowsPerPage={10}
+        page={0}
+        onPageChange={() => {}}
+        onRowsPerPageChange={() => {}}
+      />
+    </div>
+  );
 };
 
 export default function ProductsTable({ handleRowClick }: any) {
@@ -156,7 +210,12 @@ export default function ProductsTable({ handleRowClick }: any) {
 
   const isSelected = (id: string) => selected.indexOf(id) !== -1;
 
-  if (getProducts.isError || getProducts.isLoading) {
+  // Display skeleton loading component when loading
+  if (getProducts.isLoading) {
+    return <ProductTableSkeleton />;
+  }
+
+  if (getProducts.isError) {
     return (
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -170,24 +229,27 @@ export default function ProductsTable({ handleRowClick }: any) {
   if (getProducts.data.data.data.length == 0) {
     return <EmptyData />;
   }
+
   return (
     <div className="max-w-4xl">
       <TableContainer className="!dark:bg-gray-900">
-        <Table className="" aria-labelledby="tableTitle">
-          <TableHead>
-            {headCells.map((headCell) => (
-              <TableCell
-                key={headCell.id}
-                align={headCell.numeric ? "right" : "left"}
-                padding={headCell.disablePadding ? "none" : "normal"}
-                sortDirection={orderBy === headCell.id ? order : false}
-                classes={headCell.classes ? headCell.classes : undefined}
-                className="dark:text-white text-black"
-              >
-                {headCell.label}
-              </TableCell>
-            ))}
-          </TableHead>
+        <Table aria-labelledby="tableTitle">
+          <thead>
+            <tr>
+              {headCells.map((headCell) => (
+                <th
+                  key={headCell.id}
+                  className={`${
+                    headCell.numeric ? "text-right" : "text-left"
+                  } dark:text-white text-black ${
+                    headCell.classes?.root || ""
+                  } ${headCell.disablePadding ? "py-2" : "py-4"}`}
+                >
+                  {headCell.label}
+                </th>
+              ))}
+            </tr>
+          </thead>
           <TableBody>
             {getProducts.data.data.data.map((row: any, index: number) => {
               const isItemSelected = isSelected(row.id);

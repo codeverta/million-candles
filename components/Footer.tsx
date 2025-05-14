@@ -300,7 +300,7 @@ export default function Footer() {
       { name: "Grab", url: "/shipping-grab", image: "/grab.png" },
       { name: "GoSend", url: "/shipping-gosend", image: "/gosend.png" },
     ]);
-  }, [locale, t]); // Re-run when the t function changes (typically when language changes)
+  }, [locale]); // Re-run when the t function changes (typically when language changes)
 
   return (
     <footer className="bg-white dark:bg-gray-900 print:hidden">
@@ -338,9 +338,10 @@ export default function Footer() {
               />
             </a>
             <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-              Million Candles menyediakan berbagai pilihan lilin aromaterapi
-              berkualitas tinggi untuk menciptakan suasana yang nyaman dan
-              menenangkan di rumah Anda.
+              {t(
+                "footer.description",
+                "Million Candles provides a wide selection of high-quality aromatherapy candles to create a comfortable and relaxing atmosphere in your home."
+              )}
             </p>
 
             {/* Social media icons */}
@@ -418,9 +419,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase text-gray-900 dark:text-white">
-              Metode Pengiriman
-            </h3>
+            <h3 className="text-sm font-semibold uppercase text-gray-900 dark:text-white"></h3>
             <div className="mt-4 flex flex-wrap gap-4">
               {shippingMethods.map((shipping, index) => (
                 <a

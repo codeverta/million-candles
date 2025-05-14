@@ -307,7 +307,7 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
 
             {/* Show search results info if searching */}
             {(searchTerm || selectedCategory) && (
-              <div className="text-sm text-left max-w-md mx-auto text-gray-500 dark:text-gray-400">
+              <div className="text-sm text-center max-w-md mx-auto text-gray-500 dark:text-gray-400">
                 {filteredPosts.length > 0 ? (
                   <p>
                     Menemukan {filteredPosts.length} hasil

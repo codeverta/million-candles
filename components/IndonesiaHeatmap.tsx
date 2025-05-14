@@ -9,7 +9,6 @@ const IndonesiaHeatmap = () => {
   // State for tooltip
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [tooltipContent, setTooltipContent] = useState(null);
-  console.log({ provinceNames });
   // Color scale function - converts value to a shade of red
   const getColor = (value) => {
     if (value === undefined) return "#CCCCCC"; // Default color for no data

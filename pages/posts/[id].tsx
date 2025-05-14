@@ -19,6 +19,8 @@ import BlogSchemaJsonLd from "components/BlogSchemaJsonLd";
 import BreadcrumbSchemaJsonLd from "components/BreadcrumbSchemaJsonLd"; // Import the new component
 import { convertDate, estimateReadingTime } from "lib/functions";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import DisqusThread from "components/DisqusThread";
+// import AdSense from "components/AdSense";
 
 // Improved TOC Component with smooth scrolling
 function TOC({ headings }) {
@@ -111,13 +113,12 @@ const Breadcrumb = ({ postTitle, slug }) => {
 
 function Post({ postData, slug }) {
   // Generate a random background image URL from Lorem Picsum
-  const backgroundImageUrl = `https://picsum.photos/seed/${slug}/1600/900`;
+  const backgroundImageUrl = `https://picsum.photos/seed/${slug}/800/450`;
 
   // Reading time calculation
   const readingTime = estimateReadingTime(
     postData.contentHtml.replace(/<[^>]*>/g, "")
   );
-  console.log({ postData });
 
   return (
     <>
@@ -127,12 +128,11 @@ function Post({ postData, slug }) {
         openGraph={{
           title: postData.title,
           description: postData.desc,
-          url: `https://www.souvenirlilin.id/blog/${slug}`,
+          url: `https://www.souvenirlilin.id/posts/${slug}`,
           siteName: "Million Candles",
           images: [
             {
-              url:
-                postData.image || `https://picsum.photos/seed/${slug}/1200/630`,
+              url: postData.image || backgroundImageUrl,
               width: 1200,
               height: 630,
               alt: postData.title,
@@ -146,9 +146,7 @@ function Post({ postData, slug }) {
           title: postData.title,
           description: postData.desc,
           creator: "@souvenirlilin",
-          images: [
-            postData.image || `https://picsum.photos/seed/${slug}/1200/630`,
-          ],
+          images: [postData.image || backgroundImageUrl],
         }}
       />
       {/* Add the BlogSchemaJsonLd component */}
@@ -251,6 +249,11 @@ function Post({ postData, slug }) {
               selection:bg-blue-100 dark:selection:bg-blue-900"
               dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
             />
+            <DisqusThread
+              url={"https://www.souvenirlilin.id/posts/" + slug}
+              identifier={slug}
+              title={postData.title}
+            />
           </article>
 
           {/* Related Posts - Using our new component */}
@@ -259,10 +262,7 @@ function Post({ postData, slug }) {
           )}
         </div>
 
-        {/* Footer Decoration */}
-        <div className="fixed bottom-10 right-10 text-4xl opacity-20 hidden md:block">
-          🌈
-        </div>
+        {/* <AdSense adType={1} /> */}
       </main>
     </>
   );

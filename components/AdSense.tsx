@@ -1,4 +1,4 @@
-"use client"; // If using App Router
+"use client";
 
 import { useEffect } from "react";
 

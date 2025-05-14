@@ -55,7 +55,7 @@ function ProductDetail() {
             <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/2 mb-4 opacity-60"></div>
           )}
 
-          <div className="flex gap-6 flex-col md:flex-row">
+          <div className="flex px-4 gap-6 flex-col md:flex-row">
             {/* Product Images Section - Left Column (Sticky) - Smaller */}
             <div className="md:w-1/4 md:sticky md:top-32 md:self-start">
               <ProductImageGallery

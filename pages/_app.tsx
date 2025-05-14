@@ -19,13 +19,17 @@ import { TourProvider } from "@reactour/tour";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { appWithTranslation } from "next-i18next";
-import "aos/dist/aos.css";
-import "./posts/toc.css";
+import CartProvider from "context/CartContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 3, // Number of retries for failed queries
+      refetchOnWindowFocus: false,
+      retry: 1,
+      staleTime: 1000 * 60 * 5, // 5 minutes
+    },
+    mutations: {
+      retry: false,
     },
   },
 });
@@ -87,6 +91,7 @@ function App({ Component, pageProps }: AppLayoutProps) {
             },
           ],
           url: siteUrl,
+          type: "website",
           site_name: siteName,
         }}
         twitter={{
@@ -154,7 +159,9 @@ function App({ Component, pageProps }: AppLayoutProps) {
           >
             <Toaster position="top-center" richColors />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              {getLayout(<Component {...pageProps} {...appProps} />)}
+              <CartProvider>
+                {getLayout(<Component {...pageProps} {...appProps} />)}
+              </CartProvider>
             </LocalizationProvider>
             <ReactQueryDevtools initialIsOpen={false} />
           </TourProvider>
