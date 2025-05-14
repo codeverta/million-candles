@@ -20,6 +20,7 @@ import BreadcrumbSchemaJsonLd from "components/BreadcrumbSchemaJsonLd"; // Impor
 import { convertDate, estimateReadingTime } from "lib/functions";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import DisqusThread from "components/DisqusThread";
+// import AdSense from "components/AdSense";
 
 // Improved TOC Component with smooth scrolling
 function TOC({ headings }) {
@@ -261,10 +262,7 @@ function Post({ postData, slug }) {
           )}
         </div>
 
-        {/* Footer Decoration */}
-        <div className="fixed bottom-10 right-10 text-4xl opacity-20 hidden md:block">
-          🌈
-        </div>
+        {/* <AdSense adType={1} /> */}
       </main>
     </>
   );

@@ -19,8 +19,6 @@ import { TourProvider } from "@reactour/tour";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { appWithTranslation } from "next-i18next";
-import "aos/dist/aos.css";
-import "./posts/toc.css";
 import CartProvider from "context/CartContext";
 
 const queryClient = new QueryClient({

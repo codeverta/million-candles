@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import AOS from "aos";
 import Head from "next/head";
 import Header from "../Header";
 import Footer from "components/Footer";
@@ -13,14 +12,6 @@ interface Props {
 export default function Landing({ children }: Props) {
   const router = useRouter();
   const canonicalUrl = `${DOMAIN}${router.asPath.split("?")[0]}`;
-  useEffect(() => {
-    AOS.init({
-      duration: 1000, // Animation duration in milliseconds
-      easing: "ease-in-out", // Animation easing
-      offset: 120, // Offset from the original trigger point
-      once: true, // Whether animation should happen only once
-    });
-  }, []);
 
   return (
     <>
@@ -28,6 +19,8 @@ export default function Landing({ children }: Props) {
         <link rel="canonical" href={canonicalUrl} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        {/* <meta property="og:type" content="website" />
+        <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" / */}
       </Head>
       <Header />
       {children}

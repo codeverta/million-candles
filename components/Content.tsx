@@ -1,5 +1,5 @@
 import { Modal, Pagination, Rating } from "@mui/material";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { getRelationships, toCurrency, useLoaded } from "utils";
 import Skeleton from "components/flowbite/Skeleton";
@@ -8,6 +8,8 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { currency } from "lib/currency";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
 
 import React from "react";
 import { Star, Eye, ShoppingBag } from "lucide-react";
@@ -43,7 +45,16 @@ const StarRating = ({ rating }) => {
   );
 };
 
-const ProductCard = ({ product, isDocumentExist, documents }) => {
+// AnimatedProductCard component with enhanced animations
+const AnimatedProductCard = ({
+  product,
+  isDocumentExist,
+  documents,
+  index,
+}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
   // Calculate average rating from product reviews
   const calculateAverageRating = () => {
     if (
@@ -77,25 +88,52 @@ const ProductCard = ({ product, isDocumentExist, documents }) => {
   const amountSold = product.attributes.amount_sold || 0;
   const viewsCount = product.attributes.views_count || 0;
 
+  // Card animation variants
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+      scale: 0.98,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+        delay: index * 0.1, // staggered animation based on index
+      },
+    },
+  };
+
+  // Image hover animation variants
+  const imageVariants = {
+    rest: { scale: 1, transition: { duration: 0.3, ease: "easeInOut" } },
+    hover: { scale: 1.05, transition: { duration: 0.3, ease: "easeInOut" } },
+  };
+
   return (
-    <div className="w-full h-full">
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={cardVariants}
+      className="w-full h-full"
+    >
       <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 h-full flex flex-col">
         <Link href={`/products/${product.attributes.slug}`}>
           <div className="relative overflow-hidden group">
-            {isDocumentExist ? (
-              <img
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                src={documents[0]?.attributes.filename}
-                alt={product.attributes.name}
-                onError={(e) => (e.target.src = "/assets/image-1@2x.jpg")}
-              />
-            ) : (
-              <img
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                src="/assets/image-1@2x.jpg"
-                alt={product.attributes.name}
-              />
-            )}
+            <img
+              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              src={
+                isDocumentExist
+                  ? documents[0]?.attributes.filename
+                  : "/assets/image-1@2x.jpg"
+              }
+              alt={product.attributes.name}
+              onError={(e) => (e.target.src = "/assets/image-1@2x.jpg")}
+            />
             <div className="absolute top-2 right-2 bg-white dark:bg-gray-700 rounded-full px-2 py-1 flex items-center text-xs font-medium shadow-sm">
               <Eye
                 size={14}
@@ -152,12 +190,16 @@ const ProductCard = ({ product, isDocumentExist, documents }) => {
             </div>
           )}
 
-          {/* <button className="w-full mt-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md font-medium transition-colors duration-200 flex items-center justify-center">
+          {/* <motion.button 
+            className="w-full mt-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md font-medium transition-colors duration-200 flex items-center justify-center"
+            whileHover={{ backgroundColor: "#1d4ed8", scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
             Add to Cart
-          </button> */}
+          </motion.button> */}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -168,6 +210,7 @@ export default function Content({
   const { t } = useTranslation("common");
   const [currentPage, setCurrentPage] = useState(1);
   const router = useRouter();
+  const gridRef = useRef(null);
 
   const productParams = {
     "page[size]": 12,
@@ -195,35 +238,90 @@ export default function Content({
     setCurrentPage(page);
   };
 
+  // Animation for the title and pagination
+  const titleVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const disclaimerVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+        delay: 0.2,
+      },
+    },
+  };
+
+  const paginationVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+        delay: 0.4,
+      },
+    },
+  };
+
   return (
     <>
       <main className="bg-white dark:bg-gray-900 pt-24">
-        <h2
+        <motion.h2
           id="products"
+          initial="hidden"
+          animate="visible"
+          variants={titleVariants}
           className="text-center mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
         >
           {t(title)}
-        </h2>
-        <span className="text-red-600 text-sm block max-w-md px-2 mx-auto text-center">
+        </motion.h2>
+
+        <motion.span
+          initial="hidden"
+          animate="visible"
+          variants={disclaimerVariants}
+          className="text-red-600 text-sm block max-w-md px-2 mx-auto text-center"
+        >
           {t("disclaimer_price")}
-        </span>
-        <ul id="parent" className="mx-auto w-full p-4 grid grid-cols-12 gap-4">
+        </motion.span>
+
+        <motion.ul
+          ref={gridRef}
+          id="parent"
+          className="mx-auto w-full p-4 grid grid-cols-12 gap-4"
+        >
           {query.isLoading || query.isError ? (
             <>
               {[1, 2, 3, 4, 5, 6, 7, 8].map((it: number) => {
                 return (
-                  <div
+                  <motion.div
                     key={it}
                     className="col-span-12 sm:col-span-4 lg:col-span-3 text-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3, delay: it * 0.05 }}
                   >
                     <Skeleton />
-                  </div>
+                  </motion.div>
                 );
               })}
             </>
           ) : (
             <>
-              {" "}
               {query.data.data.data.map((product: any, index: number) => {
                 const documents =
                   product.relationships?.documents.data.length > 0
@@ -232,21 +330,25 @@ export default function Content({
                 const isDocumentExist = !!documents[0]?.attributes.filename;
                 return (
                   <li
-                    data-aos="fade-up"
-                    data-aos-anchor="#parent"
-                    data-aos-delay={`${index * 100}`}
                     className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3"
                     key={product.attributes.slug}
                   >
-                    <ProductCard
+                    <AnimatedProductCard
                       isDocumentExist={isDocumentExist}
                       product={product}
                       documents={documents}
+                      index={index}
                     />
                   </li>
                 );
               })}
-              <div className="flex col-span-12 justify-center">
+
+              <motion.div
+                className="flex col-span-12 justify-center"
+                initial="hidden"
+                animate="visible"
+                variants={paginationVariants}
+              >
                 <Pagination
                   page={currentPage}
                   onChange={onChangePage}
@@ -254,10 +356,10 @@ export default function Content({
                   color="primary"
                   count={query.data.data.meta.page.lastPage}
                 />
-              </div>
+              </motion.div>
             </>
           )}
-        </ul>
+        </motion.ul>
       </main>
     </>
   );
