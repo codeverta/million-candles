@@ -37,7 +37,7 @@ export default function Drawer(props: any) {
         </svg>
         <span className="sr-only">Close menu</span>
       </button>
-      <div className="py-4 overflow-y-auto">
+      <div className="py-12 overflow-y-auto">
         <ul className="space-y-2">
           {props.menu.map((it: any) => (
             <li key={it.label}>

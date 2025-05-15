@@ -215,31 +215,37 @@ export default function Footer() {
     // Initialize footer links with translated content
     setFooterLinks([
       {
-        title: t("footer.about"),
+        title: t("footer.about", "About"),
         links: [
-          { name: t("footer.profile"), url: "/about" },
-          { name: t("footer.careers"), url: "/careers" },
-          { name: t("footer.blog"), url: "/blog" },
-          { name: t("footer.contact"), url: "/contact" },
+          { name: t("footer.profile", "Profile"), url: "/about" },
+          { name: t("footer.careers", "Careers"), url: "/careers" },
+          { name: t("footer.blog", "Blog"), url: "/blog" },
+          { name: t("footer.contact", "Contact"), url: "/contact" },
         ],
       },
       {
         title: t("footer.help"),
         links: [
-          { name: t("footer.howToBuy"), url: "/cara-order" },
-          { name: t("footer.payment"), url: "/payment" },
-          { name: t("footer.shipping"), url: "/shipping" },
-          { name: t("footer.returns"), url: "/returns" },
-          { name: t("footer.faq"), url: "/faq" },
+          { name: t("footer.howToBuy", "How to Buy"), url: "/cara-order" },
+          { name: t("footer.payment", "Payment"), url: "/payment" },
+          { name: t("footer.shipping", "Shipping"), url: "/shipping" },
+          { name: t("footer.returns", "Returns"), url: "/returns" },
+          { name: t("footer.faq", "FAQ"), url: "/faq" },
         ],
       },
       {
         title: t("footer.info"),
         links: [
-          { name: t("footer.terms"), url: "/terms" },
-          { name: t("footer.privacy"), url: "/privacy" },
-          { name: t("footer.shippingPolicy"), url: "/shipping-policy" },
-          { name: t("footer.returnPolicy"), url: "/return-policy" },
+          { name: t("footer.terms", "Terms"), url: "/terms" },
+          { name: t("footer.privacy", "Privacy"), url: "/privacy" },
+          {
+            name: t("footer.shippingPolicy", "Shipping Policy"),
+            url: "/shipping-policy",
+          },
+          {
+            name: t("footer.returnPolicy", "Return Policy"),
+            url: "/return-policy",
+          },
         ],
       },
     ]);
@@ -419,7 +425,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase text-gray-900 dark:text-white"></h3>
+            <h3 className="text-sm font-semibold uppercase text-gray-900 dark:text-white">
+              Metode Pengiriman
+            </h3>
             <div className="mt-4 flex flex-wrap gap-4">
               {shippingMethods.map((shipping, index) => (
                 <a

@@ -1,7 +1,7 @@
 ---
 title: "10 Rekomendasi Toko Lilin Aromaterapi Terdekat yang Wajib Kamu Kunjungi"
 date: "2025-05-3"
-image: "https://firebasestorage.googleapis.com/v0/b/firstproject-ad87e.appspot.com/o/images%2FLILXxlETubzhZ9kdR27S0KwYgxVPRPFXdCfvk85s.png?alt=media"
+image: "/Million-Candles/logo.png"
 desc: "Temukan toko lilin aromaterapi terdekat yang menawarkan pilihan terbaik untuk relaksasi. Panduan lengkap rekomendasi, tips, harga, dan lokasi favorit di Indonesia."
 tags: "toko lilin aromaterapi terdekat, toko lilin terdekat, jual lilin aromaterapi terdekat, toko aromaterapi terdekat, toko bahan lilin terdekat, lilin aromaterapi terdekat, jual lilin terdekat, tempat jual lilin aromaterapi terdekat, penjual lilin terdekat, tempat jual lilin terdekat"
 toc: true

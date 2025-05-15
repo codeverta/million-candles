@@ -287,7 +287,7 @@ export default function Content({
           variants={titleVariants}
           className="text-center mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
         >
-          {t(title)}
+          {t(title, "Our Products")}
         </motion.h2>
 
         <motion.span
@@ -296,7 +296,7 @@ export default function Content({
           variants={disclaimerVariants}
           className="text-red-600 text-sm block max-w-md px-2 mx-auto text-center"
         >
-          {t("disclaimer_price")}
+          {t("disclaimer_price", "Below is wholesale price")}
         </motion.span>
 
         <motion.ul
