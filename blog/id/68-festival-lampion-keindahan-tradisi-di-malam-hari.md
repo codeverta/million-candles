@@ -3,7 +3,7 @@ title: "Festival Lampion: Keindahan Tradisi yang Menerangi Langit Malam"
 date: "2025-05-15"
 image: "/Million-Candles/BCM/1.jpg"
 desc: "Festival lampion adalah perayaan yang memukau dengan simbol harapan, kebahagiaan, dan budaya. Temukan asal usul, makna, dan ragam tradisinya di sini."
-tags: "lilin, jual lilin, pabrik lilin, sejarah lilin, jenis lilin, manfaat lilin, lilin aromaterapi, pembuatan lilin, tips lilin"
+tags: "lilin, jual lilin, pabrik lilin, sejarah lilin, jenis lilin, manfaat lilin, lilin aromaterapi, pembuatan lilin, tips lilin "
 toc: true
 ---
 
