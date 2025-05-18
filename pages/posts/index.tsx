@@ -657,7 +657,6 @@ export async function getStaticProps({ locale }) {
   const allPostsData = getSortedPostsData(locale).map((post, index) => {
     // Add sample categories and read times (in a real app, these would come from the actual data)
     const categories = [
-      "Sejarah Lilin",
       "Tutorial",
       "Tips & Trik",
       "Ulasan Produk",
@@ -667,6 +666,11 @@ export async function getStaticProps({ locale }) {
       "Aromaterapi",
       "Lilin Taper",
       "Lilin Kristal",
+      "Dekorasi Rumah & Interior",
+      "DIY & Kerajinan Tangan",
+      "Acara & Perayaan",
+      "Aromaterapi & Kesehatan Holistik",
+      "Gaya Hidup & Inspirasi",
     ];
     const readTimes = [
       "3 min read",
