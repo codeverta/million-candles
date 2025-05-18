@@ -290,27 +290,40 @@ export async function getStaticProps({ params, locale }) {
 
 // getStaticPaths replaces generateStaticParams - they're functionally similar
 export async function getStaticPaths({ locales }) {
-  const postIds = getAllPostIds();
-  const paths: {
-    params: {
-      id: string;
-    };
-    locale: string;
-  }[] = [];
+  // Get post IDs with their associated languages
+  const postsWithLangs = getAllPostIds();
+  const paths = [];
 
-  postIds.forEach((postId) => {
+  // Group posts by ID to handle language-specific paths
+  const postsByID = {};
+
+  postsWithLangs.forEach((post) => {
+    const { id } = post.params;
+    const lang = post.params.lang;
+
+    if (!postsByID[id]) {
+      postsByID[id] = [];
+    }
+
+    postsByID[id].push(lang);
+  });
+
+  // Only generate paths for locales where the content exists
+  Object.entries(postsByID).forEach(([id, availableLangs]) => {
     for (const locale of locales) {
-      paths.push({
-        params: {
-          id: postId.params.id,
-        },
-        locale,
-      });
+      // Only generate a path if content exists in this language
+      // or fallback to default language if you want to support that
+      if (availableLangs.includes(locale)) {
+        paths.push({
+          params: { id },
+          locale,
+        });
+      }
     }
   });
 
   return {
     paths,
-    fallback: false,
+    fallback: false, // or 'blocking' if you want to generate pages on-demand
   };
 }

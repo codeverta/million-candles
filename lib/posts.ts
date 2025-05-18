@@ -89,18 +89,21 @@ export function getAllPostIds() {
 
   languages.forEach((lang) => {
     const langDirectory = path.join(blogBaseDirectory, lang);
-    const fileNames = fs.readdirSync(langDirectory);
+    // Check if directory exists before trying to read it
+    if (fs.existsSync(langDirectory)) {
+      const fileNames = fs.readdirSync(langDirectory);
 
-    const langPostIds = fileNames.map((fileName) => {
-      return {
-        params: {
-          lang,
-          id: fileName.replace(/\.md$/, ""),
-        },
-      };
-    });
+      const langPostIds = fileNames.map((fileName) => {
+        return {
+          params: {
+            lang,
+            id: fileName.replace(/\.md$/, ""),
+          },
+        };
+      });
 
-    allPostIds = [...allPostIds, ...langPostIds];
+      allPostIds = [...allPostIds, ...langPostIds];
+    }
   });
 
   return allPostIds;
