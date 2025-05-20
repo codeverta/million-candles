@@ -5,8 +5,7 @@ const { i18n } = require("./next-i18next.config");
 module.exports = {
   siteUrl: process.env.SITE_URL || "https://souvenirlilin.id",
   generateRobotsTxt: true,
-  // Generate a sitemap for each language
-  generateIndexSitemap: false,
+  generateIndexSitemap: true,
   alternateRefs: i18n.locales.map((locale) => ({
     href: `${process.env.SITE_URL || "https://souvenirlilin.id"}/${locale}`,
     hreflang: locale,
