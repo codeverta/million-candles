@@ -1,7 +1,7 @@
 ---
 title: "6 Tempat Jual Lilin Terdekat di Magelang + Rekomendasi Souvenir Unik dari Souvenirlilin.id"
 date: "2025-05-15"
-image: "[https://example.com/images/jual-lilin-magelang.jpg](https://example.com/images/jual-lilin-magelang.jpg)"
+image: "https://firebasestorage.googleapis.com/v0/b/firstproject-ad87e.appspot.com/o/images%2FV3kq1X85NIuiH4lhlsGrPpuaQjbG932lKdjWjHFe.png?alt=media"
 desc: "Butuh lilin darurat, aromaterapi, atau souvenir unik di Magelang? Temukan tempat jual lilin terdekat dan kunjungi Souvenirlilin.id untuk produk eksklusif!"
 tags: "lilin, magelang, souvenir lilin, aromaterapi"
 toc: true

@@ -1,7 +1,7 @@
 ---
 title: "7 Tempat Jual Lilin Terdekat di Jogja yang Wajib Kamu Kunjungi"
 date: "2025-05-15"
-image: "[https://example.com/images/jual-lilin-jogja.jpg](https://example.com/images/jual-lilin-jogja.jpg)"
+image: "https://firebasestorage.googleapis.com/v0/b/firstproject-ad87e.appspot.com/o/images%2FV3kq1X85NIuiH4lhlsGrPpuaQjbG932lKdjWjHFe.png?alt=media"
 desc: "Temukan rekomendasi tempat jual lilin terdekat di Jogja dengan pilihan lengkap, harga bersahabat, dan lokasi strategis!"
 tags: "lilin, jogja, toko lilin"
 toc: true

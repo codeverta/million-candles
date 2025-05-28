@@ -1,7 +1,7 @@
 ---
 title: "9 Tempat Jual Lilin Terdekat di Solo/Surakarta dengan Pilihan Terlengkap"
 date: "2025-05-15"
-image: "[https://example.com/images/jual-lilin-solo.jpg](https://example.com/images/jual-lilin-solo.jpg)"
+image: "https://firebasestorage.googleapis.com/v0/b/firstproject-ad87e.appspot.com/o/images%2FV3kq1X85NIuiH4lhlsGrPpuaQjbG932lKdjWjHFe.png?alt=media"
 desc: "Cari tempat jual lilin terdekat di Solo/Surakarta? Temukan rekomendasi toko lilin terbaik dengan harga terjangkau dan kualitas unggulan!"
 tags: "lilin, solo, toko lilin solo"
 toc: true

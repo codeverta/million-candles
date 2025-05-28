@@ -1,7 +1,7 @@
 ---
 title: "DIY: Cara Membuat Centerpiece Lilin yang Elegan untuk Meja Makan"
 date: "2025-05-15"
-image: "https://images.unsplash.com/photo-1556910103-1e15c351eb9b"
+image: "https://firebasestorage.googleapis.com/v0/b/firstproject-ad87e.appspot.com/o/images%2FV3kq1X85NIuiH4lhlsGrPpuaQjbG932lKdjWjHFe.png?alt=media"
 desc: "Ingin meja makan Anda tampil elegan tanpa repot? Ikuti panduan DIY lengkap untuk membuat centerpiece lilin estetik dengan bahan-bahan sederhana dan mudah ditemukan."
 tags: "DIY dekorasi, centerpiece lilin, dekorasi meja makan"
 toc: true
