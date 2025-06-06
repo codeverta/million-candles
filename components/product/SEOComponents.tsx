@@ -1,6 +1,6 @@
 import React from "react";
 import ProductJsonLd from "components/ProductJsonLd";
-import { BreadcrumbJsonLd } from "next-seo";
+import { BreadcrumbJsonLd, NextSeo } from "next-seo";
 
 /**
  * Component for handling SEO-related tags
@@ -10,6 +10,9 @@ const SEOComponents = ({ product, baseUrl }) => {
 
   return (
     <>
+      <NextSeo
+        title={`${product.data[0].attributes.name} | UD Million Candles`}
+      />
       <ProductJsonLd product={product} baseUrl={baseUrl} />
       <BreadcrumbJsonLd
         itemListElements={[

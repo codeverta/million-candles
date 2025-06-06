@@ -314,14 +314,13 @@ export default function Footer() {
       <div className="mx-auto max-w-screen-xl p-4 text-center md:p-6 lg:p-8">
         <p className="text-justify leading-[2px] text-gray-600 dark:text-gray-400">
           {keywords.map((keyword, index) => (
-            <a
+            <span
               key={index}
-              href={`/${locale}/posts?search=${keyword}`}
-              className="hover:underline text-xs text-gray-600 dark:text-gray-400"
+              className="text-xs text-gray-600 dark:text-gray-400"
             >
               {" "}
               {keyword}{" "}
-            </a>
+            </span>
           ))}
         </p>
       </div>
