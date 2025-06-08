@@ -58,6 +58,7 @@ Route::prefix('/v1')->group(function () {
         Route::get('/totalSales', [OrderController::class, 'totalSales']);
         Route::get('/searchOrder', [OrderController::class, 'searchOrder'])->middleware('throttle:5,1');
         Route::post('/midtransWebhook', [OrderController::class, 'midtransWebhook']);
+        Route::post('/midtransWebhook', [OrderController::class, 'midtransWebhook']);
         Route::delete('/documents/{id}', [DocumentController::class, 'deleting']);
     });
     Route::prefix('financial-transactions')->group(function () {
