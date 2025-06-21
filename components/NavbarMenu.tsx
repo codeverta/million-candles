@@ -29,18 +29,6 @@ function NavbarMenu({ menus, handleOpenLogin, handleDrawer, open }) {
     };
   }, [megaMenuOpen]);
 
-  // Main shop menu categories
-  const shopCategories = [
-    { id: "fragrance-oils", name: "Fragrance Oils" },
-    { id: "essential-oils", name: "Essential Oils" },
-    { id: "candle-making", name: "Candle Making" },
-    { id: "flameless", name: "Flameless" },
-    { id: "soap-making", name: "Soap Making" },
-    { id: "learning", name: "Learning" },
-    { id: "new-products", name: "New Products" },
-    { id: "kits", name: "Kits" },
-  ];
-
   const toggleMegaMenu = () => {
     setMegaMenuOpen(!megaMenuOpen);
   };
@@ -120,6 +108,30 @@ function NavbarMenu({ menus, handleOpenLogin, handleDrawer, open }) {
                 const isActive =
                   router.pathname === menu.url ||
                   (menu.url !== "/" && router.pathname.startsWith(menu.url));
+
+                if (menu?.children) {
+                  return (
+                    <li className="relative">
+                      <button
+                        onClick={toggleMegaMenu}
+                        className={`flex items-center py-2 pr-4 pl-3 border-b border-gray-100/60 hover:bg-gray-50/60 lg:hover:bg-transparent lg:border-0 lg:p-0 dark:hover:bg-gray-700/70 lg:dark:hover:bg-transparent dark:border-gray-700/60 transition-colors relative
+                  ${
+                    megaMenuOpen
+                      ? "text-blue-600 dark:text-white font-semibold after:absolute after:w-full after:h-0.5 after:bg-blue-600 after:dark:bg-white after:bottom-0 after:left-0"
+                      : "text-gray-700 dark:text-gray-300 lg:hover:text-blue-600 dark:hover:text-white lg:dark:hover:text-white after:absolute after:w-0 after:h-0.5 after:bg-blue-600 after:dark:bg-white after:bottom-0 after:left-0 hover:after:w-full after:transition-all"
+                  }`}
+                        aria-expanded={megaMenuOpen}
+                      >
+                        {menu.label}
+                        {megaMenuOpen ? (
+                          <ChevronUp className="w-4 h-4 ml-1" />
+                        ) : (
+                          <ChevronDown className="w-4 h-4 ml-1" />
+                        )}
+                      </button>
+                    </li>
+                  );
+                }
                 return (
                   <li key={index}>
                     <Link
@@ -137,27 +149,6 @@ function NavbarMenu({ menus, handleOpenLogin, handleDrawer, open }) {
                   </li>
                 );
               })}
-
-              {/* Shop Menu with Dropdown */}
-              {/* <li className="relative">
-                <button
-                  onClick={toggleMegaMenu}
-                  className={`flex items-center py-2 pr-4 pl-3 border-b border-gray-100/60 hover:bg-gray-50/60 lg:hover:bg-transparent lg:border-0 lg:p-0 dark:hover:bg-gray-700/70 lg:dark:hover:bg-transparent dark:border-gray-700/60 transition-colors relative
-                  ${
-                    megaMenuOpen
-                      ? "text-blue-600 dark:text-white font-semibold after:absolute after:w-full after:h-0.5 after:bg-blue-600 after:dark:bg-white after:bottom-0 after:left-0"
-                      : "text-gray-700 dark:text-gray-300 lg:hover:text-blue-600 dark:hover:text-white lg:dark:hover:text-white after:absolute after:w-0 after:h-0.5 after:bg-blue-600 after:dark:bg-white after:bottom-0 after:left-0 hover:after:w-full after:transition-all"
-                  }`}
-                  aria-expanded={megaMenuOpen}
-                >
-                  Shop
-                  {megaMenuOpen ? (
-                    <ChevronUp className="w-4 h-4 ml-1" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 ml-1" />
-                  )}
-                </button>
-              </li> */}
             </ul>
           </div>
         </div>

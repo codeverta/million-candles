@@ -5,7 +5,7 @@ import { ChevronRight } from "lucide-react";
 
 const MegaMenu = ({ isOpen, onClose }) => {
   const { t } = useTranslation("common");
-  const [activeCategory, setActiveCategory] = useState("fragrance-oils");
+  const [activeCategory, setActiveCategory] = useState("all-products");
   const menuRef = useRef(null);
 
   // Close menu when clicking outside
@@ -27,8 +27,34 @@ const MegaMenu = ({ isOpen, onClose }) => {
   // Menu data structure
   const menuData = [
     {
+      id: "all-products",
+      name: "All Products",
+      subcategories: [
+        {
+          name: "Lihat Semua Produk",
+          items: [{ name: "Semua Produk", url: "/products" }],
+        },
+        {
+          name: "Lilin Kristal Besar",
+          items: [
+            { name: "Single Origin", url: "/essential-oils/single-origin" },
+            { name: "Blends", url: "/essential-oils/blends" },
+            { name: "Organic", url: "/essential-oils/organic" },
+          ],
+        },
+      ],
+      featured: [
+        { name: "Produk Baru", url: "/essential-oils/new", type: "link" },
+        {
+          name: "Essential Oil Guide",
+          url: "/guides/essential-oils",
+          type: "link",
+        },
+      ],
+    },
+    {
       id: "fragrance-oils",
-      name: "Fragrance Oils",
+      name: "Lilin Aromaterapi",
       subcategories: [
         {
           name: "Candle Fragrance Oils",
@@ -136,14 +162,15 @@ const MegaMenu = ({ isOpen, onClose }) => {
     },
     {
       id: "essential-oils",
-      name: "Essential Oils",
+      name: "Lilin Besar",
       subcategories: [
         {
-          name: "Pure Essential Oils",
+          name: "Ukuran",
           items: [
-            { name: "Single Origin", url: "/essential-oils/single-origin" },
-            { name: "Blends", url: "/essential-oils/blends" },
-            { name: "Organic", url: "/essential-oils/organic" },
+            { name: "Tinggi 15cm", url: "/candles/15" },
+            { name: "Tinggi 20cm", url: "/candles/20" },
+            { name: "Tinggi 25cm", url: "/candles/25" },
+            { name: "Tinggi 40cm", url: "/candles/40" },
           ],
         },
       ],
@@ -158,7 +185,7 @@ const MegaMenu = ({ isOpen, onClose }) => {
     },
     {
       id: "candle-making",
-      name: "Candle Making",
+      name: "Lilin Kecil",
       subcategories: [
         {
           name: "Fragrances",
@@ -252,16 +279,198 @@ const MegaMenu = ({ isOpen, onClose }) => {
         },
       ],
     },
-    { id: "flameless", name: "Flameless", subcategories: [], featured: [] },
-    { id: "soap-making", name: "Soap Making", subcategories: [], featured: [] },
-    { id: "learning", name: "Learning", subcategories: [], featured: [] },
     {
-      id: "new-products",
-      name: "New Products",
-      subcategories: [],
-      featured: [],
+      id: "glass-candle",
+      name: "Lilin Gelas",
+      subcategories: [
+        {
+          name: "Fragrances",
+          items: [
+            {
+              name: "All Fragrance Oils",
+              url: "/candle-making/fragrances/all",
+            },
+            {
+              name: "Holiday Fragrances",
+              url: "/candle-making/fragrances/holiday",
+            },
+            { name: "Fall", url: "/candle-making/fragrances/fall" },
+            { name: "Classic", url: "/candle-making/fragrances/classic" },
+            { name: "Summer", url: "/candle-making/fragrances/summer" },
+          ],
+        },
+        {
+          name: "Candle Wax",
+          items: [
+            { name: "Custom Wax", url: "/candle-making/wax/custom" },
+            {
+              name: "Soy Wax for Containers",
+              url: "/candle-making/wax/soy-containers",
+            },
+            {
+              name: "Soy Wax for Pillars, Votives, Tarts",
+              url: "/candle-making/wax/soy-pillars",
+            },
+            {
+              name: "Paraffin Wax for Containers, Tealights",
+              url: "/candle-making/wax/paraffin-containers",
+            },
+            {
+              name: "Paraffin Wax for Pillars, Votives",
+              url: "/candle-making/wax/paraffin-pillars",
+            },
+            {
+              name: "Paraffin/Natural Blends",
+              url: "/candle-making/wax/paraffin-blend",
+            },
+            {
+              name: "Soy/Coconut Blends",
+              url: "/candle-making/wax/soy-coconut",
+            },
+            { name: "Beeswax", url: "/candle-making/wax/beeswax" },
+            { name: "Additives", url: "/candle-making/wax/additives" },
+          ],
+        },
+        {
+          name: "Containers",
+          items: [
+            { name: "Candle Jars", url: "/candle-making/containers/jars" },
+            { name: "Candle Jar Lids", url: "/candle-making/containers/lids" },
+            { name: "Candle Tins", url: "/candle-making/containers/tins" },
+            {
+              name: "Tealight Cups",
+              url: "/candle-making/containers/tealight-cups",
+            },
+          ],
+        },
+        {
+          name: "Candle Wick",
+          items: [
+            {
+              name: "Aroma-Lite® Series",
+              url: "/candle-making/wicks/aroma-lite",
+            },
+            { name: "CD Series", url: "/candle-making/wicks/cd-series" },
+            { name: "ECO Series", url: "/candle-making/wicks/eco-series" },
+            { name: "LX Series", url: "/candle-making/wicks/lx-series" },
+            {
+              name: "Spooled Candle Wick",
+              url: "/candle-making/wicks/spooled",
+            },
+          ],
+        },
+      ],
+      featured: [
+        {
+          name: "Free shipping on all candle making kits!",
+          url: "/candle-making/kits",
+          type: "link",
+        },
+        { name: "Wick Guide", url: "/guides/wick", type: "link" },
+        { name: "Wax Guide", url: "/guides/wax", type: "link" },
+        {
+          name: "Candle Batch Supplies Calculator",
+          url: "/calculators/candle-batch",
+          type: "link",
+        },
+      ],
     },
-    { id: "kits", name: "Kits", subcategories: [], featured: [] },
+    {
+      id: "candle-making",
+      name: "Cara Membuat Lilin",
+      subcategories: [
+        {
+          name: "Fragrances",
+          items: [
+            {
+              name: "All Fragrance Oils",
+              url: "/candle-making/fragrances/all",
+            },
+            {
+              name: "Holiday Fragrances",
+              url: "/candle-making/fragrances/holiday",
+            },
+            { name: "Fall", url: "/candle-making/fragrances/fall" },
+            { name: "Classic", url: "/candle-making/fragrances/classic" },
+            { name: "Summer", url: "/candle-making/fragrances/summer" },
+          ],
+        },
+        {
+          name: "Candle Wax",
+          items: [
+            { name: "Custom Wax", url: "/candle-making/wax/custom" },
+            {
+              name: "Soy Wax for Containers",
+              url: "/candle-making/wax/soy-containers",
+            },
+            {
+              name: "Soy Wax for Pillars, Votives, Tarts",
+              url: "/candle-making/wax/soy-pillars",
+            },
+            {
+              name: "Paraffin Wax for Containers, Tealights",
+              url: "/candle-making/wax/paraffin-containers",
+            },
+            {
+              name: "Paraffin Wax for Pillars, Votives",
+              url: "/candle-making/wax/paraffin-pillars",
+            },
+            {
+              name: "Paraffin/Natural Blends",
+              url: "/candle-making/wax/paraffin-blend",
+            },
+            {
+              name: "Soy/Coconut Blends",
+              url: "/candle-making/wax/soy-coconut",
+            },
+            { name: "Beeswax", url: "/candle-making/wax/beeswax" },
+            { name: "Additives", url: "/candle-making/wax/additives" },
+          ],
+        },
+        {
+          name: "Containers",
+          items: [
+            { name: "Candle Jars", url: "/candle-making/containers/jars" },
+            { name: "Candle Jar Lids", url: "/candle-making/containers/lids" },
+            { name: "Candle Tins", url: "/candle-making/containers/tins" },
+            {
+              name: "Tealight Cups",
+              url: "/candle-making/containers/tealight-cups",
+            },
+          ],
+        },
+        {
+          name: "Candle Wick",
+          items: [
+            {
+              name: "Aroma-Lite® Series",
+              url: "/candle-making/wicks/aroma-lite",
+            },
+            { name: "CD Series", url: "/candle-making/wicks/cd-series" },
+            { name: "ECO Series", url: "/candle-making/wicks/eco-series" },
+            { name: "LX Series", url: "/candle-making/wicks/lx-series" },
+            {
+              name: "Spooled Candle Wick",
+              url: "/candle-making/wicks/spooled",
+            },
+          ],
+        },
+      ],
+      featured: [
+        {
+          name: "Free shipping on all candle making kits!",
+          url: "/candle-making/kits",
+          type: "link",
+        },
+        { name: "Wick Guide", url: "/guides/wick", type: "link" },
+        { name: "Wax Guide", url: "/guides/wax", type: "link" },
+        {
+          name: "Candle Batch Supplies Calculator",
+          url: "/calculators/candle-batch",
+          type: "link",
+        },
+      ],
+    },
   ];
 
   if (!isOpen) return null;
