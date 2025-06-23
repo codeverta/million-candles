@@ -1,6 +1,8 @@
+import { useTranslation } from "next-i18next";
 import Link from "next/link";
 
 export default function NotFound() {
+  const { t } = useTranslation("common");
   return (
     <section className="bg-white h-screen dark:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
