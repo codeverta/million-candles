@@ -548,12 +548,12 @@ function Home(props: any) {
                     <div className="flex flex-1 flex-col justify-between p-6">
                       <div className="flex-1">
                         <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
-                          <a
-                            href={`/posts/${post.id}`}
+                          <Link
+                            href={`posts/${post.id}`}
                             className="cursor-pointer hover:underline"
                           >
                             {post.title}
-                          </a>
+                          </Link>
                         </h3>
                         <p className="mt-3 text-base leading-6 text-gray-500 dark:text-gray-300 line-clamp-3">
                           {post.desc}
