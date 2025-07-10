@@ -117,13 +117,13 @@ const ProductActions = ({ product }) => {
     <div className="flex gap-3 w-full">
       <button
         onClick={handleBuyNow}
-        className="flex-1 bg-white text-green-500 border border-green-500 font-semibold text-sm py-2.5 px-4 md:py-2.5 md:px-2 rounded-lg hover:bg-gray-50 transition"
+        className="hidden flex-1 bg-white text-green-500 border border-green-500 font-semibold text-sm py-2.5 px-4 md:py-2.5 md:px-2 rounded-lg hover:bg-gray-50 transition"
       >
         Beli
       </button>
       <button
         onClick={handleAddToCart}
-        className="flex-1 bg-green-600 text-white font-semibold text-sm py-2.5 px-4 md:py-2.5 md:px-2 rounded-lg hover:bg-green-700 transition"
+        className="hidden flex-1 bg-green-600 text-white font-semibold text-sm py-2.5 px-4 md:py-2.5 md:px-2 rounded-lg hover:bg-green-700 transition"
       >
         + Keranjang
       </button>
