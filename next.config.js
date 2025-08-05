@@ -10,7 +10,11 @@ const nextConfig = {
   },
   i18n,
   images: {
-    domains: ["picsum.photos"],
+    domains: [
+      "picsum.photos",
+      "firebasestorage.googleapis.com",
+      "cdn.dribbble.com",
+    ],
   },
 };
 
