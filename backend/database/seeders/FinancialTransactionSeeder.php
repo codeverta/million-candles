@@ -115,18 +115,18 @@ class FinancialTransactionSeeder extends Seeder
             ],
         ];
 
-        foreach ($transactions as $transaction) {
-            DB::table('financial_transactions')->insert([
-                'type' => $transaction['type'],
-                'category_id' => $transaction['category_id'],
-                'amount' => $transaction['amount'],
-                'bank_account_id' => $transaction['bank_account_id'],
-                'date' => $transaction['date'],
-                'description' => $transaction['description'],
-                'related_order_id' => $transaction['related_order_id'],
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ]);
-        }
+        // foreach ($transactions as $transaction) {
+        //     DB::table('financial_transactions')->insert([
+        //         'type' => $transaction['type'],
+        //         'category_id' => $transaction['category_id'],
+        //         'amount' => $transaction['amount'],
+        //         'bank_account_id' => $transaction['bank_account_id'],
+        //         'date' => $transaction['date'],
+        //         'description' => $transaction['description'],
+        //         'related_order_id' => $transaction['related_order_id'],
+        //         'created_at' => Carbon::now(),
+        //         'updated_at' => Carbon::now(),
+        //     ]);
+        // }
     }
 }

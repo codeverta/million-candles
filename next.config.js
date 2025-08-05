@@ -9,6 +9,9 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   i18n,
+  images: {
+    domains: ["picsum.photos"],
+  },
 };
 
 module.exports = nextConfig;

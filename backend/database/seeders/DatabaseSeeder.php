@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
             // BankSeeder::class,
             // BankAccountSeeder::class,
             // FinancialCategorySeeder::class,
-            FinancialTransactionSeeder::class,
-            StockMovementSeeder::class,
+            // FinancialTransactionSeeder::class,
+            // StockMovementSeeder::class,
         ]);
     }
 }
