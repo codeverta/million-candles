@@ -6,7 +6,7 @@ permissions:
 on:
   # Menjalankan setiap hari jam 00:00 UTC (jam 7 pagi WIB)
   schedule:
-    - cron: "0 */12 * * *"
+    - cron: "0 0,8,16 * * *"
 
   # Tombol manual untuk menjalankan workflow dari tab Actions di GitHub
   workflow_dispatch:
