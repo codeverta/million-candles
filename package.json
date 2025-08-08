@@ -11,6 +11,7 @@
     "postbuild": "next-sitemap && node scripts/generate-language-sitemaps.js && node scripts/generate-static-image-sitemaps.js",
     "build:vue": "cd erp && npm run build && cp -r dist/* ../public/dashboard/",
     "enhance-markdown": "node scripts/enhance-markdown.js",
+    "new-article": "node scripts/new-article.js",
     "process-internal-links": "node scripts/process-internal-links.js"
   },
   "dependencies": {
@@ -20,6 +21,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@google/genai": "^1.13.0",
     "@headlessui/react": "^1.7.12",
     "@mui/base": "^5.0.0-alpha.118",
     "@mui/icons-material": "^5.11.9",
@@ -57,7 +59,8 @@
     "sonner": "^0.1.1",
     "swiper": "^9.0.5",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "transliteration": "^2.3.5"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
@@ -72,7 +75,7 @@
     "@types/react-dom": "18.0.10",
     "@types/react-google-recaptcha": "^2.1.5",
     "autoprefixer": "^10.4.13",
-    "dotenv": "^16.5.0",
+    "dotenv": "^16.6.1",
     "husky": "^8.0.0",
     "next-sitemap": "^4.2.3",
     "postcss": "^8.4.21",
