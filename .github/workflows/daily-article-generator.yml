@@ -30,21 +30,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20" # Gunakan versi LTS Node.js
-          cache: "pnpm"
+          cache: "npm"
 
       # 3. Install dependencies
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       # 4. Jalankan skrip pembuat artikel
       - name: Generate New Article
-        run: pnpm run new-article
+        run: npm run new-article
         env:
           # Ambil API Key dari Secrets GitHub
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
       - name: Build the Site
-        run: pnpm run build
+        run: npm run build
 
       - name: Check file status before commit
         run: git status
