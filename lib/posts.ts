@@ -126,7 +126,7 @@ export async function getPostData(id, lang = "en") {
       fullPath = path.join(blogBaseDirectory, currentLang, `${id}.md`);
       fileContents = fs.readFileSync(fullPath, "utf8");
       usedLanguage = currentLang; // Store which language was successfully found
-      break; // Exit the loop if file is found
+      break;
     } catch (error) {
       if (error.code === "ENOENT") {
         continue; // Try next language
@@ -172,7 +172,12 @@ export async function getPostData(id, lang = "en") {
   }
 
   // Insert contextual links within the content
-  enhancedContent = insertContextualLinks(enhancedContent, allPosts, id);
+  enhancedContent = insertContextualLinks(
+    enhancedContent,
+    allPosts,
+    id,
+    usedLanguage
+  );
 
   // Insert related posts section
   enhancedContent = insertRelatedPostLinks(

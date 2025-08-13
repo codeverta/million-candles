@@ -14,7 +14,12 @@ export const paymentsType = [
 ];
 
 // Updated function to prevent nested links
-export function insertContextualLinks(content, allPosts, currentPostId) {
+export function insertContextualLinks(
+  content,
+  allPosts,
+  currentPostId,
+  currentLang
+) {
   // Create a map of keywords to posts for efficient lookup
   const keywordToPostMap = new Map();
 
@@ -149,7 +154,9 @@ export function insertContextualLinks(content, allPosts, currentPostId) {
 
     if (recommendedPost) {
       processedParagraphs.push(
-        `\n\n> **Baca juga:** [${recommendedPost.title}](/posts/${recommendedPost.id})`
+        `\n\n> **Baca juga:** [${recommendedPost.title}](/${
+          currentLang == "id" ? "" : currentLang + "/"
+        }posts/${recommendedPost.id})`
       );
     }
   }

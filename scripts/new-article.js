@@ -5,7 +5,7 @@ import path from "path";
 
 // --- KONFIGURASI (Tidak ada perubahan) ---
 const KEYWORDS_PATH = path.join(process.cwd(), "scripts", "keywords.json");
-const POSTS_DIRECTORY = path.join(process.cwd(), "blog", "zh");
+const POSTS_DIRECTORY = path.join(process.cwd(), "blog", "en");
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 if (!GEMINI_API_KEY) {
   console.error(
@@ -61,9 +61,9 @@ async function getNextArticleNumber(directory) {
 function createPrompt(longTailKeyword) {
   const currentDate = new Date().toISOString().slice(0, 10);
   const randomSeed = longTailKeyword.split(" ").join("-").slice(0, 10);
-
+  const lang = "BAHASA ENGLISH(en-US)";
   return `
-buatkan sebuah artikel BAHASA MANDARIN(ZH) format penulisannya seperti ini, jangan beri jawaban lain selain artikel yg saya perintahkan
+buatkan sebuah artikel ${lang} format penulisannya seperti ini, jangan beri jawaban lain selain artikel yg saya perintahkan
 
 ---
 title: "modifikasi long-tail keyword ini sebagai judul utama harus SEO friendly: ${longTailKeyword}"
@@ -83,7 +83,7 @@ Struktur artikel harus sebagai berikut:
 4.  **Kesimpulan:** Rangkum poin-poin utama dan berikan pandangan ke depan.
 5.  **FAQ (Frequently Asked Questions):** Buat 3-5 pertanyaan umum terkait topik beserta jawabannya yang singkat dan padat.
 
-Pastikan seluruh artikel ditulis dalam BAHASA MANDARIN(ZH) yang profesional dan mudah dibaca, sisipkan promosi ke website souvenirlilin.id.
+Pastikan seluruh artikel ditulis dalam ${lang} yang profesional dan mudah dibaca, sisipkan promosi ke website souvenirlilin.id.
   `;
 }
 

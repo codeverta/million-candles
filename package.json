@@ -11,8 +11,7 @@
     "postbuild": "next-sitemap && node scripts/generate-language-sitemaps.js && node scripts/generate-static-image-sitemaps.js",
     "build:vue": "cd erp && npm run build && cp -r dist/* ../public/dashboard/",
     "enhance-markdown": "node scripts/enhance-markdown.js",
-    "new-article": "node scripts/new-article.js",
-    "process-internal-links": "node scripts/process-internal-links.js"
+    "new-article": "node scripts/new-article.js"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
