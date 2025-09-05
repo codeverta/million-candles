@@ -453,15 +453,6 @@ export default function Footer() {
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
             &copy; {new Date().getFullYear()} Million Candles. All rights
             reserved. v.{version}
-            <br />
-            Mau bikin website kyk gini? silahkan chat{" "}
-            <a
-              href="https://wa.me/+6285726394401"
-              className="text-blue-500 hover:underline"
-            >
-              0857-2639-4401
-            </a>{" "}
-            melalui WhatsApp.
           </p>
         </div>
       </div>
