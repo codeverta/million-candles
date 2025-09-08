@@ -5,7 +5,8 @@ import path from "path";
 
 // --- KONFIGURASI (Tidak ada perubahan) ---
 const KEYWORDS_PATH = path.join(process.cwd(), "scripts", "keywords.json");
-const POSTS_DIRECTORY = path.join(process.cwd(), "blog", "en");
+const lang = "MALAYSIA (ms)";
+const POSTS_DIRECTORY = path.join(process.cwd(), "blog", "ms");
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 if (!GEMINI_API_KEY) {
   console.error(
@@ -61,7 +62,6 @@ async function getNextArticleNumber(directory) {
 function createPrompt(longTailKeyword) {
   const currentDate = new Date().toISOString().slice(0, 10);
   const randomSeed = longTailKeyword.split(" ").join("-").slice(0, 10);
-  const lang = "BAHASA ENGLISH(en-US)";
   return `
 buatkan sebuah artikel ${lang} format penulisannya seperti ini, jangan beri jawaban lain selain artikel yg saya perintahkan
 
