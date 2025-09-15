@@ -3,7 +3,7 @@ import { toast } from "sonner";
 
 const api = {
   init(baseURL: string) {
-    axios.defaults.baseURL = baseURL;
+    axios.defaults.baseURL = baseURL || "https://api.souvenirlilin.id/api/v1";
 
     axios.interceptors.request.use(
       (config) => {
