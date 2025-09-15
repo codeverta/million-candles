@@ -3,6 +3,7 @@ module.exports = {
     defaultLocale: "id",
     locales: [
       "ar",
+      "be",
       "de",
       "en",
       "es",
@@ -12,6 +13,7 @@ module.exports = {
       "kr",
       "ms",
       "ru",
+      "pt",
       "th",
       "vi",
       "zh",

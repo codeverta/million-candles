@@ -1,0 +1,191 @@
+{
+  "brand": "Million Candles",
+  "flag": "🇮🇩",
+  "menu": {
+    "login": "Entrar",
+    "home": "Início",
+    "products": "Produtos",
+    "how_to_order": "Como Encomendar",
+    "address": "Endereço",
+    "blog": "Histórias",
+    "gallery": "Galeria",
+    "about": "Sobre"
+  },
+  "address": {
+    "full": "Jalan Kaliurang KM 9, Sleman, Yogyakarta, Indonésia"
+  },
+  "tagline": {
+    "local_producer": "Produtor Local de Velas",
+    "national_scale": "Escala Nacional"
+  },
+  "description": "Somos um fornecedor que oferece diversos tipos de velas de alta qualidade, como velas de aromaterapia, velas para lembranças, velas coloridas, velas decorativas, velas para rituais religiosos, velas espirituais, velas de fábrica e muito mais. Oferecemos lindas velas decorativas que são perfeitas como lembranças para qualquer ocasião. De casamentos a eventos corporativos ou viagens, nossas velas decorativas de lembrança são a escolha certa para criar memórias inesquecíveis.",
+  "how_to_order_candles": "Como Encomendar Velas",
+  "whatsapp": "Whatsapp",
+  "our_products": "Nossos Produtos",
+  "other_products": "Outros Produtos",
+  "disclaimer_price": "* Os preços exibidos são preços de distribuidor/atacado",
+  "features": {
+    "eco_friendly": "Ecológico",
+    "made_from": "Feito de 100% cera de palma natural e óleos essenciais",
+    "handmade": "Feito à Mão",
+    "crafted_with_love": "Cada vela é cuidadosamente derramada por nossos artesãos",
+    "long_lasting": "Longa Duração",
+    "burn_time": "Até 12 horas de tempo de queima para cada vela",
+    "handcrafted_with_love": "Feito à Mão com Amor",
+    "make_beautiful_memories": "Crie Belas Memórias com",
+    "our_candle": "Nossas Velas",
+    "souvenir_description": "Com nossas Velas Decorativas de Lembrança, você pode levar para casa belas memórias de seu evento ou viagem. Cada uma de nossas velas é feita com materiais de alta qualidade e lindamente decorada por nossos artistas."
+  },
+  "shipping": {
+    "package": "Embalagem para Envio de Velas",
+    "fast_shipping": "Envio Rápido",
+    "nationwide": "Em toda a Indonésia"
+  },
+  "premium_collection": {
+    "title": "Coleção Premium",
+    "subtitle": "Nossos Produtos de Velas de Aromaterapia",
+    "description": "Desfrute da beleza e dos benefícios de nossas velas de aromaterapia artesanais, feitas com os melhores ingredientes naturais."
+  },
+  "quality_section": {
+    "product_quality": "Qualidade do Produto",
+    "product_quality_description": "Usamos apenas materiais de alta qualidade para fazer nossas velas decorativas, e cada um de nossos produtos é testado para garantir sua segurança e durabilidade. Também temos uma equipe de artistas talentosos que decoram cada vela com designs bonitos e únicos, tornando-as uma lembrança especial.",
+    "size_and_color": "Tamanho e cor",
+    "size_and_color_description": "Nossas velas decorativas vêm em uma variedade de tamanhos, do pequeno e portátil ao grande e deslumbrante. Também temos uma variedade de cores diferentes, incluindo branco, azul, verde, vermelho e muito mais, para que você possa escolher a que se adapta ao tema do seu evento.",
+    "calming_aroma": "Aroma Calmante",
+    "calming_aroma_description": "Nossas velas decorativas também proporcionam um aroma calmante, trazendo paz e serenidade ao ambiente. Usamos óleos de fragrância de alta qualidade para fornecer um aroma duradouro e agradável."
+  },
+  "lifespan": {
+    "title": "Tempo de Vida",
+    "description": "Até 12 Horas"
+  },
+  "natural": {
+    "title": "100% Natural",
+    "description": "Ecológico"
+  },
+  "business_opportunity": {
+    "title": "Oportunidade de Negócio de Atacado",
+    "description": "Impulsione seu negócio com nossa coleção de velas premium. Perfeitas para hotéis, spas, butiques e lojas de presentes.",
+    "custom_branding": "Opções de marca personalizada disponíveis",
+    "no_moq_white_label": "Sem MOQ e serviço de marca própria (white-label)"
+  },
+  "wholesale_benefits": {
+    "title": "Vantagens da Compra por Atacado",
+    "competitive_price": "Preço Competitivo",
+    "competitive_price_description": "Obtenha até 5% de desconto no preço de varejo para pedidos em grandes quantidades",
+    "exclusive_aromas": "Aromas Exclusivos",
+    "exclusive_aromas_description": "Acesso a uma seleção de fragrâncias exclusivas apenas para clientes de atacado",
+    "dedicated_support": "Suporte Dedicado",
+    "dedicated_support_description": "Gerente de conta pessoal para clientes de atacado"
+  },
+  "blog_section": {
+    "title": "Nossas Histórias",
+    "description": "Uma coleção de blogs que discutem vários aspectos das velas, desde a história e os diferentes tipos, até como fazer suas próprias velas e como escolher a vela certa para várias finalidades. Você também encontrará histórias inspiradoras sobre como as velas podem se tornar um símbolo de esperança e calor na vida diária. Vamos explorar a magia das velas juntos e aprender a usá-las para iluminar nossas vidas."
+  },
+  "testimonials": {
+    "title": "O Que Nossos Clientes Dizem",
+    "sarah_johnson": {
+      "quote": "Os hóspedes do nosso hotel sempre elogiam o aroma agradável no nosso lobby. Nossas Velas de Aroma de Baunilha criam uma atmosfera muito acolhedora.",
+      "name": "Sarah Johnson",
+      "position": "Gerente de Hotel, The Grand Plaza"
+    },
+    "emily_chen": {
+      "quote": "Como proprietária de uma butique, aprecio muito a qualidade e a apresentação dessas velas. Elas se tornaram nossos produtos de presente mais vendidos!",
+      "name": "Emily Chen",
+      "position": "Proprietária, The Curated Corner"
+    },
+    "michael_rodriguez": {
+      "quote": "O tempo de queima dessas velas é incrível e o aroma é perfeito - não é muito forte. Eu já comprei todas as variantes desta coleção!",
+      "name": "Michael Rodriguez",
+      "position": "Cliente Fiel"
+    },
+    "wedding_customer": {
+      "quote": "Obrigado @souvenirlilin pelo produto maravilhoso! As velas que comprei para o meu casamento realmente adicionaram um toque perfeito ao evento, e meus convidados adoraram.",
+      "name": "Cliente"
+    }
+  },
+  "about_us": {
+    "content": "# Sobre a Million Candles\n\nA Million Candles é uma empresa de velas de Yogyakarta que oferece vários tipos de velas com designs únicos e de alta qualidade. Usamos materiais de alta qualidade e boas técnicas de fabricação para criar velas bonitas e perfumadas.\n\nOferecemos uma variedade de opções de velas, desde pequenas até grandes que podem ser usadas para eventos especiais como casamentos, festas de aniversário, cerimônias religiosas ou em caso de falta de energia. Além disso, também fornecemos velas perfumadas que podem ser usadas para criar uma atmosfera relaxante em sua casa.\n\nTemos uma variedade de cores e designs que podem ser personalizados ao seu gosto. Também podemos fazer velas com designs que se adequem aos seus desejos.\n\nValorizamos muito a qualidade e a segurança do cliente, por isso sempre nos esforçamos para usar materiais seguros e que não agridam o meio ambiente.\n\nSe você quiser adicionar uma atmosfera romântica à sua casa ou procurar um presente único para um evento especial, não hesite em visitar nosso site e ver as opções de velas que oferecemos. Ficaremos felizes em ajudá-lo a encontrar a vela certa para suas necessidades.",
+    "map_title": "Nossas Velas São Confiáveis em Toda a Indonésia",
+    "map_description": "De Sumatra a Papua, nossas velas trouxeram calor, luz e conforto para casas e negócios em todo o arquipélago. Cada local no mapa representa uma história, um momento e um cliente fiel que confia na luz de nossa experiência."
+  },
+  "gallery": {
+    "title": "Galeria",
+    "description": "Coleção de Fotos e Vídeos de Nossos Produtos"
+  },
+  "blog": {
+    "title": "Coleção de Histórias e Dicas sobre Velas",
+    "description": "Uma coleção de blogs que discutem vários aspectos das velas, desde a história e os diferentes tipos, até como fazer suas próprias velas e como escolher a vela certa para várias finalidades.",
+    "not_found": {
+      "title": "Nenhum artigo encontrado",
+      "description": "Tente alterar a palavra-chave de pesquisa ou a categoria selecionada"
+    }
+  },
+  "footer": {
+    "title": "Million Candles",
+    "desc": "A Million Candles oferece uma variedade de velas de aromaterapia de alta qualidade para criar uma atmosfera aconchegante e relaxante em sua casa.",
+    "about": "Sobre Nós",
+    "profile": "Perfil da Empresa",
+    "careers": "Carreiras",
+    "blog": "Blog",
+    "contact": "Contato",
+    "help": "Ajuda",
+    "howToBuy": "Como Comprar",
+    "payment": "Pagamento",
+    "shipping": "Envio",
+    "returns": "Devoluções",
+    "faq": "FAQ",
+    "info": "Informações",
+    "terms": "Termos e Condições",
+    "privacy": "Política de Privacidade",
+    "shippingPolicy": "Política de Envio",
+    "returnPolicy": "Política de Devolução",
+    "paymentMethod": "Método de Pagamento",
+    "shippingMethod": "Método de Envio"
+  },
+  "social": {
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "whatsapp": "WhatsApp"
+  },
+  "payment": {
+    "bca": "BCA",
+    "mandiri": "Mandiri",
+    "bni": "BNI",
+    "bri": "BRI"
+  },
+  "stats": {
+    "title": "Nosso Impacto em Números",
+    "subtitle": "Desde 2007, temos iluminado lares em toda a Indonésia com nossas velas artesanais",
+    "candlesProduced": {
+      "label": "Velas Produzidas por Dia",
+      "description": "Nossa instalação de produção de alta eficiência"
+    },
+    "candleVariants": {
+      "label": "Variantes de Velas",
+      "description": "Aromas, designs e estilos únicos"
+    },
+    "yearsOfExcellence": {
+      "label": "Anos de Excelência",
+      "value": "Desde 2007",
+      "description": "Mais de 17 anos fazendo velas premium"
+    },
+    "cities": {
+      "label": "Atendemos toda a Indonésia",
+      "value": "Grandes Cidades",
+      "description": "Como Jacarta, Bali e outras"
+    },
+    "candlesSold": {
+      "label": "Velas Vendidas por Ano",
+      "description": "Confiadas por lares e empresas"
+    },
+    "quality": {
+      "label": "Garantia de Qualidade",
+      "description": "Compromisso com a excelência"
+    }
+  },
+  "products": {
+    "title": "Coleção de Nossos Produtos de Velas",
+    "description": "Aproveite nossa coleção de velas artesanais feitas com ingredientes naturais de alta qualidade. Disponíveis em uma variedade de fragrâncias, formas e tamanhos para atender às suas necessidades - desde lembranças de casamento, rituais religiosos, necessidades de emergência por falta de energia até decoração de casa ou presentes especiais."
+  }
+}
