@@ -1,0 +1,45 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /var/www/html/million-candles
+
+            # Use HTTPS with GitHub token instead of SSH
+            git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/robycigar/million-candles.git
+
+            # Pull latest changes
+            git pull origin main
+
+            # Move to backend directory
+            cd backend
+
+            # Set environment variables for Composer
+            export COMPOSER_ALLOW_SUPERUSER=1
+            export COMPOSER_NO_INTERACTION=1
+
+            # Install dependencies
+            composer install --no-dev --optimize-autoloader --no-interaction
+
+            # Cache Laravel configs
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+
+            # Run migrations
+            php artisan migrate --force
