@@ -5,8 +5,8 @@ import path from "path";
 
 // --- KONFIGURASI (Tidak ada perubahan) ---
 const KEYWORDS_PATH = path.join(process.cwd(), "scripts", "keywords.json");
-const lang = "MALAYSIA (ms)";
-const POSTS_DIRECTORY = path.join(process.cwd(), "blog", "ms");
+const lang = "BENGALI (bn)";
+const POSTS_DIRECTORY = path.join(process.cwd(), "blog", "bn");
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 if (!GEMINI_API_KEY) {
   console.error(
@@ -136,8 +136,11 @@ async function main() {
 
   console.log("Membersihkan konten...");
   let cleanedContent = articleContent
-    .replace(/^```(markdown)?\s*\n/, "")
+    // Menghilangkan ````bn` atau ````lang_code` di awal file
+    .replace(/^```[a-zA-Z]*\s*\n/, "")
+    // Menghilangkan ```` di akhir file
     .replace(/\n```$/, "")
+    // Menghilangkan baris kosong di awal dan akhir
     .trim();
 
   console.log("Artikel berhasil dibuat dan dibersihkan.");

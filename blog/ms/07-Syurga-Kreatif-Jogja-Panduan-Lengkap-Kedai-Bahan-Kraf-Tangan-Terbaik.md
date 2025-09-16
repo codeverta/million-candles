@@ -1,6 +1,7 @@
 ---
 title: "Syurga Kreatif Jogja: Panduan Lengkap Kedai Bahan Kraf Tangan Terbaik"
 date: "2024-10-27"
+image: "/Million-Candles/Lilin Kristal Putih Sedang/1.png"
 desc: "Cari bahan kraf tangan di Jogja? Temui kedai terbaik dengan pilihan lengkap, harga berpatutan, dan kualiti terjamin. Inspirasi seni anda bermula di sini!"
 tags: "Kedai Bahan Kraf Jogja, Bahan Kraf Tangan, DIY Jogja, Alat Kraf, Souvenir Lilin"
 ---

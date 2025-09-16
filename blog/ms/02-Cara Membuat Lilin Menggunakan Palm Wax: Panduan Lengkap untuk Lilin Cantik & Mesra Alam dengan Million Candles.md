@@ -1,6 +1,7 @@
 ---
 title: "Cara Membuat Lilin Menggunakan Palm Wax: Panduan Lengkap untuk Lilin Cantik & Mesra Alam dengan Million Candles"
 date: "2025-06-24"
+image: "/Million-Candles/Lilin Kristal Putih Sedang/1.png"
 desc: "Pelajari cara membuat lilin menggunakan palm wax, pilihan mesra alam untuk lilin cantik anda. Dapatkan tips dan panduan langkah demi langkah, serta ketahui bagaimana Million Candles dari SouvenirLilin.id boleh menjadi pembekal lilin pukal anda."
 tags: "cara membuat lilin, palm wax, lilin mesra alam, DIY lilin, Million Candles, SouvenirLilin.id, lilin pukal, panduan lilin"
 ---

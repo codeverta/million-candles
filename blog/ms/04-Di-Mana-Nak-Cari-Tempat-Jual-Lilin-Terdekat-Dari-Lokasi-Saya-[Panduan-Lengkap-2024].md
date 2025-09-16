@@ -1,6 +1,7 @@
 ---
 title: "Di Mana Nak Cari: Tempat Jual Lilin Terdekat Dari Lokasi Saya? [Panduan Lengkap 2024]"
 date: "2024-10-27"
+image: "/Million-Candles/Lilin Kristal Putih Sedang/3.png"
 desc: "Cari tempat jual lilin terdekat? Panduan ini senaraikan kedai, pasar raya, dan platform online yang menawarkan lilin berkualiti. Dapatkan lilin untuk majlis, dekorasi, atau kegunaan harian!"
 tags: "tempat jual lilin, lilin terdekat, kedai lilin, beli lilin online, lilin hiasan"
 ---

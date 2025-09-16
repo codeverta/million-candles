@@ -1,6 +1,7 @@
 ---
 title: "Tips Membuat Lilin Aromaterapi Tidak Bau: Panduan Lengkap"
 date: "2025-09-09"
+image: "/Million-Candles/Lilin Kristal Putih Sedang/1.png"
 desc: "Lilin aromaterapi anda berbau tengik? Ikuti tips membuat lilin aromaterapi tidak bau ini! Aroma terapi yang nyaman dan tahan lama, hanya di sini!"
 tags: "lilin aromaterapi, cara membuat lilin, aroma terapi, tips lilin, souvenir lilin"
 ---

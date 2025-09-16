@@ -1,6 +1,7 @@
 ---
 title: "Vollständige Anleitung: Wie man Duftkerzen aus Palmwachs zu Hause für Anfänger herstellt"
 date: "2025-06-23"
+image: "/Million-Candles/Lilin KL20 Pink/3.png"
 desc: "Lernen Sie Schritt für Schritt, wie Sie umweltfreundliche Duftkerzen aus Palmwachs herstellen. Eine umfassende Anleitung für Anfänger, von der Vorbereitung der Werkzeuge bis zu Tipps zur Fehlervermeidung."
 tags: "Kerzen selber machen, Palmwachs, Duftkerze, DIY Kerzen, Kerzengeschenk, Million Candles"
 ---

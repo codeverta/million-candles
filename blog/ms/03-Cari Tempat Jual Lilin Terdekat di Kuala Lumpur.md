@@ -1,6 +1,7 @@
 ---
 title: "Susah Cari Tempat Jual Lilin Terdekat di Kuala Lumpur? Ini Penyelesaian Terbaik Anda"
 date: "2025-05-15"
+image: "/Million-Candles/Lilin Kristal Putih Sedang/2.png"
 desc: "Mencari tempat jual lilin terdekat di Kuala Lumpur yang murah dan berkualiti? Pertimbangkan alternatif import terus dari Indonesia melalui Souvenirlilin.id. Pilihan pelbagai, tanpa MOQ, dan penghantaran pantas!"
 tags: "jual lilin, lilin kuala lumpur, lilin murah, lilin aromaterapi, pembekal lilin, souvenirlilin.id, import lilin indonesia"
 ---

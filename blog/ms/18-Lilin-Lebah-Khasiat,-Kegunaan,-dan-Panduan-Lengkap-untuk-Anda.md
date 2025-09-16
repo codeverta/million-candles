@@ -1,6 +1,7 @@
 ---
 title: "Lilin Lebah: Khasiat, Kegunaan, dan Panduan Lengkap untuk Anda"
 date: "2025-09-15"
+image: "/Million-Candles/Lilin TL Kuning/4.png"
 desc: "Ketahui semua tentang lilin lebah! Dari asal usul hingga manfaatnya dalam kosmetik, kesihatan, dan industri. Panduan lengkap ini mengungkap rahsia lilin lebah."
 tags: "lilin lebah, beeswax, manfaat lilin lebah, kegunaan lilin lebah, produk lebah"
 ---

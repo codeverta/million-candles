@@ -1,6 +1,7 @@
 ---
 title: "Jual Lilin Terdekat di Johor Bahru: SouvenirLilin id Pilihan Terbaik Anda untuk Lilin Murah & Import dari Indonesia Tanpa MOQ"
 date: "2025-06-24"
+image: "/Million-Candles/Lilin TL Kuning/1.png"
 desc: "Mencari lilin terdekat di Johor Bahru? SouvenirLilin.id menawarkan pelbagai jenis lilin murah berkualiti tinggi yang boleh diimport terus dari Indonesia ke Johor Bahru dan seluruh Malaysia tanpa had MOQ. Temukan lilin hiasan, lilin aromaterapi, dan lilin souvenir yang sempurna untuk acara anda."
 tags: "jual lilin terdekat Johor Bahru, lilin murah Johor Bahru, import lilin Malaysia, lilin souvenir, lilin aromaterapi, lilin hiasan"
 ---

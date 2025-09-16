@@ -1,6 +1,7 @@
 ---
 title: "Guide Complet : Comment Fabriquer des Bougies d'Aromathérapie à la Cire de Palme à la Maison pour les Débutants"
 date: "2025-06-23"
+image: "/Million-Candles/Lilin KL20 Pink/1.png"
 desc: "Apprenez étape par étape à fabriquer des bougies parfumées écologiques avec de la cire de palme. Un guide complet pour les débutants, de la préparation des outils aux astuces pour éviter les erreurs."
 tags: "comment fabriquer des bougies, cire de palme, bougie d'aromathérapie, bougies DIY, cadeau bougie, Million Candles"
 ---

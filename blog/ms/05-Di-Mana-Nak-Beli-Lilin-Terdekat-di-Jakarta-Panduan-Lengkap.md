@@ -1,6 +1,7 @@
 ---
 title: "Di Mana Nak Beli Lilin Terdekat di Jakarta? Panduan Lengkap"
 date: "2025-09-08"
+image: "/Million-Candles/Lilin Kristal Putih Sedang/4.png"
 desc: "Cari tempat jual lilin terdekat di Jakarta? Temukan pelbagai pilihan, daripada kedai runcit hingga butik lilin istimewa. Panduan lengkap untuk keperluan anda!"
 tags: "lilin Jakarta, beli lilin terdekat, kedai lilin, harga lilin, souvenirlilin.id"
 ---

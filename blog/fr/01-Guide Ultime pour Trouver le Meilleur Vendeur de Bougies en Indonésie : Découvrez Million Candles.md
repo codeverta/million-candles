@@ -1,6 +1,7 @@
 ---
 title: "Guide Ultime pour Trouver le Meilleur Vendeur de Bougies en Indonésie : Découvrez Million Candles" 
 date: "2025-06-23" 
+image: "/Million-Candles/Lilin KL20 Pink/2.png"
 desc: "Vous cherchez des bougies uniques comme souvenirs ou pour décorer votre maison ? L'Indonésie est un trésor caché d'artisans bougistes. Dans cet article, nous vous guidons pour trouver le meilleur vendeur de bougies en Indonésie, avec un focus sur Million Candles, une marque locale de premier plan." 
 tags: "vendeur de bougies, bougies en Indonésie, souvenirs d'Indonésie, Million Candles, bougies parfumées, bougies artisanales, acheter des bougies en ligne"
 ---

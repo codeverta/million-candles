@@ -1,6 +1,7 @@
 ---
 title: "Toko Bahan Lilin di Surabaya: Panduan Lengkap dan Terkini"
 date: "2025-09-10"
+image: "/Million-Candles/Lilin Kristal Putih Sedang/2.png"
 desc: "Cari bahan lilin berkualiti di Surabaya? Temui senarai toko terbaik, tips memilih bahan, dan inspirasi kraf lilin. Buat lilin impian anda di Surabaya!"
 tags: "toko bahan lilin Surabaya, bahan lilin, lilin Surabaya, kraf lilin, lilin DIY"
 ---

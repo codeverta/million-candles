@@ -1,6 +1,7 @@
 ---
 title: "Reed Diffuser: Rahsia Haruman Menawan di Rumah Anda"
 date: "2025-09-15"
+image: "/Million-Candles/Lilin TL Kuning/3.png"
 desc: "Temui reed diffuser! Ketahui apa itu, cara ia berfungsi, manfaatnya, dan bagaimana memilih yang terbaik. Jadikan rumah anda lebih harum dan menenangkan."
 tags: "reed diffuser, pewangi rumah, aromaterapi, haruman rumah, diffuser"
 ---

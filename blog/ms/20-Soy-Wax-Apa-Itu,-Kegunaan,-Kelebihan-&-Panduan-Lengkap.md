@@ -1,6 +1,7 @@
 ---
 title: "Soy Wax: Apa Itu, Kegunaan, Kelebihan & Panduan Lengkap"
 date: "2025-09-16"
+image: "/Million-Candles/Lilin TL Kuning/2.png"
 desc: "Ketahui apa itu soy wax! Panduan lengkap mengenai kelebihan, kegunaan, cara membuat lilin soy wax yang wangi & mesra alam. Dapatkan lilin soy wax di souvenirlilin.id!"
 tags: "soy wax, lilin soy wax, lilin mesra alam, bahan lilin, lilin aroma terapi"
 ---

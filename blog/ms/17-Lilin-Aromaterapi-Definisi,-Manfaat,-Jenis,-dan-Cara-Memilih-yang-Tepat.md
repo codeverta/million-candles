@@ -1,6 +1,7 @@
 ---
 title: "Lilin Aromaterapi: Definisi, Manfaat, Jenis, dan Cara Memilih yang Tepat"
 date: "2024-10-27"
+image: "/Million-Candles/Lilin TL Kuning/1.png"
 desc: "Ketahui definisi lilin aromaterapi, manfaatnya untuk relaksasi dan kesehatan mental, jenis-jenis aroma, dan cara memilih lilin aromaterapi berkualitas tinggi. Lawati souvenirlilin.id!"
 tags: "lilin aromaterapi, aromaterapi, relaksasi, lilin wangi, terapi aroma"
 ---

@@ -1,6 +1,7 @@
 ---
 title: "Cari Lilin di Solo? Senarai Kedai Lilin Terbaik di Surakarta"
 date: "2024-10-27"
+image: "/Million-Candles/Lilin Kristal Putih Sedang/4.png"
 desc: "Temui kedai lilin terbaik di Surakarta! Pelbagai pilihan lilin untuk majlis, hiasan, aroma terapi. Kunjungi souvenirlilin.id untuk inspirasi lilin lain!"
 tags: "Kedai Lilin Surakarta, Lilin Solo, Souvenir Lilin, Lilin Hiasan, Aroma Terapi"
 ---
