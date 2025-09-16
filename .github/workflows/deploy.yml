@@ -23,9 +23,20 @@ jobs:
             # Use HTTPS with GitHub token instead of SSH
             git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/robycigar/million-candles.git
 
-            # Pull latest changes
+            # Pull latest changes for the entire project
             git pull origin main
 
+            # --- Next.js Deployment ---
+            # Install Next.js dependencies
+            npm install
+
+            # Build the Next.js application for production
+            npm run build
+
+            # Restart the Next.js application with PM2
+            pm2 restart 0
+
+            # --- Laravel Backend Deployment ---
             # Move to backend directory
             cd backend
 
