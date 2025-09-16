@@ -27,6 +27,9 @@ jobs:
             git pull origin main
 
             # --- Next.js Deployment ---
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
+            npm --help
             # Install Next.js dependencies
             npm install
 
