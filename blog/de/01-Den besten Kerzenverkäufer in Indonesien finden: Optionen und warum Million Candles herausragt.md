@@ -1,6 +1,7 @@
 ---
 title: "Den besten Kerzenverkäufer in Indonesien finden: Optionen und warum Million Candles herausragt" 
 date: "2025-05-15" 
+image: "/Million-Candles/BCM/putih.jpg"
 desc: "Suchen Sie einen zuverlässigen Kerzenverkäufer in Indonesien? Dieser Artikel untersucht, wo man Kerzen finden kann, und beleuchtet, warum Million Candles (souvenirlilin.id) eine erstklassige Wahl für Qualität und Vielfalt ist." 
 tags: "Kerzenverkäufer Indonesien, wo Kerzen kaufen Indonesien, bester Kerzenladen Indonesien, Souvenirkerzen Indonesien, Million Candles, souvenirlilin.id, Kerzen online kaufen Indonesien, Kerzen Großhandel Indonesien, handgemachte Kerzen Indonesien"
 ---
