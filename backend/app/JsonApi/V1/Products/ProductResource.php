@@ -4,68 +4,37 @@ namespace App\JsonApi\V1\Products;
 
 use Illuminate\Http\Request;
 use LaravelJsonApi\Core\Resources\JsonApiResource;
-use App\Models\Product;
 
 class ProductResource extends JsonApiResource
 {
-
-    /**
-     * Get the resource's attributes.
-     *
-     * @param Request|null $request
-     * @return iterable
-     */
     public function attributes($request): iterable
     {
-
         $locale = $request->get('locale');
-        $currency = $request->get('currency');
-        $translatedDescription = null;
-        $translatedName = null;
-        $formattedPrice = null;
-
-        if($locale) {
-            $translation = $this->resource->translation($locale);
-            if(isset($translation)) {
-                $translatedName = $translation->name;
-                $translatedDescription = $translation->description;
-            }
-        }
-
-        if($currency) {
-            $formattedPrice = $this->resource->getFormattedPriceAttribute();
-        }
-
-        // dd($translation->description);
+        $currencyCode = $request->get('currency');
+        
+        // Get translation once if needed
+        $translation = $locale ? $this->resource->translation($locale) : null;
+        
         return [
-            'name' => $translatedName ? $translatedName : $this->name,
+            'name' => $translation?->name ?? $this->name,
             'code' => $this->code,
             'slug' => $this->slug,
-            'description' => $translatedDescription ? $translatedDescription : $this->description,
+            'description' => $translation?->description ?? $this->description,
             'price' => (int) $this->price,
             'stock' => (int) $this->stock,
             'views_count' => (int) $this->views_count,
             'amount_sold' => (int) $this->amount_sold,
-            'product_reviews' => $this->reviews->loadMissing('user'),
-            // 'variants' => $this->variants->load('options'),
-            'product_variants' => $this->productVariants->loadMissing('productVariantOption.productVariant'),
-            'variant_combinations' => $this->variantCombinations->loadMissing('values.productVariantOption.productVariant'),
-            'formattedPrice' => $formattedPrice,
-            'priceInCurrency' => $this->resource->getPriceInCurrencyAttribute($request->get('currency')),
-            // 'translatedName' => $this->translatedName,
-            // 'translatedDescription' => $this->translatedDescription,
+            'product_reviews' => $this->reviews, // Relations already eager loaded
+            'product_variants' => $this->productVariants,
+            'variant_combinations' => $this->variantCombinations,
+            'formattedPrice' => $currencyCode ? $this->resource->getFormattedPrice($currencyCode) : null,
+            'priceInCurrency' => $currencyCode ? $this->resource->getPriceInCurrency($currencyCode) : $this->price,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
             'deletedAt' => $this->deleted_at,
         ];
     }
 
-    /**
-     * Get the resource's relationships.
-     *
-     * @param Request|null $request
-     * @return iterable
-     */
     public function relationships($request): iterable
     {
         return [
@@ -73,5 +42,4 @@ class ProductResource extends JsonApiResource
             $this->relation('product-categories'),
         ];
     }
-
 }

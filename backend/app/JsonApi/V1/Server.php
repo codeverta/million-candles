@@ -14,6 +14,9 @@ use App\JsonApi\V1\Provinces\ProvinceSchema;
 use App\JsonApi\V1\Regencies\RegencySchema;
 use App\JsonApi\V1\Users\UserSchema;
 use App\JsonApi\V1\Villages\VillageSchema;
+use App\JsonApi\V1\Reviews\ReviewSchema;
+use App\JsonApi\V1\ProductVariants\ProductVariantSchema;
+use App\JsonApi\V1\VariantCombinations\VariantCombinationSchema;
 use App\JsonApi\V1\ProductTranslations\ProductTranslationSchema;
 use App\JsonApi\V1\Currencies\CurrencySchema;
 use App\Models\Cart;
@@ -65,6 +68,9 @@ class Server extends BaseServer
             ProductVariantOptionSchema::class,
             ProductTranslationSchema::class,
             CurrencySchema::class,
+            VariantCombinationSchema::class,
+            ReviewSchema::class,
+            ProductVariantSchema::class
         ];
     }
 }

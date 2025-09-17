@@ -9,32 +9,13 @@ class Currency extends Model
 {
     use HasFactory;
 
-    /**
-     * The primary key for the model.
-     *
-     * @var string
-     */
+    // Add a static property to hold the cached default currency
+    protected static ?Currency $defaultCurrencyCache = null;
+
     protected $primaryKey = 'code';
-
-    /**
-     * The "type" of the primary key ID.
-     *
-     * @var string
-     */
     protected $keyType = 'string';
-
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
     public $incrementing = false;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    
     protected $fillable = [
         'code',
         'name',
@@ -43,24 +24,25 @@ class Currency extends Model
         'is_default',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
     protected $casts = [
         'exchange_rate' => 'float',
         'is_default' => 'boolean',
     ];
 
     /**
-     * Get the default currency
+     * Get the default currency with caching.
      *
      * @return self
      */
     public static function getDefault()
     {
-        return static::where('is_default', true)->first();
+        // If the cache is empty, fetch the default currency and store it
+        if (is_null(self::$defaultCurrencyCache)) {
+            self::$defaultCurrencyCache = static::where('is_default', true)->first();
+        }
+        
+        // Return the cached instance
+        return self::$defaultCurrencyCache;
     }
 
     /**
@@ -71,15 +53,13 @@ class Currency extends Model
      */
     public function convert(float $amount): float
     {
+        // Now calling getDefault() will only query the database once
         $defaultCurrency = self::getDefault();
         
-        // If this is the default currency, no conversion needed
         if ($this->is_default) {
             return $amount;
         }
         
-        // Convert from default currency to the target currency
-        // For IDR to USD: divide the IDR amount by the IDR/USD rate
         return $amount / $defaultCurrency->exchange_rate * $this->exchange_rate;
     }
 
