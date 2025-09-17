@@ -217,6 +217,7 @@ export default function Content({
     include: "documents",
     "page[number]": currentPage,
     locale: router.locale,
+    "filter[category_id]": 1,
     currency: currency[router.locale],
     ...queryParams,
   };

@@ -59,7 +59,11 @@ export default function Header(props) {
   useEffect(() => {
     const updatedMenus = [
       { label: t("menu.home", "Home"), url: "/" },
-      { label: t("menu.products", "Products"), url: "/products" },
+      {
+        label: t("menu.products", "Products"),
+        url: "/products",
+        children: true,
+      },
       { label: t("menu.how_to_order", "How to Order"), url: "/cara-order" },
       { label: t("menu.address", "Address"), url: "/address" },
       { label: t("menu.blog", "Blog"), url: "/posts" },

@@ -107,6 +107,7 @@ class ProductSchema extends Schema
         return [
             WhereIdIn::make($this),
             Where::make("slug"),
+            Where::make('category_id', 'product_categories_id'),
         ];
     }
 

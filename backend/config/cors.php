@@ -19,7 +19,8 @@ return [
     'allowed_methods' => ['*'],
     'allowed_origins' => [
     'https://souvenirlilin.id',
-    'https://www.souvenirlilin.id'
+    'https://www.souvenirlilin.id',
+    'http://localhost:3000',
 ],
     'allowed_origins_patterns' => [],
     'allowed_headers' => ['*'],
