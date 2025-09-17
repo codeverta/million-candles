@@ -22,7 +22,8 @@ class ProductSchema extends Schema
     use SoftDeletes;
     
     public static string $model = Product::class;
-    
+    protected bool $selfLink = false;
+
     public array $with = [
         'productTranslations',
         'productVariants.productVariantOption',
