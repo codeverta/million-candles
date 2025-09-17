@@ -219,6 +219,8 @@ export default function Content({
     locale: router.locale,
     "filter[category_id]": 1,
     currency: currency[router.locale],
+    "fields[products]":
+      "name,description,price,code,slug,stock,view_count,documents",
     ...queryParams,
   };
 

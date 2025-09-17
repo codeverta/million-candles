@@ -15,9 +15,6 @@ import packageInfo from "../package.json";
 import dayjs from "dayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { TourProvider } from "@reactour/tour";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { appWithTranslation } from "next-i18next";
 import CartProvider from "context/CartContext";
 
@@ -25,7 +22,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      retry: 1,
+      retry: 0,
       staleTime: 1000 * 60 * 5, // 5 minutes
     },
     mutations: {
@@ -42,25 +39,6 @@ if (typeof window !== "undefined") {
   // @ts-ignore
   window.version = packageInfo.version;
 }
-
-const steps = [
-  {
-    selector: ".first-step",
-    content: "Klik untuk memunculkan menu",
-  },
-  {
-    selector: ".second-step",
-    content: "Kode Order",
-  },
-  {
-    selector: ".third-step",
-    content: "Status Order",
-  },
-  {
-    selector: ".fourth-step",
-    content: "Daftar Menu",
-  },
-];
 
 function App({ Component, pageProps }: AppLayoutProps) {
   const appProps = { getRelationship, getRelationships };
@@ -87,84 +65,46 @@ function App({ Component, pageProps }: AppLayoutProps) {
           images: [
             {
               url: ogImageUrl,
+              width: 1200,
+              height: 630,
               alt: pageTitle,
             },
           ],
           url: siteUrl,
           type: "website",
           site_name: siteName,
+          locale: "id_ID",
         }}
         twitter={{
           handle: twitterHandle,
-          site: siteUrl,
-          cardType: "Jual Souvenir Lilin",
+          site: twitterHandle,
+          cardType: "summary_large_image",
         }}
         additionalMetaTags={[
           {
             name: "keywords",
             content: keywords,
           },
+          {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1.0",
+          },
+          {
+            name: "theme-color",
+            content: "#2563eb",
+          },
         ]}
       />
 
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
-          <TourProvider
-            steps={steps}
-            nextButton={({
-              Button,
-              currentStep,
-              stepsLength,
-              setIsOpen,
-              setCurrentStep,
-              steps,
-            }: any) => {
-              const last = currentStep === stepsLength - 1;
-              return (
-                <Button
-                  hideArrow={true}
-                  onClick={() => {
-                    if (last) {
-                      setIsOpen(false);
-                      localStorage.setItem("has_onboarding", "true");
-                    } else {
-                      setCurrentStep((s: any) =>
-                        s === steps?.length - 1 ? 0 : s + 1
-                      );
-                    }
-                  }}
-                >
-                  {last ? "Tutup" : <ArrowForwardIosIcon />}
-                </Button>
-              );
-            }}
-            prevButton={({ currentStep, setCurrentStep, steps }: any) => {
-              const first = currentStep === 0;
-              return (
-                <button
-                  onClick={() => {
-                    if (first) {
-                      setCurrentStep((s: any) => steps.length - 1);
-                    } else {
-                      setCurrentStep((s: any) => s - 1);
-                    }
-                  }}
-                >
-                  <ArrowBackIosIcon />
-                </button>
-              );
-            }}
-            showPrevNextButtons={true}
-            className="!p-10 rounded-lg"
-          >
-            <Toaster position="top-center" richColors />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <CartProvider>
-                {getLayout(<Component {...pageProps} {...appProps} />)}
-              </CartProvider>
-            </LocalizationProvider>
-            <ReactQueryDevtools initialIsOpen={false} />
-          </TourProvider>
+          <Toaster position="top-center" richColors />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <CartProvider>
+              {getLayout(<Component {...pageProps} {...appProps} />)}
+            </CartProvider>
+          </LocalizationProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
         </AuthProvider>
       </QueryClientProvider>
     </>

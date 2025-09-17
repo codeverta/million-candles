@@ -1,6 +1,7 @@
 ---
 title: "Jenis Sumbu Lilin yang Digunakan Sesuai Kebutuhan Aroma, Ukuran, Wadah, atau Dekorasi"
 date: "2025-09-16"
+image: "/Million-Candles/Lainnya/IMG_7106_11zon.jpg"
 desc: "Pelajari berbagai jenis sumbu lilin yang sesuai kebutuhan aroma, ukuran, wadah, dan dekorasi. Temukan tips memilih sumbu terbaik untuk hasil lilin sempurna."
 tags: "sumbu lilin, jenis sumbu lilin, lilin aromaterapi, lilin dekorasi, lilin custom"
 ---

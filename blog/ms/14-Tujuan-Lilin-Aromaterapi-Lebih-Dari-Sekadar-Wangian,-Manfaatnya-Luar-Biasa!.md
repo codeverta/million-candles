@@ -1,6 +1,7 @@
 ---
 title: "Tujuan Lilin Aromaterapi: Lebih Dari Sekadar Wangian, Manfaatnya Luar Biasa!"
 date: "2025-09-13"
+image: "/Million-Candles/Lainnya/IMG_7122_11zon.jpg"
 desc: "Temukan tujuan lilin aromaterapi yang sebenarnya! Bukan sekadar haruman, tetapi relaksasi, terapi, dan suasana. Panduan lengkap untuk manfaat maksimal."
 tags: "Lilin Aromaterapi, Aromaterapi, Relaksasi, Kesihatan Mental, Haruman Rumah"
 ---
