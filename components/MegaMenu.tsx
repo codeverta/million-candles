@@ -287,19 +287,12 @@ const MegaMenu = ({ isOpen, onClose }) => {
       name: "Lilin Gelas",
       subcategories: [
         {
-          name: "Fragrances",
+          name: "Lilin Gelas",
           items: [
             {
-              name: "All Fragrance Oils",
-              url: "/candle-making/fragrances/all",
+              name: "Lilin Gelas Premium",
+              url: "/products/glass-candle",
             },
-            {
-              name: "Holiday Fragrances",
-              url: "/candle-making/fragrances/holiday",
-            },
-            { name: "Fall", url: "/candle-making/fragrances/fall" },
-            { name: "Classic", url: "/candle-making/fragrances/classic" },
-            { name: "Summer", url: "/candle-making/fragrances/summer" },
           ],
         },
       ],
@@ -452,7 +445,7 @@ const MegaMenu = ({ isOpen, onClose }) => {
           </div>
         </div>
       </div>
-      <div className="bg-gray-100 dark:bg-gray-700 py-3 px-6 flex justify-between items-center">
+      {/* <div className="bg-gray-100 dark:bg-gray-700 py-3 px-6 flex justify-between items-center">
         <div className="text-sm text-gray-600 dark:text-gray-300">
           Free shipping on orders over $100
         </div>
@@ -462,7 +455,7 @@ const MegaMenu = ({ isOpen, onClose }) => {
         >
           Close Menu
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

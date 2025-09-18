@@ -11,6 +11,16 @@
     "gallery": "갤러리",
     "about": "회사 소개"
   },
+  "homepage": {
+    "title": "고품질 수제 양초 제조업체 | Million Candles",
+    "description": "Million Candles는 기도, 장식, 선물 및 휴식에 적합한 수제 양초 제조업체입니다. 서울, 부산, 인천, 대구, 대전, 광주, 울산, 수원 등 한국 주요 도시에 배송 가능합니다.",
+    "keywords": "양초 구매, 수제 양초, 프리미엄 양초, 필라 양초, 장식 양초, 선물 양초, 기념 양초, 컬러 양초, 양초 제조업체, Million Candles"
+  },
+  "products_page": {
+    "title": "고품질 양초 컬렉션을 확인하세요 | Million Candles",
+    "description": "장식용 양초, 기도용 양초, 기념 양초 등 다양한 고품질 양초를 만나보세요. 서울, 부산, 인천, 대구, 대전, 광주, 울산, 수원 등 주요 도시에 빠른 배송을 제공합니다.",
+    "keywords": "양초 온라인 구매, 수제 양초, 필라 양초, 장식 양초, 선물 양초, 기념 양초, 프리미엄 양초샵, Million Candles, 한국 양초 배송"
+  },
   "address": {
     "full": "Jalan Kaliurang KM 9, Sleman, Yogyakarta, Indonesia"
   },

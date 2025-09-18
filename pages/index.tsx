@@ -15,7 +15,7 @@ import {
 import { getSortedPostsData } from "lib/posts";
 import { Avatar } from "@mui/material";
 import Head from "next/head";
-import { LocalBusinessJsonLd, LogoJsonLd } from "next-seo";
+import { LocalBusinessJsonLd, LogoJsonLd, NextSeo } from "next-seo";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
@@ -225,6 +225,45 @@ function Home(props: any) {
           url="https://www.souvenirlilin.id"
         />
       </Head>
+      <NextSeo
+        title={t("homepage.title")}
+        description={t("homepage.description")}
+        openGraph={{
+          title: t("homepage.title"),
+          description: t("homepage.description"),
+          images: [
+            {
+              url: "https://www.souvenirlilin.id/Million-Candles/Lilin Memories Biru/1.jpeg",
+              width: 1200,
+              height: 630,
+              alt: t("homepage.title"),
+            },
+          ],
+          url: "https://www.souvenirlilin.id",
+          type: "website",
+          site_name: "Million Candles",
+          locale: "id_ID",
+        }}
+        twitter={{
+          handle: "@souvenirlilin.id",
+          site: "@souvenirlilin.id",
+          cardType: "summary_large_image",
+        }}
+        additionalMetaTags={[
+          {
+            name: "keywords",
+            content: t("homepage.keywords"),
+          },
+          {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1.0",
+          },
+          {
+            name: "theme-color",
+            content: "#2563eb",
+          },
+        ]}
+      />
       <div className="dark:bg-gray-900 bg-white text-gray-900 dark:text-white">
         <Hero />
         <Content />

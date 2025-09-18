@@ -36,12 +36,13 @@ export default function LanguageDropdown() {
     setIsOpen(!isOpen);
   };
 
-  const changeLanguage = (locale) => {
-    router.push(router.pathname, router.asPath, { locale });
+  const changeLanguage = (locale: string) => {
+    const isPostPath = /^\/posts\/[^\/]+$/.test(router.pathname);
+    const newPath = isPostPath ? "/posts" : router.pathname;
+    router.push(newPath, newPath, { locale });
     i18n?.changeLanguage(locale);
   };
-
-  const handleLanguageChange = (lang) => {
+  const handleLanguageChange = (lang: string) => {
     setCurrentLang(lang);
     setIsOpen(false);
     changeLanguage(lang.code);
@@ -67,7 +68,9 @@ export default function LanguageDropdown() {
         aria-expanded={isOpen}
       >
         <Globe className="w-5 h-5 mr-1" />
-        <span className="mr-1">{currentLang.flag}</span>
+        <span className="mr-1">
+          {currentLang.flag} {currentLang.name}
+        </span>
         <ChevronDown
           className={`w-4 h-4 transition-transform ${
             isOpen ? "rotate-180" : ""
