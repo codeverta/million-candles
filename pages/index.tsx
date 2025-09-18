@@ -534,7 +534,11 @@ function Home(props: any) {
                   >
                     <div className="relative h-48 w-full overflow-hidden">
                       <img
-                        src={`https://picsum.photos/seed/${post.id}/800/500`}
+                        src={
+                          post.image
+                            ? post.image
+                            : `https://picsum.photos/seed/${post.id}/800/500`
+                        }
                         alt={post.title}
                         className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                       />
