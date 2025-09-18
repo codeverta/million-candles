@@ -1,212 +1,59 @@
 name: Deploy to Server
+
 on:
   push:
     branches: [main]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      # --- Next.js Build ---
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-          cache: "npm"
-
-      - name: Install Next.js dependencies
-        run: npm ci # Use npm ci for faster, reliable installs
-
-      - name: Build Next.js application
-        run: npm run build
-
-      - name: Verify build exists
-        run: |
-          if [ ! -d ".next" ]; then
-            echo "❌ Build directory not found!"
-            exit 1
-          fi
-          echo "✅ Build verified successfully"
-
-      # --- Create deployment package ---
-      - name: Create deployment package
-        run: |
-          mkdir -p deploy-package
-          # Copy only necessary files for production
-          cp -r .next deploy-package/
-          cp -r public deploy-package/
-          cp package.json deploy-package/
-          cp package-lock.json deploy-package/
-          cp next.config.js deploy-package/ 2>/dev/null || echo "No next.config.js found"
-          cp -r backend deploy-package/ 2>/dev/null || echo "No backend directory found"
-          echo "✅ Deployment package created"
-
-      # --- Backup current deployment ---
-      - name: Backup current deployment
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            APP_DIR="/var/www/html/million-candles"
-            BACKUP_DIR="/var/www/html/million-candles.backup.$(date +%Y%m%d_%H%M%S)"
-
-            if [ -d "$APP_DIR" ]; then
-              echo "📦 Creating backup at $BACKUP_DIR"
-              cp -r "$APP_DIR" "$BACKUP_DIR"
-              echo "✅ Backup created successfully"
-              
-              # Keep only last 3 backups
-              cd /var/www/html
-              ls -dt million-candles.backup.* 2>/dev/null | tail -n +4 | xargs rm -rf
-            else
-              echo "ℹ️ No existing deployment to backup"
-            fi
-
-      # --- Deploy with Rsync ---
       - name: Deploy to server
-        uses: burnett01/rsync-deployments@7.1.0
-        with:
-          switches: -avzr --checksum
-          path: deploy-package/
-          remote_path: /var/www/html/million-candles/
-          remote_host: ${{ secrets.HOST }}
-          remote_user: ${{ secrets.USERNAME }}
-          remote_key: ${{ secrets.SSH_KEY }}
-
-      # --- Post-deployment scripts ---
-      - name: Run post-deployment scripts
-        uses: appleboy/ssh-action@v1.0.3
+        uses: appleboy/ssh-action@v0.1.5
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            set -e # Exit on any error
+            cd /var/www/html/million-candles
 
-            APP_DIR="/var/www/html/million-candles"
-            cd "$APP_DIR"
+            # Use HTTPS with GitHub token instead of SSH
+            git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/robycigar/million-candles.git
 
-            echo "🚀 Starting post-deployment tasks..."
+            # Pull latest changes for the entire project
+            git pull origin main
 
-            # Install production dependencies for Next.js
-            if [ -f "package.json" ]; then
-              echo "📦 Installing Node.js dependencies..."
-              export NVM_DIR=~/.nvm
-              source ~/.nvm/nvm.sh
-              npm ci --production --silent
-            fi
+            # --- Next.js Deployment ---
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
+            npm --help
+            # Install Next.js dependencies
+            npm install
 
-            # Handle PM2 restart with better error handling
-            echo "🔄 Managing PM2 process..."
-            if pm2 describe million-candles-fe-prod > /dev/null 2>&1; then
-              echo "Restarting existing PM2 process..."
-              pm2 restart million-candles-fe-prod --update-env
-            else
-              echo "Starting new PM2 process..."
-              if [ -f "ecosystem.config.js" ]; then
-                pm2 start ecosystem.config.js
-              else
-                pm2 start npm --name "million-candles-fe-prod" -- run start
-              fi
-            fi
+            # Build the Next.js application for production
+            npm run build
 
-            # Backend (Laravel) tasks
-            if [ -d "backend" ]; then
-              echo "🔧 Processing Laravel backend..."
-              cd backend
-              
-              # Check if composer.json exists
-              if [ -f "composer.json" ]; then
-                echo "📦 Installing Composer dependencies..."
-                export COMPOSER_ALLOW_SUPERUSER=1
-                export COMPOSER_NO_INTERACTION=1
-                composer install --no-dev --optimize-autoloader --no-interaction --quiet
-                
-                # Laravel optimization
-                if [ -f "artisan" ]; then
-                  echo "⚡ Optimizing Laravel..."
-                  php artisan config:cache --quiet
-                  php artisan route:cache --quiet
-                  php artisan view:cache --quiet
-                  
-                  # Run migrations with confirmation
-                  echo "🗄️ Running database migrations..."
-                  php artisan migrate --force --quiet
-                  
-                  echo "✅ Laravel optimization completed"
-                else
-                  echo "⚠️ artisan file not found, skipping Laravel commands"
-                fi
-              else
-                echo "⚠️ composer.json not found, skipping Composer installation"
-              fi
-              
-              cd "$APP_DIR"
-            else
-              echo "ℹ️ No backend directory found, skipping Laravel tasks"
-            fi
+            # Restart the Next.js application with PM2
+            pm2 restart million-candles-fe-prod
 
-            # Verify deployment
-            echo "🔍 Verifying deployment..."
-            if pm2 describe million-candles-fe-prod > /dev/null 2>&1; then
-              PM2_STATUS=$(pm2 describe million-candles-fe-prod | grep 'status' | head -1)
-              echo "PM2 Status: $PM2_STATUS"
-              
-              if echo "$PM2_STATUS" | grep -q 'online'; then
-                echo "✅ Deployment completed successfully!"
-              else
-                echo "❌ PM2 process is not online"
-                exit 1
-              fi
-            else
-              echo "❌ PM2 process not found"
-              exit 1
-            fi
+            # --- Laravel Backend Deployment ---
+            # Move to backend directory
+            cd backend
 
-      # --- Rollback on failure ---
-      - name: Rollback on failure
-        if: failure()
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            echo "💥 Deployment failed, initiating rollback..."
+            # Set environment variables for Composer
+            export COMPOSER_ALLOW_SUPERUSER=1
+            export COMPOSER_NO_INTERACTION=1
 
-            APP_DIR="/var/www/html/million-candles"
-            LATEST_BACKUP=$(ls -dt /var/www/html/million-candles.backup.* 2>/dev/null | head -1)
+            # Install dependencies
+            composer install --no-dev --optimize-autoloader --no-interaction
 
-            if [ -n "$LATEST_BACKUP" ] && [ -d "$LATEST_BACKUP" ]; then
-              echo "🔄 Rolling back to: $LATEST_BACKUP"
-              rm -rf "$APP_DIR"
-              cp -r "$LATEST_BACKUP" "$APP_DIR"
-              
-              cd "$APP_DIR"
-              if pm2 describe million-candles-fe-prod > /dev/null 2>&1; then
-                pm2 restart million-candles-fe-prod
-              fi
-              
-              echo "✅ Rollback completed"
-            else
-              echo "❌ No backup found for rollback"
-            fi
+            # Cache Laravel configs
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
 
-      # --- Cleanup old backups ---
-      - name: Cleanup old backups
-        if: success()
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            echo "🧹 Cleaning up old backups..."
-            cd /var/www/html
-            # Keep only the 3 most recent backups
-            ls -dt million-candles.backup.* 2>/dev/null | tail -n +4 | xargs rm -rf
-            echo "✅ Cleanup completed"
+            # Run migrations
+            php artisan migrate --force
