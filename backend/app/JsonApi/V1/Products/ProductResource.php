@@ -20,11 +20,12 @@ class ProductResource extends JsonApiResource
             'code' => $this->code,
             'slug' => $this->slug,
             'description' => $translation?->description ?? $this->description,
+            'thumbnail' => $this->documents->first()?->filename,
             'price' => (int) $this->price,
             'stock' => (int) $this->stock,
             'views_count' => (int) $this->views_count,
             'amount_sold' => (int) $this->amount_sold,
-            'product_reviews' => $this->reviews, // Relations already eager loaded
+            'product_reviews' => $this->reviews,
             'product_variants' => $this->productVariants,
             'variant_combinations' => $this->variantCombinations,
             'formattedPrice' => $currencyCode ? $this->resource->getFormattedPrice($currencyCode) : null,

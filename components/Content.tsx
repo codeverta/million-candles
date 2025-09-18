@@ -46,12 +46,7 @@ const StarRating = ({ rating }) => {
 };
 
 // AnimatedProductCard component with enhanced animations
-const AnimatedProductCard = ({
-  product,
-  isDocumentExist,
-  documents,
-  index,
-}) => {
+const AnimatedProductCard = ({ product, isDocumentExist, index }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -128,7 +123,7 @@ const AnimatedProductCard = ({
               className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
               src={
                 isDocumentExist
-                  ? documents[0]?.attributes.filename
+                  ? product.attributes.thumbnail
                   : "/assets/image-1@2x.jpg"
               }
               alt={product.attributes.name}
@@ -214,13 +209,12 @@ export default function Content({
 
   const productParams = {
     "page[size]": 12,
-    include: "documents",
     "page[number]": currentPage,
     locale: router.locale,
     "filter[category_id]": 1,
     currency: currency[router.locale],
     "fields[products]":
-      "name,description,price,code,slug,stock,view_count,documents",
+      "name,description,price,code,slug,stock,view_count,thumbnail",
     ...queryParams,
   };
 
@@ -330,16 +324,14 @@ export default function Content({
                   product.relationships?.documents.data.length > 0
                     ? getRelationships(query.data.data, product, "documents")
                     : [];
-                const isDocumentExist = !!documents[0]?.attributes.filename;
                 return (
                   <li
                     className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3"
                     key={product.attributes.slug}
                   >
                     <AnimatedProductCard
-                      isDocumentExist={isDocumentExist}
+                      isDocumentExist={!!product.attributes.thumbnail}
                       product={product}
-                      documents={documents}
                       index={index}
                     />
                   </li>
