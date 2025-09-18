@@ -95,6 +95,8 @@ jobs:
             # Install production dependencies for Next.js
             if [ -f "package.json" ]; then
               echo "📦 Installing Node.js dependencies..."
+              export NVM_DIR=~/.nvm
+              source ~/.nvm/nvm.sh
               npm ci --production --silent
             fi
 
