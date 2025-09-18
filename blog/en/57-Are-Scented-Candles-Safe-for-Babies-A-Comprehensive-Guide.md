@@ -1,6 +1,7 @@
 ---
 title: "Are Scented Candles Safe for Babies? A Comprehensive Guide"
 date: "2025-08-29"
+image: "/Million-Candles/Lilin Gelas Putih/1.png"
 desc: "Uncover the truth about scented candles and their impact on babies. Learn about safe alternatives, potential risks, and expert advice for creating a healthy nursery."
 tags: "Scented Candles, Baby Safety, Aromatherapy, Infant Health, Nursery Decor"
 ---

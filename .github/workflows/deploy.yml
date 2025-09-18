@@ -11,7 +11,40 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Deploy to server
+      # --- Next.js Build & Sync ---
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18" # Ganti dengan versi Node.js Anda
+
+      - name: Install and Build Next.js
+        run: |
+          npm install
+          npm run build
+
+      - name: Sync Next.js files to server
+        uses: appleboy/rsync-action@v0.1.5
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          source: ".next, .next/cache, public" # Hanya kirim folder hasil build & public
+          target: "/var/www/html/million-candles"
+          overwrite: true
+
+      # --- Laravel Backend Deployment ---
+      - name: Sync Laravel files to server
+        uses: appleboy/rsync-action@v0.1.5
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          source: "backend"
+          target: "/var/www/html/million-candles"
+          overwrite: true
+
+      # --- Run post-deployment scripts on server ---
+      - name: Post-deployment scripts
         uses: appleboy/ssh-action@v0.1.5
         with:
           host: ${{ secrets.HOST }}
@@ -20,27 +53,10 @@ jobs:
           script: |
             cd /var/www/html/million-candles
 
-            # Use HTTPS with GitHub token instead of SSH
-            git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/robycigar/million-candles.git
-
-            # Pull latest changes for the entire project
-            git pull origin main
-
-            # --- Next.js Deployment ---
-            export NVM_DIR=~/.nvm
-            source ~/.nvm/nvm.sh
-            npm --help
-            # Install Next.js dependencies
-            npm install
-
-            # Build the Next.js application for production
-            npm run build
-
-            # Restart the Next.js application with PM2
+            # Restart Next.js app with PM2
             pm2 restart 0
 
-            # --- Laravel Backend Deployment ---
-            # Move to backend directory
+            # Change to backend directory
             cd backend
 
             # Set environment variables for Composer
