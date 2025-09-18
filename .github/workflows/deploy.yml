@@ -70,7 +70,7 @@ jobs:
       - name: Deploy to server
         uses: burnett01/rsync-deployments@7.1.0
         with:
-          switches: -avzr --checksum --exclude-from=rsync-exclude.txt
+          switches: -avzr --checksum
           path: deploy-package/
           remote_path: /var/www/html/million-candles/
           remote_host: ${{ secrets.HOST }}

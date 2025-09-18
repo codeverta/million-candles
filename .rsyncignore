@@ -1,6 +1,0 @@
-# Create .rsyncignore file with:
-node_modules/
-.env*
-.git/
-*.log
-.DS_Store
