@@ -190,7 +190,7 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
 
     const postUrl = getPostUrl(sharePostId);
     const post = allPostsData.find((p) => p.id === sharePostId);
-    const title = post?.title || "Blog Lilin Article";
+    const title = post?.title || `${t("blog_section.title")}`;
     const encodedTitle = encodeURIComponent(title);
     const encodedUrl = encodeURIComponent(postUrl);
 
@@ -241,10 +241,10 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
       <Head>
         <title>
           {searchTerm
-            ? `Hasil Pencarian untuk "${searchTerm}" - Blog Lilin`
+            ? `"${searchTerm}" - ${t("blog_section.title")}`
             : selectedCategory
-            ? `${selectedCategory} - Blog Lilin`
-            : "Blog Lilin - Kumpulan Cerita dan Tips"}
+            ? `${selectedCategory} - ${t("blog_section.title")}`
+            : t("blog_section.title")}
         </title>
         <meta name="description" content={metaDescription} />
       </Head>

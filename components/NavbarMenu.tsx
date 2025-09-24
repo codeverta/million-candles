@@ -111,7 +111,7 @@ function NavbarMenu({ menus, handleOpenLogin, handleDrawer, open }) {
 
                 if (menu?.children) {
                   return (
-                    <li className="relative">
+                    <li key={index} className="relative">
                       <button
                         onClick={toggleMegaMenu}
                         className={`flex items-center py-2 pr-4 pl-3 border-b border-gray-100/60 hover:bg-gray-50/60 lg:hover:bg-transparent lg:border-0 lg:p-0 dark:hover:bg-gray-700/70 lg:dark:hover:bg-transparent dark:border-gray-700/60 transition-colors relative

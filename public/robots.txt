@@ -1,6 +1,7 @@
 # *
 User-agent: *
 Allow: /
+Disallow: */admin/
 
 # Host
 Host: https://souvenirlilin.id
