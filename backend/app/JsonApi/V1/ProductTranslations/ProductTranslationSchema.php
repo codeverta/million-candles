@@ -50,6 +50,7 @@ class ProductTranslationSchema extends Schema
         return [
             WhereIdIn::make($this),
             Where::make('product_id'),
+            Where::make('locale'),
         ];
     }
 

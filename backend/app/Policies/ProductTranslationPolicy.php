@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\ProductVariant;
+use App\Models\ProductTranslation;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -36,10 +36,10 @@ class ProductTranslationPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User|null  $user
-     * @param  \App\Models\ProductVariant  $ProductVariant
+     * @param  \App\Models\ProductTranslation  $ProductTranslation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, ProductVariant $ProductVariant)
+    public function view(User $user, ProductTranslation $ProductTranslation)
     {
         return true;
     }
@@ -59,10 +59,10 @@ class ProductTranslationPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ProductVariant  $ProductVariant
+     * @param  \App\Models\ProductTranslation  $ProductTranslation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, ProductVariant $ProductVariant)
+    public function update(User $user, ProductTranslation $ProductTranslation)
     {
         return true;
     }
@@ -71,10 +71,10 @@ class ProductTranslationPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ProductVariant  $ProductVariant
+     * @param  \App\Models\ProductTranslation  $ProductTranslation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, ProductVariant $ProductVariant)
+    public function delete(User $user, ProductTranslation $ProductTranslation)
     {
         return true;
     }
@@ -83,10 +83,10 @@ class ProductTranslationPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ProductVariant  $ProductVariant
+     * @param  \App\Models\ProductTranslation  $ProductTranslation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, ProductVariant $ProductVariant)
+    public function restore(User $user, ProductTranslation $ProductTranslation)
     {
         //
     }
@@ -95,10 +95,10 @@ class ProductTranslationPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ProductVariant  $ProductVariant
+     * @param  \App\Models\ProductTranslation  $ProductTranslation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, ProductVariant $ProductVariant)
+    public function forceDelete(User $user, ProductTranslation $ProductTranslation)
     {
         //
     }
