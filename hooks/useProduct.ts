@@ -22,13 +22,15 @@ export default function useProduct() {
         setIsLoading(true);
         try {
           const slug = router.query.slug;
+          console.log({ slug });
           const product = await api.get("products", {
             "filter[slug]": slug,
             locale: router.locale,
             currency: currency[router.locale] || "id",
             include: "documents",
           });
-
+          console.log("API Response:", product);
+          console.log("Product data:", product.data);
           setProduct(product.data);
         } catch (error) {
           console.error("Error fetching product:", error);

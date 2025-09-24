@@ -37,11 +37,25 @@ export default function LanguageDropdown() {
   };
 
   const changeLanguage = (locale: string) => {
-    const isPostPath = /^\/posts\/[^\/]+$/.test(router.pathname);
+    const isPostPath = router.pathname.includes("posts");
     const newPath = isPostPath ? "/posts" : router.pathname;
-    router.push(newPath, newPath, { locale });
+    const currentPathWithoutLocale = router.asPath.replace(
+      `/${router.locale}`,
+      ""
+    );
+
+    // Use router.push with both pathname and query
+    router.push(
+      {
+        pathname: newPath,
+        query: { ...router.query }, // Pass all existing query parameters
+      },
+      currentPathWithoutLocale, // Use the path without locale as the as-path
+      { locale }
+    );
     i18n?.changeLanguage(locale);
   };
+
   const handleLanguageChange = (lang: string) => {
     setCurrentLang(lang);
     setIsOpen(false);
