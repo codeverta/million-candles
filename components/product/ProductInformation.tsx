@@ -92,12 +92,12 @@ const ProductInformation = ({
         )}
       </div>
 
-      <div className="">
+      {/* <div className="">
         <ProductVariants
           product={product.data[0]}
           onVariantChange={handleVariantChange}
         />
-      </div>
+      </div> */}
 
       <div className="mb-6 flex items-center">
         <Package size={18} className="mr-2 text-gray-500" />

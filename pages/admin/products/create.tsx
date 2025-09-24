@@ -7,9 +7,9 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AdminLayout from "components/layout/AdminLayout";
-import React, { useMemo, useRef, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { Cancel } from "@mui/icons-material";
 import api from "utils/api";
@@ -17,7 +17,13 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useRouter } from "next/router";
 import ReorderableFileUpload from "components/molecules/ReorderableFileUpload";
-import ProductVariantComponent from "./ProductVariantComponent"; // Import the new component
+import { MenuItem } from "@mui/material";
+
+const locales = [
+  { code: "en", name: "English" },
+  { code: "id", name: "Indonesian" },
+  { code: "zh", name: "Mandarin" },
+];
 
 const productParams = {
   include: "documents,product-categories",
@@ -25,13 +31,7 @@ const productParams = {
 
 function CreateProduct() {
   const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    watch,
-    control,
-    formState: { errors },
-  } = useForm();
+  const { handleSubmit } = useForm();
   const getProductCategory = useQuery({
     queryKey: ["product-categories"],
     queryFn: () => {
@@ -60,50 +60,47 @@ function CreateProduct() {
     name: "",
     price: 0,
     stock: 0,
-    variantInput: "",
     description: "",
     productCategoryId: "",
     product: null,
   });
 
-  // New state for product variants
-  const [productVariants, setProductVariants] = useState({
-    variants: [],
-    combinations: [],
-  });
+  const [productTranslations, setProductTranslations] = useState({});
+  const [selectedLocale, setSelectedLocale] = useState("en");
 
-  const [hasVariants, setHasVariants] = useState(false);
-
-  useEffect(() => {
-    if (router.query.id) {
-      const id = router.query.id;
-      fetchProduct(id as string);
-    }
-    return () => {};
-  }, []);
-
-  const fetchProduct = (id: string | number) => {
-    api.get(`products/${id}`, productParams).then(async (res: any) => {
+  const fetchProduct = async (id: string | number) => {
+    try {
+      const res = await api.get(`products/${id}`, productParams);
+      const productData = res.data.data.attributes;
       setState({
         ...state,
-        ...res.data.data.attributes,
+        ...productData,
         product: res.data,
       });
 
-      // Check if product has variants
-      const variantsResponse = await api.get(
-        `product-variants?product_id=${res.data.data.id}`
+      const translationsResponse = await api.get(
+        `product-translations?filter[product_id]=${res.data.data.id}`
       );
-
-      if (variantsResponse.data.length > 0) {
-        setHasVariants(true);
-      }
-    });
+      const translationsData = {};
+      translationsResponse.data.data.forEach((t) => {
+        translationsData[t.attributes.locale] = {
+          name: t.attributes.name,
+          description: t.attributes.description,
+        };
+      });
+      setProductTranslations(translationsData);
+    } catch (error) {
+      console.error("Failed to fetch product data:", error);
+      toast.error("Failed to load product data.");
+    }
   };
 
-  const handleVariantChange = (variantData) => {
-    setProductVariants(variantData);
-  };
+  useEffect(() => {
+    const id = router.query.id;
+    if (id) {
+      fetchProduct(id as string);
+    }
+  }, [router.query.id]);
 
   const onSubmitProduct = async () => {
     const productId = router.query.id;
@@ -122,7 +119,6 @@ function CreateProduct() {
           "product-categories": {
             data: {
               type: "product-categories",
-              // id: state.productCategoryId,
               id: "1",
             },
           },
@@ -142,8 +138,7 @@ function CreateProduct() {
         newProductId = res.data.data.id;
         toast.success("Produk Berhasil Ditambahkan");
       }
-
-      // Handle file uploads
+      await saveProductTranslations(newProductId);
       const batchReq = files.map((it: any) => {
         const formData = new FormData();
         formData.append("documentable_type", "products");
@@ -157,96 +152,44 @@ function CreateProduct() {
       });
 
       await Promise.all(batchReq);
-
-      // Process variants if we have any
-      if (hasVariants && productVariants.variants.length > 0) {
-        await saveProductVariants(newProductId);
-      }
-
-      // router.push("/admin/products");
     } catch (error) {
       console.error(error);
       toast.error("Produk Gagal Ditambahkan");
     }
   };
 
-  const saveProductVariants = async (productId) => {
+  const saveProductTranslations = async (productId) => {
     try {
-      // Create variants
-      const variantPromises = productVariants.variants.map(async (variant) => {
-        // Create variant
-        const variantResponse = await api.post("product-variants", {
-          name: variant.name,
-          product_id: productId,
-        });
-
-        const variantId = variantResponse.data.id;
-
-        // Create options
-        const optionPromises = variant.options.map((option) =>
-          api.post("product-variant-options", {
-            name: option.name,
-            product_variant_id: variantId,
-          })
-        );
-
-        const optionResponses = await Promise.all(optionPromises);
-
-        return {
-          variantId,
-          options: optionResponses.map((res) => ({
-            id: res.data.id,
-            name: res.data.name,
-          })),
-        };
-      });
-
-      const savedVariants = await Promise.all(variantPromises);
-
-      // Create variant combinations
-      const combinationPromises = productVariants.combinations.map(
-        async (combo) => {
-          // Map option names to option IDs from saved variants
-          const optionIds = [];
-
-          // For each option in the combination
-          for (const opt of combo.options) {
-            // Find the variant that matches this option's variant name
-            const variant = savedVariants.find((v) =>
-              productVariants.variants.find(
-                (origV) => origV.name === opt.variantName
-              )
-            );
-
-            if (variant) {
-              // Find the matching option in this variant
-              const matchingOption = variant.options.find(
-                (o) => o.name === opt.optionName
-              );
-              if (matchingOption) {
-                optionIds.push(matchingOption.id);
-              }
-            }
-          }
-
-          if (optionIds.length > 0) {
-            return api.post("variant-combinations", {
-              product_id: productId,
-              sku: combo.sku,
-              price: combo.price,
-              stock: combo.stock,
-              option_ids: optionIds,
-            });
+      const translationPromises = locales.map(async (locale) => {
+        const translation = productTranslations[locale.code];
+        if (translation && (translation.name || translation.description)) {
+          const payload = {
+            data: {
+              type: "product-translations",
+              attributes: {
+                locale: locale.code,
+                name: translation.name,
+                description: translation.description,
+                "product-id": productId,
+              },
+            },
+          };
+          const existingTranslations = await api.get(
+            `product-translations?filter[product_id]=${productId}&filter[locale]=${locale.code}`
+          );
+          if (existingTranslations.data.data.length > 0) {
+            const translationId = existingTranslations.data.data[0].id;
+            return api.patch(`product-translations/${translationId}`, payload);
+          } else {
+            return api.post("product-translations", payload);
           }
         }
-      );
-
-      await Promise.all(combinationPromises);
-
-      toast.success("Product variants saved successfully");
+      });
+      await Promise.all(translationPromises.filter(Boolean));
+      toast.success("Product translations saved successfully");
     } catch (error) {
-      console.error("Error saving variants:", error);
-      toast.error("Failed to save product variants");
+      console.error("Error saving translations:", error);
+      toast.error("Failed to save product translations");
     }
   };
 
@@ -259,10 +202,6 @@ function CreateProduct() {
 
   const onChangeFile = (files: any) => {
     setFiles(files);
-  };
-
-  const toggleVariants = () => {
-    setHasVariants(!hasVariants);
   };
 
   return (
@@ -307,6 +246,65 @@ function CreateProduct() {
           />
         </ListItem>
         <ListItem>
+          <Typography variant="h6">Terjemahan Produk</Typography>
+        </ListItem>
+        <ListItem>
+          <TextField
+            select
+            label="Pilih Bahasa"
+            value={selectedLocale}
+            onChange={(e) => setSelectedLocale(e.target.value)}
+            className="w-full"
+          >
+            {locales.map((locale) => (
+              <MenuItem key={locale.code} value={locale.code}>
+                {locale.name}
+              </MenuItem>
+            ))}
+          </TextField>
+        </ListItem>
+        <ListItem>
+          <TextField
+            className="w-full"
+            label={`Nama Produk (${
+              locales.find((l) => l.code === selectedLocale)?.name
+            })`}
+            placeholder="Masukkan Nama Produk"
+            helperText="Wajib diisi"
+            value={productTranslations[selectedLocale]?.name || ""}
+            onChange={(e) =>
+              setProductTranslations({
+                ...productTranslations,
+                [selectedLocale]: {
+                  ...productTranslations[selectedLocale],
+                  name: e.target.value,
+                },
+              })
+            }
+          />
+        </ListItem>
+        <ListItem>
+          <TextField
+            className="w-full"
+            label={`Deskripsi Produk (${
+              locales.find((l) => l.code === selectedLocale)?.name
+            })`}
+            placeholder="Masukkan Deskripsi Produk"
+            multiline
+            minRows={2}
+            value={productTranslations[selectedLocale]?.description || ""}
+            onChange={(e) =>
+              setProductTranslations({
+                ...productTranslations,
+                [selectedLocale]: {
+                  ...productTranslations[selectedLocale],
+                  description: e.target.value,
+                },
+              })
+            }
+          />
+        </ListItem>
+        <ListItem>
           <TextField
             className="w-full"
             label="Nama"
@@ -322,11 +320,7 @@ function CreateProduct() {
             label="Harga"
             type="number"
             placeholder="Masukkan Harga"
-            helperText={
-              hasVariants
-                ? "Harga default (akan dioverride oleh harga varian)"
-                : "Wajib diisi"
-            }
+            helperText="Wajib diisi"
             value={state.price}
             onChange={(e) => setState({ ...state, price: e.target.value })}
           />
@@ -339,51 +333,9 @@ function CreateProduct() {
             value={state.stock}
             type="number"
             onChange={(e) => setState({ ...state, stock: e.target.value })}
-            helperText={
-              hasVariants
-                ? "Stok default (akan dioverride oleh stok varian)"
-                : "Wajib diisi"
-            }
+            helperText="Wajib diisi"
           />
         </ListItem>
-        <ListItem>
-          <TextField
-            className="w-full"
-            label="Deskripsi"
-            placeholder="Deskripsi"
-            multiline
-            minRows={2}
-            value={state.description}
-            onChange={(e) =>
-              setState({ ...state, description: e.target.value })
-            }
-          />
-        </ListItem>
-
-        <ListItem>
-          <Button
-            variant="outlined"
-            onClick={toggleVariants}
-            className="w-full"
-          >
-            {hasVariants
-              ? "Nonaktifkan Varian Produk"
-              : "Aktifkan Varian Produk"}
-          </Button>
-        </ListItem>
-
-        {/* Product Variants Component */}
-        {hasVariants && (
-          <ListItem>
-            <div className="w-full">
-              <ProductVariantComponent
-                productId={router.query.id}
-                onChange={handleVariantChange}
-              />
-            </div>
-          </ListItem>
-        )}
-
         <ListItem>
           <Button
             type="submit"
