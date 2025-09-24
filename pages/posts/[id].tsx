@@ -148,6 +148,20 @@ function Post({ postData, slug }) {
           creator: "@souvenirlilin",
           images: [postData.image || backgroundImageUrl],
         }}
+        additionalMetaTags={[
+          {
+            name: "keywords",
+            content: postData.tags || "",
+          },
+          // {
+          //   name: "viewport",
+          //   content: "width=device-width, initial-scale=1.0",
+          // },
+          // {
+          //   name: "theme-color",
+          //   content: "#2563eb",
+          // },
+        ]}
       />
       {/* Add the BlogSchemaJsonLd component */}
       <BlogSchemaJsonLd
@@ -176,7 +190,7 @@ function Post({ postData, slug }) {
                 <img
                   src={postData.image}
                   alt={`${postData.title} header image`}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  className="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
                 />
               ) : (
                 <img

@@ -171,13 +171,13 @@ export async function getPostData(id, lang = "en") {
     enhancedContent = insertTableOfContents(enhancedContent, usedLanguage);
   }
 
-  // Insert contextual links within the content
-  enhancedContent = insertContextualLinks(
-    enhancedContent,
-    allPosts,
-    id,
-    usedLanguage
-  );
+  // // Insert contextual links within the content
+  // enhancedContent = insertContextualLinks(
+  //   enhancedContent,
+  //   allPosts,
+  //   id,
+  //   usedLanguage
+  // );
 
   // Insert related posts section
   enhancedContent = insertRelatedPostLinks(

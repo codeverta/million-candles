@@ -214,7 +214,7 @@ export default function Content({
     "filter[category_id]": 1,
     currency: currency[router.locale],
     "fields[products]":
-      "name,description,price,code,slug,stock,view_count,thumbnail",
+      "name,description,price,code,slug,stock,views_count,thumbnail",
     ...queryParams,
   };
 

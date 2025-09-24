@@ -67,7 +67,6 @@ export default function LanguageDropdown() {
         className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 font-medium rounded-lg text-sm px-3 py-2 flex items-center transition-colors"
         aria-expanded={isOpen}
       >
-        <Globe className="w-5 h-5 mr-1" />
         <span className="mr-1">
           {currentLang.flag} {currentLang.name}
         </span>
