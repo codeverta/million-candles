@@ -43,7 +43,7 @@ function ProductDetail({ product, initialLocale }) {
   } = useProduct(product, initialLocale);
 
   // Penjaga untuk mencegah error saat data belum siap pada navigasi client-side
-  if (router.isFallback || !product) {
+  if (router.isFallback || !product || !product?.data?.[0]?.attributes) {
     return <div>Loading Page...</div>; // Atau tampilkan skeleton halaman penuh
   }
 
@@ -110,14 +110,20 @@ export async function getServerSideProps({ locale, params }) {
   const { slug } = params;
 
   try {
+    console.log(`Fetching product with slug: ${slug}`);
     const productData = await api.get("products", {
       "filter[slug]": slug,
       locale: locale,
       currency: currency[locale] || "id",
       include: "documents",
     });
+    console.log(
+      "API Response Data:",
+      JSON.stringify(productData.data, null, 2)
+    );
 
     if (!productData?.data || productData.data?.data?.length === 0) {
+      console.log("Product not found or empty response.");
       return { notFound: true };
     }
 
