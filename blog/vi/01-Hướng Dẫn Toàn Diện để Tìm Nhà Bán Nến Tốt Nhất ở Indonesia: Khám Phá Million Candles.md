@@ -1,5 +1,6 @@
 ---
 title: "Hướng Dẫn Toàn Diện để Tìm Nhà Bán Nến Tốt Nhất ở Indonesia: Khám Phá Million Candles" 
+image: "/Million-Candles/Lilin Memories Hijau/1.png"
 date: "2025-06-23" 
 desc: "Bạn đang tìm kiếm những cây nến độc đáo làm quà lưu niệm hoặc để trang trí nhà cửa? Indonesia là một kho báu ẩn giấu của các nghệ nhân làm nến. Trong bài viết này, chúng tôi sẽ hướng dẫn bạn cách tìm nhà bán nến tốt nhất ở Indonesia, đặc biệt tập trung vào Million Candles, một thương hiệu địa phương hàng đầu." 
 tags: "nhà bán nến, nến Indonesia, quà lưu niệm Indonesia, Million Candles, nến thơm, nến thủ công, mua nến trực tuyến"

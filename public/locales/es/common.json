@@ -24,6 +24,11 @@
   "address": {
     "full": "Jalan Kaliurang KM 9, Sleman, Yogyakarta, Indonesia"
   },
+  "about": {
+    "title": "Sobre Nosotros | Million Candles - Madrid, Barcelona, Ciudad de México, Buenos Aires Fabricante de Velas",
+    "description": "Million Candles es un fabricante de velas al por mayor de Yogyakarta desde 2007. Servimos a clientes en Madrid, Barcelona, Ciudad de México y Buenos Aires con velas aromáticas, religiosas y decorativas.",
+    "keywords": "velas al por mayor Madrid, proveedor de velas Barcelona, fábrica de velas Ciudad de México, velas decorativas Buenos Aires, velas aromáticas mayoristas"
+  },
   "tagline": {
     "local_producer": "Productor local de velas",
     "national_scale": "A escala nacional"

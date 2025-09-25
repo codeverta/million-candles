@@ -3,7 +3,7 @@ import Head from "next/head";
 import { marked } from "marked";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import { LocalBusinessJsonLd } from "next-seo";
+import { LocalBusinessJsonLd, NextSeo } from "next-seo";
 import IndonesiaHeatmap from "components/IndonesiaHeatmap";
 import { motion } from "framer-motion";
 import { fadeIn } from "lib/animations";
@@ -14,11 +14,17 @@ function About() {
 
   return (
     <>
-      <Head>
-        <title>
-          Tentang Kami | UD Million Candles - Produsen Lilin Aromaterapi
-        </title>
-      </Head>
+      <NextSeo
+        title={t("about.title")}
+        description={t("about.description")}
+        canonical="https://souvenirlilin.id/about"
+        additionalMetaTags={[
+          {
+            name: "keywords",
+            content: t("about.keywords"),
+          },
+        ]}
+      />
       <LocalBusinessJsonLd
         type="Store"
         id="https://souvenirlilin.id"

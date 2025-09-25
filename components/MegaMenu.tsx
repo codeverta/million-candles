@@ -45,6 +45,15 @@ const MegaMenu = ({ isOpen, onClose }) => {
             { name: "Lilin Kristal Besar", url: "/products/tall-large-candle" },
           ],
         },
+        {
+          name: "Lilin Memories",
+          items: [
+            {
+              name: "Lilin Memories Ujung Lancip",
+              url: "/products/memories-sharp-candle",
+            },
+          ],
+        },
       ],
       featured: [
         { name: "Produk Baru", url: "/essential-oils/new", type: "link" },
