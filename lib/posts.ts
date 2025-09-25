@@ -180,11 +180,11 @@ export async function getPostData(id, lang = "en") {
   // );
 
   // Insert related posts section
-  enhancedContent = insertRelatedPostLinks(
-    enhancedContent,
-    relatedPosts,
-    usedLanguage
-  );
+  // enhancedContent = insertRelatedPostLinks(
+  //   enhancedContent,
+  //   relatedPosts,
+  //   usedLanguage
+  // );
 
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()

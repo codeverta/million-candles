@@ -1,93 +1,76 @@
+// hooks/useProduct.ts
+
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import api from "utils/api";
 import { getRelationships } from "utils";
-import { currency } from "lib/currency";
 
 /**
- * Custom hook to fetch and manage product data
+ * Custom hook to manage product-related client-side state
+ * @param {object} initialProduct - The product data fetched on the server
  */
-export default function useProduct() {
-  const [product, setProduct] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+export default function useProduct(initialProduct) {
+  const [product, setProduct] = useState(initialProduct);
+  const [isLoading, setIsLoading] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [qty, setQty] = useState(1);
   const router = useRouter();
 
-  // Fetch product data when slug is available
+  // ====================================================================
+  // INI SOLUSINYA:
+  // Gunakan useEffect untuk "mendengarkan" perubahan pada initialProduct.
+  // Jika prop initialProduct dari halaman berubah, update state internal hook ini.
+  // ====================================================================
   useEffect(() => {
-    if (router.query?.slug) {
-      const fetchProduct = async () => {
-        setIsLoading(true);
-        try {
-          const slug = router.query.slug;
-          console.log({ slug });
-          const product = await api.get("products", {
-            "filter[slug]": slug,
-            locale: router.locale,
-            currency: currency[router.locale] || "id",
-            include: "documents",
-          });
-          console.log("API Response:", product);
-          console.log("Product data:", product.data);
-          setProduct(product.data);
-        } catch (error) {
-          console.error("Error fetching product:", error);
-        } finally {
-          setIsLoading(false);
-        }
-      };
+    // 1. Update state 'product' internal dengan data produk yang baru.
+    setProduct(initialProduct);
 
-      fetchProduct();
-    }
-  }, [router.query]);
+    // 2. Reset semua state yang berhubungan dengan produk sebelumnya.
+    setSelectedVariant(null);
+    setQty(1);
+    setImagesLoaded(false); // Reset status gambar agar skeleton bisa muncul sebentar
+  }, [initialProduct]); // Dependency array: Effect ini akan berjalan setiap kali initialProduct berubah.
 
-  // Handle image loading status
+  // Handle image loading status (logika ini tetap sama)
   useEffect(() => {
-    if (!isLoading && product) {
+    if (product) {
       const documents =
         product.data[0]?.relationships?.documents.data.length > 0
           ? getRelationships(product, product.data[0], "documents")
           : [];
 
       if (documents.length === 0) {
-        // No images to load, set as loaded
         setImagesLoaded(true);
         return;
       }
 
-      // Set imagesLoaded to true after a reasonable timeout
+      // Beri sedikit waktu agar transisi terlihat mulus
       const timer = setTimeout(() => {
         setImagesLoaded(true);
-      }, 1000);
+      }, 500); // Anda bisa sesuaikan durasi ini
 
       return () => clearTimeout(timer);
     }
-  }, [isLoading, product]);
+  }, [product]); // Sekarang ini bergantung pada state 'product' yang sudah benar
 
-  // Prepare data objects
+  // Sisa logika hook tidak perlu diubah, karena sekarang akan menggunakan
+  // state 'product' yang sudah ter-update dengan benar.
+
   const documents =
-    !isLoading && product?.data[0]?.relationships?.documents.data.length > 0
+    product?.data[0]?.relationships?.documents.data.length > 0
       ? getRelationships(product, product.data[0], "documents")
       : [];
 
   const isDocumentExist =
-    !isLoading && documents.length > 0 && !!documents[0]?.attributes.filename;
+    documents.length > 0 && !!documents[0]?.attributes.filename;
 
-  // Get current price - either from selected variant or base product price
-  const currentPrice =
-    !isLoading &&
-    (selectedVariant
-      ? selectedVariant.price
-      : product?.data[0]?.attributes.formattedPrice);
+  const currentPrice = selectedVariant
+    ? selectedVariant.price
+    : product?.data[0]?.attributes.formattedPrice;
 
-  // Get current stock - either from selected variant or base product stock
-  const currentStock =
-    !isLoading &&
-    (selectedVariant
-      ? selectedVariant.stock
-      : product?.data[0]?.attributes.stock);
+  const currentStock = selectedVariant
+    ? selectedVariant.stock
+    : product?.data[0]?.attributes.stock;
 
   const handleVariantChange = (variant) => {
     setSelectedVariant(variant);
@@ -96,9 +79,8 @@ export default function useProduct() {
   const incrementQuantity = () => setQty(qty + 1);
   const decrementQuantity = () => (qty > 1 ? setQty(qty - 1) : null);
 
-  // Prepare message for WhatsApp order
   const prepareOrderMessage = () => {
-    if (isLoading || !product) return "";
+    if (!product) return "";
 
     let message = `Halo saya ingin memesan \n${product.data[0].attributes.name} (${product.data[0].attributes.code}) ${qty}`;
 
@@ -120,8 +102,8 @@ export default function useProduct() {
     selectedVariant,
     qty,
     handleVariantChange,
-    incrementQuantity,
     decrementQuantity,
+    incrementQuantity,
     prepareOrderMessage,
   };
 }

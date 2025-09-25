@@ -19,11 +19,27 @@ import { useRouter } from "next/router";
 import ReorderableFileUpload from "components/molecules/ReorderableFileUpload";
 import { MenuItem } from "@mui/material";
 
-const locales = [
-  { code: "en", name: "English" },
-  { code: "id", name: "Indonesian" },
-  { code: "zh", name: "Mandarin" },
-];
+const locales = Object.entries({
+  ar: "Arabic",
+  bn: "Bengali",
+  de: "German",
+  en: "English",
+  es: "Spanish",
+  fr: "French",
+  id: "Indonesian",
+  ja: "Japanese",
+  kr: "Korean",
+  ms: "Malay",
+  ru: "Russian",
+  pt: "Portuguese",
+  th: "Thai",
+  vi: "Vietnamese",
+  zh: "Mandarin",
+  hi: "Hindi",
+}).map(([code, name]) => ({
+  code,
+  name,
+}));
 
 const productParams = {
   include: "documents,product-categories",
@@ -163,14 +179,21 @@ function CreateProduct() {
       const translationPromises = locales.map(async (locale) => {
         const translation = productTranslations[locale.code];
         if (translation && (translation.name || translation.description)) {
-          const payload = {
+          let payload = {
             data: {
               type: "product-translations",
               attributes: {
                 locale: locale.code,
                 name: translation.name,
                 description: translation.description,
-                "product-id": productId,
+              },
+              relationships: {
+                product: {
+                  data: {
+                    type: "products",
+                    id: productId,
+                  },
+                },
               },
             },
           };
@@ -179,6 +202,7 @@ function CreateProduct() {
           );
           if (existingTranslations.data.data.length > 0) {
             const translationId = existingTranslations.data.data[0].id;
+            payload.data.id = translationId;
             return api.patch(`product-translations/${translationId}`, payload);
           } else {
             return api.post("product-translations", payload);

@@ -319,8 +319,8 @@ const MegaMenu = ({ isOpen, onClose }) => {
           name: "Sumbu Lilin(Wick)",
           items: [
             {
-              name: "Cotton Wick",
-              url: "/candle-making/fragrances/all",
+              name: "Tali Goni / Tali Rami",
+              url: "/products/tali-goni-tali-rami",
             },
           ],
         },

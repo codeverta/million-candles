@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+// components/product/ProductImageGallery.js
+
+import React, { useEffect, useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Thumbs } from "swiper";
 import "swiper/css";
@@ -10,7 +12,7 @@ import {
 } from "components/molecules/landing/ProductDetailSkeleton";
 
 /**
- * Product image gallery component with main image slider and thumbnails
+ * Product image gallery component with manual cleanup logic
  */
 const ProductImageGallery = ({
   isLoading,
@@ -18,8 +20,20 @@ const ProductImageGallery = ({
   documents,
   isDocumentExist,
   productName,
+  productIdentifier, // Menerima identifier unik untuk memicu effect
 }: any) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const mainSwiperRef = useRef(null);
+
+  // useEffect untuk membersihkan (destroy) instance Swiper saat komponen unmount
+  useEffect(() => {
+    // Fungsi cleanup ini akan berjalan saat komponen akan dihancurkan
+    return () => {
+      if (mainSwiperRef.current) {
+        mainSwiperRef.current.destroy(true, true);
+      }
+    };
+  }, [productIdentifier]); // Effect ini bergantung pada identifier produk
 
   if (isLoading || !isImagesLoaded) {
     return (
@@ -33,6 +47,8 @@ const ProductImageGallery = ({
   return (
     <>
       <Swiper
+        // Key tetap penting untuk memicu siklus unmount/mount dari React
+        key={productIdentifier}
         spaceBetween={10}
         navigation={true}
         pagination={{ clickable: true }}
@@ -41,6 +57,10 @@ const ProductImageGallery = ({
         }}
         className="w-full"
         modules={[Pagination, Thumbs]}
+        // Menyimpan instance swiper ke dalam ref saat dibuat
+        onSwiper={(swiper) => {
+          mainSwiperRef.current = swiper;
+        }}
       >
         {isDocumentExist ? (
           documents.map((document) => (
@@ -54,10 +74,6 @@ const ProductImageGallery = ({
                   src={document.attributes.filename}
                   className="h-auto w-auto max-w-full max-h-full m-auto z-10 relative"
                   style={{ objectFit: "contain" }}
-                  onLoad={(e) => {
-                    // Remove the skeleton when the image loads
-                    e.target.previousSibling.style.display = "none";
-                  }}
                 />
               </div>
             </SwiperSlide>
@@ -72,9 +88,6 @@ const ProductImageGallery = ({
                 alt="Product"
                 src="/assets/image-1@2x.jpg"
                 className="h-full w-full object-contain z-10 relative"
-                onLoad={(e) => {
-                  e.target.previousSibling.style.display = "none";
-                }}
               />
             </div>
           </SwiperSlide>
@@ -83,14 +96,10 @@ const ProductImageGallery = ({
 
       {isDocumentExist && (
         <Swiper
+          key={`thumbs-${productIdentifier}`}
           modules={[Thumbs]}
           watchSlidesProgress
-          onSwiper={(swiper) => {
-            // Only set thumbsSwiper if it's not destroyed
-            if (swiper && !swiper.destroyed) {
-              setThumbsSwiper(swiper);
-            }
-          }}
+          onSwiper={setThumbsSwiper}
           spaceBetween={10}
           slidesPerView={3}
           freeMode={true}
@@ -98,18 +107,12 @@ const ProductImageGallery = ({
         >
           {documents.map((document) => (
             <SwiperSlide className="border rounded-md" key={document.id}>
-              <div className=" h-20">
+              <div className="h-20">
                 <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 opacity-60"></div>
                 <img
                   alt="Thumbnail"
                   src={document.attributes.filename}
                   className="h-full w-full object-cover z-10 relative"
-                  onLoad={(e) => {
-                    const prevSibling = e.target.previousSibling;
-                    if (prevSibling) {
-                      prevSibling.style.display = "none";
-                    }
-                  }}
                 />
               </div>
             </SwiperSlide>

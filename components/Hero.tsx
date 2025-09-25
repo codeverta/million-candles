@@ -42,7 +42,7 @@ const carouselImages = [
     title: "Lilin Gelas",
   },
   {
-    src: "/Million-Candles/Lilin MT/4.png",
+    src: "/Million-Candles/Lilin TL Putih/9.png",
     alt: "Premium Pillar Candle",
     title: "Lilin Aromaterapi Premium",
   },

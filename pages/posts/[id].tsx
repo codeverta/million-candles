@@ -20,6 +20,7 @@ import BreadcrumbSchemaJsonLd from "components/BreadcrumbSchemaJsonLd"; // Impor
 import { convertDate, estimateReadingTime } from "lib/functions";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import DisqusThread from "components/DisqusThread";
+import ScrollIndicator from "components/ScrollIndicator";
 // import AdSense from "components/AdSense";
 
 // Improved TOC Component with smooth scrolling
@@ -122,6 +123,7 @@ function Post({ postData, slug }) {
 
   return (
     <>
+      <ScrollIndicator />
       <NextSeo
         title={`${postData.title} | Million Candles`}
         description={postData.desc}
@@ -271,9 +273,9 @@ function Post({ postData, slug }) {
           </article>
 
           {/* Related Posts - Using our new component */}
-          {postData.relatedPosts && postData.relatedPosts.length > 0 && (
+          {/* {postData.relatedPosts && postData.relatedPosts.length > 0 && (
             <RelatedPosts posts={postData.relatedPosts} />
-          )}
+          )} */}
         </div>
 
         {/* <AdSense adType={1} /> */}
