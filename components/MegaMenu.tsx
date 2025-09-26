@@ -311,13 +311,6 @@ const MegaMenu = ({ isOpen, onClose }) => {
           url: "/candle-making/kits",
           type: "link",
         },
-        { name: "Wick Guide", url: "/guides/wick", type: "link" },
-        { name: "Wax Guide", url: "/guides/wax", type: "link" },
-        {
-          name: "Candle Batch Supplies Calculator",
-          url: "/calculators/candle-batch",
-          type: "link",
-        },
       ],
     },
     {
@@ -331,6 +324,19 @@ const MegaMenu = ({ isOpen, onClose }) => {
               name: "Tali Goni / Tali Rami",
               url: "/products/tali-goni-tali-rami",
             },
+            {
+              name: "Cotton Candle Wick Thread",
+              url: "/products/cotton-candle-wick-thread",
+            },
+          ],
+        },
+        {
+          name: "Wadah Lilin(Containers)",
+          items: [
+            {
+              name: "Wadah Alumunium Hitam",
+              url: "/products/wadah-kaleng-aluminium-hitam",
+            },
           ],
         },
       ],
@@ -338,13 +344,6 @@ const MegaMenu = ({ isOpen, onClose }) => {
         {
           name: "Free shipping on all candle making kits!",
           url: "/candle-making/kits",
-          type: "link",
-        },
-        { name: "Wick Guide", url: "/guides/wick", type: "link" },
-        { name: "Wax Guide", url: "/guides/wax", type: "link" },
-        {
-          name: "Candle Batch Supplies Calculator",
-          url: "/calculators/candle-batch",
           type: "link",
         },
       ],
