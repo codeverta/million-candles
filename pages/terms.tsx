@@ -12,7 +12,13 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // Function to get the terms content
 export async function getStaticProps({ locale }) {
-  const termsPath = path.join(process.cwd(), "public", "document", "terms.md");
+  const termsPath = path.join(
+    process.cwd(),
+    "public",
+    "document",
+    locale,
+    "terms.md"
+  );
   const fileContents = fs.readFileSync(termsPath, "utf8");
 
   // Use gray-matter to parse the metadata and content

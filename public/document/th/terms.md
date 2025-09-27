@@ -115,127 +115,249 @@ The safety of our customers is paramount. Please read and follow these important
 | **Category**    | **Warning**                                                                                                                         | **Snippet IDs** |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------- | --------------- |
 | **Mandatory**   | Burn within sight.                                                                                                                  | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Mandatory**   | Keep away from flammable objects.                                                                                                   | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Mandatory**   | Keep away from children and pets.                                                                                                   | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Trim wick to ¼ inch before lighting.                                                                                                | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Keep candle free of any foreign materials including matches and wick trimmings.                                                     | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Only burn candle on a level, fire-resistant surface.                                                                                | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not burn candle for more than four hours at a time.                                                                              | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Stop use when only ½ inch of wax remains.                                                                                           | <sup>40</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not extinguish with water.                                                                                                       | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Always allow wax to harden before relighting, touching, or moving.                                                                  | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Avoid drafts.                                                                                                                       | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Set candle on a heat-resistant surface.                                                                                             | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Keep candles 10 cm apart.                                                                                                           | <sup>44</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Remove packaging before use.                                                                                                        | <sup>49</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Read the candle label and follow instructions.                                                                                      | <sup>49</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Never touch or move a burning candle or when wax is liquid.                                                                         | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Use a snuffer to extinguish.                                                                                                        | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Burn in a well-ventilated room.                                                                                                     | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not use as a nightlight.                                                                                                         | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Handle carefully as containers may have sharp edges (if applicable).                                                                | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not place debris, matches, or foreign objects into the melted wax.                                                               | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not burn in excessively cold rooms or freeze candles.                                                                            | <sup>39</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not burn all the way down.                                                                                                       | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not use a knife or sharp object to remove wax drippings.                                                                         | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Allow candle to burn completely across the top on the first use.                                                                    | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Wait 7-10 days before burning for the first time (if applicable).                                                                   | <sup>47</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Ensure wicks remain centered in the vessel.                                                                                         | <sup>47</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Discontinue burning when ½ inch of wax remains and/or the wick detaches.                                                            | <sup>40</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not use the lid to extinguish candles containing matchbooks.                                                                     | <sup>45</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Use only in warmers designed for wax melts (if applicable).                                                                         | <sup>45</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Never add water to wax melts.                                                                                                       | <sup>45</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not heat wax melts if the pot contains less than ½ inch of wax.                                                                  | <sup>45</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Use an unscented tea light in a well-ventilated warmer for candle lit pots (if applicable).                                         | <sup>45</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Keep tea light wick trimmed and do not allow flame to touch the underside of the melt pot (if applicable).                          | <sup>45</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Use only UL-listed electric pots designed for wax melts (if applicable).                                                            | <sup>45</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Never heat wax melts on a stove or other non-approved appliance.                                                                    | <sup>45</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Use wax melts in well-ventilated areas away from flammable objects, materials, and surfaces (if applicable).                        | <sup>48</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not burn outdoor candles indoors.                                                                                                | <sup>49</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Adapt the number of candles to the size of the room.                                                                                | <sup>49</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Use a long gas lighter to light candles ideally.                                                                                    | <sup>49</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Smother the flame, do not blow it out.                                                                                              | <sup>49</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Ensure the candle is completely out before leaving the room.                                                                        | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Extinguish if the flame becomes too high or starts to soot visibly.                                                                 | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Let the candle cool, trim the wick, and check for drafts before relighting.                                                         | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Follow the manufacturer’s recommendations on candle use and care.                                                                   | <sup>49</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Ventilate the room after use (for scented candles).                                                                                 | <sup>49</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Avoid direct inhalation of any smoke (for scented candles).                                                                         | <sup>49</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | For outdoor use only (if applicable).                                                                                               | <sup>49</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not burn in a warming unit (if applicable).                                                                                      | <sup>49</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not use on a balcony or veranda (if applicable).                                                                                 | <sup>49</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not burn in rain or snow (if applicable).                                                                                        | <sup>49</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Use in a suitable lantern (if applicable).                                                                                          | <sup>49</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not move your candle while it's lit.                                                                                             | <sup>50</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Maintain your candles.                                                                                                              | <sup>50</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Extinguish candles properly using a snuffer or spoon.                                                                               | <sup>50</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Double-check that candles are completely out.                                                                                       | <sup>50</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Give your candles space away from windows, curtains, and drafts.                                                                    | <sup>52</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Place candles on heat-resistant surfaces.                                                                                           | <sup>52</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not use taper or pillar candles once they get within 2” of their holders.                                                        | <sup>50</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Handheld candles must have a drip guard (if applicable).                                                                            | <sup>50</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Candles may not be longer than 8 inches (if applicable).                                                                            | <sup>50</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Candles will not be placed in an aisle, egress route, or near exits (if applicable).                                                | <sup>50</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Locate fire extinguishers prior to lighting candles (if applicable).                                                                | <sup>50</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Report all emergencies to relevant authorities (if applicable).                                                                     | <sup>50</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Building Manager may reject the use of a specific type of candle if deemed unsafe (if applicable).                                  | <sup>50</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Wait for candle to cool before moving and covering with a lid.                                                                      | <sup>54</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Clean remaining wax from inner container walls before each burn.                                                                    | <sup>54</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Use the wooden lid as a coaster (if applicable).                                                                                    | <sup>54</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Place the lid underneath the candle to protect the surface.                                                                         | <sup>54</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Consider waiting 7-10 days before the first burn.                                                                                   | <sup>47</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Ensure wicks are trimmed to 2mm-3mm before each light.                                                                              | <sup>40</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Gently snap off ash or burnt wood along the top edge of the wick.                                                                   | <sup>40</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Discontinue burning when the wick detaches and moves off-center.                                                                    | <sup>40</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Be mindful if the candle is loose and monitor when there is an inch of wax left.                                                    | <sup>40</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | If the flame touches the side of the glass, it can cause it to crack and break.                                                     | <sup>40</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Allow candle to form a full melt pool on the first burn to prevent tunneling.                                                       | <sup>20</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Allow candle to burn for 4 hours each burn session.                                                                                 | <sup>48</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Our Companion candles will emit a noticeable aroma in an enclosed area of approximately 50 sq ft.                                   | <sup>51</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Our Grand candles will emit a noticeable aroma in an enclosed area of approximately 200 sq ft.                                      | <sup>51</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Use long matches or a long-reach lighter.                                                                                           | <sup>51</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Always keep hair and loose clothing away from the flame.                                                                            | <sup>51</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Practice proper safety measures to limit unsafe exposure to carbon monoxide.                                                        | <sup>51</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Exposure to unsafe limits of carbon monoxide may be fatal.                                                                          | <sup>51</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Never burn a candle in a tent or in a non-ventilated space.                                                                         | <sup>51</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Never use a candle during a power outage to look for things in a closet or when fueling equipment.                                  | <sup>51</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Store candles top side up with the lid securely attached at temperatures between 72F-80F degrees.                                   | <sup>51</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Cooler temperatures may cause wax to shrink slightly.                                                                               | <sup>51</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Warmer temperatures may induce melting or oiling of the top layer of wax.                                                           | <sup>51</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Always burn your candle for at least 2 hours or until a full wax pool forms across the surface.                                     | <sup>52</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Optimal placement on a stable, heat-resistant surface.                                                                              | <sup>52</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Keep away from drafts, fans, air vents, open windows, and anything that could cause an uneven burn or excessive flickering.         | <sup>52</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Place candles at least 12 inches away from curtains, paper, wood, bedding, furniture, decorations, and any other flammable objects. | <sup>52</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not use candles in cluttered areas, bookshelves, or enclosed spaces where heat can build up.                                     | <sup>52</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not place a burning candle near electrical cords, appliances, or outlets.                                                        | <sup>52</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | If wax spills, allow it to cool completely before removal.                                                                          | <sup>52</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Ensure candles are placed where they cannot be accidentally knocked over.                                                           | <sup>52</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not use candles where pet fur, feathers, or dander may accumulate.                                                               | <sup>52</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Have a fire extinguisher, fire blanket, or sand nearby in case of emergency.                                                        | <sup>52</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | If a candle catches fire, use a fire extinguisher, baking soda, or a metal lid to smother the flames.                               | <sup>52</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | In case of an uncontrollable fire, evacuate immediately and call emergency services.                                                | <sup>52</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Allow candle to cool for at least two hours before relighting.                                                                      | <sup>52</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Do not attempt to burn a candle when the wax level is too low.                                                                      | <sup>52</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Use a candle snuffer to limit excess smoke and prevent hot wax from splattering.                                                    | <sup>54</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Hold the snuffer over the flame for 5 seconds.                                                                                      | <sup>54</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Allow candle to solidify before subsequent use.                                                                                     | <sup>54</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Keep candle wick trimmed before each burn to approximately 6mm.                                                                     | <sup>54</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Short wicks allow for a more controlled flame.                                                                                      | <sup>54</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Don't burn all the wax; stop when it reaches 5mm in the bottom of the glass container.                                              | <sup>54</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | The flame needs a solid wax base to avoid overheating the glass jar.                                                                | <sup>54</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Recycle empty glass jars or reuse them for storage or as tealight holders.                                                          | <sup>54</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | FRAMA scented candles will burn cleanly and safely, but do not leave unattended.                                                    | <sup>54</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Put out the candle before leaving the room and keep out of reach of children and pets.                                              | <sup>54</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | As a general rule, do not leave burning candles for longer than four hours.                                                         | <sup>54</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | After putting out a candle, let it cool for at least two hours before relighting.                                                   | <sup>54</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Never extinguish a burning candle with water.                                                                                       | <sup>53</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Smother the flame to extinguish.                                                                                                    | <sup>53</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Drafts can cause uneven burning and smoking.                                                                                        | <sup>53</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Ensure the candle holder is on a level surface and the wick is centered and straight.                                               | <sup>53</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Votive candles should always be burned IN a votive cup.                                                                             | <sup>53</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Pillar candles should be burned ON a plate or pillar holder.                                                                        | <sup>53</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Discontinue burning pillar candles when ½ inch of unmelted wax remains.                                                             | <sup>53</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 | **Recommended** | Always read the important burning instructions on each candle before use.                                                           | <sup>53</sup>   |
+| ---             | ---                                                                                                                                 | ---             |
 
 **B. Detailed Instructions for Proper Candle Usage**
 
