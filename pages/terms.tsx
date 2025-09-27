@@ -10,6 +10,7 @@ import gfm from "remark-gfm";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Layout from "components/layout/Landing";
+import { NextSeo } from "next-seo";
 
 // Function to get the terms content
 export async function getStaticProps({ locale }) {
@@ -153,31 +154,12 @@ export default function TermsAndConditions({
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Head>
-        <title>Terms & Conditions</title>
-        <meta
-          name="description"
-          content={
-            metadata.description || "Terms and conditions of our service"
-          }
-        />
-      </Head>
-
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-gray-900">
-              Terms & Conditions
-            </h1>
-            <button
-              onClick={() => router.back()}
-              className="inline-flex items-center px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              ← Back
-            </button>
-          </div>
-        </div>
-      </header>
+      <NextSeo
+        title={metadata.title || "Terms & Conditions"}
+        description={
+          metadata.description || "Terms and conditions of our service"
+        }
+      />
 
       <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-8">
