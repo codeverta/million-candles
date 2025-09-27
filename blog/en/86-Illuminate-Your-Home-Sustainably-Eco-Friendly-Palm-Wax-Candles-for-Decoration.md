@@ -1,6 +1,7 @@
 ---
 title: "Illuminate Your Home Sustainably: Eco-Friendly Palm Wax Candles for Decoration"
 date: "2025-09-26"
+image: "/Million-Candles/Lilin TL Putih/8.png"
 desc: "Discover the beauty & sustainability of eco-friendly palm wax candles. Elevate your décor with natural elegance! Shop now at souvenirlilin.id."
 tags: "Eco-Friendly Candles, Palm Wax Candles, Sustainable Decor, Home Decor, Candle Decoration"
 ---

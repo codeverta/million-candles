@@ -1,6 +1,7 @@
 ---
 title: "Best Smelling Candles: Top Fragrance Recommendations for a Cozy Home"
 date: "2025-09-06"
+image: "/Million-Candles/Lilin Gelas Ungu/3.png"
 desc: "Discover the best smelling candles to transform your home into a fragrant haven. Explore top fragrance recommendations for relaxation, energy, & ambiance."
 tags: "Scented Candles, Best Smelling Candles, Home Fragrance, Candle Recommendations, Aromatherapy"
 ---

@@ -1,6 +1,7 @@
 ---
 title: "Long-Lasting Aromatherapy Candles: Top Recommendations for Extended Relaxation"
 date: "2025-09-06"
+image: "/Million-Candles/Lilin Gelas Ungu/4.png"
 desc: "Discover the best long-lasting aromatherapy candles!  Enhance your relaxation with these top picks, designed for extended fragrance and ambiance.  Find your perfect candle!"
 tags: "aromatherapy candles, long-lasting candles, scented candles, home fragrance, relaxation"
 ---

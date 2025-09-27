@@ -1,6 +1,7 @@
 ---
 title: "Where to Buy Candle Wicks Near Me: Your Ultimate Guide"
 date: "2025-09-08"
+image: "/Million-Candles/Lilin TL Putih/7.png"
 desc: "Find the best place to buy candle wicks nearby! Explore local craft stores, online retailers & DIY candle making tips. Light up your creativity today!"
 tags: "candle wicks, candle making supplies, DIY candles, where to buy wicks, candle making"
 ---

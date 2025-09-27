@@ -1,6 +1,7 @@
 ---
 title: "DIY Candle Making: A Beginner's Guide to Crafting Beautiful Decorative Candles"
 date: "2025-09-05"
+image: "/Million-Candles/Lilin Gelas Ungu/1.png"
 desc: "Learn how to make decorative candles at home! This beginner's guide covers everything from materials to techniques, helping you create unique, handmade gifts. Start your candle making journey today!"
 tags: "candle making, DIY candles, candle crafting, beginner candle guide, decorative candles"
 ---

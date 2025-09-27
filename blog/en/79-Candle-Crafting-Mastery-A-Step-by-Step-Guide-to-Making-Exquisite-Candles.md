@@ -1,6 +1,7 @@
 ---
 title: "Candle Crafting Mastery: A Step-by-Step Guide to Making Exquisite Candles"
 date: "2025-09-05"
+image: "/Million-Candles/Lilin Gelas Ungu/2.png"
 desc: "Unlock the art of candle making! From melting wax to adding fragrance, discover the complete process of crafting beautiful, unique candles. Visit souvenirlilin.id!"
 tags: "Candle Making, Candle Crafting, DIY Candles, Candle Process, Artisan Candles"
 ---

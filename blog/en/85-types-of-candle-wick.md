@@ -1,6 +1,7 @@
 ---
 title: "Types of Candle Wicks for Different Needs: Aroma, Size, Container, and Decoration"
 date: "2025-09-16"
+image: "/Million-Candles/Lilin TL Putih/9.png"
 desc: "Discover the types of candle wicks used for different needs—aroma, size, container, or decoration. Learn how to choose the right wick for perfect candles."
 tags: "candle wicks, candle making, candle types, wick guide, candle decoration"
 ---

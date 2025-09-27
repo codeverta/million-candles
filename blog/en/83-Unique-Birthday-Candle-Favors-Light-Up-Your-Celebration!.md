@@ -1,6 +1,7 @@
 ---
 title: "Unique Birthday Candle Favors: Light Up Your Celebration!"
 date: "2025-09-07"
+image: "/Million-Candles/Lilin TL Putih/6.png"
 desc: "Looking for unique birthday candle favors? Discover creative ideas, DIY options, and expert tips to make your party unforgettable! Visit souvenirlilin.id."
 tags: "birthday candle favors, unique favors, candle souvenirs, party favors, handmade candles"
 ---
