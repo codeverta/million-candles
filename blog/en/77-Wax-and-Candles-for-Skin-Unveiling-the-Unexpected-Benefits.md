@@ -1,6 +1,7 @@
 ---
 title: "Wax and Candles for Skin: Unveiling the Unexpected Benefits"
 date: "2025-09-04"
+image: "/Million-Candles/Lilin Memories Putih  /1.png"
 desc: "Discover the surprising benefits of wax and candles for your skin! From moisturizing to soothing, explore how these ingredients enhance your beauty routine."
 tags: "Wax, Candles, Skin Benefits, Skincare, Moisturizing"
 ---

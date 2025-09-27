@@ -1,6 +1,7 @@
 ---
 title: "Unveiling the Soothing Secrets: Comprehensive Benefits of Spa Candles"
 date: "2025-09-04"
+image: "/Million-Candles/Lilin Memories Putih  /2.png"
 desc: "Discover the surprising benefits of spa candles for relaxation, aromatherapy, & well-being. Explore how they enhance your home spa experience! Visit souvenirlilin.id."
 tags: "Spa Candles, Aromatherapy, Relaxation, Stress Relief, Home Spa"
 ---

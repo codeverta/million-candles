@@ -1,6 +1,7 @@
 ---
 title: "Aromatherapy Candles: Unveiling the Health Benefits for Mind & Body"
 date: "2025-09-03"
+image: "/Million-Candles/Lilin Memories Putih  /4.png"
 desc: "Discover the surprising health benefits of aromatherapy candles! Reduce stress, improve sleep, boost mood, and create a calming atmosphere with soothing scents."
 tags: "aromatherapy candles, health benefits, stress relief, relaxation, mood boost"
 ---

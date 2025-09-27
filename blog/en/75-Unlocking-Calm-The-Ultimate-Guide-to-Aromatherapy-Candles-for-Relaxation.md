@@ -1,6 +1,7 @@
 ---
 title: "Unlocking Calm: The Ultimate Guide to Aromatherapy Candles for Relaxation"
 date: "2025-09-04"
+image: "/Million-Candles/Lilin Memories Putih  /3.png"
 desc: "Discover the transformative power of aromatherapy candles! Unwind and de-stress with our guide to scents, benefits, and creating a relaxing atmosphere. Visit souvenirlilin.id!"
 tags: "aromatherapy candles, relaxation, stress relief, aromatherapy, home fragrance"
 ---
