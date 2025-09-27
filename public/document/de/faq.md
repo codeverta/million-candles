@@ -1,98 +1,98 @@
 ---
-title: Frequently Asked Questions
-description: Find answers to common questions about our products and services
+title: Häufig gestellte Fragen (FAQ)
+description: Finden Sie Antworten auf häufige Fragen zu unseren Produkten und Dienstleistungen
 ---
 
-**Frequently Asked Questions (FAQ)**
+**Häufig gestellte Fragen (FAQ)**
 
 ---
 
-## 1. How do I place an order?
+## 1. Wie gebe ich eine Bestellung auf?
 
-Browse our collection, select your desired candle(s), choose size and scent, then click **“Add to Cart.”** When you’re ready, click the cart icon and follow the checkout prompts to complete your purchase.
+Stöbern Sie in unserer Kollektion, wählen Sie die gewünschte(n) Kerze(n) aus, wählen Sie Größe und Duft und klicken Sie dann auf **„In den Warenkorb legen“**. Wenn Sie bereit sind, klicken Sie auf das Warenkorb-Symbol und folgen Sie den Anweisungen zur Kasse, um Ihren Kauf abzuschließen.
 
-## 2. What payment methods do you accept?
+## 2. Welche Zahlungsmethoden akzeptieren Sie?
 
-We accept:
+Wir akzeptieren:
 
-- Major credit/debit cards (Visa, MasterCard, American Express)
+- Gängige Kredit-/Debitkarten (Visa, MasterCard, American Express)
 - PayPal
-- Bank transfer (BCA, Mandiri, BNI)
-- GoPay and OVO
+- Banküberweisung (BCA, Mandiri, BNI)
+- GoPay und OVO
 
-## 3. Can I modify or cancel my order?
+## 3. Kann ich meine Bestellung ändern oder stornieren?
 
-- **Modifications** (size, scent) must be requested within **24 hours** of placing your order; email us at support@yourcandleshop.com.
-- **Cancellations** are accepted up to **12 hours** after order placement. After that, we’ll likely have begun processing, but please contact us and we’ll do our best to accommodate you.
+- **Änderungen** (Größe, Duft) müssen innerhalb von **24 Stunden** nach Aufgabe Ihrer Bestellung angefordert werden; senden Sie uns eine E-Mail an support@yourcandleshop.com.
+- **Stornierungen** werden bis zu **12 Stunden** nach der Bestellung akzeptiert. Danach haben wir wahrscheinlich mit der Bearbeitung begonnen, aber bitte kontaktieren Sie uns, und wir werden unser Bestes tun, um Ihnen entgegenzukommen.
 
-## 4. Do you ship internationally?
+## 4. Versenden Sie international?
 
-Yes! We ship worldwide. Shipping costs and delivery times vary by destination—it’s calculated at checkout. Note: international customers are responsible for any import duties, taxes, or customs fees.
+Ja! Wir versenden weltweit. Die Versandkosten und Lieferzeiten variieren je nach Zielort – sie werden an der Kasse berechnet. Hinweis: Internationale Kunden sind für alle Einfuhrzölle, Steuern oder Zollgebühren verantwortlich.
 
-## 5. How long will it take to receive my order?
+## 5. Wie lange dauert es, bis ich meine Bestellung erhalte?
 
-- **Order processing:** 2–3 business days
-- **Domestic shipping (Indonesia):**
-  - Standard: 3–5 business days
-  - Express: 1–2 business days
-- **International shipping:** 5–10 business days (express) or 2–4 weeks (standard)
+- **Auftragsbearbeitung:** 2–3 Werktage
+- **Nationaler Versand (Indonesien):**
+  - Standard: 3–5 Werktage
+  - Express: 1–2 Werktage
+- **Internationaler Versand:** 5–10 Werktage (Express) oder 2–4 Wochen (Standard)
 
-## 6. How can I track my package?
+## 6. Wie kann ich mein Paket verfolgen?
 
-Once your order ships, you’ll receive an email with:
+Sobald Ihre Bestellung versandt wird, erhalten Sie eine E-Mail mit:
 
-- Carrier name
-- Tracking number
-- Direct tracking link  
-  Please allow up to 24 hours for the tracking information to become active.
+- Dem Namen des Versandunternehmens
+- Der Sendungsverfolgungsnummer
+- Einem direkten Tracking-Link
+  Bitte warten Sie bis zu 24 Stunden, bis die Sendungsverfolgung aktiv wird.
 
-## 7. What is your return & replacement policy?
+## 7. Wie lautet Ihre Rückgabe- und Ersatzrichtlinie?
 
-- **Replacement** for incorrect size, scent, or damaged items: within **14 days** of delivery, unused, in original packaging.
-- **Change-of-mind exchanges:** within **7 days**; customer pays return shipping.  
-  Full details: see our **Return & Replacement Policy** section.
+- **Ersatz** für falsche Größe, Duft oder beschädigte Artikel: innerhalb von **14 Tagen** nach Lieferung, unbenutzt, in der Originalverpackung.
+- **Umtausch bei Sinneswandel:** innerhalb von **7 Tagen**; der Kunde trägt die Rücksendekosten.
+  Alle Details: siehe unseren Abschnitt **Rückgabe- und Ersatzrichtlinie**.
 
-## 8. What if my candle arrives damaged?
+## 8. Was passiert, wenn meine Kerze beschädigt ankommt?
 
-1. Take photos of the damaged packaging and candle.
-2. Contact us within **7 days** at support@yourcandleshop.com with your order number and photos.  
-   We’ll arrange a prepaid return and send a replacement promptly.
+1. Machen Sie Fotos von der beschädigten Verpackung und der Kerze.
+2. Kontaktieren Sie uns innerhalb von **7 Tagen** unter support@yourcandleshop.com mit Ihrer Bestellnummer und den Fotos.
+   Wir arrangieren eine vorfrankierte Rücksendung und schicken umgehend einen Ersatz.
 
-## 9. Do you offer gift wrapping or personalized messages?
+## 9. Bieten Sie Geschenkverpackungen oder personalisierte Nachrichten an?
 
-Yes! At checkout, select **“Gift Options”** to add:
+Ja! Wählen Sie an der Kasse **„Geschenkoptionen“**, um Folgendes hinzuzufügen:
 
-- Complimentary tissue wrap and ribbon
-- A personalized gift card message (up to 150 characters)
+- Kostenlose Geschenkpapierverpackung und Schleife
+- Eine personalisierte Geschenkkartennachricht (bis zu 150 Zeichen)
 
-## 10. Are your candles eco-friendly?
+## 10. Sind Ihre Kerzen umweltfreundlich?
 
-Absolutely. Our candles are:
+Absolut. Unsere Kerzen sind:
 
-- Made from 100% natural soy wax
-- Poured in reusable glass jars
-- Fragranced with phthalate-free essential oils
-- Packaged in recycled, biodegradable materials
+- Hergestellt aus **100 % natürlichem Sojawachs**
+- Gegossen in **wiederverwendbare Glasgefäße**
+- Parfümiert mit **phthalatfreien ätherischen Ölen**
+- Verpackt in **recycelten, biologisch abbaubaren Materialien**
 
-## 11. Can I customize a scent or create a corporate order?
+## 11. Kann ich einen Duft anpassen oder eine Firmenbestellung aufgeben?
 
-We offer:
+Wir bieten an:
 
-- **Custom scents:** Minimum order of 50 units.
-- **Corporate & event orders:** Volume discounts available.  
-  Email custom@yourcandleshop.com with your requirements for a quote.
+- **Individuelle Düfte:** Mindestbestellmenge von 50 Einheiten.
+- **Bestellungen für Firmen & Veranstaltungen:** Mengenrabatte verfügbar.
+  Senden Sie eine E-Mail an custom@yourcandleshop.com mit Ihren Anforderungen für ein Angebot.
 
-## 12. How should I care for my candle?
+## 12. Wie pflege ich meine Kerze richtig?
 
-- Trim the wick to ¼″ before each burn.
-- Allow a full melt pool (wax edge to edge) on the first burn to prevent tunneling.
-- Keep away from drafts, children, and pets.
-- Do not burn for more than 4 hours consecutively.
+- Kürzen Sie den Docht vor jedem Anzünden auf ¼″ (6 mm).
+- Lassen Sie beim ersten Anzünden eine **vollständige Wachspfütze** (von Rand zu Rand) entstehen, um _Tunnelbildung_ zu vermeiden.
+- Halten Sie sie von Zugluft, Kindern und Haustieren fern.
+- Brennen Sie sie nicht länger als **4 Stunden am Stück**.
 
 ---
 
-If you have any other questions, please reach out:
+Wenn Sie weitere Fragen haben, wenden Sie sich bitte an uns:
 
-- **Email:** utomoteknologi@gmail.com
+- **E-Mail:** utomoteknologi@gmail.com
 - **WhatsApp:** +62 815 7895 6156
-- **Business hours:** Mon–Fri, 9 AM–5 PM (WIB, GMT+7)
+- **Geschäftszeiten:** Mo–Fr, 9:00–17:00 Uhr (WIB, GMT+7)

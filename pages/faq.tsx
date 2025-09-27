@@ -8,6 +8,8 @@ import { remark } from "remark";
 import html from "remark-html";
 import gfm from "remark-gfm";
 import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
+import Layout from "components/layout/Landing";
 
 // Component for a single FAQ item
 const FAQItem = ({ question, answer }) => {
@@ -62,30 +64,14 @@ const FAQItem = ({ question, answer }) => {
   );
 };
 
-export default function FAQ({ faqs }) {
+export default function FAQ({ faqs, data }) {
   const router = useRouter();
   return (
     <div className="bg-white">
-      <Head>
-        <title>FAQ - Your Company</title>
-        <meta name="description" content="Frequently Asked Questions" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            {/* <h1 className="text-2xl font-bold text-gray-900">
-              Frequently Asked Questions
-            </h1> */}
-            <button
-              onClick={() => router.back()}
-              className="inline-flex items-center px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              ← Back
-            </button>
-          </div>
-        </div>
-      </header>
+      <NextSeo
+        title={data.title || "FAQ"}
+        description={data.description || "Frequently Asked Questions"}
+      />
       <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-20 lg:px-8">
         <div className="lg:grid lg:grid-cols-3 lg:gap-8">
           <div>
@@ -120,10 +106,20 @@ export default function FAQ({ faqs }) {
   );
 }
 
+FAQ.getLayout = function (page: React.ReactNode) {
+  return <Layout>{page}</Layout>;
+};
+
 // This function gets called at build time
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   // Get the path to the FAQ markdown file
-  const faqFilePath = path.join(process.cwd(), "public/document/faq.md");
+  const faqFilePath = path.join(
+    process.cwd(),
+    "public",
+    "document",
+    locale,
+    "faq.md"
+  );
 
   // Read the file
   const fileContents = fs.readFileSync(faqFilePath, "utf8");
@@ -171,6 +167,7 @@ export async function getStaticProps() {
 
   return {
     props: {
+      data,
       faqs,
     },
   };

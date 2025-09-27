@@ -9,6 +9,7 @@ import html from "remark-html";
 import gfm from "remark-gfm";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Layout from "components/layout/Landing";
 
 // Function to get the terms content
 export async function getStaticProps({ locale }) {
@@ -310,3 +311,7 @@ export default function TermsAndConditions({
     </div>
   );
 }
+
+TermsAndConditions.getLayout = function (page: React.ReactNode) {
+  return <Layout>{page}</Layout>;
+};

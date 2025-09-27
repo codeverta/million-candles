@@ -1,98 +1,98 @@
 ---
-title: Frequently Asked Questions
-description: Find answers to common questions about our products and services
+title: Questions Fréquemment Posées (FAQ)
+description: Trouvez les réponses aux questions courantes sur nos produits et services
 ---
 
-**Frequently Asked Questions (FAQ)**
+**Questions Fréquemment Posées (FAQ)**
 
 ---
 
-## 1. How do I place an order?
+## 1. Comment passer une commande ?
 
-Browse our collection, select your desired candle(s), choose size and scent, then click **“Add to Cart.”** When you’re ready, click the cart icon and follow the checkout prompts to complete your purchase.
+Parcourez notre collection, sélectionnez la ou les bougies souhaitées, choisissez la taille et le parfum, puis cliquez sur **« Ajouter au panier »**. Lorsque vous êtes prêt(e), cliquez sur l'icône du panier et suivez les instructions de paiement pour finaliser votre achat.
 
-## 2. What payment methods do you accept?
+## 2. Quels modes de paiement acceptez-vous ?
 
-We accept:
+Nous acceptons :
 
-- Major credit/debit cards (Visa, MasterCard, American Express)
+- Les principales cartes de crédit/débit (Visa, MasterCard, American Express)
 - PayPal
-- Bank transfer (BCA, Mandiri, BNI)
-- GoPay and OVO
+- Les virements bancaires (BCA, Mandiri, BNI)
+- GoPay et OVO
 
-## 3. Can I modify or cancel my order?
+## 3. Puis-je modifier ou annuler ma commande ?
 
-- **Modifications** (size, scent) must be requested within **24 hours** of placing your order; email us at support@yourcandleshop.com.
-- **Cancellations** are accepted up to **12 hours** after order placement. After that, we’ll likely have begun processing, but please contact us and we’ll do our best to accommodate you.
+- Les **modifications** (taille, parfum) doivent être demandées dans les **24 heures** suivant la passation de votre commande ; envoyez-nous un courriel à support@yourcandleshop.com.
+- Les **annulations** sont acceptées jusqu'à **12 heures** après la passation de la commande. Passé ce délai, nous aurons probablement commencé le traitement, mais veuillez nous contacter et nous ferons de notre mieux pour vous accommoder.
 
-## 4. Do you ship internationally?
+## 4. Livrez-vous à l'international ?
 
-Yes! We ship worldwide. Shipping costs and delivery times vary by destination—it’s calculated at checkout. Note: international customers are responsible for any import duties, taxes, or customs fees.
+Oui ! Nous livrons dans le monde entier. Les frais de port et les délais de livraison varient selon la destination — ils sont calculés lors du paiement. Note : les clients internationaux sont responsables des droits d'importation, taxes ou frais de douane.
 
-## 5. How long will it take to receive my order?
+## 5. Combien de temps faut-il pour recevoir ma commande ?
 
-- **Order processing:** 2–3 business days
-- **Domestic shipping (Indonesia):**
-  - Standard: 3–5 business days
-  - Express: 1–2 business days
-- **International shipping:** 5–10 business days (express) or 2–4 weeks (standard)
+- **Traitement de la commande :** 2 à 3 jours ouvrables
+- **Expédition nationale (Indonésie) :**
+  - Standard : 3 à 5 jours ouvrables
+  - Express : 1 à 2 jours ouvrables
+- **Expédition internationale :** 5 à 10 jours ouvrables (express) ou 2 à 4 semaines (standard)
 
-## 6. How can I track my package?
+## 6. Comment puis-je suivre mon colis ?
 
-Once your order ships, you’ll receive an email with:
+Une fois votre commande expédiée, vous recevrez un courriel contenant :
 
-- Carrier name
-- Tracking number
-- Direct tracking link  
-  Please allow up to 24 hours for the tracking information to become active.
+- Le nom du transporteur
+- Le numéro de suivi
+- Un lien de suivi direct
+  Veuillez prévoir jusqu'à 24 heures pour que les informations de suivi deviennent actives.
 
-## 7. What is your return & replacement policy?
+## 7. Quelle est votre politique de retour et de remplacement ?
 
-- **Replacement** for incorrect size, scent, or damaged items: within **14 days** of delivery, unused, in original packaging.
-- **Change-of-mind exchanges:** within **7 days**; customer pays return shipping.  
-  Full details: see our **Return & Replacement Policy** section.
+- **Remplacement** pour taille, parfum incorrects ou articles endommagés : dans les **14 jours** suivant la livraison, articles non utilisés, dans leur emballage d'origine.
+- **Échanges pour changement d'avis :** dans les **7 jours** ; le client paie les frais de retour.
+  Détails complets : veuillez consulter notre section **Politique de Retour et de Remplacement**.
 
-## 8. What if my candle arrives damaged?
+## 8. Que faire si ma bougie arrive endommagée ?
 
-1. Take photos of the damaged packaging and candle.
-2. Contact us within **7 days** at support@yourcandleshop.com with your order number and photos.  
-   We’ll arrange a prepaid return and send a replacement promptly.
+1. Prenez des photos de l'emballage et de la bougie endommagés.
+2. Contactez-nous dans les **7 jours** à support@yourcandleshop.com avec votre numéro de commande et les photos.
+   Nous organiserons un retour prépayé et vous enverrons un article de remplacement rapidement.
 
-## 9. Do you offer gift wrapping or personalized messages?
+## 9. Offrez-vous l'emballage cadeau ou des messages personnalisés ?
 
-Yes! At checkout, select **“Gift Options”** to add:
+Oui ! Au moment de payer, sélectionnez **« Options Cadeau »** pour ajouter :
 
-- Complimentary tissue wrap and ribbon
-- A personalized gift card message (up to 150 characters)
+- Un emballage en papier de soie et ruban gratuit
+- Un message de carte cadeau personnalisé (jusqu'à 150 caractères)
 
-## 10. Are your candles eco-friendly?
+## 10. Vos bougies sont-elles écologiques ?
 
-Absolutely. Our candles are:
+Absolument. Nos bougies sont :
 
-- Made from 100% natural soy wax
-- Poured in reusable glass jars
-- Fragranced with phthalate-free essential oils
-- Packaged in recycled, biodegradable materials
+- Fabriquées à partir de **cire de soja 100 % naturelle**
+- Coulées dans des **bocaux en verre réutilisables**
+- Parfumées avec des **huiles essentielles sans phtalate**
+- Emballées dans des **matériaux recyclés et biodégradables**
 
-## 11. Can I customize a scent or create a corporate order?
+## 11. Puis-je personnaliser un parfum ou créer une commande pour entreprise ?
 
-We offer:
+Nous proposons :
 
-- **Custom scents:** Minimum order of 50 units.
-- **Corporate & event orders:** Volume discounts available.  
-  Email custom@yourcandleshop.com with your requirements for a quote.
+- **Parfums personnalisés :** Commande minimale de 50 unités.
+- **Commandes pour entreprises et événements :** Des remises sur volume sont disponibles.
+  Envoyez un courriel à custom@yourcandleshop.com avec vos exigences pour un devis.
 
-## 12. How should I care for my candle?
+## 12. Comment dois-je prendre soin de ma bougie ?
 
-- Trim the wick to ¼″ before each burn.
-- Allow a full melt pool (wax edge to edge) on the first burn to prevent tunneling.
-- Keep away from drafts, children, and pets.
-- Do not burn for more than 4 hours consecutively.
+- Coupez la mèche à ¼″ (6 mm) avant chaque brûlage.
+- Laissez se former une **piscine de cire complète** (bord à bord) lors du premier brûlage pour éviter la formation de tunnels.
+- Tenez-la éloignée des courants d'air, des enfants et des animaux domestiques.
+- Ne brûlez pas plus de **4 heures consécutives**.
 
 ---
 
-If you have any other questions, please reach out:
+Si vous avez d'autres questions, n'hésitez pas à nous contacter :
 
-- **Email:** utomoteknologi@gmail.com
-- **WhatsApp:** +62 815 7895 6156
-- **Business hours:** Mon–Fri, 9 AM–5 PM (WIB, GMT+7)
+- **Courriel :** utomoteknologi@gmail.com
+- **WhatsApp :** +62 815 7895 6156
+- **Heures d'ouverture :** Lun–Ven, 9 h–17 h (WIB, GMT+7)
