@@ -453,6 +453,15 @@ export default function Footer() {
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
             &copy; {new Date().getFullYear()} Million Candles. All rights
             reserved. v.{version}
+            <br />
+            Designed & developed by{" "}
+            <a
+              href="https://bikinwebsitejogja.com"
+              className="text-blue-500 hover:underline"
+              target="_blank"
+            >
+              codeverta.com
+            </a>{" "}
           </p>
         </div>
       </div>

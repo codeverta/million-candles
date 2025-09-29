@@ -40,3 +40,6 @@ next-env.d.ts
 
 /backend/storage/framework/cache/*
 !/backend/storage/framework/cache/.gitignore
+
+# Sentry Config File
+.env.sentry-build-plugin
