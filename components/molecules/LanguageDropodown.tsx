@@ -36,24 +36,33 @@ export default function LanguageDropdown() {
     setIsOpen(!isOpen);
   };
 
-  const changeLanguage = (locale: string) => {
+  const changeLanguage = (newLocale: string) => {
+    // LOGIKA ANDA: Pengalihan ke /posts dipertahankan
     const isPostPath = router.pathname.includes("posts");
     const newPath = isPostPath ? "/posts" : router.pathname;
-    const currentPathWithoutLocale = router.asPath.replace(
-      `/${router.locale}`,
-      ""
-    );
 
-    // Use router.push with both pathname and query
+    // SOLUSI BARU: Logika yang lebih andal untuk mendapatkan path tanpa locale
+    const pathSegments = router.asPath.split("/").filter(Boolean); // split dan hapus string kosong
+    let pathWithoutLocale = router.asPath;
+
+    if (pathSegments.length > 0 && router.locales.includes(pathSegments[0])) {
+      // Jika segmen pertama adalah locale yang valid, hapus dari path
+      pathWithoutLocale = `/${pathSegments.slice(1).join("/")}`;
+    }
+
+    // Jika path aslinya hanya locale (e.g., /ja), hasilnya akan menjadi "/"
+    if (pathWithoutLocale === "") {
+      pathWithoutLocale = "/";
+    }
+
     router.push(
       {
         pathname: newPath,
-        query: { ...router.query }, // Pass all existing query parameters
+        query: { ...router.query },
       },
-      currentPathWithoutLocale, // Use the path without locale as the as-path
-      { locale }
+      pathWithoutLocale, // Gunakan path bersih yang baru
+      { locale: newLocale }
     );
-    i18n?.changeLanguage(locale);
   };
 
   const handleLanguageChange = (lang: string) => {
