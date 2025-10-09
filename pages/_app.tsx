@@ -17,6 +17,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { appWithTranslation } from "next-i18next";
 import CartProvider from "context/CartContext";
+import { useRouter } from "next/router";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -41,6 +42,7 @@ if (typeof window !== "undefined") {
 }
 
 function App({ Component, pageProps }: AppLayoutProps) {
+  const router = useRouter();
   const appProps = { getRelationship, getRelationships };
   const getLayout = Component.getLayout || ((page: ReactNode) => page);
   // seo
@@ -53,6 +55,7 @@ function App({ Component, pageProps }: AppLayoutProps) {
   const twitterHandle = "@souvenirlilin";
   const keywords =
     "jual lilin, jual lilin jogja, lilin aromaterapi jogja, lilin batang, souvenir cantik, souvenir jogja, ud million candles, souvenir lilin, lilin warna, lilin hias, lilin berkualitas";
+  const canonicalUrl = `https://souvenirlilin.id${router.asPath}`;
 
   return (
     <>
@@ -94,6 +97,7 @@ function App({ Component, pageProps }: AppLayoutProps) {
             content: "#2563eb",
           },
         ]}
+        canonical={canonicalUrl}
       />
 
       <QueryClientProvider client={queryClient}>
