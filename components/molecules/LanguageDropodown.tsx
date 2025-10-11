@@ -1,10 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { ChevronDown, Globe } from "lucide-react";
-import { i18n } from "next-i18next";
+// import { i18n } from "next-i18next"; // i18n tidak diperlukan di sini
 
-// Define available languages
-const languages = [
+// Definisikan tipe untuk bahasa
+interface Language {
+  code: string;
+  name: string;
+  flag: string;
+}
+
+// Definisikan daftar bahasa
+const languages: Language[] = [
   { code: "en", name: "English", flag: "🇺🇸" },
   { code: "zh", name: "中文", flag: "🇨🇳" },
   { code: "hi", name: "हिन्दी", flag: "🇮🇳" },
@@ -25,47 +32,71 @@ const languages = [
 
 export default function LanguageDropdown() {
   const router = useRouter();
-  const { locale } = router;
+  const { locale, locales, pathname, query, asPath } = router;
+
   const [isOpen, setIsOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState(
     languages.find((lang) => lang.code === locale) || languages[0]
   );
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   const changeLanguage = (newLocale: string) => {
-    // LOGIKA ANDA: Pengalihan ke /posts dipertahankan
-    const isPostPath = router.pathname.includes("posts");
-    const newPath = isPostPath ? "/posts" : router.pathname;
+    // 1. Ambil path utama tanpa query string.
+    const pathOnly = asPath.split("?")[0];
 
-    // SOLUSI BARU: Logika yang lebih andal untuk mendapatkan path tanpa locale
-    const pathSegments = router.asPath.split("/").filter(Boolean); // split dan hapus string kosong
-    let pathWithoutLocale = router.asPath;
+    // 2. Bagi path menjadi segmen. Filter segmen kosong (dari / di awal/akhir)
+    const segments = pathOnly.split("/").filter((s) => s.length > 0);
 
-    if (pathSegments.length > 0 && router.locales.includes(pathSegments[0])) {
-      // Jika segmen pertama adalah locale yang valid, hapus dari path
-      pathWithoutLocale = `/${pathSegments.slice(1).join("/")}`;
+    // 3. Logika Pembersihan Awal: Filter semua segmen yang merupakan kode bahasa yang valid (locale ganda).
+    const localesList = locales || [];
+    let cleanSegments = segments.filter(
+      (segment) => !localesList.includes(segment)
+    );
+
+    // 4. Logika Khusus: Jika path adalah post, hapus slug-nya.
+    // Contoh: segments awal ["id", "posts", "slug-judul"]
+    // cleanSegments menjadi ["posts", "slug-judul"]
+    if (cleanSegments[0] === "posts" && cleanSegments.length > 1) {
+      // Jika segmen pertama adalah 'posts' DAN ada segmen lain setelahnya (yaitu slug),
+      // maka kita hanya ambil segmen 'posts'.
+      cleanSegments = ["posts"];
+    }
+    // Jika hanya ["posts"], cleanSegments tetap ["posts"].
+    // Jika hanya ["about"], cleanSegments tetap ["about"].
+
+    // 5. Konstruksi ulang targetPath: path bersih + query string
+    let targetPath = `/${cleanSegments.join("/")}`;
+
+    // Tambahkan kembali query string jika ada
+    const queryString = asPath.includes("?")
+      ? asPath.substring(asPath.indexOf("?"))
+      : "";
+    targetPath += queryString;
+
+    // Pastikan path minimal adalah '/'
+    if (targetPath === "") {
+      targetPath = "/";
     }
 
-    // Jika path aslinya hanya locale (e.g., /ja), hasilnya akan menjadi "/"
-    if (pathWithoutLocale === "") {
-      pathWithoutLocale = "/";
-    }
-
+    // 6. Lakukan redirect
     router.push(
       {
-        pathname: newPath,
-        query: { ...router.query },
+        pathname: pathname,
+        query: query,
       },
-      pathWithoutLocale, // Gunakan path bersih yang baru
-      { locale: newLocale }
+      targetPath, // URL yang ditampilkan di address bar (sudah bersih dari locale ganda & slug)
+      {
+        locale: newLocale, // Next.js akan menambahkan locale baru
+        scroll: false,
+      }
     );
   };
 
-  const handleLanguageChange = (lang: string) => {
+  const handleLanguageChange = (lang: Language) => {
     setCurrentLang(lang);
     setIsOpen(false);
     changeLanguage(lang.code);
@@ -73,8 +104,11 @@ export default function LanguageDropdown() {
 
   // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };

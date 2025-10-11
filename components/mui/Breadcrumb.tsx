@@ -17,7 +17,7 @@ const Breadcrumb = ({ currentLabel }: any) => {
         <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
         {t("menu.home", "Home")}
       </Link>
-      <Link color="inherit" href={`/${locale}/products`}>
+      <Link color="inherit" href={`/products`}>
         <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />
         {t("menu.products", "Products")}
       </Link>
