@@ -7,20 +7,3 @@ Host: https://souvenirlilin.id
 
 # Sitemaps
 Sitemap: https://souvenirlilin.id/sitemap.xml
-
-Disallow: /*/ar
-Disallow: /*/bn
-Disallow: /*/de
-Disallow: /*/en
-Disallow: /*/es
-Disallow: /*/fr
-Disallow: /*/id
-Disallow: /*/ja
-Disallow: /*/kr
-Disallow: /*/ms
-Disallow: /*/ru
-Disallow: /*/pt
-Disallow: /*/th
-Disallow: /*/vi
-Disallow: /*/zh
-Disallow: /*/hi
