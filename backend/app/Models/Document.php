@@ -20,4 +20,15 @@ class Document extends Model
         return $this->morphTo();
     }
 
+    public function getFilenameAttribute($value)
+    {
+        // ambil nama file dari URL firebase
+        $path = parse_url($value, PHP_URL_PATH);
+        $segments = explode('/', $path);
+        $lastSegment = end($segments);
+        $decodedPath = urldecode($lastSegment);
+
+        return "https://cdn.souvenirlilin.id/{$decodedPath}";
+    }
+
 }
