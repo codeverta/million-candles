@@ -5,7 +5,7 @@ import { Modal } from "@mui/material";
 import Drawer from "./flowbite/Drawer";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import LanguageDropdown from "./molecules/LanguageDropodown";
+// import LanguageDropdown from "./molecules/LanguageDropodown";
 import NavbarMenu from "./NavbarMenu";
 
 export default function Header(props) {
@@ -114,7 +114,7 @@ export default function Header(props) {
         >
           {t("login", "Log in")}
         </button>
-        <LanguageDropdown />
+        {/* <LanguageDropdown /> */}
       </div>
     </header>
   );

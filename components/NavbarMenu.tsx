@@ -2,7 +2,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import LanguageDropdown from "./molecules/LanguageDropodown";
+// import LanguageDropdown from "./molecules/LanguageDropodown";
 import { Moon, Sun, Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import MegaMenu from "./MegaMenu";
 
@@ -68,9 +68,9 @@ function NavbarMenu({ menus, handleOpenLogin, handleDrawer, open }) {
 
           <div className="flex items-center lg:order-3 space-x-2">
             {/* Language Selector */}
-            <div className="hidden sm:block">
+            {/* <div className="hidden sm:block">
               <LanguageDropdown />
-            </div>
+            </div> */}
 
             {/* Login Button */}
             <button
