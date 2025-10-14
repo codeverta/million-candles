@@ -25,24 +25,6 @@ Sentry.init({
 
   // Setting this option to true will print useful information to the console while you're setting up Sentry.
   debug: false,
-
-  tracesSampler: (samplingContext) => {
-    // The transaction name is often the URL path
-    const transactionName = samplingContext.transactionContext.name;
-
-    // Ignore health check endpoints completely
-    if (transactionName.includes("/api/health")) {
-      return 0; // Drop this transaction
-    }
-
-    // Sample important transactions at a higher rate
-    if (transactionName.includes("/api/checkout")) {
-      return 0.5; // 50%
-    }
-
-    // Default sampling rate for everything else
-    return 0.1; // 10%
-  },
 });
 
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
