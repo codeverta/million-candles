@@ -1,5 +1,9 @@
 The Mighty MILLION CANDLES
 
+[![Build](https://github.com/RobyCigar/million-candles/actions/workflows/build.yml/badge.svg)](https://github.com/RobyCigar/million-candles/actions/workflows/build.yml)
+[![Deploy to Server](https://github.com/RobyCigar/million-candles/actions/workflows/deploy.yml/badge.svg)](https://github.com/RobyCigar/million-candles/actions/workflows/deploy.yml)
+[![Generate Daily Article](https://github.com/RobyCigar/million-candles/actions/workflows/daily-article-generator.yml/badge.svg)](https://github.com/RobyCigar/million-candles/actions/workflows/daily-article-generator.yml)
+
 A brief description of your project goes here.
 
 Table of Contents
