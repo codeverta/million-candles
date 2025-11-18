@@ -26,7 +26,7 @@ import BusinessStats from "components/molecules/landing/BusinessStats";
 
 function Home(props: any) {
   const { t } = useTranslation();
-  const { posts } = props;
+  const { posts, hasPosts } = props;
   const testimonials = [
     {
       quote: "testimonials.sarah_johnson.quote",
@@ -591,12 +591,21 @@ function Home(props: any) {
                     <div className="flex flex-1 flex-col justify-between p-6">
                       <div className="flex-1">
                         <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
-                          <Link
-                            href={`posts/${post.id}`}
-                            className="cursor-pointer hover:underline"
-                          >
-                            {post.title}
-                          </Link>
+                          {hasPosts ? (
+                            <Link
+                              href={`posts/${post.id}`}
+                              className="cursor-pointer hover:underline"
+                            >
+                              {post.title}
+                            </Link>
+                          ) : (
+                            <Link
+                              href={`en/posts/${post.id}`}
+                              className="cursor-pointer hover:underline"
+                            >
+                              {post.title}
+                            </Link>
+                          )}
                         </h3>
                         <p className="mt-3 text-base leading-6 text-gray-500 dark:text-gray-300 line-clamp-3">
                           {post.desc}
@@ -719,10 +728,13 @@ function Home(props: any) {
 export default Home;
 
 export async function getStaticProps({ locale }) {
+  let hasPosts = true;
   const posts = getSortedPostsData(locale);
   if (posts.length == 0) {
+    hasPosts = false;
     return {
       props: {
+        hasPosts,
         posts: getSortedPostsData("en"),
         ...(await serverSideTranslations(locale, ["common", "order"])),
       },
@@ -730,6 +742,7 @@ export async function getStaticProps({ locale }) {
   }
   return {
     props: {
+      hasPosts,
       posts: posts.slice(0, 6),
       ...(await serverSideTranslations(locale, ["common", "order"])),
     },
