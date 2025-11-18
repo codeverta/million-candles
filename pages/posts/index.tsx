@@ -40,7 +40,7 @@ interface PostMeta {
   readTime?: string; // Added optional read time field
 }
 
-const POSTS_PER_PAGE = 9; // Increased to 6 posts per page
+const POSTS_PER_PAGE = 30; // Increased to 6 posts per page
 
 export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
   const router = useRouter();
