@@ -600,7 +600,7 @@ function Home(props: any) {
                             </Link>
                           ) : (
                             <Link
-                              href={`/en/posts/${post.id}`}
+                              href={`${process.env.SITE_URL}/en/posts/${post.id}`}
                               className="cursor-pointer hover:underline"
                             >
                               {post.title}
