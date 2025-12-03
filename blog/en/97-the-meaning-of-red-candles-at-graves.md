@@ -1,8 +1,8 @@
 ---
-title: "The Meaning of Red Candles at Graves: Symbolism, Traditions, Beliefs, and a Complete Explanation"
+title: "Meaning of Red Candles at Graves: Symbolism, Rituals, and Spiritual Interpretations"
 date: "2025-10-01"
-desc: "Lilin merah digunakan sebagai simbol doa, penghormatan, perlindungan, penolak energi negatif, dan bentuk cinta kepada yang sudah tiada."
-tags: "prayer candle, remembrance candle, candle of love, protection candle, ancestral candle, spiritual candle intention."
+desc: "Discover the full meaning behind red candles at graves, including their symbolism, cultural traditions, spiritual beliefs, and the reasons people light red candles during cemetery visits."
+tags: "red candle meaning, red candles at graves, symbolism of red candles, cemetery rituals, spiritual traditions, ancestral worship, meaning of red candle at grave, grave candle symbolism"
 ---
 
 Seeing a **red candle placed at a grave or tomb** often raises questions. Many wonder why someone would light or leave a red-colored candle at a burial site. Does it hold a special meaning? Is it related to a cultural ritual, a spiritual practice, or a symbolic gesture of remembrance?
