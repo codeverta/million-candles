@@ -22,6 +22,78 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import DisqusThread from "components/DisqusThread";
 import ScrollIndicator from "components/ScrollIndicator";
 // import AdSense from "components/AdSense";
+import { ExternalLink, Code, FileText, Heart } from "lucide-react";
+
+const RelatedSites = () => {
+  const sites = [
+    {
+      name: "Bikin Website Jogja",
+      url: "https://bikinwebsitejogja.com",
+      description: "Jasa pembuatan website profesional di Jogja",
+      icon: <Code className="w-5 h-5" />,
+      color: "blue",
+    },
+    {
+      name: "NSC Bantu Perizinan",
+      url: "https://nscbantuperizinan.com",
+      description: "Layanan konsultasi & pengurusan perizinan usaha",
+      icon: <FileText className="w-5 h-5" />,
+      color: "green",
+    },
+    {
+      name: "Tips Sehat Alami",
+      url: "https://tipssehatalami.com",
+      description: "Informasi kesehatan & tips hidup sehat alami",
+      icon: <Heart className="w-5 h-5" />,
+      color: "red",
+    },
+  ];
+
+  const colorClasses = {
+    blue: "hover:border-blue-500 hover:shadow-blue-100",
+    green: "hover:border-green-500 hover:shadow-green-100",
+    red: "hover:border-red-500 hover:shadow-red-100",
+  };
+
+  return (
+    <div className="mt-12 p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
+      <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
+        <ExternalLink className="w-5 h-5" />
+        Website Lainnya
+      </h3>
+
+      <div className="grid md:grid-cols-3 gap-4">
+        {sites.map((site) => (
+          <a
+            key={site.url}
+            href={site.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`block p-4 bg-white dark:bg-gray-800 rounded-lg border-2 border-gray-200 dark:border-gray-700 
+            transition-all duration-300 ${colorClasses[site.color]} hover:shadow-lg group`}
+          >
+            <div className="flex items-start gap-3">
+              <div
+                className={`p-2 rounded-lg bg-${site.color}-50 dark:bg-${site.color}-900/20 text-${site.color}-600 dark:text-${site.color}-400`}
+              >
+                {site.icon}
+              </div>
+              <div className="flex-1">
+                <h4 className="font-semibold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  {site.name}
+                </h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  {site.description}
+                </p>
+              </div>
+              <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 // Improved TOC Component with smooth scrolling
 function TOC({ headings }) {
@@ -118,7 +190,7 @@ function Post({ postData, slug }) {
 
   // Reading time calculation
   const readingTime = estimateReadingTime(
-    postData.contentHtml.replace(/<[^>]*>/g, "")
+    postData.contentHtml.replace(/<[^>]*>/g, ""),
   );
 
   return (
@@ -265,6 +337,7 @@ function Post({ postData, slug }) {
               selection:bg-blue-100 dark:selection:bg-blue-900"
               dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
             />
+            <RelatedSites />
             <DisqusThread
               url={"https://www.souvenirlilin.id/posts/" + slug}
               identifier={slug}
