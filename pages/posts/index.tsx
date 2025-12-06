@@ -42,7 +42,13 @@ interface PostMeta {
 
 const POSTS_PER_PAGE = 30; // Increased to 6 posts per page
 
-export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
+export default function Home({
+  allPostsData,
+  locale,
+}: {
+  allPostsData: PostMeta[];
+  locale: string;
+}) {
   const router = useRouter();
   const { search, category } = router.query;
   const [searchTerm, setSearchTerm] = useState("");
@@ -94,7 +100,7 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
       filtered = filtered.filter(
         (post) =>
           post.title.toLowerCase().includes(lowercaseSearch) ||
-          post.desc.toLowerCase().includes(lowercaseSearch)
+          post.desc.toLowerCase().includes(lowercaseSearch),
       );
     }
 
@@ -169,7 +175,7 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
   // Share functionality handlers
   const handleShareClick = (
     event: React.MouseEvent<HTMLElement>,
-    postId: string
+    postId: string,
   ) => {
     setShareMenuAnchorEl(event.currentTarget);
     setSharePostId(postId);
@@ -182,7 +188,7 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
   const getPostUrl = (postId: string) => {
     // Create the full URL for sharing
     const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
-    return `${baseUrl}/posts/${postId}`;
+    return `${baseUrl}/${locale}/posts/${postId}`;
   };
 
   const handleShare = (platform: string) => {
@@ -219,7 +225,7 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
             () => {
               setSnackbarMessage("Gagal menyalin link");
               setSnackbarOpen(true);
-            }
+            },
           );
         }
         break;
@@ -243,8 +249,8 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
           {searchTerm
             ? `"${searchTerm}" - ${t("blog_section.title")}`
             : selectedCategory
-            ? `${selectedCategory} - ${t("blog_section.title")}`
-            : t("blog_section.title")}
+              ? `${selectedCategory} - ${t("blog_section.title")}`
+              : t("blog_section.title")}
         </title>
         <meta name="description" content={metaDescription} />
       </Head>
@@ -503,7 +509,7 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
                         </div>
                       </div>
                     </article>
-                  )
+                  ),
                 )}
               </div>
             </>
@@ -561,7 +567,7 @@ export default function Home({ allPostsData }: { allPostsData: PostMeta[] }) {
                     >
                       {page}
                     </button>
-                  )
+                  ),
                 )}
 
                 <span className="px-4 py-2 border-t border-b border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 md:hidden">
@@ -690,6 +696,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       allPostsData,
+      locale,
       ...(await serverSideTranslations(locale, ["common", "order"])),
     },
   };
