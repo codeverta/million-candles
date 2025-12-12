@@ -23,9 +23,9 @@ class ProductRequest extends ResourceRequest
             $uniquePost->ignoreModel($product);
         }
         return [
-            'name' => ['required', 'string', $uniquePost],
+            'name' => ['nullable', 'string', $uniquePost],
             'code' => ['string'],
-		'description' => ['required', 'string'],
+		'description' => ['nullable', 'string'],
             'product-categories' => JsonApiRule::toOne('product-categories'),
             'price' => ['required', JsonApiRule::number()],
             'stock' => ['required', JsonApiRule::number()],
