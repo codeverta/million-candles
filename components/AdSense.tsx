@@ -1,61 +1,74 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
-export default function AdSense({ adType = 1 }: { adType?: 1 | 2 | 3 }) {
+type AdType = "display" | "feed" | "in-article";
+
+interface AdSenseProps {
+  type?: AdType;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+// Configuration: Add your slots here to keep the component clean
+const AD_CONFIG: Record<
+  AdType,
+  { slot: string; format: string; layout?: string }
+> = {
+  display: {
+    slot: "7002409118",
+    format: "auto",
+  },
+  feed: {
+    slot: "2192935561",
+    format: "autorelaxed",
+  },
+  "in-article": {
+    slot: "1387120353",
+    format: "fluid",
+    layout: "in-article",
+  },
+};
+
+const PUB_ID = "ca-pub-2242816010232507";
+
+export default function AdSense({
+  type = "display",
+  className,
+  style,
+}: AdSenseProps) {
+  const adRef = useRef<HTMLModElement>(null);
+
   useEffect(() => {
     try {
-      // @ts-ignore
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      // Check if ad is already loaded in this slot to prevent "AdSense already loaded" error
+      if (adRef.current && adRef.current.innerHTML === "") {
+        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(
+          {}
+        );
+      }
     } catch (err) {
-      console.error(err);
+      console.error("AdSense Error:", err);
     }
-  }, []);
-  if (adType === 1) {
-    return (
-      <>
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block" }}
-          data-ad-client="ca-pub-2242816010232507"
-          data-ad-slot="7002409118"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        />
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </>
-    );
-  } else if (adType === 2) {
-    return (
-      <>
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block" }}
-          data-ad-format="autorelaxed"
-          data-ad-client="ca-pub-2242816010232507"
-          data-ad-slot="2192935561"
-        ></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2242816010232507"
-          crossOrigin="anonymous"
-        ></script>
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block", textAlign: "center" }}
-          data-ad-layout="in-article"
-          data-ad-format="fluid"
-          data-ad-client="ca-pub-2242816010232507"
-          data-ad-slot="1387120353"
-        ></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </>
-    );
-  }
+  }, [type]); // Re-run if type changes
+
+  const config = AD_CONFIG[type];
+
+  return (
+    <div
+      className={`ad-container ${className || ""}`}
+      style={{ minHeight: "100px", ...style }}
+    >
+      <ins
+        ref={adRef}
+        className="adsbygoogle"
+        style={{ display: "block", textAlign: "center", ...style }}
+        data-ad-client={PUB_ID}
+        data-ad-slot={config.slot}
+        data-ad-format={config.format}
+        data-ad-layout={config.layout}
+        data-full-width-responsive="true"
+      />
+    </div>
+  );
 }

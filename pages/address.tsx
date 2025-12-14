@@ -18,7 +18,7 @@ function Address(props: any) {
         </title>
       </Head>
       <DynamicMap {...props} />
-      <AdSense />
+      <AdSense type="in-article" />
     </main>
   );
 }

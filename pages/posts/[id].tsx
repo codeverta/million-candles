@@ -70,7 +70,9 @@ const RelatedSites = () => {
             target="_blank"
             rel="noopener noreferrer"
             className={`block p-4 bg-white dark:bg-gray-800 rounded-lg border-2 border-gray-200 dark:border-gray-700 
-            transition-all duration-300 ${colorClasses[site.color]} hover:shadow-lg group`}
+            transition-all duration-300 ${
+              colorClasses[site.color]
+            } hover:shadow-lg group`}
           >
             <div className="flex items-start gap-3">
               <div
@@ -190,7 +192,7 @@ function Post({ postData, slug }) {
 
   // Reading time calculation
   const readingTime = estimateReadingTime(
-    postData.contentHtml.replace(/<[^>]*>/g, ""),
+    postData.contentHtml.replace(/<[^>]*>/g, "")
   );
 
   return (
@@ -227,14 +229,6 @@ function Post({ postData, slug }) {
             name: "keywords",
             content: postData.tags || "",
           },
-          // {
-          //   name: "viewport",
-          //   content: "width=device-width, initial-scale=1.0",
-          // },
-          // {
-          //   name: "theme-color",
-          //   content: "#2563eb",
-          // },
         ]}
       />
       {/* Add the BlogSchemaJsonLd component */}
@@ -346,9 +340,9 @@ function Post({ postData, slug }) {
           </article>
 
           {/* Related Posts - Using our new component */}
-          {/* {postData.relatedPosts && postData.relatedPosts.length > 0 && (
+          {postData.relatedPosts && postData.relatedPosts.length > 0 && (
             <RelatedPosts posts={postData.relatedPosts} />
-          )} */}
+          )}
         </div>
 
         {/* <AdSense adType={1} /> */}

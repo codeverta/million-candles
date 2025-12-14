@@ -102,12 +102,6 @@ const AnimatedProductCard = ({ product, isDocumentExist, index }) => {
     },
   };
 
-  // Image hover animation variants
-  const imageVariants = {
-    rest: { scale: 1, transition: { duration: 0.3, ease: "easeInOut" } },
-    hover: { scale: 1.05, transition: { duration: 0.3, ease: "easeInOut" } },
-  };
-
   return (
     <motion.div
       ref={ref}

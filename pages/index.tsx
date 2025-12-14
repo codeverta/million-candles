@@ -266,7 +266,11 @@ function Home(props: any) {
       />
       <div className="dark:bg-gray-900 bg-white text-gray-900 dark:text-white">
         <Hero />
-        <Content />
+        <Content
+          queryParams={{
+            "page[size]": 4,
+          }}
+        />
         <BusinessStats />
         <section className="py-16 bg-white">
           <div className="container mx-auto px-6">
