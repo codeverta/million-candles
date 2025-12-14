@@ -13,14 +13,14 @@ import {
   HeadsetMic,
 } from "@mui/icons-material";
 import { getSortedPostsData } from "lib/posts";
-import { Avatar } from "@mui/material";
 import Head from "next/head";
 import { LocalBusinessJsonLd, LogoJsonLd, NextSeo } from "next-seo";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import BusinessStats from "components/molecules/landing/BusinessStats";
+import Image from "next/image";
+import AdSense from "components/AdSense";
 
 // import AdSense from "components/AdSense";
 
@@ -128,9 +128,6 @@ function Home(props: any) {
           }}
           images={[
             "https://souvenirlilin.id/Million-Candles/Lilin-Gelas-Biru/1.png",
-            "https://souvenirlilin.id/Million-Candles/Lilin-Gelas-Biru/2.png",
-            "https://souvenirlilin.id/Million-Candles/Lilin-Gelas-Biru/3.png",
-            "https://souvenirlilin.id/Million-Candles/Lilin-Gelas-Biru/4.png",
           ]}
           openingHours={[
             {
@@ -271,6 +268,11 @@ function Home(props: any) {
             "page[size]": 4,
           }}
         />
+        <AdSense
+          type="display"
+          className="my-8" // Add spacing
+          style={{ margin: "16px auto", maxWidth: "728px" }}
+        />
         <BusinessStats />
         <section className="py-16 bg-white">
           <div className="container mx-auto px-6">
@@ -307,6 +309,11 @@ function Home(props: any) {
             </div>
           </div>
         </section>
+        <AdSense
+          type="display"
+          className="my-8" // Add spacing
+          style={{ margin: "16px auto", maxWidth: "728px" }}
+        />
         <section className="">
           <div className="container mx-auto px-4 py-16 sm:py-24">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -332,14 +339,16 @@ function Home(props: any) {
                 <div className="absolute -inset-4 bg-gradient-to-r from-amber-200 to-amber-100 dark:from-amber-900/30 dark:to-amber-700/20 blur-3xl opacity-30 rounded-3xl animate-pulse"></div>
                 <div className="grid grid-cols-2 gap-4 relative">
                   <div className="overflow-hidden rounded-2xl shadow-xl transform hover:scale-[1.03] transition-all duration-500">
-                    <img
+                    <Image
+                      layout="fill"
                       className="w-full h-full object-cover"
                       src="/assets/lilin1.webp"
                       alt="Lilin Kristal Sedang Warna Warni"
                     />
                   </div>
                   <div className="overflow-hidden rounded-2xl shadow-xl mt-12 transform hover:scale-[1.03] transition-all duration-500">
-                    <img
+                    <Image
+                      layout="fill"
                       className="w-full h-full object-cover"
                       src="/assets/lilin2.webp"
                       alt={t("shipping.package")}
@@ -417,7 +426,7 @@ function Home(props: any) {
                 <div className="relative">
                   <div className="absolute -inset-4 bg-gradient-to-r from-amber-200 to-amber-100 dark:from-amber-900/30 dark:to-amber-700/20 blur-3xl opacity-30 rounded-3xl"></div>
                   <div className="relative">
-                    <img
+                    <Image
                       src="/assets/lilin.webp"
                       alt={t("premium_collection.subtitle")}
                       className="w-full max-w-none rounded-2xl shadow-2xl ring-1 ring-gray-400/10 object-cover lg:w-[48rem] h-[30rem] transform hover:scale-[1.02] transition-transform duration-500"
@@ -576,7 +585,8 @@ function Home(props: any) {
                     className="flex flex-col overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 bg-white dark:bg-gray-800"
                   >
                     <div className="relative h-48 w-full overflow-hidden">
-                      <img
+                      <Image
+                        layout="fill"
                         src={
                           post.image
                             ? post.image
@@ -622,7 +632,9 @@ function Home(props: any) {
 
                       <div className="mt-6 flex items-center">
                         <div className="flex-shrink-0">
-                          <img
+                          <Image
+                            width={40}
+                            height={40}
                             className="h-10 w-10 rounded-full"
                             src={`https://picsum.photos/seed/author${post.id}/40/40`}
                             alt="Author"
@@ -668,8 +680,6 @@ function Home(props: any) {
             </div>
           </div>
           {/* Testimonial */}
-
-          {/* Testimonial */}
           <section className="py-16 bg-white">
             <div className="container mx-auto px-6">
               <h2 className="text-3xl font-bold text-center mb-12">
@@ -684,7 +694,9 @@ function Home(props: any) {
                     <div className="flex items-center mb-4"></div>
                     <p className="text-gray-700 mb-4">{t(testimonial.quote)}</p>
                     <div className="flex items-center">
-                      <img
+                      <Image
+                        width={40}
+                        height={40}
                         src={testimonial.imageUrl}
                         alt={`Foto Testimonial ${t(testimonial.name)}`}
                         className="w-10 h-10 rounded-full mr-3"
@@ -728,6 +740,11 @@ function Home(props: any) {
             </div>
           </section>
         </section>
+        <AdSense
+          type="display"
+          className="my-8" // Add spacing
+          style={{ margin: "16px auto", maxWidth: "728px" }}
+        />
       </div>
     </Layout>
   );
@@ -751,7 +768,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       hasPosts,
-      posts: posts.slice(0, 6),
+      posts: posts.slice(0, 9),
       ...(await serverSideTranslations(locale, ["common", "order"])),
     },
   };

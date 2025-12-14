@@ -3,12 +3,16 @@ import { Phone, ShoppingBag, CreditCard, Truck, Clock } from "lucide-react";
 import Layout from "components/layout/Landing";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import AdSense from "components/AdSense";
 
 const CandleOrderPage = () => {
   const { t } = useTranslation("order");
 
   return (
     <div className="min-h-screen text-gray-800 p-4 md:p-8">
+      <div className="mb-8">
+        <AdSense type="display" className="max-w-4xl mx-auto" />
+      </div>
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <header className="text-center mb-10">
@@ -44,7 +48,9 @@ const CandleOrderPage = () => {
                   </p>
                 </div>
               </div>
-
+              <div className="my-6">
+                <AdSense type="in-article" />
+              </div>
               {/* Step 2 */}
               <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
                 <div className="bg-amber-100 p-3 rounded-full">
@@ -91,7 +97,9 @@ const CandleOrderPage = () => {
                   </p>
                 </div>
               </div>
-
+              <div className="my-6">
+                <AdSense type="feed" />
+              </div>
               {/* Step 4 */}
               <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
                 <div className="bg-amber-100 p-3 rounded-full">
@@ -140,6 +148,9 @@ const CandleOrderPage = () => {
             </a>
           </div>
         </main>
+      </div>
+      <div className="mt-8">
+        <AdSense type="display" className="max-w-4xl mx-auto" />
       </div>
     </div>
   );

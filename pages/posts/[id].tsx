@@ -26,6 +26,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import DisqusThread from "components/DisqusThread";
 import ScrollIndicator from "components/ScrollIndicator";
 import AdSense from "components/AdSense"; // Ensure this path is correct
+import { Content } from "components";
 
 // --- Helper Components ---
 
@@ -255,7 +256,6 @@ function Post({ postData, slug, allPostsData }) {
   const readingTime = estimateReadingTime(
     postData.contentHtml.replace(/<[^>]*>/g, "")
   );
-  console.log({ allPostsData });
   return (
     <>
       <ScrollIndicator />
@@ -340,7 +340,13 @@ function Post({ postData, slug, allPostsData }) {
 
               {/* Ad below Title - Very High CTR */}
               <AdSense type="in-article" className="mb-8" />
-
+              <Content
+                withTitle={false}
+                queryParams={{
+                  "page[size]": 2,
+                }}
+                title="other_products"
+              />
               {/* Main Content with Injected Ads */}
               <ContentWithAds contentHtml={postData.contentHtml} />
 

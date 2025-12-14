@@ -11,6 +11,7 @@ const nextConfig = {
   i18n,
   images: {
     domains: [
+      "randomuser.me",
       "picsum.photos",
       "firebasestorage.googleapis.com",
       "cdn.dribbble.com",

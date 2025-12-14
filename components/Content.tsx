@@ -114,7 +114,7 @@ const AnimatedProductCard = ({ product, isDocumentExist, index }) => {
         <Link href={`/products/${product.attributes.slug}`}>
           <div className="relative overflow-hidden group">
             <img
-              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
               src={
                 isDocumentExist
                   ? product.attributes.thumbnail
@@ -194,6 +194,7 @@ const AnimatedProductCard = ({ product, isDocumentExist, index }) => {
 
 export default function Content({
   title = "our_products",
+  withTitle = true,
   queryParams = {},
 }: any) {
   const { t } = useTranslation("common");
@@ -214,7 +215,12 @@ export default function Content({
 
   const query: UseQueryResult<any> = useQuery({
     // Include currentPage in the queryKey so React Query refetches when it changes
-    queryKey: [title, router.locale, currentPage],
+    queryKey: [
+      title,
+      router.locale,
+      currentPage,
+      JSON.stringify(productParams),
+    ],
     queryFn: async () => {
       return api.get("products", { ...productParams });
     },
@@ -271,37 +277,41 @@ export default function Content({
   return (
     <>
       <main className="bg-white dark:bg-gray-900 pt-24">
-        <motion.h2
-          id="products"
-          initial="hidden"
-          animate="visible"
-          variants={titleVariants}
-          className="text-center mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
-        >
-          {t(title, "Our Products")}
-        </motion.h2>
+        {withTitle && (
+          <>
+            <motion.h2
+              id="products"
+              initial="hidden"
+              animate="visible"
+              variants={titleVariants}
+              className="text-center mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+            >
+              {t(title, "Our Products")}
+            </motion.h2>
 
-        <motion.span
-          initial="hidden"
-          animate="visible"
-          variants={disclaimerVariants}
-          className="text-red-600 text-sm block max-w-md px-2 mx-auto text-center"
-        >
-          {t("disclaimer_price", "Below is wholesale price")}
-        </motion.span>
+            <motion.span
+              initial="hidden"
+              animate="visible"
+              variants={disclaimerVariants}
+              className="text-red-600 text-sm block max-w-md px-2 mx-auto text-center"
+            >
+              {t("disclaimer_price", "Below is wholesale price")}
+            </motion.span>
+          </>
+        )}
 
         <motion.ul
           ref={gridRef}
           id="parent"
-          className="mx-auto w-full p-4 grid grid-cols-12 gap-4"
+          className="mx-auto w-full justify-center p-4 flex flex-col md:flex-row items-center gap-4"
         >
           {query.isLoading || query.isError ? (
             <>
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((it: number) => {
+              {[1, 2, 3, 4].map((it: number) => {
                 return (
                   <motion.div
                     key={it}
-                    className="col-span-12 sm:col-span-4 lg:col-span-3 text-center"
+                    className="text-center w-full"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3, delay: it * 0.05 }}
@@ -319,10 +329,7 @@ export default function Content({
                     ? getRelationships(query.data.data, product, "documents")
                     : [];
                 return (
-                  <li
-                    className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3"
-                    key={product.attributes.slug}
-                  >
+                  <li className="w-full max-w-sm" key={product.attributes.slug}>
                     <AnimatedProductCard
                       isDocumentExist={!!product.attributes.thumbnail}
                       product={product}
@@ -331,24 +338,25 @@ export default function Content({
                   </li>
                 );
               })}
-
-              <motion.div
-                className="flex col-span-12 justify-center"
-                initial="hidden"
-                animate="visible"
-                variants={paginationVariants}
-              >
-                <Pagination
-                  page={currentPage}
-                  onChange={onChangePage}
-                  variant="outlined"
-                  color="primary"
-                  count={query.data.data.meta.page.lastPage}
-                />
-              </motion.div>
             </>
           )}
         </motion.ul>
+        {query.isLoading || query.isError ? null : (
+          <motion.div
+            className="flex col-span-12 justify-center"
+            initial="hidden"
+            animate="visible"
+            variants={paginationVariants}
+          >
+            <Pagination
+              page={currentPage}
+              onChange={onChangePage}
+              variant="outlined"
+              color="primary"
+              count={query.data.data.meta.page.lastPage}
+            />
+          </motion.div>
+        )}
       </main>
     </>
   );
