@@ -30,12 +30,12 @@ jobs:
             # --- Next.js Deployment ---
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
-            npm --help
+            pnpm --help
             # Install Next.js dependencies
-            npm install
+            pnpm install
 
             # Build the Next.js application for production
-            npm run build
+            pnpm run build
 
             # Restart the Next.js application with PM2
             pm2 restart million-candles-fe-prod
