@@ -31,7 +31,6 @@ import EnhancedTableToolbar from "components/mui/EnhancedTableToolbar";
 import EnhancedTableHead from "components/mui/EnhancedTableHead";
 import EmptyData from "./EmptyData";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { useTour } from "@reactour/tour";
 import dayjs from "dayjs";
 
 interface Data {
@@ -72,7 +71,6 @@ const ordersParams = {
 
 export default function OrderTable({ title }: { title: string }) {
   const router = useRouter();
-  const { setIsOpen } = useTour();
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<any>("calories");
   const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -98,19 +96,9 @@ export default function OrderTable({ title }: { title: string }) {
       return api.get("orders", params);
     },
   });
-
-  React.useEffect(() => {
-    const hasOnboarding = JSON.parse(
-      localStorage.getItem("has_onboarding") || "{}"
-    );
-    if (!hasOnboarding) {
-      setIsOpen(true);
-    }
-  }, []);
-
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
-    property: keyof Data
+    property: keyof Data,
   ) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -137,7 +125,7 @@ export default function OrderTable({ title }: { title: string }) {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
+        selected.slice(selectedIndex + 1),
       );
     }
 
@@ -149,7 +137,7 @@ export default function OrderTable({ title }: { title: string }) {
   };
 
   const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);

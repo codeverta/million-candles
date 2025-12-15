@@ -14,7 +14,6 @@ import InputBase from "@mui/material/InputBase";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import MuiMenu from "./MuiMenu";
 import { useRouter } from "next/router";
-import { useTour } from "@reactour/tour";
 import SearchPage from "./SearchPage";
 // import { MenuItem, Menu } from "@mui/material";
 
@@ -66,10 +65,6 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function MainAppBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>();
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const { setIsOpen } = useTour();
   const router = useRouter();
   const [state, setState] = useState({
     anchorEl: null,
