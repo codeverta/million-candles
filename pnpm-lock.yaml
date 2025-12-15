@@ -25,12 +25,6 @@ importers:
       "@fortawesome/react-fontawesome":
         specifier: ^0.2.2
         version: 0.2.6(@fortawesome/fontawesome-svg-core@6.7.2)(react@18.2.0)
-      "@google/genai":
-        specifier: ^1.13.0
-        version: 1.31.0
-      "@headlessui/react":
-        specifier: ^1.7.12
-        version: 1.7.19(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       "@mui/base":
         specifier: ^5.0.0-alpha.118
         version: 5.0.0-beta.70(@types/react@18.3.27)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -49,9 +43,6 @@ importers:
       "@radix-ui/react-slot":
         specifier: ^1.2.3
         version: 1.2.4(@types/react@18.3.27)(react@18.2.0)
-      "@reactour/tour":
-        specifier: ^3.3.0
-        version: 3.8.0(react@18.2.0)
       "@sentry/nextjs":
         specifier: ^10.15.0
         version: 10.29.0(@opentelemetry/context-async-hooks@2.2.0(@opentelemetry/api@1.9.0))(@opentelemetry/core@2.2.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.2.0(@opentelemetry/api@1.9.0))(next@15.5.8(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(webpack@5.103.0)
@@ -149,6 +140,9 @@ importers:
         specifier: ^2.3.5
         version: 2.3.5
     devDependencies:
+      "@google/genai":
+        specifier: ^1.13.0
+        version: 1.31.0
       "@tailwindcss/aspect-ratio":
         specifier: ^0.4.2
         version: 0.4.2(tailwindcss@3.4.18)
@@ -889,16 +883,6 @@ packages:
       }
     engines: { node: ">=6" }
     hasBin: true
-
-  "@headlessui/react@1.7.19":
-    resolution:
-      {
-        integrity: sha512-Ll+8q3OlMJfJbAKM/+/Y2q6PPYbryqNTXDbryx7SXLIDamkF6iQFbriYHga0dY44PvDhvvBWCx1Xj4U5+G4hOw==,
-      }
-    engines: { node: ">=10" }
-    peerDependencies:
-      react: ^16 || ^17 || ^18
-      react-dom: ^16 || ^17 || ^18
 
   "@img/colour@1.0.0":
     resolution:
@@ -1832,38 +1816,6 @@ packages:
       "@types/react":
         optional: true
 
-  "@reactour/mask@1.2.0":
-    resolution:
-      {
-        integrity: sha512-XLgBLWfKJybtZjNTSO5lt/SIvRlCZBadB6JfE/hO1ErqURRjYhnv+edC0Ki1haUCqMGFppWk3lwcPCjmK0xNog==,
-      }
-    peerDependencies:
-      react: 16.x || 17.x || 18.x || 19.x
-
-  "@reactour/popover@1.3.0":
-    resolution:
-      {
-        integrity: sha512-YdyjSmHPvEeQEcJM4gcGFa5pI/Yf4nZGqwG4JnT+rK1SyUJBIPnm4Gkl/h7/+1g0KCFMkwNwagS3ZiXvZB7ThA==,
-      }
-    peerDependencies:
-      react: 16.x || 17.x || 18.x || 19.x
-
-  "@reactour/tour@3.8.0":
-    resolution:
-      {
-        integrity: sha512-KZTFi1pAvoTVKKRdBN5+XCYxXBp4k4Ql/acZcXyPvec8VU24fkMSEeV+v8krfYQpoVcewxIu3gM6xWZZLjxi7w==,
-      }
-    peerDependencies:
-      react: 16.x || 17.x || 18.x || 19.x
-
-  "@reactour/utils@0.6.0":
-    resolution:
-      {
-        integrity: sha512-GqaLjQi7MJsgtAKjdiw2Eak1toFkADoLRnm1+HZpaD+yl+DkaHpC1N7JAl+kVOO5I17bWInPA+OFbXjO9Co8Qg==,
-      }
-    peerDependencies:
-      react: 16.x || 17.x || 18.x || 19.x
-
   "@rollup/plugin-commonjs@28.0.1":
     resolution:
       {
@@ -2063,14 +2015,6 @@ packages:
       }
     cpu: [x64]
     os: [win32]
-
-  "@rooks/use-mutation-observer@4.11.2":
-    resolution:
-      {
-        integrity: sha512-vpsdrZdr6TkB1zZJcHx+fR1YC/pHs2BaqcuYiEGjBVbwY5xcC49+h0hAUtQKHth3oJqXfIX/Ng8S7s5HFHdM/A==,
-      }
-    peerDependencies:
-      react: ">=16.8.0"
 
   "@sentry-internal/browser-utils@10.29.0":
     resolution:
@@ -2351,21 +2295,6 @@ packages:
         optional: true
       react-native:
         optional: true
-
-  "@tanstack/react-virtual@3.13.12":
-    resolution:
-      {
-        integrity: sha512-Gd13QdxPSukP8ZrkbgS2RwoZseTTbQPLnQEn7HY/rqtM+8Zt95f7xKC7N0EsKs7aoz0WzZ+fditZux+F8EzYxA==,
-      }
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-
-  "@tanstack/virtual-core@3.13.12":
-    resolution:
-      {
-        integrity: sha512-1YBOJfRHV4sXUmWsFSf5rQor4Ss82G8dQWLRbnk3GA4jeP8hQt1hxXh0tmflpC0dz3VgEv/1+qwPyLeWkQuPFA==,
-      }
 
   "@types/connect@3.4.38":
     resolution:
@@ -5122,12 +5051,6 @@ packages:
       }
     engines: { node: ">=9.3.0 || >=8.10.0 <9.0.0" }
 
-  resize-observer-polyfill@1.5.1:
-    resolution:
-      {
-        integrity: sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==,
-      }
-
   resolve-from@4.0.0:
     resolution:
       {
@@ -6440,13 +6363,6 @@ snapshots:
       protobufjs: 7.5.4
       yargs: 17.7.2
 
-  "@headlessui/react@1.7.19(react-dom@18.2.0(react@18.2.0))(react@18.2.0)":
-    dependencies:
-      "@tanstack/react-virtual": 3.13.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      client-only: 0.0.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
   "@img/colour@1.0.0":
     optional: true
 
@@ -7028,29 +6944,6 @@ snapshots:
     optionalDependencies:
       "@types/react": 18.3.27
 
-  "@reactour/mask@1.2.0(react@18.2.0)":
-    dependencies:
-      "@reactour/utils": 0.6.0(react@18.2.0)
-      react: 18.2.0
-
-  "@reactour/popover@1.3.0(react@18.2.0)":
-    dependencies:
-      "@reactour/utils": 0.6.0(react@18.2.0)
-      react: 18.2.0
-
-  "@reactour/tour@3.8.0(react@18.2.0)":
-    dependencies:
-      "@reactour/mask": 1.2.0(react@18.2.0)
-      "@reactour/popover": 1.3.0(react@18.2.0)
-      "@reactour/utils": 0.6.0(react@18.2.0)
-      react: 18.2.0
-
-  "@reactour/utils@0.6.0(react@18.2.0)":
-    dependencies:
-      "@rooks/use-mutation-observer": 4.11.2(react@18.2.0)
-      react: 18.2.0
-      resize-observer-polyfill: 1.5.1
-
   "@rollup/plugin-commonjs@28.0.1(rollup@4.53.3)":
     dependencies:
       "@rollup/pluginutils": 5.3.0(rollup@4.53.3)
@@ -7136,10 +7029,6 @@ snapshots:
 
   "@rollup/rollup-win32-x64-msvc@4.53.3":
     optional: true
-
-  "@rooks/use-mutation-observer@4.11.2(react@18.2.0)":
-    dependencies:
-      react: 18.2.0
 
   "@sentry-internal/browser-utils@10.29.0":
     dependencies:
@@ -7387,14 +7276,6 @@ snapshots:
       use-sync-external-store: 1.6.0(react@18.2.0)
     optionalDependencies:
       react-dom: 18.2.0(react@18.2.0)
-
-  "@tanstack/react-virtual@3.13.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0)":
-    dependencies:
-      "@tanstack/virtual-core": 3.13.12
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
-  "@tanstack/virtual-core@3.13.12": {}
 
   "@types/connect@3.4.38":
     dependencies:
@@ -9132,8 +9013,6 @@ snapshots:
       module-details-from-path: 1.0.4
     transitivePeerDependencies:
       - supports-color
-
-  resize-observer-polyfill@1.5.1: {}
 
   resolve-from@4.0.0: {}
 
