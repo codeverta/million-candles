@@ -21,22 +21,24 @@ jobs:
           script: |
             cd /var/www/html/million-candles
 
-            # FIX PERMISSION: Ubah owner folder jadi user yg sedang login
+            # 1. FIX PERMISSION: Ubah owner folder menjadi user yang sedang login (PENTING)
             echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S chown -R ${{ secrets.USERNAME }}:${{ secrets.USERNAME }} .
 
-            # Git Config Safe Directory
+            # 2. Git Config Safe Directory & Pull Code
             git config --global --add safe.directory /var/www/html/million-candles
-
-            # Use HTTPS with GitHub token instead of SSH
             git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/robycigar/million-candles.git
-
-            # Pull latest changes for the entire project
             git pull origin main
 
-            # --- Next.js Deployment ---
+            # 3. Solusi EACCES (Next.js): Hapus folder build dan cache .next lama
+            # Ini memastikan folder .next dibuat ulang dengan izin yang benar saat build
+            rm -rf .next 
+
+            # --- Next.js Deployment (Frontend) ---
+            # Load NVM/pnpm environment
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
             pnpm --help
+
             # Install Next.js dependencies
             pnpm install
 

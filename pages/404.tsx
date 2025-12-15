@@ -29,7 +29,12 @@ export default function NotFound() {
           </div>
         </div>
       </section>
-      <Content title={""} />
+      <Content
+        title={""}
+        queryParams={{
+          "page[size]": 4,
+        }}
+      />
     </>
   );
 }
