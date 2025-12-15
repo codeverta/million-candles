@@ -1,8 +1,8 @@
 ---
-title: "Jual Lilin untuk Perayaan Natal 2025 di Tabanan, Cisarua, Bangkalan, Banjar, Jepara, dan Bambang Lipuro"
+title: "Arti Lilin Merah di Kuburan dan Makam: Makna, Sejarah, serta Pandangan Islam"
 date: "2025-12-15"
-desc: "Lilin sangat dibutuhkan untuk perayaan Natal 2025 sebagai simbol terang dan harapan, terutama di daerah Tabanan, Cisarua, Bangkalan, Banjar, Jepara, dan Bambang Lipuro."
-tags: "lilin natal 2025, perayaan natal, kebutuhan lilin, tradisi natal"
+desc: "Pembahasan lengkap tentang arti lilin merah di kuburan dan makam, alasan orang meninggal dikasih lilin, serta penjelasannya menurut budaya dan pandangan Islam."
+tags: "arti lilin merah di kuburan, lilin merah di makam artinya, kenapa orang meninggal dikasih lilin, kenapa orang meninggal dikasih lilin menurut islam, arti menyalakan lilin merah di kuburan"
 ---
 
 ## Pendahuluan
