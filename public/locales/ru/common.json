@@ -11,6 +11,60 @@
     "gallery": "Галерея",
     "about": "О нас"
   },
+  "menuData": {
+    "all-products": {
+      "name": "Все продукты",
+      "subcategories": {
+        "all_products_section": {
+          "name": "Посмотреть все продукты",
+          "item_all_products": "Все продукты"
+        },
+        "crystal_candle_section": {
+          "name": "Кристаллические свечи (Алтарные свечи)",
+          "item_small": "Малая кристаллическая свеча",
+          "item_medium": "Средняя кристаллическая свеча",
+          "item_large": "Большая кристаллическая свеча"
+        },
+        "memories_candle_section": {
+          "name": "Свечи Memories",
+          "item_sharp_tip": "Свеча Memories с острым концом"
+        }
+      },
+      "featured": {
+        "new_products": "Новые продукты",
+        "essential_oil_guide": "Руководство по эфирным маслам"
+      }
+    },
+    "glass-candle": {
+      "name": "Стеклянные свечи",
+      "subcategories": {
+        "glass_candle_section": {
+          "name": "Стеклянные свечи",
+          "item_premium": "Премиум стеклянная свеча"
+        }
+      },
+      "featured": {
+        "shipping_promo": "Бесплатная доставка всех наборов для изготовления свечей!"
+      }
+    },
+    "candle-making": {
+      "name": "Изготовление свечей",
+      "subcategories": {
+        "wick_section": {
+          "name": "Фитили для свечей",
+          "item_jute_rope": "Джутовый канат / Пеньковый канат",
+          "item_cotton_thread": "Хлопковая нить для свечного фитиля"
+        },
+        "containers_section": {
+          "name": "Контейнеры для свечей",
+          "item_black_aluminum": "Черный алюминиевый контейнер"
+        }
+      },
+      "featured": {
+        "shipping_promo": "Бесплатная доставка всех наборов для изготовления свечей!"
+      }
+    }
+  },
   "homepage": {
     "title": "Производитель Высококачественных Ручных Свечей | Million Candles",
     "description": "Million Candles — производитель ручных свечей, идеально подходящих для молитвы, украшения, подарков и релаксации. Доставка доступна в Москве, Санкт-Петербурге, Новосибирске, Екатеринбурге, Казани, Нижнем Новгороде, Самаре и Омске.",

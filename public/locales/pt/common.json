@@ -11,6 +11,60 @@
     "gallery": "Galeria",
     "about": "Sobre"
   },
+  "menuData": {
+    "all-products": {
+      "name": "Todos os Produtos",
+      "subcategories": {
+        "all_products_section": {
+          "name": "Ver Todos os Produtos",
+          "item_all_products": "Todos os Produtos"
+        },
+        "crystal_candle_section": {
+          "name": "Velas de Cristal (Velas de Altar)",
+          "item_small": "Vela de Cristal Pequena",
+          "item_medium": "Vela de Cristal Média",
+          "item_large": "Vela de Cristal Grande"
+        },
+        "memories_candle_section": {
+          "name": "Velas Memories",
+          "item_sharp_tip": "Vela Memories de Ponta Afiada"
+        }
+      },
+      "featured": {
+        "new_products": "Produtos Novos",
+        "essential_oil_guide": "Guia de Óleos Essenciais"
+      }
+    },
+    "glass-candle": {
+      "name": "Velas de Vidro",
+      "subcategories": {
+        "glass_candle_section": {
+          "name": "Velas de Vidro",
+          "item_premium": "Vela de Vidro Premium"
+        }
+      },
+      "featured": {
+        "shipping_promo": "Frete grátis em todos os kits de fabricação de velas!"
+      }
+    },
+    "candle-making": {
+      "name": "Fabricação de Velas",
+      "subcategories": {
+        "wick_section": {
+          "name": "Pavio de Vela",
+          "item_jute_rope": "Corda de Juta / Corda de Cânhamo",
+          "item_cotton_thread": "Fio de Pavio de Vela de Algodão"
+        },
+        "containers_section": {
+          "name": "Recipientes para Velas",
+          "item_black_aluminum": "Recipiente de Alumínio Preto"
+        }
+      },
+      "featured": {
+        "shipping_promo": "Frete grátis em todos os kits de fabricação de velas!"
+      }
+    }
+  },
   "homepage": {
     "title": "Fabricante de Velas Artesanais de Alta Qualidade | Million Candles",
     "description": "Million Candles é um fabricante de velas artesanais, perfeitas para oração, decoração, presentes e relaxamento. Fazemos envios para todo o país, incluindo Lisboa, Porto, Coimbra, Braga, Faro, Aveiro, Setúbal e Funchal.",

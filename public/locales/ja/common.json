@@ -11,6 +11,60 @@
     "gallery": "ギャラリー",
     "about": "会社情報"
   },
+  "menuData": {
+    "all-products": {
+      "name": "全製品",
+      "subcategories": {
+        "all_products_section": {
+          "name": "全製品を見る",
+          "item_all_products": "すべての製品"
+        },
+        "crystal_candle_section": {
+          "name": "クリスタルキャンドル（祭壇用キャンドル）",
+          "item_small": "クリスタルキャンドル（小）",
+          "item_medium": "クリスタルキャンドル（中）",
+          "item_large": "クリスタルキャンドル（大）"
+        },
+        "memories_candle_section": {
+          "name": "メモリーキャンドル",
+          "item_sharp_tip": "メモリー尖頭キャンドル"
+        }
+      },
+      "featured": {
+        "new_products": "新製品",
+        "essential_oil_guide": "エッセンシャルオイルガイド"
+      }
+    },
+    "glass-candle": {
+      "name": "グラスキャンドル",
+      "subcategories": {
+        "glass_candle_section": {
+          "name": "グラスキャンドル",
+          "item_premium": "プレミアムグラスキャンドル"
+        }
+      },
+      "featured": {
+        "shipping_promo": "すべてのキャンドル作成キットは送料無料！"
+      }
+    },
+    "candle-making": {
+      "name": "キャンドル作り",
+      "subcategories": {
+        "wick_section": {
+          "name": "キャンドルウィック（芯）",
+          "item_jute_rope": "ジュートロープ / 麻ひも",
+          "item_cotton_thread": "コットンキャンドルウィック糸"
+        },
+        "containers_section": {
+          "name": "キャンドルコンテナ（容器）",
+          "item_black_aluminum": "黒色アルミコンテナ"
+        }
+      },
+      "featured": {
+        "shipping_promo": "すべてのキャンドル作成キットは送料無料！"
+      }
+    }
+  },
   "homepage": {
     "title": "高品質な手作りキャンドルメーカー | Million Candles",
     "description": "Million Candles は手作りキャンドルのメーカーで、祈り、装飾、ギフト、リラクゼーションに最適です。日本全国に配送可能で、東京、大阪、名古屋、京都、横浜、福岡、札幌、神戸など主要都市へもお届けします。",

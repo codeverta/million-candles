@@ -11,6 +11,56 @@
     "gallery": "Galeri",
     "about": "Tentang Kami"
   },
+  "menuData": {
+    "all-products": {
+      "name": "Semua Produk",
+      "subcategories": {
+        "all_products_section": {
+          "name": "Lihat Semua Produk",
+          "item_all_products": "Semua Produk"
+        },
+        "crystal_candle_section": {
+          "name": "Lilin Kristal (Lilin Altar)",
+          "item_small": "Lilin Kristal Kecil",
+          "item_medium": "Lilin Kristal Sederhana",
+          "item_large": "Lilin Kristal Besar"
+        },
+        "memories_candle_section": {
+          "name": "Lilin Memories",
+          "item_sharp_tip": "Lilin Memories Hujung Tajam"
+        }
+      },
+      "featured": {
+        "new_products": "Produk Baharu",
+        "essential_oil_guide": "Panduan Minyak Pati"
+      }
+    },
+    "glass-candle": {
+      "name": "Lilin Gelas",
+      "subcategories": {
+        "glass_candle_section": {
+          "name": "Lilin Gelas",
+          "item_premium": "Lilin Gelas Premium"
+        }
+      },
+      "featured": {
+        "shipping_promo": "Penghantaran percuma untuk semua kit membuat lilin!"
+      }
+    },
+    "candle-making": {
+      "name": "Cara Membuat Lilin",
+      "subcategories": {
+        "wick_section": {
+          "name": "Sumbu Lilin (Wick)",
+          "item_jute_rope": "Tali Goni / Tali Rami",
+          "item_cotton_thread": "Benang Sumbu Lilin Kapas"
+        }
+      },
+      "featured": {
+        "shipping_promo": "Penghantaran percuma untuk semua kit membuat lilin!"
+      }
+    }
+  },
   "homepage": {
     "title": "Pengeluar Lilin Buatan Tangan Berkualiti Tinggi | Million Candles",
     "description": "Million Candles ialah pengeluar lilin buatan tangan, sesuai untuk ibadah, hiasan, hadiah dan relaksasi. Penghantaran tersedia ke bandar utama di Malaysia seperti Kuala Lumpur, Johor Bahru, Penang, Ipoh, Melaka, Kota Kinabalu, Kuching dan Shah Alam.",

@@ -11,6 +11,60 @@
     "gallery": "갤러리",
     "about": "회사 소개"
   },
+  "menuData": {
+    "all-products": {
+      "name": "모든 제품",
+      "subcategories": {
+        "all_products_section": {
+          "name": "모든 제품 보기",
+          "item_all_products": "모든 제품"
+        },
+        "crystal_candle_section": {
+          "name": "크리스탈 캔들 (제단 캔들)",
+          "item_small": "작은 크리스탈 캔들",
+          "item_medium": "중간 크리스탈 캔들",
+          "item_large": "큰 크리스탈 캔들"
+        },
+        "memories_candle_section": {
+          "name": "메모리 캔들",
+          "item_sharp_tip": "메모리 뾰족한 끝 캔들"
+        }
+      },
+      "featured": {
+        "new_products": "신제품",
+        "essential_oil_guide": "에센셜 오일 가이드"
+      }
+    },
+    "glass-candle": {
+      "name": "유리 캔들",
+      "subcategories": {
+        "glass_candle_section": {
+          "name": "유리 캔들",
+          "item_premium": "프리미엄 유리 캔들"
+        }
+      },
+      "featured": {
+        "shipping_promo": "모든 캔들 제작 키트 무료 배송!"
+      }
+    },
+    "candle-making": {
+      "name": "캔들 만들기",
+      "subcategories": {
+        "wick_section": {
+          "name": "캔들 심지 (Wick)",
+          "item_jute_rope": "황마 로프 / 삼 로프",
+          "item_cotton_thread": "면 캔들 심지 실"
+        },
+        "containers_section": {
+          "name": "캔들 용기 (Containers)",
+          "item_black_aluminum": "검은색 알루미늄 용기"
+        }
+      },
+      "featured": {
+        "shipping_promo": "모든 캔들 제작 키트 무료 배송!"
+      }
+    }
+  },
   "homepage": {
     "title": "고품질 수제 양초 제조업체 | Million Candles",
     "description": "Million Candles는 기도, 장식, 선물 및 휴식에 적합한 수제 양초 제조업체입니다. 서울, 부산, 인천, 대구, 대전, 광주, 울산, 수원 등 한국 주요 도시에 배송 가능합니다.",

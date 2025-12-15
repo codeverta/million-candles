@@ -7,9 +7,63 @@
     "products": "Produk",
     "how_to_order": "Cara Pesan",
     "address": "Alamat",
-    "blog": "Cerita",
+    "blog": "Blog",
     "gallery": "Galeri",
     "about": "Tentang"
+  },
+  "menuData": {
+    "all-products": {
+      "name": "Semua Produk",
+      "subcategories": {
+        "all_products_section": {
+          "name": "Lihat Semua Produk",
+          "item_all_products": "Semua Produk"
+        },
+        "crystal_candle_section": {
+          "name": "Lilin Kristal (Lilin Altar)",
+          "item_small": "Lilin Kristal Kecil",
+          "item_medium": "Lilin Kristal Sedang",
+          "item_large": "Lilin Kristal Besar"
+        },
+        "memories_candle_section": {
+          "name": "Lilin Memories",
+          "item_sharp_tip": "Lilin Memories Ujung Lancip"
+        }
+      },
+      "featured": {
+        "new_products": "Produk Baru",
+        "essential_oil_guide": "Panduan Essential Oil"
+      }
+    },
+    "glass-candle": {
+      "name": "Lilin Gelas",
+      "subcategories": {
+        "glass_candle_section": {
+          "name": "Lilin Gelas",
+          "item_premium": "Lilin Gelas Premium"
+        }
+      },
+      "featured": {
+        "shipping_promo": "Gratis pengiriman untuk semua kit pembuatan lilin!"
+      }
+    },
+    "candle-making": {
+      "name": "Cara Membuat Lilin",
+      "subcategories": {
+        "wick_section": {
+          "name": "Sumbu Lilin (Wick)",
+          "item_jute_rope": "Tali Goni / Tali Rami",
+          "item_cotton_thread": "Cotton Candle Wick Thread"
+        },
+        "containers_section": {
+          "name": "Wadah Lilin (Containers)",
+          "item_black_aluminum": "Wadah Alumunium Hitam"
+        }
+      },
+      "featured": {
+        "shipping_promo": "Gratis pengiriman untuk semua kit pembuatan lilin!"
+      }
+    }
   },
   "homepage": {
     "title": "Produsen Lilin Handmade Berkualitas Tinggi | Million Candles",

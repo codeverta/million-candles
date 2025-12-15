@@ -11,6 +11,60 @@
     "gallery": "Gallery",
     "about": "About"
   },
+  "menuData": {
+    "all-products": {
+      "name": "All Products",
+      "subcategories": {
+        "all_products_section": {
+          "name": "View All Products",
+          "item_all_products": "All Products"
+        },
+        "crystal_candle_section": {
+          "name": "Crystal Candles (Altar Candles)",
+          "item_small": "Small Crystal Candle",
+          "item_medium": "Medium Crystal Candle",
+          "item_large": "Large Crystal Candle"
+        },
+        "memories_candle_section": {
+          "name": "Memories Candles",
+          "item_sharp_tip": "Memories Sharp Tip Candle"
+        }
+      },
+      "featured": {
+        "new_products": "New Products",
+        "essential_oil_guide": "Essential Oil Guide"
+      }
+    },
+    "glass-candle": {
+      "name": "Glass Candles",
+      "subcategories": {
+        "glass_candle_section": {
+          "name": "Glass Candles",
+          "item_premium": "Premium Glass Candle"
+        }
+      },
+      "featured": {
+        "shipping_promo": "Free shipping on all candle making kits!"
+      }
+    },
+    "candle-making": {
+      "name": "Candle Making",
+      "subcategories": {
+        "wick_section": {
+          "name": "Candle Wicks",
+          "item_jute_rope": "Jute Rope / Hemp Rope",
+          "item_cotton_thread": "Cotton Candle Wick Thread"
+        },
+        "containers_section": {
+          "name": "Candle Containers",
+          "item_black_aluminum": "Black Aluminum Container"
+        }
+      },
+      "featured": {
+        "shipping_promo": "Free shipping on all candle making kits!"
+      }
+    }
+  },
   "homepage": {
     "title": "High-Quality Handmade Candle Manufacturer | Million Candles",
     "description": "Million Candles is a handmade candle manufacturer, perfect for worship, decoration, gifts, and relaxation. Worldwide shipping available to major cities such as New York, London, Tokyo, Sydney, Dubai, Singapore, and more.",

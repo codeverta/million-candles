@@ -11,6 +11,60 @@
     "gallery": "画廊",
     "about": "关于我们"
   },
+  "menuData": {
+    "all-products": {
+      "name": "所有产品",
+      "subcategories": {
+        "all_products_section": {
+          "name": "查看所有产品",
+          "item_all_products": "所有产品"
+        },
+        "crystal_candle_section": {
+          "name": "水晶蜡烛 (祭坛蜡烛)",
+          "item_small": "小水晶蜡烛",
+          "item_medium": "中水晶蜡烛",
+          "item_large": "大水晶蜡烛"
+        },
+        "memories_candle_section": {
+          "name": "回忆蜡烛",
+          "item_sharp_tip": "尖头回忆蜡烛"
+        }
+      },
+      "featured": {
+        "new_products": "新产品",
+        "essential_oil_guide": "精油指南"
+      }
+    },
+    "glass-candle": {
+      "name": "玻璃蜡烛",
+      "subcategories": {
+        "glass_candle_section": {
+          "name": "玻璃蜡烛",
+          "item_premium": "高级玻璃蜡烛"
+        }
+      },
+      "featured": {
+        "shipping_promo": "所有蜡烛制作套件免运费！"
+      }
+    },
+    "candle-making": {
+      "name": "蜡烛制作",
+      "subcategories": {
+        "wick_section": {
+          "name": "蜡烛芯",
+          "item_jute_rope": "黄麻绳 / 麻绳",
+          "item_cotton_thread": "棉质蜡烛芯线"
+        },
+        "containers_section": {
+          "name": "蜡烛容器",
+          "item_black_aluminum": "黑色铝制容器"
+        }
+      },
+      "featured": {
+        "shipping_promo": "所有蜡烛制作套件免运费！"
+      }
+    }
+  },
   "homepage": {
     "title": "高品质手工蜡烛制造商 | Million Candles",
     "description": "Million Candles 是一家手工蜡烛制造商，适合祈祷、装饰、礼物和放松。全国配送，包括北京、上海、广州、深圳、杭州、成都、重庆和西安。",

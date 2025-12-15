@@ -158,7 +158,11 @@ function NavbarMenu({ menus, handleOpenLogin, handleDrawer, open }) {
       <div className="pt-16 sm:pt-20"></div>
 
       {/* Mega Menu */}
-      <MegaMenu isOpen={megaMenuOpen} onClose={closeMegaMenu} />
+      <MegaMenu
+        menuData={menus[1]?.menuData}
+        isOpen={megaMenuOpen}
+        onClose={closeMegaMenu}
+      />
     </>
   );
 }

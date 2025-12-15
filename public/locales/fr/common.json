@@ -11,6 +11,60 @@
     "gallery": "Galerie",
     "about": "À propos"
   },
+  "menuData": {
+    "all-products": {
+      "name": "Tous les produits",
+      "subcategories": {
+        "all_products_section": {
+          "name": "Voir tous les produits",
+          "item_all_products": "Tous les produits"
+        },
+        "crystal_candle_section": {
+          "name": "Bougies de Cristal (Bougies d'Autel)",
+          "item_small": "Petite Bougie de Cristal",
+          "item_medium": "Moyenne Bougie de Cristal",
+          "item_large": "Grande Bougie de Cristal"
+        },
+        "memories_candle_section": {
+          "name": "Bougies Memories",
+          "item_sharp_tip": "Bougie Memories à Pointe Aiguisée"
+        }
+      },
+      "featured": {
+        "new_products": "Nouveaux produits",
+        "essential_oil_guide": "Guide des Huiles Essentielles"
+      }
+    },
+    "glass-candle": {
+      "name": "Bougies en Verre",
+      "subcategories": {
+        "glass_candle_section": {
+          "name": "Bougies en Verre",
+          "item_premium": "Bougie en Verre Premium"
+        }
+      },
+      "featured": {
+        "shipping_promo": "Livraison gratuite sur tous les kits de fabrication de bougies !"
+      }
+    },
+    "candle-making": {
+      "name": "Fabrication de Bougies",
+      "subcategories": {
+        "wick_section": {
+          "name": "Mèches de Bougie",
+          "item_jute_rope": "Corde de Jute / Corde de Chanvre",
+          "item_cotton_thread": "Fil de Mèche de Bougie en Coton"
+        },
+        "containers_section": {
+          "name": "Récipients à Bougie",
+          "item_black_aluminum": "Récipient en Aluminium Noir"
+        }
+      },
+      "featured": {
+        "shipping_promo": "Livraison gratuite sur tous les kits de fabrication de bougies !"
+      }
+    }
+  },
   "homepage": {
     "title": "Fabricant de Bougies Artisanales de Haute Qualité | Million Candles",
     "description": "Million Candles est un fabricant de bougies artisanales, parfaites pour la prière, la décoration, les cadeaux et la relaxation. Nous proposons une livraison dans toute la France, y compris Paris, Lyon, Marseille, Toulouse, Bordeaux, Lille, Nice et Nantes.",

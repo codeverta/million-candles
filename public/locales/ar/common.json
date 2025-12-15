@@ -11,6 +11,60 @@
     "gallery": "معرض الصور",
     "about": "عن"
   },
+  "menuData": {
+    "all-products": {
+      "name": "جميع المنتجات",
+      "subcategories": {
+        "all_products_section": {
+          "name": "عرض جميع المنتجات",
+          "item_all_products": "جميع المنتجات"
+        },
+        "crystal_candle_section": {
+          "name": "شموع الكريستال (شموع المذبح)",
+          "item_small": "شمعة كريستال صغيرة",
+          "item_medium": "شمعة كريستال متوسطة",
+          "item_large": "شمعة كريستال كبيرة"
+        },
+        "memories_candle_section": {
+          "name": "شموع الذكريات",
+          "item_sharp_tip": "شمعة ذكريات مدببة الطرف"
+        }
+      },
+      "featured": {
+        "new_products": "منتجات جديدة",
+        "essential_oil_guide": "دليل الزيوت العطرية"
+      }
+    },
+    "glass-candle": {
+      "name": "شموع زجاجية",
+      "subcategories": {
+        "glass_candle_section": {
+          "name": "شموع زجاجية",
+          "item_premium": "شمعة زجاجية فاخرة"
+        }
+      },
+      "featured": {
+        "shipping_promo": "شحن مجاني على جميع مجموعات صناعة الشموع!"
+      }
+    },
+    "candle-making": {
+      "name": "صنع الشموع",
+      "subcategories": {
+        "wick_section": {
+          "name": "فتائل الشموع",
+          "item_jute_rope": "حبل الجوت / حبل الخيش",
+          "item_cotton_thread": "خيط فتيل شمع قطني"
+        },
+        "containers_section": {
+          "name": "حاويات الشموع",
+          "item_black_aluminum": "حاوية ألومنيوم سوداء"
+        }
+      },
+      "featured": {
+        "shipping_promo": "شحن مجاني على جميع مجموعات صناعة الشموع!"
+      }
+    }
+  },
   "homepage": {
     "title": "شركة تصنيع شموع يدوية عالية الجودة | Million Candles",
     "description": "Million Candles هي شركة تصنيع شموع يدوية مثالية للصلاة، الزينة، الهدايا والاسترخاء. نوفر خدمة التوصيل إلى جميع أنحاء المملكة، بما في ذلك الرياض، جدة، مكة، المدينة، الدمام، الخبر، الطائف وأبها.",

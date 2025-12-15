@@ -63,6 +63,175 @@ export default function Header(props) {
         label: t("menu.products", "Products"),
         url: "/products",
         children: true,
+        menuData: [
+          {
+            id: "all-products",
+            name: t("menuData.all-products.name", "All Products"),
+            subcategories: [
+              {
+                name: t(
+                  "menuData.all-products.subcategories.all_products_section.name",
+                  "Lihat Semua Produk"
+                ),
+                items: [
+                  {
+                    name: t(
+                      "menuData.all-products.subcategories.all_products_section.item_all_products",
+                      "Semua Produk"
+                    ),
+                    url: "/products",
+                  },
+                ],
+              },
+              {
+                name: t(
+                  "menuData.all-products.subcategories.crystal_candle_section.name",
+                  "Lilin Kristal(Lilin Altar)"
+                ),
+                items: [
+                  {
+                    name: t(
+                      "menuData.all-products.subcategories.crystal_candle_section.item_small",
+                      "Lilin Kristal Kecil"
+                    ),
+                    url: "/products/crystal-small-candle",
+                  },
+                  {
+                    name: t(
+                      "menuData.all-products.subcategories.crystal_candle_section.item_medium",
+                      "Lilin Kristal Sedang"
+                    ),
+                    url: "/products/big-small-candle",
+                  },
+                  {
+                    name: t(
+                      "menuData.all-products.subcategories.crystal_candle_section.item_large",
+                      "Lilin Kristal Besar"
+                    ),
+                    url: "/products/tall-large-candle",
+                  },
+                ],
+              },
+              {
+                name: t(
+                  "menuData.all-products.subcategories.memories_candle_section.name",
+                  "Lilin Memories"
+                ),
+                items: [
+                  {
+                    name: t(
+                      "menuData.all-products.subcategories.memories_candle_section.item_sharp_tip",
+                      "Lilin Memories Ujung Lancip"
+                    ),
+                    url: "/products/memories-sharp-candle",
+                  },
+                ],
+              },
+            ],
+            featured: [
+              {
+                name: t(
+                  "menuData.all-products.featured.new_products",
+                  "Produk Baru"
+                ),
+                url: "/essential-oils/new",
+                type: "link",
+              },
+              {
+                name: t(
+                  "menuData.all-products.featured.essential_oil_guide",
+                  "Essential Oil Guide"
+                ),
+                url: "/guides/essential-oils",
+                type: "link",
+              },
+            ],
+          },
+          {
+            id: "glass-candle",
+            name: t("menuData.glass-candle.name", "Lilin Gelas"),
+            subcategories: [
+              {
+                name: t(
+                  "menuData.glass-candle.subcategories.glass_candle_section.name",
+                  "Lilin Gelas"
+                ),
+                items: [
+                  {
+                    name: t(
+                      "menuData.glass-candle.subcategories.glass_candle_section.item_premium",
+                      "Lilin Gelas Premium"
+                    ),
+                    url: "/products/glass-candle",
+                  },
+                ],
+              },
+            ],
+            featured: [
+              {
+                name: t(
+                  "menuData.glass-candle.featured.shipping_promo",
+                  "Free shipping on all candle making kits!"
+                ),
+                url: "/candle-making/kits",
+                type: "link",
+              },
+            ],
+          },
+          {
+            id: "candle-making",
+            name: t("menuData.candle-making.name", "Cara Membuat Lilin"),
+            subcategories: [
+              {
+                name: t(
+                  "menuData.candle-making.subcategories.wick_section.name",
+                  "Sumbu Lilin(Wick)"
+                ),
+                items: [
+                  {
+                    name: t(
+                      "menuData.candle-making.subcategories.wick_section.item_jute_rope",
+                      "Tali Goni / Tali Rami"
+                    ),
+                    url: "/products/tali-goni-tali-rami",
+                  },
+                  {
+                    name: t(
+                      "menuData.candle-making.subcategories.wick_section.item_cotton_thread",
+                      "Cotton Candle Wick Thread"
+                    ),
+                    url: "/products/cotton-candle-wick-thread",
+                  },
+                ],
+              },
+              {
+                name: t(
+                  "menuData.candle-making.subcategories.containers_section.name",
+                  "Wadah Lilin(Containers)"
+                ),
+                items: [
+                  {
+                    name: t(
+                      "menuData.candle-making.subcategories.containers_section.item_black_aluminum",
+                      "Wadah Alumunium Hitam"
+                    ),
+                    url: "/products/wadah-kaleng-aluminium-hitam",
+                  },
+                ],
+              },
+            ],
+            featured: [
+              {
+                name: t(
+                  "menuData.candle-making.featured.shipping_promo",
+                  "Free shipping on all candle making kits!"
+                ),
+                url: "/candle-making/kits",
+                type: "link",
+              },
+            ],
+          },
+        ],
       },
       { label: t("menu.how_to_order", "How to Order"), url: "/cara-order" },
       { label: t("menu.address", "Address"), url: "/address" },

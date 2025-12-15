@@ -11,6 +11,60 @@
     "gallery": "Galería",
     "about": "Acerca de"
   },
+  "menuData": {
+    "all-products": {
+      "name": "Todos los Productos",
+      "subcategories": {
+        "all_products_section": {
+          "name": "Ver Todos los Productos",
+          "item_all_products": "Todos los Productos"
+        },
+        "crystal_candle_section": {
+          "name": "Velas de Cristal (Velas de Altar)",
+          "item_small": "Vela de Cristal Pequeña",
+          "item_medium": "Vela de Cristal Mediana",
+          "item_large": "Vela de Cristal Grande"
+        },
+        "memories_candle_section": {
+          "name": "Velas Memories",
+          "item_sharp_tip": "Vela Memories de Punta Afilada"
+        }
+      },
+      "featured": {
+        "new_products": "Productos Nuevos",
+        "essential_oil_guide": "Guía de Aceites Esenciales"
+      }
+    },
+    "glass-candle": {
+      "name": "Velas de Vidrio",
+      "subcategories": {
+        "glass_candle_section": {
+          "name": "Velas de Vidrio",
+          "item_premium": "Vela de Vidrio Premium"
+        }
+      },
+      "featured": {
+        "shipping_promo": "¡Envío gratis en todos los kits para hacer velas!"
+      }
+    },
+    "candle-making": {
+      "name": "Fabricación de Velas",
+      "subcategories": {
+        "wick_section": {
+          "name": "Mechas para Velas",
+          "item_jute_rope": "Cuerda de Yute / Cuerda de Cáñamo",
+          "item_cotton_thread": "Hilo de Mecha de Algodón para Velas"
+        },
+        "containers_section": {
+          "name": "Recipientes para Velas",
+          "item_black_aluminum": "Recipiente de Aluminio Negro"
+        }
+      },
+      "featured": {
+        "shipping_promo": "¡Envío gratis en todos los kits para hacer velas!"
+      }
+    }
+  },
   "homepage": {
     "title": "Fabricante de Velas Artesanales de Alta Calidad | Million Candles",
     "description": "Million Candles es un fabricante de velas artesanales, perfectas para la oración, la decoración, los regalos y la relajación. Ofrecemos envíos a toda España, incluidas ciudades principales como Madrid, Barcelona, Valencia, Sevilla, Bilbao, Zaragoza, Málaga y Alicante.",

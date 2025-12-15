@@ -11,6 +11,60 @@
     "gallery": "Galerie",
     "about": "Über uns"
   },
+  "menuData": {
+    "all-products": {
+      "name": "Alle Produkte",
+      "subcategories": {
+        "all_products_section": {
+          "name": "Alle Produkte anzeigen",
+          "item_all_products": "Alle Produkte"
+        },
+        "crystal_candle_section": {
+          "name": "Kristallkerzen (Altar-Kerzen)",
+          "item_small": "Kleine Kristallkerze",
+          "item_medium": "Mittlere Kristallkerze",
+          "item_large": "Große Kristallkerze"
+        },
+        "memories_candle_section": {
+          "name": "Memories-Kerzen",
+          "item_sharp_tip": "Memories-Kerze mit spitzer Spitze"
+        }
+      },
+      "featured": {
+        "new_products": "Neue Produkte",
+        "essential_oil_guide": "Leitfaden für ätherische Öle"
+      }
+    },
+    "glass-candle": {
+      "name": "Glas-Kerzen",
+      "subcategories": {
+        "glass_candle_section": {
+          "name": "Glas-Kerzen",
+          "item_premium": "Premium-Glas-Kerze"
+        }
+      },
+      "featured": {
+        "shipping_promo": "Kostenloser Versand für alle Kerzenherstellungs-Kits!"
+      }
+    },
+    "candle-making": {
+      "name": "Kerzenherstellung",
+      "subcategories": {
+        "wick_section": {
+          "name": "Kerzendocht",
+          "item_jute_rope": "Juteseil / Hanfseil",
+          "item_cotton_thread": "Baumwoll-Kerzendochtfaden"
+        },
+        "containers_section": {
+          "name": "Kerzenbehälter",
+          "item_black_aluminum": "Schwarzer Aluminiumbehälter"
+        }
+      },
+      "featured": {
+        "shipping_promo": "Kostenloser Versand für alle Kerzenherstellungs-Kits!"
+      }
+    }
+  },
   "homepage": {
     "title": "Hersteller von Hochwertigen Handgemachten Kerzen | Million Candles",
     "description": "Million Candles ist ein Hersteller von handgemachten Kerzen, ideal für Gebet, Dekoration, Geschenke und Entspannung. Wir liefern in ganz Deutschland, einschließlich Berlin, Hamburg, München, Köln, Frankfurt, Stuttgart, Düsseldorf und Leipzig.",

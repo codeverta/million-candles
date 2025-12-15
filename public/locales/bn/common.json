@@ -11,6 +11,60 @@
     "gallery": "গ্যালারি",
     "about": "আমাদের সম্পর্কে"
   },
+  "menuData": {
+    "all-products": {
+      "name": "সমস্ত পণ্য",
+      "subcategories": {
+        "all_products_section": {
+          "name": "সমস্ত পণ্য দেখুন",
+          "item_all_products": "সমস্ত পণ্য"
+        },
+        "crystal_candle_section": {
+          "name": "ক্রিস্টাল মোমবাতি (বেদি মোমবাতি)",
+          "item_small": "ছোট ক্রিস্টাল মোমবাতি",
+          "item_medium": "মাঝারি ক্রিস্টাল মোমবাতি",
+          "item_large": "বড় ক্রিস্টাল মোমবাতি"
+        },
+        "memories_candle_section": {
+          "name": "স্মৃতি মোমবাতি",
+          "item_sharp_tip": "তীক্ষ্ণ প্রান্তের স্মৃতি মোমবাতি"
+        }
+      },
+      "featured": {
+        "new_products": "নতুন পণ্য",
+        "essential_oil_guide": "এসেনশিয়াল অয়েল গাইড"
+      }
+    },
+    "glass-candle": {
+      "name": "কাঁচের মোমবাতি",
+      "subcategories": {
+        "glass_candle_section": {
+          "name": "কাঁচের মোমবাতি",
+          "item_premium": "প্রিমিয়াম কাঁচের মোমবাতি"
+        }
+      },
+      "featured": {
+        "shipping_promo": "সমস্ত মোমবাতি তৈরির কিটে বিনামূল্যে শিপিং!"
+      }
+    },
+    "candle-making": {
+      "name": "মোমবাতি তৈরি",
+      "subcategories": {
+        "wick_section": {
+          "name": "মোমবাতির সলতে (Wick)",
+          "item_jute_rope": "পাট দড়ি / শন দড়ি",
+          "item_cotton_thread": "সুতির মোমবাতির সলতে সুতা"
+        },
+        "containers_section": {
+          "name": "মোমবাতির ধারক (Containers)",
+          "item_black_aluminum": "কালো অ্যালুমিনিয়াম ধারক"
+        }
+      },
+      "featured": {
+        "shipping_promo": "সমস্ত মোমবাতি তৈরির কিটে বিনামূল্যে শিপিং!"
+      }
+    }
+  },
   "homepage": {
     "title": "উচ্চ মানের হ্যান্ডমেড মোমবাতি প্রস্তুতকারক | Million Candles",
     "description": "Million Candles একটি হ্যান্ডমেড মোমবাতি প্রস্তুতকারক, যা প্রার্থনা, সজ্জা, উপহার এবং বিশ্রামের জন্য উপযুক্ত। সারা বাংলাদেশে ডেলিভারি দেওয়া হয়, ঢাকা, চট্টগ্রাম, সিলেট, খুলনা, রাজশাহী, বরিশাল, রংপুর এবং কুমিল্লা সহ।",

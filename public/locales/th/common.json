@@ -11,6 +11,60 @@
     "gallery": "แกลเลอรี่",
     "about": "เกี่ยวกับ"
   },
+  "menuData": {
+    "all-products": {
+      "name": "สินค้าทั้งหมด",
+      "subcategories": {
+        "all_products_section": {
+          "name": "ดูสินค้าทั้งหมด",
+          "item_all_products": "สินค้าทั้งหมด"
+        },
+        "crystal_candle_section": {
+          "name": "เทียนคริสตัล (เทียนแท่นบูชา)",
+          "item_small": "เทียนคริสตัลขนาดเล็ก",
+          "item_medium": "เทียนคริสตัลขนาดกลาง",
+          "item_large": "เทียนคริสตัลขนาดใหญ่"
+        },
+        "memories_candle_section": {
+          "name": "เทียน Memories",
+          "item_sharp_tip": "เทียน Memories ปลายแหลม"
+        }
+      },
+      "featured": {
+        "new_products": "สินค้าใหม่",
+        "essential_oil_guide": "คู่มือ Essential Oil"
+      }
+    },
+    "glass-candle": {
+      "name": "เทียนแก้ว",
+      "subcategories": {
+        "glass_candle_section": {
+          "name": "เทียนแก้ว",
+          "item_premium": "เทียนแก้วพรีเมียม"
+        }
+      },
+      "featured": {
+        "shipping_promo": "จัดส่งฟรีสำหรับชุดอุปกรณ์ทำเทียนทั้งหมด!"
+      }
+    },
+    "candle-making": {
+      "name": "การทำเทียน",
+      "subcategories": {
+        "wick_section": {
+          "name": "ไส้เทียน (Wick)",
+          "item_jute_rope": "เชือกป่าน / เชือกปอ",
+          "item_cotton_thread": "ด้ายไส้เทียนฝ้าย"
+        },
+        "containers_section": {
+          "name": "ภาชนะใส่เทียน",
+          "item_black_aluminum": "ภาชนะอลูมิเนียมสีดำ"
+        }
+      },
+      "featured": {
+        "shipping_promo": "จัดส่งฟรีสำหรับชุดอุปกรณ์ทำเทียนทั้งหมด!"
+      }
+    }
+  },
   "homepage": {
     "title": "ผู้ผลิตเทียนแฮนด์เมดคุณภาพสูง | Million Candles",
     "description": "Million Candles เป็นผู้ผลิตเทียนแฮนด์เมด เหมาะสำหรับการสวดมนต์ การตกแต่ง ของขวัญ และการผ่อนคลาย จัดส่งทั่วประเทศไทย รวมถึงกรุงเทพฯ เชียงใหม่ ภูเก็ต ขอนแก่น พัทยา หาดใหญ่ นครราชสีมา และอุดรธานี",

@@ -11,6 +11,60 @@
     "gallery": "Bộ sưu tập",
     "about": "Về chúng tôi"
   },
+  "menuData": {
+    "all-products": {
+      "name": "Tất cả sản phẩm",
+      "subcategories": {
+        "all_products_section": {
+          "name": "Xem tất cả sản phẩm",
+          "item_all_products": "Tất cả sản phẩm"
+        },
+        "crystal_candle_section": {
+          "name": "Nến pha lê (Nến bàn thờ)",
+          "item_small": "Nến pha lê nhỏ",
+          "item_medium": "Nến pha lê vừa",
+          "item_large": "Nến pha lê lớn"
+        },
+        "memories_candle_section": {
+          "name": "Nến Memories",
+          "item_sharp_tip": "Nến Memories đầu nhọn"
+        }
+      },
+      "featured": {
+        "new_products": "Sản phẩm mới",
+        "essential_oil_guide": "Hướng dẫn tinh dầu"
+      }
+    },
+    "glass-candle": {
+      "name": "Nến cốc thủy tinh",
+      "subcategories": {
+        "glass_candle_section": {
+          "name": "Nến cốc thủy tinh",
+          "item_premium": "Nến cốc thủy tinh cao cấp"
+        }
+      },
+      "featured": {
+        "shipping_promo": "Miễn phí vận chuyển cho tất cả các bộ dụng cụ làm nến!"
+      }
+    },
+    "candle-making": {
+      "name": "Làm nến",
+      "subcategories": {
+        "wick_section": {
+          "name": "Bấc nến (Wick)",
+          "item_jute_rope": "Dây đay / Dây gai",
+          "item_cotton_thread": "Chỉ bấc nến cotton"
+        },
+        "containers_section": {
+          "name": "Hộp đựng nến (Containers)",
+          "item_black_aluminum": "Hộp nhôm màu đen"
+        }
+      },
+      "featured": {
+        "shipping_promo": "Miễn phí vận chuyển cho tất cả các bộ dụng cụ làm nến!"
+      }
+    }
+  },
   "homepage": {
     "title": "Nhà Sản Xuất Nến Thủ Công Chất Lượng Cao | Million Candles",
     "description": "Million Candles là nhà sản xuất nến thủ công, hoàn hảo cho cầu nguyện, trang trí, quà tặng và thư giãn. Giao hàng toàn quốc đến Hà Nội, TP. Hồ Chí Minh, Đà Nẵng, Hải Phòng, Cần Thơ, Nha Trang, Huế và Biên Hòa.",

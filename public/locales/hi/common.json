@@ -11,6 +11,60 @@
     "gallery": "गैलरी",
     "about": "हमारे बारे में"
   },
+  "menuData": {
+    "all-products": {
+      "name": "सभी उत्पाद",
+      "subcategories": {
+        "all_products_section": {
+          "name": "सभी उत्पाद देखें",
+          "item_all_products": "सभी उत्पाद"
+        },
+        "crystal_candle_section": {
+          "name": "क्रिस्टल मोमबत्तियाँ (वेदी मोमबत्तियाँ)",
+          "item_small": "छोटी क्रिस्टल मोमबत्ती",
+          "item_medium": "मध्यम क्रिस्टल मोमबत्ती",
+          "item_large": "बड़ी क्रिस्टल मोमबत्ती"
+        },
+        "memories_candle_section": {
+          "name": "मेमोरी मोमबत्तियाँ",
+          "item_sharp_tip": "नुकीले सिरे वाली मेमोरी मोमबत्ती"
+        }
+      },
+      "featured": {
+        "new_products": "नए उत्पाद",
+        "essential_oil_guide": "आवश्यक तेल गाइड"
+      }
+    },
+    "glass-candle": {
+      "name": "ग्लास मोमबत्तियाँ",
+      "subcategories": {
+        "glass_candle_section": {
+          "name": "ग्लास मोमबत्तियाँ",
+          "item_premium": "प्रीमियम ग्लास मोमबत्ती"
+        }
+      },
+      "featured": {
+        "shipping_promo": "सभी मोमबत्ती बनाने की किट पर मुफ्त शिपिंग!"
+      }
+    },
+    "candle-making": {
+      "name": "मोमबत्ती बनाना",
+      "subcategories": {
+        "wick_section": {
+          "name": "मोमबत्ती की बत्तियाँ (Wick)",
+          "item_jute_rope": "जूट की रस्सी / भांग की रस्सी",
+          "item_cotton_thread": "कॉटन कैंडल विक थ्रेड"
+        },
+        "containers_section": {
+          "name": "मोमबत्ती कंटेनर",
+          "item_black_aluminum": "काला एल्युमीनियम कंटेनर"
+        }
+      },
+      "featured": {
+        "shipping_promo": "सभी मोमबत्ती बनाने की किट पर मुफ्त शिपिंग!"
+      }
+    }
+  },
   "homepage": {
     "title": "उच्च गुणवत्ता वाले हस्तनिर्मित मोमबत्ती निर्माता | Million Candles",
     "description": "Million Candles एक हस्तनिर्मित मोमबत्ती निर्माता है, जो पूजा, सजावट, उपहार और आराम के लिए उपयुक्त है। हम पूरे भारत में शिपिंग प्रदान करते हैं, प्रमुख शहरों जैसे मुंबई, दिल्ली, बेंगलुरु, चेन्नई, कोलकाता, हैदराबाद, पुणे और अहमदाबाद तक।",
