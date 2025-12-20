@@ -46,13 +46,13 @@ const RelatedSites = () => {
       icon: <FileText className="w-5 h-5" />,
       color: "green",
     },
-    {
-      name: "Tips Sehat Alami",
-      url: "https://tipssehatalami.com",
-      description: "Informasi kesehatan & tips hidup",
-      icon: <Heart className="w-5 h-5" />,
-      color: "red",
-    },
+    // {
+    //   name: "Tips Sehat Alami",
+    //   url: "https://tipssehatalami.com",
+    //   description: "Informasi kesehatan & tips hidup",
+    //   icon: <Heart className="w-5 h-5" />,
+    //   color: "red",
+    // },
   ];
 
   const colorClasses = {
