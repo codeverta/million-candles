@@ -41,6 +41,14 @@ if (typeof window !== "undefined") {
   window.version = packageInfo.version;
 }
 
+if (typeof window !== "undefined") {
+  window.addEventListener("error", (e) => {
+    if (e.message?.includes("Loading chunk")) {
+      window.location.reload();
+    }
+  });
+}
+
 function App({ Component, pageProps }: AppLayoutProps) {
   const router = useRouter();
   const appProps = { getRelationship, getRelationships };

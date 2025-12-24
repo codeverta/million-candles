@@ -96,11 +96,11 @@ export default function Home({
 
     // Filter by search term
     if (searchTerm.trim() !== "") {
-      const lowercaseSearch = searchTerm.toLowerCase();
+      const lowercaseSearch = searchTerm?.toLowerCase();
       filtered = filtered.filter(
         (post) =>
-          post.title.toLowerCase().includes(lowercaseSearch) ||
-          post.desc.toLowerCase().includes(lowercaseSearch),
+          post.title?.toLowerCase()?.includes(lowercaseSearch) ||
+          post.desc?.toLowerCase()?.includes(lowercaseSearch)
       );
     }
 
@@ -175,7 +175,7 @@ export default function Home({
   // Share functionality handlers
   const handleShareClick = (
     event: React.MouseEvent<HTMLElement>,
-    postId: string,
+    postId: string
   ) => {
     setShareMenuAnchorEl(event.currentTarget);
     setSharePostId(postId);
@@ -225,7 +225,7 @@ export default function Home({
             () => {
               setSnackbarMessage("Gagal menyalin link");
               setSnackbarOpen(true);
-            },
+            }
           );
         }
         break;
@@ -249,8 +249,8 @@ export default function Home({
           {searchTerm
             ? `"${searchTerm}" - ${t("blog_section.title")}`
             : selectedCategory
-              ? `${selectedCategory} - ${t("blog_section.title")}`
-              : t("blog_section.title")}
+            ? `${selectedCategory} - ${t("blog_section.title")}`
+            : t("blog_section.title")}
         </title>
         <meta name="description" content={metaDescription} />
       </Head>
@@ -509,7 +509,7 @@ export default function Home({
                         </div>
                       </div>
                     </article>
-                  ),
+                  )
                 )}
               </div>
             </>
@@ -567,7 +567,7 @@ export default function Home({
                     >
                       {page}
                     </button>
-                  ),
+                  )
                 )}
 
                 <span className="px-4 py-2 border-t border-b border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 md:hidden">
