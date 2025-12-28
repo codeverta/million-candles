@@ -45,6 +45,18 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
+        <div className="fixed bottom-4 left-4 z-50">
+          <a
+            href="https://bikinwebsitejogja.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200"
+          >
+            <span className="text-xs font-medium text-gray-700 hover:text-indigo-600 transition-colors">
+              bikinwebsitejogja.com
+            </span>
+          </a>
+        </div>
       </body>
     </Html>
   );

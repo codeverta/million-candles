@@ -136,18 +136,12 @@ export async function getServerSideProps({ locale, params }) {
   const { slug } = params;
 
   try {
-    // ... (logic getServerSideProps Anda)
-    console.log(`Fetching product with slug: ${slug}`);
     const productData = await api.get("products", {
       "filter[slug]": slug,
       locale: locale,
       currency: currency[locale] || "id",
       include: "documents",
     });
-    console.log(
-      "API Response Data:",
-      JSON.stringify(productData.data, null, 2)
-    );
 
     if (!productData?.data || productData.data?.data?.length === 0) {
       console.log("Product not found or empty response.");

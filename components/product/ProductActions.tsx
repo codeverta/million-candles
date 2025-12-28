@@ -194,7 +194,7 @@ const ProductActions = ({ product }) => {
       </div>
 
       {/* Social actions */}
-      <div className="flex border-t border-gray-100 pt-4 text-sm text-gray-600">
+      {/* <div className="flex border-t border-gray-100 pt-4 text-sm text-gray-600">
         <div className="flex items-center mr-6">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -246,7 +246,7 @@ const ProductActions = ({ product }) => {
           </svg>
           Share
         </div>
-      </div>
+      </div> */}
 
       {/* Mobile sticky footer */}
       {isMobile && (
