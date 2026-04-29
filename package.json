@@ -38,6 +38,7 @@
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.503.0",
     "marked": "^4.2.5",
+    "million-candles": "link:",
     "next": "^15.5.8",
     "next-i18next": "^15.4.2",
     "next-seo": "^5.15.0",
