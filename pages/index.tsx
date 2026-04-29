@@ -262,12 +262,19 @@ function Home(props: any) {
         ]}
       />
       <div className="dark:bg-gray-900 bg-white text-gray-900 dark:text-white">
+        {/* Section Linkzy Embed */}
+        <section className="w-full">
+          <div className="mx-auto w-full">
+            <iframe
+              src="https://linkzy.id/souvenirlilin-id"
+              className="w-full h-screen"
+              title="Linkzy Souvenir Lilin"
+              loading="lazy"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </section>
         <Hero />
-        <Content
-          queryParams={{
-            "page[size]": 4,
-          }}
-        />
         <AdSense
           type="display"
           className="my-8" // Add spacing
