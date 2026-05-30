@@ -94,4 +94,8 @@ class ProductPolicy
     public function viewProductCategories(?User $user) {
         return true;
     }
+
+    public function viewDocuments(?User $user) {
+        return true;
+    }
 }

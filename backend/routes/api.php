@@ -86,6 +86,7 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function ($server) {
         ->middleware(TrackProductViews::class)
         ->relationships(function ($relations) {
             $relations->hasOne('product-categories')->readOnly();
+            $relations->hasMany('documents')->readOnly();
         });
 
     $server->resource('provinces', JsonApiController::class)

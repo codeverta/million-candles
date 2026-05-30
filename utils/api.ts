@@ -1,6 +1,9 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { toast } from "sonner";
 
+const isFormData = (data: unknown) =>
+  typeof FormData !== "undefined" && data instanceof FormData;
+
 const api = {
   init(baseURL: string) {
     axios.defaults.baseURL = baseURL || "https://api.souvenirlilin.id/api/v1";
@@ -11,13 +14,18 @@ const api = {
           const token = localStorage.getItem("token");
           if (token) config.headers.Authorization = `Bearer ${token}`;
         }
-        config.headers["Content-Type"] = "application/vnd.api+json";
+        if (isFormData(config.data)) {
+          delete config.headers["Content-Type"];
+          delete config.headers["content-type"];
+        } else {
+          config.headers["Content-Type"] = "application/vnd.api+json";
+        }
         config.headers["Accept"] = "application/vnd.api+json";
         return config;
       },
       (error) => {
         Promise.reject(error);
-      }
+      },
     );
 
     axios.interceptors.response.use(null, (error) => {

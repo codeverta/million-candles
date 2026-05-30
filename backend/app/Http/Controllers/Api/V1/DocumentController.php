@@ -7,8 +7,7 @@ use App\Http\Requests\StoreDocumentRequest;
 use App\Models\Document;
 use Illuminate\Support\Facades\Log;
 use LaravelJsonApi\Laravel\Http\Controllers\Actions;
-use Storage;
-use Kreait\Firebase\Factory;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class DocumentController extends Controller
@@ -27,27 +26,10 @@ class DocumentController extends Controller
 
     public function upload(StoreDocumentRequest $request)
     {
-        // Initialize Firebase
-        $firebase = (new Factory)
-            ->withServiceAccount(config('app.firebase_credentials'));
-
-        $storage = $firebase->createStorage();
-        $bucket = $storage->getBucket();
-
-        // Get the uploaded file
         $file = $request->file('image');
-        $fileName = 'images/' . Str::random(20) . '.' . $file->getClientOriginalExtension();
-        
-        // Upload to Firebase Storage
-        $bucket->upload(
-            file_get_contents($file->getRealPath()),
-            ['name' => $fileName]
-        );
+        $fileName = Str::random(20) . '.' . $file->getClientOriginalExtension();
+        $storagePath = $file->storeAs('images', $fileName, 'public');
 
-        // Generate Firebase Storage public URL
-        $storagePath = "https://firebasestorage.googleapis.com/v0/b/" . config('app.firebase_storage_bucket') . "/o/" . urlencode($fileName) . "?alt=media";
-
-        // Save document details in the database
         $document = Document::create([
             'documentable_id' => $request->documentable_id,
             'documentable_type' => $request->documentable_type,
@@ -61,10 +43,12 @@ class DocumentController extends Controller
     {
         try {
             $document = Document::findOrFail($request);
-            // Delete the file from storage
-            if ($document->filename && Storage::exists($document->filename)) {
-                Storage::delete($document->filename);
+            $filename = $document->getRawOriginal('filename');
+
+            if ($filename && ! Str::startsWith($filename, ['http://', 'https://']) && Storage::disk('public')->exists($filename)) {
+                Storage::disk('public')->delete($filename);
             }
+
             $document->delete();
             return response()->json(["success" => "document successfully deleted"]);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {

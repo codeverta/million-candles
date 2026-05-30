@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Document extends Model
 {
@@ -22,13 +24,24 @@ class Document extends Model
 
     public function getFilenameAttribute($value)
     {
-        // ambil nama file dari URL firebase
-        $path = parse_url($value, PHP_URL_PATH);
-        $segments = explode('/', $path);
-        $lastSegment = end($segments);
-        $decodedPath = urldecode($lastSegment);
+        if (! $value) {
+            return $value;
+        }
 
-        return "https://cdn.souvenirlilin.id/{$decodedPath}";
+        if (Str::startsWith($value, ['http://', 'https://'])) {
+            if (Str::contains($value, 'firebasestorage.googleapis.com')) {
+                $path = parse_url($value, PHP_URL_PATH);
+                $segments = explode('/', $path);
+                $lastSegment = end($segments);
+                $decodedPath = urldecode($lastSegment);
+
+                return "https://cdn.souvenirlilin.id/{$decodedPath}";
+            }
+
+            return $value;
+        }
+
+        return Storage::disk('public')->url($value);
     }
 
 }

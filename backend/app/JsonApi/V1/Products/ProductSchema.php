@@ -48,7 +48,7 @@ class ProductSchema extends Schema
             Number::make('views_count'),
             Number::make('price'),
             BelongsTo::make('product-categories'),
-            BelongsTo::make('documents'),
+            HasMany::make('documents')->readOnly(),
             HasMany::make('reviews'),
             HasMany::make('product-variants'),
             HasMany::make('variant-combinations'),
