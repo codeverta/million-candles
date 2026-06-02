@@ -44,7 +44,7 @@ export default function AdSense({
       // Check if ad is already loaded in this slot to prevent "AdSense already loaded" error
       if (adRef.current && adRef.current.innerHTML === "") {
         ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(
-          {}
+          {},
         );
       }
     } catch (err) {
@@ -53,22 +53,22 @@ export default function AdSense({
   }, [type]); // Re-run if type changes
 
   const config = AD_CONFIG[type];
-
-  return (
-    <div
-      className={`ad-container ${className || ""}`}
-      style={{ minHeight: "100px", ...style }}
-    >
-      <ins
-        ref={adRef}
-        className="adsbygoogle"
-        style={{ display: "block", textAlign: "center", ...style }}
-        data-ad-client={PUB_ID}
-        data-ad-slot={config.slot}
-        data-ad-format={config.format}
-        data-ad-layout={config.layout}
-        data-full-width-responsive="true"
-      />
-    </div>
-  );
+  return null;
+  // return (
+  //   <div
+  //     className={`ad-container ${className || ""}`}
+  //     style={{ minHeight: "100px", ...style }}
+  //   >
+  //     <ins
+  //       ref={adRef}
+  //       className="adsbygoogle"
+  //       style={{ display: "block", textAlign: "center", ...style }}
+  //       data-ad-client={PUB_ID}
+  //       data-ad-slot={config.slot}
+  //       data-ad-format={config.format}
+  //       data-ad-layout={config.layout}
+  //       data-full-width-responsive="true"
+  //     />
+  //   </div>
+  // );
 }
