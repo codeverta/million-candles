@@ -10,9 +10,17 @@ use Illuminate\Http\Request;
 
 class ProductVariantOptionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return ProductVariantOption::all();
+        return ProductVariantOption::query()
+            ->when(
+                $request->filled('product_variant_id'),
+                fn ($query) => $query->where(
+                    'product_variant_id',
+                    $request->integer('product_variant_id')
+                )
+            )
+            ->get();
     }
 
     public function store(StoreProductVariantOptionRequest $request)

@@ -18,7 +18,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useMutation } from "@tanstack/react-query";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import { Pagination } from "swiper";
+import { Pagination } from "swiper/modules";
 import api from "utils/api";
 import {
   BottomNavigation,

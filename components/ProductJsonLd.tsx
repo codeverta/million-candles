@@ -1,48 +1,32 @@
-// components/ProductJsonLd.js
 import React from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { currency } from "lib/currency";
+import { getProductImageUrls, toAbsoluteUrl } from "utils/productImages";
 
-const ProductJsonLd = ({
-  product,
-  baseUrl,
-  reviews = [],
-  aggregateRating = null,
-}: any) => {
+const SITE_URL = "https://www.souvenirlilin.id";
+
+const ProductJsonLd = ({ product, baseUrl = SITE_URL }: any) => {
   const router = useRouter();
 
-  // Only render if we have a product
-  if (!product || !product.data || !product.data[0]) {
-    return null;
-  }
+  if (!product?.data?.[0]) return null;
 
   const productData = product.data[0];
   const attributes = productData.attributes;
+  const siteUrl = baseUrl || SITE_URL;
+  const productUrl = toAbsoluteUrl(router.asPath, siteUrl);
+  const images = getProductImageUrls(product, productUrl);
+  const reviews = (attributes.product_reviews || []).filter(
+    (review) => review.is_approved === true || review.is_approved === 1
+  );
+  const averageRating = reviews.length
+    ? reviews.reduce((sum, review) => sum + Number(review.rating || 0), 0) /
+      reviews.length
+    : null;
+  const priceCurrency =
+    (currency as Record<string, string>)[router.locale || "id"] || "IDR";
 
-  // Get images from documents if available
-  const documents =
-    productData?.relationships?.documents?.data?.length > 0
-      ? product.included?.filter(
-          (item) =>
-            item.type === "documents" &&
-            productData.relationships.documents.data.some(
-              (doc) => doc.id === item.id
-            )
-        )
-      : [];
-
-  const images =
-    documents.length > 0
-      ? documents.map((doc) => `${baseUrl}${doc.attributes.filename}`)
-      : [`${baseUrl}/assets/image-1@2x.jpg`];
-
-  // Calculate price validity (default to 30 days from now)
-  const priceValidDate = new Date();
-  priceValidDate.setDate(priceValidDate.getDate() + 30);
-  const priceValidUntil = priceValidDate.toISOString().split("T")[0]; // Format as YYYY-MM-DD
-
-  // Build the structured data
-  const jsonLd = {
+  const jsonLd: any = {
     "@context": "https://schema.org/",
     "@type": "Product",
     name: attributes.name,
@@ -55,26 +39,25 @@ const ProductJsonLd = ({
     },
     offers: {
       "@type": "Offer",
-      url: `${baseUrl}${router.asPath}`,
-      priceCurrency: "IDR",
-      price: attributes.price,
-      priceValidUntil: priceValidUntil, // Added priceValidUntil field
+      url: productUrl,
+      priceCurrency,
+      price: attributes.priceInCurrency ?? attributes.price,
       itemCondition: "https://schema.org/NewCondition",
       availability:
-        attributes.stock > 0
+        Number(attributes.stock) > 0
           ? "https://schema.org/InStock"
           : "https://schema.org/OutOfStock",
       hasMerchantReturnPolicy: {
         "@type": "MerchantReturnPolicy",
-        returnPolicyCategory: "https://schema.org/FreeReturn",
+        merchantReturnLink: toAbsoluteUrl("/return-policy", siteUrl),
       },
       shippingDetails: [
         {
           "@type": "OfferShippingDetails",
           shippingRate: {
             "@type": "MonetaryAmount",
-            value: attributes.price + "",
-            currency: "IDR",
+            value: 0,
+            currency: priceCurrency,
           },
           shippingDestination: {
             "@type": "DefinedRegion",
@@ -83,60 +66,40 @@ const ProductJsonLd = ({
         },
       ],
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "24",
-    },
-    review: {
-      "@type": "Review",
-      author: {
-        "@type": "Person",
-        name: "Rabih Utomo",
-      },
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: "5",
-        bestRating: "5",
-      },
-      reviewBody: "This product is amazing! Highly recommended.",
-    },
   };
 
-  // Add review data if available
-  if (reviews && reviews.length > 0) {
+  if (averageRating !== null) {
+    jsonLd.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: Number(averageRating.toFixed(1)),
+      reviewCount: reviews.length,
+      bestRating: 5,
+      worstRating: 1,
+    };
     jsonLd.review = reviews.map((review) => ({
       "@type": "Review",
       reviewRating: {
         "@type": "Rating",
-        ratingValue: review.rating,
-        bestRating: "5",
+        ratingValue: Number(review.rating),
+        bestRating: 5,
+        worstRating: 1,
       },
       author: {
         "@type": "Person",
-        name: review.author,
+        name: review.author_name || review.user?.name || "Pelanggan",
       },
-      datePublished: review.date,
-      reviewBody: review.content,
+      datePublished: review.created_at,
+      reviewBody: review.review,
     }));
   }
 
-  // Add aggregate rating if available
-  if (aggregateRating) {
-    jsonLd.aggregateRating = {
-      "@type": "AggregateRating",
-      ratingValue: aggregateRating.average,
-      reviewCount: aggregateRating.count,
-      bestRating: "5",
-      worstRating: "1",
-    };
-  }
+  const safeJsonLd = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
 
   return (
     <Head>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd }}
       />
     </Head>
   );

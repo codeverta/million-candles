@@ -396,7 +396,7 @@ const OrderSummary = ({ cart, cartTotal, formatPrice }) => {
 
       <div className="divide-y">
         {cart.map((item) => (
-          <div key={item.id} className="py-3 flex items-center">
+          <div key={item.cartKey || item.id} className="py-3 flex items-center">
             <div className="w-16 h-16 rounded-md overflow-hidden bg-gray-100 flex-shrink-0">
               {item.attributes.image && (
                 <img
@@ -415,6 +415,11 @@ const OrderSummary = ({ cart, cartTotal, formatPrice }) => {
             <div className="ml-4 flex-grow">
               <h3 className="font-medium">{item.attributes.name}</h3>
               <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
+              {item.attributes.variantSku && (
+                <p className="text-xs text-gray-500">
+                  Variant: {item.attributes.variantSku}
+                </p>
+              )}
               <p className="font-medium">
                 {formatPrice(item.attributes.priceInCurrency * item.quantity)}
               </p>

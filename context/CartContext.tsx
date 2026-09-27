@@ -1,7 +1,14 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
+import { toast } from "sonner";
+
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
 
 // Create Context
-export const CartContext = createContext();
+export const CartContext = createContext<any>(null);
 
 // Create a custom hook to use the cart context
 export const useCart = () => {
@@ -12,8 +19,8 @@ export const useCart = () => {
   return context;
 };
 
-export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+export const CartProvider = ({ children }: { children: React.ReactNode }) => {
+  const [cart, setCart] = useState<any[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   // Calculate cart totals
@@ -23,6 +30,8 @@ export const CartProvider = ({ children }) => {
   );
 
   const cartItemsCount = cart.reduce((count, item) => count + item.quantity, 0);
+  const cartCurrencyCode = cart[0]?.attributes.currencyCode || "IDR";
+  const cartCurrencyLocale = cart[0]?.attributes.currencyLocale || "id";
 
   // Load cart from localStorage on initial render
   useEffect(() => {
@@ -39,16 +48,34 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   // Add item to cart
-  const addToCart = (product, quantity) => {
+  const addToCart = (product: any, quantity: number) => {
+    const productCurrencyCode = product.attributes.currencyCode || "IDR";
+    const currentCurrencyCode = cart[0]?.attributes.currencyCode || "IDR";
+    if (cart.length > 0 && productCurrencyCode !== currentCurrencyCode) {
+      toast.error(
+        "Kosongkan keranjang sebelum berbelanja dengan mata uang lain."
+      );
+      return false;
+    }
+
     // Find if product already exists in cart
-    const existingItemIndex = cart.findIndex((item) => item.id === product.id);
+    const productCartKey = product.cartKey || String(product.id);
+    const existingItemIndex = cart.findIndex(
+      (item) => (item.cartKey || String(item.id)) === productCartKey
+    );
 
     let updatedCart;
 
     if (existingItemIndex >= 0) {
       // Update quantity if product already in cart
       updatedCart = [...cart];
-      updatedCart[existingItemIndex].quantity += quantity;
+      const availableStock = Number(
+        updatedCart[existingItemIndex].attributes.stock ?? Infinity
+      );
+      updatedCart[existingItemIndex].quantity = Math.min(
+        updatedCart[existingItemIndex].quantity + quantity,
+        availableStock
+      );
     } else {
       // Add new product to cart
       updatedCart = [...cart, { ...product, quantity }];
@@ -62,11 +89,12 @@ export const CartProvider = ({ children }) => {
     }
 
     // Track add_to_cart event for Google Merchant
-    if (typeof window !== "undefined" && window.dataLayer) {
+    if (typeof window !== "undefined") {
+      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: "add_to_cart",
         ecommerce: {
-          currency: "IDR",
+          currency: productCurrencyCode,
           value: product.attributes.priceInCurrency * quantity,
           items: [
             {
@@ -74,7 +102,7 @@ export const CartProvider = ({ children }) => {
               item_name: product.attributes.name,
               price: product.attributes.priceInCurrency,
               quantity: quantity,
-              currency: "IDR",
+              currency: productCurrencyCode,
               item_category: product.attributes.category || "Candles",
             },
           ],
@@ -89,15 +117,20 @@ export const CartProvider = ({ children }) => {
     setTimeout(() => {
       setIsCartOpen(false);
     }, 3000);
+    return true;
   };
 
   // Remove item from cart
-  const removeFromCart = (productId) => {
-    const itemToRemove = cart.find((item) => item.id === productId);
+  const removeFromCart = (cartKey: string | number) => {
+    const itemToRemove = cart.find(
+      (item) => (item.cartKey || String(item.id)) === String(cartKey)
+    );
 
     if (!itemToRemove) return;
 
-    const updatedCart = cart.filter((item) => item.id !== productId);
+    const updatedCart = cart.filter(
+      (item) => (item.cartKey || String(item.id)) !== String(cartKey)
+    );
 
     // Update state and localStorage
     setCart(updatedCart);
@@ -110,7 +143,7 @@ export const CartProvider = ({ children }) => {
         window.dataLayer.push({
           event: "remove_from_cart",
           ecommerce: {
-            currency: "IDR",
+            currency: itemToRemove.attributes.currencyCode || "IDR",
             value:
               itemToRemove.attributes.priceInCurrency * itemToRemove.quantity,
             items: [
@@ -119,7 +152,7 @@ export const CartProvider = ({ children }) => {
                 item_name: itemToRemove.attributes.name,
                 price: itemToRemove.attributes.priceInCurrency,
                 quantity: itemToRemove.quantity,
-                currency: "IDR",
+                currency: itemToRemove.attributes.currencyCode || "IDR",
               },
             ],
           },
@@ -129,16 +162,21 @@ export const CartProvider = ({ children }) => {
   };
 
   // Update item quantity
-  const updateQuantity = (productId, newQuantity) => {
+  const updateQuantity = (cartKey: string | number, newQuantity: number) => {
     // Ensure quantity is valid
     if (newQuantity < 1) return;
 
-    const itemIndex = cart.findIndex((item) => item.id === productId);
+    const itemIndex = cart.findIndex(
+      (item) => (item.cartKey || String(item.id)) === String(cartKey)
+    );
 
     if (itemIndex === -1) return;
 
     const updatedCart = [...cart];
-    updatedCart[itemIndex].quantity = newQuantity;
+    const availableStock = Number(
+      updatedCart[itemIndex].attributes.stock ?? Infinity
+    );
+    updatedCart[itemIndex].quantity = Math.min(newQuantity, availableStock);
 
     // Update state and localStorage
     setCart(updatedCart);
@@ -158,19 +196,49 @@ export const CartProvider = ({ children }) => {
   };
 
   // Begin checkout process
-  const beginCheckout = () => {
-    if (typeof window !== "undefined" && window.dataLayer) {
+  const beginCheckout = (itemToAdd: any = null, quantityToAdd = 0) => {
+    let checkoutCart = cart;
+    if (itemToAdd) {
+      const itemToAddKey = itemToAdd.cartKey || String(itemToAdd.id);
+      const existingIndex = cart.findIndex(
+        (item) => (item.cartKey || String(item.id)) === itemToAddKey
+      );
+      checkoutCart = [...cart];
+      if (existingIndex >= 0) {
+        const availableStock = Number(
+          checkoutCart[existingIndex].attributes.stock ?? Infinity
+        );
+        checkoutCart[existingIndex] = {
+          ...checkoutCart[existingIndex],
+          quantity: Math.min(
+            checkoutCart[existingIndex].quantity + quantityToAdd,
+            availableStock
+          ),
+        };
+      } else {
+        checkoutCart.push({ ...itemToAdd, quantity: quantityToAdd });
+      }
+    }
+    const checkoutTotal = checkoutCart.reduce(
+      (total, item) => total + item.attributes.priceInCurrency * item.quantity,
+      0
+    );
+    const checkoutCurrency =
+      checkoutCart[0]?.attributes.currencyCode || cartCurrencyCode;
+
+    if (typeof window !== "undefined") {
+      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: "begin_checkout",
         ecommerce: {
-          currency: "IDR",
-          value: cartTotal,
-          items: cart.map((item) => ({
+          currency: checkoutCurrency,
+          value: checkoutTotal,
+          items: checkoutCart.map((item) => ({
             item_id: item.id,
             item_name: item.attributes.name,
             price: item.attributes.priceInCurrency,
             quantity: item.quantity,
-            currency: "IDR",
+            currency: item.attributes.currencyCode || checkoutCurrency,
           })),
         },
       });
@@ -181,13 +249,13 @@ export const CartProvider = ({ children }) => {
   };
 
   // Complete purchase
-  const completePurchase = (transactionId) => {
+  const completePurchase = (transactionId: string | number) => {
     if (typeof window !== "undefined" && window.dataLayer) {
       window.dataLayer.push({
         event: "purchase",
         ecommerce: {
           transaction_id: transactionId,
-          currency: "IDR",
+          currency: cartCurrencyCode,
           value: cartTotal,
           tax: 0, // Add actual tax if applicable
           shipping: 0, // Add actual shipping if applicable
@@ -196,7 +264,7 @@ export const CartProvider = ({ children }) => {
             item_name: item.attributes.name,
             price: item.attributes.priceInCurrency,
             quantity: item.quantity,
-            currency: "IDR",
+            currency: item.attributes.currencyCode || cartCurrencyCode,
           })),
         },
       });
@@ -206,13 +274,23 @@ export const CartProvider = ({ children }) => {
     clearCart();
   };
 
-  // Format price in IDR
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat("id-ID", {
+  // Format using the currency attached when the product entered the cart.
+  const formatPrice = (price: number) => {
+    const numberLocales: Record<string, string> = {
+      id: "id-ID",
+      en: "en-US",
+      ja: "ja-JP",
+      kr: "ko-KR",
+      zh: "zh-CN",
+    };
+    const numberLocale = numberLocales[cartCurrencyLocale] || "id-ID";
+    return new Intl.NumberFormat(numberLocale, {
       style: "currency",
-      currency: "IDR",
+      currency: cartCurrencyCode,
       minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
+      maximumFractionDigits: ["IDR", "JPY", "KRW"].includes(cartCurrencyCode)
+        ? 0
+        : 2,
     }).format(price);
   };
 

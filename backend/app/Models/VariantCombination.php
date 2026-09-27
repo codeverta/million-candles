@@ -16,7 +16,6 @@ class VariantCombination extends Model
         'sku',
         'price',
         'stock',
-        'hello'
     ];
     protected $appends = ['formatted_price'];
 

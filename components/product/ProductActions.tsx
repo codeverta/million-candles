@@ -1,19 +1,32 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useCart } from "context/CartContext";
+import { currency } from "lib/currency";
 
-// Helper function for formatting price in Indonesian Rupiah
-const formatPrice = (price) => {
-  return new Intl.NumberFormat("id-ID", {
+// Format localized product and cart prices.
+const formatPrice = (
+  price: number,
+  currencyCode = "IDR",
+  locale: string = "id"
+) => {
+  const numberLocales: Record<string, string> = {
+    id: "id-ID",
+    en: "en-US",
+    ja: "ja-JP",
+    kr: "ko-KR",
+    zh: "zh-CN",
+  };
+  const numberLocale = numberLocales[locale] || "id-ID";
+  return new Intl.NumberFormat(numberLocale, {
     style: "currency",
-    currency: "IDR",
+    currency: currencyCode,
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    maximumFractionDigits: ["IDR", "JPY", "KRW"].includes(currencyCode) ? 0 : 2,
   }).format(price);
 };
 
-const ProductActions = ({ product }) => {
-  const { addToCart, cart } = useCart();
+const ProductActions = ({ product, selectedVariant }: any) => {
+  const { addToCart, beginCheckout } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
@@ -21,6 +34,20 @@ const ProductActions = ({ product }) => {
 
   const productAttributes = product?.data[0].attributes;
   const productId = product?.data[0].id;
+  const hasVariants =
+    (productAttributes?.variant_combinations || []).length > 0;
+  const activePrice = Number(
+    selectedVariant?.priceInCurrency ??
+      selectedVariant?.price ??
+      productAttributes?.priceInCurrency ??
+      0
+  );
+  const activeStock = Number(
+    selectedVariant?.stock ?? productAttributes?.stock ?? 0
+  );
+  const currencyCode =
+    (currency as Record<string, string>)[router.locale || "id"] || "IDR";
+  const currencyLocale = router.locale || "id";
 
   useEffect(() => {
     const checkIfMobile = () => {
@@ -33,6 +60,10 @@ const ProductActions = ({ product }) => {
     return () => window.removeEventListener("resize", checkIfMobile);
   }, []);
 
+  useEffect(() => {
+    setQuantity(1);
+  }, [selectedVariant?.id]);
+
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
@@ -40,75 +71,46 @@ const ProductActions = ({ product }) => {
   };
 
   const increaseQuantity = () => {
-    if (quantity < productAttributes?.stock) {
+    if (quantity < activeStock) {
       setQuantity(quantity + 1);
     }
   };
 
   const handleAddToCart = () => {
+    if ((hasVariants && !selectedVariant) || activeStock <= 0) return false;
     // Structure the product data in the format expected by Google Merchant
     const productForCart = {
       id: productId,
+      cartKey: `${productId}:${selectedVariant?.id || "base"}`,
       attributes: {
         ...productAttributes,
         item_id: productId,
         item_name: productAttributes.name,
-        price: productAttributes.priceInCurrency,
-        currency: "IDR",
+        price: activePrice,
+        priceInCurrency: activePrice,
+        stock: activeStock,
+        currency: currencyCode,
+        currencyCode,
+        currencyLocale,
+        image: productAttributes.thumbnail,
         item_category: "Candles", // You might want to get this from the API
-        item_variant: "Standard", // If you have variant data
+        item_variant: selectedVariant?.sku || "Standard",
+        variantCombinationId: selectedVariant?.id || null,
+        variantSku: selectedVariant?.sku || null,
         quantity: quantity,
       },
     };
 
-    // Add structured data for Google Merchant
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "add_to_cart",
-      ecommerce: {
-        currency: "IDR",
-        value: productAttributes.priceInCurrency * quantity,
-        items: [
-          {
-            item_id: productId,
-            item_name: productAttributes.name,
-            price: productAttributes.priceInCurrency,
-            quantity: quantity,
-            currency: "IDR",
-            item_category: "Candles", // Adjust based on your category
-          },
-        ],
-      },
-    });
-    setAddedToCart(true);
-    // Add to cart
-    addToCart(productForCart, quantity);
+    const wasAdded = addToCart(productForCart, quantity);
+    if (wasAdded) setAddedToCart(true);
+    return wasAdded ? productForCart : null;
   };
 
   const handleBuyNow = () => {
     // Add to cart first
-    handleAddToCart();
-
-    // Then navigate to checkout
-    // Track begin_checkout event for Google Merchant
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "begin_checkout",
-      ecommerce: {
-        currency: "IDR",
-        value: productAttributes.priceInCurrency * quantity,
-        items: [
-          {
-            item_id: productId,
-            item_name: productAttributes.name,
-            price: productAttributes.priceInCurrency,
-            quantity: quantity,
-            currency: "IDR",
-          },
-        ],
-      },
-    });
-
+    const addedProduct = handleAddToCart();
+    if (!addedProduct) return;
+    beginCheckout(addedProduct, quantity);
     // Navigate to checkout page
     router.push("/checkout");
   };
@@ -116,14 +118,18 @@ const ProductActions = ({ product }) => {
   const ActionButtons = () => (
     <div className="flex gap-3 w-full">
       <button
+        type="button"
         onClick={handleBuyNow}
-        className="hidden flex-1 bg-white text-green-500 border border-green-500 font-semibold text-sm py-2.5 px-4 md:py-2.5 md:px-2 rounded-lg hover:bg-gray-50 transition"
+        disabled={(hasVariants && !selectedVariant) || activeStock <= 0}
+        className="flex-1 bg-white text-green-500 border border-green-500 disabled:opacity-50 font-semibold text-sm py-2.5 px-4 md:py-2.5 md:px-2 rounded-lg hover:bg-gray-50 transition"
       >
         Beli
       </button>
       <button
+        type="button"
         onClick={handleAddToCart}
-        className="hidden flex-1 bg-green-600 text-white font-semibold text-sm py-2.5 px-4 md:py-2.5 md:px-2 rounded-lg hover:bg-green-700 transition"
+        disabled={(hasVariants && !selectedVariant) || activeStock <= 0}
+        className="flex-1 bg-green-600 text-white disabled:opacity-50 font-semibold text-sm py-2.5 px-4 md:py-2.5 md:px-2 rounded-lg hover:bg-green-700 transition"
       >
         + Keranjang
       </button>
@@ -131,7 +137,7 @@ const ProductActions = ({ product }) => {
   );
 
   // Calculate subtotal
-  const subtotal = productAttributes?.priceInCurrency * quantity;
+  const subtotal = activePrice * quantity;
 
   return (
     <div className="mx-auto border rounded-lg p-4 relative">
@@ -146,6 +152,7 @@ const ProductActions = ({ product }) => {
       {/* Quantity selector */}
       <div className="flex items-center mb-4">
         <button
+          type="button"
           onClick={decreaseQuantity}
           className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200"
           aria-label="Decrease quantity"
@@ -154,15 +161,16 @@ const ProductActions = ({ product }) => {
         </button>
         <span className="mx-4 text-lg">{quantity}</span>
         <button
+          type="button"
           onClick={increaseQuantity}
           className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200"
           aria-label="Increase quantity"
-          disabled={quantity >= productAttributes?.stock}
+          disabled={quantity >= activeStock}
         >
           <span className="text-lg">+</span>
         </button>
         <span className="ml-4 text-amber-500 text-sm font-medium">
-          Sisa {productAttributes?.stock}
+          Sisa {activeStock}
         </span>
       </div>
 
@@ -173,7 +181,11 @@ const ProductActions = ({ product }) => {
           productAttributes.originalPrice >
             productAttributes.priceInCurrency && (
             <p className="text-right text-sm text-gray-400 line-through">
-              {formatPrice(productAttributes.originalPrice)}
+              {formatPrice(
+                productAttributes.originalPrice,
+                currencyCode,
+                currencyLocale
+              )}
             </p>
           )}
         <div className="flex justify-between items-center">
@@ -183,7 +195,7 @@ const ProductActions = ({ product }) => {
             itemProp="price"
             content={isNaN(subtotal) ? "0" : subtotal.toString()}
           >
-            {formatPrice(subtotal)}
+            {formatPrice(subtotal, currencyCode, currencyLocale)}
           </span>
         </div>
       </div>

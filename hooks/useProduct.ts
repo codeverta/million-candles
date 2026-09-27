@@ -1,6 +1,6 @@
 // hooks/useProduct.ts
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
 import { getRelationships } from "utils";
 
@@ -8,11 +8,11 @@ import { getRelationships } from "utils";
  * Custom hook to manage product-related client-side state
  * @param {object} initialProduct - The product data fetched on the server
  */
-export default function useProduct(initialProduct) {
+export default function useProduct(initialProduct: any) {
   const [product, setProduct] = useState(initialProduct);
   const [isLoading, setIsLoading] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [selectedVariant, setSelectedVariant] = useState(null);
+  const [selectedVariant, setSelectedVariant] = useState<any>(null);
   const [qty, setQty] = useState(1);
   const router = useRouter();
 
@@ -65,16 +65,17 @@ export default function useProduct(initialProduct) {
     documents.length > 0 && !!documents[0]?.attributes.filename;
 
   const currentPrice = selectedVariant
-    ? selectedVariant.price
+    ? selectedVariant.formattedPrice || selectedVariant.price
     : product?.data[0]?.attributes.formattedPrice;
 
   const currentStock = selectedVariant
     ? selectedVariant.stock
     : product?.data[0]?.attributes.stock;
 
-  const handleVariantChange = (variant) => {
+  const handleVariantChange = useCallback((variant: any) => {
     setSelectedVariant(variant);
-  };
+    setQty(1);
+  }, []);
 
   const incrementQuantity = () => setQty(qty + 1);
   const decrementQuantity = () => (qty > 1 ? setQty(qty - 1) : null);

@@ -35,10 +35,12 @@ const ProductInformation = ({
   const averageRating =
     productReviews.length > 0
       ? (
-          productReviews.reduce((sum, review) => sum + review.rating, 0) /
-          productReviews.length
+          productReviews.reduce(
+            (sum, review) => sum + Number(review.rating),
+            0
+          ) / productReviews.length
         ).toFixed(1)
-      : "No ratings";
+      : "Belum ada rating";
 
   // Determine stock status for visual indication
   const stockStatus =
@@ -69,11 +71,15 @@ const ProductInformation = ({
         </div>
         <div className="flex items-center">
           <div className="flex items-center text-yellow-500 mr-2">
-            <Star size={18} fill="currentColor" stroke="none" />
+            <Star
+              size={18}
+              fill={productReviews.length ? "currentColor" : "none"}
+              stroke="currentColor"
+            />
           </div>
           <span className="font-medium">{averageRating}</span>
           <span className="ml-1 text-gray-500">
-            ({productReviews.length} reviews)
+            ({productReviews.length} ulasan)
           </span>
         </div>
       </div>
@@ -92,12 +98,12 @@ const ProductInformation = ({
         )}
       </div>
 
-      {/* <div className="">
+      <div className="">
         <ProductVariants
           product={product.data[0]}
           onVariantChange={handleVariantChange}
         />
-      </div> */}
+      </div>
 
       <div className="mb-6 flex items-center">
         <Package size={18} className="mr-2 text-gray-500" />

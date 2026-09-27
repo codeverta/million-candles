@@ -9,11 +9,29 @@ class ProductResource extends JsonApiResource
 {
     public function attributes($request): iterable
     {
+        $this->resource->loadMissing([
+            'productVariants.productVariantOption',
+            'variantCombinations.values.productVariantOption.productVariant',
+        ]);
+
         $locale = $request->get('locale');
         $currencyCode = $request->get('currency');
         
         // Get translation once if needed
         $translation = $locale ? $this->resource->translation($locale) : null;
+        $variantCombinations = $this->variantCombinations->map(function ($combination) use ($currencyCode) {
+            $price = (float) $combination->price;
+            $currency = $currencyCode
+                ? $this->resource->getCurrency($currencyCode)
+                : $this->resource->getCurrency();
+
+            return array_merge($combination->toArray(), [
+                'priceInCurrency' => $currencyCode ? $currency->convert($price) : $price,
+                'formattedPrice' => $currencyCode
+                    ? $currency->convertAndFormat($price)
+                    : $currency->format($price),
+            ]);
+        })->values();
         
         return [
             'name' => $translation?->name ?? $this->name,
@@ -25,9 +43,11 @@ class ProductResource extends JsonApiResource
             'stock' => (int) $this->stock,
             'views_count' => (int) $this->views_count,
             'amount_sold' => (int) $this->amount_sold,
-            'product_reviews' => $this->reviews,
+            'product_reviews' => $this->reviews
+                ->where('is_approved', true)
+                ->values(),
             'product_variants' => $this->productVariants,
-            'variant_combinations' => $this->variantCombinations,
+            'variant_combinations' => $variantCombinations,
             'formattedPrice' => $currencyCode ? $this->resource->getFormattedPrice($currencyCode) : null,
             'priceInCurrency' => $currencyCode ? $this->resource->getPriceInCurrency($currencyCode) : $this->price,
             'createdAt' => $this->created_at,

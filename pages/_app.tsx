@@ -51,6 +51,7 @@ if (typeof window !== "undefined") {
 
 function App({ Component, pageProps }: AppLayoutProps) {
   const router = useRouter();
+  const isProductPage = router.pathname === "/products/[slug]";
   const appProps = { getRelationship, getRelationships };
   const getLayout = Component.getLayout || ((page: ReactNode) => page);
   // seo
@@ -68,29 +69,37 @@ function App({ Component, pageProps }: AppLayoutProps) {
   return (
     <>
       <NextSeo
-        title={pageTitle}
-        description={pageDescription}
-        openGraph={{
-          title: pageTitle,
-          description: pageDescription,
-          images: [
-            {
-              url: ogImageUrl,
-              width: 1200,
-              height: 630,
-              alt: pageTitle,
-            },
-          ],
-          url: siteUrl,
-          type: "website",
-          site_name: siteName,
-          locale: "id_ID",
-        }}
-        twitter={{
-          handle: twitterHandle,
-          site: twitterHandle,
-          cardType: "summary_large_image",
-        }}
+        title={isProductPage ? undefined : pageTitle}
+        description={isProductPage ? undefined : pageDescription}
+        openGraph={
+          isProductPage
+            ? undefined
+            : {
+                title: pageTitle,
+                description: pageDescription,
+                images: [
+                  {
+                    url: ogImageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: pageTitle,
+                  },
+                ],
+                url: siteUrl,
+                type: "website",
+                site_name: siteName,
+                locale: "id_ID",
+              }
+        }
+        twitter={
+          isProductPage
+            ? undefined
+            : {
+                handle: twitterHandle,
+                site: twitterHandle,
+                cardType: "summary_large_image",
+              }
+        }
         additionalMetaTags={[
           {
             name: "keywords",
@@ -105,7 +114,7 @@ function App({ Component, pageProps }: AppLayoutProps) {
             content: "#2563eb",
           },
         ]}
-        canonical={canonicalUrl}
+        canonical={isProductPage ? undefined : canonicalUrl}
       />
 
       <QueryClientProvider client={queryClient}>

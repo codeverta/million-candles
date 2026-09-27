@@ -14,13 +14,24 @@ class ProductReviewController extends Controller
         $validated = $request->validate([
             'rating' => 'required|integer|min:1|max:5',
             'review' => 'required|string|min:10',
+            'author_name' => 'nullable|string|max:255',
         ]);
+
+        if (
+            !empty($validated['author_name']) &&
+            !$request->user()->hasRole('merchant')
+        ) {
+            return response()->json([
+                'message' => 'Only merchants can enter a review author name.',
+            ], 403);
+        }
 
         $review = ProductReview::create([
             'user_id' => auth()->id(),
             'product_id' => $product->id,
             'rating' => $validated['rating'],
             'review' => $validated['review'],
+            'author_name' => $validated['author_name'] ?? null,
             'is_approved' => true, // or false if admin approval is required
         ]);
 

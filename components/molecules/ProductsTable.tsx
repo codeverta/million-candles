@@ -21,6 +21,7 @@ import EmptyData from "./EmptyData";
 import AlertDialog from "./AlertDialog";
 import DangerousIcon from "@mui/icons-material/Dangerous";
 import dayjs from "dayjs";
+import ImageNotSupportedOutlinedIcon from "@mui/icons-material/ImageNotSupportedOutlined";
 
 type Order = "asc" | "desc";
 
@@ -48,7 +49,32 @@ const headCells: HeadCell[] = [
 const productsParams = {
   "page[size]": 10,
   "page[number]": 1,
-  include: "product-categories",
+  include: "product-categories,documents",
+};
+
+const ProductThumbnail = ({ src, alt }: { src?: string; alt: string }) => {
+  const [failed, setFailed] = React.useState(false);
+
+  if (!src || failed) {
+    return (
+      <div
+        className="h-14 w-14 shrink-0 rounded border bg-gray-100 text-gray-400 flex items-center justify-center"
+        aria-label={`Tidak ada gambar untuk ${alt}`}
+      >
+        <ImageNotSupportedOutlinedIcon fontSize="small" />
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="h-14 w-14 shrink-0 rounded border bg-white object-cover"
+      loading="lazy"
+      onError={() => setFailed(true)}
+    />
+  );
 };
 
 export default function ProductsTable() {
@@ -257,13 +283,21 @@ export default function ProductsTable() {
                           }}
                         />
                       </TableCell>
-                      <TableCell className="px-0 text-sm">
-                        {row.attributes.name} ({row.attributes.code})
-                        <br />
-                        <span className="text-xs text-gray-400">
-                          Diupdate pada{" "}
-                          {dayjs(row.attributes.updatedAt).format("LL LT")}
-                        </span>
+                      <TableCell className="px-0 py-2 text-sm">
+                        <div className="flex items-center gap-3">
+                          <ProductThumbnail
+                            src={row.attributes.thumbnail}
+                            alt={row.attributes.name}
+                          />
+                          <div>
+                            {row.attributes.name} ({row.attributes.code})
+                            <br />
+                            <span className="text-xs text-gray-400">
+                              Diupdate pada{" "}
+                              {dayjs(row.attributes.updatedAt).format("LL LT")}
+                            </span>
+                          </div>
+                        </div>
                       </TableCell>
                       <TableCell
                         component="th"

@@ -54,7 +54,8 @@ function ProductDetail({ product, initialLocale }) {
   const productIdentifier = router.query.slug || product.data[0].id;
 
   // Get base URL for absolute URLs in JSON-LD
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL || "https://www.souvenirlilin.id";
 
   return (
     <>
@@ -101,7 +102,10 @@ function ProductDetail({ product, initialLocale }) {
             </div>
 
             <div className="md:w-1/4 md:sticky md:top-32 md:self-start">
-              <ProductActions product={product} />
+              <ProductActions
+                product={product}
+                selectedVariant={selectedVariant}
+              />
               {/* AdSense Unit 3: Di bawah Product Actions (Sidebar) */}
               <div className="my-4 hidden md:block">
                 <AdSense
@@ -139,7 +143,7 @@ export async function getServerSideProps({ locale, params }) {
     const productData = await api.get("products", {
       "filter[slug]": slug,
       locale: locale,
-      currency: currency[locale] || "id",
+      currency: currency[locale] || "IDR",
       include: "documents",
     });
 

@@ -7,7 +7,7 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import AdminLayout from "components/layout/AdminLayout";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -18,6 +18,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/router";
 import ReorderableFileUpload from "components/molecules/ReorderableFileUpload";
 import { MenuItem } from "@mui/material";
+import ProductVariantComponent from "./ProductVariantComponent";
 
 const locales = Object.entries({
   ar: "Arabic",
@@ -83,6 +84,19 @@ function CreateProduct() {
 
   const [productTranslations, setProductTranslations] = useState({});
   const [selectedLocale, setSelectedLocale] = useState("en");
+  const [reviewDraft, setReviewDraft] = useState({
+    author_name: "",
+    rating: 5,
+    review: "",
+  });
+  const [savingReview, setSavingReview] = useState(false);
+  const [variantData, setVariantData] = useState<any>({
+    variants: [],
+    combinations: [],
+  });
+  const handleVariantChange = useCallback((value: any) => {
+    setVariantData(value);
+  }, []);
 
   const fetchProduct = async (id: string | number) => {
     try {
@@ -155,6 +169,16 @@ function CreateProduct() {
         toast.success("Produk Berhasil Ditambahkan");
       }
       await saveProductTranslations(newProductId);
+      await api.put(`products/${newProductId}/variants/-actions/sync`, {
+        variants: variantData.variants,
+        combinations: variantData.combinations.map((combination: any) => ({
+          id: combination.id || null,
+          sku: combination.sku?.trim() || null,
+          price: Number(combination.price),
+          stock: Number(combination.stock),
+          option_keys: combination.optionKeys,
+        })),
+      });
       const batchReq = files.map((it: any) => {
         const formData = new FormData();
         formData.append("documentable_type", "products");
@@ -175,41 +199,21 @@ function CreateProduct() {
   };
 
   const saveProductTranslations = async (productId) => {
+    const translations = Object.entries(productTranslations)
+      .map(([locale, translation]: [string, any]) => ({
+        locale,
+        name: translation?.name?.trim() || "",
+        description: translation?.description || "",
+      }))
+      .filter((translation) => translation.name);
+
+    if (translations.length === 0) return;
+
     try {
-      const translationPromises = locales.map(async (locale) => {
-        const translation = productTranslations[locale.code];
-        if (translation && (translation.name || translation.description)) {
-          let payload = {
-            data: {
-              type: "product-translations",
-              attributes: {
-                locale: locale.code,
-                name: translation.name,
-                description: translation.description,
-              },
-              relationships: {
-                product: {
-                  data: {
-                    type: "products",
-                    id: productId,
-                  },
-                },
-              },
-            },
-          };
-          const existingTranslations = await api.get(
-            `product-translations?filter[product_id]=${productId}&filter[locale]=${locale.code}`
-          );
-          if (existingTranslations.data.data.length > 0) {
-            const translationId = existingTranslations.data.data[0].id;
-            payload.data.id = translationId;
-            return api.patch(`product-translations/${translationId}`, payload);
-          } else {
-            return api.post("product-translations", payload);
-          }
-        }
+      await api.post("product-translations/-actions/bulk-upsert", {
+        product_id: productId,
+        translations,
       });
-      await Promise.all(translationPromises.filter(Boolean));
       toast.success("Product translations saved successfully");
     } catch (error) {
       console.error("Error saving translations:", error);
@@ -224,6 +228,44 @@ function CreateProduct() {
     });
   };
 
+  const createReview = async () => {
+    const productId = router.query.id;
+    if (
+      !productId ||
+      !reviewDraft.author_name.trim() ||
+      reviewDraft.review.trim().length < 10
+    ) {
+      toast.error("Isi nama pelanggan dan ulasan minimal 10 karakter.");
+      return;
+    }
+
+    setSavingReview(true);
+    try {
+      await api.post(`products/${productId}/reviews`, {
+        author_name: reviewDraft.author_name.trim(),
+        rating: Number(reviewDraft.rating),
+        review: reviewDraft.review.trim(),
+      });
+      setReviewDraft({ author_name: "", rating: 5, review: "" });
+      await fetchProduct(productId as string);
+      toast.success("Ulasan berhasil ditambahkan dan ditampilkan.");
+    } catch (_error) {
+      toast.error("Ulasan gagal disimpan.");
+    } finally {
+      setSavingReview(false);
+    }
+  };
+
+  const deleteReview = async (reviewId: number | string) => {
+    try {
+      await api.delete(`reviews/${reviewId}`);
+      await fetchProduct(router.query.id as string);
+      toast.success("Ulasan berhasil dihapus.");
+    } catch (_error) {
+      toast.error("Ulasan gagal dihapus.");
+    }
+  };
+
   const onChangeFile = (files: any) => {
     setFiles(files);
   };
@@ -232,7 +274,11 @@ function CreateProduct() {
     <form onSubmit={handleSubmit(onSubmitProduct)}>
       <List className="pb-32">
         <ListItem>
-          <ReorderableFileUpload files={files} onChangeFile={onChangeFile} />
+          <ReorderableFileUpload
+            files={files}
+            onChangeFile={onChangeFile}
+            onError={(message: string) => toast.error(message)}
+          />
         </ListItem>
         <ListItem className="grid grid-cols-4 flex-wrap gap-4">
           {router.query.id && state.product && (
@@ -267,6 +313,18 @@ function CreateProduct() {
             helperText="Wajib diisi"
             value={state.code}
             onChange={(e) => setState({ ...state, code: e.target.value })}
+          />
+        </ListItem>
+        <ListItem>
+          <ProductVariantComponent
+            key={state.product?.data?.id || "new-product"}
+            existingVariants={
+              state.product?.data?.attributes?.product_variants || []
+            }
+            existingCombinations={
+              state.product?.data?.attributes?.variant_combinations || []
+            }
+            onChange={handleVariantChange}
           />
         </ListItem>
         <ListItem>
@@ -371,6 +429,109 @@ function CreateProduct() {
             {router.query.id ? "Edit" : "Tambah"} Produk
           </Button>
         </ListItem>
+        {router.query.id && state.product && (
+          <>
+            <ListItem>
+              <Divider className="w-full" />
+            </ListItem>
+            <ListItem>
+              <div>
+                <Typography variant="h6">Ulasan Produk</Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Ulasan yang disimpan langsung tampil di halaman produk dan
+                  JSON-LD.
+                </Typography>
+              </div>
+            </ListItem>
+            <ListItem>
+              <TextField
+                className="w-full"
+                label="Nama pelanggan"
+                value={reviewDraft.author_name}
+                onChange={(event) =>
+                  setReviewDraft({
+                    ...reviewDraft,
+                    author_name: event.target.value,
+                  })
+                }
+              />
+            </ListItem>
+            <ListItem>
+              <TextField
+                select
+                className="w-full"
+                label="Rating"
+                value={reviewDraft.rating}
+                onChange={(event) =>
+                  setReviewDraft({
+                    ...reviewDraft,
+                    rating: Number(event.target.value),
+                  })
+                }
+              >
+                {[5, 4, 3, 2, 1].map((rating) => (
+                  <MenuItem key={rating} value={rating}>
+                    {rating} dari 5 bintang
+                  </MenuItem>
+                ))}
+              </TextField>
+            </ListItem>
+            <ListItem>
+              <TextField
+                className="w-full"
+                label="Isi ulasan"
+                multiline
+                minRows={3}
+                value={reviewDraft.review}
+                onChange={(event) =>
+                  setReviewDraft({ ...reviewDraft, review: event.target.value })
+                }
+              />
+            </ListItem>
+            <ListItem>
+              <Button
+                type="button"
+                variant="contained"
+                color="primary"
+                className="w-full bg-blue-500"
+                disabled={savingReview}
+                onClick={createReview}
+              >
+                {savingReview ? "Menyimpan..." : "Tambah Ulasan"}
+              </Button>
+            </ListItem>
+            <ListItem>
+              <div className="w-full space-y-3">
+                {(state.product.data?.attributes?.product_reviews || []).map(
+                  (review: any) => (
+                    <div
+                      key={review.id}
+                      className="flex items-start justify-between gap-4 rounded border p-3"
+                    >
+                      <div>
+                        <Typography variant="subtitle2">
+                          {review.author_name ||
+                            review.user?.name ||
+                            "Pelanggan"}{" "}
+                          · {review.rating}/5
+                        </Typography>
+                        <Typography variant="body2">{review.review}</Typography>
+                      </div>
+                      <Button
+                        type="button"
+                        color="error"
+                        size="small"
+                        onClick={() => deleteReview(review.id)}
+                      >
+                        Hapus
+                      </Button>
+                    </div>
+                  )
+                )}
+              </div>
+            </ListItem>
+          </>
+        )}
       </List>
     </form>
   );

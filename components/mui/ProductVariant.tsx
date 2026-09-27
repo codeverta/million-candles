@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FormControl,
   InputLabel,
@@ -7,76 +7,62 @@ import {
   Typography,
   Box,
 } from "@mui/material";
+import { findMatchingVariantCombination } from "utils/variants";
 
-const ProductVariants = ({ product, onVariantChange }) => {
-  const [selectedVariants, setSelectedVariants] = useState({});
-  const [currentCombination, setCurrentCombination] = useState(null);
-
-  // Extract all product variants from the product data
+const ProductVariants = ({ product, onVariantChange }: any) => {
+  const [selectedVariants, setSelectedVariants] = useState<
+    Record<string, string | number>
+  >({});
+  const [currentCombination, setCurrentCombination] = useState<any>(null);
   const variants = product?.attributes?.product_variants || [];
-
-  // Extract all variant combinations from the product data
-  const variantCombinations = product?.attributes?.variant_combinations || [];
+  const combinations = product?.attributes?.variant_combinations || [];
 
   useEffect(() => {
-    // Initialize selected variants with first option of each variant
-    if (variants.length > 0) {
-      const initialSelections = {};
-      variants.forEach((variant) => {
-        if (
-          variant.product_variant_option &&
-          variant.product_variant_option.length > 0
-        ) {
-          initialSelections[variant.id] = variant.product_variant_option[0].id;
-        }
-      });
-      setSelectedVariants(initialSelections);
+    if (!variants.length || !combinations.length) {
+      setSelectedVariants({});
+      setCurrentCombination(null);
+      onVariantChange?.(null);
+      return;
     }
-  }, [variants]);
 
-  useEffect(() => {
-    // Find matching combination based on selected variants
-    if (Object.keys(selectedVariants).length > 0) {
-      findMatchingCombination();
-    }
-  }, [selectedVariants]);
-
-  const findMatchingCombination = () => {
-    // This is a simplified approach - would need refinement for real use
-    // Typically we would match all selected variants to a specific combination
-
-    // For now, let's just find if any combination contains one of our selected options
-    const selectedOptionIds = Object.values(selectedVariants);
-
-    const match = variantCombinations.find((combination) => {
-      return combination.values.some((value) =>
-        selectedOptionIds.includes(value.product_variant_option_id)
+    const firstAvailable =
+      combinations.find((combination: any) => Number(combination.stock) > 0) ||
+      combinations[0];
+    const optionIds = new Set(
+      (firstAvailable.values || []).map((value: any) =>
+        String(
+          value.product_variant_option_id ?? value.product_variant_option?.id
+        )
+      )
+    );
+    const initialSelections: Record<string, string | number> = {};
+    variants.forEach((variant: any) => {
+      const selectedOption = (variant.product_variant_option || []).find(
+        (option: any) => optionIds.has(String(option.id))
       );
+      if (selectedOption) initialSelections[variant.id] = selectedOption.id;
     });
+    setSelectedVariants(initialSelections);
+  }, [product?.id]);
 
+  useEffect(() => {
+    const match = findMatchingVariantCombination(
+      combinations,
+      selectedVariants
+    );
     setCurrentCombination(match);
+    onVariantChange?.(match);
+  }, [selectedVariants, combinations, onVariantChange]);
 
-    // If onVariantChange callback exists, pass the combination to parent
-    if (onVariantChange && match) {
-      onVariantChange(match);
-    }
-  };
-
-  const handleVariantChange = (variantId, optionId) => {
-    setSelectedVariants((prev) => ({
-      ...prev,
-      [variantId]: optionId,
-    }));
-  };
-
-  if (!variants || variants.length === 0) {
-    return null;
-  }
+  if (!variants.length) return null;
 
   return (
-    <div className="product-variants">
-      {variants.map((variant) => (
-        <div key={variant.id} className="mb-4">
+    <div className="product-variants mb-6">
+      <Typography variant="subtitle1" fontWeight="bold" sx={{ mb: 1 }}>
+        Pilih variant
+      </Typography>
+      {variants.map((variant: any) => (
+        <div key={variant.id} className="mb-3">
           <FormControl fullWidth size="small">
             <InputLabel id={`variant-label-${variant.id}`}>
               {variant.name}
@@ -86,9 +72,14 @@ const ProductVariants = ({ product, onVariantChange }) => {
               id={`variant-select-${variant.id}`}
               value={selectedVariants[variant.id] || ""}
               label={variant.name}
-              onChange={(e) => handleVariantChange(variant.id, e.target.value)}
+              onChange={(event) =>
+                setSelectedVariants((current) => ({
+                  ...current,
+                  [variant.id]: event.target.value,
+                }))
+              }
             >
-              {variant.product_variant_option.map((option) => (
+              {(variant.product_variant_option || []).map((option: any) => (
                 <MenuItem key={option.id} value={option.id}>
                   {option.name}
                 </MenuItem>
@@ -98,19 +89,25 @@ const ProductVariants = ({ product, onVariantChange }) => {
         </div>
       ))}
 
-      {currentCombination && (
+      {currentCombination ? (
         <Box mt={2} p={2} bgcolor="rgba(0,0,0,0.05)" borderRadius={1}>
           <Typography variant="subtitle2" fontWeight="bold">
-            Selected: {currentCombination.sku}
+            SKU: {currentCombination.sku || "-"}
           </Typography>
           <Typography variant="body2" color="primary" fontWeight="bold">
-            Price: Rp{" "}
-            {parseFloat(currentCombination.price).toLocaleString("id-ID")}
+            {currentCombination.formattedPrice ||
+              `Rp ${Number(currentCombination.price).toLocaleString("id-ID")}`}
           </Typography>
           <Typography variant="body2">
-            Stock: {currentCombination.stock} available
+            {Number(currentCombination.stock) > 0
+              ? `Stok: ${currentCombination.stock}`
+              : "Stok habis"}
           </Typography>
         </Box>
+      ) : (
+        <Typography color="error" variant="body2">
+          Kombinasi variant ini tidak tersedia.
+        </Typography>
       )}
     </div>
   );

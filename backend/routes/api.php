@@ -43,12 +43,20 @@ Route::prefix('/v1')->group(function () {
     Route::post('/auth/forgot', [AuthController::class, 'forgot']);
     Route::post('/auth/reset', [AuthController::class, 'reset']);
     Route::get('/auth/self', [AuthController::class, 'me'])->middleware('auth:sanctum');
+    Route::post(
+        '/product-translations/-actions/bulk-upsert',
+        [ProductTranslationController::class, 'bulkUpsert']
+    );
     Route::get('/product-relations/{id}', [ProductController::class, 'show']);
     Route::apiResource('variant-combinations', VariantCombinationController::class);
     Route::apiResource('product-variant-options', ProductVariantOptionController::class);
     Route::apiResource('product-variants', ProductVariantController::class);
     Route::get('/notifications', [NotificationController::class, 'index'])->middleware('auth:sanctum');
     Route::middleware('auth:sanctum')->group(function () {
+        Route::put(
+            '/products/{product}/variants/-actions/sync',
+            [VariantCombinationController::class, 'sync']
+        );
         Route::post('/products/{product}/reviews', [ProductReviewController::class, 'store']);
         Route::get('/reviews', [ProductReviewController::class, 'index']);
         Route::post('/reviews/{review}/approve', [ProductReviewController::class, 'approve']);

@@ -1,16 +1,13 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   TextField,
   Button,
-  List,
-  ListItem,
   Typography,
   IconButton,
   Chip,
   Box,
   Paper,
   Grid,
-  Divider,
   Table,
   TableBody,
   TableCell,
@@ -19,406 +16,308 @@ import {
   TableRow,
 } from "@mui/material";
 import { Delete, Add } from "@mui/icons-material";
-import api from "utils/api";
 import { toast } from "sonner";
+import { buildVariantCombinations, combinationKey } from "utils/variants";
+
+const prepareInitialState = (
+  existingVariants: any[],
+  existingCombinations: any[]
+) => {
+  const variants = (existingVariants || []).map((variant) => ({
+    id: variant.id,
+    name: variant.name,
+    options: (variant.product_variant_option || []).map((option: any) => ({
+      key: String(option.id),
+      name: option.name,
+    })),
+  }));
+  const combinations = (existingCombinations || []).map((combination) => ({
+    id: combination.id,
+    optionKeys: (combination.values || []).map((value: any) =>
+      String(
+        value.product_variant_option_id ?? value.product_variant_option?.id
+      )
+    ),
+    sku: combination.sku || "",
+    price: Number(combination.price || 0),
+    stock: Number(combination.stock || 0),
+  }));
+  return { variants, combinations };
+};
 
 const ProductVariantComponent = ({
-  productId,
   existingVariants = [],
+  existingCombinations = [],
   onChange,
-}) => {
-  const [variants, setVariants] = useState([]);
-  const [currentVariant, setCurrentVariant] = useState({
+}: any) => {
+  const initial = prepareInitialState(existingVariants, existingCombinations);
+  const [variants, setVariants] = useState<any[]>(initial.variants);
+  const [combinations, setCombinations] = useState<any[]>(initial.combinations);
+  const [currentVariant, setCurrentVariant] = useState<any>({
     name: "",
     options: [],
     currentOption: "",
   });
-  const [combinations, setCombinations] = useState([]);
+  const keySequence = useRef(0);
 
-  // Load existing variants on component mount if productId exists
   useEffect(() => {
-    if (productId) {
-      loadExistingVariants();
-    }
-  }, [productId]);
-
-  // Generate combinations when variants change
-  useEffect(() => {
-    if (variants.length > 0) {
-      generateCombinations();
-    }
+    const generated = buildVariantCombinations(variants);
+    setCombinations((current) =>
+      generated.map((combination: any) => {
+        const existing = current.find(
+          (item) =>
+            combinationKey(item.optionKeys) ===
+            combinationKey(combination.optionKeys)
+        );
+        return {
+          id: existing?.id,
+          optionKeys: combination.optionKeys,
+          optionNames: combination.optionNames,
+          sku: existing?.sku || "",
+          price: Number(existing?.price || 0),
+          stock: Number(existing?.stock || 0),
+        };
+      })
+    );
   }, [variants]);
 
-  const loadExistingVariants = async () => {
-    try {
-      // Fetch product variants
-      const variantsResponse = await api.get(
-        `product-variants?product_id=${productId}`
-      );
+  useEffect(() => {
+    onChange?.({ variants, combinations });
+  }, [variants, combinations, onChange]);
 
-      // Transform data structure to match our component state
-      const loadedVariants = [];
-
-      for (const variant of variantsResponse.data) {
-        // Fetch options for this variant
-        const optionsResponse = await api.get(
-          `product-variant-options?product_variant_id=${variant.id}`
-        );
-
-        loadedVariants.push({
-          id: variant.id,
-          name: variant.name,
-          options: optionsResponse.data.map((option) => ({
-            id: option.id,
-            name: option.name,
-          })),
-        });
-      }
-
-      setVariants(loadedVariants);
-
-      // Fetch combinations
-      const combinationsResponse = await api.get(
-        `variant-combinations?product_id=${productId}`
-      );
-      setCombinations(
-        combinationsResponse.data.map((combo) => ({
-          id: combo.id,
-          sku: combo.attributes.sku,
-          price: combo.attributes.price,
-          stock: combo.attributes.stock,
-          option_ids: combo.relationships.options.data.map((opt) => opt.id),
-        }))
-      );
-    } catch (error) {
-      console.error("Error loading variants:", error);
-      toast.error("Failed to load product variants");
+  const addOption = () => {
+    const optionName = currentVariant.currentOption.trim();
+    if (!optionName) {
+      toast.error("Nama opsi wajib diisi.");
+      return;
     }
+    if (
+      currentVariant.options.some(
+        (option: any) => option.name.toLowerCase() === optionName.toLowerCase()
+      )
+    ) {
+      toast.error("Opsi tersebut sudah ada.");
+      return;
+    }
+
+    keySequence.current += 1;
+    setCurrentVariant({
+      ...currentVariant,
+      currentOption: "",
+      options: [
+        ...currentVariant.options,
+        { key: `new-${Date.now()}-${keySequence.current}`, name: optionName },
+      ],
+    });
   };
 
-  // Add a new variant
   const addVariant = () => {
-    if (!currentVariant.name.trim()) {
-      toast.error("Variant name cannot be empty");
+    const variantName = currentVariant.name.trim();
+    if (!variantName || currentVariant.options.length === 0) {
+      toast.error("Isi nama variant dan minimal satu opsi.");
+      return;
+    }
+    if (
+      variants.some(
+        (variant) => variant.name.toLowerCase() === variantName.toLowerCase()
+      )
+    ) {
+      toast.error("Nama variant tersebut sudah ada.");
       return;
     }
 
-    if (currentVariant.options.length === 0) {
-      toast.error("Please add at least one option");
-      return;
-    }
-
-    setVariants([...variants, { ...currentVariant }]);
+    setVariants([
+      ...variants,
+      { name: variantName, options: currentVariant.options },
+    ]);
     setCurrentVariant({ name: "", options: [], currentOption: "" });
   };
 
-  // Add option to current variant
-  const addOption = () => {
-    if (!currentVariant.currentOption.trim()) {
-      toast.error("Option name cannot be empty");
-      return;
-    }
-
-    setCurrentVariant({
-      ...currentVariant,
-      options: [
-        ...currentVariant.options,
-        { name: currentVariant.currentOption },
-      ],
-      currentOption: "",
-    });
-  };
-
-  // Remove variant
-  const removeVariant = (index) => {
-    const newVariants = [...variants];
-    newVariants.splice(index, 1);
-    setVariants(newVariants);
-  };
-
-  // Remove option from current variant
-  const removeOption = (index) => {
-    const newOptions = [...currentVariant.options];
-    newOptions.splice(index, 1);
-    setCurrentVariant({ ...currentVariant, options: newOptions });
-  };
-
-  // Generate all possible combinations of options
-  const generateCombinations = () => {
-    if (variants.length === 0) {
-      setCombinations([]);
-      return;
-    }
-
-    const generateCombos = (
-      variantIndex,
-      currentCombo = [],
-      currentOptions = []
-    ) => {
-      if (variantIndex >= variants.length) {
-        // We've gone through all variants, add this combination
-        return [
-          {
-            options: [...currentOptions],
-            optionNames: currentCombo.join(" / "),
-            sku: "",
-            price: 0,
-            stock: 0,
-          },
-        ];
-      }
-
-      const variant = variants[variantIndex];
-      let combos = [];
-
-      for (const option of variant.options) {
-        const newCombo = [...currentCombo, option.name];
-        const newOptions = [
-          ...currentOptions,
-          {
-            variantName: variant.name,
-            optionName: option.name,
-            optionId: option.id,
-          },
-        ];
-
-        combos = combos.concat(
-          generateCombos(variantIndex + 1, newCombo, newOptions)
-        );
-      }
-
-      return combos;
-    };
-
-    // Generate all combinations
-    const newCombos = generateCombos(0);
-
-    // Preserve existing values for combinations that already exist
-    const preservedCombos = newCombos.map((combo) => {
-      const optionIds = combo.options
-        .map((opt) => opt.optionId)
-        .filter((id) => id);
-
-      // Find existing combination with matching options
-      const existing = combinations.find((c) => {
-        if (!c.option_ids || c.option_ids.length !== optionIds.length)
-          return false;
-        return optionIds.every((id) => c.option_ids.includes(id));
-      });
-
-      if (existing) {
-        return {
-          ...combo,
-          sku: existing.sku || "",
-          price: existing.price || 0,
-          stock: existing.stock || 0,
-        };
-      }
-
-      return combo;
-    });
-
-    setCombinations(preservedCombos);
-
-    // Inform parent component
-    if (onChange) {
-      onChange({ variants, combinations: preservedCombos });
-    }
-  };
-
-  // Update combination values
-  const updateCombination = (index, field, value) => {
-    const newCombinations = [...combinations];
-    newCombinations[index][field] = value;
-    setCombinations(newCombinations);
-
-    // Inform parent component
-    if (onChange) {
-      onChange({ variants, combinations: newCombinations });
-    }
+  const updateCombination = (index: number, field: string, value: any) => {
+    setCombinations((current) =>
+      current.map((combination, combinationIndex) =>
+        combinationIndex === index
+          ? { ...combination, [field]: value }
+          : combination
+      )
+    );
   };
 
   return (
-    <div>
+    <div className="w-full">
       <Typography variant="h6" gutterBottom>
-        Product Variants
+        Variant dan Kombinasi
+      </Typography>
+      <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
+        Contoh: variant Warna berisi Merah dan Biru, lalu variant Ukuran berisi
+        Kecil dan Besar. Semua kombinasi dibuat otomatis.
       </Typography>
 
-      {/* Current variant form */}
       <Paper elevation={1} sx={{ p: 2, mb: 3 }}>
-        <Typography variant="subtitle1" gutterBottom>
-          Add New Variant
-        </Typography>
-
         <Grid container spacing={2}>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="Variant Name"
-              placeholder="e.g. Color, Size"
+              label="Nama variant"
+              placeholder="Warna, Ukuran"
               value={currentVariant.name}
-              onChange={(e) =>
-                setCurrentVariant({ ...currentVariant, name: e.target.value })
+              onChange={(event) =>
+                setCurrentVariant({
+                  ...currentVariant,
+                  name: event.target.value,
+                })
               }
             />
           </Grid>
-
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-              label="Option"
-              placeholder="e.g. Red, Small"
+              label="Nama opsi"
+              placeholder="Merah, Kecil"
               value={currentVariant.currentOption}
-              onChange={(e) =>
+              onChange={(event) =>
                 setCurrentVariant({
                   ...currentVariant,
-                  currentOption: e.target.value,
+                  currentOption: event.target.value,
                 })
               }
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault();
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  event.preventDefault();
                   addOption();
                 }
               }}
             />
           </Grid>
-
           <Grid item xs={12} sm={2}>
             <Button
+              type="button"
               fullWidth
               variant="outlined"
               onClick={addOption}
               startIcon={<Add />}
               sx={{ height: "56px" }}
             >
-              Add Option
+              Opsi
             </Button>
           </Grid>
         </Grid>
 
-        {/* Current variant options */}
         {currentVariant.options.length > 0 && (
-          <Box sx={{ mt: 2 }}>
-            <Typography variant="body2" gutterBottom>
-              Options:
-            </Typography>
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
-              {currentVariant.options.map((option, index) => (
-                <Chip
-                  key={index}
-                  label={option.name}
-                  onDelete={() => removeOption(index)}
-                  variant="outlined"
-                />
-              ))}
-            </Box>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 2 }}>
+            {currentVariant.options.map((option: any, index: number) => (
+              <Chip
+                key={option.key}
+                label={option.name}
+                onDelete={() =>
+                  setCurrentVariant({
+                    ...currentVariant,
+                    options: currentVariant.options.filter(
+                      (_item: any, optionIndex: number) => optionIndex !== index
+                    ),
+                  })
+                }
+              />
+            ))}
           </Box>
         )}
 
         <Button
+          type="button"
           variant="contained"
-          color="primary"
           onClick={addVariant}
-          disabled={!currentVariant.name || currentVariant.options.length === 0}
           sx={{ mt: 2 }}
         >
-          Add Variant
+          Tambah Variant
         </Button>
       </Paper>
 
-      {/* Variant list */}
-      {variants.length > 0 && (
-        <Paper elevation={1} sx={{ p: 2, mb: 3 }}>
-          <Typography variant="subtitle1" gutterBottom>
-            Added Variants
-          </Typography>
-
-          {variants.map((variant, index) => (
-            <Box
-              key={index}
-              sx={{ mb: 2, p: 1, border: "1px solid #eee", borderRadius: 1 }}
+      {variants.map((variant, index) => (
+        <Paper
+          key={`${variant.name}-${index}`}
+          elevation={1}
+          sx={{ p: 2, mb: 2 }}
+        >
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Typography variant="subtitle1">{variant.name}</Typography>
+            <IconButton
+              type="button"
+              aria-label={`Hapus variant ${variant.name}`}
+              onClick={() =>
+                setVariants((current) =>
+                  current.filter(
+                    (_item, variantIndex) => variantIndex !== index
+                  )
+                )
+              }
             >
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <Typography variant="subtitle2">{variant.name}</Typography>
-                <IconButton onClick={() => removeVariant(index)} size="small">
-                  <Delete fontSize="small" />
-                </IconButton>
-              </Box>
-
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 1 }}>
-                {variant.options.map((option, optIndex) => (
-                  <Chip key={optIndex} label={option.name} size="small" />
-                ))}
-              </Box>
-            </Box>
-          ))}
+              <Delete />
+            </IconButton>
+          </Box>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 1 }}>
+            {variant.options.map((option: any) => (
+              <Chip key={option.key} label={option.name} />
+            ))}
+          </Box>
         </Paper>
-      )}
+      ))}
 
-      {/* Combinations table */}
       {combinations.length > 0 && (
-        <Paper elevation={1} sx={{ p: 2, mb: 3 }}>
-          <Typography variant="subtitle1" gutterBottom>
-            Variant Combinations
+        <Paper elevation={1} sx={{ p: 2, mt: 3 }}>
+          <Typography variant="subtitle1" sx={{ mb: 2 }}>
+            Kombinasi Variant
           </Typography>
-
           <TableContainer>
             <Table size="small">
               <TableHead>
                 <TableRow>
-                  <TableCell>Combination</TableCell>
+                  <TableCell>Kombinasi</TableCell>
                   <TableCell>SKU</TableCell>
-                  <TableCell>Price</TableCell>
-                  <TableCell>Stock</TableCell>
+                  <TableCell>Harga</TableCell>
+                  <TableCell>Stok</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {combinations.map((combo, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{combo.optionNames}</TableCell>
+                {combinations.map((combination, index) => (
+                  <TableRow key={combinationKey(combination.optionKeys)}>
+                    <TableCell>
+                      {combination.optionNames?.join(" / ")}
+                    </TableCell>
                     <TableCell>
                       <TextField
-                        fullWidth
                         size="small"
-                        value={combo.sku}
-                        onChange={(e) =>
-                          updateCombination(index, "sku", e.target.value)
+                        value={combination.sku}
+                        onChange={(event) =>
+                          updateCombination(index, "sku", event.target.value)
                         }
                       />
                     </TableCell>
                     <TableCell>
                       <TextField
-                        fullWidth
                         size="small"
                         type="number"
-                        value={combo.price}
-                        onChange={(e) =>
+                        inputProps={{ min: 0 }}
+                        value={combination.price}
+                        onChange={(event) =>
                           updateCombination(
                             index,
                             "price",
-                            Number(e.target.value)
+                            Number(event.target.value)
                           )
                         }
                       />
                     </TableCell>
                     <TableCell>
                       <TextField
-                        fullWidth
                         size="small"
                         type="number"
-                        value={combo.stock}
-                        onChange={(e) =>
+                        inputProps={{ min: 0 }}
+                        value={combination.stock}
+                        onChange={(event) =>
                           updateCombination(
                             index,
                             "stock",
-                            Number(e.target.value)
+                            Number(event.target.value)
                           )
                         }
                       />

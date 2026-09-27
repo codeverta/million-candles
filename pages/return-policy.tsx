@@ -147,7 +147,7 @@ export default function TermsAndConditions({
   return (
     <div className="min-h-screen bg-gray-50">
       <Head>
-        <title>Privacy & Policy</title>
+        <title>{metadata.title || "Return & Replacement Policy"}</title>
         <meta
           name="description"
           content={metadata.description || "Privacy and Policy of our service"}
@@ -158,7 +158,7 @@ export default function TermsAndConditions({
         <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-bold text-gray-900">
-              Privacy & Policy
+              {metadata.title || "Return & Replacement Policy"}
             </h1>
             <button
               onClick={() => router.back()}

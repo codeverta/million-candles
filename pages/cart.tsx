@@ -59,7 +59,7 @@ const CartPage = () => {
               </thead>
               <tbody>
                 {cart.map((item) => (
-                  <tr key={item.id} className="border-b">
+                  <tr key={item.cartKey || item.id} className="border-b">
                     <td className="py-4">
                       <div className="flex items-center">
                         {item.relationships?.documents?.data?.[0]?.id && (
@@ -94,7 +94,7 @@ const CartPage = () => {
                         <button
                           onClick={() =>
                             updateQuantity(
-                              item.id,
+                              item.cartKey || item.id,
                               Math.max(1, item.quantity - 1)
                             )
                           }
@@ -108,7 +108,7 @@ const CartPage = () => {
                           value={item.quantity}
                           onChange={(e) =>
                             updateQuantity(
-                              item.id,
+                              item.cartKey || item.id,
                               parseInt(e.target.value) || 1
                             )
                           }
@@ -116,7 +116,10 @@ const CartPage = () => {
                         />
                         <button
                           onClick={() =>
-                            updateQuantity(item.id, item.quantity + 1)
+                            updateQuantity(
+                              item.cartKey || item.id,
+                              item.quantity + 1
+                            )
                           }
                           className="bg-gray-200 px-3 py-1 rounded-r hover:bg-gray-300"
                         >
@@ -132,7 +135,7 @@ const CartPage = () => {
                     </td>
                     <td className="py-4 text-right">
                       <button
-                        onClick={() => removeFromCart(item.id)}
+                        onClick={() => removeFromCart(item.cartKey || item.id)}
                         className="text-red-600 hover:text-red-800"
                       >
                         <svg
