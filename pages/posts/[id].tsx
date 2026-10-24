@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
 import { getPostData, getAllPostIds, getSortedPostsData } from "lib/posts";
 import {
@@ -27,6 +28,7 @@ import DisqusThread from "components/DisqusThread";
 import ScrollIndicator from "components/ScrollIndicator";
 import AdSense from "components/AdSense"; // Ensure this path is correct
 import { Content } from "components";
+import { getCanonicalUrl } from "lib/seo";
 
 // --- Helper Components ---
 
@@ -252,6 +254,13 @@ const Breadcrumb = ({ postTitle }) => (
 // --- Main Component ---
 
 function Post({ postData, slug, allPostsData }) {
+  const router = useRouter();
+  const canonicalUrl = getCanonicalUrl(
+    router.asPath,
+    router.locale,
+    router.defaultLocale,
+    router.locales
+  );
   const backgroundImageUrl = `https://picsum.photos/seed/${slug}/800/450`;
   const readingTime = estimateReadingTime(
     postData.contentHtml.replace(/<[^>]*>/g, "")
@@ -265,7 +274,7 @@ function Post({ postData, slug, allPostsData }) {
         openGraph={{
           title: postData.title,
           description: postData.desc,
-          url: `https://www.souvenirlilin.id/posts/${slug}`,
+          url: canonicalUrl,
           siteName: "Million Candles",
           images: [
             {
@@ -356,7 +365,7 @@ function Post({ postData, slug, allPostsData }) {
                 <AdSense type="feed" className="mb-8" />
 
                 <DisqusThread
-                  url={"https://www.souvenirlilin.id/posts/" + slug}
+                  url={canonicalUrl}
                   identifier={slug}
                   title={postData.title}
                 />

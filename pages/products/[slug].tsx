@@ -22,6 +22,7 @@ import ProductActions from "components/product/ProductActions";
 import ProductReview from "components/product/ProductReview";
 import api from "utils/api";
 import { currency } from "lib/currency";
+import { SITE_URL } from "lib/seo";
 
 /**
  * ProductDetail page component
@@ -54,8 +55,7 @@ function ProductDetail({ product, initialLocale }) {
   const productIdentifier = router.query.slug || product.data[0].id;
 
   // Get base URL for absolute URLs in JSON-LD
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL || "https://www.souvenirlilin.id";
+  const baseUrl = SITE_URL;
 
   return (
     <>

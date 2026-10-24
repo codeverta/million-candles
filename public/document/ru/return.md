@@ -74,7 +74,7 @@ If you simply change your mind about the size or scent, contact us within 7 days
 Questions? Reach out anytime:
 
 - **Email:** support@yourcandleshop.com
-- **Phone:** +62-812-3456-7890
+- **Phone:** +62 815 7895 6156
 - **Business hours:** Mon–Fri, 9 AM–5 PM (WIB, GMT+7)
 
 ---

@@ -2,29 +2,49 @@ import React from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { currency } from "lib/currency";
-import { getProductImageUrls, toAbsoluteUrl } from "utils/productImages";
+import { getCanonicalUrl } from "lib/seo";
+import { getProductImageUrls } from "utils/productImages";
 
-const SITE_URL = "https://www.souvenirlilin.id";
+type ProductReview = {
+  is_approved?: boolean | number;
+  rating?: number | string;
+  author_name?: string | null;
+  user?: { name?: string | null } | null;
+  created_at?: string | null;
+  review?: string | null;
+};
 
-const ProductJsonLd = ({ product, baseUrl = SITE_URL }: any) => {
+const ProductJsonLd = ({ product }: any) => {
   const router = useRouter();
 
   if (!product?.data?.[0]) return null;
 
   const productData = product.data[0];
   const attributes = productData.attributes;
-  const siteUrl = baseUrl || SITE_URL;
-  const productUrl = toAbsoluteUrl(router.asPath, siteUrl);
-  const images = getProductImageUrls(product, productUrl);
-  const reviews = (attributes.product_reviews || []).filter(
-    (review) => review.is_approved === true || review.is_approved === 1
+  const productUrl = getCanonicalUrl(
+    router.asPath,
+    router.locale,
+    router.defaultLocale,
+    router.locales
   );
+  const images = getProductImageUrls(product, productUrl);
+  const reviews = (
+    (attributes.product_reviews || []) as ProductReview[]
+  ).filter((review) => review.is_approved === true || review.is_approved === 1);
   const averageRating = reviews.length
-    ? reviews.reduce((sum, review) => sum + Number(review.rating || 0), 0) /
-      reviews.length
+    ? reviews.reduce(
+        (sum: number, review) => sum + Number(review.rating || 0),
+        0
+      ) / reviews.length
     : null;
   const priceCurrency =
     (currency as Record<string, string>)[router.locale || "id"] || "IDR";
+  const returnPolicyUrl = getCanonicalUrl(
+    "/return-policy",
+    router.locale,
+    router.defaultLocale,
+    router.locales
+  );
 
   const jsonLd: any = {
     "@context": "https://schema.org/",
@@ -49,22 +69,8 @@ const ProductJsonLd = ({ product, baseUrl = SITE_URL }: any) => {
           : "https://schema.org/OutOfStock",
       hasMerchantReturnPolicy: {
         "@type": "MerchantReturnPolicy",
-        merchantReturnLink: toAbsoluteUrl("/return-policy", siteUrl),
+        merchantReturnLink: returnPolicyUrl,
       },
-      shippingDetails: [
-        {
-          "@type": "OfferShippingDetails",
-          shippingRate: {
-            "@type": "MonetaryAmount",
-            value: 0,
-            currency: priceCurrency,
-          },
-          shippingDestination: {
-            "@type": "DefinedRegion",
-            addressCountry: "ID",
-          },
-        },
-      ],
     },
   };
 
@@ -76,7 +82,7 @@ const ProductJsonLd = ({ product, baseUrl = SITE_URL }: any) => {
       bestRating: 5,
       worstRating: 1,
     };
-    jsonLd.review = reviews.map((review) => ({
+    jsonLd.review = reviews.map((review: ProductReview) => ({
       "@type": "Review",
       reviewRating: {
         "@type": "Rating",

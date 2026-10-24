@@ -1,63 +1,88 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  type DocumentContext,
+} from "next/document";
 import { GA_TRACKING_ID } from "lib/gtag";
+import { getLanguageTag } from "lib/seo";
 
-export default function Document() {
-  return (
-    <Html lang="en">
-      <Head>
-        {/* Global Site Tag (gtag.js) - Google Analytics */}
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+class SiteDocument extends Document {
+  static async getInitialProps(context: DocumentContext) {
+    const initialProps = await Document.getInitialProps(context);
+    return {
+      ...initialProps,
+      locale: context.locale || "id",
+    };
+  }
+
+  render() {
+    const locale = (this.props as typeof this.props & { locale?: string })
+      .locale;
+
+    return (
+      <Html lang={getLanguageTag(locale)}>
+        <Head>
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GA_TRACKING_ID}', {
               page_path: window.location.pathname,
             });
-          `,
-          }}
-        />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2242816010232507"
-          crossOrigin="anonymous"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `{
+            `,
+            }}
+          />
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2242816010232507"
+            crossOrigin="anonymous"
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `{
             "@context": "https://schema.org",
             "@type": "Organization",
-            "url": "https://www.souvenirlilin.id",
-            "logo": "https://www.souvenirlilin.id/logolilin.png"
+            "url": "https://souvenirlilin.id",
+            "logo": "https://souvenirlilin.id/logolilin.png"
           }`,
-          }}
-          type="application/ld+json"
-        />
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
-        <meta name="google-adsense-account" content="ca-pub-2242816010232507" />
-      </Head>
-      <body>
-        <Main />
-        <NextScript />
-        <div className="fixed bottom-4 left-4 z-50">
-          <a
-            href="https://bikinwebsitejogja.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200"
-          >
-            <span className="text-xs font-medium text-gray-700 hover:text-indigo-600 transition-colors">
-              bikinwebsitejogja.com
-            </span>
-          </a>
-        </div>
-      </body>
-    </Html>
-  );
+            }}
+            type="application/ld+json"
+          />
+          <link rel="manifest" href="/manifest.json" />
+          <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
+          <meta
+            name="google-adsense-account"
+            content="ca-pub-2242816010232507"
+          />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+          <div className="fixed bottom-4 left-4 z-50">
+            <a
+              href="https://bikinwebsitejogja.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200"
+            >
+              <span className="text-xs font-medium text-gray-700 hover:text-indigo-600 transition-colors">
+                bikinwebsitejogja.com
+              </span>
+            </a>
+          </div>
+        </body>
+      </Html>
+    );
+  }
 }
+
+export default SiteDocument;

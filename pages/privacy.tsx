@@ -16,6 +16,7 @@ export async function getStaticProps({ locale }) {
     process.cwd(),
     "public",
     "document",
+    locale,
     "privacy.md"
   );
   const fileContents = fs.readFileSync(termsPath, "utf8");

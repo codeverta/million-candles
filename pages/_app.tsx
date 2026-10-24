@@ -18,6 +18,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { appWithTranslation } from "next-i18next";
 import CartProvider from "context/CartContext";
 import { useRouter } from "next/router";
+import { getCanonicalUrl, shouldNoIndex } from "lib/seo";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,6 +53,13 @@ if (typeof window !== "undefined") {
 function App({ Component, pageProps }: AppLayoutProps) {
   const router = useRouter();
   const isProductPage = router.pathname === "/products/[slug]";
+  const canonicalUrl = getCanonicalUrl(
+    router.asPath,
+    router.locale,
+    router.defaultLocale,
+    router.locales
+  );
+  const noIndex = shouldNoIndex(router.pathname, router.query, router.asPath);
   const appProps = { getRelationship, getRelationships };
   const getLayout = Component.getLayout || ((page: ReactNode) => page);
   // seo
@@ -60,11 +68,9 @@ function App({ Component, pageProps }: AppLayoutProps) {
   const pageDescription = `Million Candles adalah produsen lilin aromaterapi handmade dengan wangi menenangkan, cocok untuk dekorasi, kado, dan relaksasi. Tersedia pengiriman ke Jogja, Jakarta, Bandung, Bali, dan seluruh Indonesia.`;
   const ogImageUrl = "https://souvenirlilin.id/og-image.png";
   const siteName = "UD Million Candles";
-  const siteUrl = "https://souvenirlilin.id";
   const twitterHandle = "@souvenirlilin";
   const keywords =
     "jual lilin, jual lilin jogja, lilin aromaterapi jogja, lilin batang, souvenir cantik, souvenir jogja, ud million candles, souvenir lilin, lilin warna, lilin hias, lilin berkualitas";
-  const canonicalUrl = `https://souvenirlilin.id${router.asPath}`;
 
   return (
     <>
@@ -85,7 +91,7 @@ function App({ Component, pageProps }: AppLayoutProps) {
                     alt: pageTitle,
                   },
                 ],
-                url: siteUrl,
+                url: canonicalUrl,
                 type: "website",
                 site_name: siteName,
                 locale: "id_ID",
@@ -114,7 +120,8 @@ function App({ Component, pageProps }: AppLayoutProps) {
             content: "#2563eb",
           },
         ]}
-        canonical={isProductPage ? undefined : canonicalUrl}
+        canonical={canonicalUrl}
+        noindex={noIndex}
       />
 
       <QueryClientProvider client={queryClient}>

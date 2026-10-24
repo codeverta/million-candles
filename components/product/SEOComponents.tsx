@@ -2,7 +2,8 @@ import React from "react";
 import ProductJsonLd from "components/ProductJsonLd";
 import { BreadcrumbJsonLd, NextSeo } from "next-seo";
 import { useRouter } from "next/router";
-import { getProductImageUrls, toAbsoluteUrl } from "utils/productImages";
+import { getCanonicalUrl, SITE_URL } from "lib/seo";
+import { getProductImageUrls } from "utils/productImages";
 
 /**
  * Component for handling SEO-related tags
@@ -14,17 +15,32 @@ const SEOComponents = ({ product, baseUrl }) => {
   const attributes = product.data[0].attributes;
   const title = `${attributes.name} | UD Million Candles`;
   const description = attributes.description || title;
-  const siteUrl = baseUrl || "https://www.souvenirlilin.id";
-  const canonicalUrl = toAbsoluteUrl(router.asPath, siteUrl);
+  const canonicalUrl = getCanonicalUrl(
+    router.asPath,
+    router.locale,
+    router.defaultLocale,
+    router.locales
+  );
   const images = getProductImageUrls(product, canonicalUrl);
   const mainImage = images[0];
+  const homeUrl = getCanonicalUrl(
+    "/",
+    router.locale,
+    router.defaultLocale,
+    router.locales
+  );
+  const productsUrl = getCanonicalUrl(
+    "/products",
+    router.locale,
+    router.defaultLocale,
+    router.locales
+  );
 
   return (
     <>
       <NextSeo
         title={title}
         description={description}
-        canonical={canonicalUrl}
         openGraph={{
           title,
           description,
@@ -47,21 +63,18 @@ const SEOComponents = ({ product, baseUrl }) => {
             : []
         }
       />
-      <ProductJsonLd
-        product={product}
-        baseUrl={baseUrl || "https://www.souvenirlilin.id"}
-      />
+      <ProductJsonLd product={product} baseUrl={baseUrl || SITE_URL} />
       <BreadcrumbJsonLd
         itemListElements={[
           {
             position: 1,
             name: "Home",
-            item: "https://souvenirlilin.id/",
+            item: homeUrl,
           },
           {
             position: 2,
             name: "Products",
-            item: "https://souvenirlilin.id/products",
+            item: productsUrl,
           },
           {
             position: 3,

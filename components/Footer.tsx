@@ -2,214 +2,25 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import packageInfo from "../package.json";
+import { buildBusinessWhatsAppLink } from "utils/whatsapp.cjs";
+import { trackWhatsAppClick } from "lib/gtag";
 
 const version = packageInfo.version;
-const keywords = [
-  "toko lilin terdekat",
-  "jual lilin aromaterapi terdekat",
-  "toko lilin aromaterapi terdekat",
-  "toko aromaterapi terdekat",
-  "toko stearin terdekat",
-  "jual lilin besar terdekat",
-  "pabrik lilin terdekat",
-  "lilin aromaterapi terdekat",
-  "jual lilin terdekat",
-  "lilin",
-  "teknik lilin",
-  "toko bahan lilin terdekat",
-  "sebutkan alat dan bahan untuk membuat lilin warna-warni",
-  "pabrik lilin",
-  "jual stearin terdekat",
-  "lilin aromaterapi jogja",
-  "lilin aromaterapi dapat digunakan dalam acara seperti...",
-  "minyak esensial yang digunakan dalam pembuatan lilin aromaterapi harus memiliki kualitas...",
-  "proses pewarnaan kerajinan lilin dilakukan pada saat",
-  "tempat jual lilin aromaterapi terdekat",
-  "toko lilin",
-  "penjual lilin terdekat",
-  "toko lilin jogja",
-  "tempat jual lilin terdekat",
-  "lilin aromaterapi dapat digunakan dalam acara seperti",
-  "jual sumbu lilin terdekat",
-  "jenis jenis lilin",
-  "bahan tambahan dalam lilin aromaterapi seperti pewarna dan minyak esensial harus ditambahkan",
-  "proses pencairan lilin yang tepat dengan cara",
-  "supplier produsen lilin batang jogja yogyakarta",
-  "jual lilin merah terdekat",
-  "lilin dibuat dengan cara",
-  "lilin aromaterapi",
-  "toko aroma terapi terdekat",
-  "toko lilin ulang tahun terdekat",
-  "jual lilin besar",
-  "penjual lilin aromaterapi terdekat",
-  "teknik yang paling tepat untuk membuat lilin hias dengan berbagai bentuk adalah",
-  "proses membuat kerajinan lilin sebelum dibentuk atau dicetak adalah",
-  "lilin terbuat dari apa",
-  "toko jual lilin terdekat",
-  "tempat jual lilin besar terdekat",
-  "toko lilin elektrik terdekat",
-  "jual aromaterapi terdekat",
-  "cara membuat lilin hias",
-  "teknik pembuatan lilin",
-  "million candles",
-  "toko sumbu lilin terdekat",
-  "lilin terdekat",
-  "proses pembuatan lilin",
-  "lilin ibadah",
-  "toko lilin semarang",
-  "sumbu lilin beli dimana",
-  "teknik membuat lilin",
-  "bahan dasar lilin",
-  "lilin terbuat dari",
-  "manfaat lilin aromaterapi",
-  "harga lilin paskah",
-  "jual lilin",
-  "jual lilin ulang tahun terdekat",
-  "soy wax",
-  "bahan tambahan dalam lilin aromaterapi seperti pewarna dan minyak esensial harus ditambahkan...",
-  "harga lilin paskah besar",
-  "teknik pengolahan lilin",
-  "jenis lilin",
-  "teknik kerajinan lilin",
-  "lilin hias",
-  "logo lilin aromaterapi",
-  "pembuatan lilin",
-  "lilin aroma terapi adalah",
-  "lilin elektrik",
-  "stearin beli dimana",
-  "jual lilin elektrik terdekat",
-  "suhu lilin ketika dilelehkan adalah",
-  "sejarah lilin aromaterapi",
-  "cara pembuatan lilin",
-  "jual soy wax terdekat",
-  "toko lilin merah terdekat",
-  "jenis-jenis lilin",
-  "aromaterapi jogja",
-  "souvenir lilin aromaterapi",
-  "cara membuat lilin",
-  "fungsi lilin",
-  "kegunaan lilin",
-  "jual lilin merah",
-  "stearin lilin",
-  "toko merah terdekat",
-  "jual lampu lilin terdekat",
-  "tempat jual lilin ulang tahun terdekat",
-  "beli lilin aromaterapi dimana",
-  "macam macam lilin",
-  "kerajinan lilin hias",
-  "bahan pembuatan lilin",
-  "apa itu stearin",
-  "proses pembuatan kerajinan lilin",
-  "sifat lilin",
-  "karakteristik lilin",
-  "lilin merah beli dimana",
-  "jual cetakan lilin terdekat",
-  "apa itu lilin",
-  "toko oleh oleh terdekat",
-  "lilin aromaterapi biasanya dikemas dengan menggunakan...",
-  "toko lilin cina terdekat",
-  "cara buat lilin",
-  "bahan dasar pembuatan lilin",
-  "membuat lilin",
-  "lilin abadi",
-  "teknik pembuatan kerajinan lilin",
-  "ciri-ciri lilin",
-  "usaha terdekat",
-  "jual palm wax terdekat",
-  "beli sumbu lilin dimana",
-  "jual aroma terapi terdekat",
-  "lilin aromaterapi diy",
-  "lilin lebah beli dimana",
-  "sumbu lilin aromaterapi",
-  "sumbu lilin",
-  "cara membuat lilin sendiri",
-  "lilin sumbu",
-  "lilin adalah",
-  "jual lilin lebah terdekat",
-  "tempat beli lilin ulang tahun terdekat",
-  "berapa lama lilin mengeras",
-  "lilin aromaterapi unik",
-  "fungsi lilin di meja makan",
-  "beli lilin ulang tahun terdekat",
-  "jual lilin ulang tahun",
-  "toko perlengkapan ulang tahun terdekat",
-  "cara bikin lilin",
-  "lilin pilar",
-  "fungsi kerajinan lilin",
-  "teknik pengolahan bahan lunak dari lilin yaitu dengan menggunakan teknik",
-  "lilin terbuat dari bahan",
-  "bahan buat lilin",
-  "bahan utama lilin",
-  "bahan bahan membuat lilin",
-  "desain lilin aromaterapi",
-  "kemasan lilin aromaterapi",
-  "bahan membuat lilin",
-  "bahan untuk membuat lilin",
-  "kegunaan lilin aromaterapi",
-  "ciri ciri lilin",
-  "beli lilin",
-  "candles",
-  "jual ear candle terdekat",
-  "produksi lilin",
-  "stearin",
-  "lilin apung",
-  "lilin shop",
-  "pabrik lilin di jakarta",
-  "rumah lilin",
-  "tempat jualan lilin ulang tahun terdekat",
-  "apakah lilin aromaterapi bisa dipakai berapa kali",
-  "beli lilin dimana",
-  "beli lilin terdekat",
-  "jual lilin ultah terdekat",
-  "bahan lilin aromaterapi",
-  "harga lilin merah",
-  "jual es lilin terdekat",
-  "lilin ulir panjang",
-  "sketsa lilin aromaterapi",
-  "candle",
-  "candle candle",
-  "lilin batang magic",
-  "lilin jari",
-  "lilin merah",
-  "lilin stearin",
-  "candle shop near me",
-  "lilin ulang tahun terdekat",
-  "aroma lilin",
-  "palm wax beli dimana",
-  "parafin untuk lilin",
-  "yang jual lilin ulang tahun terdekat",
-  "bagaimana proses pembuatan lilin menjadi bentuk-bentuk yang unik",
-  "isi ulang rokok elektrik terdekat",
-  "lilin aromaterapi biasanya dikemas dengan menggunakan",
-  "lilin gelas",
-  "beli lilin ulang tahun dimana",
-  "souvenir lilin",
-  "bentuk kreasi dari ragam hias lilin yaitu",
-  "kerajinan lilin adalah",
-  "lilin tanggung",
-  "bahan baku untuk membuat lilin yaitu",
-  "lilin soya",
-  "stearin beli di toko apa",
-  "lilin aromaterapi souvenir",
-  "nama produk lilin aromaterapi",
-  "soy wax adalah",
-  "souvenir pernikahan lilin aromaterapi",
-  "bahan baku lilin",
-  "gambar lilin hias",
-  "bahan pembuat lilin",
-  "cetakan lilin hias",
-  "lilin terbuat dari bahan apa",
-  "lilin spa",
-  "produk...",
-];
+
+type FooterLink = { name: string; url: string };
+type FooterSection = { title: string; links: FooterLink[] };
+type FooterSocialLink = { name: string; url: string; icon: string };
+type FooterMethod = { name: string; url: string; image?: string };
 
 export default function Footer() {
   const { t } = useTranslation("common");
   const { locale } = useRouter();
-  const [footerLinks, setFooterLinks] = useState([]);
-  const [socialMediaLinks, setSocialMediaLinks] = useState([]);
-  const [paymentMethods, setPaymentMethods] = useState([]);
-  const [shippingMethods, setShippingMethods] = useState([]);
+  const [footerLinks, setFooterLinks] = useState<FooterSection[]>([]);
+  const [socialMediaLinks, setSocialMediaLinks] = useState<FooterSocialLink[]>(
+    []
+  );
+  const [paymentMethods, setPaymentMethods] = useState<FooterMethod[]>([]);
+  const [shippingMethods, setShippingMethods] = useState<FooterMethod[]>([]);
 
   useEffect(() => {
     // Initialize footer links with translated content
@@ -269,7 +80,9 @@ export default function Footer() {
       },
       {
         name: t("social.whatsapp"),
-        url: "https://wa.me/+62815678956156",
+        url: buildBusinessWhatsAppLink(
+          "Halo, saya ingin bertanya tentang produk lilin."
+        ),
         icon: "M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z",
       },
     ]);
@@ -310,21 +123,6 @@ export default function Footer() {
 
   return (
     <footer className="bg-white dark:bg-gray-900 print:hidden">
-      {/* Keywords section */}
-      <div className="mx-auto max-w-screen-xl p-4 text-center md:p-6 lg:p-8">
-        <p className="text-justify leading-[2px] text-gray-600 dark:text-gray-400">
-          {keywords.map((keyword, index) => (
-            <span
-              key={index}
-              className="text-xs text-gray-600 dark:text-gray-400"
-            >
-              {" "}
-              {keyword}{" "}
-            </span>
-          ))}
-        </p>
-      </div>
-
       {/* Main footer content */}
       <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -355,6 +153,11 @@ export default function Footer() {
                 <a
                   key={index}
                   href={social.url}
+                  onClick={() => {
+                    if (social.url.startsWith("https://wa.me/")) {
+                      trackWhatsAppClick("unclassified", "footer");
+                    }
+                  }}
                   className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                   target="_blank"
                   rel="noopener noreferrer"

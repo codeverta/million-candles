@@ -16,6 +16,7 @@ export async function getStaticProps({ locale }) {
     process.cwd(),
     "public",
     "document",
+    locale,
     "shipping-policy.md"
   );
   const fileContents = fs.readFileSync(termsPath, "utf8");

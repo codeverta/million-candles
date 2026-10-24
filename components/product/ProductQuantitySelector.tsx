@@ -1,5 +1,6 @@
 import React from "react";
 import { generateWhatsAppLink } from "lib/functions";
+import { trackWhatsAppClick } from "lib/gtag";
 
 /**
  * Component for quantity selection and order button
@@ -49,6 +50,7 @@ const ProductQuantitySelector = ({
       <a
         target="_blank"
         href={generateWhatsAppLink("+6281578956156", prepareOrderMessage())}
+        onClick={() => trackWhatsAppClick("unclassified", "product")}
         className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded ml-2 transition duration-300"
         rel="noopener noreferrer"
       >

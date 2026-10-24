@@ -248,12 +248,8 @@ export function convertToISO8601Duration(timeString: string) {
   return "PT30M";
 }
 
+const { buildWhatsAppLink } = require("../utils/whatsapp.cjs");
+
 export function generateWhatsAppLink(phoneNumber: string, message: string) {
-  // Encode the message to make it URL-safe
-  const encodedMessage = encodeURIComponent(message);
-
-  // Construct the WhatsApp URL
-  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-  return whatsappURL;
+  return buildWhatsAppLink(phoneNumber, message);
 }

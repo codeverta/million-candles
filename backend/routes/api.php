@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\DocumentController;
+use App\Http\Controllers\Api\V1\ContactInquiryController;
 use App\Http\Controllers\Api\V1\NotificationController;
 use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\ProductController;
@@ -39,6 +40,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('/v1')->group(function () {
+    Route::post('/contact-inquiries', [ContactInquiryController::class, 'store'])
+        ->middleware('throttle:5,1');
     Route::post('/auth/login', [AuthController::class, 'login']);
     Route::post('/auth/forgot', [AuthController::class, 'forgot']);
     Route::post('/auth/reset', [AuthController::class, 'reset']);

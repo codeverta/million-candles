@@ -1,6 +1,8 @@
 // components/BlogSchemaJsonLd.js
 import React from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { getCanonicalUrl } from "lib/seo";
 
 const BlogSchemaJsonLd = ({
   post,
@@ -11,6 +13,13 @@ const BlogSchemaJsonLd = ({
   },
 }: any) => {
   if (!post) return null;
+  const router = useRouter();
+  const articleUrl = getCanonicalUrl(
+    router.asPath,
+    router.locale,
+    router.defaultLocale,
+    router.locales
+  );
 
   // Base article schema
   const articleSchema = {
@@ -38,7 +47,7 @@ const BlogSchemaJsonLd = ({
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${baseUrl}/posts/${post.id}`,
+      "@id": articleUrl,
     },
   };
 
@@ -88,7 +97,7 @@ const BlogSchemaJsonLd = ({
         })),
         step: post.howTo.steps.map((step, index) => ({
           "@type": "HowToStep",
-          url: `${baseUrl}/posts/${post.id}#step-${index + 1}`,
+          url: `${articleUrl}#step-${index + 1}`,
           name: step.name || `Step ${index + 1}`,
           itemListElement: {
             "@type": "HowToDirection",
