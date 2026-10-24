@@ -100,6 +100,8 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    'contact_recipient' => env('CONTACT_FORM_RECIPIENT', 'contact@souvenirlilin.id'),
+
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings

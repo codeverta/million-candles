@@ -4,6 +4,8 @@ import Layout from "components/layout/Landing";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import AdSense from "components/AdSense";
+import { buildBusinessWhatsAppLink } from "utils/whatsapp.cjs";
+import { trackWhatsAppClick } from "lib/gtag";
 
 const CandleOrderPage = () => {
   const { t } = useTranslation("order");
@@ -139,8 +141,12 @@ const CandleOrderPage = () => {
             </h3>
             <p className="text-amber-700 mb-4">{t("cta.subtitle")}</p>
             <a
-              href="https://wa.me/+6281578956156?text=Halo%20saya%20tertarik%20dengan%20produk%20lilin%20Anda"
+              href={buildBusinessWhatsAppLink(
+                "Halo, saya ingin bertanya tentang cara memesan lilin."
+              )}
               target="_blank"
+              onClick={() => trackWhatsAppClick("unclassified", "order-guide")}
+              rel="noopener noreferrer"
               className="bg-amber-600 hover:bg-amber-700 text-white font-medium py-2 px-6 rounded-full transition duration-300 flex items-center justify-center mx-auto"
             >
               <Phone className="w-5 h-5 mr-2" />

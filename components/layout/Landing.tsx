@@ -2,19 +2,22 @@ import React, { useEffect } from "react";
 import Head from "next/head";
 import Header from "../Header";
 import Footer from "components/Footer";
-import { useRouter } from "next/router";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-
-const DOMAIN = "https://www.souvenirlilin.id";
+import { buildBusinessWhatsAppLink } from "utils/whatsapp.cjs";
+import { trackWhatsAppClick } from "lib/gtag";
 interface Props {
   children: React.ReactNode;
 }
 
 const WhatsAppButton = () => {
   const handleClick = () => {
+    trackWhatsAppClick("unclassified", "floating-button");
     window.open(
-      "https://wa.me/+6281578956156?text=Halo%20saya%20tertarik%20dengan%20produk%20lilin%20Anda",
-      "_blank"
+      buildBusinessWhatsAppLink(
+        "Halo, saya ingin bertanya tentang produk lilin."
+      ),
+      "_blank",
+      "noopener,noreferrer"
     );
   };
 
@@ -34,13 +37,9 @@ const WhatsAppButton = () => {
 };
 
 export default function Landing({ children }: Props) {
-  const router = useRouter();
-  const canonicalUrl = `${DOMAIN}${router.asPath.split("?")[0]}`;
-
   return (
     <>
       <Head>
-        <link rel="canonical" href={canonicalUrl} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         {/* <meta property="og:type" content="website" />

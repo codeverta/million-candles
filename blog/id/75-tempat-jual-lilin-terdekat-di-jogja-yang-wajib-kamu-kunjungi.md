@@ -7,8 +7,6 @@ tags: "lilin, jogja, toko lilin"
 toc: true
 ---
 
-## ✍️ Mari kita lanjutkan artikel panjangnya sekarang:
-
 ## Jual Lilin Terdekat di Jogja: 7 Rekomendasi Toko Terbaik & Termurah
 
 Jogja bukan hanya terkenal dengan budaya dan wisatanya, tapi juga memiliki banyak toko lilin unik dan berkualitas yang bisa kamu temukan dengan mudah. Jika kamu sedang mencari jual lilin terdekat di Jogja, baik untuk keperluan acara, kebutuhan rumah tangga, maupun dekorasi, artikel ini akan membantumu menemukan tempat yang tepat.

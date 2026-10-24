@@ -94,7 +94,7 @@ Thank you for shopping with us! We strive to deliver your candles safely, prompt
 ### 7. Contact & Support
 
 - **Email:** support@yourcandleshop.com
-- **Phone (WhatsApp):** +62 812 3456 7890
+- **Phone (WhatsApp):** +62 815 7895 6156
 - **Business hours:** Mon–Fri, 9 AM–5 PM (WIB, GMT+7)
 
 ---

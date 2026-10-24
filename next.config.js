@@ -16,6 +16,13 @@ const nextConfig = {
       "firebasestorage.googleapis.com",
       "cdn.dribbble.com",
     ],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "codeverta.com",
+        pathname: "/assets/**",
+      },
+    ],
   },
 };
 
