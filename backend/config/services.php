@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'discord' => [
+        'midtrans_webhook' => env('DISCORD_MIDTRANS_WEBHOOK_URL'),
+    ],
+
 ];
