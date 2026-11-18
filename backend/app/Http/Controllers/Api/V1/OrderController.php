@@ -14,6 +14,9 @@ use Midtrans\Config;
 use Midtrans\Snap;
 use Illuminate\Support\Facades\DB;
 use LaravelJsonApi\Core\Responses\DataResponse;
+use LaravelJsonApi\Core\Exceptions\JsonApiException;
+use Illuminate\Support\Facades\Log;
+use App\Support\MidtransSignature;
 
 class OrderController extends Controller
 {
@@ -66,7 +69,10 @@ class OrderController extends Controller
             $snap_token = '';
 
             if($total_price <= 0) {
-                dd("Harga Tidak boleh kurang dari atau sama dengan 0");
+                throw JsonApiException::error([
+                    'status' => 422,
+                    'detail' => 'Harga tidak boleh kurang dari atau sama dengan 0.',
+                ]);
             }
 
             // Required
@@ -108,8 +114,11 @@ class OrderController extends Controller
                     $model->is_validate_buyer = true;
                 });
             } catch (\Exception $e) {
-             	dd($e);  
-		dd($e->getMessage());
+                Log::error('Midtrans Snap gagal membuat token', ['order_id' => $order->id, 'error' => $e->getMessage()]);
+                throw JsonApiException::error([
+                    'status' => 502,
+                    'detail' => 'Gagal menghubungi layanan pembayaran. Silakan coba lagi.',
+                ]);
             }
             Order::creating(function ($model) use ($total_price, $snap_token)
             {
@@ -149,7 +158,15 @@ class OrderController extends Controller
 
     public function midtransWebhook(Request $request) {
         $input = $request->all();
+
+        if (! MidtransSignature::isValid($input)) {
+            Log::warning('Midtrans webhook ditolak: signature tidak valid', ['ip' => $request->ip()]);
+            return response()->json(['message' => 'Invalid signature'], 403);
+        }
+
         OrderCreated::dispatch($input);
+
+        return response()->json(['message' => 'OK']);
     }
 
 

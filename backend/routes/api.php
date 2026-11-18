@@ -69,7 +69,6 @@ Route::prefix('/v1')->group(function () {
         Route::get('/totalSales', [OrderController::class, 'totalSales']);
         Route::get('/searchOrder', [OrderController::class, 'searchOrder'])->middleware('throttle:5,1');
         Route::post('/midtransWebhook', [OrderController::class, 'midtransWebhook']);
-        Route::post('/midtransWebhook', [OrderController::class, 'midtransWebhook']);
         Route::delete('/documents/{id}', [DocumentController::class, 'deleting']);
     });
     Route::prefix('financial-transactions')->group(function () {
@@ -157,8 +156,12 @@ Route::post('material-stock-movements', [MaterialStockMovementController::class,
 
 
 Route::post('/midtrans-webhook', function (Request $request) {
-    // Log the request for debugging
-    Log::info('Midtrans Webhook:', $request->all());
+    if (! \App\Support\MidtransSignature::isValid($request->all())) {
+        Log::warning('Midtrans webhook ditolak: signature tidak valid', ['ip' => $request->ip()]);
+        return response()->json(['message' => 'Invalid signature'], 403);
+    }
+
+    Log::info('Midtrans Webhook:', $request->only(['order_id', 'transaction_status', 'gross_amount']));
 
     // Extract necessary details from Midtrans webhook payload
     $data = $request->all();
@@ -173,8 +176,11 @@ Route::post('/midtrans-webhook', function (Request $request) {
                "💰 **Amount:** `$amount $currency`\n".
                "✅ **Status:** `$status`";
 
-    // Discord webhook URL
-    $webhookUrl = "https://discord.com/api/webhooks/1355898882441084928/1BqM1rbFDgkd6NFvxsxQct-kgqaV01Fd67bUGXBJKgvzy3Zo8iQD5EglAyEZd7bFi5dD";
+    // Discord webhook URL (secret): isi lewat env DISCORD_MIDTRANS_WEBHOOK_URL
+    $webhookUrl = config('services.discord.midtrans_webhook');
+    if (! $webhookUrl) {
+        return response()->json(['message' => 'OK'], 200);
+    }
 
     // Send message to Discord webhook
     Http::post($webhookUrl, [
