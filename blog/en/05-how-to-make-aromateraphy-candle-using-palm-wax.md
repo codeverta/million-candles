@@ -1,7 +1,7 @@
 ---
 title: "How to Make Aromatherapy Candles Using Palm Wax at Home: A Complete Guide for Beginners"
 date: "2025-05-15"
-image: "/Million-Candles/Lilin TL Putih/1.png"
+image: "/Million-Candles/Lilin TL Putih/1.webp"
 desc: "Learn how to make eco-friendly, long-burning aromatherapy candles using palm wax with this detailed step-by-step guide. Perfect for beginners and candle business enthusiasts."
 tags: "aromatherapy candles, palm wax, DIY candles, eco-friendly candles, homemade candles"
 ---

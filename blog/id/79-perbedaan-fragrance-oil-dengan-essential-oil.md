@@ -1,7 +1,7 @@
 ---
 title: "Perbedaan Fragrance Oil dengan Essential Oils: Kenali Aroma dan Khasiatnya!"
 date: "2025-06-06"
-image: "/Million-Candles/Lilin TL Putih/1.png"
+image: "/Million-Candles/Lilin TL Putih/1.webp"
 desc: "Temukan perbedaan fragrance oil dan essential oils dalam dunia aromaterapi dan lilin wangi. Ketahui mana yang lebih aman, alami, dan sesuai dengan kebutuhan Anda!"
 tags: "fragrance oil, essential oils, aromaterapi"
 ---

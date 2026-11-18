@@ -1,7 +1,7 @@
 ---
 title: "High-Quality Candle Export from Indonesia: Trusted Supplier for Global Buyers"
 date: "2025-05-15"
-image: "/Million-Candles/Lilin TL Merah/3.png"
+image: "/Million-Candles/Lilin TL Merah/3.webp"
 desc: "Discover why Indonesia is the perfect source for high-quality candle exports. Learn about production standards, materials, certifications, and how to connect with a trusted supplier."
 tags: "candle export, Indonesian candle supplier, high quality candles, candle wholesale, natural wax"
 ---

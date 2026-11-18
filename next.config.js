@@ -4,11 +4,59 @@ const { i18n } = require("./next-i18next.config");
 const nextConfig = {
   reactStrictMode: false,
   staticPageGenerationTimeout: 120,
+  // process.cwd() di lib/posts.ts dll bikin file tracing ikut membawa seluruh
+  // repo (public/ ~650MB, backend/, dst) ke tiap Vercel Function. public/
+  // sudah disajikan CDN, Function tidak butuh.
+  outputFileTracingExcludes: {
+    "*": [
+      "public/Million-Candles/**",
+      "public/dashboard/**",
+      "public/assets/**",
+      "blog/**/*.{png,jpg,jpeg,webp,gif}",
+      "public/**/*.{png,jpg,jpeg,JPG,JPEG,webp,gif,svg,ico,HEIC,heic,mp4,mov,pdf,xml}",
+      "backend/**",
+      "media-archive/**",
+      "pages/**",
+      "components/**",
+      "*.tsbuildinfo",
+      "pnpm-lock.yaml",
+      "docs/**",
+      "scripts/**",
+      "tests/**",
+      "erp/**",
+      ".git/**",
+      ".next/cache/**",
+      "node_modules/@swc/core*/**",
+      "node_modules/@esbuild/**",
+      "node_modules/typescript/**",
+      "node_modules/million-candles/**",
+    ],
+  },
+  // Yang memang dibaca saat runtime: markdown blog, dokumen, terjemahan.
+  outputFileTracingIncludes: {
+    "*": [
+      "blog/**/*.md",
+      "public/document/**/*.md",
+      "public/locales/**/*.json",
+    ],
+  },
   typescript: {
     // Ignore TypeScript errors during production builds
     ignoreBuildErrors: true,
   },
   i18n,
+  // Foto produk sudah dikonversi ke WebP; link lama (Google Images, situs lain)
+  // diarahkan ke file .webp.
+  async redirects() {
+    return [
+      {
+        source:
+          "/Million-Candles/:base(.+)\\.:ext(png|PNG|jpg|JPG|jpeg|JPEG|heic|HEIC)",
+        destination: "/Million-Candles/:base.webp",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     domains: [
       "randomuser.me",

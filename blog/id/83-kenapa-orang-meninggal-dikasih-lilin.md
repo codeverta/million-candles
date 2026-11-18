@@ -1,7 +1,7 @@
 ---
 title: "Kenapa Orang Meninggal Dikasih Lilin? Makna, Sejarah, dan Tradisinya"
 date: "2025-06-11"
-image: "/Million-Candles/Lilin TL Merah/2.png"
+image: "/Million-Candles/Lilin TL Merah/2.webp"
 desc: "Kenapa orang meninggal dikasih lilin? Temukan jawabannya di artikel ini yang menjelaskan makna, sejarah, dan tradisi menyalakan lilin saat orang meninggal."
 tags: "tradisi, lilin, kematian"
 ---

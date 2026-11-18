@@ -10,7 +10,7 @@ date: "2024-08-28"
 
 ## Pengenalan dan Sejarah Lilin
 
-![Lilin Pilar Ibadah]("https://souvenirlilin.id/Million-Candles/Lilin TL Putih/5.png")
+![Lilin Pilar Ibadah]("https://souvenirlilin.id/Million-Candles/Lilin TL Putih/5.webp")
 
 ### Apa Itu Lilin?
 

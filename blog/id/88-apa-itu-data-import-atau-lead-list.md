@@ -1,7 +1,7 @@
 ---
 title: "Apa Itu Data Impor atau Lead List? Cara Menemukan Importir & Distributor Lewat ImportGenius, Panjiva, ExportGenius, Volza, dan ExportGenie"
 date: "2025-05-15"
-image: "/Million-Candles/Lilin Gelas Ungu/2.png"
+image: "/Million-Candles/Lilin Gelas Ungu/2.webp"
 desc: "Panduan lengkap mengenai data impor atau lead list untuk menemukan importir dan distributor internasional. Bahas platform seperti ImportGenius, Panjiva, ExportGenius, Volza, hingga ExportGenie."
 tags: "ekspor, impor, lead list, importir, distributor"
 ---

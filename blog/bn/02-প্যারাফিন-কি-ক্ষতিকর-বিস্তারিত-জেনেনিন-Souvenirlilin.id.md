@@ -1,7 +1,7 @@
 ---
 title: "প্যারাফিন কি ক্ষতিকর? বিস্তারিত জেনেনিন | Souvenirlilin.id"
 date: "2025-09-16"
-image: "/Million-Candles/TL Putih Tumpul/3.png"
+image: "/Million-Candles/TL Putih Tumpul/3.webp"
 desc: "প্যারাফিন মোম ব্যবহার করা কি নিরাপদ? প্যারাফিন ব্যবহারের ঝুঁকি, উপকারিতা, বিকল্প এবং সতর্কতা সম্পর্কে বিস্তারিত জানুন। ভিজিট করুন Souvenirlilin.id।"
 tags: "প্যারাফিন, মোম, স্বাস্থ্য ঝুঁকি, মোমবাতি, Souvenirlilin.id"
 ---

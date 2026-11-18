@@ -1,7 +1,7 @@
 ---
 title: "cara memilih supplier lilin ekspor kualitas – insight lengkap dari Souvenirlilin.id sebagai produsen unggulan"
 date: "2025-05-15"
-image: "/Million-Candles/Lilin TL Merah/1.png"
+image: "/Million-Candles/Lilin TL Merah/1.webp"
 desc: "Panduan lengkap memilih supplier lilin untuk ekspor, mengapa Souvenirlilin.id menjadi pilihan tepat, insight industri, serta FAQ seputar ekspor lilin dari Indonesia."
 tags: "supplier lilin, ekspor lilin, Souvenirlilin.id, produsen lilin, lilin aromaterapi, lilin ekspor"
 ---

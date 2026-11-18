@@ -1,7 +1,7 @@
 ---
 title: "Cara Mudah Urus Perizinan Ekspor Produk Makanan Ringan untuk Pemula di Indonesia"
 date: "2025-09-29"
-image: "/Million-Candles/Lilin Gelas Ungu/1.png"
+image: "/Million-Candles/Lilin Gelas Ungu/1.webp"
 desc: "Panduan lengkap perizinan ekspor makanan ringan Indonesia! Simak langkah mudah, dokumen penting, & tips sukses ekspor bagi pemula. Raih pasar global sekarang!"
 tags: "Ekspor Makanan Ringan, Perizinan Ekspor, UMKM Ekspor, Prosedur Ekspor, Pasar Global"
 ---

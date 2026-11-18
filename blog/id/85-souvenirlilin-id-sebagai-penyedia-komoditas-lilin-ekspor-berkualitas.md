@@ -1,7 +1,7 @@
 ---
 title: "Cara-Cara Memulai Bisnis Ekspor Lilin: Panduan Lengkap dan Promosi Souvenirlilin.id Sebagai Penyedia Ekspor Lilin Terpercaya"
 date: "2025-05-15"
-image: "/Million-Candles/Lilin TL Merah/3.png"
+image: "/Million-Candles/Lilin TL Merah/3.webp"
 desc: "Pelajari cara memulai bisnis ekspor lilin dengan langkah-langkah praktis, strategi pemasaran, regulasi penting, dan bagaimana Souvenirlilin.id membantu Anda menjadi eksportir lilin terpercaya di Indonesia."
 tags: "ekspor, lilin, souvenirlilin.id"
 ---

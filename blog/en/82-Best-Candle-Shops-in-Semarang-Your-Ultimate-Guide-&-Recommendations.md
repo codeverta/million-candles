@@ -1,7 +1,7 @@
 ---
 title: "Best Candle Shops in Semarang: Your Ultimate Guide & Recommendations"
 date: "2025-09-07"
-image: "/Million-Candles/Lilin TL Putih/5.png"
+image: "/Million-Candles/Lilin TL Putih/5.webp"
 desc: "Looking for the best candle shops in Semarang? Discover curated recommendations, from scented soy candles to elegant decorative options. Find your perfect light!"
 tags: "Candle Shops Semarang, Semarang Candles, Best Candles Semarang, Candle Recommendations, Soy Candles Semarang"
 ---

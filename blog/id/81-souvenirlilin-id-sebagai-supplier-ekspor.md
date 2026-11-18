@@ -1,7 +1,7 @@
 ---
 title: "Bagaimana Souvenirlilin.id Mengoptimalkan Ekspor Produk Lilin dari Indonesia ke Pasar Global"
 date: "2025-06-10"
-image: "/Million-Candles/Lilin TL Merah/1.png"
+image: "/Million-Candles/Lilin TL Merah/1.webp"
 desc: "Wawasan mendalam tentang strategi dan tantangan Souvenirlilin.id dalam menembus pasar ekspor lilin Indonesia di tahun 2025."
 tags: "souvenirlilin.id, ekspor lilin, pasar global, industri lilin, news"
 ---

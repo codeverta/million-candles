@@ -1,7 +1,7 @@
 ---
 title: "Membedah Tuntas 8 Pihak Kunci dalam Rantai Pasok Ekspor Impor untuk Pemula"
 date: "2025-06-24"
-image: "/Million-Candles/Lilin TL Merah/1.png"
+image: "/Million-Candles/Lilin TL Merah/1.webp"
 desc: "Pelajari secara mendalam peran dan tanggung jawab 8 pihak kunci dalam kegiatan ekspor, mulai dari supplier hingga asuransi kargo. Panduan lengkap untuk eksportir pemula."
 tags: "ekspor, impor, bisnis internasional, freight forwarder, bea cukai, supplier, logistik, panduan ekspor"
 ---

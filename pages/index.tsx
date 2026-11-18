@@ -121,7 +121,7 @@ function Home(props: any) {
           description: t("homepage.description"),
           images: [
             {
-              url: "https://souvenirlilin.id/Million-Candles/Lilin Memories Biru/1.jpeg",
+              url: "https://souvenirlilin.id/Million-Candles/Lilin Memories Biru/1.webp",
               width: 1200,
               height: 630,
               alt: t("homepage.title"),

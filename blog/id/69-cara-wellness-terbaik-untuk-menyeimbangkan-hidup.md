@@ -1,7 +1,7 @@
 ---
 title: "21 Cara Wellness Terbaik untuk Menyeimbangkan Hidup di Era Modern"
 date: "2025-05-15"
-image: "/Million-Candles/BCM/1.jpg"
+image: "/Million-Candles/BCM/1.webp"
 desc: "Temukan 21 cara wellness terbaik untuk keseimbangan hidup Anda. Jelajahi tips, manfaat, dan dukungan dari *souvenirlilin.id* untuk menciptakan gaya hidup sehat dan harmonis."
 tags: "lilin aromaterapi untuk stress, tempat beli lilin aromaterapi lokal, rekomendasi produk wellness Indonesia, lilin aromaterapi yang aman untuk anak, cara membuat ruang wellness di rumah, tren wellness Indonesia 2025"
 toc: true

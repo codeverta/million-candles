@@ -9,42 +9,42 @@ import { trackWhatsAppClick } from "lib/gtag";
 
 const carouselImages = [
   {
-    src: "/Million-Candles/Lilin TL Putih/7.png",
+    src: "/Million-Candles/Lilin TL Putih/7.webp",
     alt: "Premium Pillar Candle",
     title: "Lilin Aromaterapi Premium",
   },
   {
-    src: "/Million-Candles/image copy 3.png",
+    src: "/Million-Candles/image copy 3.webp",
     alt: "Premium Pillar Candle",
     title: "Lilin Gelas",
   },
   {
-    src: "/Million-Candles/Lilin TL Putih/8.png",
+    src: "/Million-Candles/Lilin TL Putih/8.webp",
     alt: "Premium Pillar Candle",
     title: "Lilin Aromaterapi Premium",
   },
   {
-    src: "/Million-Candles/image copy.png",
+    src: "/Million-Candles/image copy.webp",
     alt: "Premium Pillar Candle",
     title: "Lilin Aromaterapi Premium",
   },
   {
-    src: "/Million-Candles/image.png",
+    src: "/Million-Candles/image.webp",
     alt: "Premium Pillar Candle",
     title: "Lilin Aromaterapi Premium",
   },
   {
-    src: "/Million-Candles/image copy 2.png",
+    src: "/Million-Candles/image copy 2.webp",
     alt: "Premium Pillar Candle",
     title: "Lilin Aromaterapi Premium",
   },
   {
-    src: "/Million-Candles/image copy 3.png",
+    src: "/Million-Candles/image copy 3.webp",
     alt: "Premium Pillar Candle",
     title: "Lilin Gelas",
   },
   {
-    src: "/Million-Candles/Lilin TL Putih/9.png",
+    src: "/Million-Candles/Lilin TL Putih/9.webp",
     alt: "Premium Pillar Candle",
     title: "Lilin Aromaterapi Premium",
   },

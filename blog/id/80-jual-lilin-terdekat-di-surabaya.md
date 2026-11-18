@@ -1,7 +1,7 @@
 ---
 title: "Jual Lilin Terdekat di Surabaya: Temukan Beragam Pilihan Lilin Berkualitas dengan Harga Terjangkau"
 date: "2025-06-09"
-image: "/Million-Candles/Lilin TL Merah/1.png"
+image: "/Million-Candles/Lilin TL Merah/1.webp"
 desc: "Mencari tempat jual lilin terdekat di Surabaya? Berikut ini rekomendasi lengkap supplier lilin berkualitas, termasuk SouvenirLilin.id, produsen lilin terpercaya dari Yogyakarta."
 tags: "jual lilin Surabaya, lilin dekorasi, SouvenirLilin.id"
 ---

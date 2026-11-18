@@ -29,7 +29,7 @@ const BlogSchemaJsonLd = ({
     description: post.description || post.excerpt || "",
     image: post.featuredImage
       ? `${baseUrl}${post.featuredImage}`
-      : `${baseUrl}/Million-Candles/Lilin-Gelas-Biru/1.png`,
+      : `${baseUrl}/Million-Candles/Lilin-Gelas-Biru/1.webp`,
     datePublished: post.date,
     dateModified: post.modified || post.date,
     author: {
@@ -42,7 +42,7 @@ const BlogSchemaJsonLd = ({
       name: "UD Million Candles",
       logo: {
         "@type": "ImageObject",
-        url: `${baseUrl}/Million-Candles/Lilin-Gelas-Biru/1.png`,
+        url: `${baseUrl}/Million-Candles/Lilin-Gelas-Biru/1.webp`,
       },
     },
     mainEntityOfPage: {

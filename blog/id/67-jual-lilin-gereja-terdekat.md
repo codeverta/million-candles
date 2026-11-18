@@ -1,7 +1,7 @@
 ---
 title: "10+ Alasan Mengapa Jual Lilin Gereja Berkualitas Sangat Penting untuk Ibadah Katolik"
 date: "2025-05-3"
-image: "/Million-Candles/BCM/putih.jpg"
+image: "/Million-Candles/BCM/putih.webp"
 desc: "Dalam tradisi Katolik, lilin gereja bukan sekadar benda fisik yang menyala di altar. Lilin memegang simbolisme yang sangat dalam—sebagai cahaya Kristus yang menerangi dunia. Tak heran, kebutuhan akan lilin altar, lilin gereja, dan produk lilin lainnya untuk berbagai ibadah Katolik meningkat, seiring dengan kesadaran umat terhadap makna spiritual di balik nyala lilin itu sendiri."
 tags: "jual lilin gereja terdekat, lilin gereja, lilin altar, lilin katolik"
 toc: true

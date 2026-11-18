@@ -1,7 +1,7 @@
 ---
 title: "Panduan Lengkap Lilin Sebagai Komoditas Ekspor: Peluang, Regulasi, dan Promosi Souvenirlilin.id"
 date: "2025-05-15"
-image: "/Million-Candles/Lilin TL Merah/3.png"
+image: "/Million-Candles/Lilin TL Merah/3.webp"
 desc: "Temukan peluang ekspor lilin Indonesia yang menjanjikan, lengkap dengan regulasi, proses, serta promosi Souvenirlilin.id sebagai penyedia ekspor lilin terbaik di Indonesia."
 tags: "lilin, ekspor, souvenirlilin.id"
 ---
